@@ -19,7 +19,7 @@ module.exports = {
         {to: 'blog', label: 'releases', position: 'left'},
         {to: 'https://github.com/orgs/codeontap/projects', label: 'roadmap', position: 'right'},
         {to: "contribute", label: 'contribute', position: 'right'},
-        {to: "https://gitter.im/hamlet-devops/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link", label: 'community', position: 'right'},
+        {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
       ],
     },
     algolia: {
