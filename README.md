@@ -32,8 +32,8 @@ This command generates static content into the `build` directory and can be serv
 4. Create a Pull Request from your Fork to the Upstream master.
 
 ```bash
-# fork the repository
-
+# fork the repository on Github.
+# https://github.com/codeontap/hamlet-docs.git
 
 # add your upstream repo
 git remote add upstream https://github.com/codeontap/hamlet-docs.git
@@ -50,6 +50,8 @@ git checkout -b feature-my-feature-branch
 git rebase -i HEAD~<number of commits since HEAD>
 
 # push your feature branch to your origin (the fork)
-git push 
+git push --set-upstream origin feature-my-feature-branch
 
+# on Github, create a PR from your fork/feature-branch to upstream/master.
+# make sure you complete any Issue/PR templates provided.
 ```
