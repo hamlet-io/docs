@@ -29,3 +29,16 @@
   background-color: #faebd7;
   color: #3a539b;
 }
+
+[id^="mermaid"] {
+  padding: 1rem;
+  font-size: 90%;
+  overflow: visible;
+}
+
+foreignObject {
+  text-align: center;
+  padding-top: 0rem;
+  font-size: 90%;
+  overflow: visible;
+}
