@@ -17,6 +17,7 @@ module.exports = {
       links: [
         {to: 'docs/index', label: 'docs', position: 'left'},
         {to: 'blog', label: 'releases', position: 'left'},
+        {to: 'docs/developer-guides/release-schedule', label: 'schedule', position: 'left'},
         {to: 'https://github.com/orgs/codeontap/projects', label: 'roadmap', position: 'right'},
         {to: "contribute", label: 'contribute', position: 'right'},
         {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
