@@ -11,13 +11,14 @@
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.40",
     "@docusaurus/preset-classic": "^2.0.0-alpha.40",
-    "@types/react": "^16.9.19",
+    "@types/react": "^16.9.23",
     "classnames": "^2.2.6",
     "fs": "0.0.1-security",
-    "react": "^16.8.4",
+    "mermaid": "^8.4.8",
+    "react": "^16.13.0",
     "react-admonitions": "^2.1.0",
-    "react-dom": "^16.8.4",
-    "remark-admonitions": "^1.1.1",
+    "react-dom": "^16.13.0",
+    "remark-admonitions": "^1.2.0",
     "yamljs": "^0.3.0"
   },
   "browserslist": {

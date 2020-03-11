@@ -2,6 +2,8 @@
 sidebar_label: Getting Started
 title: Getting Started
 ---
+import Mermaid from '@theme/Mermaid';
+
 The intention of this guide is to give you an understanding of the `hamlet` core concepts and how they can be applied when deploying applications and their supporting infrastructure.
 
 The guide works through the deployment of [`hamlet` hello](https://github.com/`hamlet`/docker-hello), a simple hello world website built using [Flask](https://www.palletsprojects.com/p/flask/) and hosted in a [docker container](https://https://hub.docker.com/repository/docker/`hamlet`/hello). To host the application we will use [AWS](https://aws.amazon.com/) and this guide will cover deploying the application itself along with the supporting infrastructure required for the app to run
@@ -10,12 +12,10 @@ Let's start with the concepts...
 
 ## Building a Machine
 
-```mermaid
+<Mermaid chart={`
     graph TD;
-
     container[Hello]
-
-```
+`}/>
 
 Here is our container, it performs a specific function within our application, saying `Hello!`. While it might have dependencies on other components, it still acts as an independent unit. In `hamlet` this unit is called a **component**, they form the basis of deploying infrastructure within `hamlet`.
 
@@ -34,26 +34,21 @@ If we wanted to say `Hello!` from multiple locations we would need to deploy mul
 
 A given instance and version of a component is called an **occurrence**.
 
-```mermaid
+<Mermaid chart={`
     graph LR;
-
     container[Hello <br> Component]
     instanceEarth((Earth <br> Instance))
     versionEarth1((v1 <br> Version))
     instanceMars((Mars <br> Instance))
-
     container -.- instanceEarth
     container -.- instanceMars
-
     subgraph Earth v1 Occurrence
     instanceEarth -.- versionEarth1
     end
-
     subgraph Mars Occurrence
     instanceMars
     end
-
-```
+`}/>
 
 Components have a **type** which defines the infrastructure required to provide this function. For hosting containers we have two types available, **services** which uses a container orchestrator (kubernetes, ecs etc.) to ensure the container is always running, and **tasks** which are run on demand, complete a specific task and then exit.
 
@@ -115,18 +110,17 @@ In most IT systems we don't just deploy one component, we deploy a collection of
 
 To make sure we can say `Hello!` all of the time we configure our service to deploy 2 copies of the same container, and so we can access both of them using the same URL we add a load balancer to our **Solution**
 
-```mermaid
+<Mermaid chart={`
     graph LR;
-
     loadbalancer{{ Hello-LB <br> Load Balancer }}
-
     loadbalancer --- containerA
     loadbalancer --- containerB
-
-    subgraph Hello <br> Service
+    subgraph Hello Service
     containerA[ A ]
     containerB[ B ]
     end
-```
+`}/>
+
+
 
 To create this relationship in `hamlet` we create a link from the `Hello` component to the `Hello-LB` component. When we deploy this infrastructure the container will be configured to register with the load balancer which will send traffic to either copy of the `Hello` Service.
