@@ -189,6 +189,10 @@ documentation, the others redirect to the primary.
 						"Version" : false,
 						"Host" : false
 					}
+				},
+				"Contact" {
+					"Name" : "<string>",
+					"Email" : "<string>"
 				}
 			}
 		},
@@ -347,6 +351,8 @@ documentation, the others redirect to the primary.
     -   [Instance](#Instance) - Optional - **Type:** boolean - **Default:** `false`  
     -   [Version](#Version) - Optional - **Type:** boolean - **Default:** `false`  
     -   [Host](#Host) - Optional - **Type:** boolean - **Default:** `false`  
+	-   Contact
+		- Name - Optional -- **Type:** string - **Default:** false 
 -   [Mapping](#Mapping)
     -   [IncludeStage](#IncludeStage) - Optional - **Type:** boolean - **Default:** `true`  
 -   [Profiles](#Profiles)
