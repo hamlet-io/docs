@@ -99,6 +99,7 @@ module.exports = {
       label: 'Contributor Guides',
       items: [
         'developer-guides/index',
+        'developer-guides/local-development-setup-01',
         'developer-guides/aws-data-pipeline',
       ]
     },
