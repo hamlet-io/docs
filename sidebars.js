@@ -99,8 +99,10 @@ module.exports = {
       label: 'Contributor Guides',
       items: [
         'developer-guides/index',
-        'developer-guides/container',
-        'developer-guides/source',
+        'developer-guides/terminology',
+        'developer-guides/repository-index',
+        'developer-guides/container-tags',
+        'developer-guides/aws-data-pipeline',
       ]
     },
     {
@@ -125,7 +127,6 @@ module.exports = {
           ]
         },
         'reference/component-reference',
-        'reference/glossary',
       ]
     },
   ]

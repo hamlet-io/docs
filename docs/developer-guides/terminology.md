@@ -1,6 +1,6 @@
 ---
-sidebar_label: glossary
-title: Glossary
+sidebar_label: terminology
+title: Hamlet Terminology
 ---
 import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
