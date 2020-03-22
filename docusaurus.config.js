@@ -18,7 +18,7 @@ module.exports = {
         {to: 'docs/index', label: 'docs', position: 'left'},
         {to: 'blog', label: 'releases', position: 'left'},
         {to: 'https://github.com/orgs/codeontap/projects', label: 'roadmap', position: 'right'},
-        {to: "contribute", label: 'contribute', position: 'right'},
+        {to: "docs/developer-guides/index", label: 'contribute', position: 'right'},
         {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
       ],
     },
@@ -31,15 +31,27 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Guides',
           items: [
             {
-              label: 'Style Guide',
-              to: 'docs/doc1',
+              label: 'Getting Started',
+              to: 'docs/getting-started/overview',
             },
             {
-              label: 'Second Doc',
-              to: 'docs/doc2',
+              label: 'Create',
+              to: 'docs/tutorials/overview',
+            },
+            {
+              label: 'Deploy',
+              to: 'docs/tutorials/overview',
+            },
+            {
+              label: 'Upgrade',
+              to: 'docs/tutorials/overview',
+            },
+            {
+              label: 'Automate',
+              to: 'docs/tutorials/overview',
             },
           ],
         },
@@ -47,12 +59,12 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Blog',
+              label: 'Latest Releases',
               to: 'blog',
             },
             {
               label: 'Gitter',
-              href: 'https://gitter.im/hamlet-devops/community?utm_source=share-link&utm_medium=link&utm_campaign=share-links',
+              href: 'https://gitter.im/hamlet-io/community',
             }
           ],
         },
@@ -60,29 +72,33 @@ module.exports = {
           title: 'Repos',
           items: [
             {
-              label: 'Generation (Core)',
-              href: 'https://github.com/codeontap/gen3',
+              label: 'Overview',
+              href: 'docs/developer-guides/repository-index.md'
             },
             {
-              label: 'Automation',
-              href: 'https://github.com/codeontap/automation',
+              label: 'Docs (this site)',
+              href: 'https://github.com/hamlet-io/docs'
             },
             {
-              label: 'CLI',
-              href: 'https://github.com/codeontap/gen3-cli'
+              label: 'Engine',
+              href: 'https://github.com/hamlet-io/engine',
             },
             {
-              label: 'Docker',
-              href: 'https://github.com/codeontap/docker-gen3'
+              label: 'Engine Plugin: AWS',
+              href: 'https://github.com/hamlet-io/engine-plugin-aws',
             },
             {
-              label: 'Patterns',
-              href: 'https://github.com/codeontap/gen3-patterns'
+              label: 'Engine Plugin: Azure',
+              href: 'https://github.com/hamlet-io/engine-plugin-azure'
             },
             {
-              label: 'Freemarker Wrapper',
-              href: 'https://github.com/codeontap/gen3-freemarker-wrapper'
-            }
+              label: 'Executor: Bash',
+              href: 'https://github.com/hamlet-io/executor-bash'
+            },
+            {
+              label: 'Executor: Python',
+              href: 'https://github.com/hamlet-io/executor-python'
+            },
           ],
         },
       ],
