@@ -3,10 +3,11 @@ sidebar_label: Getting Started
 title: Getting Started
 ---
 import Mermaid from '@theme/Mermaid';
+import Admonition from 'react-admonitions';
 
 The intention of this guide is to give you an understanding of the `hamlet` core concepts and how they can be applied when deploying applications and their supporting infrastructure.
 
-The guide works through the deployment of [hamlet hello](https://github.com/codeontap/docker-hello), a simple hello world website built using [Flask](https://www.palletsprojects.com/p/flask/) and hosted in a [docker container](https://https://hub.docker.com/repository/docker/`hamlet`/hello). To host the application we will use [AWS](https://aws.amazon.com/) and this guide will cover deploying the application itself along with the supporting infrastructure required for the app to run
+The guide works through the deployment of [hamlet hello](https://github.com/codeontap/docker-hello), a simple hello world website built using [Flask](https://www.palletsprojects.com/p/flask/) and hosted in a [docker container](https://hub.docker.com/r/codeontap/hello). To host the application we will use [AWS](https://aws.amazon.com/) and this guide will cover deploying the application itself along with the supporting infrastructure required for the app to run
 
 Let's start with the concepts...
 
@@ -56,55 +57,58 @@ We want to say `Hello!` all the time so we will make the type of this component 
 
 Each type has it's own configuration that defines specifically how this component should behave, memory and cpu allocation, exposed network ports and connections to load balancers are all part of the component configuration.
 
-!!! note
-    This is a section of the configuration for a service. To see all of the component types and their configuration options head to the [configuration reference](../reference/component-reference.md) page
-    ```json
-    {
-        "service" : {
-            "Engine" : "ec2",
-            "Containers" : {
-                "example" : {
-                    "Cpu" : "<number>",
-                    "Links" : {
-                        "example" : {
-                            "Tier" : "",
-                            "Component" : "",
-                            "Instance" : "",
-                            "Version" : "",
-                            "Enabled" : true
+<Admonition type="note" title="Remember">
+    This is a section of the configuration for a service. To see all of the component types and their configuration options head to the configuration reference docs page.
+</Admonition>
+    
+
+```json
+{
+    "service" : {
+        "Engine" : "ec2",
+        "Containers" : {
+            "example" : {
+                "Cpu" : "<number>",
+                "Links" : {
+                    "example" : {
+                        "Tier" : "",
+                        "Component" : "",
+                        "Instance" : "",
+                        "Version" : "",
+                        "Enabled" : true
+                    }
+                },
+                "MaximumMemory" : "<number>",
+                "MemoryReservation" : "<number>",
+                "Ports" : {
+                    "example" : {
+                        "Container" : "unknown",
+                        "DynamicHostPort" : false,
+                        "LB" : {
+                            "Tier" : "<string>",
+                            "Component" : "<string>",
+                            "LinkName" : "lb",
+                            "Instance" : "<string>",
+                            "Version" : "<string>",
+                            "PortMapping" : "<string>"
                         }
-                    },
-                    "MaximumMemory" : "<number>",
-                    "MemoryReservation" : "<number>",
-                    "Ports" : {
-                        "example" : {
-                            "Container" : "unknown",
-                            "DynamicHostPort" : false,
-                            "LB" : {
-                                "Tier" : "<string>",
-                                "Component" : "<string>",
-                                "LinkName" : "lb",
-                                "Instance" : "<string>",
-                                "Version" : "<string>",
-                                "PortMapping" : "<string>"
-                            }
-                        }
-                    },
-                    "Version" : "<string>",
-                    "ContainerNetworkLinks" : "<array of string>"
-                }
-            },
-            "DesiredCount" : -1,
-            "Permissions" : {
-                "Decrypt" : true,
-                "AsFile" : true,
-                "AppData" : true,
-                "AppPublic" : true
-            },
-            "NetworkMode" : "<string>"
-        }
+                    }
+                },
+                "Version" : "<string>",
+                "ContainerNetworkLinks" : "<array of string>"
+            }
+        },
+        "DesiredCount" : -1,
+        "Permissions" : {
+            "Decrypt" : true,
+            "AsFile" : true,
+            "AppData" : true,
+            "AppPublic" : true
+        },
+        "NetworkMode" : "<string>"
     }
-    ```
+}
+```
 
 In most IT systems we don't just deploy one component, we deploy a collection of components which work together to provide a specific service. In `hamlet` this collection is called a **Solution**, the components that make up the solution have a set of dependent relationships between one another and we define these relationships between as **Links**. Links allow components to share properties between one another and can also be used to determine the configuration of a component.
 
