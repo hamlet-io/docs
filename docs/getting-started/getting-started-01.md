@@ -16,7 +16,7 @@ Our CMDB is what drives `hamlet`. Any changes we wish to see performed in our in
 
 # Creating the CMDB
 
-As this is a short introduction to `hamlet`, lets dive right in with a pre-configured example CMDB. You can learn more about the design and structure of the CMDB in our [Tutorials]('../overview').
+As this is a short introduction to `hamlet`, lets dive right in with a pre-configured example CMDB. You can learn more about the design and structure of the CMDB in our [Tutorials](./overview.md).
 
 <Tabs
     defaultValue="bash"

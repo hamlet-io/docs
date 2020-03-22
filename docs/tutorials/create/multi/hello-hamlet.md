@@ -6,7 +6,7 @@ import Mermaid from '@theme/Mermaid';
 
 The intention of this guide is to give you an understanding of the `hamlet` core concepts and how they can be applied when deploying applications and their supporting infrastructure.
 
-The guide works through the deployment of [`hamlet` hello](https://github.com/`hamlet`/docker-hello), a simple hello world website built using [Flask](https://www.palletsprojects.com/p/flask/) and hosted in a [docker container](https://https://hub.docker.com/repository/docker/`hamlet`/hello). To host the application we will use [AWS](https://aws.amazon.com/) and this guide will cover deploying the application itself along with the supporting infrastructure required for the app to run
+The guide works through the deployment of [hamlet hello](https://github.com/codeontap/docker-hello), a simple hello world website built using [Flask](https://www.palletsprojects.com/p/flask/) and hosted in a [docker container](https://https://hub.docker.com/repository/docker/`hamlet`/hello). To host the application we will use [AWS](https://aws.amazon.com/) and this guide will cover deploying the application itself along with the supporting infrastructure required for the app to run
 
 Let's start with the concepts...
 
@@ -57,7 +57,7 @@ We want to say `Hello!` all the time so we will make the type of this component 
 Each type has it's own configuration that defines specifically how this component should behave, memory and cpu allocation, exposed network ports and connections to load balancers are all part of the component configuration.
 
 !!! note
-    This is a section of the configuration for a service. To see all of the component types and their configuration options head to the [configuration reference](http://127.0.0.1:8000/reference/component-reference/) page
+    This is a section of the configuration for a service. To see all of the component types and their configuration options head to the [configuration reference](../reference/component-reference.md) page
     ```json
     {
         "service" : {

@@ -34,7 +34,7 @@ cot create template \
 
 Now let's break down what the arguments are here.
 
-- **level** We'll cover Levels in depth during our [Tutorials]('../tutorials/overview'), but for now just know that segment level templates are deployed and updated first, because many if not all other templates will rely on their resources.
+- **level** We'll cover Levels in depth during our [Tutorials](../tutorials/overview.md), but for now just know that segment level templates are deployed and updated first, because many if not all other templates will rely on their resources.
 - **provider** Which Provider should your template be created for. This must match your CMDB, however more complex CMDB's may have multiple providers. the hamlet_demo CMDB is configured for AWS.
 - **framework** Which framework within a Provider should the template create? This may be a simple choice if your Provider only offers the one Framework (such as a CLI) however if you have multiple options you could specify the precise framework here. AWS most commonly uses Cloud Formation templatates to deploy infrastructure with, so we've used that here.
 - **deployment-unit** A Deployment Unit is an individual instance of a component. The names of these are defined within the CMDB. Here we've just used "baseline" for simplicity, but in an actual `hamlet` CMDB you would call this as you wish. Typically, something related to the component type is recommended.
