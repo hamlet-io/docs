@@ -89,9 +89,9 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Core Concepts',
+      label: 'Design Concepts',
       items: [
-        'architecture/index'
+        'design-concepts/index'
       ]
     },
     {

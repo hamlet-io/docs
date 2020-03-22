@@ -1,6 +1,6 @@
 ---
-sidebar_label: overview
-title: Architecture Overview
+sidebar_label: architecture
+title: hamlet Architecture
 ---
 At the core of `hamlet` is the management of infrastructure deployments including the generation of application artefacts which will be used as part of these deployments.
 

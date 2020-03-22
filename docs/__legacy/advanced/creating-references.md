@@ -18,8 +18,8 @@ The following reference types are available
 !!! note "Pre-requisites"
     To generate the reference you will need to be setup to run `hamlet`
 
-    - A clone of the [generation repo](https://github.com/`hamlet`/gen3)  
-    - A clone of the [documentation repo](https://github.com/`hamlet`/`hamlet`)  
+    - A clone of the [generation repo](https://github.com/hamlet-io/engine)  
+    - A clone of the [documentation repo](https://github.com/hamlet-io/docs)  
     - `GENERATION_DIR` environment variable configured to the clone location  
     - Access to docker for the markdown clean-up process  
     - This process does not require a cmdb or `ACCOUNT` configured
