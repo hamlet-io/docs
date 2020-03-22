@@ -18,7 +18,7 @@ module.exports = {
         {to: 'docs/index', label: 'docs', position: 'left'},
         {to: 'blog', label: 'releases', position: 'left'},
         {to: 'https://github.com/orgs/hamlet-io/projects', label: 'roadmap', position: 'right'},
-        {to: "docs/developer-guides/index", label: 'contribute', position: 'right'},
+        {to: "https://hamlet.io/docs/developer-guides/index", label: 'contribute', position: 'right'},
         {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
       ],
     },
@@ -73,7 +73,7 @@ module.exports = {
           items: [
             {
               label: 'Overview',
-              href: 'docs/developer-guides/index'
+              href: 'https://hamlet.io/docs/developer-guides/index'
             },
             {
               label: 'Docs (this site)',
