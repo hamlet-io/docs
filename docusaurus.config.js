@@ -17,7 +17,7 @@ module.exports = {
       links: [
         {to: 'docs/index', label: 'docs', position: 'left'},
         {to: 'blog', label: 'releases', position: 'left'},
-        {to: 'https://github.com/orgs/hamlet-io/projects', label: 'roadmap', position: 'right'},
+        {to: 'https://github.com/orgs/hamlet-io/projects/4', label: 'roadmap', position: 'right'},
         {to: "https://hamlet.io/docs/developer-guides/index", label: 'contribute', position: 'right'},
         {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
       ],
