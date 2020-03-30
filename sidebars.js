@@ -91,7 +91,8 @@ module.exports = {
       type: 'category',
       label: 'Design Concepts',
       items: [
-        'design-concepts/index'
+        'design-concepts/index',
+        'design-concepts/linking',
       ]
     },
     {
