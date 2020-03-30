@@ -34,7 +34,7 @@
 ## Checklist:
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] I have tested the changes locally - see [README.md](../README.md)
+- [ ] I have tested the changes locally - see [README.md](https://github.com/hamlet-io/docs/blob/master/README.md)
 - [ ] I have added appropriate labels to this PR.
 - [ ] I have added this to the `hamlet roadmap` project.
 
