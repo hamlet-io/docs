@@ -1,6 +1,6 @@
 ---
-sidebar_label: release process
-title: Release Process
+sidebar_label: release schedule
+title: Release Schedule
 ---
 
 `hamlet` releases follow the release train model [Spotify Example](https://labs.spotify.com/2014/03/27/spotify-engineering-culture-part-1/) [Agile Description](https://www.scaledagileframework.com/agile-release-train/) where releases are made at scheduled intervals. With this model all commits to the master branch should be considered release candidates.
@@ -11,7 +11,7 @@ Our release cycle is structured into three stages. The releases are structured t
 
 ### Train
 
-The train release is the stable product release which is the recommended release of `hamlet`. The train is scheduled quarterly and the timetable is available here: https://github.com/`hamlet`/`hamlet`/milestones
+The train release is the stable product release which is the recommended release of `hamlet`. The train is scheduled quarterly.
 
 ### Tram
 

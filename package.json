@@ -9,16 +9,17 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.40",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.40",
-    "@types/react": "^16.9.23",
+    "@docusaurus/core": "^2.0.0-alpha.48",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.48",
+    "@types/react": "^16.9.31",
     "classnames": "^2.2.6",
     "fs": "0.0.1-security",
+    "infima": "^0.2.0-alpha.6",
     "mermaid": "^8.4.8",
-    "react": "^16.13.0",
+    "react": "^16.13.1",
     "react-admonitions": "^2.1.0",
-    "react-dom": "^16.13.0",
-    "remark-admonitions": "^1.2.0",
+    "react-dom": "^16.13.1",
+    "remark-admonitions": "^1.2.1",
     "yamljs": "^0.3.0"
   },
   "browserslist": {
