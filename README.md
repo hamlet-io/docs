@@ -22,6 +22,14 @@ This command starts a local development server and open up a browser window. Mos
 $ npm run build
 ```
 
+### Update Docusaurus Version
+
+Update package.json to the latest version numbers for both `@docusaurus/core` and `@docusaurus/preset-classic`; then:
+
+```
+npm install
+```
+
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 ### Contribute
