@@ -1,6 +1,6 @@
 ---
-sidebar_label: layout
-title: Layout
+sidebar_label: anatomy
+title: CMDB Anatomy
 ---
 import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';

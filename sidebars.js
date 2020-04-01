@@ -119,8 +119,8 @@ module.exports = {
           type: 'category',
           label: 'CMDB',
           items: [
-            'reference/cmdb/cmdb-folder-structure-01',
-            'reference/cmdb/cmdb-folder-structure-02'
+            'reference/cmdb/anatomy',
+            'reference/cmdb/schemas',
           ]
         },
         'reference/component-reference',

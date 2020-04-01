@@ -12,7 +12,7 @@ This reference provides an outline of the different classes of items within the 
 
 ## Hosting
 
-### solution.json
+### Solution
 
 A solution defines the infrastructure in a product. Solutions describe each component and its configuration. A an instance of the solution is then deployed based on the environment and segment of a product.
 
@@ -20,19 +20,62 @@ A solution defines the infrastructure in a product. Solutions describe each comp
 * Scope - product, segment, app
 
 <Tabs
-    defaultValue="schema"
+    defaultValue="json"
     values={[
-        {label: 'Schema', value: 'schema'},
+        {label: 'JSON Schema', value: 'json'},
+        {label: 'YAML Schema', value: 'yaml'},
         {label: 'Example', value: 'example'},
     ]
 }>
-<TabItem value='schema'>
+
+<TabItem value='json'>
 
 ```json
 {
-    "test": "testing"
+    "Tiers" : {
+        "{tier-name}" : {
+            "Components" : {
+                "{component-iteration-name}" : {
+                    "{component-type}" : {
+                        "Instances" : {
+                            "{instance-name}" : {
+                                "Versions" : {
+                                    "{version-name}" : {
+                                        "DeploymentUnits": [
+                                            "{deployment-unit-names}"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "{component-attribute-name}" : "{value}"
+                    }
+                }
+            }
+        }
+    }
 }
 ```
+
+</TabItem>
+<TabItem value='yaml'>
+
+```yaml
+---
+Tiers:
+  {tier-name}:
+    Components:
+      {component-iteration-name}:
+        {component-type}:
+          Instances:
+            {instance-name}:
+              Versions:
+                {version-name}:
+                  DeploymentUnits:
+                  - {deployment-unit-names}
+          {component-attribute-name}: value
+```
+
 
 </TabItem>
 <TabItem value='example'>
@@ -92,7 +135,7 @@ A solution defines the infrastructure in a product. Solutions describe each comp
 </TabItem>
 </Tabs>
 
-### segment.json
+### Segment
 
 In more complicated products you might want to split up your infrastructure to make it easier to manage or to deploy resources in different locations. The components of a solution are deployed into a segment and each segment has its own solution.
 
@@ -133,7 +176,7 @@ In more complicated products you might want to split up your infrastructure to m
 
 ## Application
 
-### build.json
+### Build
 
 * Repository - ProductCMDB
 * Scope - app
@@ -166,7 +209,7 @@ In more complicated products you might want to split up your infrastructure to m
 </TabItem>
 </Tabs>
 
-### appsettings.json
+### Settings
 
 * Repository - AccountCMDB, ProductCMDB
 * Scope - product, segment, app
@@ -206,7 +249,7 @@ In more complicated products you might want to split up your infrastructure to m
 
 ## Provisioning
 
-### credentials.json
+### Credentials
 
 * Repository - AccountCMDB
 * Scope - Account, segment, app
@@ -246,31 +289,31 @@ In more complicated products you might want to split up your infrastructure to m
 </TabItem>
 </Tabs>
 
-### template.json
+### Template
 
 * Repository - ProductCMDB
 * Scope - provider templates
 * Type - Artefact
 
-### stack.json
+### Stack
 
 * Repository - ProductCMDB
 * Scope - provider templates
 * Type - Artefact
 
-### epilogue.sh
+### Epilogue (shell)
 
 * Repository - ProductCMDB
 * Scope - provider templates
 * Type - Artefact
 
-### prologue.sh
+### Prologue (shell)
 
 * Repository - ProductCMDB
 * Scope - provider templates
 * Type - Artefact
 
-### domains.json
+### Domains
 
 * Repository - AccountCMDB
 * Scope - Tenant
@@ -310,7 +353,7 @@ In more complicated products you might want to split up your infrastructure to m
 </TabItem>
 </Tabs>
 
-### tenant.json
+### Tenant
 
 A tenant represents an overall `hamlet` deployment
 
@@ -363,7 +406,7 @@ A tenant represents an overall `hamlet` deployment
 </TabItem>
 </Tabs>
 
-### ipaddressgroups.json
+### IPAddressGroups
 
 * Repository - AccountCMDB
 * Scope - Tenant
@@ -404,7 +447,7 @@ A tenant represents an overall `hamlet` deployment
 </TabItem>
 </Tabs>
 
-### countrygroups.json
+### CountryGroups
 
 * Repository - AccountCMDB
 * Scope - Tenant
@@ -440,7 +483,7 @@ A tenant represents an overall `hamlet` deployment
 </TabItem>
 </Tabs>
 
-### account.json
+### Account
 
 Represents a cloud providers highest billing entity, for AWS this would be an Account
 - **Parent** Tenant
@@ -480,7 +523,7 @@ Represents a cloud providers highest billing entity, for AWS this would be an Ac
 </TabItem>
 </Tabs>
 
-### deployment_unit.json
+### Deployment Unit
 
 * Repository - AppCode
 * Scope - product, implementation
@@ -513,11 +556,19 @@ Represents a cloud providers highest billing entity, for AWS this would be an Ac
 </TabItem>
 </Tabs>
 
-### \<resource\>.json
+### Component Settings
+
+Some components expect the existance of Settings that are specific to that component. Though these can be defined in the Settings, they are often defined in their own file.
+
+#### API Gateway (apigw)
 
 * Repository - AppCode
 * Scope - implementation
-* Example - apigw.json
+* supported components:
+
+| Component  	| Expected Setting Name 	|
+|------------	|-----------------------	|
+| apigateway 	| "apigw"               	|
 
 <Tabs
     defaultValue="schema"
@@ -530,7 +581,7 @@ Represents a cloud providers highest billing entity, for AWS this would be an Ac
 
 ```json
 {
-    "test": "testing"
+    "{expected-setting-name}": {}
 }
 ```
 
@@ -539,11 +590,15 @@ Represents a cloud providers highest billing entity, for AWS this would be an Ac
 
 ```json
 {
-    "Accounts" : ["1234567890"],
-    "Regions" : ["ap-southeast-2"],
-    "ApiKey" : true,
-    "Type" : "lambda",
-    "Variable" : "COTAPP_COTAPI_LAMBDA"
+    "apigw" : {
+        "Value" : {
+            "Type" : "lambda",
+            "Proxy" : false,
+            "BinaryTypes" : ["*/*"],
+            "ContentHandling" : "CONVERT_TO_TEXT",
+            "Variable" : "LAMBDA_API_LAMBDA"
+        }
+    }
 }
 ```
 
