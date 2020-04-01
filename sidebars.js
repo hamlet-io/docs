@@ -99,7 +99,8 @@ module.exports = {
       label: 'Contributor Guides',
       items: [
         'developer-guides/index',
-        'developer-guides/aws-data-pipeline',
+        'developer-guides/container',
+        'developer-guides/source',
       ]
     },
     {
