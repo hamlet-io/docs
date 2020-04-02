@@ -49,3 +49,8 @@
   height: 500px;
   border: 0;
 }
+
+/* Don't wrap first cell in a table: row headings */
+td:nth-of-type(1){
+  white-space:nowrap;
+}
