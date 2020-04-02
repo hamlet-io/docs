@@ -12,7 +12,7 @@ Links specify a dependency between two or more components. They allow a componen
 
 ## Link Direction
 
-Links are directional. Though an optional attribute of a link, the direction can be used to specify that a given component should be granted access to the linked component. An `Inbound` link specified on a API Gateway component for example, linking to a Lambda function would specify that the Lambda should be granted appropriate access to the API Gateway component. Conversely, an `Outbound` link between these resources would imply that the API Gateway should be permitted to access the Lambda function.
+Links are directional. Though an optional attribute of a link, the direction can be used to specify that a given component should be granted access to the linked component. An `Inbound` link specified on a API Gateway component for example, linking to a Lambda function would specify that the Lambda should be granted appropriate access for the API Gateway to invoke the lambda. Conversely, an `Outbound` link between these resources would imply that the API Gateway should be permitted to access the Lambda function.
 
 A link is only required to specified on one end of the link - either the `Inbound` or `Outbound` end.
 
@@ -60,22 +60,6 @@ The structure for each link is the same, however the object's depth - where it c
             "Tier": "<string>",
             "Component": "<string>",
             "Function": "<string>",
-            "Service": "<string>",
-            "Task": "<string>",
-            "PortMapping": "<string>",
-            "Mount": "<string>",
-            "Platform": "<string>",
-            "RouteTable": "<string>",
-            "NetworkACL": "<string>",
-            "DataBucket": "<string>",
-            "Key": "<string>",
-            "Branch": "<string>",
-            "Client": "<string>",
-            "AuthProvider": "<string>",
-            "DataFeed": "<string>",
-            "RegistryService": "<string>",
-            "Assignment": "<string>",
-            "Route": "<string>",
             "Instance": "<string>",
             "Version": "<string>"
         }
@@ -106,25 +90,8 @@ Links:
     Tier: "<string>"
     Component: "<string>"
     Function: "<string>"
-    Service: "<string>"
-    Task: "<string>"
-    PortMapping: "<string>"
-    Mount: "<string>"
-    Platform: "<string>"
-    RouteTable: "<string>"
-    NetworkACL: "<string>"
-    DataBucket: "<string>"
-    Key: "<string>"
-    Branch: "<string>"
-    Client: "<string>"
-    AuthProvider: "<string>"
-    DataFeed: "<string>"
-    RegistryService: "<string>"
-    Assignment: "<string>"
-    Route: "<string>"
     Instance: "<string>"
     Version: "<string>"
-
 ```
 
 </TabItem>
@@ -145,34 +112,70 @@ Links:
 | Tier            	|                 	| string 	| true      	| Often, Tier and Component are sufficient to create a link. 	|
 | Component       	|                 	| string 	| true      	|                                                            	|
 | Function        	|                 	| string 	| false     	|                                                            	|
-| Service         	|                 	| string 	| false     	|                                                            	|
-| Task            	|                 	| string 	| false     	|                                                            	|
-| PortMapping     	| Port            	| string 	| false     	|                                                            	|
-| Mount           	|                 	| string 	| false     	|                                                            	|
-| Platform        	|                 	| string 	| false     	|                                                            	|
-| RouteTable      	|                 	| string 	| false     	|                                                            	|
-| NetworkACL      	|                 	| string 	| false     	|                                                            	|
-| DataBucket      	|                 	| string 	| false     	|                                                            	|
-| Key             	|                 	| string 	| false     	|                                                            	|
-| Branch          	|                 	| string 	| false     	|                                                            	|
-| Client          	|                 	| string 	| false     	|                                                            	|
-| AuthProvider    	|                 	| string 	| false     	|                                                            	|
-| DataFeed        	|                 	| string 	| false     	|                                                            	|
-| RegistryService 	|                 	| string 	| false     	|                                                            	|
-| Assignment      	|                 	| string 	| false     	|                                                            	|
-| Route           	|                 	| string 	| false     	|                                                            	|
 | Instance        	|                 	| string 	| false     	|                                                            	|
 | Version         	|                 	| string 	| false     	|                                                            	|
 
 </TabItem>
 </Tabs>
 
+## Links to Sub-Components
+Linking to subcomponents is performed through additional attributes on the Link. Specifying these indicates that you are linking to the subcomponent only, not the parent.
+
+Like specifying a Component type in a link, the additional attributes each specify the type of sub-component with the attribute key being the sub-component type and the attribute value being the named instance of that sub-component.
+
+*Linking to a Key subcomponent of a baseline component in the mgmt tier.*
+<Tabs
+    defaultValue="json"
+    values={[
+        {label: 'JSON', value: 'json'},
+        {label: 'YAML', value: 'yaml'},
+    ]
+}>
+
+<TabItem value='json'>
+
+```json
+{
+    "Links": {
+        "cf_key": {
+            "Tier": "mgmt",
+            "Component": "baseline",
+            "Key": "oai"
+        }
+    }
+}
+```
+
+</TabItem>
+<TabItem value='yaml'>
+
+```yaml
+---
+Links:
+  cf_key:
+    Tier: mgmt
+    Component: baseline
+    Key: oai
+```
+
+</TabItem>
+</Tabs>
+
+<Admonition type="note" title="Subcomponent Types">
+    Make sure you are linking to the correct subcomponent by reviewing the component structure first.
+</Admonition>
+
 ## Validating a Link
 
 Run the following command in the hamlet container to validate your component's link configuration:
 
 ```
-cot query get <JMES-PATH-TO-ATTRIBUTES>
+cot query describe occurrence \
+    --tier-id <tier> \
+    --component-id <component> \
+    --instance-id <instance> \
+    --version-id <version> \
+    attributes
 ```
 
 ## Examples
