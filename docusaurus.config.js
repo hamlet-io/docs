@@ -69,14 +69,14 @@ module.exports = {
           ],
         },
         {
-          title: 'Repos',
+          title: 'Repositories',
           items: [
             {
               label: 'Overview',
               href: 'https://hamlet.io/docs/developer-guides/index'
             },
             {
-              label: 'Docs (this site)',
+              label: 'Docs',
               href: 'https://github.com/hamlet-io/docs'
             },
             {
