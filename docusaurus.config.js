@@ -1,6 +1,6 @@
 module.exports = {
   title: 'hamlet',
-  tagline: 'opinionated, ConfigFirst DevOps for everyone.',
+  tagline: 'Opinionated, ConfigFirst DevOps for everyone.',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
@@ -9,17 +9,17 @@ module.exports = {
   themeConfig: {
     disableDarkMode: true,
     navbar: {
-      title: '',
+      title: 'hamlet',
       logo: {
         alt: 'hamlet',
-        src: 'img/hamlet_navbar.png',
+        src: 'img/icon.svg',
       },
       links: [
         {to: 'docs/index', label: 'docs', position: 'left'},
         {to: 'blog', label: 'releases', position: 'left'},
-        {to: 'https://github.com/orgs/hamlet-io/projects/4', label: 'roadmap', position: 'right'},
-        {to: "https://hamlet.io/docs/developer-guides/index", label: 'contribute', position: 'right'},
-        {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
+        {href: 'https://github.com/orgs/hamlet-io/projects/4', label: 'roadmap', position: 'right'},
+        {to: "docs/developer-guides/index", label: 'contribute', position: 'right'},
+        {href: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
       ],
     },
     algolia: {
@@ -69,14 +69,14 @@ module.exports = {
           ],
         },
         {
-          title: 'Repos',
+          title: 'Repositories',
           items: [
             {
               label: 'Overview',
               href: 'https://hamlet.io/docs/developer-guides/index'
             },
             {
-              label: 'Docs (this site)',
+              label: 'Docs',
               href: 'https://github.com/hamlet-io/docs'
             },
             {
