@@ -26,7 +26,7 @@ const features = [
     ),
   },
   {
-    title: <>Keep up with the speed of the cloud</>,
+    title: <>Fly at the speed of the cloud</>,
     imageUrl: 'img/hamlet_recycle.png',
     description: (
       <>

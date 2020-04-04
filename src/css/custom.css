@@ -16,6 +16,7 @@
   --ifm-color-primary-lighter: #CDD5F5;
   --ifm-color-primary-lightest: #F3F4FF;
 
+  --ifm-navbar-height: 4rem;
 }
 
 .hero.hero-primary {
@@ -35,6 +36,11 @@
 
 .navbar {
   padding-left: 1rem;
+
+}
+
+.navbar .navbar__brand {
+  height: 3.25rem;
 }
 
 [id^="mermaid"] {
