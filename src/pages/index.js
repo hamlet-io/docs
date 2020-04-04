@@ -12,7 +12,7 @@ const features = [
     imageUrl: 'img/hamlet_config_first.png',
     description: (
       <>
-        hamlet is designed from the ground up to be driven by your CMDB.
+        hamlet is designed from the ground up to be driven by your CMDB
       </>
     ),
   },
@@ -21,8 +21,7 @@ const features = [
     imageUrl: 'img/hamlet_tri.png',
     description: (
       <>
-        Based on your CMDB, hamlet will generate and execute the files necessary
-        to take your vision into the cloud. No manual scripting!
+        hamlet will generate and execute the files necessary to take your vision into the cloud
       </>
     ),
   },
@@ -31,9 +30,7 @@ const features = [
     imageUrl: 'img/hamlet_recycle.png',
     description: (
       <>
-        hamlet will keep both your Infrastructure and applications up-to-date
-        with the latest technologies, features and cost-savings - just re-run
-        hamlet on your existing CMDB and deploy.
+        hamlet will keep both your infrastructure up-to-date with the latest technologies, features and cost-savings - just re-run hamlet on your existing CMDB and deploy
       </>
     ),
   },
@@ -68,7 +65,7 @@ function Home() {
           <div className={styles.buttons}>
             <Link
               className={classnames(
-                'button button--secondary button--outline button--lg',
+                'button button--outline button--lg',
                 styles.getStarted,
               )}
               to={useBaseUrl('docs/getting-started/overview')}>
@@ -94,4 +91,4 @@ function Home() {
   );
 }
 
-export default Home; 
+export default Home;

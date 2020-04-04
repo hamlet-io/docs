@@ -7,6 +7,23 @@
 /* You can override the default Infima variables here. */
 :root {
   --ifm-code-font-size: 95%;
+
+  --ifm-color-primary: #6D9CD8;
+  --ifm-color-primary-dark: #477ABA;
+  --ifm-color-primary-darker: #2F518F;
+  --ifm-color-primary-darkest: #1E2D5C;
+  --ifm-color-primary-light: #A8C0EB;
+  --ifm-color-primary-lighter: #CDD5F5;
+  --ifm-color-primary-lightest: #F3F4FF;
+
+}
+
+.hero.hero-primary {
+  --ifm-hero-background-color: var(--ifm-color-primary-darkest)
+}
+
+.footer.footer--dark {
+  --ifm-footer-background-color: var(--ifm-color-primary-darkest)
 }
 
 .docusaurus-highlight-code-line {
@@ -16,18 +33,8 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
-.hero__subtitle {
-  font-family: 'Quicksand', 700;
-  color: #383838;
-}
-
 .navbar {
   padding-left: 1rem;
-}
-
-.hero.hero--primary, body {
-  background-color: #faebd7;
-  color: #3a539b;
 }
 
 [id^="mermaid"] {

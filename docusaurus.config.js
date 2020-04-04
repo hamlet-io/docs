@@ -1,6 +1,6 @@
 module.exports = {
   title: 'hamlet',
-  tagline: 'opinionated, ConfigFirst DevOps for everyone.',
+  tagline: 'Opinionated, ConfigFirst DevOps for everyone.',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
@@ -9,10 +9,10 @@ module.exports = {
   themeConfig: {
     disableDarkMode: true,
     navbar: {
-      title: '',
+      title: 'hamlet',
       logo: {
         alt: 'hamlet',
-        src: 'img/hamlet_navbar.png',
+        src: 'img/icon.svg',
       },
       links: [
         {to: 'docs/index', label: 'docs', position: 'left'},
