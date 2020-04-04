@@ -19,16 +19,12 @@
   --ifm-navbar-height: 4rem;
 }
 
-.hero.hero-primary {
-  --ifm-hero-background-color: var(--ifm-color-primary-darkest)
-}
-
 .footer.footer--dark {
   --ifm-footer-background-color: var(--ifm-color-primary-darkest)
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
+  background-color: var(--ifm-color-primary-darkest);
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
@@ -36,7 +32,6 @@
 
 .navbar {
   padding-left: 1rem;
-
 }
 
 .navbar .navbar__brand {

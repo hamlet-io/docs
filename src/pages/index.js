@@ -30,7 +30,7 @@ const features = [
     imageUrl: 'img/hamlet_recycle.png',
     description: (
       <>
-        hamlet will keep both your infrastructure up-to-date with the latest technologies, features and cost-savings - just re-run hamlet on your existing CMDB and deploy
+        Keep your infrastructure up to date with the latest technologies, features and cost savings - just run hamlet on your existing CMDB and deploy
       </>
     ),
   },
@@ -65,7 +65,7 @@ function Home() {
           <div className={styles.buttons}>
             <Link
               className={classnames(
-                'button button--outline button--lg',
+                'button button--secondary  button--lg',
                 styles.getStarted,
               )}
               to={useBaseUrl('docs/getting-started/overview')}>
