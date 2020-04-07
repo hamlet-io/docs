@@ -9,17 +9,33 @@ module.exports = {
   themeConfig: {
     disableDarkMode: true,
     navbar: {
-      title: 'hamlet',
-      logo: {
-        alt: 'hamlet',
-        src: 'img/icon.svg',
+      title: 'hamlet',	
+      logo: {	
+        alt: 'hamlet',	
+        src: 'img/icon.svg',	
       },
       links: [
         {to: 'docs/index', label: 'docs', position: 'left'},
-        {to: 'blog', label: 'releases', position: 'left'},
-        {href: 'https://github.com/orgs/hamlet-io/projects/4', label: 'roadmap', position: 'right'},
-        {to: "docs/developer-guides/index", label: 'contribute', position: 'right'},
-        {href: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
+        {
+          label: 'releases',
+          position: 'right',
+          items: [
+            {
+              label: 'latest updates',
+              to: 'blog',
+            },
+            {
+              label: 'strategy',
+              to: 'docs/releases/schedule',
+            },
+            {
+              label: 'roadmap',
+              href: 'https://github.com/orgs/hamlet-io/projects/4',
+            }
+          ]
+        },
+        {to: "https://hamlet.io/docs/developer-guides/index", label: 'contribute', position: 'right'},
+        {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
       ],
     },
     algolia: {
