@@ -9,6 +9,9 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
+  "pre-commit" : [
+    "test"
+  ],
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.48",
     "@docusaurus/preset-classic": "^2.0.0-alpha.48",
@@ -38,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.8.3"
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "pre-commit": "^1.2.2"
   }
 }
