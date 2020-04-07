@@ -1,0 +1,30 @@
+name: BrokenLinkCheck
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Deploy to Integration
+        uses: jakejarvis/wait-action@v0.1.0
+        with:
+          time: '2m'
+            
+      - name: Broken Link Check
+        uses: technote-space/broken-link-checker-action@v1
+        with:
+          TARGET: https://hamlet-docs-int.now.sh/
+          RECURSIVE: true
+          TITLE: Broken link found (${URL})
+          BODY: |
+            ## Broken link found
+            Broken Link Checker found a broken link on ${TARGET}
+              Target: `${URL}`
+              > ${REASON}
+              [View Actions Results](https://github.com/${OWNER}/${REPO}/commit/${SHA}/checks)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
