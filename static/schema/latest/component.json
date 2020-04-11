@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://hamlet.io/static/schema/latest/component.json",
+    "$id": "http://hamlet.io/schema/latest/component.json",
 
     "definitions": {
 
