@@ -1,4 +1,3 @@
-
 module.exports = {
   docs: [
     {
@@ -127,8 +126,12 @@ module.exports = {
             'reference/cmdb/schemas',
           ]
         },
-        'reference/component-reference',
+        {
+          type: 'link',
+          label: 'components',
+          href: '../reference',
+        }
       ]
-    },
+    }
   ]
 }
