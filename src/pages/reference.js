@@ -3,6 +3,9 @@ import Layout from "@theme/Layout";
 import axios from "axios";
 import "./components.css";
 import Admonition from "react-admonitions";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Highlight, { defaultProps } from "prism-react-renderer";
 
 /*
  alert(JSON.stringify(components[0], null, 4));
@@ -16,6 +19,17 @@ const filterAttributerObjects = [
   "Instances",
   "additionalProperties",
 ];
+
+const examplejson =
+    {
+      "Tiers": {
+          "tiername" : {
+              "Components" : {
+                  "componentname" : {}
+              }
+          }
+      }
+  }
 
 const getAttributeStructure = (attributes) => {
   let results = [];
@@ -272,17 +286,37 @@ function HamletComponent(props) {
   }, []);
 
   return (
-    <React.Fragment>
-      <table>
-        <tr>
-          <td className="ref-component-header">{props.name + " Component"}</td>
-        </tr>
-      </table>
+    <div className="item shadow--tl component">
+      <div className="container">
+        <div className="row">
+          <div className="col col--4 ref-component-header avatar">{props.name + " Component"}</div>
+          <div className="col col--8">
+            <Tabs
+              defaultValue="json"
+              values={[
+                { label: "JSON", value: "json" },
+                { label: "YAML", value: "yaml" },
+              ]}
+            >
+              <TabItem value="json">
+                <Highlight {...defaultProps} code="" language="json">
+                {highlight => <pre>{JSON.stringify(examplejson, null, 2)}</pre>}
+                </Highlight>
+              </TabItem>
+              <TabItem value="yaml">
+                <Highlight {...defaultProps} code="" language="yaml">
+                  {highlight => <pre>{JSON.stringify({"test" : "test2"}, null, 2)}</pre>}
+                </Highlight>
+              </TabItem>
+
+            </Tabs>
+          </div>
+        </div>
+      </div>
       {componentSchemas.schemas.map((schema) => {
         return <HamletSchema name={schema.name} attributes={schema.value} />;
       })}
-      <hr />
-    </React.Fragment>
+    </div>
   );
 }
 
@@ -307,6 +341,7 @@ const HamletComponents = () => {
           flexDirection: "column",
           height: "100%",
           fontSize: "20px",
+          padding: "1em",
         }}
       >
         <Admonition type="note" title="Under Development">

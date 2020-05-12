@@ -63,6 +63,12 @@
     text-transform: capitalize;
 }
 
+.component {
+    width: 100%;
+    padding: 1em;
+    margin-top: 2em;
+}
+
 table {
     table-layout: fixed;
     overflow: initial;
