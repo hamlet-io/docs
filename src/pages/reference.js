@@ -331,32 +331,26 @@ const HamletComponents = () => {
 
   return (
     <Layout id="HamletComponents">
-      <div
-        style={{
-          marginLeft: "10vw",
-          marginRight: "10vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          flexDirection: "column",
-          height: "100%",
-          fontSize: "20px",
-          padding: "1em",
-        }}
-      >
-        <Admonition type="note" title="Under Development">
-          The hamlet reference data is currently under development. Check back
-          very soon to see a complete hamlet component reference.
-        </Admonition>
-        {definitions.components.map((component, index) => {
-          return (
-            <HamletComponent
-              key={index}
-              name={component.name}
-              attributes={component.attributes}
-            />
-          );
-        })}
+      <div className="container">
+        <div className="row">
+          <div className="col col--1" />
+          <div className="col col--10 component">
+            <Admonition type="note" title="Under Development">
+              The hamlet reference data is currently under development. Check back
+              very soon to see a complete hamlet component reference.
+            </Admonition>
+            {definitions.components.map((component, index) => {
+              return (
+                <HamletComponent
+                  key={index}
+                  name={component.name}
+                  attributes={component.attributes}
+                />
+              );
+            })}
+          </div>
+          <div className="col col--1" />
+        </div>
       </div>
     </Layout>
   );
