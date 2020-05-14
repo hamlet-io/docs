@@ -33,18 +33,13 @@ const getAttributeStructure = (attributes) => {
     let result = {};
     let childAttributes = [];
 
-    let required = "No";
-    if (attribute.value.mandatory) {
-      let required = "Yes";
-    }
-
     switch (attribute.value.type) {
       default:
       case "boolean":
       case "string":
         result = {
           name: attribute.name,
-          mandatory: required,
+          mandatory: attribute.required,
           type: attribute.value.type,
           enum: attribute.value.enum,
           default: attribute.value.default,
@@ -57,7 +52,7 @@ const getAttributeStructure = (attributes) => {
       case "array":
         result = {
           name: attribute.name,
-          mandatory: required,
+          mandatory: attribute.required,
           type: attribute.value.type,
           enum: attribute.value.items.enum,
           default: attribute.value.default,
@@ -70,7 +65,7 @@ const getAttributeStructure = (attributes) => {
       case "object":
         result = {
           name: attribute.name,
-          mandatory: required,
+          mandatory: attribute.required,
           type: attribute.value.type,
           enum: attribute.value.enum,
           default: attribute.value.default,
@@ -84,16 +79,18 @@ const getAttributeStructure = (attributes) => {
     result.properties &&
       Object.entries(result.properties).map((child) => {
         let [name, value] = child;
-        childAttributes.push({ key: name, name: name, value: value });
+        let requiredList = value.required || [];
+        childAttributes.push({ key: name, name: name, value: value, required: requiredList.includes(name) });
         return childAttributes;
       });
 
     result.patternProperties &&
       Object.entries(result.patternProperties).map((pattern) => {
         let [n, val] = pattern;
+        let requiredList = val.required || [];
         Object.entries(val.properties).map((child) => {
           let [name, value] = child;
-          childAttributes.push({ key: name, name: name, value: value });
+          childAttributes.push({ key: name, name: name, value: value, required: requiredList.includes(name) });
           return childAttributes;
         });
       });
@@ -108,7 +105,7 @@ const getAsyncDefinitions = () => {
   return axios.get(schemaUrl).then((response) => {
     Object.entries(response.data.definitions).map((definition) => {
       let [name, value] = definition;
-
+      let requiresList = value.required || [];
       /* Filter Components */
       if (!filterObjects.includes(name)) {
         /* Filter Attributes */
@@ -116,7 +113,7 @@ const getAsyncDefinitions = () => {
         Object.entries(value.properties).map((attr) => {
           let [key, val] = attr;
           if (!filterAttributerObjects.includes(key)) {
-            attributes.push({ name: key, value: val });
+            attributes.push({ name: key, value: val, required: requiresList.includes(key) });
           }
           return attributes;
         });
@@ -128,7 +125,7 @@ const getAsyncDefinitions = () => {
       }
       return components;
     });
-    return { components: components };
+    return { components: components};
   });
 };
 
@@ -138,6 +135,7 @@ const getComponentSchemas = (props) => {
   let componentAttributes = props.attributes;
   let componentSchemas = [];
   let topLevelAttributes = [];
+  let topLevelRequires = props.requires || [];
 
   /* Top-Level Schema */
   componentAttributes.map((attribute) => {
@@ -146,6 +144,7 @@ const getComponentSchemas = (props) => {
   componentSchemas.push({
     name: componentName,
     value: topLevelAttributes,
+    required: topLevelRequires
   });
 
   /* Child Schemas */
@@ -154,10 +153,11 @@ const getComponentSchemas = (props) => {
 
     if (!["string", "boolean"].includes(attribute.value.type)) {
       /* Standard Attributes */
+      let requiredList = attribute.value.required || [];
       attribute.value.properties &&
         Object.entries(attribute.value.properties).map((child) => {
           let [name, value] = child;
-          schemaAttributes.push({ name: name, value: value });
+          schemaAttributes.push({ name: name, value: value, required: requiredList.includes(name) });
           return schemaAttributes;
         });
 
@@ -165,9 +165,10 @@ const getComponentSchemas = (props) => {
       attribute.value.patternProperties &&
         Object.entries(attribute.value.patternProperties).map((pattern) => {
           let [n, val] = pattern;
+          let requiredList = val.required || [];
           Object.entries(val.properties).map((child) => {
             let [name, value] = child;
-            schemaAttributes.push({ name: name, value: value });
+            schemaAttributes.push({ name: name, value: value, required: requiredList.includes(name) });
             return schemaAttributes;
           });
         });
@@ -186,7 +187,7 @@ function HamletAttribute(props) {
   return (
     <tr className="ref-row-data">
       <td>{props.name}</td>
-      <td>{props.mandatory && props.mandatory}</td>
+      <td>{props.mandatory && "Yes"}</td>
       {props.type === "object" ? (
         <td>
           <a href={"#" + props.name}>{props.name} Object</a>
