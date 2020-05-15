@@ -15,6 +15,24 @@ const filterAttributerObjects = [
   "additionalProperties",
 ];
 
+const rawjson = 
+[
+  {
+    "label": "JSON",
+    "type": "json",
+    "value": JSON.stringify({
+      Tiers: {
+        tiername: {
+          Components: {
+            componentname: {},
+          },
+        },
+      }
+    }, null, 2)
+  }
+]
+
+
 const getAttributeStructure = (attributes) => {
   let results = [];
   attributes.map((attribute) => {
@@ -278,7 +296,7 @@ function HamletComponent(props) {
             {props.name + " Component"}
           </div>
           <div className="col col--8">
-            <HamletExample />
+            <HamletExample codeblocks={rawjson} />
           </div>
         </div>
       </div>

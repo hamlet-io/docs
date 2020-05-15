@@ -5,37 +5,41 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 
 import "./styles.css";
 
-const examplejson = {
-    Tiers: {
-      tiername: {
-        Components: {
-          componentname: {},
-        },
-      },
-    },
-  };
+function HamletExample({ codeblocks }) {
 
-function HamletExample() {
+    
+
+  let labels = [];
+  codeblocks.map((codeblock) => {
+    labels.push({ label: codeblock.label, value: codeblock.type });
+    return labels;
+  });
+
   return (
-    <Tabs
-      defaultValue="json"
-      values={[
-        { label: "JSON", value: "json" },
-        { label: "YAML", value: "yaml" },
-      ]}
-    >
-      <TabItem value="json">
-        <Highlight {...defaultProps} code="" language="json">
-          {(highlight) => <pre>{JSON.stringify(examplejson, null, 2)}</pre>}
-        </Highlight>
-      </TabItem>
-      <TabItem value="yaml">
-        <Highlight {...defaultProps} code="" language="yaml">
-          {(highlight) => (
-            <pre>{JSON.stringify({ test: "test3" }, null, 2)}</pre>
-          )}
-        </Highlight>
-      </TabItem>
+    <Tabs defaultValue="json" values={labels}>
+      {codeblocks.map((codeblock) => {
+        return (
+          <TabItem value={codeblock.type}>
+            <Highlight
+              {...defaultProps}
+              code={codeblock.value}
+              language={codeblock.type}
+            >
+              {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                <pre className={className} style={style}>
+                  {tokens.map((line, i) => (
+                    <div {...getLineProps({ line, key: i })}>
+                      {line.map((token, key) => (
+                        <span {...getTokenProps({ token, key })} />
+                      ))}
+                    </div>
+                  ))}
+                </pre>
+              )}
+            </Highlight>
+          </TabItem>
+        );
+      })}
     </Tabs>
   );
 }
