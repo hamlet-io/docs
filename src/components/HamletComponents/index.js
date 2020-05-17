@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Admonition from "react-admonitions";
 
 import "./styles.css";
-import { getAsyncDefinitions, getAttributeStructure, getComponentSchemas, rawjson } from "@site/src/components/HamletJsonSchema";
+import { getAsyncComponents, getAttributeStructure, getComponentStructure, rawjson } from "@site/src/components/HamletJsonSchema";
 import HamletExample from "@site/src/components/HamletExample";
 
 function HamletAttribute(props) {
@@ -99,7 +99,7 @@ function HamletComponent(props) {
     schemas: [],
   });
 
-  const schemas = getComponentSchemas(props);
+  const schemas = getComponentStructure(props);
   useEffect(() => {
     setComponentSchemas(schemas);
   }, []);
@@ -127,7 +127,7 @@ const HamletComponents = () => {
   const [definitions, setDefinitions] = useState({ components: [] });
 
   useEffect(() => {
-    getAsyncDefinitions().then((result) => {
+    getAsyncComponents().then((result) => {
       setDefinitions(result);
     });
   }, []);

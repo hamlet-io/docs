@@ -7,8 +7,6 @@ import "./styles.css";
 
 function HamletExample({ codeblocks }) {
 
-    
-
   let labels = [];
   codeblocks.map((codeblock) => {
     labels.push({ label: codeblock.label, value: codeblock.type });
