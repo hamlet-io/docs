@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Admonition from "react-admonitions";
 
 import "./styles.css";
-import { getAsyncComponents, getAttributeStructure, getComponentStructure, rawjson } from "@site/src/components/HamletJsonSchema";
+import { getAsyncComponents, getAttributeStructure, getComponentStructure } from "@site/src/components/HamletJsonSchema";
 import HamletExample from "@site/src/components/HamletExample";
+import { getComponentExampleCodeblock } from "../HamletJsonSchema";
 
 function HamletAttribute(props) {
   return (
@@ -96,12 +97,16 @@ function HamletSchema(props) {
 
 function HamletComponent(props) {
   const [componentSchemas, setComponentSchemas] = useState({
-    schemas: [],
+    schemas: []
   });
 
-  const schemas = getComponentStructure(props);
+  const structure = getComponentStructure(props);
+  const example = structure.schemas.map((schema) => {
+      return {label: "JSON", type: "json", value: getComponentExampleCodeblock(schema)}
+    }
+  );
   useEffect(() => {
-    setComponentSchemas(schemas);
+    setComponentSchemas(structure);
   }, []);
 
   return (
@@ -112,7 +117,7 @@ function HamletComponent(props) {
             {props.name + " Component"}
           </div>
           <div className="col col--8">
-            <HamletExample codeblocks={rawjson} />
+            <HamletExample codeblocks={example} />
           </div>
         </div>
       </div>

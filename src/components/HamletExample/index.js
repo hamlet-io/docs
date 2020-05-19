@@ -20,7 +20,7 @@ function HamletExample({ codeblocks }) {
           <TabItem value={codeblock.type}>
             <Highlight
               {...defaultProps}
-              code={codeblock.value}
+              code={JSON.stringify(codeblock.value, null, 4)}
               language={codeblock.type}
             >
               {({ className, style, tokens, getLineProps, getTokenProps }) => (

@@ -193,31 +193,72 @@ const getComponentStructure = (props) => {
   return { schemas: componentSchemas };
 };
 
-const rawjson = [
-  {
-    label: "JSON",
-    type: "json",
-    value: JSON.stringify(
-      {
-        Tiers: {
-          tiername: {
-            Components: {
-              componentname: {},
-            },
-          },
-        },
-      },
-      null,
-      2
-    ),
-  },
-];
+const getComponentExampleCodeblock = (schema) => {
+
+  let codeblock = new Object();
+
+  if (schema.value instanceof Array) {
+    schema.value.map((attr) => {
+      alert(JSON.stringify(schema, null, 4));
+      codeblock[attr.name] = getComponentExampleCodeblock({name: attr.name, value: attr.value})
+      
+      return codeblock;
+    })
+  } else {
+    schema.value && (
+      schema.value.properties && (
+        
+        Object.entries(schema.value.properties).map((attr) => {
+          let [name, value] = attr;
+
+          if (value.type === "object") {
+            codeblock[name] = getComponentExampleCodeblock({name: name, value: value})
+          } else {
+            codeblock[name] = "<" + String(value.type).replace(',', '-or-') + ">"
+          }
+
+          return codeblock;
+        })
+      ),
+
+      schema.value.patternProperties && (
+        Object.entries(schema.value.patternProperties).map((attr) => {
+          let subObject = new Object();
+          let [pattern, value] = attr;
+          let subObjectString = "<" + schema.name.toLowerCase() + "-name>"
+          Object.entries(value.properties).map((subObjAttr) => {
+            let [subObjName, subObjValue] = subObjAttr;
+            subObject[subObjName] = getComponentExampleCodeblock({name: subObjName, value: subObjValue})
+            return subObject;
+          })
+          codeblock[subObjectString] = subObject;
+          return codeblock
+        })
+      )
+    )
+  }
+  
+  if (Object.keys(codeblock).length === 0 && codeblock.constructor === Object) {
+
+    /* Max Depth */
+    if (schema.value.type instanceof Array) {
+      return Array.toString(schema.value.type + "// ")
+    } else {
+      // Single type.
+      return "<" + String(schema.value.type).replace(',', '-or-') + ">"
+    }
+    
+  } else {
+    return codeblock
+  }
+};
+
 
 export {
   getHamletJsonSchema,
   getAsyncComponents,
   getAttributeStructure,
   getComponentStructure,
-  rawjson,
+  getComponentExampleCodeblock,
 };
 export default getHamletJsonSchema;
