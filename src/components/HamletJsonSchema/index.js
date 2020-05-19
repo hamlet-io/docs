@@ -199,7 +199,6 @@ const getComponentExampleCodeblock = (schema) => {
 
   if (schema.value instanceof Array) {
     schema.value.map((attr) => {
-      alert(JSON.stringify(schema, null, 4));
       codeblock[attr.name] = getComponentExampleCodeblock({name: attr.name, value: attr.value})
       
       return codeblock;
