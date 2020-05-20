@@ -16,6 +16,8 @@
   --ifm-color-primary-lighter: #CDD5F5;
   --ifm-color-primary-lightest: #F3F4FF;
 
+
+  --ifm-table-cell-padding: 0.75rem;
   --ifm-navbar-height: 4rem;
 }
 
