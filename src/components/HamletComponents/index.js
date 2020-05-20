@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import Admonition from "react-admonitions";
 
 import "./styles.css";
-import { getAsyncComponents, getAttributeStructure, getComponentStructure } from "@site/src/components/HamletJsonSchema";
+import {
+  getAsyncComponents,
+  getAttributeStructure,
+  getComponentStructure,
+} from "@site/src/components/HamletJsonSchema";
 import HamletExample from "@site/src/components/HamletExample";
 import { getComponentExampleCodeblock } from "../HamletJsonSchema";
 
@@ -97,17 +101,30 @@ function HamletSchema(props) {
 
 function HamletComponent(props) {
   const [componentSchemas, setComponentSchemas] = useState({
-    schemas: []
+    schemas: [],
   });
 
   const structure = getComponentStructure(props);
   const example = structure.schemas.map((schema) => {
-      return {label: "JSON", type: "json", value: getComponentExampleCodeblock(schema)}
-    }
-  );
+    return {
+      label: "JSON",
+      type: "json",
+      value: getComponentExampleCodeblock(schema),
+    };
+  });
   useEffect(() => {
     setComponentSchemas(structure);
   }, []);
+
+  let labels = [];
+  Object.entries(Object.values(example)).map((example) => {
+    let [idx, ex] = example;
+    let index = labels.findIndex((i) => i.label == ex.label);
+    if (index === -1) {
+      labels.push({ label: ex.label, value: ex.type });
+    }
+    return labels;
+  });
 
   return (
     <div className="item shadow--tl component">
@@ -117,7 +134,7 @@ function HamletComponent(props) {
             {props.name + " Component"}
           </div>
           <div className="col col--8">
-            <HamletExample codeblocks={example} />
+            <HamletExample codeblocks={example} labels={labels} />
           </div>
         </div>
       </div>
