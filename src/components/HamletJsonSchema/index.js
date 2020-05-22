@@ -3,9 +3,6 @@
 */
 import axios from "axios";
 
-const schemaUrl =
-  "https://hamlet-docs-git-add-schema-documents.hamlet.now.sh/schema/latest/blueprint/component.json";
-
 const filterObjects = ["deployment-units", "instances"];
 const filterAttributerObjects = [
   "DeploymentUnits",
