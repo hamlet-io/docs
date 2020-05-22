@@ -13,13 +13,27 @@ const filterAttributerObjects = [
   "additionalProperties",
 ];
 
-const getHamletJsonSchema = () => {
-    return axios.get(schemaUrl);
+const getHamletJsonSchema = ({type, version}) => {
+    let schemaBaseUrl = 'https://hamlet.io/schema';
+    let path = '';
+    switch (type) {
+      case "component":
+        path = "blueprint/component";
+        break;
+      case "blueprint":
+        path = "blueprint";
+        break;
+      default:
+
+        break;
+    }
+    
+    return axios.get(`${schemaBaseUrl}/${version}/${path}.json`);
 }
 
 const getAsyncComponents = () => {
   let components = [];
-  return getHamletJsonSchema().then((response) => {
+  return getHamletJsonSchema({ type: "component", version: "latest"}).then((response) => {
     Object.entries(response.data.definitions).map((definition) => {
       let [name, value] = definition;
       let requiresList = value.required || [];
