@@ -30,7 +30,7 @@ Links always match with components in their matching Instance and Version. The `
 
 ## Link Structure & Placement
 
-The structure for each link is the same, however the object's depth - where it can be defined on any given component - will depend on the component itself. [Refer to the Component definitions for placement.](../../reference/component-reference.md)
+The structure for each link is the same, however the object's depth - where it can be defined on any given component - will depend on the component itself. [Refer to the Component definitions for placement.](../reference/component-reference.md)
 
 <Tabs
     defaultValue="json"
