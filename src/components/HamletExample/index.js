@@ -5,13 +5,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 
 import "./styles.css";
 
-function HamletExample({ codeblocks }) {
-
-  let labels = [];
-  codeblocks.map((codeblock) => {
-    labels.push({ label: codeblock.label, value: codeblock.type });
-    return labels;
-  });
+function HamletExample({ codeblocks, labels }) {
 
   return (
     <Tabs defaultValue="json" values={labels}>
