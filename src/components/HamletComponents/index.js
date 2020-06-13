@@ -106,6 +106,7 @@ function HamletComponent(props) {
   });
 
   const structure = getComponentStructure(props);
+  
   let example = structure.schemas.map((schema) => {
       return getComponentExampleCodeblock(schema)
     }
@@ -118,7 +119,7 @@ function HamletComponent(props) {
   }, []);
 
   let labels = [];
-  Object.entries(Object.values(example)).map((example) => {
+  Object.entries(Object.values([exampleJSON, exampleYAML])).map((example) => {
     let [idx, ex] = example;
     let index = labels.findIndex((i) => i.label == ex.label);
     if (index === -1) {
@@ -135,7 +136,7 @@ function HamletComponent(props) {
             {props.name + " Component"}
           </div>
           <div className="col col--8">
-            <HamletExample codeblocks={[exampleJSON, exampleYAML]} />
+            <HamletExample codeblocks={[exampleJSON, exampleYAML]} labels={labels} />
           </div>
         </div>
       </div>
