@@ -32,6 +32,15 @@ npm install
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+### Test
+
+```
+npm start
+
+# seperately, whilst site running
+npm test
+```
+
 ### Contribute
 
 1. fork the repository

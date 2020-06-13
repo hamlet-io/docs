@@ -3,16 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "blc --input http://localhost:3000/docs --recursive",
+    "localtest": "start-server-and-test 'start' http://localhost:3000 'test'",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
+  "pre-commit": [
+    "localtest"
+  ],
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.48",
     "@docusaurus/preset-classic": "^2.0.0-alpha.48",
     "@types/react": "^16.9.31",
     "axios": "^0.19.2",
+    "broken-link-checker": "^0.7.8",
     "classnames": "^2.2.6",
     "fs": "0.0.1-security",
     "infima": "^0.2.0-alpha.6",
@@ -36,6 +42,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.8.3"
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "pre-commit": "^1.2.2",
+    "start-server-and-test": "^1.10.11"
   }
 }
