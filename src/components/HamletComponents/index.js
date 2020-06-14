@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Admonition from "react-admonitions";
+import YAML from "json2yaml";
 
 import "./styles.css";
 import {
@@ -105,19 +106,20 @@ function HamletComponent(props) {
   });
 
   const structure = getComponentStructure(props);
-  const example = structure.schemas.map((schema) => {
-    return {
-      label: "JSON",
-      type: "json",
-      value: getComponentExampleCodeblock(schema),
-    };
-  });
+  
+  let example = structure.schemas.map((schema) => {
+      return getComponentExampleCodeblock(schema)
+    }
+  );
+  let exampleJSON = {label: "JSON", type: "json", value: JSON.stringify(example[0], null, 4)};
+  let exampleYAML = {label: "YAML", type: "yaml", value: YAML.stringify(example[0], null, 2)};
+
   useEffect(() => {
     setComponentSchemas(structure);
   }, []);
 
   let labels = [];
-  Object.entries(Object.values(example)).map((example) => {
+  Object.entries(Object.values([exampleJSON, exampleYAML])).map((example) => {
     let [idx, ex] = example;
     let index = labels.findIndex((i) => i.label == ex.label);
     if (index === -1) {
@@ -134,7 +136,7 @@ function HamletComponent(props) {
             {props.name + " Component"}
           </div>
           <div className="col col--8">
-            <HamletExample codeblocks={example} labels={labels} />
+            <HamletExample codeblocks={[exampleJSON, exampleYAML]} labels={labels} />
           </div>
         </div>
       </div>
