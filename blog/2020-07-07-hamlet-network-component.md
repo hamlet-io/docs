@@ -66,9 +66,9 @@ By assigning a Network ACL sub-component to a `network` component we can easily 
 
 ### IP Address Groups
 
-Before we take a look at what this may look like in a Hamlet solution, Hamlet adds one more utility to our tool belt - IP Address Groups.
+Before we take a look at what this may look like in a Hamlet solution, Hamlet adds one more feature to our toolkit - IP Address Groups.
 
-The `_` at the start of the group name identifies hamlet inbuilt IP address groups. They peform specific lookups on various parts of your deployed hamlet. For instance “_localnet” can be used in place of the CIDR range of the network of a given component, “_global” really does mean global access, and “_segment” can be used to reference a specific Availability Zone (in relation to the component it is defined on). This is considerably easier to maintain and far easier to understand.
+The `_` at the start of the group name identifies hamlet inbuilt IP address groups. They perform specific lookups on various parts of your deployed hamlet. For instance “_localnet” can be used in place of the CIDR range of the network of a given component, “_global” really does mean global access, and “_tier” can be used to reference a given subnet across Availability Zones (in relation to the component that it is defined on). This is considerably easier to maintain and far easier to understand.
 
 You can also define your own IP address groups for common IP address ranges, say to limit access from your proxy servers. You can define this group across your whole hamlet deployment and reference it in your solutions.
 
