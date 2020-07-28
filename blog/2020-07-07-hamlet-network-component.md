@@ -84,7 +84,7 @@ So, lets take a look at what a `network` component with a `networkacl` sub-compo
 ```json
 {	
 	"IPAddressGroups" : {
-		"_exampleIPAddressGroup" : {
+		"exampleIPAddressGroup" : {
 			"Description" : "An IP range in CIDR notation",
 			"CIDR" : "a.b.c.d/28",
 			"IsOpen" : true
@@ -153,7 +153,7 @@ So, lets take a look at what a `network` component with a `networkacl` sub-compo
 }
 ```
 Defined by the above example:
-* An IPAddressGroup called "_exampleIPAddressGroup"
+* An IPAddressGroup called "exampleIPAddressGroup"
 * A tier called "mgmt" - for admin components
 * a `network` component with a single deployment-unit
   * containing subcomponents for:
