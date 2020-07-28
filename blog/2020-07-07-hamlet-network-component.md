@@ -32,7 +32,7 @@ Two of our subnets are publicly accessible
 The other subnet is private 
 > Create firewall and security group rules required to prevent public access to this subnets.
 
-A deployment-unit in the private subnet is linked to a deployment-unit in one of the public subnets
+A component in the private subnet is linked to a component in one of the public subnets
 > Evaluate the linked component and determine the configuration required for communication with that linked deployment-unit. Add firewall/security group rules to allow communication across subnets between those two components.
 
 <Admonition type="note" title="Subnets and Availability Zones">
