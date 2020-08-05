@@ -4,6 +4,10 @@ title: JSON "default" Deployment Framework
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * the default deployment framework defines the various routines (link), models (link) and output types (link) necessary to generate the:
 	*  blueprint (link)
 	* generation contracts (link)

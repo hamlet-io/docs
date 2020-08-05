@@ -5,6 +5,10 @@ title: Hello Hamlet
 import Mermaid from '@theme/Mermaid';
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 The intention of this guide is to give you an understanding of the `hamlet` core concepts and how they can be applied when deploying applications and their supporting infrastructure.
 
 The guide works through the deployment of [hamlet hello](https://github.com/codeontap/docker-hello), a simple hello world website built using [Flask](https://www.palletsprojects.com/p/flask/) and hosted in a [docker container](https://hub.docker.com/r/codeontap/hello). To host the application we will use [AWS](https://aws.amazon.com/) and this guide will cover deploying the application itself along with the supporting infrastructure required for the app to run

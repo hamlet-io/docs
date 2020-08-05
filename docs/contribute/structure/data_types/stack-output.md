@@ -4,6 +4,10 @@ title: Stack Outputs
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * stack outputs are the output of a Hamlet deployment
 * the outputs for a given cloud provider are captured after the deployment and formatted into a JSON structure defined here.
 	* This is then the known state of that component

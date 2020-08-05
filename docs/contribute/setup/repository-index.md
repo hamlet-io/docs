@@ -6,6 +6,10 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 The following hamlet code repositories make up all current official content. For a higher level view of their structure and future changes, see the hamlet-io [projects page](https://github.com/orgs/codeontap/projects).
 
 | Name                  	| Category 	| Description                                                                                                 	| Roadmap Project                                                	|

@@ -4,6 +4,10 @@ title: Submitting Pull Requests
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 # Pull Requests
 * Hamlet is maintained using git-flow practices outlined below
 * Contributing to one or many of the repositories is encouraged

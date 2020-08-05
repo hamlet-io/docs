@@ -4,6 +4,10 @@ title: Docker Scripts & Misc Files
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * The following scripts are used within the multi-stage docker build
 * They keep some of the more complex logic out of the Dockerfiles
 

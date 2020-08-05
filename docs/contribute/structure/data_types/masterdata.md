@@ -4,6 +4,9 @@ title: Masterdata
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
 
 * Masterdata input data are separate solution instances that are provided by either the engine or plugin providers
 * They enable the defining of default values and datasets such as Reference Data (link to ref data page)  and commonly used configurations

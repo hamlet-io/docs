@@ -4,6 +4,10 @@ title: Docusaurus
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 # Docusaurus
 * Using OpenSource documentation framework docusaurus (link)
 * We use this for hamlet.io

@@ -6,6 +6,10 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 The CMDB repository is used to outline the supporting infrastructure and services required for the deployment of an application. The structure of the repository is important for the generation and automation of the infrastructure.
 
 The CMDB is broken up into two components, the product CMDB which describes the resources for a specific product and the Account CMDB which describes the organisations account and high level environmental configuration. `hamlet` combines these two data sources to build and provision product environments.

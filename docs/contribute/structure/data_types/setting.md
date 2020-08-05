@@ -4,6 +4,10 @@ title: Settings
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * the Setting input-data type defines the global variable `settingsObject` and its getter/setter macros
 * This input-data type implements a mechanism for Hamlet users to define scoped configuration that is specific to their needs within their solution
 	* The settings are then compiled into a fixed data structure within Hamlet where the engine and plugin providers can expect to find it

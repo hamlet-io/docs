@@ -4,6 +4,10 @@ title: Patterns, Routines, Macros & Functions
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * This section documents common macros, functions and patterns
 * This is not intended to be an exhaustive list, but a starting point for understanding the design of common features
 

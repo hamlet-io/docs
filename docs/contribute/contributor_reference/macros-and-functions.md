@@ -4,6 +4,10 @@ title: Shared Macros & Functions
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * this page details the commonly used macros and functions that are implemented within the shared provider and provides additional context where necessary
 * they are recommended for use across providers wherever possible
 

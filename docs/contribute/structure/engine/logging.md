@@ -2,6 +2,11 @@
 sidebar_label: logging
 title: Logging
 ---
+import Admonition from 'react-admonitions';
+
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
 
 * Hamlet has the following log levels which will add additional context to output at engine runtime
 * Logging output is determined by the environment variable `GENERATION_LOG_LEVEL`

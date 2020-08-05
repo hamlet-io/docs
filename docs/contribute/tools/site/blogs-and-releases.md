@@ -4,6 +4,10 @@ title: Blog & Releases
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * Blog page is a feature of the Docusaurus (link) framework
 * Releases are just a second blog type
 * Formatting a new markdown file with the latest Release/Blog information you wish to publish and placing the `.md` file in the `./blog` directory is all it takes to publish one.

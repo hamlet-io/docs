@@ -4,6 +4,10 @@ title: AWS Provider Plugin
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * Support of the AWS provider is made available to hamlet through the AWS provider plugin
 * Within the plugin are the following deployment frameworks (link to def), components (link to def), references (link to def) and services (link to def) to deploy to AWS
 * The following are a list of the engine content that is unique to the AWS provider plugin

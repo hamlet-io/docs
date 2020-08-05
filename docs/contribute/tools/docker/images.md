@@ -4,6 +4,10 @@ title: Docker Images
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * Project’s docker images use a multi-stage build process to build each of the images
 * Each image is defined within its own `Dockerfile` 
 * The content and intent for each image is outlined below

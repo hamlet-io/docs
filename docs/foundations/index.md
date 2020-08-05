@@ -2,6 +2,11 @@
 sidebar_label: architecture
 title: hamlet Architecture
 ---
+
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 At the core of `hamlet` is the management of infrastructure deployments including the generation of application artefacts which will be used as part of these deployments.
 
 In terms of high level functions within `hamlet` we have:

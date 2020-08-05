@@ -4,6 +4,10 @@ title: Contracts
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * the Hamlet engine generates contracts that outline a series of tasks to perform
 * Tasks can be sheduled and ordered through two mechanisms - Stages and Steps
 

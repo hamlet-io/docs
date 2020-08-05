@@ -4,6 +4,10 @@ title: Scripts
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * the default deployment framework (link) defines the “script” output type
 * Used for the generation of script files in one of the supported formats
 

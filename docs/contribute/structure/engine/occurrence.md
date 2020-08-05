@@ -3,6 +3,10 @@ sidebar_label: occurrence
 title: Occurrence
 ---
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * the Occurrence is a current Component’s deployment unit configuration as it exists within the context model (link)
 * It is the runtime state of the Component
 * An occurrence may contain sub occurrences, which reflect the same for each child subcomponent

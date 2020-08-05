@@ -4,6 +4,10 @@ title: Hamlet CLI
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * The Hamlet CLI tool provides a helpful python wrapper around the core Hamlet repositories
 * Though can be built from source, it is strongly encouraged to run Hamlet from its container
 * 

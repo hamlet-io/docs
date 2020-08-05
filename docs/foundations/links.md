@@ -6,6 +6,10 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * Links create an association between components/subcomponents
 * They are assigned in the solution on the desired component, and specify either that:
 	a) they link to the target component/subcomponent

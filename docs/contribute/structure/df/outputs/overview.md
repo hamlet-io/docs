@@ -4,6 +4,10 @@ title: Outputs
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * Output types are defined by a deployment-framework
 * Each framework must specify a “default” output type, but can include additional types
 * the default provider’s default output type is documented here (link)

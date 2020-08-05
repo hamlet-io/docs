@@ -4,6 +4,10 @@ title: Building from Source
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * The recommended method for running Hamlet is through the docker container (link)
 * The following structure is how the code repositories should be constructed locally
 

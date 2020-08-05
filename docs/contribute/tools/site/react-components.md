@@ -4,6 +4,10 @@ title: React Components
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * we have developed a few React components specific to hamlet data
 * currently can be found in the hamlet-docs repo under `./src/components`
 * the below documents their purpose and usage

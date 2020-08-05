@@ -4,6 +4,10 @@ title: Fragments
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * fragments provide a mechanism for solution designers to interact with the current context model (link to context) during engine runtime of a template pass
 * kept within the solution
 * they compile at engine runtime into a single routine (link to routine def)

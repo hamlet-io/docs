@@ -4,6 +4,10 @@ title: JSON "default" Output Type
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * the “default” deployment framework defines the “default” output type - JSON
 * used extensively by the engine to produce many of the prerequisite models (link) and output subsets (link) for processing templates of any other type
 

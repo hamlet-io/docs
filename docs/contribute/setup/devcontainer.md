@@ -4,6 +4,10 @@ title: VS Code .devcontainer
 ---
 import Admonition from 'react-admonitions';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 * For those using VS Code, we recommend using the following `.devcontainer` environment for development
 * This is particularly helpful for those on macOS who may experience a performance decrease whilst developing from outside of the container
 
