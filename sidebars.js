@@ -84,7 +84,7 @@ module.exports = {
                   type: 'category',
                   label: 'Build',
                   items: [
-                    'integrations/jenkins/examplelibrary/examples/build/basic',
+                    'integrations/jenkins/examplelibrary/examples/build/single',
                     'integrations/jenkins/examplelibrary/examples/build/multiunit',
                   ]
                 },
