@@ -17,6 +17,7 @@ This pipeline contains an example for building a single deployment unit and trig
 ## Scripts
 This example uses groovy scripts from the [jenkins-shared-library](../../../scriptlibrary/index)
 
+## Example
 ```groovy
 #!groovy
 pipeline {
