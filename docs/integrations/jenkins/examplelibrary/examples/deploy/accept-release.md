@@ -1,18 +1,18 @@
 ---
-sidebar_label: approve
-title: Approve Release Pipeline
+sidebar_label: accept
+title: Accept Release Pipeline
 ---
 import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Approve a release into a specified environment, validate that approval and update that environment's build references within the Hamlet CMDB. This process provides the mechanism for promoting build artefacts through a pre-determined environment ordering.
+Accept a release into a specified environment, validate that acceptance and update the environment's build references within the Hamlet CMDB. This process provides the mechanism for promoting build artefacts through a pre-determined environment ordering.
 
 ## Triggers
-This pipeline is intended to be called by the [promote pipeline](promote-release) and defines no automatic triggers.
+This pipeline is intended to be called by the ['Deploy Release' pipeline](promote-release) and defines no automatic triggers.
 
 ## Parameters
-This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the unique Release that is to be approved.
+This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the unique Release that is to be accepted.
 
 ## Stages
 
@@ -20,7 +20,7 @@ This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the unique Release 
 Loads environment variables from the Hamlet [`<product>.properties`](../../../pipelines/dotproperties) file.
 
 ### Prepare
-Prepare the Jenkins execution environment, validate the approval and update the Hamlet CMDB to reflect the acceptance.
+Prepare the Jenkins execution environment, validate the acceptance and update the Hamlet CMDB to reflect the acceptance.
 
 ## Post Job
 After running this pipeline will notify a defined slack channel of either success or failure. 

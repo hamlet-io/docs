@@ -92,11 +92,12 @@ module.exports = {
                   type: 'category',
                   label: 'Deploy',
                   items: [
-                    'integrations/jenkins/examplelibrary/examples/deploy/approve-release',
-                    'integrations/jenkins/examplelibrary/examples/deploy/automatic-deploy',
-                    'integrations/jenkins/examplelibrary/examples/deploy/deploy-release',
-                    'integrations/jenkins/examplelibrary/examples/deploy/prepare-release',
                     'integrations/jenkins/examplelibrary/examples/deploy/promote-release',
+                    'integrations/jenkins/examplelibrary/examples/deploy/prepare-release',
+                    'integrations/jenkins/examplelibrary/examples/deploy/deploy-release',
+                    'integrations/jenkins/examplelibrary/examples/deploy/automatic-deploy',
+                    'integrations/jenkins/examplelibrary/examples/deploy/accept-release',
+
                   ]
                 },
                 {
