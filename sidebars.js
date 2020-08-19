@@ -19,6 +19,110 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Integrations',
+      items: [
+        'integrations/index',
+        {
+          type: 'category',
+          label: 'Jenkins',
+          items: [
+            {
+              type: 'category',
+              label: 'Pipelines',
+              items: [
+                'integrations/jenkins/pipelines/index',
+                'integrations/jenkins/pipelines/buildpipeline',
+                'integrations/jenkins/pipelines/solutionpipelines',
+                'integrations/jenkins/pipelines/dotproperties',
+                'integrations/jenkins/pipelines/jobs',
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Script Library',
+              items: [
+                'integrations/jenkins/scriptlibrary/index',
+                {
+                  type: 'category',
+                  label: 'Common',
+                  items: [
+                    'integrations/jenkins/scriptlibrary/scripts/common/cmdbsetup',
+                    'integrations/jenkins/scriptlibrary/scripts/common/gets3bucketname',
+                    'integrations/jenkins/scriptlibrary/scripts/common/manageenvironment',
+                    'integrations/jenkins/scriptlibrary/scripts/common/productsetup',
+                    'integrations/jenkins/scriptlibrary/scripts/common/setcontext',
+                    'integrations/jenkins/scriptlibrary/scripts/common/setreleasename',
+                    'integrations/jenkins/scriptlibrary/scripts/common/updatebuilddescription',
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Solution Dependent',
+                  items: [
+                    'integrations/jenkins/scriptlibrary/scripts/specific/builddataset',
+                    'integrations/jenkins/scriptlibrary/scripts/specific/getdatabasedetails',
+                    'integrations/jenkins/scriptlibrary/scripts/specific/getdeploymentunitbuildblueprint',
+                    'integrations/jenkins/scriptlibrary/scripts/specific/wakeecscluster',
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Notifications',
+                  items: [
+                    'integrations/jenkins/scriptlibrary/scripts/notifications/sendslackinputprompt',
+                    'integrations/jenkins/scriptlibrary/scripts/notifications/sendslackmessage',
+                  ]
+                },
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Example Library',
+              items: [
+                'integrations/jenkins/examplelibrary/index',
+                {
+                  type: 'category',
+                  label: 'Build',
+                  items: [
+                    'integrations/jenkins/examplelibrary/examples/build/basic',
+                    'integrations/jenkins/examplelibrary/examples/build/multiunit',
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Deploy',
+                  items: [
+                    'integrations/jenkins/examplelibrary/examples/deploy/accept-release',
+                    'integrations/jenkins/examplelibrary/examples/deploy/automatic-deploy',
+                    'integrations/jenkins/examplelibrary/examples/deploy/deploy-release',
+                    'integrations/jenkins/examplelibrary/examples/deploy/prepare-release',
+                    'integrations/jenkins/examplelibrary/examples/deploy/promote-release',
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Manage',
+                  items: [
+                    'integrations/jenkins/examplelibrary/examples/manage/environment',
+                  ]
+                },
+                {
+                  type: 'category',
+                  label: 'Utilities',
+                  items: [
+                    'integrations/jenkins/examplelibrary/examples/utils/publish-expo-app',
+                    'integrations/jenkins/examplelibrary/examples/utils/pull-image',
+                    'integrations/jenkins/examplelibrary/examples/utils/run-task',
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+      ]
+    },
+    {
+      type: 'category',
       label: 'Contribute',
       items: [
         {
