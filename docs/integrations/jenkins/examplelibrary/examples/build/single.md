@@ -14,6 +14,9 @@ An alternate application of this pipeline would be to create separate build pipe
 
 This pipeline contains an example for building a single deployment unit and triggering a deployment if successful.
 
+# Post Job
+On success, this job will trigger a ['Continuous Deploy'](../deploy/continuous-deploy) pipeline into the first environment.
+
 ## Scripts
 This example uses groovy scripts from the [jenkins-shared-library](../../../scriptlibrary/index)
 

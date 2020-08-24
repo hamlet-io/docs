@@ -21,12 +21,12 @@ This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the unique Release 
 ## Stages
 
 ### Setup
-Loads environment variables from the Hamlet [`<product>.properties`](../../../pipelines/dotproperties) file.
+Loads environment variables from the Hamlet [`dotproperties`](../../../pipelines/dotproperties) file.
 
 ### Prepare
 Prepare the Jenkins execution environment, verify build references can be found (as defined by their build format) in registry, generate application-level deployment-unit templates and update them in the Hamlet CMDB.
 
-## Post Job
+### Post Job
 After running, this pipeline will notify a defined slack channel of either success or failure. 
 
 ## Scripts
