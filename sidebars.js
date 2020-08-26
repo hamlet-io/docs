@@ -14,7 +14,16 @@ module.exports = {
         'foundations/inputsources',
         'foundations/outputtypes',
         'foundations/links',
+        'foundations/lifecycle',
         'foundations/terminology',
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Components',
+      items: [
+        'components/ecr',
+        'components/ecs',
       ]
     },
     {

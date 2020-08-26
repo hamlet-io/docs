@@ -6,18 +6,13 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-// Deploy a release which has been prepared for the environment
-// Either specify the release units as an array or provide an input block once the product properties have been loaded
-
+Deploy a release which has been prepared for the environment with the ['Prepare Release'](./prepare-release) pipeline.
 
 ## Triggers
-This pipeline is intended to be called by the ['Build' pipeline](../build/single) for Continuous Deployment into the first environment. 
-
-If deployment across [Segments](../../../../../foundations/terminology#segment) is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
+This pipeline is intended to be called after the ['Prepare Release'](./prepare-release) pipeline, but defines no triggers of its own.
 
 ## Parameters
-This pipeline accepts **DEPLOYMENT_UNITS** (extendedChoice), **RELEASE_IDENTIFIER** (string) and **MODE** (choice) parameters. Choices will be populated by the configuration of the [`dotproperties`](../../../pipelines/dotproperties) file.
+This pipeline accepts **DEPLOYMENT_UNITS** (extendedChoice), **RELEASE_IDENTIFIER** (string) and **MODE** (choice) parameters. Choices are populated by the configuration of the [`dotproperties`](../../../pipelines/dotproperties) file.
 
 ## Stages
 
@@ -58,7 +53,7 @@ pipeline {
         )
         durabilityHint('PERFORMANCE_OPTIMIZED')
         parallelsAlwaysFailFast()
-        checkoutToSubdirectory '.hamlet/product/'
+        skipDefaultCheckout()
     }
 
     parameters {
@@ -98,11 +93,15 @@ pipeline {
     stages{
         stage('Setup') {
             steps {
+                // Product Setup
+                dir('.hamlet/product') {
+                    checkout scm
+                }
+
                 // Load in Properties files
                 script {
                     def productProperties = readProperties interpolate: true, file: "${env.properties_file}";
                     productProperties.each{ k, v -> env["${k}"] ="${v}" }
-
                 }
             }
         }

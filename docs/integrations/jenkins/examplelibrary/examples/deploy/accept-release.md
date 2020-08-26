@@ -6,13 +6,13 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Accept a release into a specified environment, validate that acceptance and update the environment's build references within the Hamlet CMDB. This process provides the mechanism for promoting build artefacts through a pre-determined environment ordering.
+Accept a release into a specified environment, validate that acceptance and update that environment's build references within the Hamlet CMDB. This process provides the mechanism for promoting build artefacts through a pre-determined environment ordering.
 
 ## Triggers
 This pipeline is intended to be called by the ['Deploy Release' pipeline](promote-release) and defines no automatic triggers.
 
 ## Parameters
-This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the unique Release that is to be accepted.
+This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the release that is to be accepted.
 
 ## Stages
 

@@ -51,7 +51,7 @@ pipeline {
         )
         durabilityHint('PERFORMANCE_OPTIMIZED')
         parallelsAlwaysFailFast()
-        checkoutToSubdirectory '.hamlet/product/'
+        skipDefaultCheckout()
     }
 
     parameters {
@@ -93,11 +93,15 @@ pipeline {
         stage('Setup Context') {
             steps {
 
-                // Load in Properties files
                 script {
+                    // Product Setup
+                    dir('.hamlet/product') {
+                        checkout scm
+                    }
+
+                    // Load in Properties files
                     def productProperties = readProperties interpolate: true, file: "${env.properties_file}";
                     productProperties.each{ k, v -> env["${k}"] ="${v}" }
-
                 }
 
                 sh '''#!/bin/bash

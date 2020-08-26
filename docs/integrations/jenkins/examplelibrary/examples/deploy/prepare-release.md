@@ -6,11 +6,7 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-// Provide your Deployment units list as an array in the release units var
-// This allows for the setting the format and setting which units require build ref updates
-// Creates the templates required for a release and updates build references based on values specified
-
+Creates the templates required for a release and associates the provided Release Identifier with the builds in the current environment. This Release Identifier will then represent this collection of builds to promote through the environments.
 
 ## Triggers
 This pipeline is intended to be called by the ['Promote Release' pipeline](promote-release) and defines no automatic triggers.
