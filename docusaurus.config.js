@@ -121,11 +121,7 @@ module.exports = {
       copyright: `Built with Docusaurus.`,
     },
     prism: {
-<<<<<<< HEAD
       theme: require("./src/theme/hamlet"),
-=======
-      theme: require('prism-react-renderer/themes/palenight'),
->>>>>>> feat: add code syntax highlighting theme
       additionalLanguages: ['groovy']
     }
   },
