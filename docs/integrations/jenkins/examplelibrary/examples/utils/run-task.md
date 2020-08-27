@@ -22,7 +22,7 @@ Specific to this example, this Parameter is passed to the Hamlet Executor's "Run
 ## Stages
 
 ### Setup
-Loads environment variables from the Hamlet [`dotproperties`](../../../pipelines/dotproperties) file.
+Loads environment variables from the Hamlet [`dotproperties`](../dotproperties/dotproperties) file.
 
 ### Run Provider Task
 Performs the Hamlet "Run Task" action against all Task Instances in the filtered pipeline scope.

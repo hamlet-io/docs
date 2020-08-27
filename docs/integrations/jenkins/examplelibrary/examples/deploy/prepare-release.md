@@ -17,7 +17,7 @@ This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the unique Release 
 ## Stages
 
 ### Setup
-Loads environment variables from the Hamlet [`dotproperties`](../../../pipelines/dotproperties) file.
+Loads environment variables from the Hamlet [`dotproperties`](../dotproperties/dotproperties) file.
 
 ### Prepare
 Prepare the Jenkins execution environment, verify build references can be found (as defined by their build format) in registry, generate application-level deployment-unit templates and update them in the Hamlet CMDB.

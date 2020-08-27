@@ -6,6 +6,10 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+<Admonition type="warning" title="Under Construction">
+The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
+</Admonition>
+
 
 The Hamlet [jenkins-shared-libary](https://github.com/hamlet-io/jenkins-shared-library) repository maintains various groovy-scripts for quickly integrating Hamlet into Jenkins Pipelines.
 

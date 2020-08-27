@@ -35,17 +35,7 @@ module.exports = {
           type: 'category',
           label: 'Jenkins',
           items: [
-            {
-              type: 'category',
-              label: 'Pipelines',
-              items: [
-                'integrations/jenkins/pipelines/index',
-                'integrations/jenkins/pipelines/buildpipeline',
-                'integrations/jenkins/pipelines/solutionpipelines',
-                'integrations/jenkins/pipelines/dotproperties',
-                'integrations/jenkins/pipelines/jobs',
-              ]
-            },
+            'integrations/jenkins/index',
             {
               type: 'category',
               label: 'Script Library',
@@ -89,6 +79,7 @@ module.exports = {
               label: 'Example Library',
               items: [
                 'integrations/jenkins/examplelibrary/index',
+                'integrations/jenkins/examplelibrary/examples/dotproperties/dotproperties',
                 {
                   type: 'category',
                   label: 'Build',
@@ -106,7 +97,6 @@ module.exports = {
                     'integrations/jenkins/examplelibrary/examples/deploy/prepare-release',
                     'integrations/jenkins/examplelibrary/examples/deploy/deploy-release',
                     'integrations/jenkins/examplelibrary/examples/deploy/accept-release',
-
                   ]
                 },
                 {

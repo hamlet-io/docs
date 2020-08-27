@@ -19,7 +19,7 @@ The 'Build' job supplies the required parameters for this pipeline.
 ## Stages
 
 ### Setup
-Loads environment variables from the Hamlet [`dotproperties`](../../../pipelines/dotproperties) file.
+Loads environment variables from the Hamlet [`dotproperties`](../dotproperties/dotproperties) file.
 
 ### Update Build Refs
 Stores the hash value of the "Git Commit" in the current Environment/Segment/DeploymentUnit's `build.json` within the Hamlet CMDB.
