@@ -93,15 +93,19 @@ pipeline {
         stage('Setup Context') {
             steps {
 
-                script {
-                    // Product Setup
-                    dir('.hamlet/product') {
-                        checkout scm
-                    }
+                // Product Setup
+                dir('.hamlet/product') {
+                    checkout scm
+                }
 
-                    // Load in Properties files
+                // Load in Properties files
+                script {
                     def productProperties = readProperties interpolate: true, file: "${env.properties_file}";
                     productProperties.each{ k, v -> env["${k}"] ="${v}" }
+                }
+
+                script {
+                    currentBuild.description = "DeploymentUnits: ${params.DEPLOYMENT_UNITS} - CodeCommit: ${params.GIT_COMMIT}"
                 }
 
                 sh '''#!/bin/bash
