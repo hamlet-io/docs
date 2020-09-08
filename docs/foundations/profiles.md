@@ -38,8 +38,8 @@ Deployment Profiles offer top-down component governance where the most specific 
 ## Policy Profiles
 Policy Profiles offer the inverse of Deployment Profiles - higher scoped Policy Profiles overrule the lower. This enables organisations to apply Tenant or Account level Policies where they cannot be overridden by Deployment Profiles.
 
-## Profile Filters
-All profile types have two filters -  Deployment Mode and Component Type. All components within the scope of that Profile will inherit a profile configuration.
+## Filters
+Deployment and Policy profile types have two filters - Deployment Mode and Component Type. All components within the scope of that Profile will inherit their configuration.
 
 A "*" (any) filter can be used for either filter to represent matching any mode or component type. This is not a wildcard however, and cannot be used for pattern matching.
 
