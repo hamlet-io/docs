@@ -17,7 +17,7 @@ This pipeline accepts a **RELEASE_IDENTIFIER** which it will verify exists in th
 ## Stages
 
 ### Setup
-Loads environment variables from the Hamlet [`dotproperties`](../dotproperties/dotproperties) file.
+Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Prepare
 Promotes build references from their prior environment, verifies the promotion to this pipeline's environment and commits the changes to the Hamlet CMDB.

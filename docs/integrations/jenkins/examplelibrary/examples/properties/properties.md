@@ -1,18 +1,18 @@
 ---
-sidebar_label: .properties files
-title: .properties Files
+sidebar_label: properties files
+title: Properties Files
 ---
 import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-For Jenkins to perform Hamlet tasks such as template generation and cloud deployments, each pipeline will require a number of common environment variables. To re-use this configuration they are stored within a file known as a`dotproperties` or `<product>.properties` file.
+For Jenkins to perform Hamlet tasks such as template generation and cloud deployments, each pipeline will require a number of common environment variables. To re-use this configuration they are stored within a file known as a`properties` or `<product>.properties` file.
 
 Within pipelines, this file is loaded in, injecting each key/value pair as environment variables wihin the pipeline. Whilst not every variable is used in each pipeline, it provides a single place for storing this information and prevents repetition.
 
-## Creating a Dotproperties
+## Creating a Properties File
 
-Storing your `dotproperties` file inside of your Product CMDB is recommended.
+Storing your `properties` file inside of your Product CMDB is recommended.
 
 ```
 ./product_cmdb

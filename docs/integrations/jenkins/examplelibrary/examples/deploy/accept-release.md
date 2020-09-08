@@ -17,7 +17,7 @@ This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the release that is
 ## Stages
 
 ### Setup
-Loads environment variables from the Hamlet [`dotproperties`](../dotproperties/dotproperties) file.
+Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Prepare
 Prepare the Jenkins execution environment, validate the acceptance and update the Hamlet CMDB to reflect the acceptance.

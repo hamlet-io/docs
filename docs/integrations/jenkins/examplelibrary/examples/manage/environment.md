@@ -12,7 +12,7 @@ Perform environment-level deployments, including performing a deployment of a sp
 No triggers.
 
 ## Parameters
-This pipeline's available parameter values are populated by the [`dotproperties`](../dotproperties/dotproperties) file and so initially, no parameters can be provided. After loading the `dotproperties` file the pipeline will prompt for user selection of the following parameters, which will each filter the pipelines scope:
+This pipeline's available parameter values are populated by the [`properties`](../properties/properties) file and so initially, no parameters can be provided. After loading the `properties` file the pipeline will prompt for user selection of the following parameters, which will each filter the pipelines scope:
 
 **ENVIRONMENT**
 Add the selected [`environment(s)`](../../../../../foundations/terminology#environment) to the deployment scope.
@@ -35,7 +35,7 @@ Forces the deployment for every deployment unit matching the selected parameters
 ## Stages
 
 ### Get Input
-Loads the [`dotproperties`](../dotproperties/dotproperties) file and prompts for the selection of the now-configured Parameters.
+Loads the [`properties`](../properties/properties) file and prompts for the selection of the now-configured Parameters.
 
 ### Setup Context
 Establishes the execution environment context and loads any additional environment variables from the local `context.properties` file.

@@ -71,7 +71,7 @@ module.exports = {
               label: 'Example Library',
               items: [
                 'integrations/jenkins/examplelibrary/index',
-                'integrations/jenkins/examplelibrary/examples/dotproperties/dotproperties',
+                'integrations/jenkins/examplelibrary/examples/properties/properties',
                 {
                   type: 'category',
                   label: 'Build',

@@ -12,12 +12,12 @@ Deploy a release which has been prepared for the environment with the ['Prepare 
 This pipeline is intended to be called after the ['Prepare Release'](./prepare-release) pipeline, but defines no triggers of its own.
 
 ## Parameters
-This pipeline accepts **DEPLOYMENT_UNITS** (extendedChoice), **RELEASE_IDENTIFIER** (string) and **MODE** (choice) parameters. Choices are populated by the configuration of the [`dotproperties`](../dotproperties/dotproperties) file.
+This pipeline accepts **DEPLOYMENT_UNITS** (extendedChoice), **RELEASE_IDENTIFIER** (string) and **MODE** (choice) parameters. Choices are populated by the configuration of the [`properties`](../properties/properties) file.
 
 ## Stages
 
 ### Setup
-Loads environment variables from the Hamlet [`dotproperties`](../dotproperties/dotproperties) file.
+Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Update Build Refs
 Stores the hash value of the "Git Commit" in the current Environment/Segment/DeploymentUnit's `build.json` within the Hamlet CMDB.

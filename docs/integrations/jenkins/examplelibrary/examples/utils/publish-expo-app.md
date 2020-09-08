@@ -37,7 +37,7 @@ Each Turtle version only includes a [specific collection of SDK builders](ttps:/
 ## Stages
 
 ### Setup
-Loads environment variables from the Hamlet [`dotproperties`](../dotproperties/dotproperties) file.
+Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Run Publish Expo
 Publish build artefacts to Expo.

@@ -13,11 +13,11 @@ Examples can be viewed [here](../examplelibrary/index) and the [Shared Groovy Sc
 ## Recommended Pipelines
 Below is the recommended approach to integrating Hamlet and Jenkins. This configuration will grant comprehensive control of a Hamlet Solution.
 
-## Dotproperties files
-Hamlet Jenkins pipelines share a number of common environment variables and valid parameter values. To re-use this configuration easily, creating a [`dotproperties`](examplelibrary/examples/dotproperties/dotproperties) file is recommended.
+## Properties files
+Hamlet Jenkins pipelines share a number of common environment variables and valid parameter values. To re-use this configuration easily, creating a [`properties`](examplelibrary/examples/properties/properties) file is recommended.
 
 ## Jenkins Jobs
-Keeping [`dotproperties`](../../../examplelibrary/examples/dotproperties/dotproperties) and pipelines within your Product CMDB under the following structure allows for separation of purpose, whilst ensuring they will always be available where your repository has been cloned down. Build pipelines are not shown as they should be committed to the root of the code repository for the code they build.
+Keeping [`properties`](../../../examplelibrary/examples/properties/properties) and pipelines within your Product CMDB under the following structure allows for separation of purpose, whilst ensuring they will always be available where your repository has been cloned down. Build pipelines are not shown as they should be committed to the root of the code repository for the code they build.
 
 ```sh
 ./pipelines/
