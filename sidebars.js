@@ -20,14 +20,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Components',
-      items: [
-        'components/ecr',
-        'components/ecs',
-      ]
-    },
-    {
-      type: 'category',
       label: 'Integrations',
       items: [
         'integrations/index',

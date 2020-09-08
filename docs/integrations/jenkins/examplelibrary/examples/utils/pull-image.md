@@ -19,7 +19,7 @@ Alternatively these could be presented as individual Parameters.
 Overwrite default Docker environment variables with those specified as Parameters.
 
 ### Pull Image
-Perform the Hamlet "Manage Docker" action, pulling the selected container image from Dockerhub to the local [`ECR`](../../../../../components/ecr) registry.
+Perform the Hamlet "Manage Docker" action, pulling the selected container image from Dockerhub to the local registry.
 
 ## Example
 ```groovy
