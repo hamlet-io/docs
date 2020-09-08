@@ -38,9 +38,6 @@ Deployment Profiles offer top-down component governance where the most specific 
 ## Policy Profiles
 Policy Profiles offer the inverse of Deployment Profiles - higher scoped Policy Profiles overrule the lower. This enables organisations to apply Tenant or Account level Policies where they cannot be overridden by Deployment Profiles.
 
-## Security Profiles
-Security Profiles allow a forced override of all other Profile types. They are intended to allow a security team to set scope-wide mandatory configuration.
-
 ## Profile Filters
 All profile types have two filters -  Deployment Mode and Component Type. All components within the scope of that Profile will inherit a profile configuration.
 
