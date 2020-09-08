@@ -17,5 +17,5 @@ Hamlet can be easily integrated with a wide range of 3rd-party tools. The integr
 
 | Product | Purpose | Integration | Official |
 |---------|---------|-------------|----------|
-| Jenkins | Application Lifecycle Management (ALM) | [Docs](./jenkins/overview) | [Link](https://www.jenkins.io/) |
+| Jenkins | Application Lifecycle Management (ALM) | [Docs](./jenkins/index) | [Link](https://www.jenkins.io/) |
 

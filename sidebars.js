@@ -30,44 +30,6 @@ module.exports = {
             'integrations/jenkins/index',
             {
               type: 'category',
-              label: 'Script Library',
-              items: [
-                'integrations/jenkins/scriptlibrary/index',
-                {
-                  type: 'category',
-                  label: 'Common',
-                  items: [
-                    'integrations/jenkins/scriptlibrary/scripts/common/cmdbsetup',
-                    'integrations/jenkins/scriptlibrary/scripts/common/gets3bucketname',
-                    'integrations/jenkins/scriptlibrary/scripts/common/manageenvironment',
-                    'integrations/jenkins/scriptlibrary/scripts/common/productsetup',
-                    'integrations/jenkins/scriptlibrary/scripts/common/setcontext',
-                    'integrations/jenkins/scriptlibrary/scripts/common/setreleasename',
-                    'integrations/jenkins/scriptlibrary/scripts/common/updatebuilddescription',
-                  ]
-                },
-                {
-                  type: 'category',
-                  label: 'Solution Dependent',
-                  items: [
-                    'integrations/jenkins/scriptlibrary/scripts/specific/builddataset',
-                    'integrations/jenkins/scriptlibrary/scripts/specific/getdatabasedetails',
-                    'integrations/jenkins/scriptlibrary/scripts/specific/getdeploymentunitbuildblueprint',
-                    'integrations/jenkins/scriptlibrary/scripts/specific/wakeecscluster',
-                  ]
-                },
-                {
-                  type: 'category',
-                  label: 'Notifications',
-                  items: [
-                    'integrations/jenkins/scriptlibrary/scripts/notifications/sendslackinputprompt',
-                    'integrations/jenkins/scriptlibrary/scripts/notifications/sendslackmessage',
-                  ]
-                },
-              ]
-            },
-            {
-              type: 'category',
               label: 'Example Library',
               items: [
                 'integrations/jenkins/examplelibrary/index',
