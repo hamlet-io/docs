@@ -39,127 +39,7 @@
               "additionalProperties": false,
               "properties": {
                 "Links": {
-                  "type": "object",
-                  "patternProperties": {
-                    "^[A-Za-z_][A-Za-z0-9_]*$": {
-                      "properties": {
-                        "Any": {
-                          "type": "string"
-                        },
-                        "Tenant": {
-                          "type": "string"
-                        },
-                        "Product": {
-                          "type": "string"
-                        },
-                        "Environment": {
-                          "type": "string"
-                        },
-                        "Segment": {
-                          "type": "string"
-                        },
-                        "Tier": {
-                          "type": "string"
-                        },
-                        "Component": {
-                          "type": "string"
-                        },
-                        "Function": {
-                          "type": "string"
-                        },
-                        "Service": {
-                          "type": "string"
-                        },
-                        "Task": {
-                          "type": "string"
-                        },
-                        "PortMapping": {
-                          "type": "string"
-                        },
-                        "Mount": {
-                          "type": "string"
-                        },
-                        "Platform": {
-                          "type": "string"
-                        },
-                        "RouteTable": {
-                          "type": "string"
-                        },
-                        "NetworkACL": {
-                          "type": "string"
-                        },
-                        "DataBucket": {
-                          "type": "string"
-                        },
-                        "Key": {
-                          "type": "string"
-                        },
-                        "Branch": {
-                          "type": "string"
-                        },
-                        "Client": {
-                          "type": "string"
-                        },
-                        "Connection": {
-                          "type": "string"
-                        },
-                        "AuthProvider": {
-                          "type": "string"
-                        },
-                        "Resource": {
-                          "type": "string"
-                        },
-                        "DataFeed": {
-                          "type": "string"
-                        },
-                        "RegistryService": {
-                          "type": "string"
-                        },
-                        "Assignment": {
-                          "type": "string"
-                        },
-                        "Route": {
-                          "type": "string"
-                        },
-                        "Endpoint": {
-                          "type": "string"
-                        },
-                        "Instance": {
-                          "type": "string"
-                        },
-                        "Version": {
-                          "type": "string"
-                        },
-                        "Secret": {
-                          "type": "string"
-                        },
-                        "Role": {
-                          "type": "string"
-                        },
-                        "Direction": {
-                          "type": "string"
-                        },
-                        "Type": {
-                          "type": "string"
-                        },
-                        "Enabled": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "IncludeInContext": {
-                          "type": "array",
-                          "contains": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "additionalProperties": false,
-                      "required": [
-                        "Tier",
-                        "Component"
-                      ]
-                    }
-                  }
+                  "$ref": "metaparameter-schema.json#/#definitions/Links"
                 }
               }
             }
@@ -457,62 +337,135 @@
               "type": "boolean",
               "default": true
             },
-            "Deployment": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Level": {
-                  "type": "string",
-                  "description": "The deployment level to use for template generation",
-                  "enum": [
-                    "",
-                    "account",
-                    "segment",
-                    "solution",
-                    "application"
-                  ]
-                },
-                "ResourceSets": {
-                  "type": "object",
-                  "description": "Generate deployments based on resource labels across all units in the group",
-                  "patternProperties": {
-                    "^[A-Za-z_][A-Za-z0-9_]*$": {
-                      "properties": {
-                        "Enabled": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "DeploymentUnit": {
-                          "type": "string",
-                          "description": "The Deployment Unit for the subset deployment"
-                        },
-                        "ResourceLabels": {
-                          "type": "array",
-                          "contains": {
-                            "type": "string"
-                          },
-                          "description": "The resource labels to include in the subset"
-                        }
-                      },
-                      "additionalProperties": false,
-                      "required": [
-                        "DeploymentUnit",
-                        "ResourceLabels"
-                      ]
-                    }
-                  }
-                }
-              },
-              "required": [
-                "Level"
+            "Priority": {
+              "type": "number",
+              "description": "The priority this group has in deployment mode processing",
+              "default": 100
+            },
+            "Level": {
+              "type": "string",
+              "description": "The deployment level to use for template generation",
+              "enum": [
+                "",
+                "account",
+                "segment",
+                "solution",
+                "application"
               ]
+            },
+            "ResourceSets": {
+              "type": "object",
+              "description": "Generate deployments based on resource labels across all units in the group",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Enabled": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "deployment:Unit": {
+                      "type": "string",
+                      "description": "The Deployment Unit"
+                    },
+                    "deployment:Priority": {
+                      "type": "number",
+                      "description": "The Deployment Priority",
+                      "default": 5
+                    },
+                    "ResourceLabels": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "The resource labels to include in the subset"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "deployment:Unit",
+                    "ResourceLabels"
+                  ]
+                }
+              }
             },
             "CompositeTemplate": {
               "type": "string",
               "description": "A composite template file to include for this group"
             }
           },
-          "additionalProperties": false
+          "additionalProperties": false,
+          "required": [
+            "Level"
+          ]
+        }
+      }
+    },
+    "DeploymentModes": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "Enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "ExecutionPolicy": {
+              "type": "string",
+              "description": "Defines how groups can be used in this deployment mode",
+              "default": "Optional",
+              "enum": [
+                "Required",
+                "Optional"
+              ]
+            },
+            "Membership": {
+              "type": "string",
+              "description": "How deployment groups are included in the mode and their ordering",
+              "enum": [
+                "explicit",
+                "priority"
+              ]
+            },
+            "Priority": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Controls for priority membership",
+              "properties": {
+                "GroupFilter": {
+                  "type": "string",
+                  "description": "A regex filter to apply on group ids to include in the mode",
+                  "default": ".*"
+                },
+                "Order": {
+                  "type": "string",
+                  "description": "How to evalute the priority ordering",
+                  "default": "LowestFirst",
+                  "enum": [
+                    "HighestFirst",
+                    "LowestFirst"
+                  ]
+                }
+              }
+            },
+            "Explicit": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Controls for explicit membership",
+              "properties": {
+                "Groups": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "A list of group ids in their deployment order"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "Membership"
+          ]
         }
       }
     },
@@ -773,128 +726,7 @@
                       "description": "The name of a Logfilter to apply to the forwarding rule"
                     },
                     "Links": {
-                      "type": "object",
-                      "description": "The links of components which will accept fowarded logs",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "Any": {
-                              "type": "string"
-                            },
-                            "Tenant": {
-                              "type": "string"
-                            },
-                            "Product": {
-                              "type": "string"
-                            },
-                            "Environment": {
-                              "type": "string"
-                            },
-                            "Segment": {
-                              "type": "string"
-                            },
-                            "Tier": {
-                              "type": "string"
-                            },
-                            "Component": {
-                              "type": "string"
-                            },
-                            "Function": {
-                              "type": "string"
-                            },
-                            "Service": {
-                              "type": "string"
-                            },
-                            "Task": {
-                              "type": "string"
-                            },
-                            "PortMapping": {
-                              "type": "string"
-                            },
-                            "Mount": {
-                              "type": "string"
-                            },
-                            "Platform": {
-                              "type": "string"
-                            },
-                            "RouteTable": {
-                              "type": "string"
-                            },
-                            "NetworkACL": {
-                              "type": "string"
-                            },
-                            "DataBucket": {
-                              "type": "string"
-                            },
-                            "Key": {
-                              "type": "string"
-                            },
-                            "Branch": {
-                              "type": "string"
-                            },
-                            "Client": {
-                              "type": "string"
-                            },
-                            "Connection": {
-                              "type": "string"
-                            },
-                            "AuthProvider": {
-                              "type": "string"
-                            },
-                            "Resource": {
-                              "type": "string"
-                            },
-                            "DataFeed": {
-                              "type": "string"
-                            },
-                            "RegistryService": {
-                              "type": "string"
-                            },
-                            "Assignment": {
-                              "type": "string"
-                            },
-                            "Route": {
-                              "type": "string"
-                            },
-                            "Endpoint": {
-                              "type": "string"
-                            },
-                            "Instance": {
-                              "type": "string"
-                            },
-                            "Version": {
-                              "type": "string"
-                            },
-                            "Secret": {
-                              "type": "string"
-                            },
-                            "Role": {
-                              "type": "string"
-                            },
-                            "Direction": {
-                              "type": "string"
-                            },
-                            "Type": {
-                              "type": "string"
-                            },
-                            "Enabled": {
-                              "type": "boolean",
-                              "default": true
-                            },
-                            "IncludeInContext": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "additionalProperties": false,
-                          "required": [
-                            "Tier",
-                            "Component"
-                          ]
-                        }
-                      }
+                      "$ref": "metaparameter-schema.json#/definitions/Links"
                     }
                   },
                   "additionalProperties": false,
@@ -938,128 +770,7 @@
               "additionalProperties": false,
               "properties": {
                 "Links": {
-                  "type": "object",
-                  "description": "Apply network security rules based on links",
-                  "patternProperties": {
-                    "^[A-Za-z_][A-Za-z0-9_]*$": {
-                      "properties": {
-                        "Any": {
-                          "type": "string"
-                        },
-                        "Tenant": {
-                          "type": "string"
-                        },
-                        "Product": {
-                          "type": "string"
-                        },
-                        "Environment": {
-                          "type": "string"
-                        },
-                        "Segment": {
-                          "type": "string"
-                        },
-                        "Tier": {
-                          "type": "string"
-                        },
-                        "Component": {
-                          "type": "string"
-                        },
-                        "Function": {
-                          "type": "string"
-                        },
-                        "Service": {
-                          "type": "string"
-                        },
-                        "Task": {
-                          "type": "string"
-                        },
-                        "PortMapping": {
-                          "type": "string"
-                        },
-                        "Mount": {
-                          "type": "string"
-                        },
-                        "Platform": {
-                          "type": "string"
-                        },
-                        "RouteTable": {
-                          "type": "string"
-                        },
-                        "NetworkACL": {
-                          "type": "string"
-                        },
-                        "DataBucket": {
-                          "type": "string"
-                        },
-                        "Key": {
-                          "type": "string"
-                        },
-                        "Branch": {
-                          "type": "string"
-                        },
-                        "Client": {
-                          "type": "string"
-                        },
-                        "Connection": {
-                          "type": "string"
-                        },
-                        "AuthProvider": {
-                          "type": "string"
-                        },
-                        "Resource": {
-                          "type": "string"
-                        },
-                        "DataFeed": {
-                          "type": "string"
-                        },
-                        "RegistryService": {
-                          "type": "string"
-                        },
-                        "Assignment": {
-                          "type": "string"
-                        },
-                        "Route": {
-                          "type": "string"
-                        },
-                        "Endpoint": {
-                          "type": "string"
-                        },
-                        "Instance": {
-                          "type": "string"
-                        },
-                        "Version": {
-                          "type": "string"
-                        },
-                        "Secret": {
-                          "type": "string"
-                        },
-                        "Role": {
-                          "type": "string"
-                        },
-                        "Direction": {
-                          "type": "string"
-                        },
-                        "Type": {
-                          "type": "string"
-                        },
-                        "Enabled": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "IncludeInContext": {
-                          "type": "array",
-                          "contains": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "additionalProperties": false,
-                      "required": [
-                        "Tier",
-                        "Component"
-                      ]
-                    }
-                  }
+                  "$ref": "metaparameter-schema.json#/#definitions/Links"
                 },
                 "Outbound": {
                   "type": "object",
@@ -1326,6 +1037,30 @@
                 }
               }
             },
+            "containerhost": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "MinPerZone": {
+                  "type": "number"
+                },
+                "MaxPerZone": {
+                  "type": "number"
+                },
+                "DesiredPerZone": {
+                  "type": "number"
+                },
+                "MaxCount": {
+                  "type": "number"
+                },
+                "MinCount": {
+                  "type": "number"
+                },
+                "DesiredCount": {
+                  "type": "number"
+                }
+              }
+            },
             "ComputeCluster": {
               "type": "object",
               "additionalProperties": false,
@@ -1420,6 +1155,30 @@
               }
             },
             "service": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "MinPerZone": {
+                  "type": "number"
+                },
+                "MaxPerZone": {
+                  "type": "number"
+                },
+                "DesiredPerZone": {
+                  "type": "number"
+                },
+                "MaxCount": {
+                  "type": "number"
+                },
+                "MinCount": {
+                  "type": "number"
+                },
+                "DesiredCount": {
+                  "type": "number"
+                }
+              }
+            },
+            "containerservice": {
               "type": "object",
               "additionalProperties": false,
               "properties": {
@@ -1752,9 +1511,39 @@
                   }
                 }
               }
+            },
+            "filetransfer": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "EncryptionPolicy": {
+                  "type": "string"
+                }
+              }
             }
           },
           "additionalProperties": false
+        }
+      }
+    },
+    "ServiceRoles": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "Enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "ServiceName": {
+              "type": "string",
+              "description": "The Service domain name for the service you want to create the role for"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "ServiceName"
+          ]
         }
       }
     },
@@ -2126,176 +1915,6 @@
           "properties": {
             "*": {
               "type": "any"
-            }
-          },
-          "additionalProperties": false
-        }
-      }
-    },
-    "SkuProfiles": {
-      "type": "object",
-      "patternProperties": {
-        "^[A-Za-z_][A-Za-z0-9_]*$": {
-          "properties": {
-            "apigateway": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string",
-                  "enum": [
-                    "Developer",
-                    "Standard",
-                    "Premium",
-                    "Basic",
-                    "Consumption"
-                  ]
-                },
-                "Capacity": {
-                  "type": "number"
-                }
-              }
-            },
-            "computecluster": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string"
-                },
-                "Tier": {
-                  "type": "string",
-                  "enum": [
-                    "Standard",
-                    "Basic"
-                  ]
-                },
-                "Capacity": {
-                  "type": "number",
-                  "default": 1
-                }
-              }
-            },
-            "s3": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Kind": {
-                  "type": "string"
-                },
-                "Tier": {
-                  "type": "string"
-                },
-                "Replication": {
-                  "type": "string"
-                }
-              }
-            },
-            "db": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string"
-                },
-                "Tier": {
-                  "type": "string"
-                },
-                "Capacity": {
-                  "type": "number"
-                },
-                "Size": {
-                  "type": "number"
-                },
-                "Family": {
-                  "type": "string"
-                }
-              }
-            },
-            "secretstore": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string"
-                },
-                "Family": {
-                  "type": "string"
-                }
-              }
-            },
-            "network": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string"
-                }
-              }
-            },
-            "lb": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string"
-                },
-                "Tier": {
-                  "type": "string"
-                },
-                "Capacity": {
-                  "type": "number"
-                }
-              }
-            },
-            "bastion": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string"
-                },
-                "Tier": {
-                  "type": "string"
-                },
-                "Capacity": {
-                  "type": "number"
-                }
-              }
-            }
-          },
-          "additionalProperties": false
-        }
-      }
-    },
-    "VMImageProfiles": {
-      "type": "object",
-      "patternProperties": {
-        "^[A-Za-z_][A-Za-z0-9_]*$": {
-          "properties": {
-            "*": {
-              "type": "object",
-              "additionalProperties": false,
-              "description": "The component type that the VMImage configuration belongs to.",
-              "properties": {
-                "Publisher": {
-                  "type": "string"
-                },
-                "Offering": {
-                  "type": "string"
-                },
-                "Image": {
-                  "type": "string"
-                },
-                "LicenseType": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "Publisher",
-                "Offering",
-                "Image"
-              ]
             }
           },
           "additionalProperties": false
