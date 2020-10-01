@@ -4,12 +4,15 @@
 import axios from "axios";
 
 const schema = {
-  basePath: './schema',
+  basePath: '../schema',
   reference: {
       data: `blueprint/reference-schema`,
   },
   component: {
       data: `blueprint/component-schema`,
+  },
+  metaparameter: {
+      data: `blueprint/metaparameter-schema`,
   }
 };
 
@@ -20,14 +23,14 @@ const filterSets = {
   ]
 }
 
-const getHamletJsonSchemaData = ({type, version}) => {
-  let path = schema[type].data;
-  return axios.get(`${schema.basePath}/${version}/${path}.json`);
+const getHamletJsonSchemaData = (props) => {
+  let path = schema[props.type].data;
+  return axios.get(`${schema.basePath}/${props.version}/${path}.json`);
 }
 
-const getAsyncComponents = () => {
+const getAsyncSchemaData = (props) => {
   let components = [];
-  return getHamletJsonSchemaData({ type: "component", version: "latest"}).then((response) => {
+  return getHamletJsonSchemaData({ type: props.type, version: props.version}).then((response) => {
     Object.entries(response.data.definitions).map(definition => {
       let [name, value] = definition;
       let requiresList = value.required || [];
@@ -256,7 +259,7 @@ const getComponentExampleCodeblock = (schema) => {
 
 
 export {
-  getAsyncComponents,
+  getAsyncSchemaData,
   getAttributeStructure,
   getComponentStructure,
   getComponentExampleCodeblock,
