@@ -25,8 +25,10 @@
     "mermaid": "^8.5.1",
     "react": "^16.13.1",
     "react-admonitions": "^2.1.0",
+    "react-data-table-component": "^6.11.5",
     "react-dom": "^16.13.1",
     "remark-admonitions": "^1.2.1",
+    "styled-components": "^5.2.0",
     "yamljs": "^0.3.0"
   },
   "browserslist": {
