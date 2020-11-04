@@ -6,9 +6,6 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Admonition type="warning" title="Under Construction">
-The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
 
 Links define an association between two components. Linking one component (the link source) to another (the link target) implies that the source requires configuration information from the link target. During template generation of any of the source component's deployment units the source will gain access to the configuration of the target component.
 
