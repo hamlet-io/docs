@@ -32,4 +32,4 @@ The structure of the CMDB is based on series of files and folders which create a
 
 ## How do I use it
 
-Get started with Hamlet with our hands-on [Hello Hamlet](http://localhost:3001/docs/hello/hamlet) guide, or learn more about Hamlet with our [Foundations documentation.](https://hamlet.io/docs/foundations/anatomy)
+Get started with Hamlet with our hands-on [Hello Hamlet](./hamlet) guide, or learn more about Hamlet with our [Foundations documentation.](../foundations/anatomy)
