@@ -1,159 +1,78 @@
 ---
 sidebar_label: anatomy
-title: CMDB Anatomy
+title: Anatomy of a Hamlet
 ---
 import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Admonition type="warning" title="Under Construction">
-The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
+# Hamlet CMDBs
 
-The CMDB repository is used to outline the supporting infrastructure and services required for the deployment of an application. The structure of the repository is important for the generation and automation of the infrastructure.
+A `Hamlet` is comprised of 3 major heirarchical scopes; `Tenant`, `Account` and `Product`. Individually, each scope is a Configuration Management Database (CMDB) that defines a `Solution` for its scope. That `Solution` then informs the infrastructure templates and - if applicable - applications deployments.
 
-The CMDB is broken up into two components, the product CMDB which describes the resources for a specific product and the Account CMDB which describes the organisations account and high level environmental configuration. `hamlet` combines these two data sources to build and provision product environments.
+## Tenant CMDB
+
+The tenant CMDB is used to define an organisation or entity. Configuration applied at the `Tenant` scope will apply across all `Accounts`. A `Tenant` CMDB typically defines owned domain configuration, and creates common and shared configuration or resources that are be accessible (or enforced, where appropriate) by all associated `Accounts` and `Products`. Depending on an organisations requirements a `Tenant` might contain the definitions and deployment templates for an organisation-wide audit-log store, or a collection of security policies that must be enforced everywhere they could apply.
+
+## Account CMDB
+
+The `Account` is linked to the `Tenant` CMDB and inherits its configuration. A `Solution` at the `Account` level defines configuration that is to be used account-wide and be applied to all current and future `Products` within it. An `Account` is tied directly to an provider-specific identifier which Hamlet uses to deploy to that cloud provider. Typically an `Account` will be required for each `Environment` that a `Tenant` contains, however this is only due to best-practice of environment isolation and is not a requirement of an `Account`.
 
 ## Product CMDB
 
-<Tabs
-    defaultValue="cmdbroot"
-    values={[
-        {label: 'Overview', value: 'cmdbroot'},
-        {label: 'Hosting', value: 'hosting'},
-        {label: 'Application', value: 'application'},
-        {label: 'Provisioning', value: 'provisioning'},
-    ]
-}>
-<TabItem value='cmdbroot'>
+A `Product` is created for one or more `Accounts` and represents a whole project. Typically the largest of the CMDB's, the `Product` inherits any enforced behaviours from the `Account` and its `Tenant`. It is used to define project-specific or unique `Components`, `Profiles` and `ReferenceData`.
 
-```text
-config/
-|
-|- <product>/
-|  |- <solution>/
-|    |- solution.json
-|    |- *.ftl
-|    |- <segment>/
-|       |- segment.json
-|- appsettings/
-|   |- <segment>/
-|     |- <application>-v<version>/
-|        |- build.json
-|        |- appsettings.json
-infrastructure/
-|- <cloud provider>/
-|    |- <segment>/
-|        |- <template type>/
-|            |- *-template.json
-|            |- *-stack.json
-|            |- *-epilogue.sh
-|            |- *-prologue.sh
-|- credentials/
-|    |- <segment>/
-|        |- <application>/
-|            |- credential.json
-|            |- asFile/
-|                |- <credential files (certificates,keys etc)>
+ Additional scopes within the `Solution` definition itself allow for further break-down of a project if required.
+
+# Solutions
+
+A `Solution` is the composite structure of all files within a CMDB (including inherrited configuration). Hamlet constructs the `Solution` prior to performing any action requiring the creation of an `Occurrance` such as template generation. The Hamlet CLI can be used to perform queries against a `Solution` directly, providing insight into the composite structure.
+
+All `Solutions` have the same possible data structure regardless of which CMDB they belong. The separation by `Tenant`, `Account` and `Product` is to provide hierarchical layering of configuration only.
+
+# Directory Structure of a Solution
+Each CMDB conforms to the following directory structure where necessary. Directories and files that are not required do not exist. Often this means the that the structure is less complete at the `Tenant` level and more so at the `Product`.
+
+```sh
+<cmdb-id>
+├── config
+│   ├── settings
+│   │   ├── <environment>
+│   │   │   └── <segment>
+│   │   └── shared
+│   └── solutionsv2
+│       ├── <environment>
+│       │   └── <segment>
+│       └── shared
+│           └── <segment>
+└── infrastructure
+    ├── cf
+    │   └── <environment>
+    │       └── <segment>
+    │           ├── <deployment-unit>
+    │           └── <deployment-unit>
+    ├── hamlet
+    │   └── <environment>
+    │       └── <segment>
+    │           └── <deployment-unit>
+    └── operations
+        └── <environment>
+            └── <segment>
 ```
 
-</TabItem>
-<TabItem value='hosting'>
+At the top level of the structure, the CMDB identifier is the Tenant Id for `Tenants`, Account Id for `Accounts` and Product Id for `Products`. Hamlet uses this to identify the applicable ones at runtime.
 
-````text {6,7,10}
-config/
-|
-|- <product>/ ________________________ #
-|
-|  |- <solution>/ ____________________ #
-|    |- solution.json ________________ # describes the resources required to host the product
-|    |- *.ftl ________________________ # custom resource templates used to generate solution specific resources
-|
-|    |- <segment>/ ___________________ # an instance of the solution
-|       |- segment.json ______________ # describes the environment the solution should be deployed to
-````
+Directories immediately underneath are `config` and `infrastructure` which correspond to "engine inputs" and "engine outputs".
+
+Within the `config` directory, a further distinction is made between "application runtime settings" (`settings`) and "solution definitions" (`solutionsv2`).
+
+Within the `infrastructure` directory, engine outputs are separated by type. `cf` is the output directory for infrastructure templates and scripts used for infrastructure and application deployment. `hamlet` is used by the engine itself to store outputs that inform further executions, such as Generation and Management `Contracts`. The `operations` directory is where Hamlet will store and access operational files such as generated keypairs and encrypted credentials.
+
+Each of the above levels can then be further broken down as required by directories named after `environment`, `segment` and `deployment-unit`, ensuring that configuration can be made to apply everywhere within an organisation (at the `Tenant` level) down to individual component instance (`Deployment Unit` level). Additionally, each level may also contain a `shared` directory, which will contain configuration to be shared across its scope. For example in the structure shown above, the `shared` directory underneath `settings` exists at the `environment` scope. Any configuration defined there will be implemented across all environments.
 
 
+## Structure of a Solution File
 
-</TabItem>
-<TabItem value='application'>
+Any file that contributes to a Hamlet `Solution` can contain [`Components`](https://hamlet.io/reference/components), [`ReferenceData`](https://hamlet.io/reference/data) and [`MetaParameters`](https://hamlet.io/reference/meta) data types. Configuration is applied in a top-down manner at the CMDB-level (`Tenant > Account > Product`) and then again at the `Solution`-level (`Environment > Segment > Deployment Unit`). New content is combined with existing, whilst existing content will be overwritten if re-implemented by a more specific scope. This allows for the most effecient implementation for a given use-case. 
 
-````text
-config/
-|
-|- appsettings/ ______________________ # application specific settings
-|
-|   |- <segment>/ ____________________ # segment specific settings
-|
-|     |- <application>-v<version>/ ___ # Application based settings
-|
-|        |- build.json _______________ # Code repository commit id and build tooling
-|        |- appsettings.json _________ # application specific overrides
-````
-
-</TabItem>
-<TabItem value='provisioning'>
-
-````text
-infrastructure/ ______________________ # the provisioned infrastructure for the solution
-|
-|- <cloud provider>/ _________________ # the cloud provider of the infrastructure
-|
-|    |- <segment>/ ___________________ # the segment level infrastructure
-|
-|        |- <template type>/ _________ # the provisioning process for the segment
-|
-|            |- *-template.json ______ # the declarative template used for provisioning
-|            |- *-stack.json _________ # the output from the declarative template
-|            |- *-epilogue.sh ________ # a script run before the template is run
-|            |- *-prologue.sh ________ # a script run after the template has run
-|
-|- credentials/
-|
-|    |- <segment>/ ___________________ # segment level credentials
-|
-|        |- <application>/ ___________ # application level credentials
-|            |- credential.json ______ # credential details
-|
-|            |- asFile/ ______________ # allows for file based credentials
-|                |- <credential files (certificates,keys etc)>
-````
-
-</TabItem>
-</Tabs>
-
-## Accounts CMDB
-
-The accounts CMDB is a separate repository to the product level CMDB as it can be shared across multiple domains/applications. Accounts can be grouped into subdirectories in order to classify them.
-
-<Tabs
-    defaultValue="accounts"
-    values={[
-        {label: 'Accounts', value: 'accounts'},
-    ]
-}>
-<TabItem value='accounts'>
-
-````text
-<tenant>/ ____________________________ # the organisation details over all
-|    |- domains.json _________________ # DNS zone details used for service naming and resolution
-|    |- tenant.json __________________ # default settings for the organisation
-|    |- ipaddressgroups_<name>.json __ # IP address collections used for access control
-|    |- countrygroups.json ___________ # country collections used for access control
-|
-<account>/ ___________________________ # a cloud provider account
-|
-|    |- config/ ______________________ # account level configuration details
-|        |- account.json _____________ # account specific details
-|
-|        |- appsettings/
-|            |- appsettings.json _____ # account level application settings
-|
-|    |- infrastructure/
-|
-|        |- credentials/
-|            |- credentials.json _____ # account level credentials
-````
-
-</TabItem>
-</Tabs>
+Configuration can be removed for individual scopes by defining it at as an empty object for that scope.
