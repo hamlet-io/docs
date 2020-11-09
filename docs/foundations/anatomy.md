@@ -8,7 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Hamlet CMDBs
 
-A `Hamlet` is comprised of 3 major heirarchical scopes; `Tenant`, `Account` and `Product`. Individually, each scope is a Configuration Management Database (CMDB) that defines a `Solution` for its scope. That `Solution` then informs the infrastructure templates and - if applicable - applications deployments.
+A `Hamlet` is comprised of 3 major heirarchical scopes; `Tenant`, `Account` and `Product`. Individually, each scope is a Configuration Management Database (CMDB) that defines a `Solution` for its scope. That `Solution` then informs the infrastructure templates and - if applicable - applications deployments. 
+
+A `root.json` file is required in the root directory that contains all CMDB's. This informs Hamlet that it has reached the origin of the CMDB's and not to search any higher for configuration.
 
 ## Tenant CMDB
 
