@@ -4,7 +4,9 @@ import {
   getAsyncSchemaData,
   getAttributeStructure,
   getComponentStructure,
+  getComponentExampleCodeblock,
 } from "@site/src/components/HamletJsonSchema";
+import HamletExample from "@site/src/components/HamletExample";
 
 import "./styles.css";
 
@@ -120,17 +122,24 @@ function HamletDataTableComponent(props) {
     setComponentSchemas(structure);
   }, []);
 
+  //alert(JSON.stringify(getComponentExampleCodeblock(props)), null, 4);
+
+  const example = getComponentExampleCodeblock(props);
+
   return (
     <div className="item shadow--tl component">
       {componentSchemas.schemas.map((schema, index) => {
         return (
-          <HamletSchemaDataTable
-            key={index}
-            title={schema.name}
-            type={props.type}
-            columns={columns}
-            data={schema.value}
-          />
+          <React.Fragment>
+            
+            <HamletSchemaDataTable
+              key={index}
+              title={schema.name}
+              type={props.type}
+              columns={columns}
+              data={schema.value}
+            />
+          </React.Fragment>
         );
       })}
     </div>

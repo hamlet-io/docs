@@ -3,6 +3,8 @@
 */
 import axios from "axios";
 
+const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
+
 const schema = {
   basePath: '../schema',
   reference: {
@@ -35,7 +37,7 @@ const getAsyncSchemaData = (props) => {
       let [name, value] = definition;
       let requiresList = value.required || [];
       let attributes = [];
-      Object.entries(value.patternProperties['^[A-Za-z_][A-Za-z0-9_]*$'].properties).map((componentAttribute) => {
+      Object.entries(value.patternProperties[patternPropertiesRegex].properties).map((componentAttribute) => {
         let [attrName, attrValue] = componentAttribute;
         if (!filterSets.component.includes(attrName)) {
           attributes.push({
@@ -199,62 +201,59 @@ const getComponentStructure = (props) => {
 };
 
 const getComponentExampleCodeblock = (schema) => {
+  const { name, attributes } = schema;
+  let example = new Object();
+  example[name] = getAttributesExampleCodeblock(attributes);
+  alert(JSON.stringify(example, null, 4));
+  return JSON.stringify(example, null, 4);
+};
 
-  let codeblock = new Object();
+const getAttributesExampleCodeblock = (attributes) => {
 
-  if (schema.value instanceof Array) {
-    schema.value.map((attr) => {
-      codeblock[attr.name] = getComponentExampleCodeblock({name: attr.name, value: attr.value})
-      
-      return codeblock;
-    })
-  } else {
-    schema.value && (
-      schema.value.properties && (
-        
-        Object.entries(schema.value.properties).map((attr) => {
-          let [name, value] = attr;
+  let example = new Object();
 
-          if (value.type === "object") {
-            codeblock[name] = getComponentExampleCodeblock({name: name, value: value})
-          } else {
-            codeblock[name] = "<" + String(value.type).replace(',', '-or-') + ">"
-          }
+  attributes.map((attribute) => {
+    const name = attribute?.name;
+    const patternProperties = attribute?.value?.patternProperties;
+    const properties = attribute?.value?.properties;
+    const type = attribute?.value?.type;
+    const ref = attribute.value?.$ref;
 
-          return codeblock;
-        })
-      ),
+    let exampleValue;
 
-      schema.value.patternProperties && (
-        Object.entries(schema.value.patternProperties).map((attr) => {
-          let subObject = new Object();
-          let [pattern, value] = attr;
-          let subObjectString = "<" + schema.name.toLowerCase() + "-name>"
-          Object.entries(value.properties).map((subObjAttr) => {
-            let [subObjName, subObjValue] = subObjAttr;
-            subObject[subObjName] = getComponentExampleCodeblock({name: subObjName, value: subObjValue})
-            return subObject;
-          })
-          codeblock[subObjectString] = subObject;
-          return codeblock
-        })
-      )
-    )
-  }
-  
-  if (Object.keys(codeblock).length === 0 && codeblock.constructor === Object) {
-
-    /* Max Depth */
-    if (schema.value.type instanceof Array) {
-      return Array.toString(schema.value.type + "// ")
+    // if object has pattern properties, wrap it in an identifier
+    if (patternProperties) {
+      exampleValue = new Object();
+      let children = patternProperties[patternPropertiesRegex].properties;
+      let propertiesId = "<" + name.toLowerCase() + "-id>";
+      let subObjectsExample = new Object();
+      Object.keys(children).map((childName) => {
+        let childValue = children[childName];
+        subObjectsExample[childName] = getAttributesExampleCodeblock([{value: childValue}]);
+        return subObjectsExample;
+      });
+      exampleValue[propertiesId] = subObjectsExample;
+    } else if (properties) {
+      //object has direct children
+      exampleValue = new Object();
+      Object.keys(properties).map((childName) => {
+        let childValue = properties[childName];
+        exampleValue[childName] = getAttributesExampleCodeblock([{value: childValue}]);
+        return exampleValue;
+      });
+    } else if (ref) {
+      exampleValue = ref;
     } else {
-      // Single type.
-      return "<" + String(schema.value.type).replace(',', '-or-') + ">"
+      exampleValue = "<" + String(type).replace(',', '-or-') + ">";
     }
-    
-  } else {
-    return codeblock
-  }
+
+  
+    name ? example[name] = exampleValue
+    : example = exampleValue
+
+    return example;
+  });
+  return example;
 };
 
 
