@@ -204,7 +204,6 @@ const getComponentExampleCodeblock = (schema) => {
   const { name, attributes } = schema;
   let example = new Object();
   example[name] = getAttributesExampleCodeblock(attributes);
-  alert(JSON.stringify(example, null, 4));
   return JSON.stringify(example, null, 4);
 };
 
@@ -247,7 +246,6 @@ const getAttributesExampleCodeblock = (attributes) => {
       exampleValue = "<" + String(type).replace(',', '-or-') + ">";
     }
 
-  
     name ? example[name] = exampleValue
     : example = exampleValue
 
