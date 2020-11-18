@@ -8,9 +8,11 @@ import TabItem from '@theme/TabItem';
 
 # Hamlet CMDBs
 
-A `Hamlet` is comprised of 3 major heirarchical scopes; `Tenant`, `Account` and `Product`. Individually, each scope is a Configuration Management Database (CMDB) that defines a `Solution` for its scope. That `Solution` then informs the infrastructure templates and - if applicable - applications deployments. 
+A `Hamlet` is comprised of 2 kinds CMDB - the `Account` CMDB and the `Product` CMDB. An `Account` CMDB contains both the `Tenant` and all `Accounts` within it, whilst individual `Product` CMDBs contain the `Solutions` that define and configure `Components` and `ReferenceData`. Each `Product` CMDB can contain multiple instances of a `Solution`, each corresponding to an `Environment`. Together, Hamlet deploys an instance of a `Solution` into an `Account` within the `Tenant`. 
 
-A `root.json` file is required in the root directory that contains all CMDB's. This informs Hamlet that it has reached the origin of the CMDB's and not to search any higher for configuration.
+Commonly, a single repository is used to manage the `Account` and `Tenant` and is known as the `accounts-cmdb`. In large organisations or organisations with strict security requirements they may be stored separately.
+
+A `root.json` file at the root directory of all CMDBs informs Hamlet not to search any higher for configuration.
 
 ## Tenant CMDB
 
