@@ -121,7 +121,7 @@ const getAttributeStructure = (attributes) => {
 
     result.patternProperties &&
       Object.entries(result.patternProperties).map((pattern) => {
-        let [n, val] = pattern;
+        let [, val] = pattern;
         let requiredList = val.required || [];
         Object.entries(val.properties).map((child) => {
           let [name, value] = child;
@@ -177,7 +177,7 @@ const getComponentStructure = (props) => {
       /* Sub Objects */
       attribute.value.patternProperties &&
         Object.entries(attribute.value.patternProperties).map((pattern) => {
-          let [n, val] = pattern;
+          let [, val] = pattern;
           let requiredList = val.required || [];
           Object.entries(val.properties).map((child) => {
             let [name, value] = child;
@@ -218,7 +218,6 @@ const getAttributesExampleCodeblock = (attributes) => {
   let example = new Object();
 
   attributes.map((attribute) => {
-    const value = attribute?.value;
     const name = attribute?.name;
     const patternProperties = attribute.patternProperties;
     const properties = attribute.properties;
