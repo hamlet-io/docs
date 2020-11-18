@@ -24,9 +24,7 @@ The `Account` is linked to the `Tenant` CMDB and inherits its configuration. A `
 
 ## Product CMDB
 
-A `Product` is created for one or more `Accounts` and represents a whole project. Typically the largest of the CMDB's, the `Product` inherits any enforced behaviours from the `Account` and its `Tenant`. It is used to define project-specific or unique `Components`, `Profiles` and `ReferenceData`.
-
- Additional scopes within the `Solution` definition itself allow for further break-down of a project if required.
+A `Product` contains multipe `Solutions` which can be deployed into `Environments` to manage the full lifecycle of the `Product`. The `Solution` defines the `Components` and supporting configuration (`ReferenceData` and `MetaParameters`) that configure your `Product`.
 
 # Solutions
 
