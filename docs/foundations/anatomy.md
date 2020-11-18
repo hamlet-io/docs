@@ -30,12 +30,12 @@ A `Product` is created for one or more `Accounts` and represents a whole project
 
 # Solutions
 
-A `Solution` is the composite structure of all files within a CMDB (including inherrited configuration). Hamlet constructs the `Solution` prior to performing any action requiring the creation of an `Occurrance` such as template generation. The Hamlet CLI can be used to perform queries against a `Solution` directly, providing insight into the composite structure.
+A `Solution` is a collection of `Components` which together define a functional service. `Components` each define specific functionality within it and from them, Hamlet performs both infrastructure and application deployments.
 
-All `Solutions` have the same possible data structure regardless of which CMDB they belong. The separation by `Tenant`, `Account` and `Product` is to provide hierarchical layering of configuration only.
+Multiple instances of a `Solution` can be deployed into an `Environment`, each one is known as a `Segment`.
 
 # Directory Structure of a Solution
-Each CMDB conforms to the following directory structure where necessary. Directories and files that are not required do not exist. Often this means the that the structure is less complete at the `Tenant` level and more so at the `Product`.
+A `Solution` is often spread out over multiple files and directories within a `Product`. The directory structure reflects `Environments` and `Segments`, and the composite of the variations define each `Solution`. "shared" directories contain configuration that is shared across that layer, whilst named-directories will only contribute their configuration to the named `Environment`/`Segment`.
 
 ```sh
 <cmdb-id>
