@@ -201,9 +201,15 @@ const getComponentStructure = (props) => {
 };
 
 const getComponentExampleCodeblock = (schema) => {
-  const { name, attributes } = schema;
+  const { name: componentName, attributes } = schema;
   let example = new Object();
-  example[name] = getAttributesExampleCodeblock(attributes);
+  let attributeExample = new Object();
+  attributes.map((attribute) => {
+    const {name: attrName, value: attrValue} = attribute;
+    attributeExample[attrName] = getAttributesExampleCodeblock([attrValue]);
+    return attributeExample;
+  });
+  example[componentName] = attributeExample;
   return JSON.stringify(example, null, 4);
 };
 
@@ -212,23 +218,24 @@ const getAttributesExampleCodeblock = (attributes) => {
   let example = new Object();
 
   attributes.map((attribute) => {
+    const value = attribute?.value;
     const name = attribute?.name;
-    const patternProperties = attribute?.value?.patternProperties;
-    const properties = attribute?.value?.properties;
-    const type = attribute?.value?.type;
-    const ref = attribute.value?.$ref;
+    const patternProperties = attribute.patternProperties;
+    const properties = attribute.properties;
+    const type = attribute.type;
+    const ref = attribute?.$ref;
 
     let exampleValue;
 
-    // if object has pattern properties, wrap it in an identifier
     if (patternProperties) {
+      // if object has pattern properties, wrap it in an identifier
       exampleValue = new Object();
       let children = patternProperties[patternPropertiesRegex].properties;
-      let propertiesId = "<" + name.toLowerCase() + "-id>";
+      let propertiesId = "<" + name + "-id>";
       let subObjectsExample = new Object();
       Object.keys(children).map((childName) => {
         let childValue = children[childName];
-        subObjectsExample[childName] = getAttributesExampleCodeblock([{value: childValue}]);
+        subObjectsExample[childName] = getAttributesExampleCodeblock([childValue]);
         return subObjectsExample;
       });
       exampleValue[propertiesId] = subObjectsExample;
@@ -237,13 +244,15 @@ const getAttributesExampleCodeblock = (attributes) => {
       exampleValue = new Object();
       Object.keys(properties).map((childName) => {
         let childValue = properties[childName];
-        exampleValue[childName] = getAttributesExampleCodeblock([{value: childValue}]);
+        exampleValue[childName] = getAttributesExampleCodeblock([childValue]);
         return exampleValue;
       });
     } else if (ref) {
       exampleValue = ref;
-    } else {
+    } else if (type) {
       exampleValue = "<" + String(type).replace(',', '-or-') + ">";
+    } else {
+      exampleValue = "<" + String(attribute.type).replace(',', '-or-') + ">";
     }
 
     name ? example[name] = exampleValue

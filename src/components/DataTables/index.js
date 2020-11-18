@@ -122,8 +122,6 @@ function HamletDataTableComponent(props) {
     setComponentSchemas(structure);
   }, []);
 
-  //alert(JSON.stringify(getComponentExampleCodeblock(props)), null, 4);
-
   const example = getComponentExampleCodeblock(props);
 
   return (
@@ -131,7 +129,9 @@ function HamletDataTableComponent(props) {
       {componentSchemas.schemas.map((schema, index) => {
         return (
           <React.Fragment>
-            
+            <HamletExample
+              codeblock={example}
+            />
             <HamletSchemaDataTable
               key={index}
               title={schema.name}

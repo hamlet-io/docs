@@ -5,35 +5,27 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 
 import "./styles.css";
 
-function HamletExample({ codeblocks, labels }) {
+function HamletExample({ codeblock }) {
 
   return (
-    <Tabs defaultValue="json" values={labels}>
-      {codeblocks.map((codeblock) => {
-        return (
-          <TabItem value={codeblock.type}>
-            <Highlight
-              {...defaultProps}
-              code={codeblock.value}
-              language={codeblock.type}
-              theme={require("../../theme/hamlet")}
-            >
-              {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre className={className} style={style}>
-                  {tokens.map((line, i) => (
-                    <div {...getLineProps({ line, key: i })}>
-                      {line.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} />
-                      ))}
-                    </div>
-                  ))}
-                </pre>
-              )}
-            </Highlight>
-          </TabItem>
-        );
-      })}
-    </Tabs>
+      <Highlight
+        {...defaultProps}
+        code={codeblock}
+        language="json"
+        theme={require("../../theme/hamlet")}
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
   );
 }
 
