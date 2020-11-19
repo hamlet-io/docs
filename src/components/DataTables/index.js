@@ -86,7 +86,7 @@ function HamletSchemaDataTable(props) {
     <React.Fragment>
         <div className="reference">
             <DataTable
-                title={props.title + " " + props.type + " Schema"}
+                title={props.title + " Schema"}
                 columns={columns}
                 data={tablerows}
                 striped={stripeTables}
