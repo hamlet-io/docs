@@ -201,64 +201,54 @@ const getComponentStructure = (props) => {
 };
 
 const getComponentExampleCodeblock = (schema) => {
-  const { name: componentName, attributes } = schema;
   let example = new Object();
-  let attributeExample = new Object();
-  attributes.map((attribute) => {
-    const {name: attrName, value: attrValue} = attribute;
-    attributeExample[attrName] = getAttributesExampleCodeblock([attrValue]);
-    return attributeExample;
-  });
-  example[componentName] = attributeExample;
-  return JSON.stringify(example, null, 4);
-};
-
-const getAttributesExampleCodeblock = (attributes) => {
-
-  let example = new Object();
-
-  attributes.map((attribute) => {
-    const name = attribute?.name;
-    const patternProperties = attribute.patternProperties;
-    const properties = attribute.properties;
-    const type = attribute.type;
-    const ref = attribute?.$ref;
-
-    let exampleValue;
-
-    if (patternProperties) {
-      // if object has pattern properties, wrap it in an identifier
-      exampleValue = new Object();
-      let children = patternProperties[patternPropertiesRegex].properties;
-      let propertiesId = "<" + name + "-id>";
-      let subObjectsExample = new Object();
-      Object.keys(children).map((childName) => {
-        let childValue = children[childName];
-        subObjectsExample[childName] = getAttributesExampleCodeblock([childValue]);
-        return subObjectsExample;
-      });
-      exampleValue[propertiesId] = subObjectsExample;
-    } else if (properties) {
-      //object has direct children
-      exampleValue = new Object();
-      Object.keys(properties).map((childName) => {
-        let childValue = properties[childName];
-        exampleValue[childName] = getAttributesExampleCodeblock([childValue]);
-        return exampleValue;
-      });
-    } else if (ref) {
-      exampleValue = ref;
-    } else if (type) {
-      exampleValue = "<" + String(type).replace(',', '-or-') + ">";
-    } else {
-      exampleValue = "<" + String(attribute.type).replace(',', '-or-') + ">";
-    }
-
-    name ? example[name] = exampleValue
-    : example = exampleValue
-
+  example[schema.name] = new Object();
+  schema.attributes.map((attribute) => {
+    let attributes = getAttributesExampleCodeblock({name: attribute.name, value: attribute.value});
+    Object.assign(example[schema.name], attributes);
     return example;
   });
+  return JSON.stringify(example, null, 4)
+};
+
+const getAttributesExampleCodeblock = ({name, value}) => {
+
+  const patternProperties = value?.patternProperties;
+  const properties = value?.properties;
+  const type = value?.type;
+  const ref = value?.$ref;
+
+  let example = new Object();
+
+  if (patternProperties) {
+    // if object has pattern properties, wrap it in an identifier
+    let propertiesId = "<" + name.toLowerCase() + "-id>";
+    let children = patternProperties[patternPropertiesRegex].properties;
+    let exampleAttribute = new Object();
+    exampleAttribute[propertiesId] = new Object();
+    Object.keys(children).map((childName) => {
+      let childValue = children[childName];
+      let result = getAttributesExampleCodeblock({name: childName, value: childValue});
+      Object.assign(exampleAttribute[propertiesId], result);
+      return exampleAttribute;
+    });
+    example[name] = exampleAttribute;
+  } else if (properties) {
+    //object has direct children
+    let exampleAttribute = new Object();
+    Object.keys(properties).map((childName) => {
+      let childValue = properties[childName];
+      let result = getAttributesExampleCodeblock({name: childName, value: childValue});
+      Object.assign(exampleAttribute, result); 
+      return exampleAttribute;
+    });
+    example[name] = exampleAttribute;
+  } else if (ref) {
+    example[name] = ref;
+  } else if (type) {
+    example[name] = "<" + String(type).replace(',', '-or-') + ">";
+  }
+  
   return example;
 };
 
