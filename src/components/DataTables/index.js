@@ -123,17 +123,17 @@ function HamletDataTableComponent(props) {
   }, []);
 
   const example = getComponentExampleCodeblock(props);
+  const heading = props.name + " " + props.type;
 
   return (
     <div className="item shadow--tl component">
+      <h2>{heading}</h2>
+      <HamletExample
+        codeblock={example}
+      />
       {componentSchemas.schemas.map((schema, index) => {
         return (
           <React.Fragment>
-            <br />
-            <h2>{schema.name} {props.type}</h2>
-            <HamletExample
-              codeblock={example}
-            />
             <HamletSchemaDataTable
               key={index}
               title={schema.name}
@@ -141,6 +141,7 @@ function HamletDataTableComponent(props) {
               columns={columns}
               data={schema.value}
             />
+            <br />
           </React.Fragment>
         );
       })}
