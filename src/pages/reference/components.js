@@ -5,13 +5,7 @@ import HamletDataTableComponents from '@site/src/components/DataTables';
 const HamletComponentsSchema = () => {
   return (
     <Layout id="HamletComponents">
-        <div className="row">
-          <div className="col col--1" />
-          <div className="col col--10 component">
-            <HamletDataTableComponents type="component" version="latest" />
-          </div>
-          <div className="col col--1" />
-        </div>
+      <HamletDataTableComponents type="component" version="latest" />
     </Layout>
   );
 };

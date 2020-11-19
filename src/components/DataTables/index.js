@@ -129,6 +129,8 @@ function HamletDataTableComponent(props) {
       {componentSchemas.schemas.map((schema, index) => {
         return (
           <React.Fragment>
+            <br />
+            <h2>{schema.name} {props.type}</h2>
             <HamletExample
               codeblock={example}
             />
@@ -161,12 +163,18 @@ const HamletDataTableComponents = (props) => {
     <React.Fragment>
       {definitions.components.map((component, index) => {
         return (
-          <HamletDataTableComponent
-            key={index}
-            name={component.name}
-            type={props.type}
-            attributes={component.attributes}
-          />
+          <div className="row">
+            <div className="col col--1" />
+              <div className="col col--10 component">
+                <HamletDataTableComponent
+                  key={index}
+                  name={component.name}
+                  type={props.type}
+                  attributes={component.attributes}
+                />
+              </div>
+            <div className="col col--1" />
+          </div>
         );
       })}
     </React.Fragment>
