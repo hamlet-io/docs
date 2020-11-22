@@ -1,0 +1,26 @@
+name: update-schemas
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  hamlet-schema-updater:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Docs Site
+        uses: actions/checkout@v2
+      
+      - name: Generate Hamlet Schemas
+        uses: hamlet-io/github-action-hamlet@v1
+        with:
+          task_build_schemas: true
+          task_build_schemas_output: /github/workspace/static/schema/latest/blueprint
+
+      - name: Commit Schemas into Repo
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          repository: ${{ github.workspace }}
+          commit_message: publish latest hamlet schemas
