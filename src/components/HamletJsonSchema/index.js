@@ -3,6 +3,8 @@
 */
 import axios from "axios";
 
+const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
+
 const schema = {
   basePath: '../schema',
   reference: {
@@ -35,7 +37,7 @@ const getAsyncSchemaData = (props) => {
       let [name, value] = definition;
       let requiresList = value.required || [];
       let attributes = [];
-      Object.entries(value.patternProperties['^[A-Za-z_][A-Za-z0-9_]*$'].properties).map((componentAttribute) => {
+      Object.entries(value.patternProperties[patternPropertiesRegex].properties).map((componentAttribute) => {
         let [attrName, attrValue] = componentAttribute;
         if (!filterSets.component.includes(attrName)) {
           attributes.push({
@@ -119,7 +121,7 @@ const getAttributeStructure = (attributes) => {
 
     result.patternProperties &&
       Object.entries(result.patternProperties).map((pattern) => {
-        let [n, val] = pattern;
+        let [, val] = pattern;
         let requiredList = val.required || [];
         Object.entries(val.properties).map((child) => {
           let [name, value] = child;
@@ -175,7 +177,7 @@ const getComponentStructure = (props) => {
       /* Sub Objects */
       attribute.value.patternProperties &&
         Object.entries(attribute.value.patternProperties).map((pattern) => {
-          let [n, val] = pattern;
+          let [, val] = pattern;
           let requiredList = val.required || [];
           Object.entries(val.properties).map((child) => {
             let [name, value] = child;
@@ -199,62 +201,55 @@ const getComponentStructure = (props) => {
 };
 
 const getComponentExampleCodeblock = (schema) => {
+  let example = new Object();
+  example[schema.name] = new Object();
+  schema.attributes.map((attribute) => {
+    let attributes = getAttributesExampleCodeblock({name: attribute.name, value: attribute.value});
+    Object.assign(example[schema.name], attributes);
+    return example;
+  });
+  return JSON.stringify(example, null, 4)
+};
 
-  let codeblock = new Object();
+const getAttributesExampleCodeblock = ({name, value}) => {
 
-  if (schema.value instanceof Array) {
-    schema.value.map((attr) => {
-      codeblock[attr.name] = getComponentExampleCodeblock({name: attr.name, value: attr.value})
-      
-      return codeblock;
-    })
-  } else {
-    schema.value && (
-      schema.value.properties && (
-        
-        Object.entries(schema.value.properties).map((attr) => {
-          let [name, value] = attr;
+  const patternProperties = value?.patternProperties;
+  const properties = value?.properties;
+  const type = value?.type;
+  const ref = value?.$ref;
 
-          if (value.type === "object") {
-            codeblock[name] = getComponentExampleCodeblock({name: name, value: value})
-          } else {
-            codeblock[name] = "<" + String(value.type).replace(',', '-or-') + ">"
-          }
+  let example = new Object();
 
-          return codeblock;
-        })
-      ),
-
-      schema.value.patternProperties && (
-        Object.entries(schema.value.patternProperties).map((attr) => {
-          let subObject = new Object();
-          let [pattern, value] = attr;
-          let subObjectString = "<" + schema.name.toLowerCase() + "-name>"
-          Object.entries(value.properties).map((subObjAttr) => {
-            let [subObjName, subObjValue] = subObjAttr;
-            subObject[subObjName] = getComponentExampleCodeblock({name: subObjName, value: subObjValue})
-            return subObject;
-          })
-          codeblock[subObjectString] = subObject;
-          return codeblock
-        })
-      )
-    )
+  if (patternProperties) {
+    // if object has pattern properties, wrap it in an identifier
+    let propertiesId = "<" + name.toLowerCase() + "-id>";
+    let children = patternProperties[patternPropertiesRegex].properties;
+    let exampleAttribute = new Object();
+    exampleAttribute[propertiesId] = new Object();
+    Object.keys(children).map((childName) => {
+      let childValue = children[childName];
+      let result = getAttributesExampleCodeblock({name: childName, value: childValue});
+      Object.assign(exampleAttribute[propertiesId], result);
+      return exampleAttribute;
+    });
+    example[name] = exampleAttribute;
+  } else if (properties) {
+    //object has direct children
+    let exampleAttribute = new Object();
+    Object.keys(properties).map((childName) => {
+      let childValue = properties[childName];
+      let result = getAttributesExampleCodeblock({name: childName, value: childValue});
+      Object.assign(exampleAttribute, result); 
+      return exampleAttribute;
+    });
+    example[name] = exampleAttribute;
+  } else if (ref) {
+    example[name] = ref;
+  } else if (type) {
+    example[name] = "<" + String(type).replace(',', '-or-') + ">";
   }
   
-  if (Object.keys(codeblock).length === 0 && codeblock.constructor === Object) {
-
-    /* Max Depth */
-    if (schema.value.type instanceof Array) {
-      return Array.toString(schema.value.type + "// ")
-    } else {
-      // Single type.
-      return "<" + String(schema.value.type).replace(',', '-or-') + ">"
-    }
-    
-  } else {
-    return codeblock
-  }
+  return example;
 };
 
 
