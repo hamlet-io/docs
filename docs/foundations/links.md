@@ -18,7 +18,7 @@ Whilst the precise implications of each link is defined by each provider, a link
 When linking to a component, you must specify the `Tier` and `Component` attributes. Links to a SubComponent first link to the parent using the `Component` attribute, and then use the specific attribute type named for that SubComponent. To create a link to a Lambda Function for example, the `Component` attribute is used to filter to the parent, whilst the `Function` attribute specifies the exact `Function` SubComponent.
 
 # Link Filters
-By default, Link definitions assume that both source and target components have matching "Instance" and "Version" identifiers. Where this is not the case the difference must be explicitely assigned to the link with the `Instance` and/or `Version` attributes.
+By default, Link definitions assume that both source and target components have matching "Instance" and "Version" identifiers. Where this is not the case the difference must be explicitely assigned to the link with the `Instance` and/or `Version` attributes (see the example of `example-db` linking to `example-function` below). Where they do match, the `Instance` and `Version` are not required (`second-lambda-example` linking to `example-db` below).
 
 ### Linking to a Component
 ```json
@@ -36,7 +36,7 @@ By default, Link definitions assume that both source and target components have 
                                     }
                                 }
                             }
-                        }
+                        },
                         // db configuration ...
                         "Links" : {
                             "lambda-function-link" : {
@@ -65,6 +65,31 @@ By default, Link definitions assume that both source and target components have 
                                         "Component" : "example-db",
                                         "Instance" : "example-instance",
                                         "Version" : "v1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "second-lambda-example" : {
+                    "lambda" : {
+                        // lambda configuration
+                        "Instances" : {
+                            "example-instance" : {
+                                "Versions" : {
+                                    "v1" : {
+                                        "DeploymentUnits" : [ "example-lambda-v1" ] 
+                                    }
+                                }
+                            }
+                        },
+                        "Functions" : {
+                            "second-example-function" : {
+                                // function configuration
+                                "Links" : {
+                                    "db-link" : {
+                                        "Tier" : "db",
+                                        "Component" : "example-db"
                                     }
                                 }
                             }
