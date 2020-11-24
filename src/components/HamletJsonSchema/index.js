@@ -8,13 +8,13 @@ const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
 const schema = {
   basePath: '../schema',
   reference: {
-      data: `blueprint/reference-schema`,
+      data: `blueprint/schema-reference-schema`,
   },
   component: {
-      data: `blueprint/component-schema`,
+      data: `blueprint/schema-component-schema`,
   },
   metaparameter: {
-      data: `blueprint/metaparameter-schema`,
+      data: `blueprint/schema-metaparameter-schema`,
   }
 };
 
