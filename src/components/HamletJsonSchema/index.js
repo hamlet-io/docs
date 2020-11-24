@@ -1,20 +1,21 @@
 /* 
     These components do not render any elements, they are used for processing the Hamlet JSONSchema.
 */
-import axios from "axios";
+import componentSchema from "@site/static/schema/latest/blueprint/schema-component-schema.json";
+import referenceSchema from "@site/static/schema/latest/blueprint/schema-reference-schema.json";
+import metaSchema from "@site/static/schema/latest/blueprint/schema-metaparameter-schema.json";
 
 const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
 
 const schema = {
-  basePath: '../schema',
   reference: {
-      data: `blueprint/reference-schema`,
+      data: referenceSchema,
   },
   component: {
-      data: `blueprint/component-schema`,
+      data: componentSchema,
   },
   metaparameter: {
-      data: `blueprint/metaparameter-schema`,
+      data: metaSchema,
   }
 };
 
@@ -26,36 +27,34 @@ const filterSets = {
 }
 
 const getHamletJsonSchemaData = (props) => {
-  let path = schema[props.type].data;
-  return axios.get(`${schema.basePath}/${props.version}/${path}.json`);
+  return schema[props.type].data;
 }
 
 const getAsyncSchemaData = (props) => {
   let components = [];
-  return getHamletJsonSchemaData({ type: props.type, version: props.version}).then((response) => {
-    Object.entries(response.data.definitions).map(definition => {
-      let [name, value] = definition;
-      let requiresList = value.required || [];
-      let attributes = [];
-      Object.entries(value.patternProperties[patternPropertiesRegex].properties).map((componentAttribute) => {
-        let [attrName, attrValue] = componentAttribute;
-        if (!filterSets.component.includes(attrName)) {
-          attributes.push({
-            name: attrName,
-            value: attrValue,
-            required: requiresList.includes(attrName),
-          });
-        }
-        return attributes;
-      });
-      components.push({
-        name: name,
-        attributes: attributes,
-      });
-      return components;
+  let data = getHamletJsonSchemaData({ type: props.type, version: props.version});
+  Object.entries(data.definitions).map(definition => {
+    let [name, value] = definition;
+    let requiresList = value.required || [];
+    let attributes = [];
+    Object.entries(value.patternProperties[patternPropertiesRegex].properties).map((componentAttribute) => {
+      let [attrName, attrValue] = componentAttribute;
+      if (!filterSets.component.includes(attrName)) {
+        attributes.push({
+          name: attrName,
+          value: attrValue,
+          required: requiresList.includes(attrName),
+        });
+      }
+      return attributes;
     });
-    return { components: components };
+    components.push({
+      name: name,
+      attributes: attributes,
+    });
+    return components;
   });
+  return { components: components };
 };
 
 const getAttributeStructure = (attributes) => {
