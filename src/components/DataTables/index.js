@@ -153,10 +153,8 @@ const HamletDataTableComponents = (props) => {
   const [definitions, setDefinitions] = useState({ components: [] });
 
   useEffect(() => {
-    getAsyncSchemaData({ type: props.type, version: props.version }).then(
-      (result) => {
-        setDefinitions(result);
-      }
+    setDefinitions(
+      getAsyncSchemaData({ type: props.type, version: props.version })
     );
   }, []);
 

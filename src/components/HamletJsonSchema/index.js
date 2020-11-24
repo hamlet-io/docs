@@ -8,15 +8,14 @@ import metaSchema from "@site/static/schema/latest/blueprint/schema-metaparamete
 const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
 
 const schema = {
-  basePath: '../schema',
   reference: {
-      data: {referenceSchema},
+      data: referenceSchema,
   },
   component: {
-      data: {componentSchema},
+      data: componentSchema,
   },
   metaparameter: {
-      data: {metaSchema},
+      data: metaSchema,
   }
 };
 
@@ -33,30 +32,29 @@ const getHamletJsonSchemaData = (props) => {
 
 const getAsyncSchemaData = (props) => {
   let components = [];
-  return getHamletJsonSchemaData({ type: props.type, version: props.version}).then((response) => {
-    Object.entries(response.data.definitions).map(definition => {
-      let [name, value] = definition;
-      let requiresList = value.required || [];
-      let attributes = [];
-      Object.entries(value.patternProperties[patternPropertiesRegex].properties).map((componentAttribute) => {
-        let [attrName, attrValue] = componentAttribute;
-        if (!filterSets.component.includes(attrName)) {
-          attributes.push({
-            name: attrName,
-            value: attrValue,
-            required: requiresList.includes(attrName),
-          });
-        }
-        return attributes;
-      });
-      components.push({
-        name: name,
-        attributes: attributes,
-      });
-      return components;
+  let data = getHamletJsonSchemaData({ type: props.type, version: props.version});
+  Object.entries(data.definitions).map(definition => {
+    let [name, value] = definition;
+    let requiresList = value.required || [];
+    let attributes = [];
+    Object.entries(value.patternProperties[patternPropertiesRegex].properties).map((componentAttribute) => {
+      let [attrName, attrValue] = componentAttribute;
+      if (!filterSets.component.includes(attrName)) {
+        attributes.push({
+          name: attrName,
+          value: attrValue,
+          required: requiresList.includes(attrName),
+        });
+      }
+      return attributes;
     });
-    return { components: components };
+    components.push({
+      name: name,
+      attributes: attributes,
+    });
+    return components;
   });
+  return { components: components };
 };
 
 const getAttributeStructure = (attributes) => {
