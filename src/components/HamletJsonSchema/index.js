@@ -1,20 +1,22 @@
 /* 
     These components do not render any elements, they are used for processing the Hamlet JSONSchema.
 */
-import axios from "axios";
+import componentSchema from "@site/static/schema/latest/blueprint/schema-component-schema.json";
+import referenceSchema from "@site/static/schema/latest/blueprint/schema-reference-schema.json";
+import metaSchema from "@site/static/schema/latest/blueprint/schema-metaparameter-schema.json";
 
 const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
 
 const schema = {
   basePath: '../schema',
   reference: {
-      data: `blueprint/schema-reference-schema`,
+      data: {referenceSchema},
   },
   component: {
-      data: `blueprint/schema-component-schema`,
+      data: {componentSchema},
   },
   metaparameter: {
-      data: `blueprint/schema-metaparameter-schema`,
+      data: {metaSchema},
   }
 };
 
@@ -26,8 +28,7 @@ const filterSets = {
 }
 
 const getHamletJsonSchemaData = (props) => {
-  let path = schema[props.type].data;
-  return axios.get(`${schema.basePath}/${props.version}/${path}.json`);
+  return schema[props.type].data;
 }
 
 const getAsyncSchemaData = (props) => {
