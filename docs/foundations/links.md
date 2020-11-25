@@ -12,7 +12,9 @@ Links define an association between two components. Linking one component (the l
 Link's enable a consistent approach to sharing configuration across component types. You can view the structure for a link at the [metaparameter reference data](./reference/meta) page.
 
 # Link Behaviour
-Whilst the precise implications of each link is defined by each provider, a link will ensure that the source component has been granted sufficient privilages on the destination component in order to deploy and operate correctly. This might involve the creation of provider identities, roles, policies and/or rules that can be used by the component. Any provider resources that are the result of a link live with the Component the link is defined on. Removing the link or deleting one of the Component's deployment unit's will result in the removal of those resources. 
+One of the primary purposes for links is to assign permissions between two components. Each component may expose a collection of `Roles` which control permissions to its resources. A Link configuration with a `Role` will then grant those permissions to the source component.
+
+Provider resources that are created as a result of a link belong to the component it is defined on, regardless of Link direction.
 
 # Defining a Link
 When linking to a component, you must specify the `Tier` and `Component` attributes. Links to a SubComponent first link to the parent using the `Component` attribute, and then use the specific attribute type named for that SubComponent. To create a link to a Lambda Function for example, the `Component` attribute is used to filter to the parent, whilst the `Function` attribute specifies the exact `Function` SubComponent.
