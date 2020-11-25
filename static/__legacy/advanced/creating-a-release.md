@@ -1,0 +1,27 @@
+---
+sidebar_label: creating a release
+title: Creating a Release
+---
+
+<!-- TODO: Update document -->
+
+1. Determine the version based on our [versioning strategy](./versioning.md)
+2. Generate [reference documentation](./creating-references.md)
+3. Edit the train config file and update the version references to the desired train release tag.
+4. Tag Gen3 repositories with release tag and push to Github. Annotated tags must be used :-
+
+    ```bash
+    git tag -a v<Version> -m "Q? 20?? Train|Tram Release"
+    git push --tags
+    ```
+
+    [Repositories](./index.md) to be tagged and pushed (in the order shown) are
+
+    1. Gen3 Generation
+    2. Gen3 Automation
+    3. Gen3 Startup
+    4. Gen3
+    5. `hamlet`
+
+5. Confirm that the DockerHub Images have built. Tagging the repositories should trigger DockerHub builds for each of the Images which are listed as Docker Images
+6. Activate the Read The Docs Version. Head to the `hamlet` Docs Admin site and under Versions there should be an entry for your version listed in the Inactive Versions list. Click edit on the Version and then tick Active to publish the new version.
