@@ -8,7 +8,7 @@ Hamlet is comprised of two major parts - the `Engine` and the `Executor`. It is 
 
 # Hamlet Engine
 
-The `Engine` is responsible for compiling a `Solution` from all applicable input sources. Actions such as generating outputs and querying the `Solution` are undertaken by the `Engine`. The `Engine` is unable to operate on its own and requires instructions - these are received from the `Executor`.
+The `Engine` compiles the `Solution` and evaluates it based on instructions it receives from the `Executor`. For tasks that involve outputs the `Engine` will initially create a list of tasks for the `Executor` called a `Contract`. Tasks may require further invocations of the `Engine` to perform more specific workloads against the `Solution`.
 
 # Engine Providers
 
