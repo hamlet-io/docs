@@ -14,8 +14,8 @@
     "localtest"
   ],
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.65",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.65",
+    "@docusaurus/core": "^2.0.0-alpha.66",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.66",
     "@types/react": "^16.9.41",
     "axios": "^0.19.2",
     "broken-link-checker": "^0.7.8",
