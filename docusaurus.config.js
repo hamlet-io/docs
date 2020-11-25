@@ -7,7 +7,9 @@ module.exports = {
   organizationName: 'hamlet', // Usually your GitHub org/user name.
   projectName: 'hamlet', // Usually your repo name.
   themeConfig: {
-    disableDarkMode: true,
+    colorMode: {
+      disableSwitch: true
+    },
     navbar: {
       title: 'hamlet',
       logo: {
