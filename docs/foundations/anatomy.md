@@ -62,7 +62,7 @@ A `Solution` is often spread out over multiple files and directories within a `P
             └── <segment>
 ```
 
-At the top level of the structure, the CMDB identifier is the Tenant Id for `Tenants`, Account Id for `Accounts` and Product Id for `Products`. Hamlet uses this to identify the applicable ones at runtime.
+At the top level of the structure, the CMDB identifier is the Tenant Id for `Tenants`, Account Id for `Accounts` and Product Id for `Products`. During processing hamlet will use these files as markers to determine the appropriate files to include.
 
 Directories immediately underneath are `config` and `infrastructure` which correspond to "engine inputs" and "engine outputs".
 
