@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Hamlet CMDBs
 
-A `Hamlet` is comprised of 2 kinds CMDB - the `Account` CMDB and the `Product` CMDB. An `Account` CMDB contains both the `Tenant` and all `Accounts` within it, whilst individual `Product` CMDBs contain the `Solutions` that define and configure `Components` and `ReferenceData`. Each `Product` CMDB can contain multiple instances of a `Solution`, each corresponding to an `Environment`. Together, Hamlet deploys an instance of a `Solution` into an `Account` within the `Tenant`. 
+A `Hamlet` is comprised of an`Account` CMDB and one or many `Product` CMDBs. An `Account` CMDB contains both the `Tenant` and all `Accounts` within it, whilst individual `Product` CMDBs contain the `Solutions` that define and configure `Components` and `ReferenceData`. Each `Product` CMDB can contain multiple instances of a `Solution`, each corresponding to an `Environment`. Together, Hamlet deploys an instance of a `Solution` into an `Account` within the `Tenant`. 
 
 Commonly, a single repository is used to manage the `Account` and `Tenant` and is known as the `accounts-cmdb`. In large organisations or organisations with strict security requirements they may be stored separately.
 
