@@ -16,7 +16,7 @@ module.exports = {
         alt: 'hamlet',
         src: 'img/icon.svg',
       },
-      links: [
+      items: [
         {to: 'docs/hello/welcome', label: 'docs', position: 'left'},
         {
           label: 'reference',
