@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-Links define an association between two components. Linking one component (the link source) to another (the link target) implies that the source requires configuration information from the link target. During template generation of any of the source component's deployment units the source will gain access to the configuration of the target component.
+Links define an association between two components. Linking one component (the link source) to another (the link target) grants the source component access to the configuration of the target.
 
 Link's can be created at a number of solution scopes. Because of this they are considered a `metaparameter` and their definitions are kept outside of the component structure. You can view the structure for a link at the [metaparameter reference data](./reference/meta) page.
 
