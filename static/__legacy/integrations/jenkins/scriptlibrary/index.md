@@ -18,26 +18,26 @@ The Hamlet [jenkins-shared-libary](https://github.com/hamlet-io/jenkins-shared-l
 
 | Script | Description                                                                                                     |
 |--------|-----------------------------------------------------------------------------------------------------------------|
-| [cmdbSetup]() | |
-| [getS3BucketName]() | |
-| [manageEnvironment]() | |
-| [productSetup]() | |
-| [setContext]() | |
-| [setReleaseName]() | |
-| [updateBuildDescription]() | |
+| cmdbSetup
+| getS3BucketName
+| manageEnvironment
+| productSetup
+| setContext
+| setReleaseName
+| updateBuildDescription
 
 ## Specific Use-Case Scripts
 
 | Script | Description                                                                                                     |
 |--------|-----------------------------------------------------------------------------------------------------------------|
-| [buildDataSet]() ||
-| [getDeploymentUnitBuildBlueprint]() | |
-| [wakeEcsCluster]() | |
-| [getDataBaseDetails]() | |
+| buildDataSet
+| getDeploymentUnitBuildBlueprint
+| wakeEcsCluster
+| getDataBaseDetails
 
 ## Notifications and Alerting
 
 | Script | Description |
 |--------|-------------|
-| [sendSlackInputPrompt]() | |
-| [sendSlackMessage]() | |
+| sendSlackInputPrompt
+| sendSlackMessage
