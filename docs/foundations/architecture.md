@@ -10,11 +10,9 @@ Hamlet is comprised of two major parts - the `Engine` and the `Executor`. It is 
 
 The `Engine` is responsible for compiling a `Solution` from all applicable input sources. Actions such as generating outputs and querying the `Solution` are undertaken by the `Engine`. The `Engine` is unable to operate on its own and requires instructions - these are received from the `Executor`.
 
-# Engine Plugins
+# Engine Providers
 
-The `Engine` is designed to load plugins that exist within its `plugins` directory at runtime. Though Hamlet will know of their existance, the `Engine` must be instructed to load plugins. Many of the `Executor` scripts include a method for specifying which plugins to load.
-
-Plugins commonly implement new providers or output types as they have access to the compiled `Solution` and may define their own `Entrances`.
+`Providers` expose new integrations with a `Solution`. Some `Providers` enable cloud infrastructure template generation capabilities, whilst others enable testing, documentation and more. The `Engine` itself contains the "Shared" `Provider`, which is used to define common `Components` and other data types which `Providers` can optionally use.
 
 # Hamlet Executor
 The Hamlet `Executor` establishes the context of the current runtime environment (known as the Execution Environment) from environment variables and command-line options and translates them into instructions for the `Engine`.
