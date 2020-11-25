@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 Links define an association between two components. Linking one component (the link source) to another (the link target) grants the source component access to the configuration of the target.
 
-Link's can be created at a number of solution scopes. Because of this they are considered a `metaparameter` and their definitions are kept outside of the component structure. You can view the structure for a link at the [metaparameter reference data](./reference/meta) page.
+Link's enable a consistent approach to sharing configuration across component types. You can view the structure for a link at the [metaparameter reference data](./reference/meta) page.
 
 # Link Behaviour
 Whilst the precise implications of each link is defined by each provider, a link will ensure that the source component has been granted sufficient privilages on the destination component in order to deploy and operate correctly. This might involve the creation of provider identities, roles, policies and/or rules that can be used by the component. Any provider resources that are the result of a link live with the Component the link is defined on. Removing the link or deleting one of the Component's deployment unit's will result in the removal of those resources. 
