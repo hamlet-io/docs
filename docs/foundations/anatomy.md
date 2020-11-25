@@ -30,7 +30,7 @@ A `Product` contains multipe `Solutions` which can be deployed into `Environment
 
 A `Solution` is a collection of `Components` which together define a functional service. `Components` each define specific functionality within it and from them, Hamlet performs both infrastructure and application deployments.
 
-Multiple instances of a `Solution` can be deployed into an `Environment`, each one is known as a `Segment`.
+Multiple `Solutions` can be deployed into an `Environment`, each one is known as a `Segment`. Each `Segment` implements its own services independent but generally related to the other segments
 
 # Directory Structure of a Solution
 A `Solution` is often spread out over multiple files and directories within a `Product`. The directory structure reflects `Environments` and `Segments`, and the composite of the variations define each `Solution`. "shared" directories contain configuration that is shared across that layer, whilst named-directories will only contribute their configuration to the named `Environment`/`Segment`.
