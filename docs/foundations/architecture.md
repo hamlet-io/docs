@@ -17,21 +17,14 @@ The `Engine` compiles the `Solution` and evaluates it based on instructions it r
 # Hamlet Executor
 The Hamlet `Executor` establishes the context of the current runtime environment (known as the Execution Environment) from environment variables and command-line options and translates them into instructions for the `Engine`.
 
-The `Executor` can currently be invoked in two separate ways - bash and python.
-
-## Bash
-The bash executor is comprised of a series of bash scripts that are used to undertake hamlet workloads. Such scripts perform tasks such as:
+The `Executor` can initiate tasks, such as:
 
 * Establish the context of the execution environment, including validation of mandatory environment variables
 * Invoke the `Engine` to manipulate the `Solution` based on the current context. Examples of this include:
     * Create a `Contract`
     * Invoke an `Entrance`
 * Undertake a deployment to a cloud provider using generated templates
-
-## Python
-The python executor is a CLI wrapper around the bash executor, providing a common interface with the Hamlet `Executor`. The python executor also adds the following capabilities that are not available through the bash executor:
-
-* Querying the `Solution` using both pre-defined queries and JMESpath expressions
+* Querying a `Solution` using both pre-defined queries and JMESpath expressions
 * Test-case execution & reporting
 
 ## Build Environment
