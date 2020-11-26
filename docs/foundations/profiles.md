@@ -46,7 +46,7 @@ A "*" (any) filter can be used for either filter to represent matching any mode 
 ## The Profiles Meta Parameter
 Profiles are assigned to a scope though the `Profiles` metaparameter object, containing key/value pairs of the profile types and names. The metaparameter object is available to all scopes, however only the Deployment and Policy profile types are available for assignment above the Component level. To implement a Component-level profile at a higher scope, they should be associated with either a Deployment or Policy profile.
 
-Only applicable profile types are exposed through the `Profiles` metaparameter for each component. For example a "Bootstrap" profile - which defines a set of actions required to provision a compute resource - is not applicable to non-compute components. See the [component reference docs]() for details on which profiles are available for each component type.
+Only applicable profile types are exposed through the `Profiles` metaparameter for each component. For example a "Bootstrap" profile - which defines a set of actions required to provision a compute resource - is not applicable to non-compute components. See the component reference docs for details on which profiles are available for each component type.
 
 ```json
 {

@@ -6,15 +6,19 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'hamlet', // Usually your GitHub org/user name.
   projectName: 'hamlet', // Usually your repo name.
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
   themeConfig: {
-    disableDarkMode: true,
+    colorMode: {
+      disableSwitch: true
+    },
     navbar: {
       title: 'hamlet',
       logo: {
         alt: 'hamlet',
         src: 'img/icon.svg',
       },
-      links: [
+      items: [
         {to: 'docs/hello/welcome', label: 'docs', position: 'left'},
         {
           label: 'reference',

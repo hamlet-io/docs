@@ -81,7 +81,6 @@ function HamletSchemaDataTable(props) {
       description: parent.attribute.description,
     });
   });
-
   return (
     <React.Fragment>
         <div className="reference">
@@ -95,18 +94,6 @@ function HamletSchemaDataTable(props) {
                 theme="hamlet"
             />
       </div>
-      {schema.attributes.map((parent, index) => {
-        parent.children.map((child) => {
-          return (
-            <HamletSchemaDataTable
-              keyField={index}
-              title={child.name}
-              columns={columns}
-              data={child.value}
-            />
-          );
-        });
-      })}
     </React.Fragment>
   );
 }
