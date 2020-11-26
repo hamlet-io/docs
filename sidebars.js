@@ -10,7 +10,7 @@ module.exports = {
       label: 'Foundations',
       items: [
         'foundations/anatomy',
-        'foundations/index',
+        'foundations/architecture',
         {
           type: 'category',
           label: 'Inputs',
