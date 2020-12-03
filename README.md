@@ -35,9 +35,7 @@ npm install
 ### Test
 
 ```bash
-npm start
-# separately, whilst site running
-npm test
+npm run localtest
 ```
 
 ## Contribute
