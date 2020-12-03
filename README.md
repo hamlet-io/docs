@@ -2,46 +2,45 @@
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
-### Installation
+## Installation
 
-```
-$ npm install
-```
-
-### Local Development
-
-```
-$ npm start
-```
-
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ npm run build
-```
-
-### Update Docusaurus Version
-
-Update package.json to the latest version numbers for both `@docusaurus/core` and `@docusaurus/preset-classic`; then:
-
-```
+```bash
 npm install
 ```
 
+## Local Development
+
+This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
+
+```bash
+npm start
+```
+
+## Build
+
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+```bash
+npm run build
+```
+
+## Update Docusaurus Version
+
+Update package.json to the latest version numbers for both `@docusaurus/core` and `@docusaurus/preset-classic`; then:
+
+```bash
+npm install
+```
 
 ### Test
 
-```
+```bash
 npm start
-
-# seperately, whilst site running
+# separately, whilst site running
 npm test
 ```
 
-### Contribute
+## Contribute
 
 1. fork the repository
 2. update your changes in a feature branch
