@@ -7138,6 +7138,34 @@
                   "type": "string",
                   "description": "The prefix appeneded to the object name when processing failed",
                   "default": "error/"
+                },
+                "Include": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "Deployment specific details to add to prefix",
+                  "properties": {
+                    "Order": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "The order of the included prefixes",
+                      "default": [
+                        "AccountId",
+                        "ComponentPath"
+                      ]
+                    },
+                    "AccountId": {
+                      "type": "boolean",
+                      "description": "The deployment account id",
+                      "default": false
+                    },
+                    "ComponentPath": {
+                      "type": "boolean",
+                      "description": "The full component path defaults",
+                      "default": false
+                    }
+                  }
                 }
               }
             },
@@ -15320,7 +15348,172 @@
               "properties": {
                 "EnableFlowLogs": {
                   "type": "boolean",
+                  "description": "Deprecated: Please use FlowLogs",
                   "default": true
+                },
+                "FlowLogs": {
+                  "type": "object",
+                  "description": "Log flows across the network",
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                      "properties": {
+                        "Action": {
+                          "type": "string",
+                          "description": "The action to capture in the flow log",
+                          "enum": [
+                            "accept",
+                            "reject",
+                            "any"
+                          ]
+                        },
+                        "DestinationType": {
+                          "type": "object",
+                          "description": "The destination type to send the logs to",
+                          "default": "s3",
+                          "enum": [
+                            "log",
+                            "s3"
+                          ]
+                        },
+                        "s3": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "s3 specific destination configuration",
+                          "properties": {
+                            "Link": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "description": "A link to the s3 bucket destination",
+                              "properties": {
+                                "Any": {
+                                  "type": "string"
+                                },
+                                "Tenant": {
+                                  "type": "string"
+                                },
+                                "Product": {
+                                  "type": "string"
+                                },
+                                "Environment": {
+                                  "type": "string"
+                                },
+                                "Segment": {
+                                  "type": "string"
+                                },
+                                "Tier": {
+                                  "type": "string"
+                                },
+                                "Component": {
+                                  "type": "string"
+                                },
+                                "Function": {
+                                  "type": "string"
+                                },
+                                "Service": {
+                                  "type": "string"
+                                },
+                                "Task": {
+                                  "type": "string"
+                                },
+                                "PortMapping": {
+                                  "type": "string"
+                                },
+                                "Mount": {
+                                  "type": "string"
+                                },
+                                "Platform": {
+                                  "type": "string"
+                                },
+                                "RouteTable": {
+                                  "type": "string"
+                                },
+                                "NetworkACL": {
+                                  "type": "string"
+                                },
+                                "DataBucket": {
+                                  "type": "string"
+                                },
+                                "Key": {
+                                  "type": "string"
+                                },
+                                "Branch": {
+                                  "type": "string"
+                                },
+                                "Client": {
+                                  "type": "string"
+                                },
+                                "Connection": {
+                                  "type": "string"
+                                },
+                                "AuthProvider": {
+                                  "type": "string"
+                                },
+                                "Resource": {
+                                  "type": "string"
+                                },
+                                "DataFeed": {
+                                  "type": "string"
+                                },
+                                "RegistryService": {
+                                  "type": "string"
+                                },
+                                "Assignment": {
+                                  "type": "string"
+                                },
+                                "Route": {
+                                  "type": "string"
+                                },
+                                "Endpoint": {
+                                  "type": "string"
+                                },
+                                "Instance": {
+                                  "type": "string"
+                                },
+                                "Version": {
+                                  "type": "string"
+                                },
+                                "Secret": {
+                                  "type": "string"
+                                },
+                                "Role": {
+                                  "type": "string"
+                                },
+                                "Direction": {
+                                  "type": "string"
+                                },
+                                "Type": {
+                                  "type": "string"
+                                },
+                                "Enabled": {
+                                  "type": "boolean",
+                                  "default": true
+                                },
+                                "IncludeInContext": {
+                                  "type": "array",
+                                  "contains": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "Tier",
+                                "Component"
+                              ]
+                            },
+                            "Prefix": {
+                              "type": "string",
+                              "description": "A prefix for the s3 bucket destination",
+                              "default": "FlowLogs/"
+                            }
+                          }
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "Action"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -16453,6 +16646,10 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
+            "Engine": {
+              "type": "object",
+              "description": "The type of secret store"
+            },
             "Profiles": {
               "type": "object",
               "additionalProperties": false,
@@ -16569,7 +16766,10 @@
               "$ref": "#/definitions/secretstore"
             }
           },
-          "additionalProperties": false
+          "additionalProperties": false,
+          "required": [
+            "Engine"
+          ]
         }
       }
     },
@@ -16585,6 +16785,81 @@
                 "user",
                 "generated"
               ]
+            },
+            "Requirements": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Format requirements for the Secret",
+              "properties": {
+                "MinLength": {
+                  "type": "number",
+                  "description": "The minimum character length",
+                  "default": 20
+                },
+                "MaxLength": {
+                  "type": "number",
+                  "description": "The maximum character length",
+                  "default": 30
+                },
+                "IncludeUpper": {
+                  "type": "boolean",
+                  "description": "Include upper-case characters",
+                  "default": true
+                },
+                "IncludeLower": {
+                  "type": "boolean",
+                  "description": "Include lower-case characters",
+                  "default": true
+                },
+                "IncludeSpecial": {
+                  "type": "boolean",
+                  "description": "Include special characters",
+                  "default": false
+                },
+                "IncludeNumber": {
+                  "type": "boolean",
+                  "description": "Include numbers characters",
+                  "default": true
+                },
+                "ExcludedCharacters": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "Characters that must be excluded",
+                  "default": [
+                    "\"",
+                    "'",
+                    "$",
+                    "@",
+                    "/",
+                    "\\"
+                  ]
+                },
+                "RequireAllIncludedTypes": {
+                  "type": "boolean",
+                  "description": "Require at least one of each included type",
+                  "default": true
+                }
+              }
+            },
+            "Generated": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Content": {
+                  "type": "object",
+                  "description": "A JSON object which contains the nonsensitve parts of the secret",
+                  "default": {
+                    "username": "admin"
+                  }
+                },
+                "SecretKey": {
+                  "type": "string",
+                  "description": "The key in the JSON secret to set the generated secret to",
+                  "default": "password"
+                }
+              }
             },
             "Lifecycle": {
               "type": "object",
@@ -16604,46 +16879,6 @@
                   }
                 }
               }
-            },
-            "Requirements": {
-              "type": "object",
-              "additionalProperties": false,
-              "description": "Format requirements for the Secret.",
-              "properties": {
-                "MinLength": {
-                  "type": "number",
-                  "description": "The minimum character length for the Secret.",
-                  "default": 20
-                },
-                "MaxLength": {
-                  "type": "number",
-                  "description": "The maximum character length for the Secret.",
-                  "default": 30
-                },
-                "IncludeUpper": {
-                  "type": "boolean",
-                  "description": "Include upper-case characters in Secret."
-                },
-                "IncludeLower": {
-                  "type": "boolean",
-                  "description": "Include lower-case characters in Secret."
-                },
-                "IncludeSpecial": {
-                  "type": "boolean",
-                  "description": "Include special characters in Secret."
-                },
-                "ExcludedCharacters": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "Characters that must be excluded from Secret."
-                }
-              },
-              "required": [
-                "IncludeUpper",
-                "IncludeLower"
-              ]
             },
             "Profiles": {
               "type": "object",
