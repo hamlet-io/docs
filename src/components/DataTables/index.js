@@ -77,7 +77,7 @@ function HamletSchemaDataTable(props) {
       type: parent.attribute.type,
       mandatory: parent.attribute.mandatory,
       values: parent.attribute.enum,
-      default: parent.attribute.default,
+      default: String(parent.attribute.default).toString,
       description: parent.attribute.description,
     });
   });
