@@ -1817,15 +1817,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -2508,15 +2541,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -3614,15 +3680,48 @@
                             "Namespace": {
                               "type": "string"
                             },
+                            "DimensionSource": {
+                              "type": "string",
+                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                              "default": "Resource",
+                              "enum": [
+                                "Resource",
+                                "Configured"
+                              ]
+                            },
                             "Resource": {
                               "type": "object",
                               "additionalProperties": false,
+                              "description": "Provide a component resource to determine the dimensions of the metric",
                               "properties": {
                                 "Id": {
                                   "type": "string"
                                 },
                                 "Type": {
                                   "type": "string"
+                                }
+                              }
+                            },
+                            "Dimensions": {
+                              "type": "object",
+                              "description": "Explicit configured dimensions",
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "properties": {
+                                    "Key": {
+                                      "type": "string",
+                                      "description": "The Key of the dimension"
+                                    },
+                                    "Value": {
+                                      "type": "string",
+                                      "description": "The value of the dimension to match"
+                                    },
+                                    "SettingEnvName": {
+                                      "type": "string",
+                                      "description": "A setting name as env that will provide the dimension value"
+                                    }
+                                  },
+                                  "additionalProperties": false
                                 }
                               }
                             },
@@ -4689,15 +4788,48 @@
                                 "Namespace": {
                                   "type": "string"
                                 },
+                                "DimensionSource": {
+                                  "type": "string",
+                                  "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                                  "default": "Resource",
+                                  "enum": [
+                                    "Resource",
+                                    "Configured"
+                                  ]
+                                },
                                 "Resource": {
                                   "type": "object",
                                   "additionalProperties": false,
+                                  "description": "Provide a component resource to determine the dimensions of the metric",
                                   "properties": {
                                     "Id": {
                                       "type": "string"
                                     },
                                     "Type": {
                                       "type": "string"
+                                    }
+                                  }
+                                },
+                                "Dimensions": {
+                                  "type": "object",
+                                  "description": "Explicit configured dimensions",
+                                  "patternProperties": {
+                                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                      "properties": {
+                                        "Key": {
+                                          "type": "string",
+                                          "description": "The Key of the dimension"
+                                        },
+                                        "Value": {
+                                          "type": "string",
+                                          "description": "The value of the dimension to match"
+                                        },
+                                        "SettingEnvName": {
+                                          "type": "string",
+                                          "description": "A setting name as env that will provide the dimension value"
+                                        }
+                                      },
+                                      "additionalProperties": false
                                     }
                                   }
                                 },
@@ -4900,15 +5032,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -5307,15 +5472,48 @@
                             "Namespace": {
                               "type": "string"
                             },
+                            "DimensionSource": {
+                              "type": "string",
+                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                              "default": "Resource",
+                              "enum": [
+                                "Resource",
+                                "Configured"
+                              ]
+                            },
                             "Resource": {
                               "type": "object",
                               "additionalProperties": false,
+                              "description": "Provide a component resource to determine the dimensions of the metric",
                               "properties": {
                                 "Id": {
                                   "type": "string"
                                 },
                                 "Type": {
                                   "type": "string"
+                                }
+                              }
+                            },
+                            "Dimensions": {
+                              "type": "object",
+                              "description": "Explicit configured dimensions",
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "properties": {
+                                    "Key": {
+                                      "type": "string",
+                                      "description": "The Key of the dimension"
+                                    },
+                                    "Value": {
+                                      "type": "string",
+                                      "description": "The value of the dimension to match"
+                                    },
+                                    "SettingEnvName": {
+                                      "type": "string",
+                                      "description": "A setting name as env that will provide the dimension value"
+                                    }
+                                  },
+                                  "additionalProperties": false
                                 }
                               }
                             },
@@ -5710,15 +5908,48 @@
                             "Namespace": {
                               "type": "string"
                             },
+                            "DimensionSource": {
+                              "type": "string",
+                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                              "default": "Resource",
+                              "enum": [
+                                "Resource",
+                                "Configured"
+                              ]
+                            },
                             "Resource": {
                               "type": "object",
                               "additionalProperties": false,
+                              "description": "Provide a component resource to determine the dimensions of the metric",
                               "properties": {
                                 "Id": {
                                   "type": "string"
                                 },
                                 "Type": {
                                   "type": "string"
+                                }
+                              }
+                            },
+                            "Dimensions": {
+                              "type": "object",
+                              "description": "Explicit configured dimensions",
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "properties": {
+                                    "Key": {
+                                      "type": "string",
+                                      "description": "The Key of the dimension"
+                                    },
+                                    "Value": {
+                                      "type": "string",
+                                      "description": "The value of the dimension to match"
+                                    },
+                                    "SettingEnvName": {
+                                      "type": "string",
+                                      "description": "A setting name as env that will provide the dimension value"
+                                    }
+                                  },
+                                  "additionalProperties": false
                                 }
                               }
                             },
@@ -5930,15 +6161,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -6240,15 +6504,48 @@
                             "Namespace": {
                               "type": "string"
                             },
+                            "DimensionSource": {
+                              "type": "string",
+                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                              "default": "Resource",
+                              "enum": [
+                                "Resource",
+                                "Configured"
+                              ]
+                            },
                             "Resource": {
                               "type": "object",
                               "additionalProperties": false,
+                              "description": "Provide a component resource to determine the dimensions of the metric",
                               "properties": {
                                 "Id": {
                                   "type": "string"
                                 },
                                 "Type": {
                                   "type": "string"
+                                }
+                              }
+                            },
+                            "Dimensions": {
+                              "type": "object",
+                              "description": "Explicit configured dimensions",
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "properties": {
+                                    "Key": {
+                                      "type": "string",
+                                      "description": "The Key of the dimension"
+                                    },
+                                    "Value": {
+                                      "type": "string",
+                                      "description": "The value of the dimension to match"
+                                    },
+                                    "SettingEnvName": {
+                                      "type": "string",
+                                      "description": "A setting name as env that will provide the dimension value"
+                                    }
+                                  },
+                                  "additionalProperties": false
                                 }
                               }
                             },
@@ -6534,15 +6831,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -8109,15 +8439,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -8411,15 +8774,48 @@
                                 "Namespace": {
                                   "type": "string"
                                 },
+                                "DimensionSource": {
+                                  "type": "string",
+                                  "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                                  "default": "Resource",
+                                  "enum": [
+                                    "Resource",
+                                    "Configured"
+                                  ]
+                                },
                                 "Resource": {
                                   "type": "object",
                                   "additionalProperties": false,
+                                  "description": "Provide a component resource to determine the dimensions of the metric",
                                   "properties": {
                                     "Id": {
                                       "type": "string"
                                     },
                                     "Type": {
                                       "type": "string"
+                                    }
+                                  }
+                                },
+                                "Dimensions": {
+                                  "type": "object",
+                                  "description": "Explicit configured dimensions",
+                                  "patternProperties": {
+                                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                      "properties": {
+                                        "Key": {
+                                          "type": "string",
+                                          "description": "The Key of the dimension"
+                                        },
+                                        "Value": {
+                                          "type": "string",
+                                          "description": "The value of the dimension to match"
+                                        },
+                                        "SettingEnvName": {
+                                          "type": "string",
+                                          "description": "A setting name as env that will provide the dimension value"
+                                        }
+                                      },
+                                      "additionalProperties": false
                                     }
                                   }
                                 },
@@ -9071,15 +9467,48 @@
                                 "Namespace": {
                                   "type": "string"
                                 },
+                                "DimensionSource": {
+                                  "type": "string",
+                                  "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                                  "default": "Resource",
+                                  "enum": [
+                                    "Resource",
+                                    "Configured"
+                                  ]
+                                },
                                 "Resource": {
                                   "type": "object",
                                   "additionalProperties": false,
+                                  "description": "Provide a component resource to determine the dimensions of the metric",
                                   "properties": {
                                     "Id": {
                                       "type": "string"
                                     },
                                     "Type": {
                                       "type": "string"
+                                    }
+                                  }
+                                },
+                                "Dimensions": {
+                                  "type": "object",
+                                  "description": "Explicit configured dimensions",
+                                  "patternProperties": {
+                                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                      "properties": {
+                                        "Key": {
+                                          "type": "string",
+                                          "description": "The Key of the dimension"
+                                        },
+                                        "Value": {
+                                          "type": "string",
+                                          "description": "The value of the dimension to match"
+                                        },
+                                        "SettingEnvName": {
+                                          "type": "string",
+                                          "description": "A setting name as env that will provide the dimension value"
+                                        }
+                                      },
+                                      "additionalProperties": false
                                     }
                                   }
                                 },
@@ -9282,15 +9711,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -9609,15 +10071,48 @@
                             "Namespace": {
                               "type": "string"
                             },
+                            "DimensionSource": {
+                              "type": "string",
+                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                              "default": "Resource",
+                              "enum": [
+                                "Resource",
+                                "Configured"
+                              ]
+                            },
                             "Resource": {
                               "type": "object",
                               "additionalProperties": false,
+                              "description": "Provide a component resource to determine the dimensions of the metric",
                               "properties": {
                                 "Id": {
                                   "type": "string"
                                 },
                                 "Type": {
                                   "type": "string"
+                                }
+                              }
+                            },
+                            "Dimensions": {
+                              "type": "object",
+                              "description": "Explicit configured dimensions",
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "properties": {
+                                    "Key": {
+                                      "type": "string",
+                                      "description": "The Key of the dimension"
+                                    },
+                                    "Value": {
+                                      "type": "string",
+                                      "description": "The value of the dimension to match"
+                                    },
+                                    "SettingEnvName": {
+                                      "type": "string",
+                                      "description": "A setting name as env that will provide the dimension value"
+                                    }
+                                  },
+                                  "additionalProperties": false
                                 }
                               }
                             },
@@ -10012,15 +10507,48 @@
                             "Namespace": {
                               "type": "string"
                             },
+                            "DimensionSource": {
+                              "type": "string",
+                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                              "default": "Resource",
+                              "enum": [
+                                "Resource",
+                                "Configured"
+                              ]
+                            },
                             "Resource": {
                               "type": "object",
                               "additionalProperties": false,
+                              "description": "Provide a component resource to determine the dimensions of the metric",
                               "properties": {
                                 "Id": {
                                   "type": "string"
                                 },
                                 "Type": {
                                   "type": "string"
+                                }
+                              }
+                            },
+                            "Dimensions": {
+                              "type": "object",
+                              "description": "Explicit configured dimensions",
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "properties": {
+                                    "Key": {
+                                      "type": "string",
+                                      "description": "The Key of the dimension"
+                                    },
+                                    "Value": {
+                                      "type": "string",
+                                      "description": "The value of the dimension to match"
+                                    },
+                                    "SettingEnvName": {
+                                      "type": "string",
+                                      "description": "A setting name as env that will provide the dimension value"
+                                    }
+                                  },
+                                  "additionalProperties": false
                                 }
                               }
                             },
@@ -10232,15 +10760,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -10547,15 +11108,48 @@
                             "Namespace": {
                               "type": "string"
                             },
+                            "DimensionSource": {
+                              "type": "string",
+                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                              "default": "Resource",
+                              "enum": [
+                                "Resource",
+                                "Configured"
+                              ]
+                            },
                             "Resource": {
                               "type": "object",
                               "additionalProperties": false,
+                              "description": "Provide a component resource to determine the dimensions of the metric",
                               "properties": {
                                 "Id": {
                                   "type": "string"
                                 },
                                 "Type": {
                                   "type": "string"
+                                }
+                              }
+                            },
+                            "Dimensions": {
+                              "type": "object",
+                              "description": "Explicit configured dimensions",
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "properties": {
+                                    "Key": {
+                                      "type": "string",
+                                      "description": "The Key of the dimension"
+                                    },
+                                    "Value": {
+                                      "type": "string",
+                                      "description": "The value of the dimension to match"
+                                    },
+                                    "SettingEnvName": {
+                                      "type": "string",
+                                      "description": "A setting name as env that will provide the dimension value"
+                                    }
+                                  },
+                                  "additionalProperties": false
                                 }
                               }
                             },
@@ -10841,15 +11435,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -11463,15 +12090,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -13756,15 +14416,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -14178,15 +14871,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -15131,15 +15857,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -17546,15 +18305,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
@@ -17961,15 +18753,48 @@
                     "Namespace": {
                       "type": "string"
                     },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
                     "Resource": {
                       "type": "object",
                       "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
                       "properties": {
                         "Id": {
                           "type": "string"
                         },
                         "Type": {
                           "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       }
                     },
