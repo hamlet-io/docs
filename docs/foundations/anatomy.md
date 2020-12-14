@@ -24,7 +24,7 @@ The `Account` is linked to the `Tenant` CMDB and inherits its configuration. A `
 
 ## Product CMDB
 
-A `Product` contains multipe `Solutions` which can be deployed into `Environments` to manage the full lifecycle of the `Product`. The `Solution` defines the `Components` and supporting configuration (`ReferenceData` and `MetaParameters`) that configure your `Product`.
+A `Product` contains multipe `Solutions` which can be deployed into `Environments` to manage the full lifecycle of the `Product`. The `Solution` defines the `Components` and supporting configuration (`ReferenceData` and `AttributeSets`) that configure your `Product`.
 
 # Solutions
 
@@ -75,6 +75,6 @@ Each of the above levels can then be further broken down as required by director
 
 ## Structure of a Solution File
 
-Within a CMDB, any file under the path 'config/solutionsv2' contributes to a Hamlet `Solution` and can contain [`Components`](https://hamlet.io/reference/components), [`ReferenceData`](https://hamlet.io/reference/data) and [`MetaParameters`](https://hamlet.io/reference/meta) data types. Configuration is applied in a top-down manner at the CMDB-level (`Tenant > Account > Product`) and then again at the `Solution`-level (`Environment > Segment > Deployment Unit`). New content is combined with existing, whilst existing content will be overwritten if re-implemented by a more specific scope. This allows for the most effecient implementation for a given use-case. 
+Within a CMDB, any file under the path 'config/solutionsv2' contributes to a Hamlet `Solution` and can contain [`Components`](https://hamlet.io/reference/components), [`ReferenceData`](https://hamlet.io/reference/data) and [`AttributeSets`](https://hamlet.io/reference/attributesets) data types. Configuration is applied in a top-down manner at the CMDB-level (`Tenant > Account > Product`) and then again at the `Solution`-level (`Environment > Segment > Deployment Unit`). New content is combined with existing, whilst existing content will be overwritten if re-implemented by a more specific scope. This allows for the most effecient implementation for a given use-case. 
 
 Configuration can be removed for individual scopes by defining it at as an empty object for that scope.

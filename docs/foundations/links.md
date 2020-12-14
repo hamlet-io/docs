@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 Links define an association between two components. Linking one component (the link source) to another (the link target) grants the source component access to the configuration of the target.
 
-Link's enable a consistent approach to sharing configuration across component types. You can view the structure for a link at the [metaparameter reference data](./reference/meta) page.
+Link's enable a consistent approach to sharing configuration across component types. You can view the structure for a link at the [AttributeSets and Reference data](./reference/attributesets) page.
 
 # Link Behaviour
 One of the primary purposes for links is to assign permissions between two components. Each component may expose a collection of `Roles` which control permissions to its resources. A Link configuration with a `Role` will then grant those permissions to the source component.

@@ -33,8 +33,8 @@ module.exports = {
               to: 'reference/data',
             },
             {
-              label: 'Metaparameters',
-              to: 'reference/meta',
+              label: 'AttributeSets',
+              to: 'reference/attributesets',
             },
           ],
         },
