@@ -5,39 +5,89 @@ title: Hello Hamlet
 import Mermaid from '@theme/Mermaid';
 import Admonition from 'react-admonitions';
 
-<Admonition type="warning" title="Under Construction">
+:::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
+:::
 
-The intention of this guide is to give you an understanding of the `hamlet` core concepts and how they can be applied when deploying applications and their supporting infrastructure.
+The intention of this guide is to give you an understanding of the hamlet core concepts and how they can be applied when deploying applications and their supporting infrastructure.
 
 The guide works through the deployment of [hamlet hello](https://github.com/codeontap/docker-hello), a simple hello world website built using [Flask](https://www.palletsprojects.com/p/flask/) and hosted in a [docker container](https://hub.docker.com/r/codeontap/hello). To host the application we will use [AWS](https://aws.amazon.com/) and this guide will cover deploying the application itself along with the supporting infrastructure required for the app to run
 
-Let's start with the concepts...
+Let's get started..
 
-## Building a Machine
+## An Application
+
+An application consists of multiple discrete pieces of functionality. Within hamlet, we call these pieces components. For this documentation we will use a piece of functionality that displays `Hello!`
 
 <Mermaid chart={`
-    graph TD;
+    graph LR;
     container[Hello]
+    style container height:100px,width:100px;
 `}/>
 
-Here is our container, it performs a specific function within our application, saying `Hello!`. While it might have dependencies on other components, it still acts as an independent unit. In `hamlet` this unit is called a **component**, they form the basis of deploying infrastructure within `hamlet`.
-
-If we run this container locally and access its over http we meet our hello application and it lets us know where it is
+Here is our widget, it performs a specific function, saying Hello!. While it might be part of a bigger application, it still acts as an independent unit. If we run this container locally and access it over http we meet our hello widget and it lets us know where it is
 
 ```bash
+docker run -p 8000:8000 hamletio/hello
 curl http://localhost:8000
 
 {
   "Greeting": "Hello!",
-  "Location": "local"
+  "Location": "nowhere"
 }
 ```
 
-If we wanted to say `Hello!` from multiple locations we would need to deploy multiple containers and update the location for each one. Our component is performing the same function but with different run time configuration. In `hamlet` we can specify **instances** which can optionally have **versions** of our components. This allows us to override specific properties for a given instance or version while inherting the rest from the component configuration.
+Oh! It's currently nowhere lets update the runtime configuration of the app so that it knows where its saying hello from
 
-A given instance and version of a component is called an **occurrence**.
+```bash
+docker run -p 8000:8000 -e LOCATION=world hamletio/hello
+
+curl http://localhost:8000
+{
+  "Greeting": "Hello!",
+  "Location": "world"
+}
+```
+
+## A Component
+
+So now we want to to make this widget available as pat of our application. In hamlet components form the basis of deployments.
+
+Components have a type which defines the infrastructure required to provide this function. For hosting containers we have two types available:
+
+- *service* which uses a container orchestrator (kubernetes, AWS ECS etc.) to ensure the container is always running
+- *task* which run on demand, complete a specific task and then exit.
+
+We want to say Hello! all the time so we will make the type of this component a service.
+
+Hamlet provides a library of standard components which are designed to work with other components and deploy to multiple cloud providers. You can also provide your own component types and define their deployment to other providers as well. Each component type has its own configuration that defines how this component should behave. Memory and cpu allocation, exposed network ports and connections to load balancers are all parts of the component configuration
+
+Here is the the initial configuration for our service. It has a single container in the service, hello, that has a fixed memory and cpu allocation.
+
+```json
+{
+    "Components" : {
+        "hello" : {
+            "service" : {
+                "Containers" : {
+                    "hello" : {
+                        "Cpu" : "64",
+                        "MaximumMemory" : "64",
+                        "MemoryReservation" : "64",
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+## Component Reuse
+
+If we wanted to say Hello! from multiple locations we would need to deploy multiple widgets and update the location for each one. Our component is performing the same function with different run time configuration to provide different features.
+In hamlet we can specify instances which can optionally have versions of our components. This allows us to override specific properties for a given instance or version while inheriting the rest from the component configuration.
+
+A given instance and version of a component is called an occurrence.
 
 <Mermaid chart={`
     graph LR;
@@ -55,68 +105,11 @@ A given instance and version of a component is called an **occurrence**.
     end
 `}/>
 
-Components have a **type** which defines the infrastructure required to provide this function. For hosting containers we have two types available, **services** which uses a container orchestrator (kubernetes, ecs etc.) to ensure the container is always running, and **tasks** which are run on demand, complete a specific task and then exit.
+We've configured one instance of this component to start with called world
 
-We want to say `Hello!` all the time so we will make the type of this component a **service**
+## A link
 
-Each type has it's own configuration that defines specifically how this component should behave, memory and cpu allocation, exposed network ports and connections to load balancers are all part of the component configuration.
-
-<Admonition type="note" title="Remember">
-    This is a section of the configuration for a service. To see all of the component types and their configuration options head to the configuration reference docs page.
-</Admonition>
-    
-
-```json
-{
-    "service" : {
-        "Engine" : "ec2",
-        "Containers" : {
-            "example" : {
-                "Cpu" : "<number>",
-                "Links" : {
-                    "example" : {
-                        "Tier" : "",
-                        "Component" : "",
-                        "Instance" : "",
-                        "Version" : "",
-                        "Enabled" : true
-                    }
-                },
-                "MaximumMemory" : "<number>",
-                "MemoryReservation" : "<number>",
-                "Ports" : {
-                    "example" : {
-                        "Container" : "unknown",
-                        "DynamicHostPort" : false,
-                        "LB" : {
-                            "Tier" : "<string>",
-                            "Component" : "<string>",
-                            "LinkName" : "lb",
-                            "Instance" : "<string>",
-                            "Version" : "<string>",
-                            "PortMapping" : "<string>"
-                        }
-                    }
-                },
-                "Version" : "<string>",
-                "ContainerNetworkLinks" : "<array of string>"
-            }
-        },
-        "DesiredCount" : -1,
-        "Permissions" : {
-            "Decrypt" : true,
-            "AsFile" : true,
-            "AppData" : true,
-            "AppPublic" : true
-        },
-        "NetworkMode" : "<string>"
-    }
-}
-```
-
-In most IT systems we don't just deploy one component, we deploy a collection of components which work together to provide a specific service. In `hamlet` this collection is called a **Solution**, the components that make up the solution have a set of dependent relationships between one another and we define these relationships between as **Links**. Links allow components to share properties between one another and can also be used to determine the configuration of a component.
-
-To make sure we can say `Hello!` all of the time we configure our service to deploy 2 copies of the same container, and so we can access both of them using the same URL we add a load balancer to our **Solution**
+In an application, we don't just deploy one component, we deploy a collection of components which work together to provide a specific purpose, in hamlet this collection is called a Solution. Within a Solution, the components can have relationships to other components.
 
 <Mermaid chart={`
     graph LR;
@@ -129,6 +122,4 @@ To make sure we can say `Hello!` all of the time we configure our service to dep
     end
 `}/>
 
-
-
-To create this relationship in `hamlet` we create a link from the `Hello` component to the `Hello-LB` component. When we deploy this infrastructure the container will be configured to register with the load balancer which will send traffic to either copy of the `Hello` Service.
+To create this relationship in hamlet we create a link between components. In this case, from the Hello component to the Hello-LB component. When we deploy this infrastructure the container will be configured to register with the load balancer which will send traffic to either copy of the Hello Service.
