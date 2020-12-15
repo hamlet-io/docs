@@ -50,10 +50,13 @@ curl http://localhost:8000
 
 So we've seen our widget and what it does when we run it locally, now we want to to make this widget available as pat of our application. In hamlet this widget, a specific function performed in your application is called a **component**, they form the basis of deploying infrastructure within hamlet.
 
-Components have a **type** which defines the infrastructure required to provide this function. For hosting containers we have two types available, **service** which uses a container orchestrator (kubernetes, AWS ECS etc.) to ensure the container is always running, and **task** which run on demand, complete a specific task and then exit.
+Components have a **type** which defines the infrastructure required to provide this function. For hosting containers we have two types available:
+- **service** which uses a container orchestrator (kubernetes, AWS ECS etc.) to ensure the container is always running, and
+- **task** which run on demand, complete a specific task and then exit.
+
 We want to say `Hello!` all the time so we will make the type of this component a **service**.
 
-hamlet provides a library of components which are designed to work with the other components and can be used to deploy to multiple cloud providers. You can also provide your own component types and define their deployment to other providers as well. Each component type has it's own configuration that defines specifically how this component should behave, memory and cpu allocation, exposed network ports and connections to load balancers are all part of the component configuration
+Hamlet provides a library of standard components which are designed to work with other components and deploy to multiple cloud providers. You can also provide your own component types and define their deployment to other providers as well. Each component type has its own configuration that defines how this component should behave. Memory and cpu allocation, exposed network ports and connections to load balancers are all parts of the component configuration
 
 Here is the the initial configuration for our service. It has a single container in the service, hello, that has a fixed memory and cpu allocation.
 
@@ -74,6 +77,8 @@ Here is the the initial configuration for our service. It has a single container
     }
 }
 ```
+
+## Component Reuse
 
 If we wanted to say `Hello!` from multiple locations we would need to deploy multiple widgets and update the location for each one. Our component is performing the same function with different run time configuration to provide different features.
 In hamlet we can specify **instances** which can optionally have **versions** of our components. This allows us to override specific properties for a given instance or version while inheriting the rest from the component configuration.
@@ -114,4 +119,4 @@ In an application, we don't just deploy one component, we deploy a collection of
     end
 `}/>
 
-To create this relationship in hamlet we create a link from the `Hello` component to the `Hello-LB` component. When we deploy this infrastructure the container will be configured to register with the load balancer which will send traffic to either copy of the `Hello` Service.
+To create this relationship in hamlet we create a link between components. In this case, from the `Hello` component to the `Hello-LB` component. When we deploy this infrastructure the container will be configured to register with the load balancer which will send traffic to either copy of the `Hello` Service.
