@@ -3,7 +3,7 @@
   "type": "object",
   "$id": "https://hamlet.io/schema/latest/blueprint/metaparameter-schema.json",
   "definitions": {
-    "Links": {
+    "Link": {
       "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {

@@ -282,7 +282,7 @@
               "default": false
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Notifications": {
               "type": "object",
@@ -290,7 +290,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     },
                     "Prefix": {
                       "type": "string"
@@ -506,7 +506,7 @@
               ]
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -712,7 +712,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     },
                     "Prefix": {
                       "type": "string"
@@ -791,7 +791,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -1029,11 +1029,15 @@
               "type": "boolean",
               "default": false
             },
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Ports": {
               "type": "object",
@@ -1239,11 +1243,15 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -1367,8 +1375,12 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "AccessLogging": {
               "type": "object",
@@ -1512,7 +1524,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "WAF": {
               "type": "object",
@@ -1732,7 +1744,7 @@
                       "default": true
                     },
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     },
                     "Path": {
                       "type": "object",
@@ -2114,7 +2126,7 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -2249,11 +2261,15 @@
                 "linux"
               ]
             },
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "AutoScaling": {
               "type": "object",
@@ -2505,7 +2521,7 @@
               ]
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Backup": {
               "type": "object",
@@ -2788,11 +2804,15 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "WAF": {
               "type": "object",
@@ -3460,11 +3480,15 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "UseInitAsService": {
               "type": "boolean",
@@ -4167,8 +4191,12 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Table": {
               "type": "object",
@@ -4369,7 +4397,7 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "States": {
               "type": "object",
@@ -4512,8 +4540,12 @@
             "Engine": {
               "type": "string"
             },
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "FixedIP": {
               "type": "boolean",
@@ -4542,7 +4574,7 @@
               "default": true
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "AutoScaling": {
               "type": "object",
@@ -5425,15 +5457,18 @@
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
-                    "Fragment": {
-                      "type": "string",
-                      "description": "The fragment Id to use when evaluating component fragments - defaults to the container id"
+                    "Extensions": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Extensions to invoke as part of component processing"
                     },
                     "Cpu": {
                       "type": "number"
                     },
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     },
                     "LocalLogging": {
                       "type": "boolean",
@@ -5682,8 +5717,34 @@
                       }
                     },
                     "Image": {
-                      "type": "string",
-                      "description": "Overrides the image from the deployment unit"
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Set the source of the components image",
+                      "properties": {
+                        "Source": {
+                          "type": "string",
+                          "description": "The source of the image",
+                          "default": "Registry",
+                          "enum": [
+                            "registry",
+                            "containerregistry"
+                          ]
+                        },
+                        "Source:containerregistry": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "A docker container registry to source the image from",
+                          "properties": {
+                            "Image": {
+                              "type": "string",
+                              "description": "The docker image that you want to use"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "Source"
+                      ]
                     },
                     "Version": {
                       "type": "string",
@@ -6304,7 +6365,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -6457,15 +6518,18 @@
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
-                    "Fragment": {
-                      "type": "string",
-                      "description": "The fragment Id to use when evaluating component fragments - defaults to the container id"
+                    "Extensions": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Extensions to invoke as part of component processing"
                     },
                     "Cpu": {
                       "type": "number"
                     },
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     },
                     "LocalLogging": {
                       "type": "boolean",
@@ -6714,8 +6778,34 @@
                       }
                     },
                     "Image": {
-                      "type": "string",
-                      "description": "Overrides the image from the deployment unit"
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Set the source of the components image",
+                      "properties": {
+                        "Source": {
+                          "type": "string",
+                          "description": "The source of the image",
+                          "default": "Registry",
+                          "enum": [
+                            "registry",
+                            "containerregistry"
+                          ]
+                        },
+                        "Source:containerregistry": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "A docker container registry to source the image from",
+                          "properties": {
+                            "Image": {
+                              "type": "string",
+                              "description": "The docker image that you want to use"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "Source"
+                      ]
                     },
                     "Version": {
                       "type": "string",
@@ -6974,7 +7064,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -7305,7 +7395,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -7677,7 +7767,7 @@
               ]
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "LogWatchers": {
               "type": "object",
@@ -7688,7 +7778,7 @@
                       "type": "string"
                     },
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     }
                   },
                   "additionalProperties": false,
@@ -7829,8 +7919,12 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Permissions": {
               "type": "object",
@@ -7855,7 +7949,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -7995,7 +8089,7 @@
               ]
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Prefix": {
               "type": "string"
@@ -8550,7 +8644,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "AlwaysCreateFromSnapshot": {
               "type": "boolean",
@@ -9191,8 +9285,12 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "FixedIP": {
               "type": "boolean",
@@ -9221,7 +9319,7 @@
               "default": true
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "AutoScaling": {
               "type": "object",
@@ -10024,15 +10122,18 @@
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
-                    "Fragment": {
-                      "type": "string",
-                      "description": "The fragment Id to use when evaluating component fragments - defaults to the container id"
+                    "Extensions": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Extensions to invoke as part of component processing"
                     },
                     "Cpu": {
                       "type": "number"
                     },
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     },
                     "LocalLogging": {
                       "type": "boolean",
@@ -10281,8 +10382,34 @@
                       }
                     },
                     "Image": {
-                      "type": "string",
-                      "description": "Overrides the image from the deployment unit"
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Set the source of the components image",
+                      "properties": {
+                        "Source": {
+                          "type": "string",
+                          "description": "The source of the image",
+                          "default": "Registry",
+                          "enum": [
+                            "registry",
+                            "containerregistry"
+                          ]
+                        },
+                        "Source:containerregistry": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "A docker container registry to source the image from",
+                          "properties": {
+                            "Image": {
+                              "type": "string",
+                              "description": "The docker image that you want to use"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "Source"
+                      ]
                     },
                     "Version": {
                       "type": "string",
@@ -10903,7 +11030,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -11061,15 +11188,18 @@
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
-                    "Fragment": {
-                      "type": "string",
-                      "description": "The fragment Id to use when evaluating component fragments - defaults to the container id"
+                    "Extensions": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Extensions to invoke as part of component processing"
                     },
                     "Cpu": {
                       "type": "number"
                     },
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     },
                     "LocalLogging": {
                       "type": "boolean",
@@ -11318,8 +11448,34 @@
                       }
                     },
                     "Image": {
-                      "type": "string",
-                      "description": "Overrides the image from the deployment unit"
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Set the source of the components image",
+                      "properties": {
+                        "Source": {
+                          "type": "string",
+                          "description": "The source of the image",
+                          "default": "Registry",
+                          "enum": [
+                            "registry",
+                            "containerregistry"
+                          ]
+                        },
+                        "Source:containerregistry": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "A docker container registry to source the image from",
+                          "properties": {
+                            "Image": {
+                              "type": "string",
+                              "description": "The docker image that you want to use"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "Source"
+                      ]
                     },
                     "Version": {
                       "type": "string",
@@ -11578,7 +11734,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -11733,7 +11889,7 @@
               ]
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -12080,7 +12236,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Alerts": {
               "type": "object",
@@ -12531,7 +12687,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -12679,11 +12835,15 @@
                 }
               }
             },
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -12941,11 +13101,15 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "NoMatchBehaviour": {
               "type": "string",
@@ -13132,7 +13296,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Permissions": {
               "type": "object",
@@ -13369,7 +13533,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -13525,7 +13689,7 @@
               ]
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "SourceIPAddressGroups": {
               "type": "array",
@@ -13898,7 +14062,7 @@
               "default": true
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -14364,14 +14528,18 @@
                 "REGIONAL"
               ]
             },
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Handler": {
               "type": "string"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "LogMetrics": {
               "type": "object",
@@ -14398,7 +14566,7 @@
                       "type": "string"
                     },
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     }
                   },
                   "additionalProperties": false,
@@ -14982,7 +15150,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "WAF": {
               "type": "object",
@@ -15279,7 +15447,7 @@
               "default": 100
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Authentication": {
               "type": "object",
@@ -15377,7 +15545,7 @@
                   "description": "Static endpoints for the load balancing port",
                   "properties": {
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/#definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/#definitions/Links"
                     }
                   }
                 }
@@ -15517,7 +15685,7 @@
               ]
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "BuildFormats": {
               "type": "array",
@@ -15533,8 +15701,12 @@
                 "android"
               ]
             },
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "UseOTAPrefix": {
               "type": "boolean",
@@ -15664,7 +15836,7 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "SuccessSampleRate": {
               "type": "string",
@@ -15831,7 +16003,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "LogMetrics": {
               "type": "object",
@@ -16301,7 +16473,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -16754,7 +16926,7 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Encrypted": {
               "type": "boolean",
@@ -16915,7 +17087,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Sharing": {
               "type": "object",
@@ -16957,7 +17129,7 @@
                       ]
                     },
                     "Links": {
-                      "$ref": "metaparameter-schema.json#/definitions/Links"
+                      "$ref": "schema-metaparameter-schema.json#/definitions/Links"
                     }
                   },
                   "additionalProperties": false
@@ -17078,6 +17250,549 @@
             }
           },
           "additionalProperties": false
+        }
+      }
+    },
+    "queuehost": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "Engine": {
+              "type": "string",
+              "enum": [
+                "rabbitmq"
+              ]
+            },
+            "EngineVersion": {
+              "type": "string"
+            },
+            "IPAddressGroups": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "_localnet"
+              ]
+            },
+            "Links": {
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
+            },
+            "Processor": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Type"
+              ]
+            },
+            "Hibernate": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Enabled": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "StartUpMode": {
+                  "type": "string",
+                  "default": "replace",
+                  "enum": [
+                    "replace"
+                  ]
+                }
+              }
+            },
+            "Alerts": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Namespace": {
+                      "type": "string"
+                    },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
+                    "Resource": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
+                      "properties": {
+                        "Id": {
+                          "type": "string"
+                        },
+                        "Type": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "Metric": {
+                      "type": "string"
+                    },
+                    "Statistic": {
+                      "type": "string",
+                      "default": "Sum"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Threshold": {
+                      "type": "number",
+                      "default": 1
+                    },
+                    "Severity": {
+                      "type": "string",
+                      "default": "info",
+                      "enum": [
+                        "debug",
+                        "info",
+                        "warn",
+                        "error",
+                        "fatal"
+                      ]
+                    },
+                    "Comparison": {
+                      "type": "string",
+                      "default": "Threshold"
+                    },
+                    "Operator": {
+                      "type": "string",
+                      "default": "GreaterThanOrEqualToThreshold"
+                    },
+                    "Time": {
+                      "type": "number",
+                      "default": 300
+                    },
+                    "Periods": {
+                      "type": "number",
+                      "default": 1
+                    },
+                    "ReportOk": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "MissingData": {
+                      "type": "string",
+                      "default": "notBreaching"
+                    },
+                    "Unit": {
+                      "type": "string",
+                      "default": "Count"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Metric",
+                    "Name"
+                  ]
+                }
+              }
+            },
+            "Encrypted": {
+              "type": "boolean",
+              "default": false
+            },
+            "MaintenanceWindow": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "DayOfTheWeek": {
+                  "type": "string",
+                  "default": "Sunday",
+                  "enum": [
+                    "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                  ]
+                },
+                "TimeOfDay": {
+                  "type": "string",
+                  "default": "00:00"
+                },
+                "TimeZone": {
+                  "type": "string",
+                  "default": "UTC"
+                }
+              }
+            },
+            "AutoMinorUpgrade": {
+              "type": "boolean",
+              "default": true
+            },
+            "RootCredentials": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Secret store configuration for the root credentials",
+              "properties": {
+                "Username": {
+                  "type": "string",
+                  "default": "root"
+                },
+                "EncryptionScheme": {
+                  "type": "string",
+                  "description": "A prefix appended to link attributes to show encryption status"
+                },
+                "Secret": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Source": {
+                      "type": "string",
+                      "default": "user",
+                      "enum": [
+                        "user",
+                        "generated"
+                      ]
+                    },
+                    "Requirements": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Format requirements for the Secret",
+                      "properties": {
+                        "MinLength": {
+                          "type": "number",
+                          "description": "The minimum character length",
+                          "default": 20
+                        },
+                        "MaxLength": {
+                          "type": "number",
+                          "description": "The maximum character length",
+                          "default": 30
+                        },
+                        "IncludeUpper": {
+                          "type": "boolean",
+                          "description": "Include upper-case characters",
+                          "default": true
+                        },
+                        "IncludeLower": {
+                          "type": "boolean",
+                          "description": "Include lower-case characters",
+                          "default": true
+                        },
+                        "IncludeSpecial": {
+                          "type": "boolean",
+                          "description": "Include special characters",
+                          "default": false
+                        },
+                        "IncludeNumber": {
+                          "type": "boolean",
+                          "description": "Include numbers characters",
+                          "default": true
+                        },
+                        "ExcludedCharacters": {
+                          "type": "array",
+                          "contains": {
+                            "type": "string"
+                          },
+                          "description": "Characters that must be excluded",
+                          "default": [
+                            "\"",
+                            "'",
+                            "$",
+                            "@",
+                            "/",
+                            "\\"
+                          ]
+                        },
+                        "RequireAllIncludedTypes": {
+                          "type": "boolean",
+                          "description": "Require at least one of each included type",
+                          "default": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "SecretStore": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "A link to the certificate store which will keep the secret",
+                  "properties": {
+                    "Any": {
+                      "type": "string"
+                    },
+                    "Tenant": {
+                      "type": "string"
+                    },
+                    "Product": {
+                      "type": "string"
+                    },
+                    "Environment": {
+                      "type": "string"
+                    },
+                    "Segment": {
+                      "type": "string"
+                    },
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Component": {
+                      "type": "string"
+                    },
+                    "Function": {
+                      "type": "string"
+                    },
+                    "Service": {
+                      "type": "string"
+                    },
+                    "Task": {
+                      "type": "string"
+                    },
+                    "PortMapping": {
+                      "type": "string"
+                    },
+                    "Mount": {
+                      "type": "string"
+                    },
+                    "Platform": {
+                      "type": "string"
+                    },
+                    "RouteTable": {
+                      "type": "string"
+                    },
+                    "NetworkACL": {
+                      "type": "string"
+                    },
+                    "DataBucket": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    },
+                    "Branch": {
+                      "type": "string"
+                    },
+                    "Client": {
+                      "type": "string"
+                    },
+                    "Connection": {
+                      "type": "string"
+                    },
+                    "AuthProvider": {
+                      "type": "string"
+                    },
+                    "Resource": {
+                      "type": "string"
+                    },
+                    "DataFeed": {
+                      "type": "string"
+                    },
+                    "RegistryService": {
+                      "type": "string"
+                    },
+                    "Assignment": {
+                      "type": "string"
+                    },
+                    "Route": {
+                      "type": "string"
+                    },
+                    "Endpoint": {
+                      "type": "string"
+                    },
+                    "Instance": {
+                      "type": "string"
+                    },
+                    "Version": {
+                      "type": "string"
+                    },
+                    "Secret": {
+                      "type": "string"
+                    },
+                    "Role": {
+                      "type": "string"
+                    },
+                    "Direction": {
+                      "type": "string"
+                    },
+                    "Type": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "IncludeInContext": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "Tier",
+                    "Component"
+                  ]
+                }
+              }
+            },
+            "Profiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Deployment": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Policy": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Placement": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Baseline": {
+                  "type": "string",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "default": "default"
+                },
+                "Testing": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component"
+                },
+                "Alert": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Network": {
+                  "type": "string",
+                  "default": "default"
+                }
+              }
+            },
+            "SettingNamespaces": {
+              "type": "object",
+              "description": "Additional namespaces to use during settings lookups",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Match": {
+                      "type": "string",
+                      "description": "How to match the namespace with available settings",
+                      "default": "exact",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Order": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ]
+                    },
+                    "IncludeInNamespace": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "Tier": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Component": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Type": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "SubComponent": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "Instance": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Version": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Name": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      }
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "Export": {
+              "type": "object"
+            },
+            "DeploymentUnits": {
+              "type": "object"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "Engine",
+            "EngineVersion"
+          ]
         }
       }
     },
@@ -17278,7 +17993,7 @@
               ]
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -17521,6 +18236,13 @@
             "DeploymentUnits": {
               "type": "object"
             },
+            "aws:Engine": {
+              "type": "object",
+              "default": "aws:secretsmanager",
+              "enum": [
+                "secretsmanager"
+              ]
+            },
             "Secrets": {
               "$ref": "#/definitions/secretstore"
             }
@@ -17762,7 +18484,7 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Namespace": {
               "type": "object",
@@ -18114,11 +18836,15 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "InvalidateOnUpdate": {
               "type": "boolean",
@@ -18416,7 +19142,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -18548,8 +19274,12 @@
               "type": "string",
               "description": "The name of the root template file in the build aretefact"
             },
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Parameters": {
               "type": "object",
@@ -18609,7 +19339,7 @@
               "default": false
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
@@ -18989,7 +19719,7 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "DeliveryPolicy": {
               "type": "object",
@@ -19165,11 +19895,15 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Fragment": {
-              "type": "string"
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "GenerateCredentials": {
               "type": "object",
@@ -19485,7 +20219,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "DefaultClient": {
               "type": "boolean",
@@ -19869,7 +20603,7 @@
               }
             },
             "Links": {
-              "$ref": "metaparameter-schema.json#/definitions/Links"
+              "$ref": "schema-metaparameter-schema.json#/definitions/Links"
             },
             "Profiles": {
               "type": "object",
