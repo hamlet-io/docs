@@ -15,7 +15,8 @@ The guide works through the deployment of [hamlet hello](https://github.com/code
 
 Let's get started..
 
-## An App
+## An Application
+An application consists of multiple discrete pieces of functionality. Within hamlet, we call these pieces **components**. For this documentation we will use a piece of functionality that displays `Hello!`
 
 <Mermaid chart={`
     graph LR;
@@ -48,7 +49,7 @@ curl http://localhost:8000
 
 ## A Component
 
-So we've seen our widget and what it does when we run it locally, now we want to to make this widget available as pat of our application. In hamlet this widget, a specific function performed in your application is called a **component**, they form the basis of deploying infrastructure within hamlet.
+So now we want to to make this widget available as pat of our application. In hamlet **component**s form the basis of deployments.
 
 Components have a **type** which defines the infrastructure required to provide this function. For hosting containers we have two types available:
 - **service** which uses a container orchestrator (kubernetes, AWS ECS etc.) to ensure the container is always running, and
@@ -106,7 +107,7 @@ We've configured one instance of this component to start with called `world`
 
 ## A link
 
-In an application, we don't just deploy one component, we deploy a collection of components which work together to provide a specific purpose, in hamlet this collection is called a **Solution**.
+In an application, we don't just deploy one component, we deploy a collection of components which work together to provide a specific purpose, in hamlet this collection is called a **Solution**. Within a Solution, the components can have relationships to other components.
 
 <Mermaid chart={`
     graph LR;
