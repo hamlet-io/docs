@@ -16,14 +16,16 @@ The guide works through the deployment of [hamlet hello](https://github.com/code
 Let's get started..
 
 ## An Application
-An application consists of multiple discrete pieces of functionality. Within hamlet, we call these pieces **components**. For this documentation we will use a piece of functionality that displays `Hello!`
+
+An application consists of multiple discrete pieces of functionality. Within hamlet, we call these pieces components. For this documentation we will use a piece of functionality that displays `Hello!`
 
 <Mermaid chart={`
     graph LR;
     container[Hello]
+    style container height:100px,width:100px;
 `}/>
 
-Here is our widget, it performs a specific function, saying `Hello!`. While it might be part of a bigger application, it still acts as an independent unit. If we run this container locally and access it over http we meet our hello widget and it lets us know where it is
+Here is our widget, it performs a specific function, saying Hello!. While it might be part of a bigger application, it still acts as an independent unit. If we run this container locally and access it over http we meet our hello widget and it lets us know where it is
 
 ```bash
 docker run -p 8000:8000 hamletio/hello
@@ -49,13 +51,14 @@ curl http://localhost:8000
 
 ## A Component
 
-So now we want to to make this widget available as pat of our application. In hamlet **component**s form the basis of deployments.
+So now we want to to make this widget available as pat of our application. In hamlet components form the basis of deployments.
 
-Components have a **type** which defines the infrastructure required to provide this function. For hosting containers we have two types available:
-- **service** which uses a container orchestrator (kubernetes, AWS ECS etc.) to ensure the container is always running, and
-- **task** which run on demand, complete a specific task and then exit.
+Components have a type which defines the infrastructure required to provide this function. For hosting containers we have two types available:
 
-We want to say `Hello!` all the time so we will make the type of this component a **service**.
+- *service* which uses a container orchestrator (kubernetes, AWS ECS etc.) to ensure the container is always running
+- *task* which run on demand, complete a specific task and then exit.
+
+We want to say Hello! all the time so we will make the type of this component a service.
 
 Hamlet provides a library of standard components which are designed to work with other components and deploy to multiple cloud providers. You can also provide your own component types and define their deployment to other providers as well. Each component type has its own configuration that defines how this component should behave. Memory and cpu allocation, exposed network ports and connections to load balancers are all parts of the component configuration
 
@@ -81,10 +84,10 @@ Here is the the initial configuration for our service. It has a single container
 
 ## Component Reuse
 
-If we wanted to say `Hello!` from multiple locations we would need to deploy multiple widgets and update the location for each one. Our component is performing the same function with different run time configuration to provide different features.
-In hamlet we can specify **instances** which can optionally have **versions** of our components. This allows us to override specific properties for a given instance or version while inheriting the rest from the component configuration.
+If we wanted to say Hello! from multiple locations we would need to deploy multiple widgets and update the location for each one. Our component is performing the same function with different run time configuration to provide different features.
+In hamlet we can specify instances which can optionally have versions of our components. This allows us to override specific properties for a given instance or version while inheriting the rest from the component configuration.
 
-A given instance and version of a component is called an **occurrence**.
+A given instance and version of a component is called an occurrence.
 
 <Mermaid chart={`
     graph LR;
@@ -102,12 +105,11 @@ A given instance and version of a component is called an **occurrence**.
     end
 `}/>
 
-We've configured one instance of this component to start with called `world`
-
+We've configured one instance of this component to start with called world
 
 ## A link
 
-In an application, we don't just deploy one component, we deploy a collection of components which work together to provide a specific purpose, in hamlet this collection is called a **Solution**. Within a Solution, the components can have relationships to other components.
+In an application, we don't just deploy one component, we deploy a collection of components which work together to provide a specific purpose, in hamlet this collection is called a Solution. Within a Solution, the components can have relationships to other components.
 
 <Mermaid chart={`
     graph LR;
@@ -120,4 +122,4 @@ In an application, we don't just deploy one component, we deploy a collection of
     end
 `}/>
 
-To create this relationship in hamlet we create a link between components. In this case, from the `Hello` component to the `Hello-LB` component. When we deploy this infrastructure the container will be configured to register with the load balancer which will send traffic to either copy of the `Hello` Service.
+To create this relationship in hamlet we create a link between components. In this case, from the Hello component to the Hello-LB component. When we deploy this infrastructure the container will be configured to register with the load balancer which will send traffic to either copy of the Hello Service.
