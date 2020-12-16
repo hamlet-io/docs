@@ -220,6 +220,13 @@ module.exports = {
             'contribute/contributor_reference/routines',
           ]
         },
+        {
+          type: 'category',
+          label: 'Architectural Design Log',
+          items: [
+            'adr/index.md'
+          ]
+        }
       ]
     }
   ]
