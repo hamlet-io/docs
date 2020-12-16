@@ -222,9 +222,12 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Architectural Design Log',
+          label: 'Architectural Design',
           items: [
-            'adr/index.md'
+            'adr/index',
+            {
+              Records: [ "adr/0000-use-markdown-architectural-decision-records"]
+            }
           ]
         }
       ]
