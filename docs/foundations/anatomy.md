@@ -24,7 +24,7 @@ The `Account` is linked to the `Tenant` CMDB and inherits its configuration. A `
 
 ## Product CMDB
 
-A `Product` contains multipe `Solutions` which can be deployed into `Environments` to manage the full lifecycle of the `Product`. The `Solution` defines the `Components` and supporting configuration (`ReferenceData` and `AttributeSets`) that configure your `Product`.
+A `Product` contains multipe `Solutions` which can be deployed into `Environments` to manage the full lifecycle of the `Product`. The `Solution` defines the `Components` and supporting configuration (`ReferenceData`) that configure your `Product`.
 
 # Solutions
 
