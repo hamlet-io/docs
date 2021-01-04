@@ -3,7 +3,7 @@
 */
 import componentSchema from "@site/static/schema/latest/blueprint/schema-component-schema.json";
 import referenceSchema from "@site/static/schema/latest/blueprint/schema-reference-schema.json";
-import metaSchema from "@site/static/schema/latest/blueprint/schema-metaparameter-schema.json";
+import attributeSetSchema from "@site/static/schema/latest/blueprint/schema-attributeset-schema.json";
 
 const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
 
@@ -14,8 +14,8 @@ const schema = {
   component: {
       data: componentSchema,
   },
-  metaparameter: {
-      data: metaSchema,
+  attributeset: {
+      data: attributeSetSchema,
   }
 };
 
