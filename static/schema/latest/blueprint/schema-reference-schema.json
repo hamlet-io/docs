@@ -133,6 +133,9 @@
                         "Secret": {
                           "type": "string"
                         },
+                        "Rule": {
+                          "type": "string"
+                        },
                         "Role": {
                           "type": "string"
                         },
@@ -902,6 +905,9 @@
                             "Secret": {
                               "type": "string"
                             },
+                            "Rule": {
+                              "type": "string"
+                            },
                             "Role": {
                               "type": "string"
                             },
@@ -1065,6 +1071,9 @@
                           "type": "string"
                         },
                         "Secret": {
+                          "type": "string"
+                        },
+                        "Rule": {
                           "type": "string"
                         },
                         "Role": {
@@ -1918,10 +1927,7 @@
               "description": "A description to include as part of the Role"
             }
           },
-          "additionalProperties": false,
-          "required": [
-            "ServiceName"
-          ]
+          "additionalProperties": false
         }
       }
     },
@@ -2293,6 +2299,219 @@
           "properties": {
             "*": {
               "type": "any"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "SkuProfiles": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "apigateway": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "enum": [
+                    "Developer",
+                    "Standard",
+                    "Premium",
+                    "Basic",
+                    "Consumption"
+                  ]
+                },
+                "Capacity": {
+                  "type": "number"
+                }
+              }
+            },
+            "computecluster": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Tier": {
+                  "type": "string",
+                  "enum": [
+                    "Standard",
+                    "Basic"
+                  ]
+                },
+                "Capacity": {
+                  "type": "number",
+                  "default": 1
+                }
+              }
+            },
+            "containerhost": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Tier": {
+                  "type": "string"
+                },
+                "Capacity": {
+                  "type": "number"
+                },
+                "Size": {
+                  "anyOf": [
+                    [
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  ]
+                },
+                "Family": {
+                  "type": "string"
+                }
+              }
+            },
+            "s3": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Kind": {
+                  "type": "string"
+                },
+                "Tier": {
+                  "type": "string"
+                },
+                "Replication": {
+                  "type": "string"
+                }
+              }
+            },
+            "db": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Tier": {
+                  "type": "string"
+                },
+                "Capacity": {
+                  "type": "number"
+                },
+                "Size": {
+                  "anyOf": [
+                    [
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  ]
+                },
+                "Family": {
+                  "type": "string"
+                }
+              }
+            },
+            "secretstore": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Family": {
+                  "type": "string"
+                }
+              }
+            },
+            "network": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "type": "string"
+                }
+              }
+            },
+            "lb": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Tier": {
+                  "type": "string"
+                },
+                "Capacity": {
+                  "type": "number"
+                }
+              }
+            },
+            "bastion": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Tier": {
+                  "type": "string"
+                },
+                "Capacity": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "VMImageProfiles": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "*": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "The component type that the VMImage configuration belongs to.",
+              "properties": {
+                "Publisher": {
+                  "type": "string"
+                },
+                "Offering": {
+                  "type": "string"
+                },
+                "Image": {
+                  "type": "string"
+                },
+                "LicenseType": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Publisher",
+                "Offering",
+                "Image"
+              ]
             }
           },
           "additionalProperties": false
