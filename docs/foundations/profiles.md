@@ -44,7 +44,7 @@ Deployment and Policy profile types have two filters - Deployment Mode and Compo
 A "*" (any) filter can be used for either filter to represent matching any mode or component type. This is not a wildcard however, and cannot be used for pattern matching.
 
 ## The Profiles ReferenceData Type
-Profiles are assigned to a scope though the `Profiles` Reference Data object, containing key/value pairs of the profile types and names. The Reference Data object is available to all scopes, however only the Deployment and Policy profile types are available for assignment above the Component level. To implement a Component-level profile at a higher scope, they should be associated with either a Deployment or Policy profile.
+Profiles are assigned to a scope though the `Profiles` Reference Data object, containing key/value pairs of the profile types and names. The Profiles object is available to all scopes, however only the Deployment and Policy profile types are available for assignment above the Component level. To implement a Component-level profile at a higher scope, they should be associated with either a Deployment or Policy profile.
 
 Only applicable profile types are exposed through `Profiles` for each component. For example a "Bootstrap" profile - which defines a set of actions required to provision a compute resource - is not applicable to non-compute components. See the component reference docs for details on which profiles are available for each component type.
 
