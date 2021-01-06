@@ -14,12 +14,12 @@
     "localtest"
   ],
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.69",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.69",
+    "@docusaurus/core": "^2.0.0-alpha.70",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.70",
     "@types/react": "^16.14.2",
     "axios": "^0.19.2",
     "broken-link-checker": "^0.7.8",
-    "eslint": "^7.15.0",
+    "eslint": "^7.17.0",
     "fs": "0.0.1-security",
     "infima": "^0.2.0-alpha.18",
     "json2yaml": "^1.1.0",
@@ -47,6 +47,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "pre-commit": "^1.2.2",
-    "start-server-and-test": "^1.11.6"
+    "start-server-and-test": "^1.11.7"
   }
 }
