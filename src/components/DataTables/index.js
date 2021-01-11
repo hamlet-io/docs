@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import {
-  getAsyncSchemaData,
-  getAttributeStructure,
-  getComponentStructure,
-  getComponentExampleCodeblock,
+  getJsonSchemaData,
+  patternPropertiesRegex,
 } from "@site/src/components/HamletJsonSchema";
-import HamletExample from "@site/src/components/HamletExample";
 
 import "./styles.css";
 
-const stripeTables = true;
-const denseRows = true;
-const defaultSortField = "attribute";
-const columns = [
+const defaultColumns = [
   {
     name: "Attribute",
     selector: "attribute",
@@ -64,107 +58,176 @@ createTheme("hamlet", {
   },
 });
 
-function HamletSchemaDataTable(props) {
-  const [schema, setSchema] = useState({ attributes: [] });
+const formatDataTableDefault = (type, value) => {
+  // format an attributes default value based on its attribute type.
+  if (!value) {
+    return '';
+  }
+  switch (type) {
+    case "object":
+      return JSON.stringify(value, null, 4);
+      break;
 
-  useEffect(() => {
-    setSchema(getAttributeStructure(props.data));
-  }, []);
-  let tablerows = [];
-  schema.attributes.map((parent) => {
-    tablerows.push({
-      attribute: parent.attribute.name,
-      type: parent.attribute.type,
-      mandatory: parent.attribute.mandatory,
-      values: parent.attribute.enum,
-      default: String(parent.attribute.default).toString,
-      description: parent.attribute.description,
+    case "array":
+      return value.join(', ')
+      break;
+  
+    default:
+      return value;
+      break;
+  }
+}
+
+const getDataTables = (name, value, required) => {
+
+  if (value["$ref"]) {
+    value.type = "object";
+  }
+  
+  if (value.type || value.anyOf) {
+    var values = (value?.enum) ? value.enum.join(', ') : null;
+    var defaultValue = formatDataTableDefault(value.type, value?.default);
+    var type = (value.anyOf) ? value.anyOf.map(a => a.type).join(' or ') : value.type;
+    var mandatory = (required && required.includes(name)) ? "true" : "false";
+    return {
+      id: '',
+      attribute: name,
+      description: value?.description,
+      type: type,
+      mandatory: mandatory,
+      values: values,
+      default: defaultValue,
+    }
+  }
+  
+  var dataTables = [];
+  var tableData = [];
+  Object.keys(value).map(attrName => {
+    var attrValue = value[attrName];
+    // add the attribute to the current DataTable
+    tableData.push(getDataTables(attrName, attrValue, required));
+
+    // objects with properties or patternProperties have child attributes.
+    // define new dataTables for them.
+    if (attrValue.patternProperties) {
+      var childPath = attrValue.patternProperties[patternPropertiesRegex].properties;
+      var required = attrValue.patternProperties[patternPropertiesRegex]?.required;
+    }
+    else if (attrValue.properties) {
+      var childPath = attrValue.properties;
+      var required = attrValue?.required;
+    }
+
+    if (childPath) {
+      var children = [];
+      Object.keys(childPath).map(childName => {
+        var childValue = childPath[childName];
+        children.push(getDataTables(childName, childValue, required));
+        return children;
+      });
+      dataTables.push({
+        title: attrName + " Sub-Schema",
+        data: children,
+      });
+    }
+
+    return {tableData, dataTables};
+  });
+
+  // add the current tableData to the Data Table.
+  // as the primary data table, it goes at the start of the array
+  dataTables.unshift(
+    {
+     title: name + " Schema",
+     data: tableData,
+    }
+  );
+
+  return dataTables
+}
+
+const getJsonSchemaDataTables = ({data, type}) => {
+
+  var references = [];
+  
+  if (data.definitions) {
+    
+    Object.keys(data.definitions).map(title => {
+      // define the root of the attributes for this reference data
+      const referenceAttributeRoot = data.definitions[title].patternProperties[patternPropertiesRegex].properties;
+      var mandatory = data.definitions[title].patternProperties[patternPropertiesRegex]?.required;
+      // construct attribute data tables
+      var dataTables = getDataTables(title, referenceAttributeRoot, mandatory);
+
+      // add the reference
+      references.push(
+        {
+          title: title,
+          type: type,
+          dataTables: dataTables,
+        }
+      );
+      return references;
     });
-  });
-  return (
-    <React.Fragment>
-        <div className="reference">
-            <DataTable
-                title={props.title + " Schema"}
-                columns={columns}
-                data={tablerows}
-                striped={stripeTables}
-                dense={denseRows}
-                defaultSortField={defaultSortField}
-                theme="hamlet"
-            />
-      </div>
-    </React.Fragment>
-  );
+  }
+  return references;
 }
 
-function HamletDataTableComponent(props) {
-  const [componentSchemas, setComponentSchemas] = useState({
-    schemas: [],
-  });
-
-  const structure = getComponentStructure(props);
-
-  useEffect(() => {
-    setComponentSchemas(structure);
-  }, []);
-
-  const example = getComponentExampleCodeblock(props);
-  const heading = props.name + " " + props.type;
-
+function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaultSort="attribute", columns=defaultColumns}) {
   return (
-    <div className="item shadow--tl component">
-      <h2>{heading}</h2>
-      <HamletExample
-        codeblock={example}
+    <div className="reference">
+      <DataTable
+        title={title}
+        columns={columns}
+        data={data}
+        striped={stripeTables}
+        dense={denseRows}
+        defaultSortField={defaultSort}
+        theme="hamlet"
       />
-      {componentSchemas.schemas.map((schema, index) => {
-        return (
-          <React.Fragment>
-            <HamletSchemaDataTable
-              key={index}
-              title={schema.name}
-              type={props.type}
-              columns={columns}
-              data={schema.value}
-            />
-            <br />
-          </React.Fragment>
-        );
-      })}
     </div>
-  );
+  )
 }
 
-const HamletDataTableComponents = (props) => {
-  const [definitions, setDefinitions] = useState({ components: [] });
+function HamletDataTables(props) {
+
+  const [referenceData, setReferenceData] = useState([]);
+  
+  const schemaData = getJsonSchemaData(props.type);
+  const references = getJsonSchemaDataTables({data: schemaData, type: props.type});
 
   useEffect(() => {
-    setDefinitions(
-      getAsyncSchemaData({ type: props.type, version: props.version })
-    );
+    setReferenceData(references);
   }, []);
 
   return (
     <React.Fragment>
-      {definitions.components.map((component, index) => {
-        return (
-          <div className="row">
-            <div className="col col--1" />
-              <div className="col col--10 component">
-                <HamletDataTableComponent
-                  key={index}
-                  name={component.name}
-                  type={props.type}
-                  attributes={component.attributes}
-                />
-              </div>
-            <div className="col col--1" />
-          </div>
-        );
-      })}
+      {   
+        referenceData.map((reference, idx) => {
+          return (
+            <div className="item shadow--tl component" key={idx} >
+            { 
+              reference.dataTables.map((table, index) => {
+                return (
+                  <div className="row" key={index} >
+                    <div className="col col--1" />
+                    <div className="col col--10 component" key={index + "col--10"} >
+                      <HamletDataTable
+                        title={table.title}
+                        data={table.data}
+                      />
+                    </div>
+                  </div>
+                )
+              })
+            }
+            </div>
+          )
+        })
+      }
+      <br />
     </React.Fragment>
   );
 };
 
-export default HamletDataTableComponents;
+export default HamletDataTables;
