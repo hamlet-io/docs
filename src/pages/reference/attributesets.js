@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "@theme/Layout";
-import HamletDataTableComponents from '@site/src/components/DataTables';
+import HamletDataTables from '@site/src/components/DataTables';
 
 const HamletAttributeSetsReferenceSchema = () => {
   return (
@@ -8,7 +8,7 @@ const HamletAttributeSetsReferenceSchema = () => {
         <div className="row">
           <div className="col col--1" />
           <div className="col col--10 component">
-            <HamletDataTableComponents type="attributeset" version="latest" />
+            <HamletDataTables type="attributeset" />
           </div>
           <div className="col col--1" />
         </div>
