@@ -229,6 +229,16 @@
                 }
               }
             },
+            "azure:AdministratorGroups": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "The set of administrator groups controlling access to keyvault",
+              "default": [
+                "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3"
+              ]
+            },
             "DataBuckets": {
               "$ref": "#/definitions/baseline"
             },
@@ -19219,6 +19229,78 @@
             "TTLKey": {
               "type": "string",
               "description": "A key in the table used to manage the items expiry"
+            },
+            "KeyTypes": {
+              "type": "object",
+              "description": "Key types - default is string",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Type": {
+                      "type": "string",
+                      "description": "Key value type",
+                      "enum": [
+                        "string",
+                        "number",
+                        "binary"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "SecondaryIndexes": {
+              "type": "object",
+              "description": "Alternate indexes for query efficiency",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Name": {
+                      "type": "string",
+                      "description": "Index name"
+                    },
+                    "Keys": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "List of keys"
+                    },
+                    "KeyTypes": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Type of each key - default is hash(0) then range",
+                      "enum": [
+                        "hash",
+                        "range"
+                      ]
+                    },
+                    "Capacity": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "Read": {
+                          "type": "number",
+                          "description": "When using provisioned billing the maximum RCU of the table",
+                          "default": 1
+                        },
+                        "Write": {
+                          "type": "number",
+                          "description": "When using provisioned billing the maximum WCU of the table",
+                          "default": 1
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Keys"
+                  ]
+                }
+              }
             },
             "Profiles": {
               "type": "object",
