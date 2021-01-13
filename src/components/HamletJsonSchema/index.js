@@ -23,8 +23,33 @@ function getJsonSchemaData(type){
   return schema[type].data;
 };
 
+function getSchemaExample(definition){
+
+  var example = new Object;
+
+  if (definition.type || definition.anyOf) {
+    var type = (definition.anyOf) ? definition.anyOf.map(a => a.type).join(' or ') : definition.type;
+    example = new String;
+    example = type;
+    return example;
+  }
+
+  Object.keys(definition).map(attrName => {
+    var attrValue = definition[attrName];
+    example[attrName] = 
+      (attrValue.patternProperties) ? getSchemaExample(attrValue.patternProperties[patternPropertiesRegex].properties)
+      : (attrValue.properties) ? getSchemaExample(attrValue.properties)
+      : getSchemaExample(attrValue)
+
+    return example;
+  });
+
+  return example;
+}
+
 export {
   getJsonSchemaData,
+  getSchemaExample,
   patternPropertiesRegex,
 };
 export default getJsonSchemaData;
