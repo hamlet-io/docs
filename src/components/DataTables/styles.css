@@ -46,6 +46,7 @@
 
 .ref-row-headers {
     background-color: var(--ifm-color-primary);
+    padding-left: 1em;
     color: #FFFFFF;
 }
 

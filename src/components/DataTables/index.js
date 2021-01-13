@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
+import HamletExample from "@site/src/components/HamletExample";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import {
   getJsonSchemaData,
+  getSchemaExample,
   patternPropertiesRegex,
 } from "@site/src/components/HamletJsonSchema";
 
 import "./styles.css";
+
+const getSchemaUrl = (ref) => (! ref.startsWith('#definitions')) ? useBaseUrl(ref) : ref;
 
 const defaultColumns = [
   {
@@ -23,6 +28,17 @@ const defaultColumns = [
     name: "Type",
     selector: "type",
     center: true,
+    cell: row => {
+      return (
+        <div data-tag="allowRowEvents">
+          {
+            (row.type.startsWith('#')) ? <a href={getSchemaUrl(row.type)}>object</a> 
+            : (row.type == "object") ? <a href={getSchemaUrl('#' + row.attribute)}>object</a>
+            : row.type
+          }
+        </div>
+      )
+    },
   },
   {
     name: "Mandatory",
@@ -81,7 +97,7 @@ const formatDataTableDefault = (type, value) => {
 const getDataTables = (name, value, required) => {
 
   if (value["$ref"]) {
-    value.type = "object";
+    value.type = value["$ref"];
   }
   
   if (value.type || value.anyOf) {
@@ -158,6 +174,8 @@ const getJsonSchemaDataTables = ({data, type}) => {
       var mandatory = data.definitions[title].patternProperties[patternPropertiesRegex]?.required;
       // construct attribute data tables
       var dataTables = getDataTables(title, referenceAttributeRoot, mandatory);
+      var example = new Object;
+      example[title] = getSchemaExample(referenceAttributeRoot);
 
       // add the reference
       references.push(
@@ -165,6 +183,7 @@ const getJsonSchemaDataTables = ({data, type}) => {
           title: title,
           type: type,
           dataTables: dataTables,
+          example: JSON.stringify(example, null, 4),
         }
       );
       return references;
@@ -176,15 +195,17 @@ const getJsonSchemaDataTables = ({data, type}) => {
 function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaultSort="attribute", columns=defaultColumns}) {
   return (
     <div className="reference">
-      <DataTable
-        title={title}
-        columns={columns}
-        data={data}
-        striped={stripeTables}
-        dense={denseRows}
-        defaultSortField={defaultSort}
-        theme="hamlet"
-      />
+      <section id={title.split(' ')[0]}>
+        <DataTable
+          title={title}
+          columns={columns}
+          data={data}
+          striped={stripeTables}
+          dense={denseRows}
+          defaultSortField={defaultSort}
+          theme="hamlet"
+        />
+      </section>
     </div>
   )
 }
@@ -206,18 +227,23 @@ function HamletDataTables(props) {
         referenceData.map((reference, idx) => {
           return (
             <div className="item shadow--tl component" key={idx} >
+            <div className="ref-row-headers">
+              <section id={reference.title}>
+                <h1>{reference.title}</h1>
+              </section>
+            </div>
+            <HamletExample
+              codeblock={reference.example}
+            />
             { 
-              reference.dataTables.map((table, index) => {
+              reference.dataTables.map(table => {
                 return (
-                  <div className="row" key={index} >
-                    <div className="col col--1" />
-                    <div className="col col--10 component" key={index + "col--10"} >
-                      <HamletDataTable
-                        title={table.title}
-                        data={table.data}
-                      />
-                    </div>
-                  </div>
+                  <section id={(reference.title + '/' + table.title.split(' ')[0]).toLowerCase()}>
+                    <HamletDataTable
+                      title={table.title}
+                      data={table.data}
+                    />
+                  </section>
                 )
               })
             }
