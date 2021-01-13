@@ -259,16 +259,16 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
                     "Prefix": {
-                      "type": "object",
+                      "type": "string",
                       "description": "The prefix to apply the lifecycle to"
                     },
                     "Expiration": {
-                      "type": "object",
+                      "type": "string",
                       "description": "Provide either a date or a number of days",
                       "default": "_operations"
                     },
                     "Offline": {
-                      "type": "object",
+                      "type": "string",
                       "description": "Provide either a date or a number of days",
                       "default": "_operations"
                     }
@@ -12297,21 +12297,15 @@
                         },
                         "Value": {
                           "anyOf": [
-                            [
                               {
                                 "type": "string"
-                              }
-                            ],
-                            [
+                              },
                               {
                                 "type": "number"
-                              }
-                            ],
-                            [
+                              },
                               {
                                 "type": "boolean"
                               }
-                            ]
                           ]
                         }
                       },
@@ -16019,7 +16013,7 @@
                   "description": "Secondary GIDS to apply to file ownership"
                 },
                 "Permissions": {
-                  "type": "object",
+                  "type": "number",
                   "description": "The unix file permissions ( in number format) to apply",
                   "default": 755
                 }
@@ -18714,17 +18708,13 @@
             },
             "DNSSupport": {
               "anyOf": [
-                [
                   {
                     "type": "string"
-                  }
-                ],
-                [
+                  },
                   {
                     "type": "boolean"
                   }
-                ]
-              ],
+                ],
               "description": "Configure a private DNS zone for the serivces offerred by the endpoint",
               "default": "UseNetworkConfig",
               "enum": [
@@ -18768,7 +18758,7 @@
                   "description": "The testing profiles to apply to the component"
                 },
                 "Network": {
-                  "type": "object",
+                  "type": "string",
                   "description": "The network profile for the gateway",
                   "default": "default"
                 }
@@ -23921,7 +23911,7 @@
                   "description": "A list of external entities to share the service with"
                 },
                 "ApprovalRequired": {
-                  "type": "object",
+                  "type": "boolean",
                   "description": "Manual approval required for the service to be consumed",
                   "default": true
                 }
@@ -24889,7 +24879,7 @@
                   "description": "The BGP ASN ( Autonomous system ) Id of the router"
                 },
                 "ECMP": {
-                  "type": "object",
+                  "type": "boolean",
                   "description": "Enabled Equal Cost multipath routing where supported",
                   "default": true
                 }
@@ -25431,7 +25421,7 @@
               "type": "object"
             },
             "aws:Engine": {
-              "type": "object",
+              "type": "string",
               "default": "aws:secretsmanager",
               "enum": [
                 "secretsmanager"
@@ -26883,7 +26873,6 @@
                         "ip",
                         "key",
                         "port",
-                        "username",
                         "password",
                         "region"
                       ]
@@ -28026,16 +28015,12 @@
           "properties": {
             "MFA": {
               "anyOf": [
-                [
                   {
                     "type": "boolean"
-                  }
-                ],
-                [
+                  },
                   {
                     "type": "string"
                   }
-                ]
               ],
               "default": false,
               "enum": [
@@ -28394,16 +28379,12 @@
               "properties": {
                 "UserDeviceTracking": {
                   "anyOf": [
-                    [
                       {
                         "type": "boolean"
-                      }
-                    ],
-                    [
+                      },
                       {
                         "type": "string"
                       }
-                    ]
                   ],
                   "default": "optional",
                   "enum": [
@@ -29389,7 +29370,7 @@
                   ]
                 },
                 "LinkAttribute": {
-                  "type": "object",
+                  "type": "string",
                   "description": "The link targets attribute which defines the url",
                   "default": "URL"
                 },
