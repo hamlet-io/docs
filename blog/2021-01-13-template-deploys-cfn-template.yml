@@ -1,0 +1,207 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Glue Database, Tables, Crawlers, Crawler IAM Role for Resource Tracking'
+Parameters:
+  DataBucketName:
+    Type: String
+    Description: 'S3 bucket that holds data for providers'
+  DataBucketRootPrefix:
+    Type: String
+    Default: 'the root prefix in the data bucket to look for data'
+  GlueDatabaseName:
+    Type: String
+    Description: 'Name of Glue Database'
+    Default: 'metering-db'
+Resources:
+  GlueDatabase:
+    Type: AWS::Glue::Database
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      DatabaseInput:
+        Description: 'Time Tracking Data Catalog'
+        Name: !Ref GlueDatabaseName
+  UpworkProviderTable:
+    Type: AWS::Glue::Table
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      DatabaseName: !Ref GlueDatabase
+      TableInput:
+        Name: upwork
+        Description: Upwork time and financial reports
+        TableType: EXTERNAL_TABLE
+        Parameters: { 'classification': 'json', 'compressionType': 'none' }
+        PartitionKeys:
+          - Name: year
+            Type: int
+          - Name: month
+            Type: int
+        StorageDescriptor:
+          OutputFormat: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+          Columns:
+            - Name: activity_id
+              Type: string
+            - Name: worked_on
+              Type: date
+            - Name: provisioned_units
+              Type: float
+            - Name: cost_amount
+              Type: float
+            - Name: task_code
+              Type: string
+            - Name: project_code
+              Type: string
+            - Name: resource_type
+              Type: string
+            - Name: provider_account_name
+              Type: string
+            - Name: provider_account_alias
+              Type: string
+            - Name: provider_name
+              Type: string
+            - Name: provider_alias
+              Type: string
+            - Name: provider_charge_amount
+              Type: string
+            - Name: provider_contract_title
+              Type: string
+            - Name: provider_team_name
+              Type: string
+            - Name: provider_team_id
+              Type: string
+          InputFormat: org.apache.hadoop.mapred.TextInputFormat
+          Location:
+            !Join [
+              '/',
+              [
+                's3:/',
+                !Ref 'DataBucketName',
+                !Ref 'DataBucketRootPrefix',
+                'task/upwork/v2/processed/reports'
+              ]
+            ]
+          SerdeInfo:
+            SerializationLibrary: org.openx.data.jsonserde.JsonSerDe
+  GithubProviderTable:
+    Type: AWS::Glue::Table
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      DatabaseName: !Ref GlueDatabase
+      TableInput:
+        Name: github-issues
+        Description: Github tasks reports
+        TableType: EXTERNAL_TABLE
+        Parameters: { 'classification': 'json', 'compressionType': 'none' }
+        PartitionKeys:
+          - Name: project
+            Type: string
+          - Name: repo
+            Type: string
+        StorageDescriptor:
+          OutputFormat: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+          Columns:
+            - Name: task_code
+              Type: string
+            - Name: task_id
+              Type: string
+            - Name: task_number
+              Type: string
+            - Name: task_repository
+              Type: string
+            - Name: task_url
+              Type: string
+            - Name: task_assignees
+              Type: array<string>
+            - Name: task_milestone
+              Type: string
+            - Name: task_created_by
+              Type: string
+            - Name: task_tags
+              Type: array<string>
+            - Name: task_title
+              Type: string
+            - Name: task_closed_at
+              Type: date
+            - Name: task_created_at
+              Type: date
+            - Name: project_code
+              Type: string
+            - Name: provider_name
+              Type: string
+            - Name: provider_alias
+              Type: string
+          InputFormat: org.apache.hadoop.mapred.TextInputFormat
+          Location:
+            !Join [
+              '/',
+              [
+                's3:/',
+                !Ref 'DataBucketName',
+                !Ref 'DataBucketRootPrefix',
+                'task/github/v2/processed/data'
+              ]
+            ]
+          SerdeInfo:
+            SerializationLibrary: org.openx.data.jsonserde.JsonSerDe
+
+  CrawlerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - glue.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole
+      Policies:
+        - PolicyName: MeteringCrawlerPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource: '*'
+  UpworkDataCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: !Sub
+              - ${GlueDb}-upwork-crawler
+              - { GlueDb: !Ref GlueDatabaseName }
+      Role: !GetAtt 'CrawlerRole.Arn'
+      Targets:
+        CatalogTargets:
+          - DatabaseName: !Ref GlueDatabase
+            Tables:
+              - !Ref UpworkProviderTable
+      SchemaChangePolicy:
+        UpdateBehavior: 'UPDATE_IN_DATABASE'
+        DeleteBehavior: 'LOG'
+      Configuration: '{"Version":1.0,"CrawlerOutput":{"Partitions":{"AddOrUpdateBehavior":"InheritFromTable"},"Tables":{"AddOrUpdateBehavior":"MergeNewColumns"}}}'
+  GithubDataCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: !Sub
+        - ${GlueDb}-github-crawler
+        - { GlueDb: !Ref GlueDatabaseName }
+      Role: !GetAtt 'CrawlerRole.Arn'
+      Targets:
+        CatalogTargets:
+          - DatabaseName: !Ref GlueDatabase
+            Tables:
+              - !Ref GithubProviderTable
+      SchemaChangePolicy:
+        UpdateBehavior: 'UPDATE_IN_DATABASE'
+        DeleteBehavior: 'LOG'
+      Configuration: '{"Version":1.0,"CrawlerOutput":{"Partitions":{"AddOrUpdateBehavior":"InheritFromTable"},"Tables":{"AddOrUpdateBehavior":"MergeNewColumns"}}}'
+Outputs:
+  GlueDatabaseExport:
+    Description: 'Glue Data Catalog for Time Tracking'
+    Value: !Ref GlueDatabase
+    Export:
+      Name: !Join ['-', [!Ref 'AWS::StackName', 'GlueDatabase']]
