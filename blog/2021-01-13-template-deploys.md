@@ -148,7 +148,7 @@ Lets see what this looks like in hamlet:
     echo '{}' > root.json
 
     ## Create our tenant
-    hamlet generate cmdb tenant --tenant-id bigCorp --default-region ap-southeast-2
+    hamlet generate cmdb tenant --tenant-id myHamlet --default-region ap-southeast-2
 
     ## Add an Account - If you are following along update the account id to a real AWS account
     ( cd accounts && hamlet generate cmdb account --account-id dev01 --account-type aws --aws-account-id 1234567890 )
@@ -330,7 +330,7 @@ Lets see what this looks like in hamlet:
 7. Now we can clean up this deployment
 
     ```bash
-    hamlet deploy run-deployments -m stop
+    hamlet deploy run-deployments -m stop --no-refresh-outputs
     ```
 
 So that's a rundown on the template component and how you could use it to deploy resources into AWS which aren't part of our standard Hamlet components. This gives you the full access to all resources available to CloudFormation with the contextual information provided by Hamlet.
