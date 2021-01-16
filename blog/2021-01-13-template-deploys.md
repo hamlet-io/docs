@@ -35,7 +35,7 @@ The overall process is something like this
 
 During the development of this reporting process once of the developers in the team had created a cloudformation template that they used to create the catalog. As someone looking after Cloud Deployments for the team this was great, I could see what they had already discovered, review the template and see what is required to get this going in Production. Working in hamlet we like to make a library of reusable components which capture the gotchas, recommendations and workarounds required to deploy a set of resources.
 
-So let's have a look at [template](2021-01-13-template-deploys-cfn-template.yml) and see what would be required to make this into a component.
+So let's have a look at [template](https://github.com/hamlet-io/docs-support/blob/v1.0.0/glue_cfn/glue.yml) and see what would be required to make this into a component.
 
 First, lets have a look at the core resource in the template the `AWS::Glue::Table` the table is the core piece of the Glue Data Catalog with most of the other resources providing support to this Table
 
@@ -153,7 +153,7 @@ Lets see what this looks like in hamlet:
     ## Create our tenant
     hamlet generate cmdb tenant --tenant-id bigCorp
 
-    ## Add an Account
+    ## Add an Account - If you are following along update the account id to a real AWS account
     cd accounts && hamlet generate cmdb account --account-id dev01 --account-type aws --aws-account-id 1234567890
     export ACCOUNT=dev01
 
@@ -187,6 +187,12 @@ Lets see what this looks like in hamlet:
                                     "TemplateOutputKey" : "GlueDatabaseExport",
                                     "AttributeType" : "name"
                                 }
+                            },
+                            "Image" : {
+                                "Source" : "url",
+                                "UrlSource" : {
+                                    "Url" : "https://github.com/hamlet-io/docs-support/blob/v1.0.0/glue_cfn/glue.yml"
+                                }
                             }
                         }
                     }
@@ -199,9 +205,10 @@ Lets see what this looks like in hamlet:
 
     So here is the template component and in that we have configured the following:
 
-    - we've set the name of template file which will be in our zip file  as the RootFile
+    - Name of template file - we set this to allow for working with nested templates or a package of cloudformation templates as a zip
     - The Attributes map the Outputs from the template into our hamlet state as attributes
-    - We've set an extension which will be used to provide the parameters
+    - Set an extension which will be used to provide the parameters
+    - Instead of using a registry image we are going to pull the template file from a Url. Hamlet also supports providing the templates as images which can be released through environments
 
 3. Next we add our extension, in the same folder add a new file called `fragment_glue.ftl` and add the following
 
@@ -226,9 +233,9 @@ Lets see what this looks like in hamlet:
     We are using a hamlet extension here which allows you to dynamically create configuration for the component. In this extension we are doing the following:
 
     - To make the GlueDatabaseName unique we get the FullName of the occurrence this allows us to provide a standard name which will be unique to this deployment
-    - We are using _context.DefaultEnvironment to find a environment setting called APPDATA_BUCKET. Hamlet deploys a series of baseline services which perform common utilities and functions. The APPDATA_BUCKET provides a general purpose datastore that applications can use.
+    - Using _context.DefaultEnvironment to find a environment setting called APPDATA_BUCKET. Hamlet deploys a series of baseline services which perform common utilities and functions. The APPDATA_BUCKET provides a general purpose datastore that applications can use.
 
-4. Now lets run our deployment to deploy the db
+4. Now lets run our deployment
 
     :::caution
     You will need access to the AWS account you specified in step 1 for this to run. Make sure to cleanup the deployment when you are done
