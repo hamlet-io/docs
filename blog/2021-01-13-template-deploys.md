@@ -33,11 +33,11 @@ The overall process is something like this
     athena-->|runs query against data|s3
 `}/>
 
-During the development of this reporting process once of the developers in the team had created a cloudformation template that they used to create the catalog. As someone looking after Cloud Deployments for the team this was great, I could see what they had already discovered, review the template and see what is required to get this going in Production. Working in hamlet we like to make a library of reusable components which capture the gotchas, recommendations and workarounds required to deploy a set of resources.
+During the development of this reporting process one of the developers in the team created a CloudFormation template which deployed the data catalog. As someone looking after Cloud Deployments for the team this was great, I could see what they had already discovered, review the template and see what is required to get this going in production.
 
-So let's have a look at [template](https://github.com/hamlet-io/docs-support/blob/v1.0.0/glue_cfn/glue.yml) and see what would be required to make this into a component.
+Working in hamlet we like to make a library of reusable components which capture the gotchas, recommendations and workarounds required to deploy a set of resources. So let's have a look at [template](https://github.com/hamlet-io/docs-support/blob/v1.0.0/glue_cfn/glue.yml) and see what would be required to make this into a component.
 
-First, lets have a look at the core resource in the template the `AWS::Glue::Table` the table is the core piece of the Glue Data Catalog with most of the other resources providing support to this Table
+Looking through the template, the `AWS::Glue::Table` the table is the core piece of functionality with most of the other resources providing support to this table
 
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
@@ -122,9 +122,9 @@ Our Hamlet infrastructure usually provides the base level platform where we depl
 
 This is where the template component comes in. The template component has some useful features to integrate your template resources with the rest of your hamlet deployment:
 
-- The template is provided to hamlet through our zip file s3 registry, you nominate a root template file which hamlet calls from inside of a nested Cloudformation Template. This means you can provide your whole library of templates as a single image and then use instances to select the appropriate template to deploy
-- You can provide template parameter values through solution level configuration and extensions. This means you can generate dynamic parameter values using, links, environment details and anything else available in hamlet. Depending on what's in your template, hamlet can look after creating multiple instances of your template including deploying the same template into your account multiple times
-- We capture the outputs provided by your template and include them as part of the state of the template component. This means other components in your solution can access details about the resources in your template allowing you to still use our standardised best practice components alongside your template
+- The template is provided to hamlet through our zip file s3 registry, you nominate a root template file which hamlet calls from inside of a nested CloudFormation Template. This means you can provide your whole library of templates as a single image and then use instances to select the appropriate template to deploy
+- You can provide template parameter values through solution level configuration and extensions. This means you can generate dynamic parameter values using links, environment details and anything else available in hamlet. Depending on what's in your template, hamlet can look after creating multiple instances of your template.
+- We capture the outputs provided by the template and include them as part of the state of the component. This means other components can access details about the resources in your template allowing you to still use our standardised best practice components alongside your template
 
 ## Deploying through Hamlet
 
@@ -147,20 +147,23 @@ Lets see what this looks like in hamlet:
     ## Create our workspace
     echo '{}' > root.json
 
-    ## Creating a basic product with no new deployments
-    hamlet generate product base --product-id reportingtool --solution-id app --environment-id development
-
     ## Create our tenant
-    hamlet generate cmdb tenant --tenant-id bigCorp
+    hamlet generate cmdb tenant --tenant-id bigCorp --default-region ap-southeast-2
 
     ## Add an Account - If you are following along update the account id to a real AWS account
-    cd accounts && hamlet generate cmdb account --account-id dev01 --account-type aws --aws-account-id 1234567890
+    ( cd accounts && hamlet generate cmdb account --account-id dev01 --account-type aws --aws-account-id 1234567890 )
     export ACCOUNT=dev01
 
-    # Head into our segment
-    cd ../reportingtool/config/solutionsv2/development/default/
+    # Setup the registry to store images
+    ( cd accounts/dev01/config/ && hamlet entrance invoke-entrance -e deployment -l account -u s3 && hamlet manage stack -l account -u s3 )
 
-    ## Confirm deployments are working
+    ## Creating a basic product with no new deployments
+    hamlet generate product base --product-id reportingtool --solution-id app --environment-id dev
+
+    # Head into our segment
+    cd reportingtool/config/solutionsv2/dev/default/
+
+    ## Check our deployments are working ok
     hamlet deploy list-deployments
 
     | DeploymentGroup   | DeploymentUnit   | DeploymentProvider   |
@@ -171,7 +174,8 @@ Lets see what this looks like in hamlet:
 
 2. Now let's add the component into our solution. Add the following to `solution.json` in the current hamlet directory
 
-    ```json
+    ```bash
+    cat << EOF >> solution.json
     {
         "Tiers" : {
             "db" : {
@@ -191,7 +195,7 @@ Lets see what this looks like in hamlet:
                             "Image" : {
                                 "Source" : "url",
                                 "UrlSource" : {
-                                    "Url" : "https://github.com/hamlet-io/docs-support/blob/v1.0.0/glue_cfn/glue.yml"
+                                    "Url" : "https://raw.githubusercontent.com/hamlet-io/docs-support/v1.0.0/glue_cfn/glue.yml"
                                 }
                             }
                         }
@@ -200,19 +204,20 @@ Lets see what this looks like in hamlet:
             }
         }
     }
-
+    EOF
     ```
 
     So here is the template component and in that we have configured the following:
 
-    - Name of template file - we set this to allow for working with nested templates or a package of cloudformation templates as a zip
+    - Name of template file - we set this to allow for working with nested templates or a package of CloudFormation templates as a zip
     - The Attributes map the Outputs from the template into our hamlet state as attributes
     - Set an extension which will be used to provide the parameters
     - Instead of using a registry image we are going to pull the template file from a Url. Hamlet also supports providing the templates as images which can be released through environments
 
 3. Next we add our extension, in the same folder add a new file called `fragment_glue.ftl` and add the following
 
-    ```freemarker
+    ```bash
+    cat << EOF >> fragment_glue.ftl
     [#case "_glue"]
 
         [#assign glueDbName = formatName(occurrence.Core.FullName, "gluedb")]
@@ -228,6 +233,7 @@ Lets see what this looks like in hamlet:
             upperCase=false
         /]
         [#break]
+    EOF
     ```
 
     We are using a hamlet extension here which allows you to dynamically create configuration for the component. In this extension we are doing the following:
@@ -254,14 +260,14 @@ Lets see what this looks like in hamlet:
 5. Once that has completed lets have a look at what was deployed
 
     ```bash
-    aws cloudformation describe-stack-resources --stack-name reportingtool-development-app-glue-db
+    aws cloudformation describe-stack-resources --stack-name reportingtool-dev-app-glue-db
     {
         "StackResources": [
             {
-                "StackName": "reportingtool-development-app-glue-db",
-                "StackId": "arn:aws:cloudformation:ap-southeast-2:1234567890:stack/reportingtool-development-app-glue-db/928bdfa0-561e-11eb-a383-0257db5ecd9a",
+                "StackName": "reportingtool-dev-app-glue-db",
+                "StackId": "arn:aws:cloudformation:ap-southeast-2:1234567890:stack/reportingtool-dev-app-glue-db/928bdfa0-561e-11eb-a383-0257db5ecd9a",
                 "LogicalResourceId": "cfnstackXdbXglue",
-                "PhysicalResourceId": "arn:aws:cloudformation:ap-southeast-2:1234567890:stack/reportingtool-development-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI/94fb8010-561e-11eb-98e9-02e9bfdb18d2",
+                "PhysicalResourceId": "arn:aws:cloudformation:ap-southeast-2:1234567890:stack/reportingtool-dev-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI/94fb8010-561e-11eb-98e9-02e9bfdb18d2",
                 "ResourceType": "AWS::CloudFormation::Stack",
                 "Timestamp": "2021-01-15T03:58:58.658Z",
                 "ResourceStatus": "UPDATE_COMPLETE",
@@ -276,12 +282,12 @@ Lets see what this looks like in hamlet:
     The stack that was created has one resource, a `AWS::CloudFormation::Stack` which wraps the input and output we define in hamlet over the user defined template. Lets have a look at the nested stack
 
     ```bash
-    aws cloudformation describe-stacks --stack-name reportingtool-development-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI
+    aws CloudFormation describe-stacks --stack-name reportingtool-development-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI
     {
         "Stacks": [
             {
-                "StackId": "arn:aws:cloudformation:ap-southeast-2:1234567890:stack/reportingtool-development-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI/94fb8010-561e-11eb-98e9-02e9bfdb18d2",
-                "StackName": "reportingtool-development-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI",
+                "StackId": "arn:aws:cloudformation:ap-southeast-2:1234567890:stack/reportingtool-dev-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI/94fb8010-561e-11eb-98e9-02e9bfdb18d2",
+                "StackName": "reportingtool-dev-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI",
                 "Description": "Glue Database, Tables, Crawlers, Crawler IAM Role for Resource Tracking",
                 "Parameters": [
                     {
@@ -296,9 +302,9 @@ Lets see what this looks like in hamlet:
                 "Outputs": [
                     {
                         "OutputKey": "GlueDatabaseExport",
-                        "OutputValue": "reportingtool-development-database-glue-gluedb",
+                        "OutputValue": "reportingtool-dev-database-glue-gluedb",
                         "Description": "Glue Data Catalog for Time Tracking",
-                        "ExportName": "reportingtool-development-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI-GlueDatabase"
+                        "ExportName": "reportingtool-dev-app-glue-db-cfnstackXdbXglue-AU0VNUAAX5JI-GlueDatabase"
                     }
                 ]
             ...
@@ -306,7 +312,7 @@ Lets see what this looks like in hamlet:
     }
     ```
 
-    Here we can see that the parameters defined in our cloudformation template have been filled in, the values provided are based on the segment we are deploying from. If I wanted to deploy this to another environment I would just add the environment through hamlet and thanks to our extension the values for the new environment would be updated to align with the new environment and avoid potential conflicts if they are deployed to the same account.
+    Here we can see that the parameters defined in our CloudFormation template have been filled in, the values provided are based on the segment we are deploying from. If I wanted to deploy this to another environment I would just add the environment through hamlet and thanks to our extension the values for the new environment would be updated to align with the new environment and avoid potential conflicts if they are deployed to the same account.
 
 6. Like any other hamlet component templates provide attributes based on their state to other components
 
@@ -315,7 +321,7 @@ Lets see what this looks like in hamlet:
     ╒════╤═══════╤════════════════════════════════════════════════╕
     │    │ Key   │ Value                                          │
     ╞════╪═══════╪════════════════════════════════════════════════╡
-    │  0 │ NAME  │ reportingtool-development-database-glue-gluedb │
+    │  0 │ NAME  │ reportingtool-dev-database-glue-gluedb │
     ╘════╧═══════╧════════════════════════════════════════════════╛
     ```
 
