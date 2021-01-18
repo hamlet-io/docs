@@ -139,10 +139,10 @@
               "additionalProperties": false,
               "properties": {
                 "BlobRetentionDays": {
-                  "type": "number"
+                  "type": "object"
                 },
                 "BlobAutoSnapshots": {
-                  "type": "boolean",
+                  "type": "object",
                   "default": false
                 }
               }
@@ -224,16 +224,13 @@
               "additionalProperties": false,
               "properties": {
                 "DirectoryService": {
-                  "type": "string",
+                  "type": "object",
                   "description": "The directory service that is used for authentication. 'None' or 'AADDS'."
                 }
               }
             },
             "azure:AdministratorGroups": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
+              "type": "object",
               "description": "The set of administrator groups controlling access to keyvault",
               "default": [
                 "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3"
@@ -1081,6 +1078,13 @@
                 }
               }
             },
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
+            },
             "Style": {
               "type": "string",
               "description": "TODO(mfl): Think this can be removed"
@@ -1535,10 +1539,10 @@
               "additionalProperties": false,
               "properties": {
                 "BlobRetentionDays": {
-                  "type": "number"
+                  "type": "object"
                 },
                 "BlobAutoSnapshots": {
-                  "type": "boolean",
+                  "type": "object",
                   "default": false
                 }
               }
@@ -1620,11 +1624,11 @@
               "additionalProperties": false,
               "properties": {
                 "DirectoryService": {
-                  "type": "string",
+                  "type": "object",
                   "description": "The directory service that is used for authentication. 'None' or 'AADDS'."
                 },
                 "PublicAccess": {
-                  "type": "string",
+                  "type": "object",
                   "default": [
                     "None"
                   ],
@@ -3228,10 +3232,10 @@
               "description": "The contact for the API Management Service",
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Email": {
-                  "type": "string"
+                  "type": "object"
                 }
               }
             }
@@ -5848,17 +5852,17 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
                     "MinCapacity": {
-                      "type": "number",
+                      "type": "object",
                       "description": "The minimum capacity of the scaling profile",
                       "default": 1
                     },
                     "MaxCapacity": {
-                      "type": "number",
+                      "type": "object",
                       "description": "The maximum capacity of the scaling profile",
                       "default": 2
                     },
                     "DefaultCapacity": {
-                      "type": "number",
+                      "type": "object",
                       "description": "The default capacity of the scaling profile",
                       "default": 1
                     },
@@ -5868,37 +5872,37 @@
                         "^[A-Za-z_][A-Za-z0-9_]*$": {
                           "properties": {
                             "MetricName": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "TimeGrain": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "Statistic": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "TimeWindow": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "TimeAggregation": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "Operator": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "Threshold": {
-                              "type": "number"
+                              "type": "object"
                             },
                             "Direction": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "ActionType": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "Cooldown": {
-                              "type": "string"
+                              "type": "object"
                             },
                             "ActionValue": {
-                              "type": "number"
+                              "type": "object"
                             }
                           },
                           "additionalProperties": false,
@@ -7343,11 +7347,11 @@
               "additionalProperties": false,
               "properties": {
                 "Sku": {
-                  "type": "string",
+                  "type": "object",
                   "default": "default"
                 },
                 "VMImage": {
-                  "type": "string",
+                  "type": "object",
                   "default": "default"
                 },
                 "Scaling": {
@@ -7356,17 +7360,17 @@
                     "^[A-Za-z_][A-Za-z0-9_]*$": {
                       "properties": {
                         "MinCapacity": {
-                          "type": "number",
+                          "type": "object",
                           "description": "The minimum capacity of the scaling profile",
                           "default": 1
                         },
                         "MaxCapacity": {
-                          "type": "number",
+                          "type": "object",
                           "description": "The maximum capacity of the scaling profile",
                           "default": 2
                         },
                         "DefaultCapacity": {
-                          "type": "number",
+                          "type": "object",
                           "description": "The default capacity of the scaling profile",
                           "default": 1
                         },
@@ -7376,37 +7380,37 @@
                             "^[A-Za-z_][A-Za-z0-9_]*$": {
                               "properties": {
                                 "MetricName": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "TimeGrain": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "Statistic": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "TimeWindow": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "TimeAggregation": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "Operator": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "Threshold": {
-                                  "type": "number"
+                                  "type": "object"
                                 },
                                 "Direction": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "ActionType": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "Cooldown": {
-                                  "type": "string"
+                                  "type": "object"
                                 },
                                 "ActionValue": {
-                                  "type": "number"
+                                  "type": "object"
                                 }
                               },
                               "additionalProperties": false,
@@ -12307,21 +12311,15 @@
                         },
                         "Value": {
                           "anyOf": [
-                            [
-                              {
-                                "type": "string"
-                              }
-                            ],
-                            [
-                              {
-                                "type": "number"
-                              }
-                            ],
-                            [
-                              {
-                                "type": "boolean"
-                              }
-                            ]
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
                           ]
                         }
                       },
@@ -12464,7 +12462,7 @@
               "type": "object"
             },
             "azure:AutoGrow": {
-              "type": "string",
+              "type": "object",
               "description": "Allow Database storage to grow automatically as the capacity limit is reached.",
               "default": "Disabled",
               "enum": [
@@ -12478,10 +12476,10 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
                     "Name": {
-                      "type": "string"
+                      "type": "object"
                     },
                     "Setting": {
-                      "type": "string",
+                      "type": "object",
                       "description": "The desired setting label/key for this Secret's value i.e DB_CONNECTION_STRING."
                     }
                   },
@@ -12495,7 +12493,7 @@
               "description": "Configuration for Secrets that are defined in Settings.",
               "properties": {
                 "Prefix": {
-                  "type": "string",
+                  "type": "object",
                   "description": "Settings with this prefix and ending in _SECRET will be considered a Secret."
                 }
               }
@@ -16908,6 +16906,124 @@
                 }
               }
             },
+            "Alerts": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Namespace": {
+                      "type": "string"
+                    },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
+                    "Resource": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
+                      "properties": {
+                        "Id": {
+                          "type": "string"
+                        },
+                        "Type": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "Metric": {
+                      "type": "string"
+                    },
+                    "Statistic": {
+                      "type": "string",
+                      "default": "Sum"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Threshold": {
+                      "type": "number",
+                      "default": 1
+                    },
+                    "Severity": {
+                      "type": "string",
+                      "default": "info",
+                      "enum": [
+                        "debug",
+                        "info",
+                        "warn",
+                        "error",
+                        "fatal"
+                      ]
+                    },
+                    "Comparison": {
+                      "type": "string",
+                      "default": "Threshold"
+                    },
+                    "Operator": {
+                      "type": "string",
+                      "default": "GreaterThanOrEqualToThreshold"
+                    },
+                    "Time": {
+                      "type": "number",
+                      "default": 300
+                    },
+                    "Periods": {
+                      "type": "number",
+                      "default": 1
+                    },
+                    "ReportOk": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "MissingData": {
+                      "type": "string",
+                      "default": "notBreaching"
+                    },
+                    "Unit": {
+                      "type": "string",
+                      "default": "Count"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Metric",
+                    "Name"
+                  ]
+                }
+              }
+            },
             "Profiles": {
               "type": "object",
               "additionalProperties": false,
@@ -16942,6 +17058,10 @@
                 },
                 "Security": {
                   "type": "string",
+                  "default": "default"
+                },
+                "Alert": {
+                  "type": "object",
                   "default": "default"
                 }
               }
@@ -18724,16 +18844,12 @@
             },
             "DNSSupport": {
               "anyOf": [
-                [
-                  {
-                    "type": "string"
-                  }
-                ],
-                [
-                  {
-                    "type": "boolean"
-                  }
-                ]
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "boolean"
+                }
               ],
               "description": "Configure a private DNS zone for the serivces offerred by the endpoint",
               "default": "UseNetworkConfig",
@@ -27109,6 +27225,40 @@
                 }
               }
             },
+            "Image": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Control the source of the image that is used for the function",
+              "properties": {
+                "Source": {
+                  "type": "string",
+                  "description": "The source of the image - registry is the hamlet registry",
+                  "default": "registry",
+                  "enum": [
+                    "registry",
+                    "url"
+                  ]
+                },
+                "UrlSource": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "Url Source specific Configuration",
+                  "properties": {
+                    "Url": {
+                      "type": "string",
+                      "description": "The Url to the lambda zip file"
+                    },
+                    "ImageHash": {
+                      "type": "string",
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "Source"
+              ]
+            },
             "Profiles": {
               "type": "object",
               "additionalProperties": false,
@@ -28108,16 +28258,12 @@
           "properties": {
             "MFA": {
               "anyOf": [
-                [
-                  {
-                    "type": "boolean"
-                  }
-                ],
-                [
-                  {
-                    "type": "string"
-                  }
-                ]
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
               ],
               "default": false,
               "enum": [
@@ -28476,16 +28622,12 @@
               "properties": {
                 "UserDeviceTracking": {
                   "anyOf": [
-                    [
-                      {
-                        "type": "boolean"
-                      }
-                    ],
-                    [
-                      {
-                        "type": "string"
-                      }
-                    ]
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "string"
+                    }
                   ],
                   "default": "optional",
                   "enum": [
@@ -28978,15 +29120,12 @@
               "type": "object"
             },
             "azure:AllowOtherTenants": {
-              "type": "boolean",
+              "type": "object",
               "description": "Application can be used by other Azure AD Tenants.",
               "default": false
             },
             "azure:ReplyUrls": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
+              "type": "object",
               "description": "URI's to which Azure AD will redirect in response to an OAuth 2.0 Request"
             }
           },
@@ -29317,7 +29456,7 @@
               "type": "object"
             },
             "azure:Engine": {
-              "type": "string",
+              "type": "object",
               "description": "The authentication/identity provider type. Values are specific to API Management Identity Provider resource..",
               "enum": [
                 "facebook",

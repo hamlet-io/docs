@@ -1246,58 +1246,42 @@
                 },
                 "HealthyThreshold": {
                   "anyOf": [
-                    [
-                      {
-                        "type": "number"
-                      }
-                    ],
-                    [
-                      {
-                        "type": "string"
-                      }
-                    ]
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
                   ]
                 },
                 "UnhealthyThreshold": {
                   "anyOf": [
-                    [
-                      {
-                        "type": "number"
-                      }
-                    ],
-                    [
-                      {
-                        "type": "string"
-                      }
-                    ]
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
                   ]
                 },
                 "Interval": {
                   "anyOf": [
-                    [
-                      {
-                        "type": "number"
-                      }
-                    ],
-                    [
-                      {
-                        "type": "string"
-                      }
-                    ]
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
                   ]
                 },
                 "Timeout": {
                   "anyOf": [
-                    [
-                      {
-                        "type": "number"
-                      }
-                    ],
-                    [
-                      {
-                        "type": "string"
-                      }
-                    ]
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
                   ]
                 },
                 "SuccessCodes": {
@@ -2315,7 +2299,7 @@
               "additionalProperties": false,
               "properties": {
                 "Name": {
-                  "type": "string",
+                  "type": "object",
                   "enum": [
                     "Developer",
                     "Standard",
@@ -2325,7 +2309,7 @@
                   ]
                 },
                 "Capacity": {
-                  "type": "number"
+                  "type": "object"
                 }
               }
             },
@@ -2334,17 +2318,17 @@
               "additionalProperties": false,
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Tier": {
-                  "type": "string",
+                  "type": "object",
                   "enum": [
                     "Standard",
                     "Basic"
                   ]
                 },
                 "Capacity": {
-                  "type": "number",
+                  "type": "object",
                   "default": 1
                 }
               }
@@ -2354,30 +2338,19 @@
               "additionalProperties": false,
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Tier": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Capacity": {
-                  "type": "number"
+                  "type": "object"
                 },
                 "Size": {
-                  "anyOf": [
-                    [
-                      {
-                        "type": "number"
-                      }
-                    ],
-                    [
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  ]
+                  "type": "object"
                 },
                 "Family": {
-                  "type": "string"
+                  "type": "object"
                 }
               }
             },
@@ -2386,13 +2359,13 @@
               "additionalProperties": false,
               "properties": {
                 "Kind": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Tier": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Replication": {
-                  "type": "string"
+                  "type": "object"
                 }
               }
             },
@@ -2401,30 +2374,19 @@
               "additionalProperties": false,
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Tier": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Capacity": {
-                  "type": "number"
+                  "type": "object"
                 },
                 "Size": {
-                  "anyOf": [
-                    [
-                      {
-                        "type": "number"
-                      }
-                    ],
-                    [
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  ]
+                  "type": "object"
                 },
                 "Family": {
-                  "type": "string"
+                  "type": "object"
                 }
               }
             },
@@ -2433,10 +2395,10 @@
               "additionalProperties": false,
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Family": {
-                  "type": "string"
+                  "type": "object"
                 }
               }
             },
@@ -2445,7 +2407,7 @@
               "additionalProperties": false,
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "type": "object"
                 }
               }
             },
@@ -2454,13 +2416,13 @@
               "additionalProperties": false,
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Tier": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Capacity": {
-                  "type": "number"
+                  "type": "object"
                 }
               }
             },
@@ -2469,13 +2431,13 @@
               "additionalProperties": false,
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Tier": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Capacity": {
-                  "type": "number"
+                  "type": "object"
                 }
               }
             }
@@ -2495,16 +2457,16 @@
               "description": "The component type that the VMImage configuration belongs to.",
               "properties": {
                 "Publisher": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Offering": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "Image": {
-                  "type": "string"
+                  "type": "object"
                 },
                 "LicenseType": {
-                  "type": "string"
+                  "type": "object"
                 }
               },
               "required": [
