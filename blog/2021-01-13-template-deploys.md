@@ -35,7 +35,7 @@ The overall process is something like this
 
 During the development of this reporting process one of the developers in the team created a CloudFormation template which deployed the data catalog. As someone looking after Cloud Deployments for the team this was great, I could see what they had already discovered, review the template and see what is required to get this going in production.
 
-Working in hamlet we like to make a library of reusable components which capture the gotchas, recommendations and workarounds required to deploy a set of resources. So let's have a look at [template](https://github.com/hamlet-io/docs-support/blob/v1.0.0/glue_cfn/glue.yml) and see what would be required to make this into a component.
+Working in hamlet we like to make a library of reusable components which capture the gotchas, recommendations and workarounds required to deploy a set of resources. So let's have a look at the [template](https://github.com/hamlet-io/docs-support/blob/v1.0.0/glue_cfn/glue.yml) and see what would be required to make this into a component.
 
 Looking through the template, the `AWS::Glue::Table` the table is the core piece of functionality with most of the other resources providing support to this table
 
@@ -116,7 +116,7 @@ Resources:
 ...
 ```
 
-On the first look at the table one thing stands out, there are specific configuration parameters which describe the product listed in the columns. So these values aren't really something we could make generic, we could add support in our component to create each of the columns but that would embed some of the product specific configuration into our infrastructure. During development these are likely to change quite often and be different across changes made to the product.
+One thing that stands out on initial review is that the resource exposes a number of parameters that determine the type of content the table will hold. This configuration cannot be made generic because it is fundamental to the way the resource behaves. We could add support for different values within the component itself, but this would mean embedding product-specific configuration logic inside of our infrastructure.
 
 Our Hamlet infrastructure usually provides the base level platform where we deploy code artefacts which are executed by the platform. This doesn't quite fit that model. So instead of turning this template into a generic component what if we could treat this template as a code artefact, this way changes are promoted through environments and during the promotion process we re-apply the template with the latest updates.
 
