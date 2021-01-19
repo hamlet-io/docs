@@ -248,7 +248,11 @@ Lets see what this looks like in hamlet:
     - To make the GlueDatabaseName unique we get the FullName of the occurrence this allows us to provide a standard name which will be unique to this deployment
     - Using _context.DefaultEnvironment to find a environment setting called APPDATA_BUCKET. Hamlet deploys a series of baseline services which perform common utilities and functions. The APPDATA_BUCKET provides a general purpose datastore that applications can use.
 
-4. Now lets run our deployment
+4. Now lets run our deployment which will generate the required outputs and execute them in the AWS account
+
+    ```bash
+    hamlet deploy run-deployments -u baseline -u glue-db
+    ```
 
     :::caution
     You will need access to the AWS account you specified in step 1 for this to run. Make sure to cleanup the deployment when you are done
@@ -257,12 +261,6 @@ Lets see what this looks like in hamlet:
     :::info
     The baseline deployment here is just to setup the the data bucket if you are using a new hamlet
     :::
-
-    ```bash
-    hamlet deploy run-deployments -u baseline -u glue-db
-    ```
-
-    The deployment will run and execute the template in your AWS account
 
 5. Once that has completed lets have a look at what was deployed
 
