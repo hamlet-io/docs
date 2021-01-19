@@ -295,7 +295,7 @@ Lets see what this looks like in hamlet:
 7. Now we can clean up this deployment
 
     :::caution
-    If you receive an error when deleting the baseline S3 buckets. Please empty the bucket and run this command again
+    If you receive an error when deleting the baseline S3 buckets. Please empty the bucket and run these commands again
     :::
 
     ```bash
