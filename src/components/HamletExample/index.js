@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
 import "./styles.css";
