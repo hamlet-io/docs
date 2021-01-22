@@ -211,20 +211,14 @@ function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaul
 }
 
 function HamletDataTables(props) {
-
-  const [referenceData, setReferenceData] = useState([]);
   
   const schemaData = getJsonSchemaData(props.type);
   const references = getJsonSchemaDataTables({data: schemaData, type: props.type});
 
-  useEffect(() => {
-    setReferenceData(references);
-  }, []);
-
   return (
     <React.Fragment>
       {   
-        referenceData.map((reference, idx) => {
+        references.map((reference, idx) => {
           return (
             <div className="item shadow--tl component" key={idx} >
             <div className="ref-row-headers">
