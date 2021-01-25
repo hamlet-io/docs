@@ -1,7 +1,7 @@
 module.exports = {
   title: 'hamlet',
   tagline: 'Opinionated, ConfigFirst DevOps for everyone.',
-  url: 'https://hamlet.io',
+  url: 'https://docs.hamlet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'hamlet', // Usually your GitHub org/user name.
@@ -107,7 +107,7 @@ module.exports = {
           items: [
             {
               label: 'Overview',
-              href: 'https://hamlet.io/docs/developer-guides/index'
+              href: 'https://docs.hamlet.io/docs/developer-guides/index'
             },
             {
               label: 'Docs',

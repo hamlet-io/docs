@@ -69,3 +69,7 @@ git push --set-upstream origin feature-my-feature-branch
 # on Github, create a PR from your fork/feature-branch to upstream/master.
 # make sure you complete any Issue/PR templates provided.
 ```
+
+## Production
+### Deployment
+The production instance of the docs site is hosted on Vercel, do not be confused by the deploy script in package.json. This is not used and is defunct. The publishing to Vercel is directly controlled by changes made to master and picked up by a Vercel app.
