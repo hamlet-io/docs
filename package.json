@@ -28,6 +28,7 @@
     "react-admonitions": "^2.1.0",
     "react-data-table-component": "^6.11.6",
     "react-dom": "^16.14.0",
+    "react-router-dom": "^5.2.0",
     "remark-admonitions": "^1.2.1",
     "styled-components": "^5.2.1",
     "yamljs": "^0.3.0"
