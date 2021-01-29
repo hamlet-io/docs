@@ -11,18 +11,6 @@ import {
 import HamletDataTables from "@site/src/components/DataTables";
 import { schema } from "@site/src/components/HamletJsonSchema";
 
-const routes = [
-  {
-    path: "/reference/attributeset/link",
-  },
-  {
-    path: "/reference/component/baseline",
-  },
-  {
-    path: "/reference/data",
-  },
-];
-
 function HamletRefRouter() {
   return (
     <Router>
@@ -82,7 +70,7 @@ function HamletRefRouter() {
         </div>
         <div className="col col--9">
           <Switch>
-            {routes.map((route, index) => (
+            {Object.keys(schema).map((route, index) => (
               <Route
                 key={index}
                 path="/reference"
