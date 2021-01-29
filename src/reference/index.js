@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Layout from "@theme/Layout";
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,7 +8,6 @@ import {
   useParams
 } from "react-router-dom";
 import HamletDataTables from '@site/src/components/DataTables';
-import { schema } from '@site/src/components/HamletJsonSchema';
 
 const routes = [
   {
@@ -36,41 +34,23 @@ function HamletRefRouter() {
         >
           <ul style={{ listStyleType: "none", padding: 0 }}>
             <h2>Attribute Sets</h2>
-            {
-              Object.keys(schema.attributeset).map(instance => (
-                <React.Fragment>
-                <li>
-                  <Link to={`/reference?type=attributeset&instance=${instance}`}>{instance}</Link>
-                </li>
-                </React.Fragment>
-              ))
-            }
+            <li>
+              <Link to="/reference/attributeset/link">Link</Link>
+            </li>
             <h2>Components</h2> 
-            {
-              Object.keys(schema.component).map(instance => (
-                <React.Fragment>
-                <li>
-                  <Link to={`/reference?type=component&instance=${instance}`}>{instance}</Link>
-                </li>
-                </React.Fragment>
-              ))
-            }
+            <li>
+              <Link to="/reference/component/baseline" >Baseline</Link>
+            </li>
             <h2>Reference Data</h2>
-            {
-              Object.keys(schema.reference).map(instance => (
-                <React.Fragment>
-                <li>
-                  <Link to={`/reference?type=reference&instance=${instance}`}>{instance}</Link>
-                </li>
-                </React.Fragment>
-              ))
-            }
+            <li>
+              <Link to="/reference/data">Reference Data</Link>
+            </li>
           </ul>
         </div>
       </div>
       <Switch>
             {routes.map((route, index) => (
-              <Route key={index} path="/reference" children={<HamletDataTables />} />
+              <Route key={index} path="/reference/:type/:instance" children={<HamletDataTables />} />
             ))}
         </Switch>
     </Router>
