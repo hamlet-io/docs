@@ -23,20 +23,7 @@ module.exports = {
         {
           label: 'reference',
           position: 'left',
-          items: [
-            {
-              label: 'Components',
-              to: 'reference/components',
-            },
-            {
-              label: 'Reference Data',
-              to: 'reference/data',
-            },
-            {
-              label: 'AttributeSets',
-              to: 'reference/attributesets',
-            },
-          ],
+          to: 'reference',
         },
         {to: "blog", label: 'blog', position: 'right'},
         {
