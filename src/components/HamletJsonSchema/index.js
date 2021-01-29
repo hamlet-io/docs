@@ -88,7 +88,7 @@ import globaldb from "@site/static/schema/latest/blueprint/schema-component-glob
 import lambda from "@site/static/schema/latest/blueprint/schema-component-lambda-schema.json";
 import functionComponent from "@site/static/schema/latest/blueprint/schema-component-function-schema.json";
 import lb from "@site/static/schema/latest/blueprint/schema-component-lb-schema.json";
-import lbPort from "@site/static/schema/latest/blueprint/schema-component-lbPort-schema.json";
+import lbPort from "@site/static/schema/latest/blueprint/schema-component-lbport-schema.json";
 import mobileapp from "@site/static/schema/latest/blueprint/schema-component-mobileapp-schema.json";
 import mobilenotifier from "@site/static/schema/latest/blueprint/schema-component-mobilenotifier-schema.json";
 import mobilenotifierplatform from "@site/static/schema/latest/blueprint/schema-component-mobilenotifierplatform-schema.json";
