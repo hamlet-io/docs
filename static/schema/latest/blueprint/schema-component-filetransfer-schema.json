@@ -1,0 +1,363 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://hamlet.io/schema/latest/blueprint/component-filetransfer-schema.json",
+  "definitions": {
+    "filetransfer": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "Protocols": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "enum": [
+                "sftp"
+              ]
+            },
+            "IPAddressGroups": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "Certificate": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Qualifiers": {
+                  "type": "object"
+                },
+                "Domain": {
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "HostParts": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "IncludeInHost": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Wildcard": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "Links": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Any": {
+                      "type": "string"
+                    },
+                    "Tenant": {
+                      "type": "string"
+                    },
+                    "Product": {
+                      "type": "string"
+                    },
+                    "Environment": {
+                      "type": "string"
+                    },
+                    "Segment": {
+                      "type": "string"
+                    },
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Component": {
+                      "type": "string"
+                    },
+                    "Function": {
+                      "type": "string"
+                    },
+                    "Service": {
+                      "type": "string"
+                    },
+                    "Task": {
+                      "type": "string"
+                    },
+                    "PortMapping": {
+                      "type": "string"
+                    },
+                    "Mount": {
+                      "type": "string"
+                    },
+                    "Platform": {
+                      "type": "string"
+                    },
+                    "RouteTable": {
+                      "type": "string"
+                    },
+                    "NetworkACL": {
+                      "type": "string"
+                    },
+                    "DataBucket": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    },
+                    "Branch": {
+                      "type": "string"
+                    },
+                    "Client": {
+                      "type": "string"
+                    },
+                    "Connection": {
+                      "type": "string"
+                    },
+                    "AuthProvider": {
+                      "type": "string"
+                    },
+                    "Resource": {
+                      "type": "string"
+                    },
+                    "DataFeed": {
+                      "type": "string"
+                    },
+                    "RegistryService": {
+                      "type": "string"
+                    },
+                    "Assignment": {
+                      "type": "string"
+                    },
+                    "Route": {
+                      "type": "string"
+                    },
+                    "Endpoint": {
+                      "type": "string"
+                    },
+                    "Instance": {
+                      "type": "string"
+                    },
+                    "Version": {
+                      "type": "string"
+                    },
+                    "Secret": {
+                      "type": "string"
+                    },
+                    "Rule": {
+                      "type": "string"
+                    },
+                    "Role": {
+                      "type": "string"
+                    },
+                    "Direction": {
+                      "type": "string"
+                    },
+                    "Type": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "IncludeInContext": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Tier",
+                    "Component"
+                  ]
+                }
+              }
+            },
+            "Profiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Deployment": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Policy": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Placement": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Baseline": {
+                  "type": "string",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "default": "default"
+                },
+                "Testing": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component"
+                },
+                "Network": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Logging": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Security": {
+                  "type": "string",
+                  "default": "default"
+                }
+              }
+            },
+            "SettingNamespaces": {
+              "type": "object",
+              "description": "Additional namespaces to use during settings lookups",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Match": {
+                      "type": "string",
+                      "description": "How to match the namespace with available settings",
+                      "default": "exact",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Order": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ]
+                    },
+                    "IncludeInNamespace": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "Tier": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Component": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Type": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "SubComponent": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "Instance": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Version": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Name": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      }
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "Export": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "DeploymentUnits": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "Protocols"
+          ]
+        }
+      }
+    }
+  }
+}
