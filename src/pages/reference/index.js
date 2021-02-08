@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import Layout from "@theme/Layout";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  useParams,
 } from "react-router-dom";
 import HamletDataTables from "@site/src/components/DataTables";
 import { schema } from "@site/src/components/HamletJsonSchema";
 
 function HamletRefRouter() {
   return (
-    <Router>
+
       <div className="row row-no-gutters sidebarContainer">
         <div className="col col--2">
           <div style={{ display: "flex" }}>
@@ -80,14 +78,13 @@ function HamletRefRouter() {
           </Switch>
         </div>
       </div>
-    </Router>
   );
 }
 
-const HamletComponentsSchema = () => {
+const Reference = () => {
   const [dataType, setDataType] = useState("component");
 
-  const handleUpdate = (event) => setDataType(event.target.value);
+  //const handleUpdate = (event) => setDataType(event.target.value);
 
   return (
     <Layout id="HamletComponents">
@@ -96,4 +93,4 @@ const HamletComponentsSchema = () => {
   );
 };
 
-export default HamletComponentsSchema;
+export default Reference;
