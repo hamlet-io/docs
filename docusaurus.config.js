@@ -8,6 +8,7 @@ module.exports = {
   projectName: 'hamlet', // Usually your repo name.
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
+  onDuplicateRoutes: 'warn',
   themeConfig: {
     colorMode: {
       disableSwitch: true
