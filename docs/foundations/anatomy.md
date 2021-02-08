@@ -75,6 +75,6 @@ Each of the above levels can then be further broken down as required by director
 
 ## Structure of a Solution File
 
-Within a CMDB, any file under the path 'config/solutionsv2' contributes to a Hamlet `Solution` and can contain [`Components`](https://hamlet.io/reference/components) and [`ReferenceData`](https://hamlet.io/reference/data) data types. Configuration is applied in a top-down manner at the CMDB-level (`Tenant > Account > Product`) and then again at the `Solution`-level (`Environment > Segment > Deployment Unit`). New content is combined with existing, whilst existing content will be overwritten if re-implemented by a more specific scope. This allows for the most effecient implementation for a given use-case. 
+Within a CMDB, any file under the path 'config/solutionsv2' contributes to a Hamlet `Solution` and can contain [`Components`](https://hamlet.io/reference) and [`ReferenceData`](https://hamlet.io/reference) data types. Configuration is applied in a top-down manner at the CMDB-level (`Tenant > Account > Product`) and then again at the `Solution`-level (`Environment > Segment > Deployment Unit`). New content is combined with existing, whilst existing content will be overwritten if re-implemented by a more specific scope. This allows for the most effecient implementation for a given use-case. 
 
 Configuration can be removed for individual scopes by defining it at as an empty object for that scope.
