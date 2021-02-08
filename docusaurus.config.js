@@ -65,13 +65,13 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
+              label: 'Docs',
+              to: 'docs/hello/welcome'
             },
             {
-              label: 'Gitter',
-              href: 'https://gitter.im/hamlet-io/community',
-            }
+              label: 'Help',
+              href: 'https://help.hamlet.io',
+            },
           ],
         },
         {
