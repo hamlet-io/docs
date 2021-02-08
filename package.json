@@ -25,6 +25,7 @@
     "infima": "^0.2.0-alpha.18",
     "json2yaml": "^1.1.0",
     "mermaid": "^8.8.4",
+    "qs": "^6.9.6",
     "react": "^16.14.0",
     "react-admonitions": "^2.1.0",
     "react-data-table-component": "^6.11.6",
