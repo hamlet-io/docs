@@ -57,23 +57,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: 'docs/getting-started/overview',
-            },
-            {
-              label: 'Create',
-              to: 'docs/tutorials/overview',
-            },
-            {
-              label: 'Deploy',
-              to: 'docs/tutorials/overview',
-            },
-            {
-              label: 'Upgrade',
-              to: 'docs/tutorials/overview',
-            },
-            {
-              label: 'Automate',
-              to: 'docs/tutorials/overview',
+              to: 'docs/hello/hamlet',
             },
           ],
         },
