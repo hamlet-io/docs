@@ -8,6 +8,7 @@ import {
   patternPropertiesRegex,
 } from "@site/src/components/HamletJsonSchema";
 import { useLocation, useParams } from "react-router-dom";
+import qs from "qs";
 
 import "./styles.css";
 
@@ -213,12 +214,10 @@ function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaul
 
 function HamletDataTables() {
 
-  const query = new URLSearchParams(useLocation().search)
-  const type = query.get("type") || 'component' ;
-  const instance = query.get("instance") || 'baseline';
+  const { type, instance } = qs.parse(useLocation().search, { ignoreQueryPrefix: true })
   
-  const schemaData = getJsonSchemaData(type, instance);
-  const references = getJsonSchemaDataTables({data: schemaData, type: type});
+  const schemaData = getJsonSchemaData(type || 'component', instance || 'baseline');
+  const references = getJsonSchemaDataTables({data: schemaData, type: type || 'component'});
 
   return (
     <React.Fragment>
