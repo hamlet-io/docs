@@ -28,10 +28,6 @@ Profiles can be applied at the Tenant, Account, Product, Environment, Segment an
 # Profile Types
 Different profile types provide control over where in the order of operations a given profile is loaded. Each of the profile types tends to align itself with the needs of a specific enterprise role.
 
-<Admonition type="note" title="Reference Data Profile Types">
-Profiles for <a href='../inputs/references#reference-data-profile-types'>Reference Data types</a> perform the same function as Deployment Profiles and are available at the same scopes, however they have unique schemas.
-</Admonition>
-
 ## Deployment Profiles
 Deployment Profiles offer top-down component governance where the most specific scope overrides any configuration defined at a higher scope.
 

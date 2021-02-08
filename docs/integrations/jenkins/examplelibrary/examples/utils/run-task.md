@@ -6,7 +6,7 @@ import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Execute an [`ECS Task`](../../../../../components/ecs#task-subcomponent), passing it unique execution configuration.
+Execute an [`ECS Task`](/reference?type=component&instance=task), passing it unique execution configuration.
 
 ## Parameters
 
@@ -28,7 +28,7 @@ Loads environment variables from the Hamlet [`properties`](../properties/propert
 Performs the Hamlet "Run Task" action against all Task Instances in the filtered pipeline scope.
 
 ## Example
-The example below passes the argument `migrate --no-input` to a Django [`ECS Task`](../../../../../components/ecs#task-subcomponent). By replacing the handling of **MANAGE_PY_TASK** with another, this pattern will suit any Task.
+The example below passes the argument `migrate --no-input` to a Django [`ECS Task`](/reference?type=component&instance=task). By replacing the handling of **MANAGE_PY_TASK** with another, this pattern will suit any Task.
 
 ```groovy
 #!groovy
