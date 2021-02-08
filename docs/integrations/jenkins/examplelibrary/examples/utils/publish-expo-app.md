@@ -49,7 +49,7 @@ Upload application Source Map files to Sentry. Only applicable if using [Sentry]
 After running, this pipeline will notify a defined slack channel of either success or failure.
 
 ## Scripts
-This example uses groovy scripts from the [jenkins-shared-library](../../../scriptlibrary/index).
+This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library).
 
 ## Example
 ```groovy

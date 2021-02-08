@@ -26,7 +26,7 @@ Changes to the files under **lambda/\*** will trigger the build process for the 
 The "force_*" paramters allow you to override the conditional trigger on the file paths. This is useful in build pipelines that may fail on underlying services or updates to the build hosts are made.
 
 ## Scripts
-This example uses groovy scripts from the [jenkins-shared-library](../../../scriptlibrary/index)
+This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library)
 
 ## Example
 ```groovy
