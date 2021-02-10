@@ -127,7 +127,7 @@
               }
             },
             "Functions": {
-              "$ref": "#/definitions/function"
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/function"
             }
           },
           "additionalProperties": false

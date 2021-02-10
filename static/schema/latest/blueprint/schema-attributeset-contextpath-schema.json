@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://hamlet.io/schema/latest/blueprint/attributeset-contextpath-schema.json",
+  "definitions": {
+    "contextpath": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "Custom": {
+              "type": "string",
+              "description": "The custom string to include if custom is included in the path"
+            },
+            "Style": {
+              "type": "string",
+              "description": "Provide the value as a single string or a file system style path",
+              "default": "single",
+              "enum": [
+                "single",
+                "path"
+              ]
+            },
+            "Order": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "Account",
+                "ProviderId",
+                "Product",
+                "Solution",
+                "Environment",
+                "Segment",
+                "Tier",
+                "Component",
+                "Instance",
+                "Version",
+                "Host",
+                "Custom"
+              ]
+            },
+            "IncludeInPath": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Account": {
+                  "type": "boolean",
+                  "description": "The name of the Account",
+                  "default": false
+                },
+                "ProviderId": {
+                  "type": "boolean",
+                  "description": "The Provider Id for the account",
+                  "default": false
+                },
+                "Product": {
+                  "type": "boolean",
+                  "description": "The name of the product",
+                  "default": true
+                },
+                "Environment": {
+                  "type": "boolean",
+                  "description": "The name of the environment",
+                  "default": false
+                },
+                "Solution": {
+                  "type": "boolean",
+                  "description": "The name of the solution",
+                  "default": false
+                },
+                "Segment": {
+                  "type": "boolean",
+                  "description": "The name of the segment",
+                  "default": true
+                },
+                "Tier": {
+                  "type": "boolean",
+                  "description": "The name of the tier",
+                  "default": false
+                },
+                "Component": {
+                  "type": "boolean",
+                  "description": "The name of the component",
+                  "default": false
+                },
+                "Instance": {
+                  "type": "boolean",
+                  "description": "The name of the instance",
+                  "default": false
+                },
+                "Version": {
+                  "type": "boolean",
+                  "description": "The name of the version",
+                  "default": false
+                },
+                "Custom": {
+                  "type": "boolean",
+                  "description": "Include a custom string",
+                  "default": false
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

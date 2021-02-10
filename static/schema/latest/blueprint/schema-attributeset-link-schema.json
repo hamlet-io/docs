@@ -9,116 +9,110 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
             "Any": {
-              "type": "string"
+              "type": "object"
             },
             "Tenant": {
-              "type": "string"
+              "type": "object"
             },
             "Product": {
-              "type": "string"
+              "type": "object"
             },
             "Environment": {
-              "type": "string"
+              "type": "object"
             },
             "Segment": {
-              "type": "string"
+              "type": "object"
             },
             "Tier": {
-              "type": "string"
+              "type": "object"
             },
             "Component": {
-              "type": "string"
+              "type": "object"
             },
             "Function": {
-              "type": "string"
+              "type": "object"
             },
             "Service": {
-              "type": "string"
+              "type": "object"
             },
             "Task": {
-              "type": "string"
+              "type": "object"
             },
             "PortMapping": {
-              "type": "string"
+              "type": "object"
             },
             "Mount": {
-              "type": "string"
+              "type": "object"
             },
             "Platform": {
-              "type": "string"
+              "type": "object"
             },
             "RouteTable": {
-              "type": "string"
+              "type": "object"
             },
             "NetworkACL": {
-              "type": "string"
+              "type": "object"
             },
             "DataBucket": {
-              "type": "string"
+              "type": "object"
             },
             "Key": {
-              "type": "string"
+              "type": "object"
             },
             "Branch": {
-              "type": "string"
+              "type": "object"
             },
             "Client": {
-              "type": "string"
+              "type": "object"
             },
             "Connection": {
-              "type": "string"
+              "type": "object"
             },
             "AuthProvider": {
-              "type": "string"
+              "type": "object"
             },
             "Resource": {
-              "type": "string"
+              "type": "object"
             },
             "DataFeed": {
-              "type": "string"
+              "type": "object"
             },
             "RegistryService": {
-              "type": "string"
+              "type": "object"
             },
             "Assignment": {
-              "type": "string"
+              "type": "object"
             },
             "Route": {
-              "type": "string"
+              "type": "object"
             },
             "Endpoint": {
-              "type": "string"
+              "type": "object"
             },
             "Instance": {
-              "type": "string"
+              "type": "object"
             },
             "Version": {
-              "type": "string"
+              "type": "object"
             },
             "Secret": {
-              "type": "string"
-            },
-            "Rule": {
-              "type": "string"
+              "type": "object"
             },
             "Role": {
-              "type": "string"
+              "type": "object"
             },
             "Direction": {
-              "type": "string"
+              "type": "object"
             },
             "Type": {
-              "type": "string"
+              "type": "object"
             },
             "Enabled": {
-              "type": "boolean",
+              "type": "object",
               "default": true
             },
             "IncludeInContext": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
+              "type": "object"
             }
           },
           "additionalProperties": false,

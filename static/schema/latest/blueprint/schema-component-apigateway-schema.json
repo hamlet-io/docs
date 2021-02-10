@@ -1,21 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-function-schema.json",
+  "$id": "https://hamlet.io/schema/latest/blueprint/component-apigateway-schema.json",
   "definitions": {
-    "function": {
+    "apigateway": {
       "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "DeploymentType": {
-              "type": "string",
-              "default": "REGIONAL",
-              "enum": [
-                "EDGE",
-                "REGIONAL"
-              ]
-            },
             "Extensions": {
               "type": "array",
               "contains": {
@@ -23,44 +15,274 @@
               },
               "description": "Extensions to invoke as part of component processing"
             },
-            "Handler": {
-              "type": "string"
+            "AccessLogging": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Enabled": {
+                  "type": "boolean",
+                  "description": "Logging of the API Gateway Access Logs.",
+                  "default": true
+                },
+                "aws:DestinationLink": {
+                  "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link",
+                  "description": "Destination for the Access logs. If not provided but AccessLogging is enabled, Access logs will be sent to CloudWatch."
+                },
+                "aws:KinesisFirehose": {
+                  "type": "boolean",
+                  "description": "Send Access logs to a KinesisFirehose. By default, the Firehose destination is the OpsData DataBucket, but can be overwritten by specifying a DestinationLink.",
+                  "default": false
+                },
+                "aws:KeepLogGroup": {
+                  "type": "boolean",
+                  "description": "Prevent the destruction of existing LogGroups when enabling KinesisFirehose.",
+                  "default": true
+                }
+              }
             },
             "Links": {
               "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
             },
-            "LogMetrics": {
+            "WAF": {
               "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "LogFilter": {
-                      "type": "string"
-                    }
-                  },
+              "additionalProperties": false,
+              "properties": {
+                "IPAddressGroups": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "CountryGroups": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "OWASP": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "Logging": {
+                  "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "LogFilter"
-                  ]
+                  "properties": {
+                    "Enabled": {
+                      "type": "boolean",
+                      "default": true
+                    }
+                  }
+                },
+                "Profiles": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Logging": {
+                      "type": "string",
+                      "description": "Logging profile to process WAF Logs that are stored in the OpsData DataBucket.",
+                      "default": "waf"
+                    }
+                  }
+                },
+                "RateLimits": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                      "properties": {
+                        "IPAddressGroups": {
+                          "type": "array",
+                          "contains": {
+                            "type": "string"
+                          }
+                        },
+                        "Limit": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "Limit"
+                      ]
+                    }
+                  }
                 }
               }
             },
-            "LogWatchers": {
+            "EndpointType": {
+              "type": "string",
+              "default": "EDGE",
+              "enum": [
+                "EDGE",
+                "REGIONAL"
+              ]
+            },
+            "IPAddressGroups": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "Authentication": {
+              "type": "string",
+              "default": "IP",
+              "enum": [
+                "IP",
+                "SIG4ORIP",
+                "SIG4ANDIP"
+              ]
+            },
+            "CloudFront": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "AssumeSNI": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "EnableLogging": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "CountryGroups": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "CustomHeaders": {
+                  "type": "array"
+                },
+                "Mapping": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "Compress": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            },
+            "Certificate": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Qualifiers": {
+                  "type": "object"
+                },
+                "Domain": {
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "HostParts": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "IncludeInHost": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Wildcard": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "Publish": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Deprecated - Please switch to the publishers configuration",
+              "properties": {
+                "DnsNamePrefix": {
+                  "type": "string",
+                  "default": "docs"
+                },
+                "IPAddressGroups": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "Publishers": {
               "type": "object",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
-                    "LogFilter": {
-                      "type": "string"
+                    "Enabled": {
+                      "type": "boolean",
+                      "default": true
                     },
                     "Links": {
                       "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+                    },
+                    "Path": {
+                      "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/contextpath"
+                    },
+                    "UsePathInName": {
+                      "type": "boolean",
+                      "description": "Name the Swagger Spec file using the path",
+                      "default": true
                     }
                   },
-                  "additionalProperties": false,
-                  "required": [
-                    "LogFilter"
-                  ]
+                  "additionalProperties": false
+                }
+              }
+            },
+            "Mapping": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "IncludeStage": {
+                  "type": "boolean",
+                  "default": true
                 }
               }
             },
@@ -182,133 +404,31 @@
                 }
               }
             },
-            "Memory": {
-              "type": "number",
-              "default": 0
-            },
-            "RunTime": {
-              "type": "string",
-              "enum": [
-                "dotnetcore1.0",
-                "dotnetcore2.1",
-                "go1.x",
-                "java8",
-                "java11",
-                "nodejs",
-                "nodejs4.3",
-                "nodejs4.3-edge",
-                "nodejs6.10",
-                "nodejs8.10",
-                "nodejs10.x",
-                "nodejs12.x",
-                "python2.7",
-                "python3.6",
-                "python3.7",
-                "python3.8",
-                "ruby2.5"
-              ]
-            },
-            "Schedules": {
+            "LogMetrics": {
               "type": "object",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
-                    "Expression": {
-                      "type": "string",
-                      "default": "rate(6 minutes)"
-                    },
-                    "InputPath": {
-                      "type": "string",
-                      "default": "/healthcheck"
-                    },
-                    "Input": {
-                      "type": "object"
+                    "LogFilter": {
+                      "type": "string"
                     }
                   },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "Timeout": {
-              "type": "number",
-              "default": 0
-            },
-            "VPCAccess": {
-              "type": "boolean",
-              "default": true
-            },
-            "Encrypted": {
-              "type": "boolean",
-              "default": false
-            },
-            "Permissions": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Decrypt": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "AsFile": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "AppData": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "AppPublic": {
-                  "type": "boolean",
-                  "default": true
-                }
-              }
-            },
-            "PredefineLogGroup": {
-              "type": "boolean",
-              "default": false
-            },
-            "Environment": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "AsFile": {
-                  "type": "boolean",
-                  "default": false
-                },
-                "Json": {
-                  "type": "object",
                   "additionalProperties": false,
-                  "properties": {
-                    "Escaped": {
-                      "type": "boolean",
-                      "default": true
-                    },
-                    "Prefix": {
-                      "type": "string",
-                      "default": "json",
-                      "enum": [
-                        "json",
-                        ""
-                      ]
-                    }
-                  }
+                  "required": [
+                    "LogFilter"
+                  ]
                 }
               }
             },
-            "FixedCodeVersion": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "NewVersionOnDeploy": {
-                  "type": "boolean",
-                  "description": "Create a new version on each deployment",
-                  "default": false
-                },
-                "CodeHash": {
-                  "type": "string",
-                  "description": "A sha256 hash of the code zip file"
-                }
-              }
+            "BasePathBehaviour": {
+              "type": "string",
+              "description": "How to handle base paths provided in the spec",
+              "default": "ignore",
+              "enum": [
+                "ignore",
+                "prepend",
+                "split"
+              ]
             },
             "Tracing": {
               "type": "object",
@@ -322,44 +442,6 @@
                   ]
                 }
               }
-            },
-            "ReservedExecutions": {
-              "type": "number",
-              "default": -1
-            },
-            "Image": {
-              "type": "object",
-              "additionalProperties": false,
-              "description": "Control the source of the image that is used for the function",
-              "properties": {
-                "Source": {
-                  "type": "string",
-                  "description": "The source of the image - registry is the hamlet registry",
-                  "default": "registry",
-                  "enum": [
-                    "registry",
-                    "url"
-                  ]
-                },
-                "UrlSource": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "description": "Url Source specific Configuration",
-                  "properties": {
-                    "Url": {
-                      "type": "string",
-                      "description": "The Url to the lambda zip file"
-                    },
-                    "ImageHash": {
-                      "type": "string",
-                      "description": "The expected sha1 hash of the Url if empty any will be accepted"
-                    }
-                  }
-                }
-              },
-              "required": [
-                "Source"
-              ]
             },
             "Profiles": {
               "type": "object",
@@ -393,11 +475,11 @@
                   },
                   "description": "The testing profiles to apply to the component"
                 },
-                "Alert": {
+                "Security": {
                   "type": "string",
                   "default": "default"
                 },
-                "Network": {
+                "Alert": {
                   "type": "string",
                   "default": "default"
                 },
@@ -490,13 +572,22 @@
               "contains": {
                 "type": "string"
               }
+            },
+            "azure:Contact": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "The contact for the API Management Service",
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Email": {
+                  "type": "string"
+                }
+              }
             }
           },
-          "additionalProperties": false,
-          "required": [
-            "Handler",
-            "RunTime"
-          ]
+          "additionalProperties": false
         }
       }
     }

@@ -45,130 +45,7 @@
               "default": true
             },
             "Links": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Any": {
-                      "type": "string"
-                    },
-                    "Tenant": {
-                      "type": "string"
-                    },
-                    "Product": {
-                      "type": "string"
-                    },
-                    "Environment": {
-                      "type": "string"
-                    },
-                    "Segment": {
-                      "type": "string"
-                    },
-                    "Tier": {
-                      "type": "string"
-                    },
-                    "Component": {
-                      "type": "string"
-                    },
-                    "Function": {
-                      "type": "string"
-                    },
-                    "Service": {
-                      "type": "string"
-                    },
-                    "Task": {
-                      "type": "string"
-                    },
-                    "PortMapping": {
-                      "type": "string"
-                    },
-                    "Mount": {
-                      "type": "string"
-                    },
-                    "Platform": {
-                      "type": "string"
-                    },
-                    "RouteTable": {
-                      "type": "string"
-                    },
-                    "NetworkACL": {
-                      "type": "string"
-                    },
-                    "DataBucket": {
-                      "type": "string"
-                    },
-                    "Key": {
-                      "type": "string"
-                    },
-                    "Branch": {
-                      "type": "string"
-                    },
-                    "Client": {
-                      "type": "string"
-                    },
-                    "Connection": {
-                      "type": "string"
-                    },
-                    "AuthProvider": {
-                      "type": "string"
-                    },
-                    "Resource": {
-                      "type": "string"
-                    },
-                    "DataFeed": {
-                      "type": "string"
-                    },
-                    "RegistryService": {
-                      "type": "string"
-                    },
-                    "Assignment": {
-                      "type": "string"
-                    },
-                    "Route": {
-                      "type": "string"
-                    },
-                    "Endpoint": {
-                      "type": "string"
-                    },
-                    "Instance": {
-                      "type": "string"
-                    },
-                    "Version": {
-                      "type": "string"
-                    },
-                    "Secret": {
-                      "type": "string"
-                    },
-                    "Rule": {
-                      "type": "string"
-                    },
-                    "Role": {
-                      "type": "string"
-                    },
-                    "Direction": {
-                      "type": "string"
-                    },
-                    "Type": {
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "type": "boolean",
-                      "default": true
-                    },
-                    "IncludeInContext": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "Tier",
-                    "Component"
-                  ]
-                }
-              }
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
             },
             "AutoScaling": {
               "type": "object",
@@ -289,126 +166,7 @@
                           "description": "The resource metric used to trigger scaling",
                           "properties": {
                             "Link": {
-                              "type": "object",
-                              "additionalProperties": false,
-                              "properties": {
-                                "Any": {
-                                  "type": "string"
-                                },
-                                "Tenant": {
-                                  "type": "string"
-                                },
-                                "Product": {
-                                  "type": "string"
-                                },
-                                "Environment": {
-                                  "type": "string"
-                                },
-                                "Segment": {
-                                  "type": "string"
-                                },
-                                "Tier": {
-                                  "type": "string"
-                                },
-                                "Component": {
-                                  "type": "string"
-                                },
-                                "Function": {
-                                  "type": "string"
-                                },
-                                "Service": {
-                                  "type": "string"
-                                },
-                                "Task": {
-                                  "type": "string"
-                                },
-                                "PortMapping": {
-                                  "type": "string"
-                                },
-                                "Mount": {
-                                  "type": "string"
-                                },
-                                "Platform": {
-                                  "type": "string"
-                                },
-                                "RouteTable": {
-                                  "type": "string"
-                                },
-                                "NetworkACL": {
-                                  "type": "string"
-                                },
-                                "DataBucket": {
-                                  "type": "string"
-                                },
-                                "Key": {
-                                  "type": "string"
-                                },
-                                "Branch": {
-                                  "type": "string"
-                                },
-                                "Client": {
-                                  "type": "string"
-                                },
-                                "Connection": {
-                                  "type": "string"
-                                },
-                                "AuthProvider": {
-                                  "type": "string"
-                                },
-                                "Resource": {
-                                  "type": "string"
-                                },
-                                "DataFeed": {
-                                  "type": "string"
-                                },
-                                "RegistryService": {
-                                  "type": "string"
-                                },
-                                "Assignment": {
-                                  "type": "string"
-                                },
-                                "Route": {
-                                  "type": "string"
-                                },
-                                "Endpoint": {
-                                  "type": "string"
-                                },
-                                "Instance": {
-                                  "type": "string"
-                                },
-                                "Version": {
-                                  "type": "string"
-                                },
-                                "Secret": {
-                                  "type": "string"
-                                },
-                                "Rule": {
-                                  "type": "string"
-                                },
-                                "Role": {
-                                  "type": "string"
-                                },
-                                "Direction": {
-                                  "type": "string"
-                                },
-                                "Type": {
-                                  "type": "string"
-                                },
-                                "Enabled": {
-                                  "type": "boolean",
-                                  "default": true
-                                },
-                                "IncludeInContext": {
-                                  "type": "array",
-                                  "contains": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "required": [
-                                "Tier",
-                                "Component"
-                              ]
+                              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
                             },
                             "MetricTrigger": {
                               "type": "object",
@@ -949,6 +707,100 @@
               "type": "array",
               "contains": {
                 "type": "string"
+              }
+            },
+            "azure:Profiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Sku": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "VMImage": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Scaling": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                      "properties": {
+                        "MinCapacity": {
+                          "type": "number",
+                          "description": "The minimum capacity of the scaling profile",
+                          "default": 1
+                        },
+                        "MaxCapacity": {
+                          "type": "number",
+                          "description": "The maximum capacity of the scaling profile",
+                          "default": 2
+                        },
+                        "DefaultCapacity": {
+                          "type": "number",
+                          "description": "The default capacity of the scaling profile",
+                          "default": 1
+                        },
+                        "ScalingRules": {
+                          "type": "object",
+                          "patternProperties": {
+                            "^[A-Za-z_][A-Za-z0-9_]*$": {
+                              "properties": {
+                                "MetricName": {
+                                  "type": "string"
+                                },
+                                "TimeGrain": {
+                                  "type": "string"
+                                },
+                                "Statistic": {
+                                  "type": "string"
+                                },
+                                "TimeWindow": {
+                                  "type": "string"
+                                },
+                                "TimeAggregation": {
+                                  "type": "string"
+                                },
+                                "Operator": {
+                                  "type": "string"
+                                },
+                                "Threshold": {
+                                  "type": "number"
+                                },
+                                "Direction": {
+                                  "type": "string"
+                                },
+                                "ActionType": {
+                                  "type": "string"
+                                },
+                                "Cooldown": {
+                                  "type": "string"
+                                },
+                                "ActionValue": {
+                                  "type": "number"
+                                }
+                              },
+                              "additionalProperties": false,
+                              "required": [
+                                "MetricName",
+                                "TimeGrain",
+                                "Statistic",
+                                "TimeWindow",
+                                "TimeAggregation",
+                                "Operator",
+                                "Threshold",
+                                "Direction",
+                                "ActionType",
+                                "Cooldown"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                }
               }
             }
           },

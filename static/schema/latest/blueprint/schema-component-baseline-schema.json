@@ -140,11 +140,116 @@
                 "type": "string"
               }
             },
+            "azure:Lifecycle": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "BlobRetentionDays": {
+                  "type": "number"
+                },
+                "BlobAutoSnapshots": {
+                  "type": "boolean",
+                  "default": false
+                }
+              }
+            },
+            "azure:Certificate": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Qualifiers": {
+                  "type": "object"
+                },
+                "Domain": {
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "HostParts": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "IncludeInHost": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Wildcard": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "azure:Access": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "DirectoryService": {
+                  "type": "string",
+                  "description": "The directory service that is used for authentication. 'None' or 'AADDS'."
+                }
+              }
+            },
+            "azure:AdministratorGroups": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "The set of administrator groups controlling access to keyvault",
+              "default": [
+                "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3"
+              ]
+            },
             "DataBuckets": {
-              "$ref": "#/definitions/baselinedata"
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/baselinedata"
             },
             "Keys": {
-              "$ref": "#/definitions/baselinekey"
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/baselinekey"
             }
           },
           "additionalProperties": false

@@ -1,94 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-network-schema.json",
+  "$id": "https://hamlet.io/schema/latest/blueprint/component-internaltest-schema.json",
   "definitions": {
-    "network": {
+    "internaltest": {
       "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Active": {
-              "type": "boolean",
-              "default": false
-            },
-            "Logging": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "FlowLogs": {
-                  "type": "object",
-                  "description": "Log flows across the network",
-                  "patternProperties": {
-                    "^[A-Za-z_][A-Za-z0-9_]*$": {
-                      "properties": {
-                        "Action": {
-                          "type": "string",
-                          "description": "The action to capture in the flow log",
-                          "enum": [
-                            "accept",
-                            "reject",
-                            "any"
-                          ]
-                        },
-                        "DestinationType": {
-                          "type": "string",
-                          "description": "The destination type to send the logs to",
-                          "default": "s3",
-                          "enum": [
-                            "log",
-                            "s3"
-                          ]
-                        },
-                        "s3": {
-                          "type": "object",
-                          "additionalProperties": false,
-                          "description": "s3 specific destination configuration",
-                          "properties": {
-                            "Link": {
-                              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link",
-                              "description": "A link to the s3 bucket destination"
-                            },
-                            "Prefix": {
-                              "type": "string",
-                              "description": "A prefix for the s3 bucket destination",
-                              "default": "FlowLogs/"
-                            }
-                          }
-                        }
-                      },
-                      "additionalProperties": false,
-                      "required": [
-                        "Action"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "DNS": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "UseProvider": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "GenerateHostNames": {
-                  "type": "boolean",
-                  "default": true
-                }
-              }
-            },
-            "Address": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "CIDR": {
-                  "type": "string",
-                  "default": "10.0.0.0/16"
-                }
-              }
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
             },
             "Links": {
               "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
@@ -124,10 +49,6 @@
                     "type": "string"
                   },
                   "description": "The testing profiles to apply to the component"
-                },
-                "Logging": {
-                  "type": "string",
-                  "default": "default"
                 }
               }
             },
@@ -214,12 +135,6 @@
               "contains": {
                 "type": "string"
               }
-            },
-            "RouteTables": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/networkroute"
-            },
-            "NetworkACLs": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/networkacl"
             }
           },
           "additionalProperties": false

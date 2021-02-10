@@ -108,130 +108,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
                     "Links": {
-                      "type": "object",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "Any": {
-                              "type": "string"
-                            },
-                            "Tenant": {
-                              "type": "string"
-                            },
-                            "Product": {
-                              "type": "string"
-                            },
-                            "Environment": {
-                              "type": "string"
-                            },
-                            "Segment": {
-                              "type": "string"
-                            },
-                            "Tier": {
-                              "type": "string"
-                            },
-                            "Component": {
-                              "type": "string"
-                            },
-                            "Function": {
-                              "type": "string"
-                            },
-                            "Service": {
-                              "type": "string"
-                            },
-                            "Task": {
-                              "type": "string"
-                            },
-                            "PortMapping": {
-                              "type": "string"
-                            },
-                            "Mount": {
-                              "type": "string"
-                            },
-                            "Platform": {
-                              "type": "string"
-                            },
-                            "RouteTable": {
-                              "type": "string"
-                            },
-                            "NetworkACL": {
-                              "type": "string"
-                            },
-                            "DataBucket": {
-                              "type": "string"
-                            },
-                            "Key": {
-                              "type": "string"
-                            },
-                            "Branch": {
-                              "type": "string"
-                            },
-                            "Client": {
-                              "type": "string"
-                            },
-                            "Connection": {
-                              "type": "string"
-                            },
-                            "AuthProvider": {
-                              "type": "string"
-                            },
-                            "Resource": {
-                              "type": "string"
-                            },
-                            "DataFeed": {
-                              "type": "string"
-                            },
-                            "RegistryService": {
-                              "type": "string"
-                            },
-                            "Assignment": {
-                              "type": "string"
-                            },
-                            "Route": {
-                              "type": "string"
-                            },
-                            "Endpoint": {
-                              "type": "string"
-                            },
-                            "Instance": {
-                              "type": "string"
-                            },
-                            "Version": {
-                              "type": "string"
-                            },
-                            "Secret": {
-                              "type": "string"
-                            },
-                            "Rule": {
-                              "type": "string"
-                            },
-                            "Role": {
-                              "type": "string"
-                            },
-                            "Direction": {
-                              "type": "string"
-                            },
-                            "Type": {
-                              "type": "string"
-                            },
-                            "Enabled": {
-                              "type": "boolean",
-                              "default": true
-                            },
-                            "IncludeInContext": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "additionalProperties": false,
-                          "required": [
-                            "Tier",
-                            "Component"
-                          ]
-                        }
-                      }
+                      "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
                     },
                     "Prefix": {
                       "type": "string"
@@ -310,127 +187,65 @@
               }
             },
             "Links": {
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+            },
+            "InventoryReports": {
               "type": "object",
+              "description": "Provides a listing of all objects in the store on a schedule basis",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
-                    "Any": {
-                      "type": "string"
-                    },
-                    "Tenant": {
-                      "type": "string"
-                    },
-                    "Product": {
-                      "type": "string"
-                    },
-                    "Environment": {
-                      "type": "string"
-                    },
-                    "Segment": {
-                      "type": "string"
-                    },
-                    "Tier": {
-                      "type": "string"
-                    },
-                    "Component": {
-                      "type": "string"
-                    },
-                    "Function": {
-                      "type": "string"
-                    },
-                    "Service": {
-                      "type": "string"
-                    },
-                    "Task": {
-                      "type": "string"
-                    },
-                    "PortMapping": {
-                      "type": "string"
-                    },
-                    "Mount": {
-                      "type": "string"
-                    },
-                    "Platform": {
-                      "type": "string"
-                    },
-                    "RouteTable": {
-                      "type": "string"
-                    },
-                    "NetworkACL": {
-                      "type": "string"
-                    },
-                    "DataBucket": {
-                      "type": "string"
-                    },
-                    "Key": {
-                      "type": "string"
-                    },
-                    "Branch": {
-                      "type": "string"
-                    },
-                    "Client": {
-                      "type": "string"
-                    },
-                    "Connection": {
-                      "type": "string"
-                    },
-                    "AuthProvider": {
-                      "type": "string"
-                    },
-                    "Resource": {
-                      "type": "string"
-                    },
-                    "DataFeed": {
-                      "type": "string"
-                    },
-                    "RegistryService": {
-                      "type": "string"
-                    },
-                    "Assignment": {
-                      "type": "string"
-                    },
-                    "Route": {
-                      "type": "string"
-                    },
-                    "Endpoint": {
-                      "type": "string"
-                    },
-                    "Instance": {
-                      "type": "string"
-                    },
-                    "Version": {
-                      "type": "string"
-                    },
-                    "Secret": {
-                      "type": "string"
-                    },
-                    "Rule": {
-                      "type": "string"
-                    },
-                    "Role": {
-                      "type": "string"
-                    },
-                    "Direction": {
-                      "type": "string"
-                    },
-                    "Type": {
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "type": "boolean",
-                      "default": true
-                    },
-                    "IncludeInContext": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
+                    "Destination": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "The destination of the reports",
+                      "properties": {
+                        "Type": {
+                          "type": "string",
+                          "description": "The type of destination for the report",
+                          "default": "self",
+                          "enum": [
+                            "self",
+                            "link"
+                          ]
+                        },
+                        "Links": {
+                          "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link",
+                          "description": "If destination type is link these are the links that will be used"
+                        }
                       }
+                    },
+                    "IncludeVersions": {
+                      "type": "boolean",
+                      "description": "Include versions of objects in report",
+                      "default": false
+                    },
+                    "InventoryPrefix": {
+                      "type": "string",
+                      "description": "A filter prefix to generate the report for"
+                    },
+                    "InventoryFormat": {
+                      "type": "string",
+                      "description": "The filter for the inventory report",
+                      "default": "CSV"
+                    },
+                    "DestinationPrefix": {
+                      "type": "string",
+                      "description": "A prefix to store the report under in the destination"
+                    },
+                    "Schedule": {
+                      "type": "string",
+                      "description": "How often to generate the report",
+                      "default": "Daily",
+                      "enum": [
+                        "Daily",
+                        "Weekly"
+                      ]
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "Tier",
-                    "Component"
+                    "DestinationPrefix"
                   ]
                 }
               }
@@ -551,6 +366,112 @@
               "type": "array",
               "contains": {
                 "type": "string"
+              }
+            },
+            "azure:Lifecycle": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "BlobRetentionDays": {
+                  "type": "number"
+                },
+                "BlobAutoSnapshots": {
+                  "type": "boolean",
+                  "default": false
+                }
+              }
+            },
+            "azure:Certificate": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Qualifiers": {
+                  "type": "object"
+                },
+                "Domain": {
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "HostParts": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "IncludeInHost": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Wildcard": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "azure:Access": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "DirectoryService": {
+                  "type": "string",
+                  "description": "The directory service that is used for authentication. 'None' or 'AADDS'."
+                },
+                "PublicAccess": {
+                  "type": "string",
+                  "default": [
+                    "None"
+                  ],
+                  "enum": [
+                    "Container",
+                    "Blob",
+                    "None"
+                  ]
+                }
               }
             }
           },

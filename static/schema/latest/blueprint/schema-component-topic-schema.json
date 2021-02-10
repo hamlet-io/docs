@@ -254,7 +254,7 @@
               }
             },
             "Subscriptions": {
-              "$ref": "#/definitions/topicsubscription"
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/topicsubscription"
             }
           },
           "additionalProperties": false

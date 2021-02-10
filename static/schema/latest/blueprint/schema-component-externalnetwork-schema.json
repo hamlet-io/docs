@@ -157,7 +157,7 @@
               }
             },
             "Connections": {
-              "$ref": "#/definitions/externalnetworkconnection"
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/externalnetworkconnection"
             }
           },
           "additionalProperties": false

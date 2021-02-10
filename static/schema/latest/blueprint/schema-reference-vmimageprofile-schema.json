@@ -1,43 +1,36 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/reference-scriptstore-schema.json",
+  "$id": "https://hamlet.io/schema/latest/blueprint/reference-vmimageprofile-schema.json",
   "definitions": {
-    "ScriptStore": {
+    "VMImageProfile": {
       "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
-            "Engine": {
-              "type": "string",
-              "enum": [
-                "local",
-                "github"
+            "*": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "The component type that the VMImage configuration belongs to.",
+              "properties": {
+                "Publisher": {
+                  "type": "string"
+                },
+                "Offering": {
+                  "type": "string"
+                },
+                "Image": {
+                  "type": "string"
+                },
+                "LicenseType": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Publisher",
+                "Offering",
+                "Image"
               ]
-            },
-            "Destination": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Prefix": {
-                  "type": "string"
-                }
-              }
-            },
-            "Source": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Directory": {
-                  "type": "string"
-                },
-                "Repository": {
-                  "type": "string"
-                },
-                "Branch": {
-                  "type": "string"
-                }
-              }
             }
           },
           "additionalProperties": false

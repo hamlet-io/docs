@@ -215,7 +215,7 @@
               }
             },
             "Rules": {
-              "$ref": "#/definitions/mtarule"
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/mtarule"
             }
           },
           "additionalProperties": false,

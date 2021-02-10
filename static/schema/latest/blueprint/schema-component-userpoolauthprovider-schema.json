@@ -8,6 +8,16 @@
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
+            "Links": {
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+            },
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
+            },
             "Engine": {
               "type": "string",
               "description": "The authentication provider type",
@@ -330,11 +340,24 @@
               "contains": {
                 "type": "string"
               }
+            },
+            "azure:Engine": {
+              "type": "string",
+              "description": "The authentication/identity provider type. Values are specific to API Management Identity Provider resource..",
+              "enum": [
+                "facebook",
+                "google",
+                "microsoft",
+                "twitter",
+                "aad",
+                "aadb2c"
+              ]
             }
           },
           "additionalProperties": false,
           "required": [
-            "Engine"
+            "Engine",
+            "azure:Engine"
           ]
         }
       }

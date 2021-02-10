@@ -177,7 +177,7 @@
               }
             },
             "StaticRoutes": {
-              "$ref": "#/definitions/routerstaticroute"
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/routerstaticroute"
             }
           },
           "additionalProperties": false

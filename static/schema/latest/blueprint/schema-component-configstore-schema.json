@@ -207,7 +207,7 @@
               }
             },
             "Branches": {
-              "$ref": "#/definitions/configbranch"
+              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/configbranch"
             }
           },
           "additionalProperties": false
