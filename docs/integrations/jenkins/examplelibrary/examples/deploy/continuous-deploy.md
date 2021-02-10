@@ -11,7 +11,7 @@ Updates build reference(s) in the Hamlet CMDB and initiates a deployment.
 ## Triggers
 This pipeline is intended to be called by the ['Build' pipeline](../build/single) for Continuous Deployment into the first environment. 
 
-If deployment across [Segments](../../../../../../foundations/terminology#segment) is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
+If deployment across [Segments](/docs/foundations/anatomy) is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
 
 ## Parameters
 The 'Build' job supplies the required parameters for this pipeline.
@@ -31,7 +31,7 @@ Creates and deploys all application-level component templates from the list of D
 After running, this pipeline will notify a defined slack channel of either success or failure.
 
 ## Scripts
-This example uses groovy scripts from the [jenkins-shared-library](../../../scriptlibrary/index).
+This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library).
 
 ## Example
 ```groovy

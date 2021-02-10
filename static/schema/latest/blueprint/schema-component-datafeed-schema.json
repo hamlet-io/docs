@@ -1,0 +1,662 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://hamlet.io/schema/latest/blueprint/component-datafeed-schema.json",
+  "definitions": {
+    "datafeed": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "ElasticSearch": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "IndexPrefix": {
+                  "type": "string",
+                  "description": "The prefix applied to generate the index name ( if not using roll over this will be the index name)"
+                },
+                "IndexRotation": {
+                  "type": "string",
+                  "description": "When to rotate the index ( the timestamp will be appended to the indexprefix)",
+                  "default": "OneMonth",
+                  "enum": [
+                    "NoRotation",
+                    "OneDay",
+                    "OneHour",
+                    "OneMonth",
+                    "OneWeek"
+                  ]
+                },
+                "DocumentType": {
+                  "type": "string",
+                  "description": "The document type used when creating the document"
+                }
+              }
+            },
+            "Bucket": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Prefix": {
+                  "type": "string",
+                  "description": "The prefix appeneded to the object name when processed succesfully",
+                  "default": "data/"
+                },
+                "ErrorPrefix": {
+                  "type": "string",
+                  "description": "The prefix appeneded to the object name when processing failed",
+                  "default": "error/"
+                },
+                "Include": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "Deployment specific details to add to prefix",
+                  "properties": {
+                    "Order": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "The order of the included prefixes",
+                      "default": [
+                        "AccountId",
+                        "ComponentPath"
+                      ]
+                    },
+                    "AccountId": {
+                      "type": "boolean",
+                      "description": "The deployment account id",
+                      "default": false
+                    },
+                    "ComponentPath": {
+                      "type": "boolean",
+                      "description": "The full component path defaults",
+                      "default": false
+                    }
+                  }
+                }
+              }
+            },
+            "Buffering": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "How long data should be bufferred before being deliverd to ES",
+              "properties": {
+                "Interval": {
+                  "type": "number",
+                  "description": "The time in seconds before data should be delivered",
+                  "default": 60
+                },
+                "Size": {
+                  "type": "number",
+                  "description": "The size in MB before data should be delivered",
+                  "default": 1
+                }
+              }
+            },
+            "Logging": {
+              "type": "boolean",
+              "default": true
+            },
+            "Encrypted": {
+              "type": "boolean",
+              "default": false
+            },
+            "Backup": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Enabled": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "FailureDuration": {
+                  "type": "number",
+                  "description": "The time in seconds that the data feed will attempt to deliver the data before it is sent to backup",
+                  "default": 3600
+                },
+                "Policy": {
+                  "type": "string",
+                  "description": "The backup policy to apply to records",
+                  "default": "FailedDocumentsOnly",
+                  "enum": [
+                    "AllDocuments",
+                    "FailedDocumentsOnly"
+                  ]
+                }
+              }
+            },
+            "Destination": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Link": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Any": {
+                      "type": "string"
+                    },
+                    "Tenant": {
+                      "type": "string"
+                    },
+                    "Product": {
+                      "type": "string"
+                    },
+                    "Environment": {
+                      "type": "string"
+                    },
+                    "Segment": {
+                      "type": "string"
+                    },
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Component": {
+                      "type": "string"
+                    },
+                    "Function": {
+                      "type": "string"
+                    },
+                    "Service": {
+                      "type": "string"
+                    },
+                    "Task": {
+                      "type": "string"
+                    },
+                    "PortMapping": {
+                      "type": "string"
+                    },
+                    "Mount": {
+                      "type": "string"
+                    },
+                    "Platform": {
+                      "type": "string"
+                    },
+                    "RouteTable": {
+                      "type": "string"
+                    },
+                    "NetworkACL": {
+                      "type": "string"
+                    },
+                    "DataBucket": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    },
+                    "Branch": {
+                      "type": "string"
+                    },
+                    "Client": {
+                      "type": "string"
+                    },
+                    "Connection": {
+                      "type": "string"
+                    },
+                    "AuthProvider": {
+                      "type": "string"
+                    },
+                    "Resource": {
+                      "type": "string"
+                    },
+                    "DataFeed": {
+                      "type": "string"
+                    },
+                    "RegistryService": {
+                      "type": "string"
+                    },
+                    "Assignment": {
+                      "type": "string"
+                    },
+                    "Route": {
+                      "type": "string"
+                    },
+                    "Endpoint": {
+                      "type": "string"
+                    },
+                    "Instance": {
+                      "type": "string"
+                    },
+                    "Version": {
+                      "type": "string"
+                    },
+                    "Secret": {
+                      "type": "string"
+                    },
+                    "Rule": {
+                      "type": "string"
+                    },
+                    "Role": {
+                      "type": "string"
+                    },
+                    "Direction": {
+                      "type": "string"
+                    },
+                    "Type": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "IncludeInContext": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "Tier",
+                    "Component"
+                  ]
+                }
+              },
+              "required": [
+                "Link"
+              ]
+            },
+            "Links": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Any": {
+                      "type": "string"
+                    },
+                    "Tenant": {
+                      "type": "string"
+                    },
+                    "Product": {
+                      "type": "string"
+                    },
+                    "Environment": {
+                      "type": "string"
+                    },
+                    "Segment": {
+                      "type": "string"
+                    },
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Component": {
+                      "type": "string"
+                    },
+                    "Function": {
+                      "type": "string"
+                    },
+                    "Service": {
+                      "type": "string"
+                    },
+                    "Task": {
+                      "type": "string"
+                    },
+                    "PortMapping": {
+                      "type": "string"
+                    },
+                    "Mount": {
+                      "type": "string"
+                    },
+                    "Platform": {
+                      "type": "string"
+                    },
+                    "RouteTable": {
+                      "type": "string"
+                    },
+                    "NetworkACL": {
+                      "type": "string"
+                    },
+                    "DataBucket": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    },
+                    "Branch": {
+                      "type": "string"
+                    },
+                    "Client": {
+                      "type": "string"
+                    },
+                    "Connection": {
+                      "type": "string"
+                    },
+                    "AuthProvider": {
+                      "type": "string"
+                    },
+                    "Resource": {
+                      "type": "string"
+                    },
+                    "DataFeed": {
+                      "type": "string"
+                    },
+                    "RegistryService": {
+                      "type": "string"
+                    },
+                    "Assignment": {
+                      "type": "string"
+                    },
+                    "Route": {
+                      "type": "string"
+                    },
+                    "Endpoint": {
+                      "type": "string"
+                    },
+                    "Instance": {
+                      "type": "string"
+                    },
+                    "Version": {
+                      "type": "string"
+                    },
+                    "Secret": {
+                      "type": "string"
+                    },
+                    "Rule": {
+                      "type": "string"
+                    },
+                    "Role": {
+                      "type": "string"
+                    },
+                    "Direction": {
+                      "type": "string"
+                    },
+                    "Type": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "IncludeInContext": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Tier",
+                    "Component"
+                  ]
+                }
+              }
+            },
+            "LogWatchers": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "LogFilter": {
+                      "type": "string"
+                    },
+                    "Links": {
+                      "type": "object",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Any": {
+                              "type": "string"
+                            },
+                            "Tenant": {
+                              "type": "string"
+                            },
+                            "Product": {
+                              "type": "string"
+                            },
+                            "Environment": {
+                              "type": "string"
+                            },
+                            "Segment": {
+                              "type": "string"
+                            },
+                            "Tier": {
+                              "type": "string"
+                            },
+                            "Component": {
+                              "type": "string"
+                            },
+                            "Function": {
+                              "type": "string"
+                            },
+                            "Service": {
+                              "type": "string"
+                            },
+                            "Task": {
+                              "type": "string"
+                            },
+                            "PortMapping": {
+                              "type": "string"
+                            },
+                            "Mount": {
+                              "type": "string"
+                            },
+                            "Platform": {
+                              "type": "string"
+                            },
+                            "RouteTable": {
+                              "type": "string"
+                            },
+                            "NetworkACL": {
+                              "type": "string"
+                            },
+                            "DataBucket": {
+                              "type": "string"
+                            },
+                            "Key": {
+                              "type": "string"
+                            },
+                            "Branch": {
+                              "type": "string"
+                            },
+                            "Client": {
+                              "type": "string"
+                            },
+                            "Connection": {
+                              "type": "string"
+                            },
+                            "AuthProvider": {
+                              "type": "string"
+                            },
+                            "Resource": {
+                              "type": "string"
+                            },
+                            "DataFeed": {
+                              "type": "string"
+                            },
+                            "RegistryService": {
+                              "type": "string"
+                            },
+                            "Assignment": {
+                              "type": "string"
+                            },
+                            "Route": {
+                              "type": "string"
+                            },
+                            "Endpoint": {
+                              "type": "string"
+                            },
+                            "Instance": {
+                              "type": "string"
+                            },
+                            "Version": {
+                              "type": "string"
+                            },
+                            "Secret": {
+                              "type": "string"
+                            },
+                            "Rule": {
+                              "type": "string"
+                            },
+                            "Role": {
+                              "type": "string"
+                            },
+                            "Direction": {
+                              "type": "string"
+                            },
+                            "Type": {
+                              "type": "string"
+                            },
+                            "Enabled": {
+                              "type": "boolean",
+                              "default": true
+                            },
+                            "IncludeInContext": {
+                              "type": "array",
+                              "contains": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "Tier",
+                            "Component"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "LogFilter"
+                  ]
+                }
+              }
+            },
+            "Profiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Deployment": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Policy": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Placement": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Baseline": {
+                  "type": "string",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "default": "default"
+                },
+                "Testing": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component"
+                },
+                "Logging": {
+                  "type": "string",
+                  "default": "default"
+                }
+              }
+            },
+            "SettingNamespaces": {
+              "type": "object",
+              "description": "Additional namespaces to use during settings lookups",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Match": {
+                      "type": "string",
+                      "description": "How to match the namespace with available settings",
+                      "default": "exact",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Order": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ]
+                    },
+                    "IncludeInNamespace": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "Tier": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Component": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Type": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "SubComponent": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "Instance": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Version": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Name": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      }
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "Export": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "DeploymentUnits": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "aws:WAFLogFeed": {
+              "type": "boolean",
+              "description": "Feed is intended for use with WAF. Enforces a strict naming convention required by the provider.",
+              "default": false
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@
     "test": "blc --input http://localhost:3000/docs --recursive",
     "localtest": "start-server-and-test 'start' http://localhost:3000 'test'",
     "start": "docusaurus start",
+    "serve": "docusaurus serve",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
@@ -24,10 +25,12 @@
     "infima": "^0.2.0-alpha.18",
     "json2yaml": "^1.1.0",
     "mermaid": "^8.8.4",
+    "qs": "^6.9.6",
     "react": "^16.14.0",
     "react-admonitions": "^2.1.0",
     "react-data-table-component": "^6.11.6",
     "react-dom": "^16.14.0",
+    "react-router-dom": "^5.2.0",
     "remark-admonitions": "^1.2.1",
     "styled-components": "^5.2.1",
     "yamljs": "^0.3.0"

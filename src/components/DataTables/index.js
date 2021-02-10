@@ -7,6 +7,8 @@ import {
   getSchemaExample,
   patternPropertiesRegex,
 } from "@site/src/components/HamletJsonSchema";
+import { useLocation, useParams } from "react-router-dom";
+import qs from "qs";
 
 import "./styles.css";
 
@@ -210,21 +212,17 @@ function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaul
   )
 }
 
-function HamletDataTables(props) {
+function HamletDataTables() {
 
-  const [referenceData, setReferenceData] = useState([]);
+  const { type, instance } = qs.parse(useLocation().search, { ignoreQueryPrefix: true })
   
-  const schemaData = getJsonSchemaData(props.type);
-  const references = getJsonSchemaDataTables({data: schemaData, type: props.type});
-
-  useEffect(() => {
-    setReferenceData(references);
-  }, []);
+  const schemaData = getJsonSchemaData(type || 'component', instance || 'baseline');
+  const references = getJsonSchemaDataTables({data: schemaData, type: type || 'component'});
 
   return (
     <React.Fragment>
       {   
-        referenceData.map((reference, idx) => {
+        references.map((reference, idx) => {
           return (
             <div className="item shadow--tl component" key={idx} >
             <div className="ref-row-headers">

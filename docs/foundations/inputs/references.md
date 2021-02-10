@@ -15,9 +15,6 @@ The hamlet.io documentation is currently under significant re-development. Exist
 * For information on different reference types and their structures, see the shared provider “Reference” section (link)
 
 # Reference Data Profiles
-
-[Profiles](../profiles/profiles) for Reference Data ...
-
 # Reference Data Profile Types
 
 ## Alert Profiles

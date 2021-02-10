@@ -26,7 +26,7 @@ Promotes build references from their prior environment, verifies the promotion t
 After running, this pipeline will notify a defined slack channel of either success or failure.
 
 ## Scripts
-This example uses groovy scripts from the [jenkins-shared-library](../../../scriptlibrary/index).
+This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library).
 
 ## Example
 ```groovy

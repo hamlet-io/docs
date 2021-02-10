@@ -1,0 +1,290 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://hamlet.io/schema/latest/blueprint/component-globaldb-schema.json",
+  "definitions": {
+    "globaldb": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "Table": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Billing": {
+                  "type": "string",
+                  "description": "The billing mode for the table",
+                  "default": "provisioned",
+                  "enum": [
+                    "provisioned",
+                    "per-request"
+                  ]
+                },
+                "Encrypted": {
+                  "type": "boolean",
+                  "description": "Enable at rest encryption",
+                  "default": true
+                },
+                "Capacity": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Read": {
+                      "type": "number",
+                      "description": "When using provisioned billing the maximum RCU of the table",
+                      "default": 1
+                    },
+                    "Write": {
+                      "type": "number",
+                      "description": "When using provisioned billing the maximum WCU of the table",
+                      "default": 1
+                    }
+                  }
+                },
+                "Backup": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "type": "boolean",
+                      "description": "Enables point in time recovery on the table",
+                      "default": false
+                    }
+                  }
+                },
+                "Stream": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "type": "boolean",
+                      "description": "Enables dynamodb event stream",
+                      "default": false
+                    },
+                    "ViewType": {
+                      "type": "string",
+                      "default": "NEW_IMAGE",
+                      "enum": [
+                        "KEYS_ONLY",
+                        "NEW_IMAGE",
+                        "OLD_IMAGE",
+                        "NEW_AND_OLD_IMAGES"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "PrimaryKey": {
+              "type": "string",
+              "description": "The primary key for the table"
+            },
+            "SecondaryKey": {
+              "type": "string",
+              "description": "The secondary sort key for the table"
+            },
+            "TTLKey": {
+              "type": "string",
+              "description": "A key in the table used to manage the items expiry"
+            },
+            "KeyTypes": {
+              "type": "object",
+              "description": "Key types - default is string",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Type": {
+                      "type": "string",
+                      "description": "Key value type",
+                      "enum": [
+                        "string",
+                        "number",
+                        "binary"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "SecondaryIndexes": {
+              "type": "object",
+              "description": "Alternate indexes for query efficiency",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Name": {
+                      "type": "string",
+                      "description": "Index name"
+                    },
+                    "Keys": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "List of keys"
+                    },
+                    "KeyTypes": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Type of each key - default is hash(0) then range",
+                      "enum": [
+                        "hash",
+                        "range"
+                      ]
+                    },
+                    "Capacity": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "Read": {
+                          "type": "number",
+                          "description": "When using provisioned billing the maximum RCU of the table",
+                          "default": 1
+                        },
+                        "Write": {
+                          "type": "number",
+                          "description": "When using provisioned billing the maximum WCU of the table",
+                          "default": 1
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Keys"
+                  ]
+                }
+              }
+            },
+            "Profiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Deployment": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Policy": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Placement": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Baseline": {
+                  "type": "string",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "default": "default"
+                },
+                "Testing": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component"
+                }
+              }
+            },
+            "SettingNamespaces": {
+              "type": "object",
+              "description": "Additional namespaces to use during settings lookups",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Match": {
+                      "type": "string",
+                      "description": "How to match the namespace with available settings",
+                      "default": "exact",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Order": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ]
+                    },
+                    "IncludeInNamespace": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "Tier": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Component": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Type": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "SubComponent": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "Instance": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Version": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Name": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      }
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "Export": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "DeploymentUnits": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "PrimaryKey"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ module.exports = {
   projectName: 'hamlet', // Usually your repo name.
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
+  onDuplicateRoutes: 'warn',
   themeConfig: {
     colorMode: {
       disableSwitch: true
@@ -23,20 +24,7 @@ module.exports = {
         {
           label: 'reference',
           position: 'left',
-          items: [
-            {
-              label: 'Components',
-              to: 'reference/components',
-            },
-            {
-              label: 'Reference Data',
-              to: 'reference/data',
-            },
-            {
-              label: 'AttributeSets',
-              to: 'reference/attributesets',
-            },
-          ],
+          to: 'reference',
         },
         {to: "blog", label: 'blog', position: 'right'},
         {
@@ -69,23 +57,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: 'docs/getting-started/overview',
-            },
-            {
-              label: 'Create',
-              to: 'docs/tutorials/overview',
-            },
-            {
-              label: 'Deploy',
-              to: 'docs/tutorials/overview',
-            },
-            {
-              label: 'Upgrade',
-              to: 'docs/tutorials/overview',
-            },
-            {
-              label: 'Automate',
-              to: 'docs/tutorials/overview',
+              to: 'docs/hello/hamlet',
             },
           ],
         },
@@ -93,13 +65,13 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
+              label: 'Docs',
+              to: 'docs/hello/welcome'
             },
             {
-              label: 'Gitter',
-              href: 'https://gitter.im/hamlet-io/community',
-            }
+              label: 'Help',
+              href: 'https://help.hamlet.io',
+            },
           ],
         },
         {

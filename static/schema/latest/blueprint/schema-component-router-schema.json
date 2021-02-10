@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://hamlet.io/schema/latest/blueprint/component-router-schema.json",
+  "definitions": {
+    "router": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "Active": {
+              "type": "boolean",
+              "default": false
+            },
+            "BGP": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "BGP specific configuration",
+              "properties": {
+                "Enabled": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "ASN": {
+                  "type": "number",
+                  "description": "The BGP ASN ( Autonomous system ) Id of the router"
+                },
+                "ECMP": {
+                  "type": "boolean",
+                  "description": "Enabled Equal Cost multipath routing where supported",
+                  "default": true
+                }
+              },
+              "required": [
+                "ASN"
+              ]
+            },
+            "Profiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Deployment": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Policy": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Placement": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Baseline": {
+                  "type": "string",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "default": "default"
+                },
+                "Testing": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component"
+                }
+              }
+            },
+            "SettingNamespaces": {
+              "type": "object",
+              "description": "Additional namespaces to use during settings lookups",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Match": {
+                      "type": "string",
+                      "description": "How to match the namespace with available settings",
+                      "default": "exact",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Order": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ]
+                    },
+                    "IncludeInNamespace": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "Tier": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Component": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Type": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "SubComponent": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "Instance": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Version": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Name": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      }
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "Export": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "DeploymentUnits": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "aws:ResourceSharing": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Allows for the resource to be shared with other Accounts",
+              "properties": {
+                "Enabled": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "AccountPrincipals": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "List of AWS Account Ids or Organisation ARNS to share the resource with"
+                },
+                "AllowExternalPrincipals": {
+                  "type": "boolean",
+                  "description": "Allow resources to be shared outside of the Organisation",
+                  "default": false
+                }
+              }
+            },
+            "StaticRoutes": {
+              "$ref": "#/definitions/routerstaticroute"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

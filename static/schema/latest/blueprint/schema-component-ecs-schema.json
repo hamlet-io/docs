@@ -1,0 +1,963 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://hamlet.io/schema/latest/blueprint/component-ecs-schema.json",
+  "definitions": {
+    "ecs": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "properties": {
+            "Extensions": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing"
+            },
+            "FixedIP": {
+              "type": "boolean",
+              "default": false
+            },
+            "LogDriver": {
+              "type": "string",
+              "default": "awslogs",
+              "enum": [
+                "awslogs",
+                "json-file",
+                "fluentd"
+              ]
+            },
+            "VolumeDrivers": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "enum": [
+                "ebs"
+              ]
+            },
+            "ClusterLogGroup": {
+              "type": "boolean",
+              "default": true
+            },
+            "Links": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Any": {
+                      "type": "string"
+                    },
+                    "Tenant": {
+                      "type": "string"
+                    },
+                    "Product": {
+                      "type": "string"
+                    },
+                    "Environment": {
+                      "type": "string"
+                    },
+                    "Segment": {
+                      "type": "string"
+                    },
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Component": {
+                      "type": "string"
+                    },
+                    "Function": {
+                      "type": "string"
+                    },
+                    "Service": {
+                      "type": "string"
+                    },
+                    "Task": {
+                      "type": "string"
+                    },
+                    "PortMapping": {
+                      "type": "string"
+                    },
+                    "Mount": {
+                      "type": "string"
+                    },
+                    "Platform": {
+                      "type": "string"
+                    },
+                    "RouteTable": {
+                      "type": "string"
+                    },
+                    "NetworkACL": {
+                      "type": "string"
+                    },
+                    "DataBucket": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    },
+                    "Branch": {
+                      "type": "string"
+                    },
+                    "Client": {
+                      "type": "string"
+                    },
+                    "Connection": {
+                      "type": "string"
+                    },
+                    "AuthProvider": {
+                      "type": "string"
+                    },
+                    "Resource": {
+                      "type": "string"
+                    },
+                    "DataFeed": {
+                      "type": "string"
+                    },
+                    "RegistryService": {
+                      "type": "string"
+                    },
+                    "Assignment": {
+                      "type": "string"
+                    },
+                    "Route": {
+                      "type": "string"
+                    },
+                    "Endpoint": {
+                      "type": "string"
+                    },
+                    "Instance": {
+                      "type": "string"
+                    },
+                    "Version": {
+                      "type": "string"
+                    },
+                    "Secret": {
+                      "type": "string"
+                    },
+                    "Rule": {
+                      "type": "string"
+                    },
+                    "Role": {
+                      "type": "string"
+                    },
+                    "Direction": {
+                      "type": "string"
+                    },
+                    "Type": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "IncludeInContext": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Tier",
+                    "Component"
+                  ]
+                }
+              }
+            },
+            "AutoScaling": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "DetailedMetrics": {
+                  "type": "boolean",
+                  "description": "Enable the collection of autoscale group detailed metrics",
+                  "default": true
+                },
+                "WaitForSignal": {
+                  "type": "boolean",
+                  "description": "Wait for a cfn-signal before treating the instances as alive",
+                  "default": true
+                },
+                "MinUpdateInstances": {
+                  "type": "number",
+                  "description": "The minimum number of instances which must be available during an update",
+                  "default": 1
+                },
+                "MinSuccessInstances": {
+                  "type": "number",
+                  "description": "The minimum percantage of instances that must sucessfully update",
+                  "default": 75
+                },
+                "ReplaceCluster": {
+                  "type": "boolean",
+                  "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
+                  "default": false
+                },
+                "UpdatePauseTime": {
+                  "type": "string",
+                  "description": "How long to pause betweeen updates of instances",
+                  "default": "10M"
+                },
+                "StartupTimeout": {
+                  "type": "string",
+                  "description": "How long to wait for a cfn-signal to be received from a host",
+                  "default": "15M"
+                },
+                "AlwaysReplaceOnUpdate": {
+                  "type": "boolean",
+                  "description": "Replace instances on every update action",
+                  "default": false
+                },
+                "ActivityCooldown": {
+                  "type": "number",
+                  "default": 30
+                }
+              }
+            },
+            "HostScalingPolicies": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Type": {
+                      "type": "string",
+                      "default": "ComputeProvider",
+                      "enum": [
+                        "Stepped",
+                        "Tracked",
+                        "Scheduled",
+                        "ComputeProvider"
+                      ]
+                    },
+                    "ComputeProvider": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "MinAdjustment": {
+                          "type": "number",
+                          "description": "The minimum instances to update during scaling activities",
+                          "default": 1
+                        },
+                        "MaxAdjustment": {
+                          "type": "number",
+                          "description": "The maximum instances to  update during scaling activities",
+                          "default": 10000
+                        },
+                        "TargetCapacity": {
+                          "type": "number",
+                          "description": "The target usage of the autoscale group to maintain as a percentage",
+                          "default": 90
+                        },
+                        "ManageTermination": {
+                          "type": "boolean",
+                          "description": "Alow the computer provider to manage when instances will be terminated",
+                          "default": true
+                        },
+                        "Type": {
+                          "type": "string",
+                          "default": "Stepped",
+                          "enum": [
+                            "Stepped",
+                            "Tracked",
+                            "Scheduled"
+                          ]
+                        },
+                        "Cooldown": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
+                          "properties": {
+                            "ScaleIn": {
+                              "type": "number",
+                              "default": 300
+                            },
+                            "ScaleOut": {
+                              "type": "number",
+                              "default": 600
+                            }
+                          }
+                        },
+                        "TrackingResource": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "The resource metric used to trigger scaling",
+                          "properties": {
+                            "Link": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "properties": {
+                                "Any": {
+                                  "type": "string"
+                                },
+                                "Tenant": {
+                                  "type": "string"
+                                },
+                                "Product": {
+                                  "type": "string"
+                                },
+                                "Environment": {
+                                  "type": "string"
+                                },
+                                "Segment": {
+                                  "type": "string"
+                                },
+                                "Tier": {
+                                  "type": "string"
+                                },
+                                "Component": {
+                                  "type": "string"
+                                },
+                                "Function": {
+                                  "type": "string"
+                                },
+                                "Service": {
+                                  "type": "string"
+                                },
+                                "Task": {
+                                  "type": "string"
+                                },
+                                "PortMapping": {
+                                  "type": "string"
+                                },
+                                "Mount": {
+                                  "type": "string"
+                                },
+                                "Platform": {
+                                  "type": "string"
+                                },
+                                "RouteTable": {
+                                  "type": "string"
+                                },
+                                "NetworkACL": {
+                                  "type": "string"
+                                },
+                                "DataBucket": {
+                                  "type": "string"
+                                },
+                                "Key": {
+                                  "type": "string"
+                                },
+                                "Branch": {
+                                  "type": "string"
+                                },
+                                "Client": {
+                                  "type": "string"
+                                },
+                                "Connection": {
+                                  "type": "string"
+                                },
+                                "AuthProvider": {
+                                  "type": "string"
+                                },
+                                "Resource": {
+                                  "type": "string"
+                                },
+                                "DataFeed": {
+                                  "type": "string"
+                                },
+                                "RegistryService": {
+                                  "type": "string"
+                                },
+                                "Assignment": {
+                                  "type": "string"
+                                },
+                                "Route": {
+                                  "type": "string"
+                                },
+                                "Endpoint": {
+                                  "type": "string"
+                                },
+                                "Instance": {
+                                  "type": "string"
+                                },
+                                "Version": {
+                                  "type": "string"
+                                },
+                                "Secret": {
+                                  "type": "string"
+                                },
+                                "Rule": {
+                                  "type": "string"
+                                },
+                                "Role": {
+                                  "type": "string"
+                                },
+                                "Direction": {
+                                  "type": "string"
+                                },
+                                "Type": {
+                                  "type": "string"
+                                },
+                                "Enabled": {
+                                  "type": "boolean",
+                                  "default": true
+                                },
+                                "IncludeInContext": {
+                                  "type": "array",
+                                  "contains": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "Tier",
+                                "Component"
+                              ]
+                            },
+                            "MetricTrigger": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "properties": {
+                                "Namespace": {
+                                  "type": "string"
+                                },
+                                "DimensionSource": {
+                                  "type": "string",
+                                  "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                                  "default": "Resource",
+                                  "enum": [
+                                    "Resource",
+                                    "Configured"
+                                  ]
+                                },
+                                "Resource": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "description": "Provide a component resource to determine the dimensions of the metric",
+                                  "properties": {
+                                    "Id": {
+                                      "type": "string"
+                                    },
+                                    "Type": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "Dimensions": {
+                                  "type": "object",
+                                  "description": "Explicit configured dimensions",
+                                  "patternProperties": {
+                                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                      "properties": {
+                                        "Key": {
+                                          "type": "string",
+                                          "description": "The Key of the dimension"
+                                        },
+                                        "Value": {
+                                          "type": "string",
+                                          "description": "The value of the dimension to match"
+                                        },
+                                        "SettingEnvName": {
+                                          "type": "string",
+                                          "description": "A setting name as env that will provide the dimension value"
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    }
+                                  }
+                                },
+                                "Metric": {
+                                  "type": "string"
+                                },
+                                "Statistic": {
+                                  "type": "string",
+                                  "default": "Sum"
+                                },
+                                "Description": {
+                                  "type": "string"
+                                },
+                                "Name": {
+                                  "type": "string"
+                                },
+                                "Threshold": {
+                                  "type": "number",
+                                  "default": 1
+                                },
+                                "Severity": {
+                                  "type": "string",
+                                  "default": "info",
+                                  "enum": [
+                                    "debug",
+                                    "info",
+                                    "warn",
+                                    "error",
+                                    "fatal"
+                                  ]
+                                },
+                                "Comparison": {
+                                  "type": "string",
+                                  "default": "Threshold"
+                                },
+                                "Operator": {
+                                  "type": "string",
+                                  "default": "GreaterThanOrEqualToThreshold"
+                                },
+                                "Time": {
+                                  "type": "number",
+                                  "default": 300
+                                },
+                                "Periods": {
+                                  "type": "number",
+                                  "default": 1
+                                },
+                                "ReportOk": {
+                                  "type": "boolean",
+                                  "default": false
+                                },
+                                "MissingData": {
+                                  "type": "string",
+                                  "default": "notBreaching"
+                                },
+                                "Unit": {
+                                  "type": "string",
+                                  "default": "Count"
+                                }
+                              },
+                              "required": [
+                                "Metric",
+                                "Name"
+                              ]
+                            }
+                          }
+                        },
+                        "Stepped": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "MetricAggregation": {
+                              "type": "string",
+                              "description": "The method used to agregate the cloudwatch metric",
+                              "default": "Average",
+                              "enum": [
+                                "Average",
+                                "Minimum",
+                                "Maximum"
+                              ]
+                            },
+                            "CapacityAdjustment": {
+                              "type": "string",
+                              "description": "How to scale when the policy is triggered",
+                              "default": "Change",
+                              "enum": [
+                                "Change",
+                                "Exact",
+                                "Percentage"
+                              ]
+                            },
+                            "MinAdjustment": {
+                              "type": "number",
+                              "description": "When minimum scale adjustment value to apply when triggered",
+                              "default": -1
+                            },
+                            "Adjustments": {
+                              "type": "object",
+                              "description": "The adjustments to apply at each step",
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "properties": {
+                                    "LowerBound": {
+                                      "type": "number",
+                                      "description": "The lower bound for the difference between the alarm threshold and the metric"
+                                    },
+                                    "UpperBound": {
+                                      "type": "number",
+                                      "description": "The upper bound for the difference between the alarm threshold and the metric"
+                                    },
+                                    "AdjustmentValue": {
+                                      "type": "number",
+                                      "description": "The value to apply when the adjustment step is triggered",
+                                      "default": 1
+                                    }
+                                  },
+                                  "additionalProperties": false
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Tracked": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "TargetValue": {
+                              "type": "number"
+                            },
+                            "ScaleInEnabled": {
+                              "type": "boolean",
+                              "default": true
+                            },
+                            "RecommendedMetric": {
+                              "type": "string",
+                              "description": "Use a recommended (predefined) metric for scaling"
+                            }
+                          }
+                        },
+                        "Scheduled": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "ProcessorProfile": {
+                              "type": "string",
+                              "default": "default"
+                            },
+                            "Schedule": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "DockerUsers": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "UserName": {
+                      "type": "string"
+                    },
+                    "UID": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "UID"
+                  ]
+                }
+              }
+            },
+            "LogMetrics": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "LogFilter": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "LogFilter"
+                  ]
+                }
+              }
+            },
+            "Alerts": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Namespace": {
+                      "type": "string"
+                    },
+                    "DimensionSource": {
+                      "type": "string",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "default": "Resource",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
+                    "Resource": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Provide a component resource to determine the dimensions of the metric",
+                      "properties": {
+                        "Id": {
+                          "type": "string"
+                        },
+                        "Type": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "type": "object",
+                      "description": "Explicit configured dimensions",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "Key": {
+                              "type": "string",
+                              "description": "The Key of the dimension"
+                            },
+                            "Value": {
+                              "type": "string",
+                              "description": "The value of the dimension to match"
+                            },
+                            "SettingEnvName": {
+                              "type": "string",
+                              "description": "A setting name as env that will provide the dimension value"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "Metric": {
+                      "type": "string"
+                    },
+                    "Statistic": {
+                      "type": "string",
+                      "default": "Sum"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Threshold": {
+                      "type": "number",
+                      "default": 1
+                    },
+                    "Severity": {
+                      "type": "string",
+                      "default": "info",
+                      "enum": [
+                        "debug",
+                        "info",
+                        "warn",
+                        "error",
+                        "fatal"
+                      ]
+                    },
+                    "Comparison": {
+                      "type": "string",
+                      "default": "Threshold"
+                    },
+                    "Operator": {
+                      "type": "string",
+                      "default": "GreaterThanOrEqualToThreshold"
+                    },
+                    "Time": {
+                      "type": "number",
+                      "default": 300
+                    },
+                    "Periods": {
+                      "type": "number",
+                      "default": 1
+                    },
+                    "ReportOk": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "MissingData": {
+                      "type": "string",
+                      "default": "notBreaching"
+                    },
+                    "Unit": {
+                      "type": "string",
+                      "default": "Count"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Metric",
+                    "Name"
+                  ]
+                }
+              }
+            },
+            "Hibernate": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Enabled": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "StartUpMode": {
+                  "type": "string",
+                  "default": "replace",
+                  "enum": [
+                    "replace"
+                  ]
+                }
+              }
+            },
+            "Role": {
+              "type": "string",
+              "description": "Server configuration role"
+            },
+            "OSPatching": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Enabled": {
+                  "type": "boolean",
+                  "description": "Enable automatic OS Patching",
+                  "default": true
+                },
+                "Schedule": {
+                  "type": "string",
+                  "description": "UTC based cron schedule to apply updates",
+                  "default": "59 13 * * *"
+                },
+                "SecurityOnly": {
+                  "type": "boolean",
+                  "description": "Only apply security updates",
+                  "default": false
+                }
+              }
+            },
+            "Profiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Deployment": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Policy": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  }
+                },
+                "Placement": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Baseline": {
+                  "type": "string",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "default": "default"
+                },
+                "Testing": {
+                  "type": "array",
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component"
+                },
+                "ComputeProvider": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Processor": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Alert": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Network": {
+                  "type": "string",
+                  "default": "default"
+                },
+                "Logging": {
+                  "type": "string",
+                  "default": "default"
+                }
+              }
+            },
+            "SettingNamespaces": {
+              "type": "object",
+              "description": "Additional namespaces to use during settings lookups",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Match": {
+                      "type": "string",
+                      "description": "How to match the namespace with available settings",
+                      "default": "exact",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Order": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ]
+                    },
+                    "IncludeInNamespace": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "Tier": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Component": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Type": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "SubComponent": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "Instance": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Version": {
+                          "type": "boolean",
+                          "default": true
+                        },
+                        "Name": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      }
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "Export": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "DeploymentUnits": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              }
+            },
+            "Services": {
+              "$ref": "#/definitions/service"
+            },
+            "Tasks": {
+              "$ref": "#/definitions/task"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}
