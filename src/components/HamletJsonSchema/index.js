@@ -251,23 +251,21 @@ function getSchemaExample(definition){
     definition.type = "link-object";
   }
 
-  if (definition.type || definition.anyOf) {
-    var type = (definition.anyOf) ? definition.anyOf.map(a => a.type).join(' or ') : definition.type;
-    example = new String;
-    example = type;
-    return example;
+  example = 
+    (definition.patternProperties) ? { "*" : getSchemaExample(definition.patternProperties[patternPropertiesRegex].properties ) }
+    : (definition.properties) ? getSchemaExample(definition.properties)
+    : (definition.anyOf) ? definition.anyOf.map(a => a.type).join(' or ')
+    : (definition.type) ? definition.type
+    : new Object
+    
+   // process children
+  if (Object.keys(example).length == 0) {
+    Object.keys(definition).map(attrName => {
+      example[attrName] = getSchemaExample(definition[attrName]);
+      return example
+    });
+
   }
-
-  Object.keys(definition).map(attrName => {
-    var attrValue = definition[attrName];
-    example[attrName] = 
-      (attrValue.patternProperties) ? getSchemaExample(attrValue.patternProperties[patternPropertiesRegex].properties)
-      : (attrValue.properties) ? getSchemaExample(attrValue.properties)
-      : getSchemaExample(attrValue)
-
-    return example;
-  });
-
   return example;
 }
 

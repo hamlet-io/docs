@@ -177,7 +177,7 @@ const getJsonSchemaDataTables = ({data, type}) => {
       // construct attribute data tables
       var dataTables = getDataTables(title, referenceAttributeRoot, mandatory);
       var example = new Object;
-      example[title] = getSchemaExample(referenceAttributeRoot);
+      example = getSchemaExample(data.definitions[title]);
 
       // add the reference
       references.push(
