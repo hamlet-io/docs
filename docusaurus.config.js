@@ -6,7 +6,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'hamlet', // Usually your GitHub org/user name.
   projectName: 'hamlet', // Usually your repo name.
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   onDuplicateRoutes: 'warn',
   themeConfig: {
