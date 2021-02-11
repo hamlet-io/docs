@@ -247,6 +247,10 @@ function getSchemaExample(definition){
 
   var example = new Object;
 
+  if (definition["$ref"]) {
+    definition.type = "link-object";
+  }
+
   if (definition.type || definition.anyOf) {
     var type = (definition.anyOf) ? definition.anyOf.map(a => a.type).join(' or ') : definition.type;
     example = new String;
