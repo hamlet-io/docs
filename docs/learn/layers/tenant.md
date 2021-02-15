@@ -47,9 +47,9 @@ Enter audit log offline days [90]:
 |-----+------------------------+----------------|
 |   1 | tenant id              | acmeinc        |
 |   2 | tenant name            | acmeinc        |
-|   3 | domain stem            | acme.io      |
+|   3 | domain stem            | acme.io        |
 |   4 | default region         | ap-southeast-2 |
-|   5 | audit log expiry days  | 2555           |y
+|   5 | audit log expiry days  | 2555           |
 |   6 | audit log offline days | 90             |
 +-----+------------------------+----------------+
 Is everything correct? [y/N]: y
@@ -60,8 +60,7 @@ That's all it takes to create your first Tenant and its minimal configuration.
 Now let's take a look at what Hamlet has created for us. 
 
 ```bash
-hamlet @ ~/cmdb
-└─ $ tree
+$ tree
 .
 └── accounts
     └── acmeinc

@@ -9,7 +9,6 @@ module.exports = {
       type: 'category',
       label: 'Learn',
       items: [
-        'learn/overview',
         {
           type: 'category',
           label: 'Layers',
