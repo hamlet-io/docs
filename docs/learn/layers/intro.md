@@ -23,9 +23,9 @@ There are 6 layer types available in Hamlet, each representing a unique configur
 - Environment
 - Segment
 
-In the following sections we will walk through each of these together, exploring how they work together.
+In the following sections we will walk through each one, exploring how they work together.
 
-By the end of of this Learn Hamlet tutorial you will have sufficient experience to create your own Hamlet CMDB's and begin working in Hamlet.
+By the end of of this tutorial you will have sufficient experience to create your own Hamlet CMDB's and begin working in Hamlet.
 
 :::note
 The following tutorials presume that you are operating inside of the Hamlet docker container.
