@@ -88,7 +88,7 @@ As you can no doubt see, there an enormous of data that Hamlet has already estab
 If the Blueprint is the composite of your Tenant, Account and Product configuration, where is the rest coming from?
 
 :::warning
-To get out of vim and back to the bash prompt, type `:q!<return>`
+To get out of vim and back to the bash prompt, type `:q!<return>` 
 :::
 
 ### Layer Defaults or Normalised Values
