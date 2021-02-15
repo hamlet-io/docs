@@ -75,6 +75,8 @@ Notice the directory structure here - `./accounts/acmeinc`. The `tenant name` th
 
 A Tenant alone isn't sufficient for us to perform any Hamlet activities with it yet, so instead lets take a peek at the files Hamlet generated for us:
 
+## tenant.json
+
 ```bash
 hamlet @ ~/cmdb
 └─ $ cat ./accounts/acmeinc/tenant.json
@@ -99,3 +101,47 @@ hamlet @ ~/cmdb
     }
 }
 ```
+
+You will recognise most of the values defined in the **tenant.json** file are responses to the CLI prompts answered earlier. 
+
+Configuration in this file will impact each Account and Product associated with it. Because of the breadth of its scope, the default configuration created is minimal - mostly it can be considered **default values**. 
+
+We assign the Tenant a `Name` and `Id`, along with the default region configuration for the **Account** and **Product** layers. 
+
+Defining defaults here rather than later in those layers means that we can set a single default at the greatest scope and only provide over-riding values when necessary, reducing unnecessary duplication and ensuring that exceptions to this configuration will stand out.
+
+The configuration also sets the default `CertificateBehaviours` to `external`, telling Hamlet that any certificates are currently being handled elsewhere and their configuration should not be accounted for. Again, just a sensible default allowing certificates to be accounted for as necessary.
+
+## domains.json
+
+```bash
+hamlet @ ~/cmdb
+└─ $ cat ./accounts/acmeinc/domains.json
+{
+    "Domains" : {
+        "Validation" : "acme.io",
+        "acmeinc" : {
+            "Stem": "acme.io"
+        }
+    },
+    "Certificates" : {
+    }
+}
+```
+
+An organisation will typically own one or more domains that they have purcahsed. Tracking these domains - even when presently unused, as is the case here - will allow Accounts and Products configured at a later time to make use of them. As we provided the CLI prompt with a domain owned by our Tenant, it has configured it here, however there are no certificates that use it currently.
+
+## ipaddressgroups.json
+
+```bash
+hamlet @ ~/cmdb
+└─ $ cat ./accounts/acmeinc/ipaddressgroups.json
+{
+    "IPAddressGroups" : {
+    }
+}
+```
+
+This file simply provides us with a best-practice location to store any IPAddressGroups that would be of interest across our Tenancy. A Tenant might for instance wish to define separate groups for different offices, and ensure that any Account or Product that uses it always reflects the latest details.
+
+With our Tenant setup and reviewed, lets create an Account that belongs to it.
