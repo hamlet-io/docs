@@ -18,8 +18,7 @@ module.exports = {
             'learn/layers/tenant',
             'learn/layers/account',
             'learn/layers/product',
-            'learn/layers/solution',
-            'learn/layers/segment',
+            'learn/layers/blueprint',
           ]
         },
       ]
