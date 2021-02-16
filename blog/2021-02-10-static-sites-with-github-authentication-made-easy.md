@@ -22,7 +22,7 @@ hamlet deploy run-deployments
 
 The Hamlet Modules used here are going to restrict access to your chosen **Github Team** in a specific **Github Organisation**. Select an appropriate one to test with, and note them down as you'll need them shortly.
 
-Within your selected Github organisation you will need to register a new [OAuth Application](https://docs.github.com/en/developers/apps/creating-an-oauth-app). Enter a placeholder Callback URL for the time being, we’ll update it along the way. Generate a clientSecret that we can use within our Solution.
+Within your selected Github organisation you will need to register a new [OAuth Application](https://docs.github.com/en/developers/apps/creating-an-oauth-app). This will require admin access to the Organisation. Enter a placeholder Callback URL for the time being, we’ll update it along the way. Generate a clientSecret that we can use within our Solution.
 
 Finally, you’ll need to build and publish into our Solution’s artefact registry a unique build for the _githubidp_ module’s lambda function. Though already developed, the function is used to sign JWT’s and the private key for this is generated during the build. A Jenkins pipeline template for the build can be found [here](https://github.com/gs-gs/github-idp/blob/master/hamlet/pipelines/Jenkinsfile-example), and requires the following additions to our [product.properties file](https://docs.hamlet.io/docs/integrations/jenkins/examplelibrary/examples/properties/properties):
 
@@ -53,7 +53,7 @@ With that out of the way, let’s get on with it!
 
 # Starting Solution
 
-Here’s our initial Solution configuration. We’ve added the Plugins, but the modules within them are not yet configured. Our `mgmt` tier has the definition for a single `userpool` I’ve simply called “pool” which currently has no **AuthProviders** or **Clients** (sub-components) - they’ll come later. And in the `web` tier I’ve configured a bare-bones `spa` component for our static site.
+Here’s our initial Solution configuration. We’ve added the Plugins, but the modules within them are not yet configured. Our `mgmt` tier has the definition for a single `userpool` I’ve simply called “pool”. In the `web` tier I’ve configured an `spa` component.
 
 ```json
 {
