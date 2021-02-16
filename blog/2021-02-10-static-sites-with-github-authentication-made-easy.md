@@ -53,7 +53,7 @@ With that out of the way, let’s get on with it!
 
 # Starting Solution
 
-Here’s our initial Solution configuration. We’ve added the Plugins, but the modules within them are not yet configured. Our `mgmt` tier has the definition for a single `userpool` I’ve simply called “pool”. In the `web` tier I’ve configured an `spa` component.
+Update your Solution with the configuration below. We’ve added the Plugins, but the modules within them are not yet configured. Our `mgmt` tier has the definition for a single `userpool` I’ve simply called “pool”. In the `web` tier I’ve configured an `spa` component.
 
 ```json
 {
@@ -112,10 +112,6 @@ Here’s our initial Solution configuration. We’ve added the Plugins, but the 
     }
 }
 ```
-
-:::warning
-Remember to remove the comments in the JSON file if copying from the examples here
-:::
 
 Keen eyes may notice that I’ve not configured a `cdn` yet. This will be provided by our _cfcognito_ module, so we’ll start to see it’s deployment-unit once the module has been configured.
 
