@@ -241,6 +241,7 @@ function HamletDataTables() {
                       title={table.title}
                       data={table.data}
                     />
+                    <br />
                   </section>
                 )
               })
