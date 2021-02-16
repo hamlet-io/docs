@@ -1,20 +1,20 @@
 ---
-title: SPAs with Github Authentication Made Easy
+title: Static Sites with Github Authentication Made Easy
 author: rossmurr4y
 author_url: https://github.com/rossmurr4y
 ---
 import Admonition from 'react-admonitions';
 
-# Github OAuth on an SPA with Hamlet Modules
-Single Page Applications - or SPAs as they are more commonly called - are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks that allow anyone to spin up and deploy a fresh one in a matter of minutes, often for for little or no cost. However, not every SPA is intended to be public. Adding authentication to an SPA is considerably greater in complexity than the SPA alone. Thankfully, this is where Hamlet Modules really shine.
+# Github OAuth and S with Hamlet Modules
+Static websites are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks like Jekyll, Gatsby and Docusaurus that allow anyone to spin up and deploy documentation, a blog or simple website, often for for little or no cost. However, not every static site is intended to be public. Adding authentication is considerably greater in complexity than the site alone. Thankfully, this is where Hamlet Modules really shine.
 
-In this article, I will be stepping through the process of using two of the recently published Hamlet modules - _cfcognito_ and _githubidp_. Used alongside a Hamlet Solution for a typical SPA deployment into AWS, these modules will include everything necessary to restrict access to our SPA with Github.
+In this article, I will be stepping through the process of using two of the recently published Hamlet modules - _cfcognito_ and _githubidp_. Used alongside a Hamlet Solution for a typical `spa` deployment into AWS, these modules will include everything necessary to restrict access to our site with Github.
 
 Before we get started, let’s cover off what you need prior to following along.
 
 # Prerequisites
 
-You will need to have configured a Hamlet Tenant, Account(s) and Product for our SPA, and have deployed all the “out-of-the-box” deployment-units.
+You will need to have configured a Hamlet Tenant, Account(s) and Product for our site, and have deployed all the “out-of-the-box” deployment-units.
 
 The Hamlet Modules used here are going to restrict access to your chosen **Github Team** in a specific **Github Organisation**. Select an appropriate one to test with, and note them down as you'll need them shortly.
 
@@ -49,7 +49,7 @@ With that out of the way, let’s get on with it!
 
 # Starting Solution
 
-Here’s our initial Solution configuration. We’ve added the Plugins, but the modules within them are not yet configured. Our `mgmt` tier has the definition for a single `userpool` I’ve simply called “pool” which currently has no **AuthProviders** or **Clients** (sub-components) - they’ll come later. And in the `web` tier I’ve configured a bare-bones `spa` component.
+Here’s our initial Solution configuration. We’ve added the Plugins, but the modules within them are not yet configured. Our `mgmt` tier has the definition for a single `userpool` I’ve simply called “pool” which currently has no **AuthProviders** or **Clients** (sub-components) - they’ll come later. And in the `web` tier I’ve configured a bare-bones `spa` component for our static site.
 
 ```json
 {
@@ -147,7 +147,7 @@ hamlet deploy run-deployments
 ## Configuring Modules :  githubidp
 Our two Plugins not only extend the capabilities of Hamlet, they both include Hamlet Modules - pre-configured sections of a Solution that are layered underneath our Solution.
 
-We’ll first configure the _githubidp_ module, which adds an `apigateway` and `lambda` components to our Solution. The `lambda` contains a number of functions that will perform the necessary authorisation steps for our SPA.
+We’ll first configure the _githubidp_ module, which adds an `apigateway` and `lambda` components to our Solution. The `lambda` contains a number of functions that will perform the necessary authorisation steps for our site.
 
 Add the following to the Solution to configure the module  (non-relevant configuration is trimmed from the example) :
 
