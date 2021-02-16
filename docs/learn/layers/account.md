@@ -20,7 +20,7 @@ Enter account id: acmedev01
 Enter account name [acmedev01]:
 Enter account seed [igtfze6ar0]:
 Enter provider type [aws]:
-Enter provider id: aws
+Enter provider id: 012345678912
 +-----+---------------+--------------+
 |   № | parameter     | value        |
 |-----+---------------+--------------|
