@@ -268,7 +268,10 @@ The Module we are using includes externally sourced files for the `apigateway`, 
 :::
 
 ## Configuring Modules: cfcognito
-Moving on to the _cfcognito_ module now, lets add its configuration into our Solution.
+
+The _cfcognito_ module enables OIDC compliant authentication at the CloudFront layer. This will allow us to use Cognito to provide course - in or out - level access to all content behind the CloudFront distribution.
+
+Add its configuration into our Solution:
 
 ```json
 {
