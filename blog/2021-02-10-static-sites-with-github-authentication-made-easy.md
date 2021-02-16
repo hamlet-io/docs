@@ -338,7 +338,9 @@ This module includes a lambda ( deployment unit `<id>_lmb`) that must be specifi
 ```
 
 ## Update Solution
-As this module adds the `cdn` into our Solution, we can now include our `userpoolclient` sub-component on our `userpool`. So that it picks up the Callback URL information for the `cdn`, we need to provide a Link on it to the `cdn` component configuration inside of the Module. 
+As this module adds the `cdn` into our Solution we need to add a `userpoolclient` sub-component to our `userpool` which will be used by CloudFront to access the `userpool`. 
+
+So that it picks up the Callback URL information for the `cdn`, we need to provide a Link on it to the `cdn` component configuration inside of the Module. 
 
 The configuration for the Link is based off of the parameters you have provided to the Module, so you will know which Tier/Component/Instance combination to use. The Component's Id is a concatenation of the `id` Module parameter value you've configured and "auth".
 
