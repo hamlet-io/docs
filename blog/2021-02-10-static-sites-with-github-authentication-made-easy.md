@@ -437,44 +437,6 @@ Once our Github OAuth App is configgured, we can now test it all out! Retrieve t
 hamlet query describe occurrence --tier-id <cdn-tier> --component-id <cdn-id> attributes
 ```
 
-## Adding a Certificate
-Though the `cdn` is defined within the _cfcognito_ module, by applying new configuration for it in our Solution we can add a certificate to it.
-
-If you have a certificate ready to be applied (a topic for another article perhaps!), you can use the `id` and `tier` values you’ve configured the module with to apply the certificate:
-
-```json
-{
-    "Tiers": {
-        "<tier-value>": {
-            "Components": {
-                "<id-value>" : {
-                    "cdn" : {
-                        "Certificate": {
-                            "Host": "<hostname>", /* update */
-                            "IncludeInHost": {
-                                "Host": true,
-                                "Environment": false,
-                                "Segment": false,
-                                "Product": false,
-                                "Tier": false,
-                                "Component": false,
-                                "Instance": false,
-                                "Version": false
-                            },
-                            "IncludeInDomain": {
-                                "Segment": false,
-                                "Product": false,
-                                "Environment": false
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
 And with that, your Single Page Application should be secured behind Github OAuth!
 
 :::warning
