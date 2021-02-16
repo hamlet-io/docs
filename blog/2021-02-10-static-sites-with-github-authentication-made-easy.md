@@ -212,7 +212,7 @@ Let’s briefly review the parameters we’ve provided to the module:
 - `cognitoLink` -  a link to our existing `userpool` component. This links the components in our Solution to those within the module.
 
 ## Update Solution
-With the _githubidp_ module configured, we can now update our original `userpool` to include  `userpoolauthprovider`.  
+With the _githubidp_ module configured, we now configure our `userpool` to include  `userpoolauthprovider`.  
 
 We configure the AuthProvider to use a new `DeploymentProfile` exposed by the module. The new profile is named after the `id` parameter you’ve specified on our module configuration - in our case that’s “githubidp_githubprovider”.
 
