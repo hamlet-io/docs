@@ -323,7 +323,7 @@ Reviewing each of the parameters here, we have:
 - `userpoolClientLink` - a link to a `userpoolclient` - we haven’t created one of those - we’ll do it now.
 
 ## Update Lambda Region
-This module includes a lambda ( deployment unit `<id>_lmb`) that must be specifically deployed into the **us-east-1** (the “global” region for AWS). For this to happen we must override any other Region configuration you may have, but only for this one component. The below example will apply it product-wide, only for the component with an `id` of `door-lmb`:
+This module includes a lambda ( deployment unit `<id>_lmb`) that must be specifically deployed into the **us-east-1** (required for cloudfront Lambda@Edge). For this to happen we must override any other Region configuration you may have, but only for this one component. The below example will apply it product-wide, only for the component with an `id` of `door-lmb`:
 
 ```json
 {
