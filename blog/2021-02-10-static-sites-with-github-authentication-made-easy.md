@@ -149,7 +149,7 @@ Our two Plugins not only extend the capabilities of Hamlet, they both include Ha
 
 We’ll first configure the _githubidp_ module, which adds an `apigateway` and `lambda` components to our Solution. The `lambda` contains a number of functions that will perform the necessary authorisation steps for our site.
 
-Add the following to the Solution to configure the module  (non-relevant configuration is trimmed from the example) :
+Add the following to the Solution to configure the module :
 
 ```json
 {
