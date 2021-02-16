@@ -14,7 +14,11 @@ Before we get started, let’s cover off what you need prior to following along.
 
 # Prerequisites
 
-You will need to have configured a Hamlet Tenant, Account(s) and Product for our site, and have deployed all the “out-of-the-box” deployment-units.
+You will need to have configured a Hamlet Tenant, Account(s) and Product for our site, and have deployed all the “out-of-the-box” deployment-units:
+
+```bash
+hamlet deploy run-deployments
+```
 
 The Hamlet Modules used here are going to restrict access to your chosen **Github Team** in a specific **Github Organisation**. Select an appropriate one to test with, and note them down as you'll need them shortly.
 
