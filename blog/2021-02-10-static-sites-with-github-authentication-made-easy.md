@@ -264,7 +264,7 @@ hamlet deploy run-deployments -u <userpool-deployment-unit>
 ```
 
 :::info
-The Module we are using includes externally sourced files for both the `lambda` and `apigateway`, so you do not need to provide these yourself.
+The Module we are using includes externally sourced files for the `apigateway`, so you do not need to provide it yourself.
 :::
 
 ## Configuring Modules: cfcognito
