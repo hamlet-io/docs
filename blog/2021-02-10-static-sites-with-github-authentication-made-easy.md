@@ -4,11 +4,27 @@ author: rossmurr4y
 author_url: https://github.com/rossmurr4y
 ---
 import Admonition from 'react-admonitions';
+import Mermaid from '@theme/Mermaid';
 
-# Github OAuth and S with Hamlet Modules
+# Github OAuth on Static Sites with Hamlet Modules
+
 Static websites are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks like Jekyll, Gatsby and Docusaurus that allow anyone to spin up and deploy documentation, a blog or simple website, often for for little or no cost. However, not every static site is intended to be public. Adding authentication is considerably greater in complexity than the site alone. Thankfully, this is where Hamlet Modules really shine.
 
 In this article, I will be stepping through the process of using two of the recently published Hamlet modules - _cfcognito_ and _githubidp_. Used alongside a Hamlet Solution for a typical `spa` deployment into AWS, these modules will include everything necessary to restrict access to our site with Github.
+
+<Mermaid
+    chart={`
+        graph LR;
+        site[Static Site]
+        cdn[CDN]
+        s3[S3 Bucket]
+        www[Internet]
+        site-->|deploys into|s3
+        s3-->|hosts latest content|cdn
+        cdn-->|globally distributes content|www
+        site-->|invalidates previous content|cdn
+    `}
+/>
 
 Before we get started, let’s cover off what you need prior to following along.
 
