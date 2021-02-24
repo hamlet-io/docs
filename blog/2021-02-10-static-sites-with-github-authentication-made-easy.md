@@ -8,35 +8,52 @@ import Mermaid from '@theme/Mermaid';
 
 # Github OAuth on Static Sites with Hamlet Modules
 
-Static websites are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks like Jekyll, Gatsby and Docusaurus that allow anyone to spin up and deploy documentation, a blog or simple website, often for for little or no cost. However, not every static site is intended to be public. Adding authentication is considerably greater in complexity than the site alone. Thankfully, this is where Hamlet Modules really shine.
+Static websites are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks like Jekyll, Gatsby and Docusaurus that allow anyone to spin up and deploy documentation, a blog or simple website, often for for little or no cost.
 
-In this article, I will be stepping through the process of using two of the recently published Hamlet modules - _cfcognito_ and _githubidp_. Used alongside a Hamlet Solution for a typical `spa` deployment into AWS, these modules will include everything necessary to restrict access to our site with Github.
+An common pattern for this deployment is to use an object store ( AWS S3, Azure Object Store ) combined with a content distribution network (CDN) such as AWS CloudFront. Most providers of these services charge on usage and often have great free tier offerings for small sites
 
 <Mermaid
     chart={`
         graph LR;
-        site[Static Site]
         cdn[CDN]
         s3[S3 Bucket]
-        www[Internet]
-        site-->|deploys into|s3
-        s3-->|hosts latest content|cdn
-        cdn-->|globally distributes content|www
-        site-->|invalidates previous content|cdn
+        user[User]
+        user-->|browses to website|cdn
+        cdn-->|cdn gets content from object store|s3
+        style s3 height:75px,width:90px;
+    `}
+/>
+
+However, not every static site is intended to be public. Adding authentication is considerably greater in complexity than the site alone. Thankfully, this is where Hamlet Modules really shine.
+
+In this article, we will be stepping through the process of using two of the recently published Hamlet modules - _cfcognito_ and _githubidp_. Used alongside a Hamlet Solution for a typical `spa` deployment into AWS, these modules will include everything necessary to restrict access to our site with Github.
+
+<Mermaid
+    chart={`
+        graph LR;
+        cdn[CDN]
+        s3[S3 Bucket]
+        user[User]
+        auth[AuthService]
+        github[GitHub]
+        user-->|browses to website|cdn
+        cdn-->|sends user to authenticate|auth
+        auth-->|sends user to Github|github
+        cdn-->|cdn returns static content after authentication|s3
     `}
 />
 
 Before we get started, let’s cover off what you need prior to following along.
 
-# Prerequisites
+## Prerequisites
 
 You will need to have configured a Hamlet Tenant, Account(s) and Product for our site, and have deployed all the “out-of-the-box” deployment-units:
 
 ```bash
-hamlet deploy run-deployments
+hamlet deploy run-deployments -u baseline
 ```
 
-The Hamlet Modules used here are going to restrict access to your chosen **Github Team** in a specific **Github Organisation**. Select an appropriate one to test with, and note them down as you'll need them shortly.
+The Hamlet Modules used here are going to restrict access to your chosen GitHub team(s) in a specific GitHub organisation. Select an appropriate one to test with, and note them down as you'll need them shortly.
 
 Within your selected Github organisation you will need to register a new [OAuth Application](https://docs.github.com/en/developers/apps/creating-an-oauth-app). This will require admin access to the Organisation. Enter a placeholder Callback URL for the time being, we’ll update it along the way. Generate a clientSecret that we can use within our Solution.
 
@@ -49,11 +66,11 @@ APPLICATION_UNITS=<MODULE_ID>-lambda
 <PRODUCT>_<MODULE_ID>_LAMBDA_CODE_REPO=github-idp
 
 # Where:
-#	◦	<MODULE_ID> is the id parameter value in the module
-#	◦	<PRODUCT> is the Id of our product in upper case
-``` 
+#   ◦   <MODULE_ID> is the id parameter value in the module
+#   ◦   <PRODUCT> is the Id of our product in upper case
+```
 
-The following environment variables will need to be updated with your details in the [Jenkins pipeline template](https://github.com/gs-gs/github-idp/blob/master/hamlet/pipelines/Jenkinsfile-exmaple): 
+We've put together a basic [Jenkins declarative pipeline template](https://github.com/gs-gs/github-idp/blob/master/hamlet/pipelines/Jenkinsfile-exmaple) which will handle the build of the code and uploading the lambda zip file to our registry. When using the pipeline you will need to update the environment section to match your configuration. :
 
 ```groovy
     environment {
@@ -67,15 +84,20 @@ The following environment variables will need to be updated with your details in
 
 With that out of the way, let’s get on with it!
 
-# Starting Solution
+## Initial Setup
 
-Update your Solution with the configuration below. We’ve added the Plugins, but the modules within them are not yet configured. Our `mgmt` tier has the definition for a single `userpool` I’ve simply called “pool”. In the `web` tier I’ve configured an `spa` component.
+Update your Solution with the configuration below.
+
+This does the following:
+
+- Adds 2 plugins:
+  - cfcognito which enables Cognito Integration for CloudFront Distributions
+  - github-idp which enables github federation with Cognito
+- In out mgmt tier adds a cognito `userpool` which will be used for the integration. I’ve simply called pool
 
 ```json
 {
     "Solution": {
-        "Id": "<id>",      /* update */
-        "Name" : "<name>", /* udpate */
         "Plugins" : {
             "cfcognito" : {
                 "Enabled" : true,
@@ -97,7 +119,7 @@ Update your Solution with the configuration below. We’ve added the Plugins, bu
                 "Source" : "git",
                 "Source:git" : {
                     "Url" : "https://github.com/gs-gs/github-idp",
-                    "Ref" : "v0.0.3",
+                    "Ref" : "master",
                     "Path" : "hamlet/githubidp"
                 }
             }
@@ -129,17 +151,15 @@ Update your Solution with the configuration below. We’ve added the Plugins, bu
 }
 ```
 
-Keen eyes may notice that I’ve not configured a `cdn` yet. This will be provided by our _cfcognito_ module, so we’ll start to see it’s deployment-unit once the module has been configured.
+## Working with Plugins
 
-# Working with Plugins
-If you haven’t used Hamlet Plugins before, the Plugins configuration demonstrated above informs the Hamlet Deploy engine that they should be loaded alongside any command-line specified providers. This does not configure them in our Solution (up next) but it exposes the capabilities of each plugin to us.
-
-Once added to a Solution, the Plugins need to be loaded into the cache. This will insure they are available for the remainder of our actions:
+If you haven’t used Hamlet Plugins before, Plugins extend hamlet and can provide a wide range of functions, including modules which provide prebuilt solutions that can be added to your own solution.
+After adding a plugin it needs to be installed in your workspace so that it can be used:
 
 ```bash
 # from the Product's Segment dir
 hamlet @ ~/cmdb/cmdb/dir/msw-cmdb/indocsrm/config/solutionsv2/integration/default
-master└─ $ $GENERATION_DIR/setup.sh 
+master└─ $ $GENERATION_DIR/setup.sh
 (Info) Generating outputs:
 (Info)  - generationcontract
 (Info)  ~ no change in generationcontract detected
@@ -153,17 +173,18 @@ master└─ $ $GENERATION_DIR/setup.sh
 ```
 
 :::note
-If you haven't already deployed the initial Solution, do that now before continuing.
+Deploy the updated solution to make sure the userpool is available
 
 ```bash
 hamlet deploy run-deployments
 ```
+
 :::
 
-## Configuring Modules :  githubidp
-Our two Plugins not only extend the capabilities of Hamlet, they both include Hamlet Modules - pre-configured sections of a Solution that are layered underneath our Solution.
+### Configuring Modules :  githubidp+
 
-We’ll first configure the _githubidp_ module, which adds an `apigateway` and `lambda` components to our Solution. The `lambda` contains a number of functions that will perform the necessary authorisation steps for our site.
+Now that the plugins have been installed we can start using them. The first thing we will be using from the Plugins is the `cognito_github_api` module from the `githubidp` plugin.
+This module adds an `apigateway` and `lambda` components to our Solution. The `apigateway` uses the `lambda` component to create a Github Authentication service which is supported by Cognito.
 
 Add the following to the Solution to configure the module :
 
@@ -227,13 +248,11 @@ Let’s briefly review the parameters we’ve provided to the module:
 - `githubTeams` - the Github Team within the specified organisation that should be authenticated.
 - `cognitoLink` -  a link to our existing `userpool` component. This links the components in our Solution to those within the module.
 
-## Update Solution
-With the _githubidp_ module configured, we now configure our `userpool` to include  `userpoolauthprovider`.  
+### Configuring Existing Components
 
-We configure the AuthProvider to use a new `DeploymentProfile` exposed by the module. The new profile is named after the `id` parameter you’ve specified on our module configuration - in our case that’s “githubidp_githubprovider”.
+With the `cognito_github_api` module configured, we now configure our `userpool` to include a `userpoolauthprovider` which adds a trust between our Cognito userpool and the Github Authentication service ( the `apigateway` we just added).
 
-This `DeploymentProfile` will configure AuthProviders to use the `apigateway` as its federation source.
-
+We configure the AuthProvider to use a new `DeploymentProfile` added by the module, the `DeploymentProfile` includes all the configuration required on the `userpoolauthprovider`. The new profile is named after the `id` parameter you’ve specified on our module configuration - in our case the profile name will be githubidp_githubprovider.
 
 ```json
 {
@@ -256,9 +275,9 @@ This `DeploymentProfile` will configure AuthProviders to use the `apigateway` as
                             }
                         },
                         "AuthProviders" : {
-                            "githubidp" : {
+                            "github" : {
                                 "Profiles" : {
-                                    "Deployment" : "<id>_githubprovider" /* update */
+                                    "Deployment" : "githubidp_githubprovider"
                                 }
                             }
                         }
@@ -274,20 +293,24 @@ With that done, let’s deploy our updated configuration and new deployment-unit
 
 ```bash
 # where <id> is the value for the `id` parameter you've configured
-hamlet deploy run-deployments -u <id>-lambda 
-hamlet deploy run-deployments -u <id>-apigateway
-hamlet deploy run-deployments -u <userpool-deployment-unit>
+hamlet deploy run-deployments -u githubidp-lambda
+hamlet deploy run-deployments -u githubidp-apigateway
+hamlet deploy run-deployments -u pool
 ```
 
 :::info
-The Module we are using includes externally sourced files for the `apigateway`, so you do not need to provide it yourself.
+If you've used hamlet before you'll see that we don't have an openapispec for the `apigateway` this is included as part of the module.
 :::
 
-## Configuring Modules: cfcognito
+### Configuring Modules: cfcognito
 
-The _cfcognito_ module enables OIDC compliant authentication at the CloudFront layer. This will allow us to use Cognito to provide course - in or out - level access to all content behind the CloudFront distribution.
+The `cdnlambda` module in the `cfcognito` plugin enables OIDC compliant authentication at the CloudFront layer. This will allow us to use Cognito to provide course - in or out - level access to all content behind the CloudFront distribution.
 
-Add its configuration into our Solution:
+:::warning
+When using this authentication approach, your static site won't know which user is accessing the site. Make sure all your users should access the same content
+:::
+
+Lets add the module to our solution:
 
 ```json
 {
@@ -336,10 +359,11 @@ Reviewing each of the parameters here, we have:
 - `id` - the value you provide here will determine the name of the deployment-units that come along with the module, and will be important to remember when it comes to creating links to the module.
 - `tier` - the tier that the components within the module should be created within.
 - `originLink` - a link configuration to tell the module what we’re going to use as the `cdn` origin - in this case that’s our `spa`.
-- `userpoolClientLink` - a link to a `userpoolclient` - we haven’t created one of those - we’ll do it now.
+- `userpoolClientLink` - a link to a `userpoolclient` ( we will add this client in the next couple of steps)
 
-## Update Lambda Region
-This module includes a lambda ( deployment unit `<id>_lmb`) that must be specifically deployed into the **us-east-1** (required for cloudfront Lambda@Edge). For this to happen we must override any other Region configuration you may have, but only for this one component. The below example will apply it product-wide, only for the component with an `id` of `door-lmb`:
+### Update Lambda Region
+
+The `cdnlambda` module includes a lambda ( deployment unit `door-lmb`) that must be specifically deployed into the **us-east-1** ( this is required for cloudfront Lambda@Edge ). For this to happen we must override any other Region configuration you may have, but only for this one component. The below example will apply it product-wide for an components which belong to the deployment unit `door-lmb`:
 
 ```json
 {
@@ -353,10 +377,11 @@ This module includes a lambda ( deployment unit `<id>_lmb`) that must be specifi
 }
 ```
 
-## Update Solution
-As this module adds the `cdn` into our Solution we need to add a `userpoolclient` sub-component to our `userpool` which will be used by CloudFront to access the `userpool`. 
+### Adding the site
 
-So that it picks up the Callback URL information for the `cdn`, we need to provide a Link on it to the `cdn` component configuration inside of the Module. 
+As this module adds the `cdn` into our Solution we need to add a `userpoolclient` sub-component to our `userpool` which will be used by CloudFront to access the `userpool`.
+
+So that it picks up the Callback URL information for the `cdn`, we need to provide a Link on it to the `cdn` component configuration inside of the Module.
 
 The configuration for the Link is based off of the parameters you have provided to the Module, so you will know which Tier/Component/Instance combination to use. The Component's Id is a concatenation of the `id` Module parameter value you've configured and "auth".
 
@@ -373,11 +398,11 @@ We also want to add in our `spa` now, which has a pre-requisite of at least one 
                     "userpool" : {
                         "Clients" : {
                             "door" : {
-                                "AuthProviders" : [ "githubidp" ],
+                                "AuthProviders" : [ "github" ],
                                 "Links" : {
                                     "cdn" : {
-                                        "Tier" : "<tier>",       /* update */
-                                        "Component" : "<id>auth" /* update */
+                                        "Tier" : "web",
+                                        "Component" : "doorauth"
                                     }
                                 }
                             }
@@ -394,17 +419,15 @@ We also want to add in our `spa` now, which has a pre-requisite of at least one 
                             "default": {
                                 "Versions": {
                                     "v1": {
-                                        "DeploymentUnits": [
-                                            "docs-v1"
-                                        ]
+                                        "deployment:Unit": "docs-v1"
                                     }
                                 }
                             }
                         },
                         "Links": {
                             "cdn": {
-                                "Tier": "<tier>",    /* update */
-                                "Component": "<id>", /* update */
+                                "Tier": "web",
+                                "Component": "door",
                                 "Instance" : "",
                                 "Version" : "",
                                 "Route": "default",
@@ -420,12 +443,13 @@ We also want to add in our `spa` now, which has a pre-requisite of at least one 
 ```
 
 ## Deploy
-Now we’re all set to go. 
+
+Now we’re all set to go.
 
 First lets deploy all of the lambda functions that will be performing the Authentication process.
 
 ```bash
-hamlet deploy run-deployments -u <id>-lmb
+hamlet deploy run-deployments -u door-lmb
 ```
 
 After that is finished deploying we can ensure the remainder of our changes are picked up by deploying all deployment units.
@@ -437,20 +461,21 @@ hamlet deploy run-deployments
 Remember you can list the discovered deployment units with `hamlet deploy list-deployments` if you would like to review what is available.
 
 ## Retrieving the Github App Callback
+
 Our Github OAuth Application needs to be updated with the Callback Url of the Cognito userpool’s hosted UI. Once you’re `userpool` has been deployed, this can be retrieved with the Hamlet CLI:
 
 ```bash
-hamlet query describe occurrence --tier-id <pool-tier> --component-id <pool-id> attributes
+hamlet query describe occurrence --tier-id mgmt --component-id pool attributes
 ```
 
 The result should be of the format `<UI_BASE_URL>/oauth2/idpresponse`. You should now replace the placeholder URL with this value in the Github OAuth Application.
 
 ## Testing Our Site
 
-Once our Github OAuth App is configgured, we can now test it all out! Retrieve the `cdn` URL and test out your access.
+Once our Github OAuth App is configured, we can now test it all out! Retrieve the `cdn` URL and test out your access.
 
 ```bash
-hamlet query describe occurrence --tier-id <cdn-tier> --component-id <cdn-id> attributes
+hamlet query describe occurrence --tier-id web --component-id door attributes
 ```
 
 And with that, your Single Page Application should be secured behind Github OAuth!
@@ -461,4 +486,5 @@ When you're done, don't forget to stop any unwanted infrastructure.
 ```bash
 hamlet deploy run-deployments -m stop
 ```
+
 :::
