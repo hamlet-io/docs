@@ -15,7 +15,7 @@ Once the infrastructure has been deployed a common practice is to create diagram
 
 With hamlet our diagrams are generated using the same solution file that defined the infrastructure. This means we keep the information in lockstep between whats deployed and what has been documented, and we can also include solution level information like environments, standard naming and mutli provider support
 
-## That's enough words
+## Get to it
 
 So lets see what this thing can do
 
@@ -25,7 +25,7 @@ So lets see what this thing can do
     docker run -it -v ~/hamlet_diagrams/:/home/hamlet/cmdb hamletio/hamlet
     ```
 
-    ::info
+    :::info
     The `~/hamlet_diagrams/` can be whatever works for you on your local system.
     We need the local mount so that we can view the diagram files created ( they will be png files )
     :::
@@ -43,7 +43,7 @@ So lets see what this thing can do
     ╘════╧═══════════╧══════════════════════════════════════════════════════════════════════════════════════════╛
     ```
 
-    ::info
+    :::info
     This post is going to use the diagramstest provider to define our solution. If you have your own CMDB you can follow along but remove the `-i mock -p diagramstest` arguments from any hamlet commands
     :::
 
@@ -65,7 +65,7 @@ So lets see what this thing can do
 
     We have two digrams that we can draw in the test provider, overview, which uses the solution diagram type to show all the components, and resources_used which shows us all the resources in our solution.
 
-    ::info
+    :::info
     If you are following along with your own solution, you most likely got an empty list. These diagrams are available as a plugin which you can add to your CMDB
 
     Add the following to your CMDB to install the diagrams plugin and enabled the module
