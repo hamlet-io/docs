@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://hamlet.io/schema/latest/blueprint/module-no_master_vpc-schema.json",
+  "definitions": {
+    "no_master_vpc": {
+      "type": "object"
+    }
+  }
+}
