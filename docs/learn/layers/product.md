@@ -37,7 +37,7 @@ Is everything correct? [y/N]: y
 
 There are a number of default Product types that we can generate but here we've chosen the "base" Product - this will give us a well-rounded set of configuration to start us off.
 
-Prompt 3 here is asking us what the `Id` value is for the Domain our Product will use. If you recall, we defined our `Domains` object on the Tenant, as it is typically an organisationally owned resource and may be required across a number of Accounts and Products. So reviewing that configuration we see that our new Tenant only has the one domain defined - `acmeinc`.
+Prompt 3 here is asking us what the `Id` value is for the Domain our Product will use. If you recall, we defined our `Domains` object on the Tenant, since domain names need to be unique across the Organisation and may be required across a number of Accounts and Products. So reviewing that configuration we see that our new Tenant only has the one domain defined - `acmeinc`.
 
 Our Product generation prompts are also going to ask us for the `Id` and `Name` values for the final 3 layers - Solution, Environment and Segment. Each of these provide a new way for us to define unique instances of our Product, and we need at least 1 of each of them in order to move forward.
 
