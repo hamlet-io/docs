@@ -14,7 +14,7 @@ From your terminal, run the following to pull down and run the offical Hamlet Do
 docker run -it --rm hamletio/hamlet:latest
 ```
 
-Your terminal window should now look like this - if not, you might need to ensure you have Docker installed and configgured correctly.
+Your terminal window should now look like this - if not, you might need to ensure you have Docker installed and configured correctly.
 
 ```bash
 hamlet @ ~/cmdb
