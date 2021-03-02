@@ -128,7 +128,7 @@ hamlet @ ~/cmdb
 }
 ```
 
-An organisation will typically own one or more domains that they have purcahsed. Tracking these domains - even when presently unused, as is the case here - will allow Accounts and Products configured at a later time to make use of them. As we provided the CLI prompt with a domain owned by our Tenant, it has configured it here, however there are no certificates that use it currently.
+An organisation will typically own one or more domains that they have purchased. Tracking these domains - even when presently unused, as is the case here - will allow Accounts and Products configured at a later time to make use of them. As we provided the CLI prompt with a domain owned by our Tenant, it has configured it here, however there are no certificates that use it currently.
 
 ## ipaddressgroups.json
 
