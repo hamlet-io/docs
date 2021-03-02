@@ -106,68 +106,6 @@ If the Blueprint is the composite of your Tenant, Account and Product configurat
 To get out of vim and back to the bash prompt, type `:q!<return>` 
 :::
 
-### Layer Defaults or Normalised Values
-
-The definitions for each Layer can come with some sensible dafault values. If you had provided conflicting configuration within your District, your configuration would have overwritten them.
-
-In our Blueprint, Our Tenant contains the following `Profiles` configuration:
-
-```json
-{
-    "Metadata" : { /* ... */ },
-    "Tenants" : {
-        "Configuration" : {
-            "Id" : "",
-            "Name" : "",
-            "Modules" : {},
-            "Plugins" : {},
-            "Profiles" : {
-                "Configured" : false,
-                "Enabled" : true,
-                "Deployment" : [],
-                "Policy" : [],
-                "Placement" : ""
-            }
-        }
-        /* ... */
-    }
-}
-```
-
-The profiles is listed as `Enabled : true`, but `Configured : false` which means that our Tenant is allowed to specify a `Profiles` object, but Hamlet hasn't found one. Lets add one to our Tenant.
-
-Update your Tenant's **tenant.json** with a `Profiles` attribute with has a value of an empty object:
-
-```json{5}
-{
-    "Tenant" : {
-        "Id" : "acmeinc",
-        "Name" : "acmeinc",
-	    "Profiles" : {},
-        "CertificateBehaviours" : {
-            "External" : true
-        }
-    },
-    "Account" : {
-        "Region" : "ap-southeast-2",
-        "Domain" : "acmeinc",
-        "Audit" : {
-            "Offline" :  90,
-            "Expiration" :  2555
-        }
-    },
-    "Product" : {
-        "Region" : "ap-southeast-2"
-    }
-}
-```
-
-Now re-run the Blueprint entrance from before. Reviewing the output you will find that our `Profiles` object has now updated to `Configured : true`.
-
-:::warning
-You should remove this line before continuing
-:::
-
 ### Provider Definitions
 
 Hamlet Provider Plugins extend Hamlet's capabilities to work with that Provider. The AWS provider plugin for example extents Hamlet to create CloudFormation templates and undertake stack deployments into AWS.
