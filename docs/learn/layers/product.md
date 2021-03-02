@@ -104,7 +104,7 @@ hamlet @ ~/cmdb
 }
 ```
 
-Nice and minimal Product configuration here. As is the case for every layer, we define our `Name` and `Id` for it, and our domain association is configured here too.
+This is a basic Product configuration. All layers have an Id and Name field and each layer type adds its own configuration relevant to the product. Here the domain name that will be used by default for any public endpoints we deploy in this product
 
 Our Solution directory looks to have made a created a number of files though, lets take a closer look.
 
