@@ -131,6 +131,3 @@ You can find this configuration in the blueprint with a word-search by typing `/
 :::
 
 We certainly provided the `Name` and `Id`, but the remainder of this Environment configuration was contributed by a standard set of configuration in the Hamlet engine. An "integration" Environment is commonly required and it's purpose is understood - so Hamlet provides its configuration for ease of use.
-### Plugins
-
-If your Layers define non-Provider Plugins to load (not yet covered) then they may also be contributing definitions in the same manner as the Provider Plugins.
