@@ -68,6 +68,10 @@ hamlet @ ~/cmdb/phonedir/config/solutionsv2/integration/default
 (Info)  - updating blueprint-config.json
 ```
 
+:::info
+Entrances are simply a pass through the Hamlet Deploy engine with a specific goal. The Blueprint pass generates the Blueprint file as an output.
+:::
+
 Until now we've only been working with configuration of our Product - this CLI command has generated our first output though. You will find that Hamlet has updated your Product with your outputs under the _infrastructure_ path.
 
 ```bash
@@ -91,10 +95,6 @@ Let's review the **blueprint.json** now. Open it up with `vim` before we go on:
 hamlet @ ~/cmdb/phonedir/config/solutionsv2/integration/default
 └─ $ vim ~/cmdb/phonedir/infrastructure/hamlet/integration/default/default/blueprint-config.json
 ```
-
-:::info
-Entrances are simply a pass through the Hamlet Deploy engine with a specific goal. The Blueprint pass generates the Blueprint file as an output.
-:::
 
 ## Reviewing the Blueprint
 
