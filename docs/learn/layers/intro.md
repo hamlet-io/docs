@@ -6,9 +6,9 @@ title: Hamlet Layers
 import Admonition from 'react-admonitions';
 
 
-As an organisation grows more and more people want to have a say in the way that things are done. It's alright for them to talk the talk, but we know who the actual implementation of it all is going to fall down to - the engineers. 
+Hamlet enables us to express the varying needs of an organisation in a uniform way. As an organisation changes, we want to be sure that old objectives continue to be met, whilst responding to emerging ones. But managing each of them - together with possible conflicts and edge cases - is particularly challenging. How can we ensure that none of them are forgotten?
 
-Managing all of these requirements, together with their conflicts and edge cases is very challenging. Hamlet was designed to address this challenge.
+Hamlet was designed to address this challenge.
 
 ## A Layer-ed Approach
 
