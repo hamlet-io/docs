@@ -12,7 +12,7 @@ Hamlet was designed to address this challenge.
 
 ## A Layered Approach
 
-Hamlet captures a wholistic view of an organsations requirements, and applies each one across its entire scope. A particular security policy may be applied for just a single product, or across the entire organsation. The implementation of that policy is the same either way, and in both cases it is only implemented the once - but the layer at which it is defined ensures it will apply across the scope it is intended.
+Hamlet captures a holistic view of an organisations infrastructure deployment requirements, and applies them across its entire scope. A particular security policy may be applied for just a single product, or across the entire organisation. The implementation of that policy is the same either way, and in both cases it is only implemented the once - but the layer at which it is defined ensures it will apply across the scope it is intended.
 
 There are 6 layer types available in Hamlet, each representing a unique configuration scope
 
