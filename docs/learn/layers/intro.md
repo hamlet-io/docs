@@ -10,7 +10,7 @@ Hamlet enables us to express the varying needs of an organisation in a uniform w
 
 Hamlet was designed to address this challenge.
 
-## A Layer-ed Approach
+## A Layered Approach
 
 Hamlet captures a wholistic view of an organsations requirements, and applies each one across its entire scope. A particular security policy may be applied for just a single product, or across the entire organsation. The implementation of that policy is the same either way, and in both cases it is only implemented the once - but the layer at which it is defined ensures it will apply across the scope it is intended.
 
