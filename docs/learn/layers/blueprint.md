@@ -106,15 +106,11 @@ If the Blueprint is the composite of your Tenant, Account and Product configurat
 To get out of vim and back to the bash prompt, type `:q!<return>` 
 :::
 
-### Provider Definitions
+### Hamlet Contributions
 
-Hamlet Provider Plugins extend Hamlet's capabilities to work with that Provider. The AWS provider plugin for example extents Hamlet to create CloudFormation templates and undertake stack deployments into AWS.
+The configuration we've created so far isn't the only source of configuration for the blueprint. Hamlet's engine comes with a collection of default and common configuration references. Lets review the `Environment` as an example.
 
-Along with the Plugin comes a collection of Reference definitions that are specific to the Provider and which save the user from having to create and maintain them themselves.
-
-Inside of the Hamlet Deploy engine itself is the Shared Provider. This Provider contributes common Reference configuration to the District that **_is not_** Provider-specific. 
-
-When we generated our `phonedir` Product you will recall that we set our Environment to `integration`. Let's review what this Environment consists of now.
+When we generated the `phonedir` Product you will recall that we set our Environment to `integration`. Let's review what this Environment consists of now.
 
 ```json
 {
@@ -134,9 +130,7 @@ When we generated our `phonedir` Product you will recall that we set our Environ
 You can find this configuration in the blueprint with a word-search by typing `/"Environments"<return>`
 :::
 
-We certainly provided the `Name` and `Id`, but the remainder of this Environment configuration was contributed by the Shared Provider. An "integration" Environment is commonly required and understood - so its available to use out of the box.
-
-
+We certainly provided the `Name` and `Id`, but the remainder of this Environment configuration was contributed by a standard set of configuration in the Hamlet engine. An "integration" Environment is commonly required and it's purpose is understood - so Hamlet provides its configuration for ease of use.
 ### Plugins
 
 If your Layers define non-Provider Plugins to load (not yet covered) then they may also be contributing definitions in the same manner as the Provider Plugins.
