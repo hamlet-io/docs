@@ -123,11 +123,18 @@ Our Solution directory looks to have made a created a number of files though, le
                    └── solution.json
 ```
 
-The Environment name we chose - `integration` - now has its own directory tree, alongside one called `shared`. This will allow us to separate out configuration intended for a specific environment from that intended to be Environment-layer wide.
+### Environment Layer
 
-Underneath this, the same has happened for our Segment layer too - however we've opted to go with the `default` segment name. We could create a `shared` Segment directory too, however in this instance we'll only be using the one Segment so its unnecessary.
+The Environment layer enables configuration for different deployment environments, such as `development` or `production`. The Environment name we chose - `integration` - now has its own directory tree, alongside one called `shared`. This will allow us to separate out configuration intended for a specific environment from that intended to be Environment-layer wide.
+### Segment Layer
 
-Each of the new files defines only it's layer's `Name` and `Id` to distinguish them from eachother, and the solution file also configures an empty `Tiers` object. Though this could have been defined on any Layer, assigning it here means that it will become a part of every Solution for our `phonedir` Product.
+Under our Environment directory, a simmilar structure has been created for our Segment layer too. The Segment layer provides an a mechanism to further separate out configuration within a given Environment. A single development Environment may contain unique Segments for each developer on a project for instance. For our needs today however, we've opted to go with the `default` segment name. We could create a `shared` Segment directory too, however in this instance we'll only be using the one Segment so its unnecessary.
+
+### Tiers 
+
+Tiers - whilst not considered a layer - offer a final scope of configuration separation specifically for Components. Tiers are an expansion on the concept of a modular 3-tier architecture design. Not merely a way to group together components that operate together, Tier's offer a way to separate and secure components from eachother. For instance its common to place all "management" components into their own tier, which can then be tightly controlled, whilst components in a "web" tier might be publicly available.
+
+Inside of our Product each of the new files defines only it's layer's `Name` and `Id` to distinguish them from eachother, and the solution file also configures an empty `Tiers` object. Though this could have been defined on any Layer, assigning it here means that it will become a part of every Solution for our `phonedir` Product.
 
 ```json
 {
