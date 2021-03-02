@@ -3,7 +3,7 @@ sidebar_label: product
 title: The Product
 ---
 
-A Product is an operational service that has its own lifecycle, often aligning with a organsation Project. 
+A Product is an operational service that has its own life-cycle and represents a single system. 
 
 We're going to use it to represent a basic phone directory website for our "Acme Inc" organisation.
 
