@@ -60,7 +60,7 @@ hamlet @ ~/cmdb
 
 Now alongside the Tenant `acmeinc` we have an Account: `acmedev01`.
 
-The `config` and `infrastructure` directories separate out our Account configuration - the "inputs" - from the templates, documenatation and other files that the Hamlet Deploy engine will soon create for us - "outputs". We'll see this structure reflected inside of the Product shortly as well.
+The `config` and `infrastructure` directories separate out our Account configuration - the "inputs" - from the templates, documentation and other files that the Hamlet Deploy engine will soon create for us - "outputs". We'll see this structure reflected inside of the Product shortly as well.
 
 Lets quickly take a look at the new Account.
 
