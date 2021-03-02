@@ -3,9 +3,24 @@ sidebar_label: blueprint
 title: District Blueprint
 ---
 
-Now that we have at least one District, we have everything we need to begin using Hamlet.
+To show how all of the layers work together, consider the directory structure we've made.
 
-A quick review of our work so far will show you that our Account knows Tenant it belongs to. But though our Product does reference configuration defined on the Tenant (the "Domain") Hamlet doesn't interpret this link. It might find several Tenant's with the same Domain Id.
+```bash
+.
+├── accounts
+│   ├── acmedev01
+│   └── acmeinc
+├── phonedir
+│   ├── config
+│   └── infrastructure
+└── root.json
+```
+
+The root of our Hamlet structure is defined by a root.json file, so Hamlet knows the bounds of its search for configuration.
+
+Our _accounts_ directory contains a single tenant (acmeinc) alongside at least one account (acmedev01). Hamlet understands their association from this structure.
+
+And alongside all of _that_ we have at least one Product. But though our Product does reference configuration defined on the Tenant (the "Domain") Hamlet doesn't interpret this link. It might find several Tenant's with the same Domain Id.
 
 So how does Hamlet know which Product we intend for it to use? And beyond that, which is the intended Solution, Environment and Segment?
 
