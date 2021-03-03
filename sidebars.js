@@ -7,6 +7,23 @@ module.exports = {
     'hello/hamlet',
     {
       type: 'category',
+      label: 'Learn',
+      items: [
+        {
+          type: 'category',
+          label: 'Layers',
+          items: [
+            'learn/layers/intro',
+            'learn/layers/tenant',
+            'learn/layers/account',
+            'learn/layers/product',
+            'learn/layers/blueprint',
+          ]
+        },
+      ]
+    },
+    {
+      type: 'category',
       label: 'Foundations',
       items: [
         'foundations/anatomy',
