@@ -3,17 +3,17 @@ title: Solution Diagram Generation
 ---
 import Admonition from 'react-admonitions';
 
-Instead of defining the raw infrastructure you need hamlet works off a solution. The solution outlines the functional components you need in your deployment and hamlet then takes this to build out the infrastructure definition that would perform this function.
+Instead of defining the raw infrastructure you need, hamlet works off a solution. The solution outlines the functional components you need in your deployment and hamlet then takes this to build out the infrastructure definition that would perform this function.
 
 Combining this with our pluggable architecture we can use the same solution to generate infrastructure definitions in different cloud providers like AWS and Azure. This is an interesting feature itself but in this post we are going to look at another way to use this data, diagram generation.
 
 ## A picture paints a 1000 words
 
-Declarative infrastructure deployments, which outline the exact configuration you require for your infrastructure, have become the standard with hyperscale cloud providers, they can be pretty hard to conceptually understand what you have deployed.
+Declarative infrastructure deployments that outline the precise configuration you require for your infrastructure, have become the standard with hyperscale cloud providers. However they can also be quite challenging to conceptualise what you have deployed.
 
 Once the infrastructure has been deployed a common practice is to create diagrams which represent what you've deployed. These are mostly generated manually or you can use tools like cloudcraft which scan your deployment to build out the diagram. This can be a useful approach as a validation tool, however they can sometimes miss out on contextual information or even infrastructure which isn't supported by the tool.
 
-With hamlet our diagrams are generated using the same solution file that defined the infrastructure. This means we keep the information in lockstep between whats deployed and what has been documented, and we can also include solution level information like environments, standard naming and mutli provider support
+With hamlet our diagrams are generated using the same solution file that defined the infrastructure. This means we keep the information in lockstep between whats deployed and what has been documented, and we can also include solution level information like environments, standard naming and multi-provider support
 
 ## Get to it
 
@@ -47,7 +47,7 @@ So lets see what this thing can do
     This post is going to use the diagramstest provider to define our solution. If you have your own CMDB you can follow along but remove the `-i mock -p diagramstest` arguments from any hamlet commands
     :::
 
-    The diagrams provider currently has two diagrams type, the solution which shows you all your components and their relationships based on their links, and resources which shows you the different kind of infrastructure resources in used in your solution
+    The diagrams provider currently has two diagrams type, the solution which shows you all your components and their relationships based on their links, and resources which shows you the different infrastructure resource types in your solution
 
 3. Now lets have a look at what diagrams are available in this solution
 
@@ -63,7 +63,7 @@ So lets see what this thing can do
     ╘════╧════════════════╧═══════════╧═════════════════════════════════════════════════════════════════╛
     ```
 
-    We have two digrams that we can draw in the test provider, overview, which uses the solution diagram type to show all the components, and resources_used which shows us all the resources in our solution.
+    We have two digrams that we can draw in the test provider, overview, which uses the solution diagram type to show all the **components**, and **resources_used** which shows us all the resources in our solution.
 
     :::info
     If you are following along with your own solution, you most likely got an empty list. These diagrams are available as a plugin which you can add to your CMDB
@@ -115,9 +115,9 @@ So lets see what this thing can do
     ![Overview diagram showing all of the components in your solution and their links](2021-02-26-diagram-plugin/diagram-overview.png "Overview diagram")
 
     This diagram outlines the different components that we have, each group is a component with each of their occurrences drawn inside them.
-    - The `application-apphost-ecs` shows us an container host, *apphost* with a single container service called *webapp*
-    - The *https* load balancer rule in the *elb-webapp-lb* component has a link to this container
-    - The *https* load balancer as an incoming link from the *internet*.
+    - The `application-apphost-ecs` shows us an container host, **apphost** with a single container service called **webapp**
+    - The **https** load balancer rule in the **elb-webapp-lb** component has a link to this container
+    - The **https** load balancer as an incoming link from the **internet**.
 
     ![Resource types used as part of the solution](2021-02-26-diagram-plugin/diagram-resources_used.png "Resources Used")
 
@@ -127,7 +127,7 @@ So lets see what this thing can do
 
 ## Where did that come from?
 
-So that was pretty simple, we got some diagrams they show us whats deployed and they are pretty easy to follow.
+So that was pretty simple! We made some diagrams, they show us what's deployed and they are pretty easy to follow.
 
 Lets have a look at the solution configuration for our overview components and see where the diagram got the information:
 
