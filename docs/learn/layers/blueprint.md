@@ -2,8 +2,31 @@
 sidebar_label: blueprint
 title: District Blueprint
 ---
+import Mermaid from '@theme/Mermaid';
 
-To show how all of the layers work together, consider the directory structure we've made.
+## Blueprint Layer-by-Layer
+
+A District is a unique combination of the Layer instances and the Blueprint is the composite configuration for that District. The instance configuration for each Layer in the District is combined with any "shared" layer-instance configurat and layered on top of the others. 
+
+The resulting Blueprint is a reflection of all entities (Layers) having their say in how the District is built, and anything that comes from the district - such as cloud infrastructure templates or application deployments - should be implemented.
+
+<Mermaid chart={`
+    stateDiagram-v2
+    District
+    state District {
+        Tenant --> Blueprint : 1
+        Account --> Blueprint : 2
+        Product --> Blueprint : 3
+        Solution --> Blueprint : 4
+        Environment --> Blueprint : 5
+        Segment --> Blueprint : 6
+    }
+`}/>
+
+
+## Determining the District
+
+Now that we've seen how the Layers work together, how can we tell what District we're working in? Lets take a closer look at the directory structure we've created.
 
 ```bash
 .
@@ -20,11 +43,8 @@ The root of our Hamlet structure is defined by a root.json file, so Hamlet knows
 
 Our _accounts_ directory contains a single tenant (acmeinc) alongside at least one account (acmedev01). Hamlet understands their association from this structure.
 
-And alongside all of _that_ we have at least one Product. But though our Product does reference configuration defined on the Tenant (the "Domain") Hamlet doesn't interpret this link. It might find several Tenant's with the same Domain Id.
+Alongside all of _that_ we have at least one Product. But we could have many Products in this directory alongside eachother. How can we - or Hamlet! - work out our District from all of this? 
 
-So how does Hamlet know which Product we intend for it to use? And beyond that, which is the intended Solution, Environment and Segment?
-
----
 
 ## Set the Segment
 
