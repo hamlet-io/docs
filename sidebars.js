@@ -13,7 +13,8 @@ module.exports = {
           type: 'category',
           label: 'Software',
           items: [
-            'hamletdeploy/software/cli'
+            'hamletdeploy/software/cli',
+            'hamletdeploy/software/container',
           ]
         }
       ]
