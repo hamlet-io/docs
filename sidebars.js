@@ -7,6 +7,19 @@ module.exports = {
     'hello/hamlet',
     {
       type: 'category',
+      label: 'Deploy',
+      items: [
+        {
+          type: 'category',
+          label: 'Software',
+          items: [
+            'hamletdeploy/software/cli'
+          ]
+        }
+      ]
+    },
+    {
+      type: 'category',
       label: 'Learn',
       items: [
         {
