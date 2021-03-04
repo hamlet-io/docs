@@ -19,7 +19,7 @@ This section serves to document the structure of the application and is not expe
     - [Engine (general)](./engine)
     - [Engine (core)](./engine_core)
     - Plugins
-        - aws
+        - [aws](./aws)
         - azure
         - diagrams
 - Patterns

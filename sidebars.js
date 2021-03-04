@@ -258,6 +258,7 @@ module.exports = {
             'reference/software/executor',
             'reference/software/engine_core',
             'reference/software/engine',
+            'reference/software/aws',
           ]
         }
       ]
