@@ -3,15 +3,15 @@ title: Solution Diagram Generation
 ---
 import Admonition from 'react-admonitions';
 
-Instead of defining the raw infrastructure you need, hamlet works off a solution. The solution outlines the functional components you need in your deployment and hamlet then takes this to build out the infrastructure definition that would perform this function.
+Instead of defining the raw infrastructure we need, hamlet works off a solution. The solution outlines the functional components required in the deployment and hamlet then takes this to build out the infrastructure definition that would perform this function.
 
 Combining this with our pluggable architecture we can use the same solution to generate infrastructure definitions in different cloud providers like AWS and Azure. This is an interesting feature itself but in this post we are going to look at another way to use this data, diagram generation.
 
 ## A picture paints a 1000 words
 
-Declarative infrastructure deployments that outline the precise configuration you require for your infrastructure, have become the standard with hyperscale cloud providers. However they can also be quite challenging to conceptualise what you have deployed.
+Declarative infrastructure deployments that outline the precise configuration required for an infrastructure deployment, have become the standard with hyperscale cloud providers. However they can also be quite challenging to conceptualise what has been deployed.
 
-Once the infrastructure has been deployed a common practice is to create diagrams which represent what you've deployed. These are mostly generated manually or you can use tools like cloudcraft which scan your deployment to build out the diagram. This can be a useful approach as a validation tool, however they can sometimes miss out on contextual information or even infrastructure which isn't supported by the tool.
+Once the infrastructure has been deployed a common practice is to create diagrams which represent what has been deployed. These are mostly generated manually or through tools like cloudcraft which scan a deployment to build out the diagram. This can be a useful approach as a validation tool, however they can sometimes miss out on contextual information or even infrastructure which isn't supported by the tool.
 
 With hamlet our diagrams are generated using the same solution file that defined the infrastructure. This means we keep the information in lockstep between whats deployed and what has been documented, and we can also include solution level information like environments, standard naming and multi-provider support
 
@@ -26,14 +26,17 @@ So lets see what this thing can do
     ```
 
     :::info
-    The `~/hamlet_diagrams/` can be whatever works for you on your local system.
+    The `~/hamlet_diagrams/` can be whatever works for on your local system.
     We need the local mount so that we can view the diagram files created ( they will be png files )
     :::
 
-2. Lets have a look at the diagram types that are available from hamlet. A diagram type is the structure of the diagram that you want to generate. Once you have the type you can then define a diagram with the solution contents you want,
+2. Lets have a look at the diagram types that are available from hamlet. A diagram type is the structure of the diagram to generate
 
     ```bash
     hamlet visual -i mock -p diagramstest -p diagrams list-diagram-types
+    ```
+
+    ```bash
     ╒════╤═══════════╤══════════════════════════════════════════════════════════════════════════════════════════╕
     │    │ Type      │ Description                                                                              │
     ╞════╪═══════════╪══════════════════════════════════════════════════════════════════════════════════════════╡
@@ -43,17 +46,17 @@ So lets see what this thing can do
     ╘════╧═══════════╧══════════════════════════════════════════════════════════════════════════════════════════╛
     ```
 
-    :::info
-    This post is going to use the diagramstest provider to define our solution. If you have your own CMDB you can follow along but remove the `-i mock -p diagramstest` arguments from any hamlet commands
-    :::
-
-    The diagrams provider currently has two diagrams type, the solution which shows you all your components and their relationships based on their links, and resources which shows you the different infrastructure resource types in your solution
+    The diagrams provider currently has two diagram types
+     - the solution shows components and their relationships based on links
+     - resources which shows the different infrastructure resource types found in the solution
 
 3. Now lets have a look at what diagrams are available in this solution
 
     ```bash
     hamlet visual -i mock -p diagramstest -o diagrams list-diagrams
+    ```
 
+    ```bash
     ╒════╤════════════════╤═══════════╤═════════════════════════════════════════════════════════════════╕
     │    │ Id             │ Type      │ Description                                                     │
     ╞════╪════════════════╪═══════════╪═════════════════════════════════════════════════════════════════╡
@@ -63,67 +66,36 @@ So lets see what this thing can do
     ╘════╧════════════════╧═══════════╧═════════════════════════════════════════════════════════════════╛
     ```
 
-    We have two digrams that we can draw in the test provider, overview, which uses the solution diagram type to show all the **components**, and **resources_used** which shows us all the resources in our solution.
+    We have two digrams that we can draw in the test provider
 
-    :::info
-    If you are following along with your own solution, you most likely got an empty list. These diagrams are available as a plugin which you can add to your CMDB
-
-    Add the following to your CMDB to install the diagrams plugin and enabled the module
-
-    ```json
-    {
-        "Product" : {
-            "Plugins" : {
-                "diagrams" : {
-                    "Enabled" : true,
-                    "Name" : "diagrams",
-                    "Priority" : 100,
-                    "Required" : true,
-                    "Source" : "git",
-                    "Source:git" : {
-                        "Url" : "https://github.com/hamlet-io/engine-plugin-diagrams",
-                        "Ref" : "main",
-                        "Path" : "diagrams/"
-                    }
-                }
-            }
-        },
-        "Solution" : {
-            "Modules" : {
-                "diagrams_overviews" : {
-                    "Provider" : "diagrams",
-                    "Name" : "overviews"
-                }
-            }
-        }
-    }
-    ```
-
-    Then run `${GENERATION_DIR}/setup.sh` to install the plugin
-    :::
+    - **overview** uses the solution diagram type to show all the components
+    - **resources_used** shows us all the resources in our solution using the resources type
 
 4. Now lets draw these diagrams to see what we get
 
     ```bash
     hamlet visual -i mock -p diagramstest -p diagrams draw-diagrams -d /home/hamlet/cmdb
+    ```
+
+    ```bash
     [*] overview
     [*] resources_used
     ```
 
-    In the local directory you mounted to the docker container you should now see two png files. One called `diagram-overview.png` and one called `diagram-resources_used.png`
+    In the local directory we mounted to the docker container there are now two png files. One called `diagram-overview.png` and one called `diagram-resources_used.png`
 
-    ![Overview diagram showing all of the components in your solution and their links](2021-02-26-diagram-plugin/diagram-overview.png "Overview diagram")
+    ![Overview diagram showing all of the components in the solution and their links](2021-02-26-diagram-plugin/diagram-overview.png "Overview diagram")
 
-    This diagram outlines the different components that we have, each group is a component with each of their occurrences drawn inside them.
-    - The `application-apphost-ecs` shows us an container host, **apphost** with a single container service called **webapp**
+    This diagram outlines the different components, each group is a component with each of their occurrences drawn inside them.
+    - The `application-apphost-ecs` shows a container host, **apphost** with a single container service called **webapp**
     - The **https** load balancer rule in the **elb-webapp-lb** component has a link to this container
     - The **https** load balancer as an incoming link from the **internet**.
 
     ![Resource types used as part of the solution](2021-02-26-diagram-plugin/diagram-resources_used.png "Resources Used")
 
-    This diagrams shows the different infrastructure resources that we use in the solution overall.
-    - At the application level we have function, container and apigateway
-    - At the solution level we have a server, loadbalancer, load balancer rule and a database instance
+    This diagrams shows the different infrastructure resources in the solution overall.
+    - At the application level function, container and apigateway
+    - At the solution level server, load balancer, load balancer rule and database instance
 
 ## Where did that come from?
 
@@ -210,21 +182,21 @@ Lets have a look at the solution configuration for our overview components and s
     }
 ```
 
-- So the load balancer is defined in the solution as webapp-lb and it has two port mappings *http* and *https* which matches what we saw in the diagram
+- The load balancer is defined in the solution as webapp-lb and it has two port mappings *http* and *https*
 - The load balancer has an `IPAddressGroups` configuration set to `_global` which is a special IP address group in hamlet which maps to the IP Range `0.0.0.0/0`. In the diagram this is represented by the internet external network
-- On the apphost we have a service called webapp and it has a web container, again this aligns with the diagram. The Container has a link to the webapp-lb load balancer and its https port mapping.
+- On the apphost there is a service called webapp with a web container, again this aligns with the diagram. The Container has a link to the webapp-lb load balancer and its https port mapping.
 
-To generate the diagram hamlet looks through your component configuration and looks for key sections of the configuration that would be useful to represent.
+To generate the diagram hamlet looks through the component configuration and looks for key sections of the configuration that would be useful to represent.
 Each diagram type looks for different things:
 
-- Solution type we focus on Links, IPAddress Groups and the Occurrences which are defined in the solution
+- Solution type focuses on Links, IPAddress Groups and the Occurrences which are defined in the solution
 - Resources uses the resources defined in an Occurrences state to find unique resources used in the solution
 
-Considering the wide range of information that hamlet builds about your solution, you can start to see the potential for what could be represented using this approach. You can write your own plugins which implement diagram types based on pretty much anything in the hamlet engine.
+Considering the wide range of information that hamlet builds about a solution, we can start to see the potential for what could be represented using this approach. You can write your own plugins which implement diagram types based on pretty much anything in the hamlet engine.
 
 ## What are those random things?
 
-So looking at the overview diagram you might notice that there are what looks like two different paths through the diagram, the Internet -> load balancer -> container -> database path we followed before and another one which goes from an API Gateway -> Lambda -> Database. What if I wanted to show these on two different diagrams. This is why we have diagram types and diagrams in the plugin.
+So looking at the overview diagram you might notice that there are what looks like two different paths through the solution, the Internet -> load balancer -> container -> database path we followed before and another one which goes from an API Gateway -> Lambda -> Database. What if I wanted to show these on two different diagrams. This is why we have diagram types and diagrams in the plugin.
 
 So lets have a look at a diagram definition:
 
@@ -249,13 +221,13 @@ So lets have a look at a diagram definition:
     }
 ```
 
-A diagram has two key configuration sections `Type` which picks the diagram type you want to use and `Rules` which defines what should be included in the diagram. We have a collection of policies available to help pick the components you want.
+A diagram has two key configuration sections `Type` which picks the diagram type you want to use and `Rules` which defines what should be included in the diagram. We have a collection of policies available to help pick what is included.
 
-- Links: uses the standard link based structure to explicitly define which components you want to include
-- ComponentType: Filters occurrences in your solution based on their component type ( "*" means any)
+- Links: uses the standard link based structure to explicitly define the components to include
+- ComponentType: Filters occurrences based on their component type ( "*" means any)
 - ResourceType: Filters based on the types of resources in an occurrence
 
-You can use these filters across all diagram types, some policies might be better suited to different types, but we made all of them available so you can pick how you want to create the diagram
+These filters are available for all diagram types, some policies might be better suited to different types.
 
 So if we wanted to split out the API Gateway and the web app we could define the following diagrams
 
@@ -304,12 +276,62 @@ Now if we create this diagram
 
 ```bash
 hamlet visual -i mock -p diagramstest -p diagrams draw-diagrams --asset-dir ./ --diagram-id apiservice
+```
+
+```bash
 [*] apiservice
 ```
 
 ![API Service Diagram showing only the api components](2021-02-26-diagram-plugin/diagram-apiservice.png "API Service Diagram")
 
 We can just see those specific components and their relationships
+
+## Creating your own diagrams
+
+This post used the diagramstest plugin which provides a predefined solution that we use for testing the diagrams plugin. This was a simple way to show how the plugin works and what you can do. If you would like to draw the same diagrams we created in the post using your own solution you need to install the diagrams plugin in your solution
+
+1. Add the following to your product CMDB to install the diagrams plugin and enable the diagrams overview module which includes the diagrams that we used in the demo
+
+    ```json
+    {
+        "Product" : {
+            "Plugins" : {
+                "diagrams" : {
+                    "Enabled" : true,
+                    "Name" : "diagrams",
+                    "Priority" : 100,
+                    "Required" : true,
+                    "Source" : "git",
+                    "Source:git" : {
+                        "Url" : "https://github.com/hamlet-io/engine-plugin-diagrams",
+                        "Ref" : "main",
+                        "Path" : "diagrams/"
+                    }
+                }
+            }
+        },
+        "Solution" : {
+            "Modules" : {
+                "diagrams_overviews" : {
+                    "Provider" : "diagrams",
+                    "Name" : "overviews"
+                }
+            }
+        }
+    }
+    ```
+
+2. Install the plugin locally. In your segment solutions dir run
+
+    ```bash
+    ${GENERATION_DIR}/setup.sh
+    ```
+
+3. Generate the diagrams
+
+    ```bash
+    hamlet visual -i mock -p diagramstest -p diagrams draw-diagrams -d /home/hamlet/cmdb/mysolution
+    ```
 
 ## Wrap Up
 
