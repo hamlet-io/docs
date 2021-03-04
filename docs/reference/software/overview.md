@@ -16,8 +16,8 @@ This section serves to document the structure of the application and is not expe
 - [Executor (aka Executor Bash)](./executor)
 - [CLI (aka Executor Python)](./cli)
 - Engine
-    - Engine (general)
-    - Engine (core)
+    - [Engine (general)](./engine)
+    - [Engine (core)](./engine_core)
     - Plugins
         - aws
         - azure

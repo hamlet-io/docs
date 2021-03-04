@@ -257,6 +257,7 @@ module.exports = {
             'reference/software/container',
             'reference/software/executor',
             'reference/software/engine_core',
+            'reference/software/engine',
           ]
         }
       ]
