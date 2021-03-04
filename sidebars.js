@@ -15,6 +15,7 @@ module.exports = {
           items: [
             'hamletdeploy/software/cli',
             'hamletdeploy/software/container',
+            'hamletdeploy/software/executor',
           ]
         }
       ]
