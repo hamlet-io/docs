@@ -7,21 +7,6 @@ module.exports = {
     'hello/hamlet',
     {
       type: 'category',
-      label: 'Deploy',
-      items: [
-        {
-          type: 'category',
-          label: 'Software',
-          items: [
-            'hamletdeploy/software/cli',
-            'hamletdeploy/software/container',
-            'hamletdeploy/software/executor',
-          ]
-        }
-      ]
-    },
-    {
-      type: 'category',
       label: 'Learn',
       items: [
         {
@@ -252,6 +237,26 @@ module.exports = {
             'contribute/contributor_reference/routines',
           ]
         },
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        {
+          type: 'link',
+          label: 'Blueprint Reference',
+          href: '/reference',
+        },
+        {
+          type: 'category',
+          label: 'Software Reference',
+          items: [
+            'reference/software/cli',
+            'reference/software/container',
+            'reference/software/executor',
+          ]
+        }
       ]
     }
   ]
