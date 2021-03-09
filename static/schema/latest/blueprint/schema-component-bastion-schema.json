@@ -29,6 +29,13 @@
             "Links": {
               "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
             },
+            "IPAddressGroups": {
+              "type": "array",
+              "contains": {
+                "type": "string"
+              },
+              "description": "The IPAddressGroup Id's that should be granted access to the Bastion"
+            },
             "AutoScaling": {
               "type": "object",
               "additionalProperties": false,
