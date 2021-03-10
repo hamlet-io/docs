@@ -21,11 +21,6 @@ module.exports = {
       },
       items: [
         {to: 'docs/hello/welcome', label: 'docs', position: 'left'},
-        {
-          label: 'reference',
-          position: 'left',
-          to: 'reference',
-        },
         {to: "blog", label: 'blog', position: 'right'},
         {
           label: 'releases',

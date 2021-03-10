@@ -252,9 +252,12 @@ module.exports = {
           type: 'category',
           label: 'Software Reference',
           items: [
+            'reference/software/overview',
             'reference/software/cli',
             'reference/software/container',
             'reference/software/executor',
+            'reference/software/engine_core',
+            'reference/software/engine',
           ]
         }
       ]
