@@ -18,9 +18,6 @@ This section serves to document the structure of the application and is not expe
 - Engine
     - [Engine (general)](./engine)
     - [Engine (core)](./engine_core)
-    - Plugins
-        - [aws](./aws)
-        - azure
-        - diagrams
+    - [Modules](https://github.com/hamlet-io/hamlet-library)
 - Patterns
 - Startup
