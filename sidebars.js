@@ -9,6 +9,7 @@ module.exports = {
       type: 'category',
       label: 'Learn',
       items: [
+        'learn/workspace',
         {
           type: 'category',
           label: 'Layers',
