@@ -20,6 +20,7 @@ module.exports = {
             'learn/layers/blueprint',
           ]
         },
+        'learn/validate'
       ]
     },
     {
