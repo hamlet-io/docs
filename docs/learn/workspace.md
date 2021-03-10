@@ -89,3 +89,15 @@ test.txt
 ```
 
 You are all ready to get started. Once you're finished with a session you can just close the terminal.
+
+## Updating the Workspace
+
+Over time you may wish to update your workspace with the latest version of Hamlet Deploy.
+
+Downloading the latest version of the Hamlet Deploy container image and re-starting your terminal session is all that you need to do.
+
+```bash
+docker pull hamletio/hamlet
+```
+
+With the latest image downloaded, the Docker CLI will run your workspace using it instead of the previous container image.
