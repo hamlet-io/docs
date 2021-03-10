@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-db-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-db-schema.json",
   "definitions": {
     "db": {
       "type": "object",
@@ -247,7 +247,7 @@
               }
             },
             "Links": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "AlwaysCreateFromSnapshot": {
               "type": "boolean",
@@ -346,7 +346,7 @@
                           "description": "The resource metric used to trigger scaling",
                           "properties": {
                             "Link": {
-                              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+                              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
                             },
                             "MetricTrigger": {
                               "type": "object",

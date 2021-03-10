@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/reference-networkendpointgroup-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-networkendpointgroup-schema.json",
   "definitions": {
     "NetworkEndpointGroup": {
       "type": "object",

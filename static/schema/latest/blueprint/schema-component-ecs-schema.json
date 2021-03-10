@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-ecs-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-ecs-schema.json",
   "definitions": {
     "ecs": {
       "type": "object",
@@ -42,7 +42,7 @@
               "default": true
             },
             "Links": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "AutoScaling": {
               "type": "object",
@@ -163,7 +163,7 @@
                           "description": "The resource metric used to trigger scaling",
                           "properties": {
                             "Link": {
-                              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+                              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
                             },
                             "MetricTrigger": {
                               "type": "object",
@@ -707,10 +707,10 @@
               }
             },
             "Services": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/service"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-service-schema.json"
             },
             "Tasks": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/task"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-task-schema.json"
             }
           },
           "additionalProperties": false

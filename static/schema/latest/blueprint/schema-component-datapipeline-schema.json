@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-datapipeline-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-datapipeline-schema.json",
   "definitions": {
     "datapipeline": {
       "type": "object",
@@ -38,7 +38,7 @@
               }
             },
             "Links": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Profiles": {
               "type": "object",

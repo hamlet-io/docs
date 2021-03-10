@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/reference-networkprofile-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-networkprofile-schema.json",
   "definitions": {
     "NetworkProfile": {
       "type": "object",
@@ -13,7 +13,7 @@
               "additionalProperties": false,
               "properties": {
                 "Links": {
-                  "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json",
                   "description": "Apply network security rules based on links"
                 },
                 "Outbound": {

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-lambda-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-lambda-schema.json",
   "definitions": {
     "lambda": {
       "type": "object",
@@ -127,7 +127,7 @@
               }
             },
             "Functions": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/function"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-function-schema.json"
             }
           },
           "additionalProperties": false

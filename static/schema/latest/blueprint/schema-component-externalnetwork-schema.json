@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-externalnetwork-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-externalnetwork-schema.json",
   "definitions": {
     "externalnetwork": {
       "type": "object",
@@ -157,7 +157,7 @@
               }
             },
             "Connections": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/externalnetworkconnection"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-externalnetworkconnection-schema.json"
             }
           },
           "additionalProperties": false

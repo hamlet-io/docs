@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-s3-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-s3-schema.json",
   "definitions": {
     "s3": {
       "type": "object",
@@ -108,7 +108,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
                     "Links": {
-                      "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
                     },
                     "Prefix": {
                       "type": "string"
@@ -187,7 +187,7 @@
               }
             },
             "Links": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "InventoryReports": {
               "type": "object",
@@ -210,7 +210,7 @@
                           ]
                         },
                         "Links": {
-                          "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link",
+                          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json",
                           "description": "If destination type is link these are the links that will be used"
                         }
                       }

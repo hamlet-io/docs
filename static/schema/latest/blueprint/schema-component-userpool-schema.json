@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-userpool-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpool-schema.json",
   "definitions": {
     "userpool": {
       "type": "object",
@@ -131,7 +131,7 @@
               }
             },
             "Links": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "DefaultClient": {
               "type": "boolean",
@@ -160,6 +160,45 @@
                     "Required": {
                       "type": "boolean",
                       "default": true
+                    },
+                    "Constraints": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Constraints applied to the attribute based on their type",
+                      "properties": {
+                        "String": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "String based Constraints",
+                          "properties": {
+                            "MinLength": {
+                              "type": "number",
+                              "description": "The minimumn length of the attribute 0 = any",
+                              "default": 0
+                            },
+                            "MaxLength": {
+                              "type": "number",
+                              "description": "The maximum length of the attribute 0 = any",
+                              "default": 0
+                            }
+                          }
+                        },
+                        "Number": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "description": "Number based Constraints",
+                          "properties": {
+                            "MinValue": {
+                              "type": "number",
+                              "description": "The minimumn value of the attribute"
+                            },
+                            "MaxValue": {
+                              "type": "number",
+                              "description": "The maximum value of the attribute"
+                            }
+                          }
+                        }
+                      }
                     }
                   },
                   "additionalProperties": false
@@ -407,13 +446,13 @@
               }
             },
             "Clients": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/userpoolclient"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolclient-schema.json"
             },
             "AuthProviders": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/userpoolauthprovider"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json"
             },
             "Resources": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/userpoolresource"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolresource-schema.json"
             }
           },
           "additionalProperties": false

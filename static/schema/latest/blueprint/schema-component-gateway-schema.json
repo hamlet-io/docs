@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-gateway-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-gateway-schema.json",
   "definitions": {
     "gateway": {
       "type": "object",
@@ -25,7 +25,7 @@
               ]
             },
             "Links": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "SourceIPAddressGroups": {
               "type": "array",
@@ -84,7 +84,7 @@
                       "description": "The attribute of the endpoint"
                     },
                     "Link": {
-                      "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link",
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json",
                       "description": "The link to the component"
                     }
                   },
@@ -248,7 +248,7 @@
               }
             },
             "Destinations": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/gatewaydestination"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-gatewaydestination-schema.json"
             }
           },
           "additionalProperties": false

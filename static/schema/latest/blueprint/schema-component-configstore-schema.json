@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-configstore-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-configstore-schema.json",
   "definitions": {
     "configstore": {
       "type": "object",
@@ -207,7 +207,7 @@
               }
             },
             "Branches": {
-              "$ref": "https://hamlet.io/schema/latest/blueprint/schema-component-schema.json#/configbranch"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-configbranch-schema.json"
             }
           },
           "additionalProperties": false

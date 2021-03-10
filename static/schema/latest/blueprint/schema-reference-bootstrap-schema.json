@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/reference-bootstrap-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-bootstrap-schema.json",
   "definitions": {
     "Bootstrap": {
       "type": "object",

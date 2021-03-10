@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/component-userpoolresource-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolresource-schema.json",
   "definitions": {
     "userpoolresource": {
       "type": "object",
@@ -14,7 +14,7 @@
               "description": "The endpoint of the resource",
               "properties": {
                 "Link": {
-                  "$ref": "https://hamlet.io/schema/latest/blueprint/schema-attributeset-schema.json#/link",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json",
                   "description": "A link to the server resource represented by this resource"
                 },
                 "LinkAttribute": {

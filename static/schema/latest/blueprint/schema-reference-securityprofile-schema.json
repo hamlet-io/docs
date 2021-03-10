@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://hamlet.io/schema/latest/blueprint/reference-securityprofile-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-securityprofile-schema.json",
   "definitions": {
     "SecurityProfile": {
       "type": "object",
