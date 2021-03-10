@@ -22,9 +22,9 @@ git clone https://github.com/hamlet-io/engine.git
 
 The Engine requires no additional configuration.
 
-## Modules
+## Plugins
 
-The Engine is designed to be modular and a number of Hamlet Deploy Modules are available to provide cloud provider support, re-usable configuration snippets and component extensions.
+The Engine is designed to be extensible and a number of Hamlet Deploy plugins are available to provide cloud provider support, re-usable configuration snippets (Hamlet Modules) and component extensions.
 
 These are available in the [Hamlet Deploy Library](https://github.com/hamlet-io/hamlet-library).
 
