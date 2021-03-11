@@ -97,7 +97,12 @@ Over time you may wish to update your workspace with the latest version of Hamle
 Downloading the latest version of the Hamlet Deploy container image and re-starting your terminal session is all that you need to do.
 
 ```bash
+# in your current container 
+exit 
+
+# from your local terminal
 docker pull hamletio/hamlet
+docker run -it --volume ~/hamletdeploy:/home/hamlet/cmdb hamletio/hamlet
 ```
 
 With the latest image downloaded, the Docker CLI will run your workspace using it instead of the previous container image.
