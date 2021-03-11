@@ -35,24 +35,12 @@ Create your first Hamlet Tenant. After entering the command you will be asked a 
 
 ```bash
 hamlet @ ~/cmdb
-└─ $ hamlet generate cmdb tenant --prompt
-Enter tenant id: acmeinc
-Enter tenant name [acmeinc]:
-Enter domain stem []: acme.io
-Enter default region [ap-southeast-2]:
-Enter audit log expiry days [2555]:
-Enter audit log offline days [90]:
-+-----+------------------------+----------------+
-|   № | parameter              | value          |
-|-----+------------------------+----------------|
-|   1 | tenant id              | acmeinc        |
-|   2 | tenant name            | acmeinc        |
-|   3 | domain stem            | acme.io        |
-|   4 | default region         | ap-southeast-2 |
-|   5 | audit log expiry days  | 2555           |
-|   6 | audit log offline days | 90             |
-+-----+------------------------+----------------+
-Is everything correct? [y/N]: y
+└─ $ hamlet generate cmdb tenant
+[?] tenant id: acmeinc
+[?] tenant name [acmeinc]: 
+[?] default region [ap-southeast-2]: 
+[?] audit log expiry days [2555]: 
+[?] audit log offline days [90]: 
 ```
 
 That's all it takes to create your first Tenant and its minimal configuration. 
@@ -89,7 +77,7 @@ hamlet @ ~/cmdb
     },
     "Account" : {
         "Region" : "ap-southeast-2",
-        "Domain" : "hamlet",
+        "Domain" : "acmeinc",
         "Audit" : {
             "Offline" :  90,
             "Expiration" :  2555
@@ -118,9 +106,9 @@ hamlet @ ~/cmdb
 └─ $ cat ./accounts/acmeinc/domains.json
 {
     "Domains" : {
-        "Validation" : "acme.io",
+        "Validation" : "",
         "acmeinc" : {
-            "Stem": "acme.io"
+            "Stem": ""
         }
     },
     "Certificates" : {
@@ -128,7 +116,7 @@ hamlet @ ~/cmdb
 }
 ```
 
-An organisation will typically own one or more domains that they have purchased. Tracking these domains - even when presently unused, as is the case here - will allow Accounts and Products configured at a later time to make use of them. As we provided the CLI prompt with a domain owned by our Tenant, it has configured it here, however there are no certificates that use it currently.
+An organisation will typically own one or more domains that they have purchased. Tracking these domains - even when presently unused, as is the case here - will allow Accounts and Products configured at a later time to make use of them.
 
 ## ipaddressgroups.json
 
