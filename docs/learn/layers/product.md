@@ -9,30 +9,14 @@ We're going to use it to represent a basic phone directory website for our "Acme
 
 ```bash
 hamlet @ ~/cmdb
-└─ $ hamlet generate product base --prompt
-Enter product id: phonedir
-Enter product name [phonedir]:
-Enter domain id []: acmeinc
-Enter solution id: phonedir
-Enter solution name [phonedir]:
-Enter environment id: int
-Enter environment name [int]: integration
-Enter segment id [default]:
-Enter segment name [default]:
-+-----+------------------+-------------+
-|   № | parameter        | value       |
-|-----+------------------+-------------|
-|   1 | product id       | phonedir    |
-|   2 | product name     | phonedir    |
-|   3 | domain id        | acmeinc     |
-|   4 | solution id      | phonedir    |
-|   5 | solution name    | phonedir    |
-|   6 | environment id   | int         |
-|   7 | environment name | integration |
-|   8 | segment id       | default     |
-|   9 | segment name     | default     |
-+-----+------------------+-------------+
-Is everything correct? [y/N]: y
+└─ $ hamlet generate product base
+[?] product id: phonedir
+[?] dns zone []: 
+[?] product name [phonedir]: 
+[?] environment id [int]: 
+[?] environment name [integration]: 
+[?] segment id [default]: 
+[?] segment name [default]: 
 ```
 
 There are a number of default Product types that we can generate but here we've chosen the "base" Product - this will give us a well-rounded set of configuration to start us off.
