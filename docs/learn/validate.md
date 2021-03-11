@@ -11,24 +11,26 @@ In this short guide we'll take a look over how you can make the most of Blueprin
 ## Requirements
 
 The following sections assume you are working inside the development workspace and have a District configured already.
+## What Gets Validated?
 
-## Running Validation
-
-Validation is performed as an Engine Entrance.
-
-
-```bash
-hamlet entrance invoke-entrance -e validate
-```
-
-This will construct the Blueprint from the layers of the District  and bring to your attention any of the following:
+The validation process will construct the District's Blueprint and compare it against the [Blueprint Reference](https://docs.hamlet.io/reference). The process will alert you if any of the following issues are present:
 
 - missing mandatory configuration;
 - unexpected data types;
 - values that do not match those available (where applicable)
 - unexpected attributes have been found;
 
-Should any of the above be present Hamlet Deploy will provide you with the cause of the invalid configuration and which configuration it was found within.
+## Running Validation
+
+Validation is performed as an Engine Entrance. It does not require any additional arguments.
+
+```bash
+hamlet entrance invoke-entrance -e validate
+```
+
+That's all there is to it!
+
+Regular validation will help you catch issues early and ensure that Hamlet Deploy is working the way you intend it to.
 
 <Admonition type="question" title="Having Trouble?">
 You can always compare invalid configuration against the <a href="https://docs.hamlet.io/reference">Blueprint Reference</a> if you get stuck.
