@@ -15,22 +15,12 @@ In our docker container, run the following:
 hamlet @ ~/cmdb
 └─ $ cd accounts
 hamlet @ ~/cmdb/accounts
-└─ $ hamlet generate cmdb account --prompt
-Enter account id: acmedev01
-Enter account name [acmedev01]:
-Enter account seed [igtfze6ar0]:
-Enter provider type [aws]:
-Enter provider id: 012345678912
-+-----+---------------+--------------+
-|   № | parameter     | value        |
-|-----+---------------+--------------|
-|   1 | account id    | acmedev01    |
-|   2 | account name  | acmedev01    |
-|   3 | account seed  | igtfze6ar0   |
-|   4 | provider type | aws          |
-|   5 | provider id   | 012345678912 |
-+-----+---------------+--------------+
-Is everything correct? [y/N]: y
+└─ $ hamlet generate cmdb account
+[?] account id: acmedev01
+[?] account name [acmedev01]: 
+[?] account seed [igtfze6ar0]: 
+[?] provider type (aws, azure) [aws]: 
+[?] provider id: 012345678912
 ```
 
 Returning to the root directory and revewing our outputs:
@@ -92,7 +82,6 @@ hamlet @ ~/cmdb
 └─ $ cat ./accounts/acmedev01/config/settings/shared/settings.json
 {
     "Registries" : {
-
         "docker" : {
             "EndPoint" : "aws.dkr.ecr.ap-southeast-2.amazonaws.com"
         },
@@ -134,7 +123,6 @@ hamlet @ ~/cmdb
 ```
 
 The `shared` Segment's **settings** file shown here defines the default Registries that will be used by the Account. Though some may never be used, their definition here ensures that all possible Product build artefacts have an agreed endpoint.
-
 
 ## credentials.json
 
