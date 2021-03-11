@@ -31,5 +31,5 @@ This will construct the Blueprint from the layers of the District  and bring to 
 Should any of the above be present Hamlet Deploy will provide you with the cause of the invalid configuration and which configuration it was found within.
 
 <Admonition type="question" title="Having Trouble?">
-You can always compare invalid configuration against the [Blueprint Reference](https://docs.hamlet.io/reference) if you get stuck.
+You can always compare invalid configuration against the <a href="https://docs.hamlet.io/reference">Blueprint Reference</a> if you get stuck.
 </Admonition>
