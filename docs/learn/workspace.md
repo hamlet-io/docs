@@ -13,7 +13,7 @@ Other Learn guides will assume the use of this common workspace.
 
 ## Requirements
 
-A basic understanding of working on the command-line is sufficient to follow along with Learn guides. The Docker container we are going to be using built upon [Debian](https://www.debian.org) operating system. All commands will be provided throughout, however you will benefit from understanding how to perform common administrative tasks in a terminal such as directory navigation and creating new files or directories.
+A basic understanding of working on the command-line is sufficient to follow along with Learn guides. The Docker container we are going to be using is based in Linux and uses the bash shell. All commands will be provided throughout, however you will benefit from understanding how to perform common administrative tasks in bash such as directory navigation and creating new files or directories.
 
 The only software requirement for the setup of the develpment workspace is that Docker is installed and that you have network access to download local container images from DockerHub.
 
