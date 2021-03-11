@@ -53,7 +53,7 @@ We're now ready to start our workspace.
 
 Each time you would like to return to this workspace you will just need to run the following Docker CLI command inside of a terminal window.
 
-This will start an interactive terminal inside of the _hamletio/hamlet_ container, and bring along for the ride your _hamletdeploy_ directory.
+This will start an interactive terminal inside of the _hamletio/hamlet_ container, and make the _hamletdeploy_ directory available in the container.
 
 ```bash
 docker run -it --volume ~/hamletdeploy:/home/hamlet/cmdb hamletio/hamlet
