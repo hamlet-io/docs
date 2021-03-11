@@ -108,17 +108,6 @@ module.exports = {
       items: [
         {
           type: 'category',
-          label: 'Setup',
-          items: [
-            'contribute/setup/workspace',
-            'contribute/setup/devcontainer',
-            'contribute/setup/source',
-            'contribute/setup/pulls',
-            'contribute/setup/repository-index',
-          ]
-        },
-        {
-          type: 'category',
           label: 'Structure',
           items: [
             {
