@@ -37,7 +37,7 @@ docker pull hamletio/hamlet
 
 We'll want a directory on our local machine that can be used to store all of our work so lets make one now.
 
-First, in the terminal change into a directory that works for you you and then make a new directory for Hamlet Deploy.
+First, in your local terminal change into a directory that works for you you and then make a new directory for Hamlet Deploy.
 
 ```bash
 ## change directory into the home directory
