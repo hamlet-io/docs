@@ -27,10 +27,8 @@ In the following sections we will walk through each one, exploring how they work
 
 By the end of of this tutorial you will have sufficient experience to create your own Hamlet CMDB's and begin working in Hamlet.
 
-:::note
-The following tutorials presume that you are operating inside of the Hamlet docker container.
+<Admonition type="note">
 
-```
-docker pull hamletio/hamlet:latest
-```
-:::
+The following tutorials assume that you are operating inside of the [recommended development workspace](../workspace).
+
+</Admonition>
