@@ -2,11 +2,12 @@
 sidebar_label: tenant
 title: The Tenant
 ---
+
 import Admonition from 'react-admonitions';
 
 A Tenant represents an organsation or entity and is the greatest scope within Hamlet. All configuration applied at this layer is going to influence all Accounts and Products within it.
 
-Lets create one now so that we have something to look at. 
+Lets create one now so that we have something to look at.
 
 From your terminal, run the following to pull down and run the offical Hamlet Docker container and start an interactive terminal session inside of it:
 
@@ -27,6 +28,7 @@ All Hamlet CLI commands have useful help pages that can be accessed within the c
 ```bash
 hamlet <command> --help
 ```
+
 :::
 
 ## Creating the Tenant
@@ -35,42 +37,27 @@ Create your first Hamlet Tenant. After entering the command you will be asked a 
 
 ```bash
 hamlet @ ~/cmdb
-└─ $ hamlet generate cmdb tenant --prompt
-Enter tenant id: acmeinc
-Enter tenant name [acmeinc]:
-Enter domain stem []: acme.io
-Enter default region [ap-southeast-2]:
-Enter audit log expiry days [2555]:
-Enter audit log offline days [90]:
-+-----+------------------------+----------------+
-|   № | parameter              | value          |
-|-----+------------------------+----------------|
-|   1 | tenant id              | acmeinc        |
-|   2 | tenant name            | acmeinc        |
-|   3 | domain stem            | acme.io        |
-|   4 | default region         | ap-southeast-2 |
-|   5 | audit log expiry days  | 2555           |
-|   6 | audit log offline days | 90             |
-+-----+------------------------+----------------+
-Is everything correct? [y/N]: y
+└─ $ hamlet generate cmdb tenant
+[?] tenant id: acmeinc
+[?] tenant name [acmeinc]:
+[?] default region [ap-southeast-2]:
+[?] audit log expiry days [2555]:
+[?] audit log offline days [90]:
 ```
 
-That's all it takes to create your first Tenant and its minimal configuration. 
+That's all it takes to create your first Tenant and its minimal configuration.
 
-Now let's take a look at what Hamlet has created for us. 
+Now let's take a look at what Hamlet has created for us.
 
 ```bash
-$ tree
-.
-└── accounts
-    └── acmeinc
-        ├── domains.json
-        ├── ipaddressgroups.json
-        └── tenant.json
+$ tree ./accounts
+./accounts
+└── acmeinc
+    ├── ipaddressgroups.json
+    └── tenant.json
 ```
 
-
-Notice the directory structure here - `./accounts/acmeinc`. The `tenant name` that we provided to Hamlet - *"acmeinc"* - has been used for the directory name to store our configuration in.
+Notice the directory structure here - `./accounts/acmeinc`. The `tenant name` that we provided to Hamlet - _"acmeinc"_ - has been used for the directory name to store our configuration in.
 
 A Tenant alone isn't sufficient for us to perform any Hamlet activities with it yet, so instead lets take a peek at the files Hamlet generated for us:
 
@@ -82,14 +69,10 @@ hamlet @ ~/cmdb
 {
     "Tenant" : {
         "Id" : "acmeinc",
-        "Name" : "acmeinc",
-        "CertificateBehaviours" : {
-            "External" : true
-        }
+        "Name" : "acmeinc"
     },
     "Account" : {
         "Region" : "ap-southeast-2",
-        "Domain" : "hamlet",
         "Audit" : {
             "Offline" :  90,
             "Expiration" :  2555
@@ -101,34 +84,13 @@ hamlet @ ~/cmdb
 }
 ```
 
-You will recognise most of the values defined in the **tenant.json** file are responses to the CLI prompts answered earlier. 
+You will recognise most of the values defined in the **tenant.json** file are responses to the CLI prompts answered earlier.
 
-Configuration in this file will impact each Account and Product associated with it. Because of the breadth of its scope, the default configuration created is minimal - mostly it can be considered **default values**. 
+Configuration in this file will impact each Account and Product associated with it. Because of the breadth of its scope, the default configuration created is minimal - mostly it can be considered **default values**.
 
-We assign the Tenant a `Name` and `Id`, along with the default region configuration for the **Account** and **Product** layers. 
+We assign the Tenant a `Name` and `Id`, along with the default region configuration for the **Account** and **Product** layers.
 
 Defining defaults here rather than later in those layers means that we can set a single default at the greatest scope and only provide over-riding values when necessary, reducing unnecessary duplication and ensuring that exceptions to this configuration will stand out.
-
-The configuration also sets the default `CertificateBehaviours` to `external`, telling Hamlet that any certificates are currently being handled elsewhere and their configuration should not be accounted for. Again, just a sensible default allowing certificates to be accounted for as necessary.
-
-## domains.json
-
-```bash
-hamlet @ ~/cmdb
-└─ $ cat ./accounts/acmeinc/domains.json
-{
-    "Domains" : {
-        "Validation" : "acme.io",
-        "acmeinc" : {
-            "Stem": "acme.io"
-        }
-    },
-    "Certificates" : {
-    }
-}
-```
-
-An organisation will typically own one or more domains that they have purchased. Tracking these domains - even when presently unused, as is the case here - will allow Accounts and Products configured at a later time to make use of them. As we provided the CLI prompt with a domain owned by our Tenant, it has configured it here, however there are no certificates that use it currently.
 
 ## ipaddressgroups.json
 

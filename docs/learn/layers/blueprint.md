@@ -2,27 +2,16 @@
 sidebar_label: blueprint
 title: District Blueprint
 ---
+
 import Mermaid from '@theme/Mermaid';
 
 ## Blueprint Layer-by-Layer
 
-A District is a unique combination of the Layer instances and the Blueprint is the composite configuration for that District. The instance configuration for each Layer in the District is combined with any "shared" layer-instance configurat and layered on top of the others. 
+A District is a unique combination of the Layer instances and the Blueprint is the composite configuration for that District. The instance configuration for each Layer in the District is combined with any "shared" layer-instance configurat and layered on top of the others.
 
 The resulting Blueprint is a reflection of all entities (Layers) having their say in how the District is built, and anything that comes from the district - such as cloud infrastructure templates or application deployments - should be implemented.
 
-<Mermaid chart={`
-    stateDiagram-v2
-    District
-    state District {
-        Tenant --> Blueprint : 1
-        Account --> Blueprint : 2
-        Product --> Blueprint : 3
-        Solution --> Blueprint : 4
-        Environment --> Blueprint : 5
-        Segment --> Blueprint : 6
-    }
-`}/>
-
+<Mermaid chart={` stateDiagram-v2 District state District { Tenant --> Blueprint : 1 Account --> Blueprint : 2 Product --> Blueprint : 3 Solution --> Blueprint : 4 Environment --> Blueprint : 5 Segment --> Blueprint : 6 }`}/>
 
 ## Determining the District
 
@@ -43,8 +32,7 @@ The root of our Hamlet structure is defined by a root.json file, so Hamlet knows
 
 Our _accounts_ directory contains a single tenant (acmeinc) alongside at least one account (acmedev01). Hamlet understands their association from this structure.
 
-Alongside all of _that_ we have at least one Product. But we could have many Products in this directory alongside eachother. How can we - or Hamlet! - work out our District from all of this? 
-
+Alongside all of _that_ we have at least one Product. But we could have many Products in this directory alongside eachother. How can we - or Hamlet! - work out our District from all of this?
 
 ## Set the Segment
 
@@ -58,7 +46,7 @@ hamlet @ ~/cmdb
 ```
 
 :::note
-The `shared` directory for any Layer is not its own definition; It's configuration is shared amonst all Layer instances. 
+The `shared` directory for any Layer is not its own definition; It's configuration is shared amonst all Layer instances.
 
 This means we do not include it in our list of available Segments.
 :::
@@ -123,7 +111,7 @@ As you can no doubt see, there an enormous of data that Hamlet has already estab
 If the Blueprint is the composite of your Tenant, Account and Product configuration, where is the rest coming from?
 
 :::warning
-To get out of vim and back to the bash prompt, type `:q!<return>` 
+To get out of vim and back to the bash prompt, type `:q!<return>`
 :::
 
 ### Hamlet Contributions
@@ -134,14 +122,14 @@ When we generated the `phonedir` Product you will recall that we set our Environ
 
 ```json
 {
-  "Environments" : [
-      {
-          "Id" : "int",
-          "Name" : "intengration",
-          "Title" : "Integration Environment",
-          "Description" : "Mainly for devs to confirm components work together",
-          /* ... */
-      }
+  "Environments": [
+    {
+      "Id": "int",
+      "Name": "intengration",
+      "Title": "Integration Environment",
+      "Description": "Mainly for devs to confirm components work together"
+      /* ... */
+    }
   ]
 }
 ```
