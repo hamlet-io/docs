@@ -29,23 +29,21 @@ Returning to the root directory and revewing our outputs:
 hamlet @ ~/cmdb
 └─ $ cd ..
 hamlet @ ~/cmdb
-└─ $ tree
-.
-└── accounts
-    ├── acmedev01
-    │   ├── config
-    │   │   ├── account.json
-    │   │   └── settings
-    │   │       └── shared
-    │   │           └── settings.json
-    │   └── infrastructure
-    │       └── operations
-    │           └── shared
-    │               └── credentials.json
-    └── acmeinc
-        ├── domains.json
-        ├── ipaddressgroups.json
-        └── tenant.json
+└─ $ tree ./accounts/
+./accounts/
+├── acmedev01
+│   ├── config
+│   │   ├── account.json
+│   │   └── settings
+│   │       └── shared
+│   │           └── settings.json
+│   └── infrastructure
+│       └── operations
+│           └── shared
+│               └── credentials.json
+└── acmeinc
+    ├── ipaddressgroups.json
+    └── tenant.json
 ```
 
 Now alongside the Tenant `acmeinc` we have an Account: `acmedev01`.
