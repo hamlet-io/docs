@@ -48,13 +48,11 @@ That's all it takes to create your first Tenant and its minimal configuration.
 Now let's take a look at what Hamlet has created for us. 
 
 ```bash
-$ tree
-.
-└── accounts
-    └── acmeinc
-        ├── domains.json
-        ├── ipaddressgroups.json
-        └── tenant.json
+$ tree ./accounts
+./accounts
+└── acmeinc
+    ├── ipaddressgroups.json
+    └── tenant.json
 ```
 
 
@@ -70,14 +68,10 @@ hamlet @ ~/cmdb
 {
     "Tenant" : {
         "Id" : "acmeinc",
-        "Name" : "acmeinc",
-        "CertificateBehaviours" : {
-            "External" : true
-        }
+        "Name" : "acmeinc"
     },
     "Account" : {
         "Region" : "ap-southeast-2",
-        "Domain" : "acmeinc",
         "Audit" : {
             "Offline" :  90,
             "Expiration" :  2555
@@ -89,35 +83,13 @@ hamlet @ ~/cmdb
 }
 ```
 
-You will recognise most of the values defined in the **tenant.json** file are responses to the CLI prompts answered earlier. 
+You will recognise most of the values defined in the **tenant.json** file are responses to the CLI prompts answered earlier.
 
-Configuration in this file will impact each Account and Product associated with it. Because of the breadth of its scope, the default configuration created is minimal - mostly it can be considered **default values**. 
+Configuration in this file will impact each Account and Product associated with it. Because of the breadth of its scope, the default configuration created is minimal - mostly it can be considered **default values**.
 
-We assign the Tenant a `Name` and `Id`, along with the default region configuration for the **Account** and **Product** layers. 
+We assign the Tenant a `Name` and `Id`, along with the default region configuration for the **Account** and **Product** layers.
 
 Defining defaults here rather than later in those layers means that we can set a single default at the greatest scope and only provide over-riding values when necessary, reducing unnecessary duplication and ensuring that exceptions to this configuration will stand out.
-
-The configuration also sets the default `CertificateBehaviours` to `external`, telling Hamlet that any certificates are currently being handled elsewhere and their configuration should not be accounted for. Again, just a sensible default allowing certificates to be accounted for as necessary.
-
-## domains.json
-
-```bash
-hamlet @ ~/cmdb
-└─ $ cat ./accounts/acmeinc/domains.json
-{
-    "Domains" : {
-        "Validation" : "",
-        "acmeinc" : {
-            "Stem": ""
-        }
-    },
-    "Certificates" : {
-    }
-}
-```
-
-An organisation will typically own one or more domains that they have purchased. Tracking these domains - even when presently unused, as is the case here - will allow Accounts and Products configured at a later time to make use of them.
-
 ## ipaddressgroups.json
 
 ```bash
