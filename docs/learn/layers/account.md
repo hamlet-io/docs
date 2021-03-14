@@ -3,7 +3,7 @@ sidebar_label: account
 title: The Account
 ---
 
-An Account reflects a single, provider-specific cloud account or subscription. 
+An Account reflects a single, provider-specific cloud account or subscription.
 
 An Account is not restricted in how it is used. It could be used by many Products, or just a single one depending on the needs of the organisation. Wherever a new cloud provider account or subscription is to be used by Hamlet, a new Account is required.
 
@@ -17,9 +17,9 @@ hamlet @ ~/cmdb
 hamlet @ ~/cmdb/accounts
 └─ $ hamlet generate cmdb account
 [?] account id: acmedev01
-[?] account name [acmedev01]: 
-[?] account seed [igtfze6ar0]: 
-[?] provider type (aws, azure) [aws]: 
+[?] account name [acmedev01]:
+[?] account seed [igtfze6ar0]:
+[?] provider type (aws, azure) [aws]:
 [?] provider id: 012345678912
 ```
 
@@ -67,7 +67,7 @@ Lets quickly take a look at the new Account.
 }
 ```
 
-The bare-bones configuration of our **account.json** file defines the usual Name and Id attributes for this Account-layer, and establishes this Account with the cloud provider it is intended for. Our `acmedev01` Account is now setup to work with AWS. 
+The bare-bones configuration of our **account.json** file defines the usual Name and Id attributes for this Account-layer, and establishes this Account with the cloud provider it is intended for. Our `acmedev01` Account is now setup to work with AWS.
 
 The `ProviderId` is the unique cloud account / subscription indentifier, so this value is going to be different for each provider. AWS uses a 12-digit number for this.
 

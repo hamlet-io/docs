@@ -5,7 +5,6 @@ title: Hamlet Layers
 
 import Admonition from 'react-admonitions';
 
-
 Hamlet enables us to express the varying needs of an organisation in a uniform way. As an organisation changes, we want to be sure that old objectives continue to be met, whilst responding to emerging ones. But managing each of them - together with possible conflicts and edge cases - is particularly challenging. How can we ensure that none of them are forgotten?
 
 Hamlet was designed to address this challenge.
