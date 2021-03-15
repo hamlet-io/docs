@@ -4,8 +4,8 @@ module.exports = {
   url: 'https://docs.hamlet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'hamlet', // Usually your GitHub org/user name.
-  projectName: 'hamlet', // Usually your repo name.
+  organizationName: 'hamlet-io', // Usually your GitHub org/user name.
+  projectName: 'docs', // Usually your repo name.
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   onDuplicateRoutes: 'warn',

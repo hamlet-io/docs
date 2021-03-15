@@ -96,25 +96,27 @@ const formatDataTableDefault = (type, value) => {
   }
 }
 
-const getDataTables = (name, value, required) => {
-
+const getDataTables = (name, value, mandatoryChildren) => {
   if (value["$ref"]) {
     value.type = value["$ref"];
   }
+
+  var isMandatory = (mandatoryChildren && mandatoryChildren.includes(name)) ? "true" : "false";
   
-  if (value.type || value.anyOf) {
-    var values = (value?.enum) ? value.enum.join(', ') : null;
-    var defaultValue = formatDataTableDefault(value.type, value?.default);
-    var type = (value.anyOf) ? value.anyOf.map(a => a.type).join(' or ') : value.type;
-    var mandatory = (required && required.includes(name)) ? "true" : "false";
-    return {
-      id: '',
-      attribute: name,
-      description: value?.description,
-      type: type,
-      mandatory: mandatory,
-      values: values,
-      default: defaultValue,
+  if (!(value.properties) || !(value.patternProperties)) {
+    if (value.type || value.anyOf) {
+      var values = (value?.enum) ? value.enum.join(', ') : null;
+      var defaultValue = formatDataTableDefault(value.type, value?.default);
+      var type = (value.anyOf) ? value.anyOf.map(a => a.type).join(' or ') : value.type;
+      return {
+        id: '',
+        attribute: name,
+        description: value?.description,
+        type: type,
+        mandatory: isMandatory,
+        values: values,
+        default: defaultValue,
+      }
     }
   }
   
@@ -123,7 +125,7 @@ const getDataTables = (name, value, required) => {
   Object.keys(value).map(attrName => {
     var attrValue = value[attrName];
     // add the attribute to the current DataTable
-    tableData.push(getDataTables(attrName, attrValue, required));
+    tableData.push(getDataTables(attrName, attrValue, mandatoryChildren));
 
     // objects with properties or patternProperties have child attributes.
     // define new dataTables for them.
@@ -139,7 +141,7 @@ const getDataTables = (name, value, required) => {
     if (childPath) {
       var children = [];
       Object.keys(childPath).map(childName => {
-        var childValue = childPath[childName];
+        var childValue = childPath[childName]
         children.push(getDataTables(childName, childValue, required));
         return children;
       });
@@ -173,9 +175,9 @@ const getJsonSchemaDataTables = ({data, type}) => {
     Object.keys(data.definitions).map(title => {
       // define the root of the attributes for this reference data
       const referenceAttributeRoot = data.definitions[title].patternProperties[patternPropertiesRegex].properties;
-      var mandatory = data.definitions[title].patternProperties[patternPropertiesRegex]?.required;
+      var required = data.definitions[title].patternProperties[patternPropertiesRegex]?.required;
       // construct attribute data tables
-      var dataTables = getDataTables(title, referenceAttributeRoot, mandatory);
+      var dataTables = getDataTables(title, referenceAttributeRoot, required);
       var example = new Object;
       example = getSchemaExample(data.definitions[title]);
 
