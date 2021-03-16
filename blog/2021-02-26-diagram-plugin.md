@@ -33,7 +33,7 @@ So lets see what this thing can do
 2. Lets have a look at the diagram types that are available from hamlet. A diagram type is the structure of the diagram to generate
 
     ```bash
-    hamlet visual -i mock -p diagramstest -p diagrams list-diagram-types
+    hamlet -i mock -p diagramstest -p diagrams visual list-diagram-types
     ```
 
     ```bash
@@ -53,7 +53,7 @@ So lets see what this thing can do
 3. Now lets have a look at what diagrams are available in this solution
 
     ```bash
-    hamlet visual -i mock -p diagramstest -o diagrams list-diagrams
+    hamlet -i mock -p diagramstest -o diagrams visual list-diagrams
     ```
 
     ```bash
@@ -74,7 +74,7 @@ So lets see what this thing can do
 4. Now lets draw these diagrams to see what we get
 
     ```bash
-    hamlet visual -i mock -p diagramstest -p diagrams draw-diagrams -d /home/hamlet/cmdb
+    hamlet -i mock -p diagramstest -p diagrams visual draw-diagrams -d /home/hamlet/cmdb
     ```
 
     ```bash
@@ -275,7 +275,7 @@ So if we wanted to split out the API Gateway and the web app we could define the
 Now if we create this diagram
 
 ```bash
-hamlet visual -i mock -p diagramstest -p diagrams draw-diagrams --asset-dir ./ --diagram-id apiservice
+hamlet -i mock -p diagramstest -p diagrams draw-diagrams  visual --asset-dir ./ --diagram-id apiservice
 ```
 
 ```bash
@@ -324,13 +324,13 @@ This post used the diagramstest plugin which provides a predefined solution that
 2. Install the plugin locally. In your segment solutions dir run
 
     ```bash
-    ${GENERATION_DIR}/setup.sh
+    hamlet setup
     ```
 
 3. Generate the diagrams
 
     ```bash
-    hamlet visual -i mock -p diagramstest -p diagrams draw-diagrams -d /home/hamlet/cmdb/mysolution
+    hamlet -i mock -p diagramstest -p diagrams visual  draw-diagrams -d /home/hamlet/cmdb/mysolution
     ```
 
 ## Wrap Up

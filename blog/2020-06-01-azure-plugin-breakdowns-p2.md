@@ -141,26 +141,28 @@ Lets take a look at an example ARM Template that hamlet may produce for an `s3` 
 ## At a Glance
 
 Firstly, some things you may notice right away.
+
 * This template has no parameters.
 * There are a lot of outputs defined.
 
 Firstly - this template is self contained and doesn't require any parameters. Our [last blog post](2020-05-20-azure-plugin-breakdowns.md) covers why this is more in-depth if you need a refresher.
 
-Secondly, outputs are vert instrumental in how hamlet is able to operate and generate so much of a template for us without additional input, so outputs are usually pretty plentiful. But there are actually two types of outputs being defined here. 
+Secondly, outputs are vert instrumental in how hamlet is able to operate and generate so much of a template for us without additional input, so outputs are usually pretty plentiful. But there are actually two types of outputs being defined here.
 
 **Output Ids**
-The first are those that are specific to a resource and are identified by the camel-case-X syntax being used for the output key - `storageXappXstage`. This format is known by hamlet as the output id, and whenever a component wants to make use of a value output by a previous component it will formulate this Id, and lookup its value in the composite stack outputs (see the [last blog article](2020-05-20-azure-plugin-breakdowns.md) for a refresher on these!). 
+The first are those that are specific to a resource and are identified by the camel-case-X syntax being used for the output key - `storageXappXstage`. This format is known by hamlet as the output id, and whenever a component wants to make use of a value output by a previous component it will formulate this Id, and lookup its value in the composite stack outputs (see the [last blog article](2020-05-20-azure-plugin-breakdowns.md) for a refresher on these!).
 
 **Default Outputs**
 There are also a number of default outputs that are always present. Values such as the Subscription (or Account in other providers), Region and Resource Group are all very important to keep track of to be able to know the placement of a given component.
 
-When maintaining your own ARM templates outputs are typically used to retrieve values that are not known until deployment time - such as the unique resource Id - by using ARM Template Functions. For those less famililar with ARM, an ARM function is written as a string, begining and ending in square-brackets: `"[subscription().id]"`. 
+When maintaining your own ARM templates outputs are typically used to retrieve values that are not known until deployment time - such as the unique resource Id - by using ARM Template Functions. For those less famililar with ARM, an ARM function is written as a string, begining and ending in square-brackets: `"[subscription().id]"`.
 
 Some of the output values here are hard-coded however. Once again, because we want to ensure that these values are available to our other components and our outputs effectively form the known state of our deployments we want to ensure all relevant values are output - even if they are already known at generation time.
 
 ## Storage Account
 
 ### The Seed
+
 In Azure the name of a Storage Account must be globally unique because its name also determines its Fully Qualified Domain Name (FQDN). You can see here that this has been accomplished by appending a string of unique characters to a human-readable name. This alphanumeric string is known as the "seed". This was initially generated during the `baseline` component and enables hamlet to ensure unique names as required.
 
 ## Blob Store
@@ -175,11 +177,11 @@ Because we never nest resources we must always be explicit about dependencies. T
 
 When our projects `baseline` component was deployed a KeyVault was created. Now when we create an `s3` component hamlet is going to create a new Secret for us in KeyVault containing the value of the access-key portion of the Storage Account connection-string. This wont have any immediate value to the `s3` component but will become available to deployment unit's that link to it.
 
-When a hamlet component links to another it gains access to the resources and attributes of what it has linked to. And because all output Id's are formed around a known structure, once we have access to the Resource Id, we then have access to all of its outputs as well. 
+When a hamlet component links to another it gains access to the resources and attributes of what it has linked to. And because all output Id's are formed around a known structure, once we have access to the Resource Id, we then have access to all of its outputs as well.
 
 So putting this all together: by another deployment-unit linking to the `s3` component it:
 
-a) Learns the resource id of the Secret resource: `secretXappXstage`. 
+a) Learns the resource id of the Secret resource: `secretXappXstage`.
 b) From that it knows how to create an Id for a Secret Name, which is also another output: `secretXappXstageXname`.
 c) So that resource can evaluate all composite stack outputs to look for that output, and learn that the secret name in KeyVault is `hamletioKeyVault-1a2b3c4d/app-stage-secret-ConnectionKey` where the first part is the vault name, and the secodn is the name of our Secret resource.
 

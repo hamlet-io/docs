@@ -8,6 +8,7 @@ import Admonition from 'react-admonitions';
 So far in [our blog series](2020-05-20-azure-plugin-breakdowns.md) we’ve covered off the basics that show you how Hamlet is used to create ARM templates.  Today we’re going to go even further and show you how Hamlet is able to take an existing provider and extend its capabilities into orchestration. We’re also going to take a look at how Hamlet addresses some of the more frustrating parts of cloud deployments - obscure naming conventions across resources.
 
 ## Network Component
+
 Diving right in to what is often one of the most complex parts of cloud infrastructure design - the network component. Deciding precisely how you want to slice up your network into subnets and what their CIDR ranges should be, ensuring components that should be able to communicate can do so whilst restricting others is a big job. Hamlet however is able to determine your needs from your Solution. In fact if you already have a project with a basic `solution.json` and a `network`  component defined, then you’ve already got your network planned out! Take the following example:
 
 ```json
@@ -19,7 +20,7 @@ Diving right in to what is often one of the most complex parts of cloud infrastr
 - A DB in a private tier.
 ```
 
-The above example `solution.json` file defines 3 tiers that will be used to house our basic application, and a `network` component we’ve called `vnet`. 
+The above example `solution.json` file defines 3 tiers that will be used to house our basic application, and a `network` component we’ve called `vnet`.
 
 Hamlet breaks this down as follows:
 
@@ -29,7 +30,7 @@ A `network` deployment-unit exists
 Two of our subnets are publicly accessible
 > Create all applicable firewall and security group rules required to ensure this.
 
-The other subnet is private 
+The other subnet is private
 > Create firewall and security group rules required to prevent public access to this subnets.
 
 A component in the private subnet is linked to a component in one of the public subnets
@@ -44,7 +45,8 @@ Though it’s common across cloud providers, the implementation of AZ’s differ
 </Admonition>
 
 ## Introducing Sub-Components
-Sub-components are exactly what they sound like. Whilst a component represents a solution-level, provider independent architectural concept such as a “database” or a “network” without getting down into the details about what a “network” might look like in any specific instance”. So a sub-component is a similarly generic but smaller part of that component that may or may-not be present - or it may exist several times. 
+
+Sub-components are exactly what they sound like. Whilst a component represents a solution-level, provider independent architectural concept such as a “database” or a “network” without getting down into the details about what a “network” might look like in any specific instance”. So a sub-component is a similarly generic but smaller part of that component that may or may-not be present - or it may exist several times.
 
 As an example, a `network` component may have one or many routing requirements for the subnets within. It's `routetable` subcomponent can be used to define each separate routing approach.
 
@@ -54,7 +56,7 @@ The example used later in this article shows the placement of a subcomponent wit
 
 ### Network ACL
 
-For the `network` component, a `networkacl` sub-component represents high-level access control of the network, based on 4-tuple rules. 
+For the `network` component, a `networkacl` sub-component represents high-level access control of the network, based on 4-tuple rules.
 
 For those less familiar with 4 tuples they consist of:
 	* Source Port
@@ -82,7 +84,7 @@ A `routetable` is linked to a given subnet via the configuration of its tier. Th
 So, lets take a look at what a `network` component with a `networkacl` sub-component and some rules looks like in a Hamlet solution.
 
 ```json
-{	
+{
 	"IPAddressGroups" : {
 		"exampleIPAddressGroup" : {
 			"Description" : "An IP range in CIDR notation",
@@ -162,6 +164,6 @@ Defined by the above example:
 	  * a rule that allows traffic from our IPAddressGroup
 	  * a rule that blocks all other outside traffic
 
-By defining our product into commonly understood network level tiers ("mgmt" tier shown above) and Availability Zones, Hamlet is able to determine our subnet requirements. Defining a `networkacl` on it then lets us concisely restrict access however we choose and finally we can then control traffic in, out and around our network by linking future gateways to the `routetable`s, "internal" and "external". 
+By defining our product into commonly understood network level tiers ("mgmt" tier shown above) and Availability Zones, Hamlet is able to determine our subnet requirements. Defining a `networkacl` on it then lets us concisely restrict access however we choose and finally we can then control traffic in, out and around our network by linking future gateways to the `routetable`s, "internal" and "external".
 
 Not bad for just a few lines of JSON!

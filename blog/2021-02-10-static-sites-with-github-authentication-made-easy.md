@@ -158,8 +158,10 @@ After adding a plugin it needs to be installed in your workspace so that it can 
 
 ```bash
 # from the Product's Segment dir
-hamlet @ ~/cmdb/cmdb/dir/msw-cmdb/indocsrm/config/solutionsv2/integration/default
-master└─ $ $GENERATION_DIR/setup.sh
+hamlet setup
+```
+
+```bash
 (Info) Generating outputs:
 (Info)  - generationcontract
 (Info)  ~ no change in generationcontract detected
@@ -292,7 +294,6 @@ We configure the AuthProvider to use a new `DeploymentProfile` added by the modu
 With that done, let’s deploy our updated configuration and new deployment-units. We should deploy the `lambda` followed by the `apigateway` (as the API it deploy uses the `functions` as a backend) and then finally the updated `userpool`.
 
 ```bash
-# where <id> is the value for the `id` parameter you've configured
 hamlet deploy run-deployments -u githubidp-lambda
 hamlet deploy run-deployments -u githubidp-apigateway
 hamlet deploy run-deployments -u pool
