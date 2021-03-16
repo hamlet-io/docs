@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - "master"
+  schedule:
+    - cron: '00 00 * * *'
 
 jobs:
   hamlet-schema-updater:
@@ -13,7 +15,7 @@ jobs:
     steps:
       - name: Checkout Docs Site
         uses: actions/checkout@v2
-      
+
       - name: Generate Hamlet Schemas
         uses: hamlet-io/github-action-hamlet@v1
         with:
