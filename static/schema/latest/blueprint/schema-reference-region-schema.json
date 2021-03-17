@@ -31,6 +31,9 @@
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
+                    "Description": {
+                      "type": "string"
+                    },
                     "AWSZone": {
                       "type": "string"
                     },

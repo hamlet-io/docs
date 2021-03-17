@@ -421,11 +421,48 @@
                 "type": "string"
               }
             },
+            "Instances": {
+              "type": "object",
+              "description": "Instances of a component configuration",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "properties": {
+                    "Versions": {
+                      "type": "object",
+                      "description": "Versions of the components instance.",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "properties": {
+                            "DeploymentUnits": {
+                              "type": "array",
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration."
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "DeploymentUnits": {
+                      "type": "array",
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration."
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
             "DeploymentUnits": {
               "type": "array",
               "contains": {
                 "type": "string"
-              }
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration."
             }
           },
           "additionalProperties": false,

@@ -10,30 +10,26 @@
           "properties": {
             "*": {
               "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Provider": {
-                      "type": "string",
-                      "description": "The provider to use to host the component"
-                    },
-                    "Region": {
-                      "type": "string",
-                      "description": "The id of the region to host the component"
-                    },
-                    "DeploymentFramework": {
-                      "type": "string",
-                      "description": "The deployment framework to use to generate the outputs for deployment"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "Provider",
-                    "Region",
-                    "DeploymentFramework"
-                  ]
+              "additionalProperties": false,
+              "properties": {
+                "Provider": {
+                  "type": "string",
+                  "description": "The provider to use to host the component"
+                },
+                "Region": {
+                  "type": "string",
+                  "description": "The id of the region to host the component"
+                },
+                "DeploymentFramework": {
+                  "type": "string",
+                  "description": "The deployment framework to use to generate the outputs for deployment"
                 }
-              }
+              },
+              "required": [
+                "Provider",
+                "Region",
+                "DeploymentFramework"
+              ]
             }
           },
           "additionalProperties": false

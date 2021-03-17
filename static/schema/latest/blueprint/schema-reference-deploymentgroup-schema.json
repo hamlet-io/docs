@@ -28,6 +28,10 @@
                 "application"
               ]
             },
+            "OutputLevel": {
+              "type": "string",
+              "description": "Overrides the Group Id when performing output checks - Defaults to the Id of the Group"
+            },
             "ResourceSets": {
               "type": "object",
               "description": "Generate deployments based on resource labels across all units in the group",
