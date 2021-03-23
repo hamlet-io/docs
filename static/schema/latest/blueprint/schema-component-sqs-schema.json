@@ -9,32 +9,49 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "properties": {
             "DelaySeconds": {
-              "type": "number"
+              "type": "number",
+              "description": "Hold messages for a delay before making them visible on the queue"
             },
             "MaximumMessageSize": {
-              "type": "number"
+              "type": "number",
+              "description": "The maximum size a message on the queue can be"
             },
             "MessageRetentionPeriod": {
-              "type": "number"
+              "type": "number",
+              "description": "How log messages will be kept on the queue before they are discarded"
             },
             "ReceiveMessageWaitTimeSeconds": {
-              "type": "number"
+              "type": "number",
+              "description": "How long a poll of the queue should wait to return items"
             },
             "DeadLetterQueue": {
               "type": "object",
               "additionalProperties": false,
+              "description": "Enables a dead letter queue for messages which reach a specified retry count",
               "properties": {
                 "MaxReceives": {
                   "type": "number",
+                  "description": "The maximum number of times a single message can be put back on the queue",
                   "default": 0
                 }
               }
             },
+            "Ordering": {
+              "type": "string",
+              "description": "The method for handling the ordering of messages on the queue",
+              "default": "BestEffort",
+              "enum": [
+                "BestEffort",
+                "FirstInFirstOut"
+              ]
+            },
             "VisibilityTimeout": {
-              "type": "number"
+              "type": "number",
+              "description": "The default timeout a message which has been taken off the queue is hidden from other workers for"
             },
             "Alerts": {
               "type": "object",
+              "description": "Alert support for monitoring queue activity",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "properties": {
