@@ -96,110 +96,67 @@ const formatDataTableDefault = (type, value) => {
   }
 }
 
-const getDataTables = (name, value, mandatoryChildren) => {
-  if (value["$ref"]) {
-    value.type = value["$ref"];
+const getDataTableList = (data) => {
+  var tableList = [];
+  if (data?.definitions) {
+    const schemaName = Object.keys(data.definitions)[0];
+    const schemaAttributeRoot = data.definitions[schemaName].patternProperties[patternPropertiesRegex];
+    const schemaData = schemaAttributeRoot.properties;
+    const required = (schemaAttributeRoot?.required) ? schemaAttributeRoot.required : []; 
+    tableList = getDataTableList(schemaData);
+    tableList.unshift({table: schemaName, data: schemaData, required: required});
+  } else {
+    Object.keys(data).map(attrName => {
+      const attrValue = data[attrName];
+      const required = (attrValue?.required) ? attrValue.required : []; 
+      (attrValue?.properties) ? tableList.push({ 
+        table: attrName,
+        data: attrValue.properties,
+        required: required
+      })
+      : (attrValue?.patternProperties) ? (
+        tableList.push({
+          table: attrName, 
+          data: attrValue.patternProperties[patternPropertiesRegex].properties,
+          required: 
+            (attrValue.patternProperties[patternPropertiesRegex]?.required) ? 
+              attrValue.patternProperties[patternPropertiesRegex].required 
+              : []
+        })
+      ) : null
+      return tableList
+    })
   }
-
-  var isMandatory = (mandatoryChildren && mandatoryChildren.includes(name)) ? "true" : "false";
-  
-  if (!(value.properties) || !(value.patternProperties)) {
-    if (value.type || value.anyOf) {
-      var values = (value?.enum) ? value.enum.join(', ') : null;
-      var defaultValue = formatDataTableDefault(value.type, value?.default);
-      var type = (value.anyOf) ? value.anyOf.map(a => a.type).join(' or ') : value.type;
-      return {
-        id: '',
-        attribute: name,
-        description: value?.description,
-        type: type,
-        mandatory: isMandatory,
-        values: values,
-        default: defaultValue,
-      }
-    }
-  }
-  
-  var dataTables = [];
-  var tableData = [];
-  Object.keys(value).map(attrName => {
-    var attrValue = value[attrName];
-    // add the attribute to the current DataTable
-    tableData.push(getDataTables(attrName, attrValue, mandatoryChildren));
-
-    // objects with properties or patternProperties have child attributes.
-    // define new dataTables for them.
-    if (attrValue.patternProperties) {
-      var childPath = attrValue.patternProperties[patternPropertiesRegex].properties;
-      var required = attrValue.patternProperties[patternPropertiesRegex]?.required;
-    }
-    else if (attrValue.properties) {
-      var childPath = attrValue.properties;
-      var required = attrValue?.required;
-    }
-
-    if (childPath) {
-      var children = [];
-      Object.keys(childPath).map(childName => {
-        var childValue = childPath[childName]
-        children.push(getDataTables(childName, childValue, required));
-        return children;
-      });
-      dataTables.push({
-        title: attrName + " Sub-Schema",
-        data: children,
-      });
-    }
-
-    return {tableData, dataTables};
-  });
-
-  // add the current tableData to the Data Table.
-  // as the primary data table, it goes at the start of the array
-  dataTables.unshift(
-    {
-     title: name + " Schema",
-     data: tableData,
-    }
-  );
-
-  return dataTables
+  return tableList
 }
 
-const getJsonSchemaDataTables = ({data, type}) => {
-
-  var references = [];
-  
-  if (data.definitions) {
-    
-    Object.keys(data.definitions).map(title => {
-      // define the root of the attributes for this reference data
-      const referenceAttributeRoot = data.definitions[title].patternProperties[patternPropertiesRegex].properties;
-      var required = data.definitions[title].patternProperties[patternPropertiesRegex]?.required;
-      // construct attribute data tables
-      var dataTables = getDataTables(title, referenceAttributeRoot, required);
-      var example = new Object;
-      example = getSchemaExample(data.definitions[title]);
-
-      // add the reference
-      references.push(
-        {
-          title: title,
-          type: type,
-          dataTables: dataTables,
-          example: JSON.stringify(example, null, 4),
-        }
-      );
-      return references;
+const getDataTableRows = (data, required) => {
+  var tableRows = [];
+  Object.keys(data).map((attrName, idx) => {
+    const attrValue = data[attrName];
+    attrValue.type = (attrValue["$ref"]) ? attrValue["$ref"] : attrValue.type;
+    const values = (attrValue?.enum) ? attrValue.enum.join(', ') : null;
+    const defaultValue = formatDataTableDefault(attrValue.type, attrValue?.default);
+    const type = (attrValue?.anyOf) ? attrValue.anyOf.map(a => a.type).join(' or ') : attrValue.type;
+    const isRequired = (required.includes(attrName)) ? "true" : "false";
+    tableRows.push({
+      id: idx,
+      attribute: attrName,
+      description: attrValue?.description,
+      type: type,
+      mandatory: isRequired,
+      values: values,
+      default: defaultValue
     });
-  }
-  return references;
+    return tableRows
+  })
+  return tableRows
 }
 
 function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaultSort="attribute", columns=defaultColumns}) {
   return (
     <div className="reference">
-      <section id={title.split(' ')[0]}>
+      <section id={title} key={title}>
         <DataTable
           title={title}
           columns={columns}
@@ -215,46 +172,40 @@ function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaul
 }
 
 function HamletDataTables() {
-
   const { type, instance } = qs.parse(useLocation().search, { ignoreQueryPrefix: true })
-  
+  const schemaHeader = instance + " " + type;
   const schemaData = getJsonSchemaData(type || 'component', instance || 'baseline');
-  const references = getJsonSchemaDataTables({data: schemaData, type: type || 'component'});
-
+  const dataTables = getDataTableList(schemaData);
+  const schemaExample = JSON.stringify(getSchemaExample(schemaData), null, 4);
   return (
     <React.Fragment>
-      {   
-        references.map((reference, idx) => {
-          return (
-            <div className="item shadow--tl component" key={idx} >
-            <div className="ref-row-headers">
-              <section id={reference.title}>
-                <h1>{reference.title}</h1>
-              </section>
-            </div>
-            <HamletExample
-              codeblock={reference.example}
-            />
-            { 
-              reference.dataTables.map(table => {
-                return (
-                  <section id={(reference.title + '/' + table.title.split(' ')[0]).toLowerCase()}>
-                    <HamletDataTable
-                      title={table.title}
-                      data={table.data}
-                    />
-                    <br />
-                  </section>
-                )
-              })
-            }
-            </div>
-          )
-        })
-      }
+      <div className="item shadow--tl component" > 
+        <div className="ref-row-headers">
+          <section id={instance}>
+            <h1>{schemaHeader}</h1>
+          </section>
+        </div>
+        <HamletExample
+          codeblock={schemaExample}
+        />
+        { 
+          dataTables.map((table) => {
+            const tableRows = getDataTableRows(table.data, table.required);
+            return (
+                <section id={table.table.toLowerCase()}>
+                  <HamletDataTable
+                    title={table.table + " Schema"}
+                    data={tableRows}
+                  />
+                  <br />
+                </section>
+            )
+          })
+        }
+      </div>
       <br />
     </React.Fragment>
-  );
+  )
 };
 
 export default HamletDataTables;
