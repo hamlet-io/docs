@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "DeploymentMode": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "ExecutionPolicy": {
+              "default": "Optional",
+              "description": "Defines how groups can be used in this deployment mode",
+              "type": "string",
+              "enum": [
+                "Required",
+                "Optional"
+              ]
+            },
+            "Priority": {
+              "description": "Controls for priority membership",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Order": {
+                  "default": "LowestFirst",
+                  "description": "How to evalute the priority ordering",
+                  "type": "string",
+                  "enum": [
+                    "HighestFirst",
+                    "LowestFirst"
+                  ]
+                },
+                "GroupFilter": {
+                  "default": ".*",
+                  "description": "A regex filter to apply on group ids to include in the mode",
+                  "type": "string"
+                }
+              }
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Membership": {
+              "description": "How deployment groups are included in the mode and their ordering",
+              "type": "string",
+              "enum": [
+                "explicit",
+                "priority"
+              ]
+            },
+            "Explicit": {
+              "description": "Controls for explicit membership",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Groups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "A list of group ids in their deployment order",
+                  "type": "array"
+                }
+              }
+            },
+            "Operations": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "update"
+              ],
+              "description": "The deployment operations to complete for each deployment",
+              "type": "array",
+              "enum": [
+                "create",
+                "update",
+                "delete"
+              ]
+            }
+          },
+          "required": [
+            "Membership"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-deploymentmode-schema.json"
+}

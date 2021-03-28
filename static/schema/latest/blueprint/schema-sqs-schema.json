@@ -1,0 +1,339 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "sqs": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "DeadLetterQueue": {
+              "description": "Enables a dead letter queue for messages which reach a specified retry count",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "MaxReceives": {
+                  "default": 0,
+                  "description": "The maximum number of times a single message can be put back on the queue",
+                  "type": "number"
+                }
+              }
+            },
+            "ReceiveMessageWaitTimeSeconds": {
+              "description": "How long a poll of the queue should wait to return items",
+              "type": "number"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "MaximumMessageSize": {
+              "description": "The maximum size a message on the queue can be",
+              "type": "number"
+            },
+            "VisibilityTimeout": {
+              "description": "The default timeout a message which has been taken off the queue is hidden from other workers for",
+              "type": "number"
+            },
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ],
+                      "type": "array"
+                    },
+                    "IncludeInNamespace": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Type": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "DelaySeconds": {
+              "description": "Hold messages for a delay before making them visible on the queue",
+              "type": "number"
+            },
+            "MessageRetentionPeriod": {
+              "description": "How log messages will be kept on the queue before they are discarded",
+              "type": "number"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Alert": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "Ordering": {
+              "default": "BestEffort",
+              "description": "The method for handling the ordering of messages on the queue",
+              "type": "string",
+              "enum": [
+                "BestEffort",
+                "FirstInFirstOut"
+              ]
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Alerts": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Operator": {
+                      "default": "GreaterThanOrEqualToThreshold",
+                      "type": "string"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "Resource": {
+                      "description": "Provide a component resource to determine the dimensions of the metric",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Type": {
+                          "type": "string"
+                        },
+                        "Id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Value": {
+                              "description": "The value of the dimension to match",
+                              "type": "string"
+                            },
+                            "SettingEnvName": {
+                              "description": "A setting name as env that will provide the dimension value",
+                              "type": "string"
+                            },
+                            "Key": {
+                              "description": "The Key of the dimension",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Explicit configured dimensions",
+                      "type": "object"
+                    },
+                    "Severity": {
+                      "default": "info",
+                      "type": "string",
+                      "enum": [
+                        "debug",
+                        "info",
+                        "warn",
+                        "error",
+                        "fatal"
+                      ]
+                    },
+                    "Time": {
+                      "default": 300,
+                      "type": "number"
+                    },
+                    "Unit": {
+                      "default": "Count",
+                      "type": "string"
+                    },
+                    "MissingData": {
+                      "default": "notBreaching",
+                      "type": "string"
+                    },
+                    "Namespace": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Periods": {
+                      "default": 1,
+                      "type": "number"
+                    },
+                    "Statistic": {
+                      "default": "Sum",
+                      "type": "string"
+                    },
+                    "Comparison": {
+                      "default": "Threshold",
+                      "type": "string"
+                    },
+                    "ReportOk": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "DimensionSource": {
+                      "default": "Resource",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "type": "string",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
+                    "Metric": {
+                      "type": "string"
+                    },
+                    "Threshold": {
+                      "default": 1,
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "Metric",
+                    "Name"
+                  ]
+                }
+              },
+              "description": "Alert support for monitoring queue activity",
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-sqs-schema.json"
+}

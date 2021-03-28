@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "link": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Task": {
+              "type": "object"
+            },
+            "IncludeInContext": {
+              "type": "object"
+            },
+            "Platform": {
+              "type": "object"
+            },
+            "Instance": {
+              "type": "object"
+            },
+            "Mount": {
+              "type": "object"
+            },
+            "Product": {
+              "type": "object"
+            },
+            "NetworkACL": {
+              "type": "object"
+            },
+            "Any": {
+              "type": "object"
+            },
+            "Direction": {
+              "type": "object"
+            },
+            "Segment": {
+              "type": "object"
+            },
+            "Assignment": {
+              "type": "object"
+            },
+            "Function": {
+              "type": "object"
+            },
+            "Tenant": {
+              "type": "object"
+            },
+            "Endpoint": {
+              "type": "object"
+            },
+            "Version": {
+              "type": "object"
+            },
+            "Branch": {
+              "type": "object"
+            },
+            "PortMapping": {
+              "type": "object"
+            },
+            "Component": {
+              "type": "object"
+            },
+            "Client": {
+              "type": "object"
+            },
+            "RegistryService": {
+              "type": "object"
+            },
+            "Route": {
+              "type": "object"
+            },
+            "DataBucket": {
+              "type": "object"
+            },
+            "Tier": {
+              "type": "object"
+            },
+            "Connection": {
+              "type": "object"
+            },
+            "Resource": {
+              "type": "object"
+            },
+            "Service": {
+              "type": "object"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "object"
+            },
+            "AuthProvider": {
+              "type": "object"
+            },
+            "RouteTable": {
+              "type": "object"
+            },
+            "Secret": {
+              "type": "object"
+            },
+            "Role": {
+              "type": "object"
+            },
+            "Type": {
+              "type": "object"
+            },
+            "Environment": {
+              "type": "object"
+            },
+            "Key": {
+              "type": "object"
+            },
+            "DataFeed": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "Tier",
+            "Component"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+}

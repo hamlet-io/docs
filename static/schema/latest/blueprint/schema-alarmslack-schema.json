@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "alarmslack": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "alertProfile": {
+              "default": "default",
+              "description": "The alert profile id to use for enabling notifications",
+              "type": "object"
+            },
+            "kmsPrefix": {
+              "default": "base64:",
+              "description": "The KMS prefix used for encrypted values",
+              "type": "object"
+            },
+            "tier": {
+              "default": "mgmt",
+              "description": "The tier to use to host the components",
+              "type": "object"
+            },
+            "slackChannel": {
+              "description": "The slack channel to send alerts to",
+              "type": "object"
+            },
+            "alertSeverity": {
+              "default": "info",
+              "description": "The lowest severity alerts to include in notifications",
+              "type": "object"
+            },
+            "namePrefix": {
+              "default": "alarmslack",
+              "description": "A prefix appended to component names and deployment units to ensure uniquness",
+              "type": "object"
+            },
+            "webHookUrl": {
+              "description": "The slack incoming webhook URL to use - Encryption is recommended",
+              "type": "object"
+            },
+            "lambdaSourceUrl": {
+              "default": "https://github.com/hamlet-io/lambda-cloudwatch-slack/releases/download/v1.1.0/cloudwatch-slack.zip",
+              "description": "A URL to the lambda zip package for sending alerts",
+              "type": "object"
+            },
+            "lambdaSourceHash": {
+              "default": "8f194db4f6ed2b826387112df144f188451ba6db",
+              "description": "A sha1 hash of the lambda image to ensure its the right one",
+              "type": "object"
+            }
+          },
+          "required": [
+            "slackChannel",
+            "webHookUrl"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

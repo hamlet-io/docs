@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "Storage": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "*": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Volumes": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "MountPath": {
+                          "description": "The OS path to mount the volume",
+                          "type": "string"
+                        },
+                        "Type": {
+                          "default": "gp2",
+                          "type": "string"
+                        },
+                        "Device": {
+                          "type": "string"
+                        },
+                        "Size": {
+                          "type": "number"
+                        },
+                        "Iops": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "Device",
+                        "Size"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-storage-schema.json"
+}

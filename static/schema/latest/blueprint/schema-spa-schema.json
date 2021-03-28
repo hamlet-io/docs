@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "spa": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "ConfigPathPattern": {
+              "default": "config/*",
+              "description": "The CDN pattern used to access the config",
+              "type": "string"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ],
+                      "type": "array"
+                    },
+                    "IncludeInNamespace": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Type": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "InvalidateOnUpdate": {
+              "default": true,
+              "description": "Invalidate all CDNs that host this content",
+              "type": "boolean"
+            },
+            "Port": {
+              "description": "The port used to access the SPA content.",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "HTTPS": {
+                  "default": "https",
+                  "type": "string"
+                },
+                "HTTP": {
+                  "default": "http",
+                  "type": "string"
+                }
+              }
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "ConfigPath": {
+              "default": "config",
+              "description": "The path appended to files that will be used for config",
+              "type": "string"
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
+            "Image": {
+              "description": "Control the source of the image that is used for the function",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Source": {
+                  "default": "registry",
+                  "description": "The source of the image - registry is the hamlet registry",
+                  "type": "string",
+                  "enum": [
+                    "registry",
+                    "url"
+                  ]
+                },
+                "UrlSource": {
+                  "description": "Url Source specific Configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "ImageHash": {
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                      "type": "string"
+                    },
+                    "Url": {
+                      "description": "The Url to the lambda zip file",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "Source"
+              ]
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-spa-schema.json"
+}

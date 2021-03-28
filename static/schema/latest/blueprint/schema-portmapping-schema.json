@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "PortMapping": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Destination": {
+              "type": "string"
+            },
+            "Source": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Source",
+            "Destination"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-portmapping-schema.json"
+}

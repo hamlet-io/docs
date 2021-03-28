@@ -1,0 +1,309 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "bastion": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "OS": {
+              "default": "linux",
+              "type": "string",
+              "enum": [
+                "linux"
+              ]
+            },
+            "IPAddressGroups": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "The IPAddressGroup Id's that should be granted access to the Bastion",
+              "type": "array"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
+            "Role": {
+              "description": "Server configuration role",
+              "type": "string"
+            },
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "Active": {
+              "default": false,
+              "type": "boolean"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ],
+                      "type": "array"
+                    },
+                    "IncludeInNamespace": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Type": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "OSPatching": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Schedule": {
+                  "default": "59 13 * * *",
+                  "description": "UTC based cron schedule to apply updates",
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable automatic OS Patching",
+                  "type": "boolean"
+                },
+                "SecurityOnly": {
+                  "default": false,
+                  "description": "Only apply security updates",
+                  "type": "boolean"
+                }
+              }
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Logging": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Processor": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Network": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "Permissions": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Decrypt": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "AppData": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "AppPublic": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "AsFile": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              }
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "AutoScaling": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "MinUpdateInstances": {
+                  "default": 1,
+                  "description": "The minimum number of instances which must be available during an update",
+                  "type": "number"
+                },
+                "ReplaceCluster": {
+                  "default": false,
+                  "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
+                  "type": "boolean"
+                },
+                "DetailedMetrics": {
+                  "default": true,
+                  "description": "Enable the collection of autoscale group detailed metrics",
+                  "type": "boolean"
+                },
+                "UpdatePauseTime": {
+                  "default": "10M",
+                  "description": "How long to pause betweeen updates of instances",
+                  "type": "string"
+                },
+                "ActivityCooldown": {
+                  "default": 30,
+                  "type": "number"
+                },
+                "WaitForSignal": {
+                  "default": true,
+                  "description": "Wait for a cfn-signal before treating the instances as alive",
+                  "type": "boolean"
+                },
+                "MinSuccessInstances": {
+                  "default": 75,
+                  "description": "The minimum percantage of instances that must sucessfully update",
+                  "type": "number"
+                },
+                "StartupTimeout": {
+                  "default": "15M",
+                  "description": "How long to wait for a cfn-signal to be received from a host",
+                  "type": "string"
+                },
+                "AlwaysReplaceOnUpdate": {
+                  "default": false,
+                  "description": "Replace instances on every update action",
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-bastion-schema.json"
+}

@@ -1,0 +1,634 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "apigateway": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "azure:Contact": {
+              "description": "The contact for the API Management Service",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Email": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            },
+            "Mapping": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "IncludeStage": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            },
+            "IPAddressGroups": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ],
+                      "type": "array"
+                    },
+                    "IncludeInNamespace": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Type": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "CloudFront": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Compress": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "EnableLogging": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "AssumeSNI": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "CountryGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Mapping": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "CustomHeaders": {
+                  "type": "array"
+                }
+              }
+            },
+            "BasePathBehaviour": {
+              "default": "ignore",
+              "description": "How to handle base paths provided in the spec",
+              "type": "string",
+              "enum": [
+                "ignore",
+                "prepend",
+                "split"
+              ]
+            },
+            "Authentication": {
+              "default": "IP",
+              "type": "string",
+              "enum": [
+                "IP",
+                "SIG4ORIP",
+                "SIG4ANDIP"
+              ]
+            },
+            "Publishers": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Path": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-contextpath-schema.json"
+                    },
+                    "UsePathInName": {
+                      "default": true,
+                      "description": "Name the Swagger Spec file using the path",
+                      "type": "boolean"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Links": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Logging": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Alert": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Security": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "EndpointType": {
+              "default": "EDGE",
+              "type": "string",
+              "enum": [
+                "EDGE",
+                "REGIONAL"
+              ]
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Alerts": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Operator": {
+                      "default": "GreaterThanOrEqualToThreshold",
+                      "type": "string"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "Resource": {
+                      "description": "Provide a component resource to determine the dimensions of the metric",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Type": {
+                          "type": "string"
+                        },
+                        "Id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Value": {
+                              "description": "The value of the dimension to match",
+                              "type": "string"
+                            },
+                            "SettingEnvName": {
+                              "description": "A setting name as env that will provide the dimension value",
+                              "type": "string"
+                            },
+                            "Key": {
+                              "description": "The Key of the dimension",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Explicit configured dimensions",
+                      "type": "object"
+                    },
+                    "Severity": {
+                      "default": "info",
+                      "type": "string",
+                      "enum": [
+                        "debug",
+                        "info",
+                        "warn",
+                        "error",
+                        "fatal"
+                      ]
+                    },
+                    "Time": {
+                      "default": 300,
+                      "type": "number"
+                    },
+                    "Unit": {
+                      "default": "Count",
+                      "type": "string"
+                    },
+                    "MissingData": {
+                      "default": "notBreaching",
+                      "type": "string"
+                    },
+                    "Namespace": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Periods": {
+                      "default": 1,
+                      "type": "number"
+                    },
+                    "Statistic": {
+                      "default": "Sum",
+                      "type": "string"
+                    },
+                    "Comparison": {
+                      "default": "Threshold",
+                      "type": "string"
+                    },
+                    "ReportOk": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "DimensionSource": {
+                      "default": "Resource",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "type": "string",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
+                    "Metric": {
+                      "type": "string"
+                    },
+                    "Threshold": {
+                      "default": 1,
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "Metric",
+                    "Name"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "LogMetrics": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "LogFilter": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "LogFilter"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Tracing": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Mode": {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "passthrough"
+                  ]
+                }
+              }
+            },
+            "AccessLogging": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "aws:DestinationLink": {
+                  "description": "Destination for the Access logs. If not provided but AccessLogging is enabled, Access logs will be sent to CloudWatch.",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                },
+                "aws:KinesisFirehose": {
+                  "default": false,
+                  "description": "Send Access logs to a KinesisFirehose. By default, the Firehose destination is the OpsData DataBucket, but can be overwritten by specifying a DestinationLink.",
+                  "type": "boolean"
+                },
+                "Enabled": {
+                  "default": true,
+                  "description": "Logging of the API Gateway Access Logs.",
+                  "type": "boolean"
+                },
+                "aws:KeepLogGroup": {
+                  "default": true,
+                  "description": "Prevent the destruction of existing LogGroups when enabling KinesisFirehose.",
+                  "type": "boolean"
+                }
+              }
+            },
+            "WAF": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Logging": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "RateLimits": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "IPAddressGroups": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "Limit": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "Limit"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "OWASP": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "Profiles": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Logging": {
+                      "default": "waf",
+                      "description": "Logging profile to process WAF Logs that are stored in the OpsData DataBucket.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "CountryGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "IPAddressGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "Publish": {
+              "description": "Deprecated - Please switch to the publishers configuration",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "DnsNamePrefix": {
+                  "default": "docs",
+                  "type": "string"
+                },
+                "IPAddressGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "Certificate": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Wildcard": {
+                  "type": "boolean"
+                },
+                "IncludeInHost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "Qualifiers": {
+                  "description": "District based overrides to domain properties",
+                  "type": "object"
+                },
+                "Domain": {
+                  "description": "Explicit domain id which will override the product domain",
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "HostParts": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-apigateway-schema.json"
+}

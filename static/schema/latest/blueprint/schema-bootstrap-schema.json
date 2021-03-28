@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "Bootstrap": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Type": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "HandlerVersion": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            },
+            "ScriptStore": {
+              "type": "string"
+            },
+            "AutoUpgradeOnMinorVersion": {
+              "type": "boolean"
+            },
+            "ProtectedSettings": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Value": {
+                      "type": "any"
+                    },
+                    "Key": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Key",
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Packages": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Version": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "InitScript": {
+              "type": "string"
+            },
+            "Index": {
+              "description": "Determines script execution sequence.",
+              "type": "number"
+            },
+            "Prefix": {
+              "type": "string"
+            },
+            "Publisher": {
+              "type": "string"
+            },
+            "Settings": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Value": {
+                      "type": "any"
+                    },
+                    "Key": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Key",
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-bootstrap-schema.json"
+}

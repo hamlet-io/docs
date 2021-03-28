@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "consolidatelogs": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "tier": {
+              "default": "mgmt",
+              "description": "The tier to use to host the components",
+              "type": "object"
+            },
+            "namePrefix": {
+              "description": "A prefix appended to component names and deployment units to ensure uniquness",
+              "type": "object"
+            },
+            "lambdaSourceUrl": {
+              "default": "https://github.com/hamlet-io/lambda-log-processors/releases/download/v1.0.2/cloudwatch-firehose.zip",
+              "description": "A URL to the lambda zip package for sending alerts",
+              "type": "object"
+            },
+            "deploymentProfile": {
+              "description": "The deployment profile id to enable log consolidation on.",
+              "type": "object"
+            },
+            "lambdaSourceHash": {
+              "default": "3a6b1ce462aaa203477044cfe83c66f128381434",
+              "description": "A sha1 hash of the lambda image to validate the correct one",
+              "type": "object"
+            }
+          },
+          "required": [
+            "deploymentProfile"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

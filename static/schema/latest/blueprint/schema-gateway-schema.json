@@ -1,0 +1,296 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "gateway": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "DestinationPorts": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "any"
+              ],
+              "description": "The ports of services avaialble from the private service",
+              "type": "array"
+            },
+            "SourceIPAddressGroups": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "_localnet"
+              ],
+              "description": "IP Address Groups which can access this gateway",
+              "type": "array"
+            },
+            "Destinations": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-gatewaydestination-schema.json"
+            },
+            "BGP": {
+              "description": "BGP Network routing",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "ASN": {
+                  "default": 65000,
+                  "type": "number"
+                }
+              }
+            },
+            "DNSSupport": {
+              "default": "UseNetworkConfig",
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "boolean"
+                }
+              ],
+              "description": "Configure a private DNS zone for the serivces offerred by the endpoint",
+              "enum": [
+                "UseNetworkConfig",
+                "Disabled",
+                "Enabled",
+                true,
+                false
+              ]
+            },
+            "Endpoints": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Attribute": {
+                      "description": "The attribute of the endpoint",
+                      "type": "string"
+                    },
+                    "Zone": {
+                      "description": "The zone the endpoint belongs to",
+                      "type": "string"
+                    },
+                    "Link": {
+                      "description": "The link to the component",
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    }
+                  },
+                  "required": [
+                    "Attribute"
+                  ]
+                }
+              },
+              "description": "Endpoint Engine resources",
+              "type": "object"
+            },
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "Active": {
+              "default": false,
+              "type": "boolean"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ],
+                      "type": "array"
+                    },
+                    "IncludeInNamespace": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Type": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Network": {
+                  "default": "default",
+                  "description": "The network profile for the gateway",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "EndpointType": {
+              "description": "The type of the route resource",
+              "type": "string",
+              "enum": [
+                "Peering",
+                "NetworkInterface",
+                "Instance"
+              ]
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "EndpointScope": {
+              "description": "The scope of the endpoint gateway component",
+              "type": "string",
+              "enum": [
+                "network",
+                "zone"
+              ]
+            },
+            "Engine": {
+              "type": "string",
+              "enum": [
+                "natgw",
+                "igw",
+                "vpcendpoint",
+                "privateservice",
+                "endpoint",
+                "router",
+                "private"
+              ]
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-gateway-schema.json"
+}

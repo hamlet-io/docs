@@ -1,0 +1,522 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "s3": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "azure:Lifecycle": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "BlobRetentionDays": {
+                  "type": "number"
+                },
+                "BlobAutoSnapshots": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              }
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "CORSBehaviours": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Lifecycle": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Versioning": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "Expiration": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "description": "Provide either a date or a number of days"
+                },
+                "Offline": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "description": "Provide either a date or a number of days"
+                }
+              }
+            },
+            "Website": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Error": {
+                  "type": "string"
+                },
+                "Index": {
+                  "default": "index.html",
+                  "type": "string"
+                }
+              }
+            },
+            "azure:Certificate": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Wildcard": {
+                  "type": "boolean"
+                },
+                "IncludeInHost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "Qualifiers": {
+                  "description": "District based overrides to domain properties",
+                  "type": "object"
+                },
+                "Domain": {
+                  "description": "Explicit domain id which will override the product domain",
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "HostParts": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "Encryption": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "EncryptionSource": {
+                  "default": "EncryptionService",
+                  "description": "The encryption service to use - LocalService = S3, EncryptionService = native encryption service (kms)",
+                  "type": "string",
+                  "enum": [
+                    "EncryptionService",
+                    "LocalService"
+                  ]
+                },
+                "Enabled": {
+                  "default": false,
+                  "description": "Enable at rest encryption",
+                  "type": "boolean"
+                }
+              }
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
+            "azure:Access": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "DirectoryService": {
+                  "description": "The directory service that is used for authentication. 'None' or 'AADDS'.",
+                  "type": "string"
+                },
+                "PublicAccess": {
+                  "default": [
+                    "None"
+                  ],
+                  "type": "string",
+                  "enum": [
+                    "Container",
+                    "Blob",
+                    "None"
+                  ]
+                }
+              }
+            },
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ],
+                      "type": "array"
+                    },
+                    "IncludeInNamespace": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Type": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "Style": {
+              "description": "TODO(mfl): Think this can be removed",
+              "type": "string"
+            },
+            "Replication": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefixes": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    ""
+                  ],
+                  "type": "array"
+                }
+              }
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "InventoryReports": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Destination": {
+                      "description": "The destination of the reports",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Type": {
+                          "default": "self",
+                          "description": "The type of destination for the report",
+                          "type": "string",
+                          "enum": [
+                            "self",
+                            "link"
+                          ]
+                        },
+                        "Links": {
+                          "description": "If destination type is link these are the links that will be used",
+                          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                        }
+                      }
+                    },
+                    "Schedule": {
+                      "default": "Daily",
+                      "description": "How often to generate the report",
+                      "type": "string",
+                      "enum": [
+                        "Daily",
+                        "Weekly"
+                      ]
+                    },
+                    "DestinationPrefix": {
+                      "description": "A prefix to store the report under in the destination",
+                      "type": "string"
+                    },
+                    "IncludeVersions": {
+                      "default": false,
+                      "description": "Include versions of objects in report",
+                      "type": "boolean"
+                    },
+                    "InventoryPrefix": {
+                      "description": "A filter prefix to generate the report for",
+                      "type": "string"
+                    },
+                    "InventoryFormat": {
+                      "default": "CSV",
+                      "description": "The filter for the inventory report",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "DestinationPrefix"
+                  ]
+                }
+              },
+              "description": "Provides a listing of all objects in the store on a schedule basis",
+              "type": "object"
+            },
+            "PublicAccess": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Permissions": {
+                      "default": "ro",
+                      "type": "string",
+                      "enum": [
+                        "ro",
+                        "wo",
+                        "rw"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "IPAddressGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "_localnet"
+                      ],
+                      "type": "array"
+                    },
+                    "Paths": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Notifications": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Suffix": {
+                      "type": "string"
+                    },
+                    "aws:QueuePermissionMigration": {
+                      "default": false,
+                      "description": "Deprecation alert: set to true once policy updated for queue",
+                      "type": "boolean"
+                    },
+                    "Events": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "create"
+                      ],
+                      "type": "array",
+                      "enum": [
+                        "create",
+                        "delete",
+                        "restore",
+                        "reducedredundancy"
+                      ]
+                    },
+                    "Links": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    },
+                    "Prefix": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-s3-schema.json"
+}

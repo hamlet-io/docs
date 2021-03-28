@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "TestCase": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Structural": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "JSON": {
+                  "description": "Generic JSON level structure tests",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Length": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Path": {
+                              "type": "string"
+                            },
+                            "Count": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Length of an Array at a given JSON path",
+                      "type": "object"
+                    },
+                    "Exists": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Does a JSON path exist",
+                      "type": "array"
+                    },
+                    "NotEmpty": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Is the value of a JSON path not emtpy",
+                      "type": "array"
+                    },
+                    "Match": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Path": {
+                              "type": "string"
+                            },
+                            "Value": {
+                              "type": "any"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Does a JSON path match a value",
+                      "type": "object"
+                    }
+                  }
+                },
+                "CFN": {
+                  "description": "Cloud formation Template structure",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Output": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Does an output with exist",
+                      "type": "array"
+                    },
+                    "Resource": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Type": {
+                              "type": "string"
+                            },
+                            "Name": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Name",
+                            "Type"
+                          ]
+                        }
+                      },
+                      "description": "Does a resource with the type exist",
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "Tools": {
+              "description": "Tool based tests - linters etc",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "CFNLint": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "CFNNag": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              }
+            },
+            "OutputSuffix": {
+              "type": "string",
+              "enum": [
+                "template.json",
+                "config.json",
+                "cli.json",
+                "parameters.json",
+                "prologue.sh",
+                "epilogue.sh"
+              ]
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-testcase-schema.json"
+}
