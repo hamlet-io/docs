@@ -243,25 +243,30 @@ function getJsonSchemaData(type, instance){
   return result;
 };
 
-function getSchemaExample(definition){
+function getSchemaExample(data){
 
   var example = new Object;
 
-  if (definition["$ref"]) {
-    definition.type = "link-object";
+  if (data["$ref"]) {
+    data.type = "link-object";
   }
 
-  example = 
-    (definition.patternProperties) ? { "*" : getSchemaExample(definition.patternProperties[patternPropertiesRegex].properties ) }
-    : (definition.properties) ? getSchemaExample(definition.properties)
-    : (definition.anyOf) ? definition.anyOf.map(a => a.type).join(' or ')
-    : (definition.type) ? definition.type
-    : new Object
+  if (data?.definitions) {
+    example = getSchemaExample(Object.values(
+      data.definitions)[0].patternProperties[patternPropertiesRegex].properties)
+  } else {
+    example = 
+      (data.patternProperties) ? { "*" : getSchemaExample(data.patternProperties[patternPropertiesRegex].properties ) }
+      : (data.properties) ? getSchemaExample(data.properties)
+      : (data.anyOf) ? data.anyOf.map(a => a.type).join(' or ')
+      : (data.type) ? data.type
+      : new Object
+  }
     
    // process children
   if (Object.keys(example).length == 0) {
-    Object.keys(definition).map(attrName => {
-      example[attrName] = getSchemaExample(definition[attrName]);
+    Object.keys(data).map(attrName => {
+      example[attrName] = getSchemaExample(data[attrName]);
       return example
     });
 
