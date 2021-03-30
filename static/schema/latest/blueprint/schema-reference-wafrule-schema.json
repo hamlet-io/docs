@@ -1,22 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-wafrule-schema.json",
   "definitions": {
     "WAFRule": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "NameSuffix": {
               "type": "string"
             },
             "Conditions": {
-              "type": "array",
               "contains": {
                 "type": "object"
               },
               "additionalProperties": false,
+              "type": "array",
               "properties": {
                 "Condition": {
                   "type": "string"
@@ -26,10 +25,11 @@
                 }
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-wafrule-schema.json"
 }

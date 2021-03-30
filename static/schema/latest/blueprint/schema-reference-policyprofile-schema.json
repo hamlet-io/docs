@@ -1,21 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-policyprofile-schema.json",
   "definitions": {
     "PolicyProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "Modes": {
-              "type": "object",
-              "description": "A nested object with the deployment mode name as the root and childs based on component types"
+              "description": "A nested object with the deployment mode name as the root and childs based on component types",
+              "type": "object"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-policyprofile-schema.json"
 }

@@ -1,28 +1,172 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-privateservice-schema.json",
   "definitions": {
     "privateservice": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ],
+                      "type": "array"
+                    },
+                    "IncludeInNamespace": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Type": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "ConnectionAlerts": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Events": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Accept",
+                        "Reject"
+                      ],
+                      "type": "array",
+                      "enum": [
+                        "Accept",
+                        "Connect",
+                        "Delete",
+                        "Reject"
+                      ]
+                    },
+                    "Links": {
+                      "description": "Link to send alerts to",
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
             "DomainName": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Qualifiers": {
-                  "type": "object",
-                  "description": "District based overrides to domain properties"
+                  "description": "District based overrides to domain properties",
+                  "type": "object"
                 },
                 "Domain": {
-                  "type": "string",
-                  "description": "Explicit domain id which will override the product domain"
+                  "description": "Explicit domain id which will override the product domain",
+                  "type": "string"
                 },
                 "IncludeInDomain": {
-                  "type": "object",
                   "additionalProperties": false,
+                  "type": "object",
                   "properties": {
                     "Product": {
                       "type": "boolean"
@@ -37,216 +181,72 @@
                 }
               }
             },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-            },
             "Sharing": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Principals": {
-                  "type": "array",
                   "contains": {
                     "type": "string"
                   },
-                  "description": "A list of external entities to share the service with"
+                  "description": "A list of external entities to share the service with",
+                  "type": "array"
                 },
                 "ApprovalRequired": {
-                  "type": "boolean",
+                  "default": true,
                   "description": "Manual approval required for the service to be consumed",
-                  "default": true
-                }
-              }
-            },
-            "ConnectionAlerts": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Events": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "default": [
-                        "Accept",
-                        "Reject"
-                      ],
-                      "enum": [
-                        "Accept",
-                        "Connect",
-                        "Delete",
-                        "Reject"
-                      ]
-                    },
-                    "Links": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json",
-                      "description": "Link to send alerts to"
-                    }
-                  },
-                  "additionalProperties": false
+                  "type": "boolean"
                 }
               }
             },
             "Profiles": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
                 "Policy": {
-                  "type": "array",
                   "contains": {
                     "type": "string"
-                  }
+                  },
+                  "type": "array"
                 },
                 "Placement": {
-                  "type": "string",
-                  "default": "default"
+                  "default": "default",
+                  "type": "string"
                 },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
+                "Deployment": {
                   "contains": {
                     "type": "string"
                   },
-                  "description": "The testing profiles to apply to the component"
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
                 }
               }
             },
-            "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
-                    },
-                    "Order": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "default": [
-                        "Tier",
-                        "Component",
-                        "Type",
-                        "SubComponent",
-                        "Instance",
-                        "Version",
-                        "Name"
-                      ]
-                    },
-                    "IncludeInNamespace": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Type": {
-                          "type": "boolean",
-                          "default": false
-                        },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
-                        },
-                        "Instance": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Version": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Name": {
-                          "type": "boolean",
-                          "default": false
-                        }
-                      }
-                    },
-                    "Name": {
-                      "type": "string"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "type": "array"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-privateservice-schema.json"
 }

@@ -1,104 +1,86 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-efsmount-schema.json",
   "definitions": {
     "efsmount": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Directory": {
-              "type": "string"
-            },
-            "chroot": {
-              "type": "boolean",
-              "description": "Set this directory as the root for clients who connect to it",
-              "default": false
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
             },
             "Ownership": {
-              "type": "object",
-              "additionalProperties": false,
               "description": "Defines the ownerships of files created under this directory",
+              "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Enforced": {
-                  "type": "boolean",
-                  "description": "Enforce these ownership details on all files",
-                  "default": false
-                },
                 "UID": {
-                  "type": "number",
-                  "description": "The UID which owns the files"
-                },
-                "GID": {
-                  "type": "number",
-                  "description": "The GID which owns the files"
+                  "description": "The UID which owns the files",
+                  "type": "number"
                 },
                 "SecondaryGIDS": {
-                  "type": "array",
                   "contains": {
                     "type": "number"
                   },
-                  "description": "Secondary GIDS to apply to file ownership"
+                  "description": "Secondary GIDS to apply to file ownership",
+                  "type": "array"
+                },
+                "GID": {
+                  "description": "The GID which owns the files",
+                  "type": "number"
                 },
                 "Permissions": {
-                  "type": "number",
+                  "default": 755,
                   "description": "The unix file permissions ( in number format) to apply",
-                  "default": 755
-                }
-              }
-            },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
+                  "type": "number"
                 },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
+                "Enforced": {
+                  "default": false,
+                  "description": "Enforce these ownership details on all files",
+                  "type": "boolean"
                 }
               }
             },
             "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
-                    },
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -110,106 +92,124 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
-                  },
-                  "additionalProperties": false
+                  }
                 }
-              }
-            },
-            "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
             },
             "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "chroot": {
+              "default": false,
+              "description": "Set this directory as the root for clients who connect to it",
+              "type": "boolean"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Directory": {
+              "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": [
             "Directory"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-efsmount-schema.json"
 }

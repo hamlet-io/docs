@@ -1,91 +1,58 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-router-schema.json",
   "definitions": {
     "router": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Active": {
-              "type": "boolean",
-              "default": false
-            },
-            "BGP": {
-              "type": "object",
-              "additionalProperties": false,
-              "description": "BGP specific configuration",
-              "properties": {
-                "Enabled": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "ASN": {
-                  "type": "number",
-                  "description": "The BGP ASN ( Autonomous system ) Id of the router"
-                },
-                "ECMP": {
-                  "type": "boolean",
-                  "description": "Enabled Equal Cost multipath routing where supported",
-                  "default": true
-                }
-              },
-              "required": [
-                "ASN"
-              ]
-            },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
-                }
-              }
-            },
-            "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
                     },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "Active": {
+              "default": false,
+              "type": "boolean"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -97,129 +64,162 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
                   },
-                  "additionalProperties": false
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "aws:ResourceSharing": {
+              "description": "Allows for the resource to be shared with other Accounts",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "AccountPrincipals": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "List of AWS Account Ids or Organisation ARNS to share the resource with",
+                  "type": "array"
+                },
+                "AllowExternalPrincipals": {
+                  "default": false,
+                  "description": "Allow resources to be shared outside of the Organisation",
+                  "type": "boolean"
                 }
               }
             },
             "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "type": "array"
             },
-            "aws:ResourceSharing": {
-              "type": "object",
+            "BGP": {
+              "description": "BGP specific configuration",
               "additionalProperties": false,
-              "description": "Allows for the resource to be shared with other Accounts",
+              "type": "object",
               "properties": {
+                "ECMP": {
+                  "default": true,
+                  "description": "Enabled Equal Cost multipath routing where supported",
+                  "type": "boolean"
+                },
                 "Enabled": {
-                  "type": "boolean",
-                  "default": false
+                  "default": true,
+                  "type": "boolean"
                 },
-                "AccountPrincipals": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "List of AWS Account Ids or Organisation ARNS to share the resource with"
-                },
-                "AllowExternalPrincipals": {
-                  "type": "boolean",
-                  "description": "Allow resources to be shared outside of the Organisation",
-                  "default": false
+                "ASN": {
+                  "description": "The BGP ASN ( Autonomous system ) Id of the router",
+                  "type": "number"
                 }
-              }
+              },
+              "required": [
+                "ASN"
+              ]
             },
             "StaticRoutes": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-routerstaticroute-schema.json"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-router-schema.json"
 }

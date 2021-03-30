@@ -3,61 +3,61 @@
   "type": "object",
   "definitions": {
     "alarmslack": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "slackChannel": {
-              "type": "object",
-              "description": "The slack channel to send alerts to"
-            },
-            "webHookUrl": {
-              "type": "object",
-              "description": "The slack incoming webhook URL to use - Encryption is recommended"
-            },
-            "alertSeverity": {
-              "type": "object",
-              "description": "The lowest severity alerts to include in notifications",
-              "default": "info"
-            },
             "alertProfile": {
-              "type": "object",
+              "default": "default",
               "description": "The alert profile id to use for enabling notifications",
-              "default": "default"
+              "type": "object"
             },
             "kmsPrefix": {
-              "type": "object",
+              "default": "base64:",
               "description": "The KMS prefix used for encrypted values",
-              "default": "base64:"
-            },
-            "lambdaSourceUrl": {
-              "type": "object",
-              "description": "A URL to the lambda zip package for sending alerts",
-              "default": "https://github.com/hamlet-io/lambda-cloudwatch-slack/releases/download/v1.1.0/cloudwatch-slack.zip"
-            },
-            "lambdaSourceHash": {
-              "type": "object",
-              "description": "A sha1 hash of the lambda image to ensure its the right one",
-              "default": "8f194db4f6ed2b826387112df144f188451ba6db"
-            },
-            "namePrefix": {
-              "type": "object",
-              "description": "A prefix appended to component names and deployment units to ensure uniquness",
-              "default": "alarmslack"
+              "type": "object"
             },
             "tier": {
-              "type": "object",
+              "default": "mgmt",
               "description": "The tier to use to host the components",
-              "default": "mgmt"
+              "type": "object"
+            },
+            "slackChannel": {
+              "description": "The slack channel to send alerts to",
+              "type": "object"
+            },
+            "alertSeverity": {
+              "default": "info",
+              "description": "The lowest severity alerts to include in notifications",
+              "type": "object"
+            },
+            "namePrefix": {
+              "default": "alarmslack",
+              "description": "A prefix appended to component names and deployment units to ensure uniquness",
+              "type": "object"
+            },
+            "webHookUrl": {
+              "description": "The slack incoming webhook URL to use - Encryption is recommended",
+              "type": "object"
+            },
+            "lambdaSourceUrl": {
+              "default": "https://github.com/hamlet-io/lambda-cloudwatch-slack/releases/download/v1.1.0/cloudwatch-slack.zip",
+              "description": "A URL to the lambda zip package for sending alerts",
+              "type": "object"
+            },
+            "lambdaSourceHash": {
+              "default": "8f194db4f6ed2b826387112df144f188451ba6db",
+              "description": "A sha1 hash of the lambda image to ensure its the right one",
+              "type": "object"
             }
           },
-          "additionalProperties": false,
           "required": [
             "slackChannel",
             "webHookUrl"
           ]
         }
-      }
+      },
+      "type": "object"
     }
   }
 }

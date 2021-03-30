@@ -1,74 +1,74 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-networkprofile-schema.json",
   "definitions": {
     "NetworkProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "BaseSecurityGroup": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Links": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json",
-                  "description": "Apply network security rules based on links"
-                },
                 "Outbound": {
-                  "type": "object",
-                  "additionalProperties": false,
                   "description": "Outbound security group rules",
+                  "additionalProperties": false,
+                  "type": "object",
                   "properties": {
                     "GlobalAllow": {
-                      "type": "boolean",
+                      "default": true,
                       "description": "Allow all outbound traffic",
-                      "default": true
+                      "type": "boolean"
                     },
                     "NetworkRules": {
-                      "type": "object",
                       "patternProperties": {
                         "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
                           "properties": {
-                            "Ports": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "A list of port ids from the Ports reference"
-                            },
-                            "IPAddressGroups": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "A list of IP Address groups ids from the IPAddressGroups reference"
-                            },
                             "SecurityGroups": {
-                              "type": "array",
                               "contains": {
                                 "type": "string"
                               },
-                              "description": "A list of security groups or ids - for internal use only"
+                              "description": "A list of security groups or ids - for internal use only",
+                              "type": "array"
                             },
                             "Description": {
-                              "type": "string",
-                              "description": "A description that will be applied to the rule"
+                              "description": "A description that will be applied to the rule",
+                              "type": "string"
+                            },
+                            "Ports": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "A list of port ids from the Ports reference",
+                              "type": "array"
+                            },
+                            "IPAddressGroups": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "A list of IP Address groups ids from the IPAddressGroups reference",
+                              "type": "array"
                             }
-                          },
-                          "additionalProperties": false
+                          }
                         }
-                      }
+                      },
+                      "type": "object"
                     }
                   }
+                },
+                "Links": {
+                  "description": "Apply network security rules based on links",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
                 }
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-networkprofile-schema.json"
 }

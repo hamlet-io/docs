@@ -1,28 +1,27 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-placementprofile-schema.json",
   "definitions": {
     "PlacementProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "*": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Provider": {
-                  "type": "string",
-                  "description": "The provider to use to host the component"
+                "DeploymentFramework": {
+                  "description": "The deployment framework to use to generate the outputs for deployment",
+                  "type": "string"
                 },
                 "Region": {
-                  "type": "string",
-                  "description": "The id of the region to host the component"
+                  "description": "The id of the region to host the component",
+                  "type": "string"
                 },
-                "DeploymentFramework": {
-                  "type": "string",
-                  "description": "The deployment framework to use to generate the outputs for deployment"
+                "Provider": {
+                  "description": "The provider to use to host the component",
+                  "type": "string"
                 }
               },
               "required": [
@@ -31,10 +30,11 @@
                 "DeploymentFramework"
               ]
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-placementprofile-schema.json"
 }

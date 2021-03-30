@@ -1,19 +1,55 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolclient-schema.json",
   "definitions": {
     "userpoolclient": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
+            "AuthProviders": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "COGNITO"
+              ],
+              "description": "A list of user pool auth providers which can use this client",
+              "type": "array"
+            },
+            "EncryptionScheme": {
+              "description": "A prefix appended to attributes to show encryption status",
+              "type": "string"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "ClientTokenValidity": {
+              "default": 30,
+              "description": "Time in days that the refresh token is valid for",
+              "type": "number"
+            },
+            "ClientGenerateSecret": {
+              "default": false,
+              "description": "Generate a client secret which musht be provided in auth calls",
+              "type": "boolean"
+            },
+            "azure:ReplyUrls": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "URI's to which Azure AD will redirect in response to an OAuth 2.0 Request",
+              "type": "array"
+            },
             "OAuth": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Scopes": {
-                  "type": "array",
                   "contains": {
                     "type": "string"
                   },
@@ -21,6 +57,7 @@
                     "email",
                     "openid"
                   ],
+                  "type": "array",
                   "enum": [
                     "phone",
                     "email",
@@ -30,13 +67,13 @@
                   ]
                 },
                 "Flows": {
-                  "type": "array",
                   "contains": {
                     "type": "string"
                   },
                   "default": [
                     "code"
                   ],
+                  "type": "array",
                   "enum": [
                     "code",
                     "implicit",
@@ -44,116 +81,53 @@
                   ]
                 },
                 "Enabled": {
-                  "type": "boolean",
-                  "default": true
+                  "default": true,
+                  "type": "boolean"
                 }
               }
             },
-            "ClientGenerateSecret": {
-              "type": "boolean",
-              "description": "Generate a client secret which musht be provided in auth calls",
-              "default": false
-            },
-            "EncryptionScheme": {
-              "type": "string",
-              "description": "A prefix appended to attributes to show encryption status"
-            },
-            "ClientTokenValidity": {
-              "type": "number",
-              "description": "Time in days that the refresh token is valid for",
-              "default": 30
-            },
-            "AuthProviders": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
-              "description": "A list of user pool auth providers which can use this client",
-              "default": [
-                "COGNITO"
-              ]
-            },
-            "ResourceScopes": {
-              "type": "object",
-              "description": "Resources that the client is permitted to access",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Name": {
-                      "type": "string",
-                      "description": "The name of a userpool resource configured for this pool"
-                    },
-                    "Scopes": {
-                      "type": "array",
+                    "DeploymentUnits": {
                       "contains": {
                         "type": "string"
                       },
-                      "description": "A list of scopes that the resource offers"
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
                     }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "Name",
-                    "Scopes"
-                  ]
-                }
-              }
-            },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json",
-              "description": "Apply network security rules based on links"
-            },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
                   }
-                },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
                 }
-              }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
             },
             "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
-                    },
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -165,115 +139,141 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "azure:AllowOtherTenants": {
+              "default": false,
+              "description": "Application can be used by other Azure AD Tenants.",
+              "type": "boolean"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
                   },
-                  "additionalProperties": false
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
                 }
               }
             },
+            "Links": {
+              "description": "Apply network security rules based on links",
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
             "Export": {
-              "type": "array",
               "contains": {
                 "type": "string"
-              }
+              },
+              "type": "array"
             },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
+            "ResourceScopes": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
+                    "Scopes": {
                       "contains": {
                         "type": "string"
                       },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
+                      "description": "A list of scopes that the resource offers",
+                      "type": "array"
+                    },
+                    "Name": {
+                      "description": "The name of a userpool resource configured for this pool",
+                      "type": "string"
                     }
                   },
-                  "additionalProperties": false
+                  "required": [
+                    "Name",
+                    "Scopes"
+                  ]
                 }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
-              "contains": {
-                "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
-            },
-            "azure:AllowOtherTenants": {
-              "type": "boolean",
-              "description": "Application can be used by other Azure AD Tenants.",
-              "default": false
-            },
-            "azure:ReplyUrls": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
-              "description": "URI's to which Azure AD will redirect in response to an OAuth 2.0 Request"
+              "description": "Resources that the client is permitted to access",
+              "type": "object"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolclient-schema.json"
 }

@@ -1,17 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-skuprofile-schema.json",
   "definitions": {
     "SkuProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "apigateway": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
+                "Capacity": {
+                  "type": "number"
+                },
                 "Name": {
                   "type": "string",
                   "enum": [
@@ -21,19 +23,55 @@
                     "Basic",
                     "Consumption"
                   ]
+                }
+              }
+            },
+            "s3": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Tier": {
+                  "type": "string"
+                },
+                "Kind": {
+                  "type": "string"
+                },
+                "Replication": {
+                  "type": "string"
+                }
+              }
+            },
+            "secretstore": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Family": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            },
+            "lb": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Tier": {
+                  "type": "string"
                 },
                 "Capacity": {
                   "type": "number"
+                },
+                "Name": {
+                  "type": "string"
                 }
               }
             },
             "computecluster": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Name": {
-                  "type": "string"
-                },
                 "Tier": {
                   "type": "string",
                   "enum": [
@@ -42,61 +80,33 @@
                   ]
                 },
                 "Capacity": {
-                  "type": "number",
-                  "default": 1
+                  "default": 1,
+                  "type": "number"
+                },
+                "Name": {
+                  "type": "string"
                 }
               }
             },
-            "containerhost": {
-              "type": "object",
+            "bastion": {
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Name": {
-                  "type": "string"
-                },
                 "Tier": {
                   "type": "string"
                 },
                 "Capacity": {
                   "type": "number"
                 },
-                "Size": {
-                  "anyOf": [
-                    {
-                      "type": "number"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ]
-                },
-                "Family": {
-                  "type": "string"
-                }
-              }
-            },
-            "s3": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Kind": {
-                  "type": "string"
-                },
-                "Tier": {
-                  "type": "string"
-                },
-                "Replication": {
+                "Name": {
                   "type": "string"
                 }
               }
             },
             "db": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Name": {
-                  "type": "string"
-                },
                 "Tier": {
                   "type": "string"
                 },
@@ -115,64 +125,54 @@
                 },
                 "Family": {
                   "type": "string"
+                },
+                "Name": {
+                  "type": "string"
                 }
               }
             },
-            "secretstore": {
-              "type": "object",
+            "containerhost": {
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Name": {
+                "Tier": {
                   "type": "string"
                 },
+                "Capacity": {
+                  "type": "number"
+                },
+                "Size": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
                 "Family": {
+                  "type": "string"
+                },
+                "Name": {
                   "type": "string"
                 }
               }
             },
             "network": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Name": {
                   "type": "string"
-                }
-              }
-            },
-            "lb": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string"
-                },
-                "Tier": {
-                  "type": "string"
-                },
-                "Capacity": {
-                  "type": "number"
-                }
-              }
-            },
-            "bastion": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Name": {
-                  "type": "string"
-                },
-                "Tier": {
-                  "type": "string"
-                },
-                "Capacity": {
-                  "type": "number"
                 }
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-skuprofile-schema.json"
 }

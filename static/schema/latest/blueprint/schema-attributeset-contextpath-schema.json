@@ -1,28 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-contextpath-schema.json",
   "definitions": {
     "contextpath": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Custom": {
-              "type": "string",
-              "description": "The custom string to include if custom is included in the path"
-            },
-            "Style": {
-              "type": "string",
-              "description": "Provide the value as a single string or a file system style path",
-              "default": "single",
-              "enum": [
-                "single",
-                "path"
-              ]
-            },
             "Order": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
@@ -39,73 +24,88 @@
                 "Version",
                 "Host",
                 "Custom"
-              ]
+              ],
+              "type": "array"
             },
             "IncludeInPath": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Account": {
-                  "type": "boolean",
-                  "description": "The name of the Account",
-                  "default": false
-                },
                 "ProviderId": {
-                  "type": "boolean",
+                  "default": false,
                   "description": "The Provider Id for the account",
-                  "default": false
+                  "type": "boolean"
                 },
-                "Product": {
-                  "type": "boolean",
-                  "description": "The name of the product",
-                  "default": true
-                },
-                "Environment": {
-                  "type": "boolean",
-                  "description": "The name of the environment",
-                  "default": false
-                },
-                "Solution": {
-                  "type": "boolean",
-                  "description": "The name of the solution",
-                  "default": false
-                },
-                "Segment": {
-                  "type": "boolean",
-                  "description": "The name of the segment",
-                  "default": true
+                "Account": {
+                  "default": false,
+                  "description": "The name of the Account",
+                  "type": "boolean"
                 },
                 "Tier": {
-                  "type": "boolean",
+                  "default": false,
                   "description": "The name of the tier",
-                  "default": false
-                },
-                "Component": {
-                  "type": "boolean",
-                  "description": "The name of the component",
-                  "default": false
+                  "type": "boolean"
                 },
                 "Instance": {
-                  "type": "boolean",
+                  "default": false,
                   "description": "The name of the instance",
-                  "default": false
+                  "type": "boolean"
                 },
                 "Version": {
-                  "type": "boolean",
+                  "default": false,
                   "description": "The name of the version",
-                  "default": false
+                  "type": "boolean"
+                },
+                "Product": {
+                  "default": true,
+                  "description": "The name of the product",
+                  "type": "boolean"
+                },
+                "Environment": {
+                  "default": false,
+                  "description": "The name of the environment",
+                  "type": "boolean"
                 },
                 "Custom": {
-                  "type": "boolean",
+                  "default": false,
                   "description": "Include a custom string",
-                  "default": false
+                  "type": "boolean"
+                },
+                "Component": {
+                  "default": false,
+                  "description": "The name of the component",
+                  "type": "boolean"
+                },
+                "Solution": {
+                  "default": false,
+                  "description": "The name of the solution",
+                  "type": "boolean"
+                },
+                "Segment": {
+                  "default": true,
+                  "description": "The name of the segment",
+                  "type": "boolean"
                 }
               }
+            },
+            "Style": {
+              "default": "single",
+              "description": "Provide the value as a single string or a file system style path",
+              "type": "string",
+              "enum": [
+                "single",
+                "path"
+              ]
+            },
+            "Custom": {
+              "description": "The custom string to include if custom is included in the path",
+              "type": "string"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-contextpath-schema.json"
 }

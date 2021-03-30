@@ -1,78 +1,165 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baseline-schema.json",
   "definitions": {
     "baseline": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Active": {
-              "type": "boolean",
-              "default": false
-            },
-            "Seed": {
-              "type": "object",
+            "azure:Lifecycle": {
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Length": {
-                  "type": "number",
-                  "default": 10
+                "BlobRetentionDays": {
+                  "type": "number"
+                },
+                "BlobAutoSnapshots": {
+                  "default": false,
+                  "type": "boolean"
                 }
               }
             },
-            "Profiles": {
-              "type": "object",
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "azure:Certificate": {
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
+                "Wildcard": {
+                  "type": "boolean"
+                },
+                "IncludeInHost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
                   }
                 },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
+                "External": {
+                  "type": "boolean"
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "Qualifiers": {
+                  "description": "District based overrides to domain properties",
+                  "type": "object"
+                },
+                "Domain": {
+                  "description": "Explicit domain id which will override the product domain",
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
                   }
                 },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
+                "HostParts": {
                   "contains": {
                     "type": "string"
                   },
-                  "description": "The testing profiles to apply to the component"
+                  "type": "array"
                 }
               }
             },
-            "SettingNamespaces": {
+            "azure:Access": {
+              "additionalProperties": false,
               "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
+              "properties": {
+                "DirectoryService": {
+                  "description": "The directory service that is used for authentication. 'None' or 'AADDS'.",
+                  "type": "string"
+                }
+              }
+            },
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
                     },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "DataBuckets": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinedata-schema.json"
+            },
+            "Active": {
+              "default": false,
+              "type": "boolean"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -84,216 +171,129 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration."
-            },
-            "azure:Lifecycle": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "BlobRetentionDays": {
-                  "type": "number"
-                },
-                "BlobAutoSnapshots": {
-                  "type": "boolean",
-                  "default": false
-                }
-              }
-            },
-            "azure:Certificate": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Qualifiers": {
-                  "type": "object",
-                  "description": "District based overrides to domain properties"
-                },
-                "Domain": {
-                  "type": "string",
-                  "description": "Explicit domain id which will override the product domain"
-                },
-                "IncludeInDomain": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    }
                   }
-                },
-                "Host": {
-                  "type": "string"
-                },
-                "HostParts": {
-                  "type": "array",
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "Seed": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Length": {
+                  "default": 10,
+                  "type": "number"
+                }
+              }
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
                   "contains": {
                     "type": "string"
-                  }
+                  },
+                  "type": "array"
                 },
-                "IncludeInHost": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    },
-                    "Tier": {
-                      "type": "boolean"
-                    },
-                    "Component": {
-                      "type": "boolean"
-                    },
-                    "Instance": {
-                      "type": "boolean"
-                    },
-                    "Version": {
-                      "type": "boolean"
-                    },
-                    "Host": {
-                      "type": "boolean"
-                    }
-                  }
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
                 },
-                "External": {
-                  "type": "boolean"
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
                 },
-                "Wildcard": {
-                  "type": "boolean"
-                }
-              }
-            },
-            "azure:Access": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "DirectoryService": {
-                  "type": "string",
-                  "description": "The directory service that is used for authentication. 'None' or 'AADDS'."
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
                 }
               }
             },
             "azure:AdministratorGroups": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "The set of administrator groups controlling access to keyvault",
               "default": [
                 "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3"
-              ]
-            },
-            "DataBuckets": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinedata-schema.json"
+              ],
+              "description": "The set of administrator groups controlling access to keyvault",
+              "type": "array"
             },
             "Keys": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinekey-schema.json"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baseline-schema.json"
 }

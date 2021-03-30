@@ -1,13 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-alertrule-schema.json",
   "definitions": {
     "AlertRule": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
+            "Destinations": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Links": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                }
+              }
+            },
             "Severity": {
               "type": "string",
               "enum": [
@@ -17,23 +25,15 @@
                 "error",
                 "fatal"
               ]
-            },
-            "Destinations": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Links": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-                }
-              }
             }
           },
-          "additionalProperties": false,
           "required": [
             "Severity"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-alertrule-schema.json"
 }

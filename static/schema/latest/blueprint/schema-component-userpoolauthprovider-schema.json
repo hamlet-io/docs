@@ -1,189 +1,20 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json",
   "definitions": {
     "userpoolauthprovider": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-            },
-            "Extensions": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing"
-            },
-            "Engine": {
-              "type": "string",
-              "description": "The authentication provider type",
-              "enum": [
-                "SAML",
-                "OIDC",
-                "Facebook",
-                "Google",
-                "Apple",
-                "Amazon"
-              ]
-            },
-            "SettingsPrefix": {
-              "type": "string",
-              "description": "A prefix to use for this providers settings lookup"
-            },
-            "EncryptionScheme": {
-              "type": "string",
-              "default": "base64:"
-            },
-            "AttributeMappings": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "UserPoolAttribute": {
-                      "type": "string",
-                      "description": "The name of the attribute in the user pool schema - the id of the mapping will be used if not provided"
-                    },
-                    "ProviderAttribute": {
-                      "type": "string",
-                      "description": "The provider attribute which will be mapped"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "ProviderAttribute"
-                  ]
-                }
-              }
-            },
-            "IDPIdentifiers": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
-              "description": "A list of identifiers that can be used to automatically pick the IDP - E.g. email domain"
-            },
-            "SAML": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "MetadataUrl": {
-                  "type": "string",
-                  "description": "The SAML metadataUrl endpoint"
-                },
-                "EnableIDPSignOut": {
-                  "type": "boolean",
-                  "description": "Enable the IDP Signout Flow",
-                  "default": true
-                }
-              }
-            },
-            "OIDC": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "ClientId": {
-                  "type": "string"
-                },
-                "ClientSecret": {
-                  "type": "string"
-                },
-                "Scopes": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "default": [
-                    "openid",
-                    "email"
-                  ]
-                },
-                "AttributesHttpMethod": {
-                  "type": "string",
-                  "default": "GET",
-                  "enum": [
-                    "GET",
-                    "POST"
-                  ]
-                },
-                "Issuer": {
-                  "type": "string"
-                },
-                "AuthorizeUrl": {
-                  "type": "string"
-                },
-                "TokenUrl": {
-                  "type": "string"
-                },
-                "AttributesUrl": {
-                  "type": "string"
-                },
-                "JwksUrl": {
-                  "type": "string"
-                }
-              }
-            },
-            "Facebook": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "ClientId": {
-                  "type": "string"
-                },
-                "ClientSecret": {
-                  "type": "string"
-                },
-                "Scopes": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "default": [
-                    "email",
-                    "public_profile"
-                  ]
-                },
-                "APIVersion": {
-                  "type": "string"
-                }
-              }
-            },
-            "Amazon": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "ClientId": {
-                  "type": "string"
-                },
-                "ClientSecret": {
-                  "type": "string"
-                },
-                "Scopes": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "default": [
-                    "profile"
-                  ]
-                }
-              }
-            },
             "Google": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "ClientId": {
-                  "type": "string"
-                },
                 "ClientSecret": {
                   "type": "string"
                 },
                 "Scopes": {
-                  "type": "array",
                   "contains": {
                     "type": "string"
                   },
@@ -191,89 +22,138 @@
                     "openid",
                     "profile",
                     "email"
-                  ]
+                  ],
+                  "type": "array"
+                },
+                "ClientId": {
+                  "type": "string"
                 }
               }
             },
-            "Apple": {
-              "type": "object",
+            "EncryptionScheme": {
+              "default": "base64:",
+              "type": "string"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "AttributeMappings": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "ProviderAttribute": {
+                      "description": "The provider attribute which will be mapped",
+                      "type": "string"
+                    },
+                    "UserPoolAttribute": {
+                      "description": "The name of the attribute in the user pool schema - the id of the mapping will be used if not provided",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ProviderAttribute"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "SAML": {
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "ClientId": {
-                  "type": "string"
+                "EnableIDPSignOut": {
+                  "default": true,
+                  "description": "Enable the IDP Signout Flow",
+                  "type": "boolean"
                 },
-                "TeamId": {
+                "MetadataUrl": {
+                  "description": "The SAML metadataUrl endpoint",
                   "type": "string"
-                },
-                "KeyId": {
-                  "type": "string"
-                },
+                }
+              }
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "Apple": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
                 "PrivateKey": {
                   "type": "string"
                 },
                 "Scopes": {
-                  "type": "array",
                   "contains": {
                     "type": "string"
                   },
                   "default": [
                     "email",
                     "name"
-                  ]
-                }
-              }
-            },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
+                  ],
+                  "type": "array"
                 },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
+                "ClientId": {
+                  "type": "string"
                 },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
+                "KeyId": {
+                  "type": "string"
                 },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
+                "TeamId": {
+                  "type": "string"
                 }
               }
             },
             "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
-                    },
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -285,102 +165,118 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
-                  },
-                  "additionalProperties": false
+                  }
                 }
-              }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
             },
-            "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
+            "IDPIdentifiers": {
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "description": "A list of identifiers that can be used to automatically pick the IDP - E.g. email domain",
+              "type": "array"
+            },
+            "SettingsPrefix": {
+              "description": "A prefix to use for this providers settings lookup",
+              "type": "string"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             },
             "azure:Engine": {
-              "type": "string",
               "description": "The authentication/identity provider type. Values are specific to API Management Identity Provider resource..",
+              "type": "string",
               "enum": [
                 "facebook",
                 "google",
@@ -389,15 +285,119 @@
                 "aad",
                 "aadb2c"
               ]
+            },
+            "OIDC": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "AttributesHttpMethod": {
+                  "default": "GET",
+                  "type": "string",
+                  "enum": [
+                    "GET",
+                    "POST"
+                  ]
+                },
+                "Issuer": {
+                  "type": "string"
+                },
+                "AttributesUrl": {
+                  "type": "string"
+                },
+                "ClientSecret": {
+                  "type": "string"
+                },
+                "Scopes": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "openid",
+                    "email"
+                  ],
+                  "type": "array"
+                },
+                "AuthorizeUrl": {
+                  "type": "string"
+                },
+                "ClientId": {
+                  "type": "string"
+                },
+                "TokenUrl": {
+                  "type": "string"
+                },
+                "JwksUrl": {
+                  "type": "string"
+                }
+              }
+            },
+            "Amazon": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "ClientSecret": {
+                  "type": "string"
+                },
+                "Scopes": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "profile"
+                  ],
+                  "type": "array"
+                },
+                "ClientId": {
+                  "type": "string"
+                }
+              }
+            },
+            "Facebook": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "APIVersion": {
+                  "type": "string"
+                },
+                "ClientSecret": {
+                  "type": "string"
+                },
+                "Scopes": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "email",
+                    "public_profile"
+                  ],
+                  "type": "array"
+                },
+                "ClientId": {
+                  "type": "string"
+                }
+              }
+            },
+            "Engine": {
+              "description": "The authentication provider type",
+              "type": "string",
+              "enum": [
+                "SAML",
+                "OIDC",
+                "Facebook",
+                "Google",
+                "Apple",
+                "Amazon"
+              ]
             }
           },
-          "additionalProperties": false,
           "required": [
             "Engine",
             "azure:Engine"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json"
 }

@@ -1,51 +1,27 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-computeprovider-schema.json",
   "definitions": {
     "ComputeProvider": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "Containers": {
-              "type": "object",
-              "additionalProperties": false,
               "description": "Compute policy for container based resources",
+              "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Default": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "description": "Sets the default computer provider which will meet base capacity",
-                  "properties": {
-                    "Provider": {
-                      "type": "string",
-                      "description": "The default container compute provider",
-                      "default": "_autoscalegroup",
-                      "enum": [
-                        "_autoscalegroup",
-                        "aws:fargate",
-                        "aws:fargatespot"
-                      ]
-                    },
-                    "Weight": {
-                      "type": "number",
-                      "description": "The ratio of containers allocated to the provider based on the configured providers",
-                      "default": 1
-                    },
-                    "RequiredCount": {
-                      "type": "number",
-                      "description": "The minimum count of containers to run on the default provider",
-                      "default": 1
-                    }
-                  }
-                },
                 "Additional": {
-                  "type": "object",
-                  "description": "Providers who will meet the additonal compute capacity outside of the default",
                   "patternProperties": {
                     "^[A-Za-z_][A-Za-z0-9_]*$": {
+                      "additionalProperties": false,
                       "properties": {
+                        "Weight": {
+                          "default": 1,
+                          "description": "The ratio of containers allocated to the provider based on the configured providers",
+                          "type": "number"
+                        },
                         "Provider": {
                           "type": "string",
                           "enum": [
@@ -53,26 +29,50 @@
                             "aws:fargate",
                             "aws:fargatespot"
                           ]
-                        },
-                        "Weight": {
-                          "type": "number",
-                          "description": "The ratio of containers allocated to the provider based on the configured providers",
-                          "default": 1
                         }
                       },
-                      "additionalProperties": false,
                       "required": [
                         "Provider"
+                      ]
+                    }
+                  },
+                  "description": "Providers who will meet the additonal compute capacity outside of the default",
+                  "type": "object"
+                },
+                "Default": {
+                  "description": "Sets the default computer provider which will meet base capacity",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "RequiredCount": {
+                      "default": 1,
+                      "description": "The minimum count of containers to run on the default provider",
+                      "type": "number"
+                    },
+                    "Weight": {
+                      "default": 1,
+                      "description": "The ratio of containers allocated to the provider based on the configured providers",
+                      "type": "number"
+                    },
+                    "Provider": {
+                      "default": "_autoscalegroup",
+                      "description": "The default container compute provider",
+                      "type": "string",
+                      "enum": [
+                        "_autoscalegroup",
+                        "aws:fargate",
+                        "aws:fargatespot"
                       ]
                     }
                   }
                 }
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-computeprovider-schema.json"
 }

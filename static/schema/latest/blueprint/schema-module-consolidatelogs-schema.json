@@ -3,40 +3,40 @@
   "type": "object",
   "definitions": {
     "consolidatelogs": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "namePrefix": {
-              "type": "object",
-              "description": "A prefix appended to component names and deployment units to ensure uniquness"
+            "tier": {
+              "default": "mgmt",
+              "description": "The tier to use to host the components",
+              "type": "object"
             },
-            "deploymentProfile": {
-              "type": "object",
-              "description": "The deployment profile id to enable log consolidation on."
+            "namePrefix": {
+              "description": "A prefix appended to component names and deployment units to ensure uniquness",
+              "type": "object"
             },
             "lambdaSourceUrl": {
-              "type": "object",
+              "default": "https://github.com/hamlet-io/lambda-log-processors/releases/download/v1.0.2/cloudwatch-firehose.zip",
               "description": "A URL to the lambda zip package for sending alerts",
-              "default": "https://github.com/hamlet-io/lambda-log-processors/releases/download/v1.0.2/cloudwatch-firehose.zip"
+              "type": "object"
+            },
+            "deploymentProfile": {
+              "description": "The deployment profile id to enable log consolidation on.",
+              "type": "object"
             },
             "lambdaSourceHash": {
-              "type": "object",
+              "default": "3a6b1ce462aaa203477044cfe83c66f128381434",
               "description": "A sha1 hash of the lambda image to validate the correct one",
-              "default": "3a6b1ce462aaa203477044cfe83c66f128381434"
-            },
-            "tier": {
-              "type": "object",
-              "description": "The tier to use to host the components",
-              "default": "mgmt"
+              "type": "object"
             }
           },
-          "additionalProperties": false,
           "required": [
             "deploymentProfile"
           ]
         }
-      }
+      },
+      "type": "object"
     }
   }
 }

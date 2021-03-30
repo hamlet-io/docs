@@ -1,20 +1,136 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-securityprofile-schema.json",
   "definitions": {
     "SecurityProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "lb": {
-              "type": "object",
+            "apigateway": {
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "network": {
-                  "type": "object",
+                "WAFProfile": {
+                  "type": "string"
+                },
+                "GatewayHTTPSProfile": {
+                  "default": "TLS_1_0",
+                  "type": "string"
+                },
+                "CDNHTTPSProfile": {
+                  "type": "string"
+                },
+                "WAFValueSet": {
+                  "type": "string"
+                },
+                "ProtocolPolicy": {
+                  "type": "string"
+                }
+              }
+            },
+            "IPSecVPN": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "TunnelInsideCidr": {
+                  "type": "string"
+                },
+                "IKEVersions": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "DeadPeerDetectionAction": {
+                  "type": "string",
+                  "enum": [
+                    "clear",
+                    "none",
+                    "restart"
+                  ]
+                },
+                "Phase2": {
                   "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Lifetime": {
+                      "type": "number"
+                    },
+                    "EncryptionAlgorithms": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "IntegrityAlgorithms": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "DiffeHellmanGroups": {
+                      "contains": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "DeadPeerDetectionTimeout": {
+                  "type": "number"
+                },
+                "Phase1": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Lifetime": {
+                      "type": "number"
+                    },
+                    "EncryptionAlgorithms": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "IntegrityAlgorithms": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "DiffeHellmanGroups": {
+                      "contains": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "ReplayWindowSize": {
+                  "type": "number"
+                },
+                "Rekey": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MarginTime": {
+                      "type": "number"
+                    },
+                    "FuzzPercentage": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "lb": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "classic": {
+                  "additionalProperties": false,
+                  "type": "object",
                   "properties": {
                     "HTTPSProfile": {
                       "type": "string"
@@ -22,13 +138,13 @@
                   }
                 },
                 "application": {
-                  "type": "object",
                   "additionalProperties": false,
+                  "type": "object",
                   "properties": {
-                    "HTTPSProfile": {
+                    "WAFProfile": {
                       "type": "string"
                     },
-                    "WAFProfile": {
+                    "HTTPSProfile": {
                       "type": "string"
                     },
                     "WAFValueSet": {
@@ -36,9 +152,9 @@
                     }
                   }
                 },
-                "classic": {
-                  "type": "object",
+                "network": {
                   "additionalProperties": false,
+                  "type": "object",
                   "properties": {
                     "HTTPSProfile": {
                       "type": "string"
@@ -47,36 +163,14 @@
                 }
               }
             },
-            "apigateway": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "CDNHTTPSProfile": {
-                  "type": "string"
-                },
-                "GatewayHTTPSProfile": {
-                  "type": "string",
-                  "default": "TLS_1_0"
-                },
-                "ProtocolPolicy": {
-                  "type": "string"
-                },
-                "WAFProfile": {
-                  "type": "string"
-                },
-                "WAFValueSet": {
-                  "type": "string"
-                }
-              }
-            },
             "cdn": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "HTTPSProfile": {
+                "WAFProfile": {
                   "type": "string"
                 },
-                "WAFProfile": {
+                "HTTPSProfile": {
                   "type": "string"
                 },
                 "WAFValueSet": {
@@ -85,8 +179,8 @@
               }
             },
             "db": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "SSLCertificateAuthority": {
                   "type": "string"
@@ -94,8 +188,8 @@
               }
             },
             "es": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "ProtocolPolicy": {
                   "type": "string",
@@ -107,114 +201,20 @@
                 }
               }
             },
-            "IPSecVPN": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "TunnelInsideCidr": {
-                  "type": "string"
-                },
-                "IKEVersions": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Rekey": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "MarginTime": {
-                      "type": "number"
-                    },
-                    "FuzzPercentage": {
-                      "type": "number"
-                    }
-                  }
-                },
-                "ReplayWindowSize": {
-                  "type": "number"
-                },
-                "DeadPeerDetectionTimeout": {
-                  "type": "number"
-                },
-                "DeadPeerDetectionAction": {
-                  "type": "string",
-                  "enum": [
-                    "clear",
-                    "none",
-                    "restart"
-                  ]
-                },
-                "Phase1": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "EncryptionAlgorithms": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      }
-                    },
-                    "IntegrityAlgorithms": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      }
-                    },
-                    "DiffeHellmanGroups": {
-                      "type": "array",
-                      "contains": {
-                        "type": "number"
-                      }
-                    },
-                    "Lifetime": {
-                      "type": "number"
-                    }
-                  }
-                },
-                "Phase2": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "EncryptionAlgorithms": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      }
-                    },
-                    "IntegrityAlgorithms": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      }
-                    },
-                    "DiffeHellmanGroups": {
-                      "type": "array",
-                      "contains": {
-                        "type": "number"
-                      }
-                    },
-                    "Lifetime": {
-                      "type": "number"
-                    }
-                  }
-                }
-              }
-            },
             "filetransfer": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "EncryptionPolicy": {
                   "type": "string"
                 }
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-securityprofile-schema.json"
 }

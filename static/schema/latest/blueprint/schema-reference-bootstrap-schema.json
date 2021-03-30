@@ -1,104 +1,104 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-bootstrap-schema.json",
   "definitions": {
     "Bootstrap": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "ScriptStore": {
-              "type": "string"
-            },
-            "Prefix": {
-              "type": "string"
-            },
-            "InitScript": {
-              "type": "string"
-            },
-            "Packages": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Name": {
-                      "type": "string"
-                    },
-                    "Version": {
-                      "type": "string"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "Index": {
-              "type": "number",
-              "description": "Determines script execution sequence."
-            },
             "Type": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Name": {
-                  "type": "string"
-                },
                 "HandlerVersion": {
                   "type": "string"
+                },
+                "Name": {
+                  "type": "string"
                 }
               }
             },
-            "Publisher": {
+            "ScriptStore": {
               "type": "string"
             },
             "AutoUpgradeOnMinorVersion": {
               "type": "boolean"
             },
-            "Settings": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Key": {
-                      "type": "string"
-                    },
-                    "Value": {
-                      "type": "any"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "Key",
-                    "Value"
-                  ]
-                }
-              }
-            },
             "ProtectedSettings": {
-              "type": "object",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Key": {
-                      "type": "string"
-                    },
                     "Value": {
                       "type": "any"
+                    },
+                    "Key": {
+                      "type": "string"
                     }
                   },
-                  "additionalProperties": false,
                   "required": [
                     "Key",
                     "Value"
                   ]
                 }
-              }
+              },
+              "type": "object"
+            },
+            "Packages": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Version": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "InitScript": {
+              "type": "string"
+            },
+            "Index": {
+              "description": "Determines script execution sequence.",
+              "type": "number"
+            },
+            "Prefix": {
+              "type": "string"
+            },
+            "Publisher": {
+              "type": "string"
+            },
+            "Settings": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Value": {
+                      "type": "any"
+                    },
+                    "Key": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Key",
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-bootstrap-schema.json"
 }

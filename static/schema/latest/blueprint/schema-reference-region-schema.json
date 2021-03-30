@@ -1,66 +1,66 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-region-schema.json",
   "definitions": {
     "Region": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Id": {
-              "type": "string"
-            },
-            "Name": {
-              "type": "string"
-            },
-            "Title": {
+            "Partition": {
               "type": "string"
             },
             "Description": {
               "type": "string"
             },
-            "Partition": {
-              "type": "string"
-            },
             "Locality": {
               "type": "string"
             },
-            "Zones": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Description": {
-                      "type": "string"
-                    },
-                    "AWSZone": {
-                      "type": "string"
-                    },
-                    "NetworkEndpoints": {
-                      "type": "array",
-                      "contains": {
-                        "type": "object"
-                      }
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
+            "AMIs": {
+              "type": "object"
+            },
+            "Title": {
+              "type": "string"
+            },
+            "Id": {
+              "type": "string"
             },
             "Accounts": {
               "type": "object"
             },
-            "AMIs": {
+            "Name": {
+              "type": "string"
+            },
+            "Zones": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Description": {
+                      "type": "string"
+                    },
+                    "NetworkEndpoints": {
+                      "contains": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "AWSZone": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
               "type": "object"
             }
           },
-          "additionalProperties": false,
           "required": [
             "Locality"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-region-schema.json"
 }

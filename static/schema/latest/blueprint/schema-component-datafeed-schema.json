@@ -1,135 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-datafeed-schema.json",
   "definitions": {
     "datafeed": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "ElasticSearch": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "IndexPrefix": {
-                  "type": "string",
-                  "description": "The prefix applied to generate the index name ( if not using roll over this will be the index name)"
-                },
-                "IndexRotation": {
-                  "type": "string",
-                  "description": "When to rotate the index ( the timestamp will be appended to the indexprefix)",
-                  "default": "OneMonth",
-                  "enum": [
-                    "NoRotation",
-                    "OneDay",
-                    "OneHour",
-                    "OneMonth",
-                    "OneWeek"
-                  ]
-                },
-                "DocumentType": {
-                  "type": "string",
-                  "description": "The document type used when creating the document"
-                }
-              }
-            },
-            "Bucket": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Prefix": {
-                  "type": "string",
-                  "description": "The prefix appeneded to the object name when processed succesfully",
-                  "default": "data/"
-                },
-                "ErrorPrefix": {
-                  "type": "string",
-                  "description": "The prefix appeneded to the object name when processing failed",
-                  "default": "error/"
-                },
-                "Include": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "description": "Deployment specific details to add to prefix",
-                  "properties": {
-                    "Order": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "The order of the included prefixes",
-                      "default": [
-                        "AccountId",
-                        "ComponentPath"
-                      ]
-                    },
-                    "AccountId": {
-                      "type": "boolean",
-                      "description": "The deployment account id",
-                      "default": false
-                    },
-                    "ComponentPath": {
-                      "type": "boolean",
-                      "description": "The full component path defaults",
-                      "default": false
-                    }
-                  }
-                }
-              }
-            },
-            "Buffering": {
-              "type": "object",
-              "additionalProperties": false,
-              "description": "How long data should be bufferred before being deliverd to ES",
-              "properties": {
-                "Interval": {
-                  "type": "number",
-                  "description": "The time in seconds before data should be delivered",
-                  "default": 60
-                },
-                "Size": {
-                  "type": "number",
-                  "description": "The size in MB before data should be delivered",
-                  "default": 1
-                }
-              }
-            },
             "Logging": {
-              "type": "boolean",
-              "default": true
-            },
-            "Encrypted": {
-              "type": "boolean",
-              "default": false
-            },
-            "Backup": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Enabled": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "FailureDuration": {
-                  "type": "number",
-                  "description": "The time in seconds that the data feed will attempt to deliver the data before it is sent to backup",
-                  "default": 3600
-                },
-                "Policy": {
-                  "type": "string",
-                  "description": "The backup policy to apply to records",
-                  "default": "FailedDocumentsOnly",
-                  "enum": [
-                    "AllDocuments",
-                    "FailedDocumentsOnly"
-                  ]
-                }
-              }
+              "default": true,
+              "type": "boolean"
             },
             "Destination": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Link": {
                   "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
@@ -139,83 +23,107 @@
                 "Link"
               ]
             },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "aws:WAFLogFeed": {
+              "default": false,
+              "description": "Feed is intended for use with WAF. Enforces a strict naming convention required by the provider.",
+              "type": "boolean"
             },
             "LogWatchers": {
-              "type": "object",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "LogFilter": {
-                      "type": "string"
-                    },
                     "Links": {
                       "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    },
+                    "LogFilter": {
+                      "type": "string"
                     }
                   },
-                  "additionalProperties": false,
                   "required": [
                     "LogFilter"
                   ]
                 }
-              }
+              },
+              "type": "object"
             },
-            "Profiles": {
-              "type": "object",
+            "Encrypted": {
+              "default": false,
+              "type": "boolean"
+            },
+            "Backup": {
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
                 "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
+                  "default": "FailedDocumentsOnly",
+                  "description": "The backup policy to apply to records",
                   "type": "string",
-                  "default": "default"
+                  "enum": [
+                    "AllDocuments",
+                    "FailedDocumentsOnly"
+                  ]
                 },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
                 },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
-                },
-                "Logging": {
-                  "type": "string",
-                  "default": "default"
+                "FailureDuration": {
+                  "default": 3600,
+                  "description": "The time in seconds that the data feed will attempt to deliver the data before it is sent to backup",
+                  "type": "number"
                 }
               }
             },
-            "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
                     },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -227,108 +135,200 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
-                  },
-                  "additionalProperties": false
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "ElasticSearch": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "IndexRotation": {
+                  "default": "OneMonth",
+                  "description": "When to rotate the index ( the timestamp will be appended to the indexprefix)",
+                  "type": "string",
+                  "enum": [
+                    "NoRotation",
+                    "OneDay",
+                    "OneHour",
+                    "OneMonth",
+                    "OneWeek"
+                  ]
+                },
+                "IndexPrefix": {
+                  "description": "The prefix applied to generate the index name ( if not using roll over this will be the index name)",
+                  "type": "string"
+                },
+                "DocumentType": {
+                  "description": "The document type used when creating the document",
+                  "type": "string"
                 }
               }
             },
-            "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
+            "Bucket": {
+              "additionalProperties": false,
               "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
+              "properties": {
+                "Include": {
+                  "description": "Deployment specific details to add to prefix",
+                  "additionalProperties": false,
+                  "type": "object",
                   "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
+                    "Order": {
                       "contains": {
                         "type": "string"
                       },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
+                      "default": [
+                        "AccountId",
+                        "ComponentPath"
+                      ],
+                      "description": "The order of the included prefixes",
+                      "type": "array"
+                    },
+                    "ComponentPath": {
+                      "default": false,
+                      "description": "The full component path defaults",
+                      "type": "boolean"
+                    },
+                    "AccountId": {
+                      "default": false,
+                      "description": "The deployment account id",
+                      "type": "boolean"
                     }
-                  },
-                  "additionalProperties": false
+                  }
+                },
+                "Prefix": {
+                  "default": "data/",
+                  "description": "The prefix appeneded to the object name when processed succesfully",
+                  "type": "string"
+                },
+                "ErrorPrefix": {
+                  "default": "error/",
+                  "description": "The prefix appeneded to the object name when processing failed",
+                  "type": "string"
                 }
               }
             },
-            "DeploymentUnits": {
-              "type": "array",
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Logging": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "type": "array"
             },
-            "aws:WAFLogFeed": {
-              "type": "boolean",
-              "description": "Feed is intended for use with WAF. Enforces a strict naming convention required by the provider.",
-              "default": false
+            "Buffering": {
+              "description": "How long data should be bufferred before being deliverd to ES",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Size": {
+                  "default": 1,
+                  "description": "The size in MB before data should be delivered",
+                  "type": "number"
+                },
+                "Interval": {
+                  "default": 60,
+                  "description": "The time in seconds before data should be delivered",
+                  "type": "number"
+                }
+              }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-datafeed-schema.json"
 }

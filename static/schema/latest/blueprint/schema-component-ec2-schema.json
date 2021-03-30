@@ -1,164 +1,62 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-ec2-schema.json",
   "definitions": {
     "ec2": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "FixedIP": {
-              "type": "boolean",
-              "default": false
-            },
-            "DockerHost": {
-              "type": "boolean",
-              "default": false
-            },
-            "Extensions": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing"
-            },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-            },
-            "Ports": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "IPAddressGroups": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      }
-                    },
-                    "LB": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "Tier": {
-                          "type": "string"
-                        },
-                        "Component": {
-                          "type": "string"
-                        },
-                        "LinkName": {
-                          "type": "string",
-                          "default": "lb"
-                        },
-                        "Instance": {
-                          "type": "string"
-                        },
-                        "Version": {
-                          "type": "string"
-                        },
-                        "PortMapping": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "Tier",
-                        "Component"
-                      ]
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
+              "default": false,
+              "type": "boolean"
             },
             "Role": {
-              "type": "string",
-              "description": "Server configuration role"
+              "description": "Server configuration role",
+              "type": "string"
             },
-            "OSPatching": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Enabled": {
-                  "type": "boolean",
-                  "description": "Enable automatic OS Patching",
-                  "default": true
-                },
-                "Schedule": {
-                  "type": "string",
-                  "description": "UTC based cron schedule to apply updates",
-                  "default": "59 13 * * *"
-                },
-                "SecurityOnly": {
-                  "type": "boolean",
-                  "description": "Only apply security updates",
-                  "default": false
-                }
-              }
-            },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
-                },
-                "Processor": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Network": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Logging": {
-                  "type": "string",
-                  "default": "default"
-                }
-              }
-            },
-            "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
                     },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -170,103 +68,205 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
-                  },
-                  "additionalProperties": false
+                  }
                 }
-              }
-            },
-            "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
             },
             "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "OSPatching": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Schedule": {
+                  "default": "59 13 * * *",
+                  "description": "UTC based cron schedule to apply updates",
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable automatic OS Patching",
+                  "type": "boolean"
+                },
+                "SecurityOnly": {
+                  "default": false,
+                  "description": "Only apply security updates",
+                  "type": "boolean"
+                }
+              }
+            },
+            "DockerHost": {
+              "default": false,
+              "type": "boolean"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Logging": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Processor": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Network": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Ports": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "LB": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "LinkName": {
+                          "default": "lb",
+                          "type": "string"
+                        },
+                        "Tier": {
+                          "type": "string"
+                        },
+                        "Instance": {
+                          "type": "string"
+                        },
+                        "Version": {
+                          "type": "string"
+                        },
+                        "PortMapping": {
+                          "type": "string"
+                        },
+                        "Component": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Tier",
+                        "Component"
+                      ]
+                    },
+                    "IPAddressGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-ec2-schema.json"
 }

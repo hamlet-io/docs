@@ -1,33 +1,33 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-bootstrapprofile-schema.json",
   "definitions": {
     "BootstrapProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "*": {
-              "type": "object",
-              "additionalProperties": false,
               "description": "The component type the profile applies to",
+              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Bootstraps": {
-                  "type": "array",
                   "contains": {
                     "type": "string"
-                  }
+                  },
+                  "type": "array"
                 }
               },
               "required": [
                 "Bootstraps"
               ]
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-bootstrapprofile-schema.json"
 }

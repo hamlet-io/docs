@@ -1,129 +1,58 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-networkacl-schema.json",
   "definitions": {
     "networkacl": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Active": {
-              "type": "boolean",
-              "default": false
-            },
-            "Rules": {
-              "type": "object",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Priority": {
-                      "type": "number"
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
                     },
-                    "Action": {
-                      "type": "string",
-                      "default": "deny",
-                      "enum": [
-                        "allow",
-                        "deny"
-                      ]
-                    },
-                    "Source": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "description": "Source of the network traffic",
-                      "properties": {
-                        "IPAddressGroups": {
-                          "type": "array",
-                          "contains": {
-                            "type": "string"
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
                           }
-                        },
-                        "Port": {
-                          "type": "string",
-                          "description": "Port or port range the source is coming from",
-                          "default": "ephemeraltcp"
                         }
-                      }
-                    },
-                    "Destination": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "description": "Destination of the network traffic",
-                      "properties": {
-                        "IPAddressGroups": {
-                          "type": "array",
-                          "contains": {
-                            "type": "string"
-                          }
-                        },
-                        "Port": {
-                          "type": "string",
-                          "description": "Port or port range the source is trying to access"
-                        }
-                      }
-                    },
-                    "ReturnTraffic": {
-                      "type": "boolean",
-                      "description": "If ACL is stateless add a return rule",
-                      "default": true
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
                     }
-                  },
-                  "additionalProperties": false
+                  }
                 }
-              }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
             },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
-                }
-              }
+            "Active": {
+              "default": false,
+              "type": "boolean"
             },
             "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
-                    },
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -135,103 +64,174 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
                   },
-                  "additionalProperties": false
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
                 }
               }
             },
             "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "type": "array"
+            },
+            "Rules": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Destination": {
+                      "description": "Destination of the network traffic",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Port": {
+                          "description": "Port or port range the source is trying to access",
+                          "type": "string"
+                        },
+                        "IPAddressGroups": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      }
+                    },
+                    "Action": {
+                      "default": "deny",
+                      "type": "string",
+                      "enum": [
+                        "allow",
+                        "deny"
+                      ]
+                    },
+                    "Priority": {
+                      "type": "number"
+                    },
+                    "ReturnTraffic": {
+                      "default": true,
+                      "description": "If ACL is stateless add a return rule",
+                      "type": "boolean"
+                    },
+                    "Source": {
+                      "description": "Source of the network traffic",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Port": {
+                          "default": "ephemeraltcp",
+                          "description": "Port or port range the source is coming from",
+                          "type": "string"
+                        },
+                        "IPAddressGroups": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "type": "object"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-networkacl-schema.json"
 }

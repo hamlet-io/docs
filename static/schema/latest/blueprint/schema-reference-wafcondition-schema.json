@@ -1,29 +1,58 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-wafcondition-schema.json",
   "definitions": {
     "WAFCondition": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "Type": {
               "type": "string"
             },
             "Filters": {
-              "type": "array",
               "contains": {
                 "type": "object"
               },
               "additionalProperties": false,
+              "type": "array",
               "properties": {
-                "FieldsToMatch": {
+                "Sizes": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Operators": {
+                  "contains": {
+                    "type": "string"
+                  },
                   "type": "array",
+                  "enum": [
+                    "EQ",
+                    "NE",
+                    "LE",
+                    "LT",
+                    "GE",
+                    "GT"
+                  ]
+                },
+                "Constraints": {
+                  "type": "string",
+                  "enum": [
+                    "CONTAINS",
+                    "CONTAINS_WORD",
+                    "EXACTLY",
+                    "STARTS_WITH",
+                    "ENDS_WITH"
+                  ]
+                },
+                "FieldsToMatch": {
                   "contains": {
                     "type": "string"
                   },
                   "additionalProperties": false,
+                  "type": "array",
                   "properties": {
                     "Type": {
                       "type": "string",
@@ -42,33 +71,17 @@
                     }
                   }
                 },
-                "Constraints": {
-                  "type": "string",
-                  "enum": [
-                    "CONTAINS",
-                    "CONTAINS_WORD",
-                    "EXACTLY",
-                    "STARTS_WITH",
-                    "ENDS_WITH"
-                  ]
-                },
                 "Targets": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Sizes": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Transformations": {
-                  "type": "array",
                   "contains": {
                     "type": "string"
                   },
+                  "type": "array"
+                },
+                "Transformations": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array",
                   "enum": [
                     "NONE",
                     "CMD_LINE",
@@ -77,27 +90,14 @@
                     "LOWERCASE",
                     "URL_DECODE"
                   ]
-                },
-                "Operators": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "enum": [
-                    "EQ",
-                    "NE",
-                    "LE",
-                    "LT",
-                    "GE",
-                    "GT"
-                  ]
                 }
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-wafcondition-schema.json"
 }

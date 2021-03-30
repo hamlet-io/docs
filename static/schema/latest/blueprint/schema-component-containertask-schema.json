@@ -1,229 +1,86 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-containertask-schema.json",
   "definitions": {
     "containertask": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Engine": {
-              "type": "string",
-              "default": "ec2",
-              "enum": [
-                "ec2",
-                "fargate"
-              ]
-            },
-            "Containers": {
-              "type": "object",
+            "Schedules": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Extensions": {
-                      "type": "array",
+                    "Expression": {
+                      "default": "rate(1 hours)",
+                      "type": "string"
+                    },
+                    "TaskCount": {
+                      "default": 1,
+                      "description": "The number of tasks to run on the schedule",
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "FixedName": {
+              "default": false,
+              "type": "boolean"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "Containers": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "MemoryReservation": {
+                      "type": "number"
+                    },
+                    "ContainerNetworkLinks": {
                       "contains": {
                         "type": "string"
                       },
-                      "description": "Extensions to invoke as part of component processing"
+                      "type": "array"
+                    },
+                    "Privileged": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "MaximumMemory": {
+                      "description": "Set to 0 to not set a maximum",
+                      "type": "number"
                     },
                     "Cpu": {
                       "type": "number"
                     },
-                    "Links": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-                    },
-                    "LocalLogging": {
-                      "type": "boolean",
-                      "default": false
-                    },
-                    "LogDriver": {
-                      "type": "string",
-                      "default": "awslogs",
-                      "enum": [
-                        "awslogs",
-                        "json-file",
-                        "fluentd"
-                      ]
-                    },
-                    "LogMetrics": {
-                      "type": "object",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "LogFilter": {
-                              "type": "string"
-                            }
-                          },
-                          "additionalProperties": false,
-                          "required": [
-                            "LogFilter"
-                          ]
-                        }
-                      }
-                    },
-                    "Alerts": {
-                      "type": "object",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "Namespace": {
-                              "type": "string"
-                            },
-                            "DimensionSource": {
-                              "type": "string",
-                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
-                              "default": "Resource",
-                              "enum": [
-                                "Resource",
-                                "Configured"
-                              ]
-                            },
-                            "Resource": {
-                              "type": "object",
-                              "additionalProperties": false,
-                              "description": "Provide a component resource to determine the dimensions of the metric",
-                              "properties": {
-                                "Id": {
-                                  "type": "string"
-                                },
-                                "Type": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "Dimensions": {
-                              "type": "object",
-                              "description": "Explicit configured dimensions",
-                              "patternProperties": {
-                                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                                  "properties": {
-                                    "Key": {
-                                      "type": "string",
-                                      "description": "The Key of the dimension"
-                                    },
-                                    "Value": {
-                                      "type": "string",
-                                      "description": "The value of the dimension to match"
-                                    },
-                                    "SettingEnvName": {
-                                      "type": "string",
-                                      "description": "A setting name as env that will provide the dimension value"
-                                    }
-                                  },
-                                  "additionalProperties": false
-                                }
-                              }
-                            },
-                            "Metric": {
-                              "type": "string"
-                            },
-                            "Statistic": {
-                              "type": "string",
-                              "default": "Sum"
-                            },
-                            "Description": {
-                              "type": "string"
-                            },
-                            "Name": {
-                              "type": "string"
-                            },
-                            "Threshold": {
-                              "type": "number",
-                              "default": 1
-                            },
-                            "Severity": {
-                              "type": "string",
-                              "default": "info",
-                              "enum": [
-                                "debug",
-                                "info",
-                                "warn",
-                                "error",
-                                "fatal"
-                              ]
-                            },
-                            "Comparison": {
-                              "type": "string",
-                              "default": "Threshold"
-                            },
-                            "Operator": {
-                              "type": "string",
-                              "default": "GreaterThanOrEqualToThreshold"
-                            },
-                            "Time": {
-                              "type": "number",
-                              "default": 300
-                            },
-                            "Periods": {
-                              "type": "number",
-                              "default": 1
-                            },
-                            "ReportOk": {
-                              "type": "boolean",
-                              "default": false
-                            },
-                            "MissingData": {
-                              "type": "string",
-                              "default": "notBreaching"
-                            },
-                            "Unit": {
-                              "type": "string",
-                              "default": "Count"
-                            }
-                          },
-                          "additionalProperties": false,
-                          "required": [
-                            "Metric",
-                            "Name"
-                          ]
-                        }
-                      }
-                    },
-                    "ContainerLogGroup": {
-                      "type": "boolean",
-                      "default": false
-                    },
-                    "RunCapabilities": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      }
-                    },
-                    "Privileged": {
-                      "type": "boolean",
-                      "default": false
-                    },
-                    "MaximumMemory": {
-                      "type": "number",
-                      "description": "Set to 0 to not set a maximum"
-                    },
-                    "MemoryReservation": {
-                      "type": "number"
-                    },
                     "Ports": {
-                      "type": "object",
                       "patternProperties": {
                         "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
                           "properties": {
                             "DynamicHostPort": {
-                              "type": "boolean",
-                              "default": false
+                              "default": false,
+                              "type": "boolean"
                             },
                             "LB": {
-                              "type": "object",
                               "additionalProperties": false,
+                              "type": "object",
                               "properties": {
+                                "LinkName": {
+                                  "default": "lb",
+                                  "type": "string"
+                                },
                                 "Tier": {
                                   "type": "string"
-                                },
-                                "Component": {
-                                  "type": "string"
-                                },
-                                "LinkName": {
-                                  "type": "string",
-                                  "default": "lb"
                                 },
                                 "Instance": {
                                   "type": "string"
@@ -233,6 +90,9 @@
                                 },
                                 "PortMapping": {
                                   "type": "string"
+                                },
+                                "Component": {
+                                  "type": "string"
                                 }
                               },
                               "required": [
@@ -241,23 +101,23 @@
                               ]
                             },
                             "Registry": {
-                              "type": "object",
                               "additionalProperties": false,
+                              "type": "object",
                               "properties": {
+                                "LinkName": {
+                                  "default": "srvreg",
+                                  "type": "string"
+                                },
                                 "Tier": {
                                   "type": "string"
-                                },
-                                "Component": {
-                                  "type": "string"
-                                },
-                                "LinkName": {
-                                  "type": "string",
-                                  "default": "srvreg"
                                 },
                                 "Instance": {
                                   "type": "string"
                                 },
                                 "Version": {
+                                  "type": "string"
+                                },
+                                "Component": {
                                   "type": "string"
                                 },
                                 "RegistryService": {
@@ -270,269 +130,266 @@
                               ]
                             },
                             "IPAddressGroups": {
-                              "type": "array",
                               "contains": {
                                 "type": "string"
-                              }
+                              },
+                              "type": "array"
                             }
-                          },
-                          "additionalProperties": false
+                          }
                         }
-                      }
+                      },
+                      "type": "object"
+                    },
+                    "Extensions": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Extensions to invoke as part of component processing",
+                      "type": "array"
                     },
                     "Image": {
-                      "type": "object",
-                      "additionalProperties": false,
                       "description": "Set the source of the components image",
+                      "additionalProperties": false,
+                      "type": "object",
                       "properties": {
+                        "Source:containerregistry": {
+                          "description": "A docker container registry to source the image from",
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Image": {
+                              "description": "The docker image that you want to use",
+                              "type": "string"
+                            }
+                          }
+                        },
                         "Source": {
-                          "type": "string",
-                          "description": "The source of the image",
                           "default": "Registry",
+                          "description": "The source of the image",
+                          "type": "string",
                           "enum": [
                             "registry",
                             "containerregistry"
                           ]
-                        },
-                        "Source:containerregistry": {
-                          "type": "object",
-                          "additionalProperties": false,
-                          "description": "A docker container registry to source the image from",
-                          "properties": {
-                            "Image": {
-                              "type": "string",
-                              "description": "The docker image that you want to use"
-                            }
-                          }
                         }
                       },
                       "required": [
                         "Source"
                       ]
                     },
-                    "Version": {
-                      "type": "string",
-                      "description": "Override the version from the deployment unit"
+                    "LocalLogging": {
+                      "default": false,
+                      "type": "boolean"
                     },
-                    "ContainerNetworkLinks": {
-                      "type": "array",
+                    "RunCapabilities": {
                       "contains": {
                         "type": "string"
-                      }
+                      },
+                      "type": "array"
+                    },
+                    "Version": {
+                      "description": "Override the version from the deployment unit",
+                      "type": "string"
+                    },
+                    "RunMode": {
+                      "description": "A per container setting which can be used by the app to determine run mode for a container in a task - defaults to the second half of a dash separated id",
+                      "type": "string"
                     },
                     "Profiles": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
                         "Alert": {
-                          "type": "string",
-                          "default": "default"
+                          "default": "default",
+                          "type": "string"
                         }
                       }
                     },
-                    "RunMode": {
+                    "Links": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    },
+                    "LogDriver": {
+                      "default": "awslogs",
                       "type": "string",
-                      "description": "A per container setting which can be used by the app to determine run mode for a container in a task - defaults to the second half of a dash separated id"
+                      "enum": [
+                        "awslogs",
+                        "json-file",
+                        "fluentd"
+                      ]
                     },
                     "Ulimits": {
-                      "type": "object",
-                      "description": "Linux OS based limits for the container",
                       "patternProperties": {
                         "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
                           "properties": {
-                            "Name": {
-                              "type": "string",
-                              "description": "The name of the ulimit to apply"
+                            "SoftLimit": {
+                              "default": 1024,
+                              "description": "The User level limit to apply",
+                              "type": "number"
                             },
                             "HardLimit": {
-                              "type": "number",
+                              "default": 1024,
                               "description": "The OS level hard limit to apply",
-                              "default": 1024
+                              "type": "number"
                             },
-                            "SoftLimit": {
-                              "type": "number",
-                              "description": "The User level limit to apply",
-                              "default": 1024
+                            "Name": {
+                              "description": "The name of the ulimit to apply",
+                              "type": "string"
                             }
                           },
-                          "additionalProperties": false,
                           "required": [
                             "Name"
                           ]
                         }
-                      }
+                      },
+                      "description": "Linux OS based limits for the container",
+                      "type": "object"
+                    },
+                    "LogMetrics": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "LogFilter": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "LogFilter"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "Alerts": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Operator": {
+                              "default": "GreaterThanOrEqualToThreshold",
+                              "type": "string"
+                            },
+                            "Description": {
+                              "type": "string"
+                            },
+                            "Resource": {
+                              "description": "Provide a component resource to determine the dimensions of the metric",
+                              "additionalProperties": false,
+                              "type": "object",
+                              "properties": {
+                                "Type": {
+                                  "type": "string"
+                                },
+                                "Id": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "Dimensions": {
+                              "patternProperties": {
+                                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "Value": {
+                                      "description": "The value of the dimension to match",
+                                      "type": "string"
+                                    },
+                                    "SettingEnvName": {
+                                      "description": "A setting name as env that will provide the dimension value",
+                                      "type": "string"
+                                    },
+                                    "Key": {
+                                      "description": "The Key of the dimension",
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "description": "Explicit configured dimensions",
+                              "type": "object"
+                            },
+                            "Severity": {
+                              "default": "info",
+                              "type": "string",
+                              "enum": [
+                                "debug",
+                                "info",
+                                "warn",
+                                "error",
+                                "fatal"
+                              ]
+                            },
+                            "Time": {
+                              "default": 300,
+                              "type": "number"
+                            },
+                            "Unit": {
+                              "default": "Count",
+                              "type": "string"
+                            },
+                            "MissingData": {
+                              "default": "notBreaching",
+                              "type": "string"
+                            },
+                            "Namespace": {
+                              "type": "string"
+                            },
+                            "Name": {
+                              "type": "string"
+                            },
+                            "Periods": {
+                              "default": 1,
+                              "type": "number"
+                            },
+                            "Statistic": {
+                              "default": "Sum",
+                              "type": "string"
+                            },
+                            "Comparison": {
+                              "default": "Threshold",
+                              "type": "string"
+                            },
+                            "ReportOk": {
+                              "default": false,
+                              "type": "boolean"
+                            },
+                            "DimensionSource": {
+                              "default": "Resource",
+                              "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                              "type": "string",
+                              "enum": [
+                                "Resource",
+                                "Configured"
+                              ]
+                            },
+                            "Metric": {
+                              "type": "string"
+                            },
+                            "Threshold": {
+                              "default": 1,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "Metric",
+                            "Name"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "ContainerLogGroup": {
+                      "default": false,
+                      "type": "boolean"
                     }
                   },
-                  "additionalProperties": false,
                   "required": [
                     "MemoryReservation"
                   ]
                 }
-              }
-            },
-            "UseTaskRole": {
-              "type": "boolean",
-              "default": true
-            },
-            "Permissions": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Decrypt": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "AsFile": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "AppData": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "AppPublic": {
-                  "type": "boolean",
-                  "default": true
-                }
-              }
-            },
-            "TaskLogGroup": {
-              "type": "boolean",
-              "default": true
-            },
-            "LogMetrics": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "LogFilter": {
-                      "type": "string"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "LogFilter"
-                  ]
-                }
-              }
-            },
-            "Alerts": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Namespace": {
-                      "type": "string"
-                    },
-                    "DimensionSource": {
-                      "type": "string",
-                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
-                      "default": "Resource",
-                      "enum": [
-                        "Resource",
-                        "Configured"
-                      ]
-                    },
-                    "Resource": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "description": "Provide a component resource to determine the dimensions of the metric",
-                      "properties": {
-                        "Id": {
-                          "type": "string"
-                        },
-                        "Type": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "Dimensions": {
-                      "type": "object",
-                      "description": "Explicit configured dimensions",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "Key": {
-                              "type": "string",
-                              "description": "The Key of the dimension"
-                            },
-                            "Value": {
-                              "type": "string",
-                              "description": "The value of the dimension to match"
-                            },
-                            "SettingEnvName": {
-                              "type": "string",
-                              "description": "A setting name as env that will provide the dimension value"
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "Metric": {
-                      "type": "string"
-                    },
-                    "Statistic": {
-                      "type": "string",
-                      "default": "Sum"
-                    },
-                    "Description": {
-                      "type": "string"
-                    },
-                    "Name": {
-                      "type": "string"
-                    },
-                    "Threshold": {
-                      "type": "number",
-                      "default": 1
-                    },
-                    "Severity": {
-                      "type": "string",
-                      "default": "info",
-                      "enum": [
-                        "debug",
-                        "info",
-                        "warn",
-                        "error",
-                        "fatal"
-                      ]
-                    },
-                    "Comparison": {
-                      "type": "string",
-                      "default": "Threshold"
-                    },
-                    "Operator": {
-                      "type": "string",
-                      "default": "GreaterThanOrEqualToThreshold"
-                    },
-                    "Time": {
-                      "type": "number",
-                      "default": 300
-                    },
-                    "Periods": {
-                      "type": "number",
-                      "default": 1
-                    },
-                    "ReportOk": {
-                      "type": "boolean",
-                      "default": false
-                    },
-                    "MissingData": {
-                      "type": "string",
-                      "default": "notBreaching"
-                    },
-                    "Unit": {
-                      "type": "string",
-                      "default": "Count"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "Metric",
-                    "Name"
-                  ]
-                }
-              }
+              },
+              "type": "object"
             },
             "NetworkMode": {
               "type": "string",
@@ -543,95 +400,48 @@
                 "host"
               ]
             },
-            "FixedName": {
-              "type": "boolean",
-              "default": false
-            },
-            "Schedules": {
-              "type": "object",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Expression": {
-                      "type": "string",
-                      "default": "rate(1 hours)"
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
                     },
-                    "TaskCount": {
-                      "type": "number",
-                      "description": "The number of tasks to run on the schedule",
-                      "default": 1
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
                     }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-            },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
                   }
-                },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
-                },
-                "Alert": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Network": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Logging": {
-                  "type": "string",
-                  "default": "default"
                 }
-              }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
             },
             "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
-                    },
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -643,103 +453,293 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "UseTaskRole": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
                   },
-                  "additionalProperties": false
+                  "type": "array"
+                },
+                "Logging": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Network": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Alert": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
                 }
               }
+            },
+            "Permissions": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Decrypt": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "AppData": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "AppPublic": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "AsFile": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            },
+            "TaskLogGroup": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "type": "array"
+            },
+            "LogMetrics": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "LogFilter": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "LogFilter"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Alerts": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Operator": {
+                      "default": "GreaterThanOrEqualToThreshold",
+                      "type": "string"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "Resource": {
+                      "description": "Provide a component resource to determine the dimensions of the metric",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Type": {
+                          "type": "string"
+                        },
+                        "Id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Dimensions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Value": {
+                              "description": "The value of the dimension to match",
+                              "type": "string"
+                            },
+                            "SettingEnvName": {
+                              "description": "A setting name as env that will provide the dimension value",
+                              "type": "string"
+                            },
+                            "Key": {
+                              "description": "The Key of the dimension",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Explicit configured dimensions",
+                      "type": "object"
+                    },
+                    "Severity": {
+                      "default": "info",
+                      "type": "string",
+                      "enum": [
+                        "debug",
+                        "info",
+                        "warn",
+                        "error",
+                        "fatal"
+                      ]
+                    },
+                    "Time": {
+                      "default": 300,
+                      "type": "number"
+                    },
+                    "Unit": {
+                      "default": "Count",
+                      "type": "string"
+                    },
+                    "MissingData": {
+                      "default": "notBreaching",
+                      "type": "string"
+                    },
+                    "Namespace": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Periods": {
+                      "default": 1,
+                      "type": "number"
+                    },
+                    "Statistic": {
+                      "default": "Sum",
+                      "type": "string"
+                    },
+                    "Comparison": {
+                      "default": "Threshold",
+                      "type": "string"
+                    },
+                    "ReportOk": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "DimensionSource": {
+                      "default": "Resource",
+                      "description": "The source of the alert dimensions - resource lookup or explicit configuration",
+                      "type": "string",
+                      "enum": [
+                        "Resource",
+                        "Configured"
+                      ]
+                    },
+                    "Metric": {
+                      "type": "string"
+                    },
+                    "Threshold": {
+                      "default": 1,
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "Metric",
+                    "Name"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Engine": {
+              "default": "ec2",
+              "type": "string",
+              "enum": [
+                "ec2",
+                "fargate"
+              ]
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-containertask-schema.json"
 }

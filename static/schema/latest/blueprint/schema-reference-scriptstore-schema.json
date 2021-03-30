@@ -1,13 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-scriptstore-schema.json",
   "definitions": {
     "ScriptStore": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
+            "Destination": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Prefix": {
+                  "type": "string"
+                }
+              }
+            },
             "Engine": {
               "type": "string",
               "enum": [
@@ -15,34 +23,26 @@
                 "github"
               ]
             },
-            "Destination": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Prefix": {
-                  "type": "string"
-                }
-              }
-            },
             "Source": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Directory": {
-                  "type": "string"
-                },
                 "Repository": {
                   "type": "string"
                 },
                 "Branch": {
                   "type": "string"
+                },
+                "Directory": {
+                  "type": "string"
                 }
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-scriptstore-schema.json"
 }

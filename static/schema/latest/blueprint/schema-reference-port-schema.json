@@ -1,13 +1,24 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-port-schema.json",
   "definitions": {
     "Port": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
+            "PortRange": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "From": {
+                  "type": "number"
+                },
+                "To": {
+                  "type": "number"
+                }
+              }
+            },
             "IPProtocol": {
               "type": "string",
               "enum": [
@@ -18,47 +29,20 @@
                 "all"
               ]
             },
-            "Protocol": {
-              "type": "string",
-              "enum": [
-                "TCP",
-                "UDP",
-                "HTTP",
-                "HTTPS",
-                "SSL"
-              ]
-            },
             "Port": {
               "type": "number"
             },
             "HealthCheck": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Path": {
                   "type": "string"
                 },
-                "HealthyThreshold": {
-                  "anyOf": [
-                    {
-                      "type": "number"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ]
+                "SuccessCodes": {
+                  "type": "string"
                 },
                 "UnhealthyThreshold": {
-                  "anyOf": [
-                    {
-                      "type": "number"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ]
-                },
-                "Interval": {
                   "anyOf": [
                     {
                       "type": "number"
@@ -78,46 +62,62 @@
                     }
                   ]
                 },
-                "SuccessCodes": {
-                  "type": "string"
+                "HealthyThreshold": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "Interval": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
                 }
               }
             },
-            "PortRange": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "From": {
-                  "type": "number"
-                },
-                "To": {
-                  "type": "number"
-                }
-              }
+            "Protocol": {
+              "type": "string",
+              "enum": [
+                "TCP",
+                "UDP",
+                "HTTP",
+                "HTTPS",
+                "SSL"
+              ]
             },
             "ICMP": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
-                "Code": {
+                "Type": {
                   "type": "number"
                 },
-                "Type": {
+                "Code": {
                   "type": "number"
                 }
               }
             },
             "Certificate": {
-              "type": "boolean",
-              "default": false
+              "default": false,
+              "type": "boolean"
             }
           },
-          "additionalProperties": false,
           "required": [
             "IPProtocol"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-port-schema.json"
 }

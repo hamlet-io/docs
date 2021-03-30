@@ -1,25 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-deploymentgroup-schema.json",
   "definitions": {
     "DeploymentGroup": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Enabled": {
-              "type": "boolean",
-              "default": true
-            },
             "Priority": {
-              "type": "number",
+              "default": 100,
               "description": "The priority this group has in deployment mode processing",
-              "default": 100
+              "type": "number"
+            },
+            "OutputPrefix": {
+              "description": "Overrides the prefix used when generating outputs - Defaults to the Id of the Group",
+              "type": "string"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
             },
             "Level": {
-              "type": "string",
               "description": "The deployment level to use for template generation",
+              "type": "string",
               "enum": [
                 "",
                 "account",
@@ -28,56 +31,53 @@
                 "application"
               ]
             },
-            "OutputLevel": {
-              "type": "string",
-              "description": "Overrides the Group Id when performing output checks - Defaults to the Id of the Group"
-            },
             "ResourceSets": {
-              "type": "object",
-              "description": "Generate deployments based on resource labels across all units in the group",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Enabled": {
-                      "type": "boolean",
-                      "default": true
-                    },
-                    "deployment:Unit": {
-                      "type": "string",
-                      "description": "The Deployment Unit"
-                    },
-                    "deployment:Priority": {
-                      "type": "number",
-                      "description": "The Deployment Priority",
-                      "default": 5
-                    },
                     "ResourceLabels": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
-                      "description": "The resource labels to include in the subset"
+                      "description": "The resource labels to include in the subset",
+                      "type": "array"
+                    },
+                    "deployment:Unit": {
+                      "description": "The Deployment Unit",
+                      "type": "string"
+                    },
+                    "deployment:Priority": {
+                      "default": 5,
+                      "description": "The Deployment Priority",
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
                     }
                   },
-                  "additionalProperties": false,
                   "required": [
                     "deployment:Unit",
                     "ResourceLabels"
                   ]
                 }
-              }
+              },
+              "description": "Generate deployments based on resource labels across all units in the group",
+              "type": "object"
             },
             "CompositeTemplate": {
-              "type": "string",
-              "description": "A composite template file to include for this group"
+              "description": "A composite template file to include for this group",
+              "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": [
             "Level"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-deploymentgroup-schema.json"
 }

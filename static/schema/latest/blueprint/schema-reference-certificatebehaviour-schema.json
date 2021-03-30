@@ -1,44 +1,44 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-certificatebehaviour-schema.json",
   "definitions": {
     "CertificateBehaviour": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "External": {
-              "type": "boolean"
-            },
             "Wildcard": {
               "type": "boolean"
             },
             "IncludeInHost": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
+                "Tier": {
+                  "type": "boolean"
+                },
                 "Product": {
                   "type": "boolean"
                 },
                 "Segment": {
                   "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
                 }
               }
             },
+            "External": {
+              "type": "boolean"
+            },
             "HostParts": {
-              "type": "array",
               "contains": {
                 "type": "string"
-              }
+              },
+              "type": "array"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-certificatebehaviour-schema.json"
 }

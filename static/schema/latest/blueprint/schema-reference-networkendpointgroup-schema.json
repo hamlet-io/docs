@@ -1,26 +1,26 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-networkendpointgroup-schema.json",
   "definitions": {
     "NetworkEndpointGroup": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "Services": {
-              "type": "array",
               "contains": {
                 "type": "string"
-              }
+              },
+              "type": "array"
             }
           },
-          "additionalProperties": false,
           "required": [
             "Services"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-networkendpointgroup-schema.json"
 }

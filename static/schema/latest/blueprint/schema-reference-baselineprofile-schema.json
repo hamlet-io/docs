@@ -1,14 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-baselineprofile-schema.json",
   "definitions": {
     "BaselineProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "OpsData": {
+            "SSHKey": {
+              "type": "string"
+            },
+            "CDNOriginKey": {
               "type": "string"
             },
             "AppData": {
@@ -17,14 +19,10 @@
             "Encryption": {
               "type": "string"
             },
-            "SSHKey": {
-              "type": "string"
-            },
-            "CDNOriginKey": {
+            "OpsData": {
               "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": [
             "OpsData",
             "AppData",
@@ -33,7 +31,9 @@
             "CDNOriginKey"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-baselineprofile-schema.json"
 }

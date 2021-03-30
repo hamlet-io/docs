@@ -1,253 +1,253 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-processor-schema.json",
   "definitions": {
     "Processor": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "NAT": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Processor": {
                   "type": "string"
-                }
-              }
-            },
-            "bastion": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Processor": {
-                  "type": "string"
-                }
-              }
-            },
-            "EC2": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Processor": {
-                  "type": "string"
-                }
-              }
-            },
-            "ECS": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Processor": {
-                  "type": "string"
-                },
-                "MinPerZone": {
-                  "type": "number"
-                },
-                "MaxPerZone": {
-                  "type": "number"
-                },
-                "DesiredPerZone": {
-                  "type": "number"
-                },
-                "MaxCount": {
-                  "type": "number"
-                },
-                "MinCount": {
-                  "type": "number"
-                },
-                "DesiredCount": {
-                  "type": "number"
-                }
-              }
-            },
-            "containerhost": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "MinPerZone": {
-                  "type": "number"
-                },
-                "MaxPerZone": {
-                  "type": "number"
-                },
-                "DesiredPerZone": {
-                  "type": "number"
-                },
-                "MaxCount": {
-                  "type": "number"
-                },
-                "MinCount": {
-                  "type": "number"
-                },
-                "DesiredCount": {
-                  "type": "number"
-                }
-              }
-            },
-            "ComputeCluster": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Processor": {
-                  "type": "string"
-                },
-                "MinPerZone": {
-                  "type": "number"
-                },
-                "MaxPerZone": {
-                  "type": "number"
-                },
-                "DesiredPerZone": {
-                  "type": "number"
-                },
-                "MaxCount": {
-                  "type": "number"
-                },
-                "MinCount": {
-                  "type": "number"
-                },
-                "DesiredCount": {
-                  "type": "number"
-                }
-              }
-            },
-            "db": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Processor": {
-                  "type": "string"
-                },
-                "MinPerZone": {
-                  "type": "number"
-                },
-                "MaxPerZone": {
-                  "type": "number"
-                },
-                "DesiredPerZone": {
-                  "type": "number"
-                },
-                "MaxCount": {
-                  "type": "number"
-                },
-                "MinCount": {
-                  "type": "number"
-                },
-                "DesiredCount": {
-                  "type": "number"
                 }
               }
             },
             "cache": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Processor": {
                   "type": "string"
                 },
                 "CountPerZone": {
-                  "type": "number",
-                  "default": 1
+                  "default": 1,
+                  "type": "number"
                 }
               }
             },
-            "es": {
-              "type": "object",
+            "ECS": {
               "additionalProperties": false,
-              "properties": {
-                "Processor": {
-                  "type": "string"
-                },
-                "CountPerZone": {
-                  "type": "number",
-                  "default": 1
-                },
-                "Master": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "Processor": {
-                      "type": "string"
-                    },
-                    "Count": {
-                      "type": "number",
-                      "default": 0
-                    }
-                  }
-                }
-              }
-            },
-            "service": {
               "type": "object",
-              "additionalProperties": false,
               "properties": {
                 "MinPerZone": {
+                  "type": "number"
+                },
+                "Processor": {
+                  "type": "string"
+                },
+                "DesiredPerZone": {
                   "type": "number"
                 },
                 "MaxPerZone": {
                   "type": "number"
                 },
+                "MaxCount": {
+                  "type": "number"
+                },
+                "DesiredCount": {
+                  "type": "number"
+                },
+                "MinCount": {
+                  "type": "number"
+                }
+              }
+            },
+            "EC2": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Processor": {
+                  "type": "string"
+                }
+              }
+            },
+            "service": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "MinPerZone": {
+                  "type": "number"
+                },
                 "DesiredPerZone": {
+                  "type": "number"
+                },
+                "MaxPerZone": {
                   "type": "number"
                 },
                 "MaxCount": {
                   "type": "number"
                 },
-                "MinCount": {
+                "DesiredCount": {
                   "type": "number"
                 },
-                "DesiredCount": {
+                "MinCount": {
                   "type": "number"
                 }
               }
             },
             "containerservice": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "MinPerZone": {
-                  "type": "number"
-                },
-                "MaxPerZone": {
                   "type": "number"
                 },
                 "DesiredPerZone": {
                   "type": "number"
                 },
-                "MaxCount": {
+                "MaxPerZone": {
                   "type": "number"
                 },
-                "MinCount": {
+                "MaxCount": {
                   "type": "number"
                 },
                 "DesiredCount": {
                   "type": "number"
+                },
+                "MinCount": {
+                  "type": "number"
+                }
+              }
+            },
+            "ComputeCluster": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "MinPerZone": {
+                  "type": "number"
+                },
+                "Processor": {
+                  "type": "string"
+                },
+                "DesiredPerZone": {
+                  "type": "number"
+                },
+                "MaxPerZone": {
+                  "type": "number"
+                },
+                "MaxCount": {
+                  "type": "number"
+                },
+                "DesiredCount": {
+                  "type": "number"
+                },
+                "MinCount": {
+                  "type": "number"
+                }
+              }
+            },
+            "bastion": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Processor": {
+                  "type": "string"
                 }
               }
             },
             "EMR": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
+                "DesiredTaskPerZone": {
+                  "default": 1,
+                  "type": "number"
+                },
                 "Processor": {
                   "type": "string"
                 },
                 "DesiredCorePerZone": {
-                  "type": "number",
-                  "default": 1
+                  "default": 1,
+                  "type": "number"
+                }
+              }
+            },
+            "db": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "MinPerZone": {
+                  "type": "number"
                 },
-                "DesiredTaskPerZone": {
-                  "type": "number",
-                  "default": 1
+                "Processor": {
+                  "type": "string"
+                },
+                "DesiredPerZone": {
+                  "type": "number"
+                },
+                "MaxPerZone": {
+                  "type": "number"
+                },
+                "MaxCount": {
+                  "type": "number"
+                },
+                "DesiredCount": {
+                  "type": "number"
+                },
+                "MinCount": {
+                  "type": "number"
+                }
+              }
+            },
+            "es": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Master": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "Count": {
+                      "default": 0,
+                      "type": "number"
+                    }
+                  }
+                },
+                "Processor": {
+                  "type": "string"
+                },
+                "CountPerZone": {
+                  "default": 1,
+                  "type": "number"
+                }
+              }
+            },
+            "containerhost": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "MinPerZone": {
+                  "type": "number"
+                },
+                "DesiredPerZone": {
+                  "type": "number"
+                },
+                "MaxPerZone": {
+                  "type": "number"
+                },
+                "MaxCount": {
+                  "type": "number"
+                },
+                "DesiredCount": {
+                  "type": "number"
+                },
+                "MinCount": {
+                  "type": "number"
                 }
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-processor-schema.json"
 }

@@ -1,12 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinedata-schema.json",
   "definitions": {
     "baselinedata": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "Role": {
               "type": "string",
@@ -16,180 +15,52 @@
                 "staticWebsite"
               ]
             },
-            "Lifecycles": {
-              "type": "object",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Prefix": {
-                      "type": "string",
-                      "description": "The prefix to apply the lifecycle to"
-                    },
-                    "Expiration": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "number"
-                        }
-                      ],
-                      "description": "Provide either a date or a number of days",
-                      "default": "_operations"
-                    },
-                    "Offline": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "number"
-                        }
-                      ],
-                      "description": "Provide either a date or a number of days",
-                      "default": "_operations"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "Versioning": {
-              "type": "boolean",
-              "default": false
-            },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-            },
-            "Notifications": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Links": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-                    },
-                    "Prefix": {
-                      "type": "string"
-                    },
-                    "Suffix": {
-                      "type": "string"
-                    },
-                    "Events": {
-                      "type": "array",
+                    "DeploymentUnits": {
                       "contains": {
                         "type": "string"
                       },
-                      "default": [
-                        "create"
-                      ],
-                      "enum": [
-                        "create",
-                        "delete",
-                        "restore",
-                        "reducedredundancy"
-                      ]
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
                     },
-                    "aws:QueuePermissionMigration": {
-                      "type": "boolean",
-                      "description": "Deprecation alert: set to true once policy updated for queue",
-                      "default": false
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
                     }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "Encryption": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Enabled": {
-                  "type": "boolean",
-                  "description": "Enable at rest encryption",
-                  "default": false
-                },
-                "EncryptionSource": {
-                  "type": "string",
-                  "description": "The encryption service to use - LocalService = S3, EncryptionService = native encryption service (kms)",
-                  "default": "EncryptionService",
-                  "enum": [
-                    "EncryptionService",
-                    "LocalService"
-                  ]
-                }
-              }
-            },
-            "Replication": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Prefixes": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "default": [
-                    ""
-                  ]
-                },
-                "Enabled": {
-                  "type": "boolean",
-                  "default": true
-                }
-              }
-            },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
                   }
-                },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
                 }
-              }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "Versioning": {
+              "default": false,
+              "type": "boolean"
             },
             "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
-                    },
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -201,106 +72,235 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
                   },
-                  "additionalProperties": false
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Replication": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefixes": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    ""
+                  ],
+                  "type": "array"
                 }
               }
             },
             "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "type": "array"
+            },
+            "Lifecycles": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Expiration": {
+                      "default": "_operations",
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Provide either a date or a number of days"
+                    },
+                    "Offline": {
+                      "default": "_operations",
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Provide either a date or a number of days"
+                    },
+                    "Prefix": {
+                      "description": "The prefix to apply the lifecycle to",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Encryption": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "EncryptionSource": {
+                  "default": "EncryptionService",
+                  "description": "The encryption service to use - LocalService = S3, EncryptionService = native encryption service (kms)",
+                  "type": "string",
+                  "enum": [
+                    "EncryptionService",
+                    "LocalService"
+                  ]
+                },
+                "Enabled": {
+                  "default": false,
+                  "description": "Enable at rest encryption",
+                  "type": "boolean"
+                }
+              }
+            },
+            "Notifications": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Suffix": {
+                      "type": "string"
+                    },
+                    "aws:QueuePermissionMigration": {
+                      "default": false,
+                      "description": "Deprecation alert: set to true once policy updated for queue",
+                      "type": "boolean"
+                    },
+                    "Events": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "create"
+                      ],
+                      "type": "array",
+                      "enum": [
+                        "create",
+                        "delete",
+                        "restore",
+                        "reducedredundancy"
+                      ]
+                    },
+                    "Links": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    },
+                    "Prefix": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "type": "object"
             }
           },
-          "additionalProperties": false,
           "required": [
             "Role"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinedata-schema.json"
 }

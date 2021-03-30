@@ -1,25 +1,24 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-vmimageprofile-schema.json",
   "definitions": {
     "VMImageProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "*": {
-              "type": "object",
-              "additionalProperties": false,
               "description": "The component type that the VMImage configuration belongs to.",
+              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Publisher": {
                   "type": "string"
                 },
-                "Offering": {
+                "Image": {
                   "type": "string"
                 },
-                "Image": {
+                "Offering": {
                   "type": "string"
                 },
                 "LicenseType": {
@@ -32,10 +31,11 @@
                 "Image"
               ]
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-vmimageprofile-schema.json"
 }

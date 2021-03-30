@@ -1,12 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-logfile-schema.json",
   "definitions": {
     "LogFile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
             "FilePath": {
               "type": "string"
@@ -18,12 +17,13 @@
               "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": [
             "FilePath"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-logfile-schema.json"
 }

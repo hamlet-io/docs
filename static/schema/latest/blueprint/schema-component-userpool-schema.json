@@ -1,14 +1,99 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpool-schema.json",
   "definitions": {
     "userpool": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
+            "AuthProviders": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "VerifyPhone": {
+              "default": false,
+              "type": "boolean"
+            },
+            "AuthorizationHeader": {
+              "default": "Authorization",
+              "type": "string"
+            },
+            "Schema": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Mutable": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Constraints": {
+                      "description": "Constraints applied to the attribute based on their type",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Number": {
+                          "description": "Number based Constraints",
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "MinValue": {
+                              "description": "The minimumn value of the attribute",
+                              "type": "number"
+                            },
+                            "MaxValue": {
+                              "description": "The maximum value of the attribute",
+                              "type": "number"
+                            }
+                          }
+                        },
+                        "String": {
+                          "description": "String based Constraints",
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "MinLength": {
+                              "default": 0,
+                              "description": "The minimumn length of the attribute 0 = any",
+                              "type": "number"
+                            },
+                            "MaxLength": {
+                              "default": 0,
+                              "description": "The maximum length of the attribute 0 = any",
+                              "type": "number"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Required": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "DataType": {
+                      "default": "String",
+                      "type": "string",
+                      "enum": [
+                        "String",
+                        "Number",
+                        "DateTime",
+                        "Boolean"
+                      ]
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
             "MFA": {
+              "default": false,
               "anyOf": [
                 {
                   "type": "boolean"
@@ -17,7 +102,6 @@
                   "type": "string"
                 }
               ],
-              "default": false,
               "enum": [
                 "true",
                 true,
@@ -26,243 +110,41 @@
                 "optional"
               ]
             },
+            "DefaultClient": {
+              "default": true,
+              "description": "Enable default client mode which creates app client for the user pool and aligns with legacy config",
+              "type": "boolean"
+            },
             "MFAMethods": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
               "default": [
                 "SMS"
               ],
+              "type": "array",
               "enum": [
                 "SMS",
                 "SoftwareToken"
               ]
             },
-            "AdminCreatesUser": {
-              "type": "boolean",
-              "default": true
-            },
-            "UnusedAccountTimeout": {
-              "type": "number",
-              "default": 1
-            },
-            "VerifyEmail": {
-              "type": "boolean",
-              "default": true
-            },
-            "VerifyPhone": {
-              "type": "boolean",
-              "default": false
-            },
-            "LoginAliases": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              },
-              "description": "Deprecated - use Username.Aliases"
-            },
-            "AuthorizationHeader": {
-              "type": "string",
-              "default": "Authorization"
-            },
-            "Username": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "CaseSensitive": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "Attributes": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "enum": [
-                    "email",
-                    "phone_number"
-                  ]
-                },
-                "Aliases": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "default": [
-                    "email"
-                  ],
-                  "enum": [
-                    "phone_number",
-                    "email",
-                    "preferred_username"
-                  ]
-                }
-              }
-            },
-            "PasswordPolicy": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "AllowUserRecovery": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "MinimumLength": {
-                  "type": "number",
-                  "default": 10
-                },
-                "Lowercase": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "Uppercase": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "Numbers": {
-                  "type": "boolean",
-                  "default": true
-                },
-                "SpecialCharacters": {
-                  "type": "boolean",
-                  "default": true
-                }
-              }
-            },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-            },
-            "DefaultClient": {
-              "type": "boolean",
-              "description": "Enable default client mode which creates app client for the user pool and aligns with legacy config",
-              "default": true
-            },
-            "Schema": {
-              "type": "object",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "DataType": {
-                      "type": "string",
-                      "default": "String",
-                      "enum": [
-                        "String",
-                        "Number",
-                        "DateTime",
-                        "Boolean"
-                      ]
-                    },
-                    "Mutable": {
-                      "type": "boolean",
-                      "default": true
-                    },
-                    "Required": {
-                      "type": "boolean",
-                      "default": true
-                    },
-                    "Constraints": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "description": "Constraints applied to the attribute based on their type",
-                      "properties": {
-                        "String": {
-                          "type": "object",
-                          "additionalProperties": false,
-                          "description": "String based Constraints",
-                          "properties": {
-                            "MinLength": {
-                              "type": "number",
-                              "description": "The minimumn length of the attribute 0 = any",
-                              "default": 0
-                            },
-                            "MaxLength": {
-                              "type": "number",
-                              "description": "The maximum length of the attribute 0 = any",
-                              "default": 0
-                            }
-                          }
-                        },
-                        "Number": {
-                          "type": "object",
-                          "additionalProperties": false,
-                          "description": "Number based Constraints",
-                          "properties": {
-                            "MinValue": {
-                              "type": "number",
-                              "description": "The minimumn value of the attribute"
-                            },
-                            "MaxValue": {
-                              "type": "number",
-                              "description": "The maximum value of the attribute"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
             "HostedUI": {
-              "type": "object",
-              "additionalProperties": false,
               "description": "Provision a managed endpoint for login and oauth endpoints",
+              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "Certificate": {
-                  "type": "object",
                   "additionalProperties": false,
+                  "type": "object",
                   "properties": {
-                    "Qualifiers": {
-                      "type": "object",
-                      "description": "District based overrides to domain properties"
-                    },
-                    "Domain": {
-                      "type": "string",
-                      "description": "Explicit domain id which will override the product domain"
-                    },
-                    "IncludeInDomain": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "Product": {
-                          "type": "boolean"
-                        },
-                        "Environment": {
-                          "type": "boolean"
-                        },
-                        "Segment": {
-                          "type": "boolean"
-                        }
-                      }
-                    },
-                    "Host": {
-                      "type": "string"
-                    },
-                    "HostParts": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      }
+                    "Wildcard": {
+                      "type": "boolean"
                     },
                     "IncludeInHost": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Product": {
-                          "type": "boolean"
-                        },
-                        "Environment": {
-                          "type": "boolean"
-                        },
-                        "Segment": {
-                          "type": "boolean"
-                        },
                         "Tier": {
-                          "type": "boolean"
-                        },
-                        "Component": {
                           "type": "boolean"
                         },
                         "Instance": {
@@ -271,7 +153,19 @@
                         "Version": {
                           "type": "boolean"
                         },
+                        "Product": {
+                          "type": "boolean"
+                        },
+                        "Environment": {
+                          "type": "boolean"
+                        },
                         "Host": {
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "type": "boolean"
+                        },
+                        "Segment": {
                           "type": "boolean"
                         }
                       }
@@ -279,18 +173,58 @@
                     "External": {
                       "type": "boolean"
                     },
-                    "Wildcard": {
-                      "type": "boolean"
+                    "Host": {
+                      "type": "string"
+                    },
+                    "Qualifiers": {
+                      "description": "District based overrides to domain properties",
+                      "type": "object"
+                    },
+                    "Domain": {
+                      "description": "Explicit domain id which will override the product domain",
+                      "type": "string"
+                    },
+                    "IncludeInDomain": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Product": {
+                          "type": "boolean"
+                        },
+                        "Environment": {
+                          "type": "boolean"
+                        },
+                        "Segment": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "HostParts": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
                     }
                   }
                 }
               }
             },
             "Security": {
-              "type": "object",
               "additionalProperties": false,
+              "type": "object",
               "properties": {
+                "ActivityTracking": {
+                  "default": "disabled",
+                  "description": "Apply authentication validation based on activity",
+                  "type": "string",
+                  "enum": [
+                    "disabled",
+                    "audit",
+                    "enforced"
+                  ]
+                },
                 "UserDeviceTracking": {
+                  "default": "optional",
                   "anyOf": [
                     {
                       "type": "boolean"
@@ -299,7 +233,6 @@
                       "type": "string"
                     }
                   ],
-                  "default": "optional",
                   "enum": [
                     "true",
                     true,
@@ -307,79 +240,61 @@
                     false,
                     "optional"
                   ]
-                },
-                "ActivityTracking": {
-                  "type": "string",
-                  "description": "Apply authentication validation based on activity",
-                  "default": "disabled",
-                  "enum": [
-                    "disabled",
-                    "audit",
-                    "enforced"
-                  ]
                 }
               }
             },
-            "VerificationEmailType": {
-              "type": "string",
-              "description": "The default verification email option for message customization.",
-              "default": "code",
-              "enum": [
-                "code",
-                "link"
-              ]
+            "Clients": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolclient-schema.json"
             },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
-                }
-              }
+            "LoginAliases": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Deprecated - use Username.Aliases",
+              "type": "array"
             },
-            "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
                     },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -391,112 +306,197 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "VerifyEmail": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Username": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Attributes": {
+                  "contains": {
+                    "type": "string"
                   },
-                  "additionalProperties": false
+                  "type": "array",
+                  "enum": [
+                    "email",
+                    "phone_number"
+                  ]
+                },
+                "CaseSensitive": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Aliases": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "email"
+                  ],
+                  "type": "array",
+                  "enum": [
+                    "phone_number",
+                    "email",
+                    "preferred_username"
+                  ]
                 }
               }
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "PasswordPolicy": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Numbers": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "SpecialCharacters": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "MinimumLength": {
+                  "default": 10,
+                  "type": "number"
+                },
+                "Lowercase": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Uppercase": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "AllowUserRecovery": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            },
+            "AdminCreatesUser": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "type": "array"
             },
-            "Clients": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolclient-schema.json"
+            "UnusedAccountTimeout": {
+              "default": 1,
+              "type": "number"
             },
-            "AuthProviders": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json"
+            "VerificationEmailType": {
+              "default": "code",
+              "description": "The default verification email option for message customization.",
+              "type": "string",
+              "enum": [
+                "code",
+                "link"
+              ]
             },
             "Resources": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolresource-schema.json"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpool-schema.json"
 }

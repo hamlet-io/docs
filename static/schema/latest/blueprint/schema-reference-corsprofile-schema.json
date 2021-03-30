@@ -1,42 +1,40 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-corsprofile-schema.json",
   "definitions": {
     "CORSProfile": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "AllowedOrigins": {
-              "type": "array",
+            "ExposedHeaders": {
               "contains": {
                 "type": "string"
-              }
+              },
+              "type": "array"
+            },
+            "AllowedOrigins": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             },
             "AllowedMethods": {
-              "type": "array",
               "contains": {
                 "type": "string"
-              }
+              },
+              "type": "array"
             },
             "AllowedHeaders": {
-              "type": "array",
               "contains": {
                 "type": "string"
-              }
-            },
-            "ExposedHeaders": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
+              },
+              "type": "array"
             },
             "MaxAge": {
               "type": "number"
             }
           },
-          "additionalProperties": false,
           "required": [
             "AllowedOrigins",
             "AllowedMethods",
@@ -45,7 +43,9 @@
             "MaxAge"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-reference-corsprofile-schema.json"
 }

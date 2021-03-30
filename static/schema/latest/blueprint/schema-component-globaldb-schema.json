@@ -1,216 +1,58 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-globaldb-schema.json",
   "definitions": {
     "globaldb": {
-      "type": "object",
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
           "properties": {
-            "Table": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Billing": {
-                  "type": "string",
-                  "description": "The billing mode for the table",
-                  "default": "provisioned",
-                  "enum": [
-                    "provisioned",
-                    "per-request"
-                  ]
-                },
-                "Encrypted": {
-                  "type": "boolean",
-                  "description": "Enable at rest encryption",
-                  "default": true
-                },
-                "Capacity": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "Read": {
-                      "type": "number",
-                      "description": "When using provisioned billing the maximum RCU of the table",
-                      "default": 1
-                    },
-                    "Write": {
-                      "type": "number",
-                      "description": "When using provisioned billing the maximum WCU of the table",
-                      "default": 1
-                    }
-                  }
-                },
-                "Backup": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "Enabled": {
-                      "type": "boolean",
-                      "description": "Enables point in time recovery on the table",
-                      "default": false
-                    }
-                  }
-                },
-                "Stream": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "Enabled": {
-                      "type": "boolean",
-                      "description": "Enables dynamodb event stream",
-                      "default": false
-                    },
-                    "ViewType": {
-                      "type": "string",
-                      "default": "NEW_IMAGE",
-                      "enum": [
-                        "KEYS_ONLY",
-                        "NEW_IMAGE",
-                        "OLD_IMAGE",
-                        "NEW_AND_OLD_IMAGES"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "PrimaryKey": {
-              "type": "string",
-              "description": "The primary key for the table"
-            },
             "SecondaryKey": {
-              "type": "string",
-              "description": "The secondary sort key for the table"
+              "description": "The secondary sort key for the table",
+              "type": "string"
             },
-            "TTLKey": {
-              "type": "string",
-              "description": "A key in the table used to manage the items expiry"
-            },
-            "KeyTypes": {
-              "type": "object",
-              "description": "Key types - default is string",
+            "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Type": {
-                      "type": "string",
-                      "description": "Key value type",
-                      "enum": [
-                        "string",
-                        "number",
-                        "binary"
-                      ]
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "SecondaryIndexes": {
-              "type": "object",
-              "description": "Alternate indexes for query efficiency",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Name": {
-                      "type": "string",
-                      "description": "Index name"
-                    },
-                    "Keys": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "List of keys"
-                    },
-                    "KeyTypes": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "Type of each key - default is hash(0) then range",
-                      "enum": [
-                        "hash",
-                        "range"
-                      ]
-                    },
-                    "Capacity": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "Read": {
-                          "type": "number",
-                          "description": "When using provisioned billing the maximum RCU of the table",
-                          "default": 1
-                        },
-                        "Write": {
-                          "type": "number",
-                          "description": "When using provisioned billing the maximum WCU of the table",
-                          "default": 1
-                        }
-                      }
-                    }
-                  },
                   "additionalProperties": false,
-                  "required": [
-                    "Keys"
-                  ]
-                }
-              }
-            },
-            "Profiles": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "Deployment": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
+                  "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
+                    "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
                   }
-                },
-                "Policy": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  }
-                },
-                "Placement": {
-                  "type": "string",
-                  "default": "default"
-                },
-                "Baseline": {
-                  "type": "string",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "default": "default"
-                },
-                "Testing": {
-                  "type": "array",
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component"
                 }
-              }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
             },
             "SettingNamespaces": {
-              "type": "object",
-              "description": "Additional namespaces to use during settings lookups",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
                   "properties": {
-                    "Match": {
-                      "type": "string",
-                      "description": "How to match the namespace with available settings",
-                      "default": "exact",
-                      "enum": [
-                        "exact",
-                        "partial"
-                      ]
-                    },
                     "Order": {
-                      "type": "array",
                       "contains": {
                         "type": "string"
                       },
@@ -222,106 +64,264 @@
                         "Instance",
                         "Version",
                         "Name"
-                      ]
+                      ],
+                      "type": "array"
                     },
                     "IncludeInNamespace": {
-                      "type": "object",
                       "additionalProperties": false,
+                      "type": "object",
                       "properties": {
-                        "Tier": {
-                          "type": "boolean",
-                          "default": true
-                        },
-                        "Component": {
-                          "type": "boolean",
-                          "default": true
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
                         },
                         "Type": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         },
-                        "SubComponent": {
-                          "type": "boolean",
-                          "default": false
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Instance": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Version": {
-                          "type": "boolean",
-                          "default": true
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
                         },
                         "Name": {
-                          "type": "boolean",
-                          "default": false
+                          "default": false,
+                          "type": "boolean"
                         }
                       }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
                     },
                     "Name": {
                       "type": "string"
                     }
-                  },
-                  "additionalProperties": false
+                  }
                 }
-              }
-            },
-            "Export": {
-              "type": "array",
-              "contains": {
-                "type": "string"
-              }
-            },
-            "Instances": {
-              "type": "object",
-              "description": "Instances of a component configuration",
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "properties": {
-                    "Versions": {
-                      "type": "object",
-                      "description": "Versions of the components instance.",
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "properties": {
-                            "DeploymentUnits": {
-                              "type": "array",
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration."
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "DeploymentUnits": {
-                      "type": "array",
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration."
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
             },
             "DeploymentUnits": {
-              "type": "array",
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration."
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "Table": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Capacity": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Read": {
+                      "default": 1,
+                      "description": "When using provisioned billing the maximum RCU of the table",
+                      "type": "number"
+                    },
+                    "Write": {
+                      "default": 1,
+                      "description": "When using provisioned billing the maximum WCU of the table",
+                      "type": "number"
+                    }
+                  }
+                },
+                "Encrypted": {
+                  "default": true,
+                  "description": "Enable at rest encryption",
+                  "type": "boolean"
+                },
+                "Billing": {
+                  "default": "provisioned",
+                  "description": "The billing mode for the table",
+                  "type": "string",
+                  "enum": [
+                    "provisioned",
+                    "per-request"
+                  ]
+                },
+                "Backup": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": false,
+                      "description": "Enables point in time recovery on the table",
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Stream": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": false,
+                      "description": "Enables dynamodb event stream",
+                      "type": "boolean"
+                    },
+                    "ViewType": {
+                      "default": "NEW_IMAGE",
+                      "type": "string",
+                      "enum": [
+                        "KEYS_ONLY",
+                        "NEW_IMAGE",
+                        "OLD_IMAGE",
+                        "NEW_AND_OLD_IMAGES"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "PrimaryKey": {
+              "description": "The primary key for the table",
+              "type": "string"
+            },
+            "TTLKey": {
+              "description": "A key in the table used to manage the items expiry",
+              "type": "string"
+            },
+            "Export": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "KeyTypes": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Type": {
+                      "description": "Key value type",
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "binary"
+                      ]
+                    }
+                  }
+                }
+              },
+              "description": "Key types - default is string",
+              "type": "object"
+            },
+            "SecondaryIndexes": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Capacity": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Read": {
+                          "default": 1,
+                          "description": "When using provisioned billing the maximum RCU of the table",
+                          "type": "number"
+                        },
+                        "Write": {
+                          "default": 1,
+                          "description": "When using provisioned billing the maximum WCU of the table",
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "Keys": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "List of keys",
+                      "type": "array"
+                    },
+                    "KeyTypes": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Type of each key - default is hash(0) then range",
+                      "type": "array",
+                      "enum": [
+                        "hash",
+                        "range"
+                      ]
+                    },
+                    "Name": {
+                      "description": "Index name",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Keys"
+                  ]
+                }
+              },
+              "description": "Alternate indexes for query efficiency",
+              "type": "object"
             }
           },
-          "additionalProperties": false,
           "required": [
             "PrimaryKey"
           ]
         }
-      }
+      },
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-globaldb-schema.json"
 }
