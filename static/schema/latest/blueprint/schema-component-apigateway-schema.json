@@ -50,6 +50,41 @@
               "description": "Extensions to invoke as part of component processing",
               "type": "array"
             },
+            "Image": {
+              "description": "Control the source of the image for the openapi specification",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Source:url": {
+                  "description": "Url Source specific Configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "ImageHash": {
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                      "type": "string"
+                    },
+                    "Url": {
+                      "description": "The Url to the openapi file",
+                      "type": "string"
+                    }
+                  }
+                },
+                "Source": {
+                  "default": "registry",
+                  "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
+                  "type": "string",
+                  "enum": [
+                    "registry",
+                    "url",
+                    "none"
+                  ]
+                }
+              },
+              "required": [
+                "Source"
+              ]
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
