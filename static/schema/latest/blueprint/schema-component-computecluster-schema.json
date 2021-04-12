@@ -425,27 +425,6 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "OSPatching": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Schedule": {
-                  "default": "59 13 * * *",
-                  "description": "UTC based cron schedule to apply updates",
-                  "type": "string"
-                },
-                "Enabled": {
-                  "default": true,
-                  "description": "Enable automatic OS Patching",
-                  "type": "boolean"
-                },
-                "SecurityOnly": {
-                  "default": false,
-                  "description": "Only apply security updates",
-                  "type": "boolean"
-                }
-              }
-            },
             "DockerHost": {
               "default": false,
               "type": "boolean"
@@ -584,6 +563,72 @@
                 }
               },
               "type": "object"
+            },
+            "ComputeInstance": {
+              "description": "Configuration of compute instances used in the component",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "OperatingSystem": {
+                  "description": "The operating system details of the compute instance",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-operatingsystem-schema.json"
+                },
+                "OSPatching": {
+                  "description": "Configuration for scheduled OS Patching",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-ospatching-schema.json"
+                },
+                "Bootstrap": {
+                  "description": "Customisation to setup the compute instance from its image",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "UserComputeTasksRequired": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "A list of compute task types which must be accounted for in extensions on top of the component tasks",
+                      "type": "array"
+                    },
+                    "Extensions": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "A list of extensions to source boostrap tasks from",
+                      "type": "array"
+                    }
+                  }
+                },
+                "Image": {
+                  "description": "Configures the source of the virtual machine image used for the instance",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Source": {
+                      "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
+                      "type": "object",
+                      "enum": [
+                        "Reference"
+                      ]
+                    },
+                    "Source:Reference": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Type": {
+                          "default": "EC2",
+                          "description": "The image Type defined under the family in the Region AMI",
+                          "type": "object"
+                        },
+                        "OS": {
+                          "default": "Centos",
+                          "description": "The OS Image family defined in the Region AMI",
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             },
             "AutoScaling": {
               "additionalProperties": false,
