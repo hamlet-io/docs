@@ -117,6 +117,14 @@ import userpoolclient from "@site/static/schema/latest/blueprint/schema-componen
 import userpoolauthprovider from "@site/static/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json";
 import userpoolresource from "@site/static/schema/latest/blueprint/schema-component-userpoolresource-schema.json";
 
+import accountSchema from "@site/static/schema/latest/blueprint/schema-layer-account-schema.json";
+import environmentSchema from "@site/static/schema/latest/blueprint/schema-layer-environment-schema.json";
+import productSchema from "@site/static/schema/latest/blueprint/schema-layer-product-schema.json";
+import regionSchema from "@site/static/schema/latest/blueprint/schema-layer-region-schema.json";
+import segmentSchema from "@site/static/schema/latest/blueprint/schema-layer-segment-schema.json";
+import solutionSchema from "@site/static/schema/latest/blueprint/schema-layer-solution-schema.json";
+import tenantSchema from "@site/static/schema/latest/blueprint/schema-layer-tenant-schema.json";
+
 const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
 
 const schema = {
@@ -235,6 +243,15 @@ const schema = {
   },
   attributeset: {
       link: { data: linkSchema },
+  },
+  layer: {
+    account: { data: accountSchema },
+    environment: { data: environmentSchema },
+    product: { data: productSchema },
+    region: { data: regionSchema },
+    segment: { data: segmentSchema },
+    solution: { data: solutionSchema },
+    tenant: { data: tenantSchema },
   }
 };
 
