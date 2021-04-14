@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "solution": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "RDS": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "AutoMinorVersionUpgrade": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "Description": {
+              "type": "string"
+            },
+            "Modules": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Parameters": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Value": {
+                              "description": "The value of the parameter",
+                              "type": "object"
+                            },
+                            "Key": {
+                              "description": "The key of the parameter",
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "Key",
+                            "Value"
+                          ]
+                        }
+                      },
+                      "description": "The parameter values to provide to the module",
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "To enable loading the module in this profile",
+                      "type": "boolean"
+                    },
+                    "Provider": {
+                      "description": "The provider name which offers the module",
+                      "type": "object"
+                    },
+                    "Name": {
+                      "description": "The name of the scneario to load",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "Provider",
+                    "Name"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Title": {
+              "type": "string"
+            },
+            "Region": {
+              "type": "string"
+            },
+            "Id": {
+              "type": "string"
+            },
+            "MultiAZ": {
+              "type": "boolean"
+            },
+            "Name": {
+              "type": "string"
+            },
+            "Plugins": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Required": {
+                      "default": false,
+                      "description": "Ensure the plugin loads at all times",
+                      "type": "boolean"
+                    },
+                    "Source:git": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Path": {
+                          "description": "a path within in the repository where the plugin starts",
+                          "type": "object"
+                        },
+                        "Ref": {
+                          "default": "main",
+                          "description": "The ref to clone from the repo",
+                          "type": "object"
+                        },
+                        "Url": {
+                          "description": "The Url for the git repository",
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "Priority": {
+                      "default": 100,
+                      "description": "The priority order to load plugins - lowest first",
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "To enable loading the plugin",
+                      "type": "boolean"
+                    },
+                    "Source": {
+                      "description": "Where the plugin for the plugin can be found",
+                      "type": "object",
+                      "enum": [
+                        "local",
+                        "git"
+                      ]
+                    },
+                    "Name": {
+                      "description": "The id of the plugin to install",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "Name",
+                    "Source"
+                  ]
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-layer-solution-schema.json"
+}

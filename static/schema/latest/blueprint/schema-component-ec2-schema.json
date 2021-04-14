@@ -247,12 +247,12 @@
                   "description": "Configuration for scheduled OS Patching",
                   "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-ospatching-schema.json"
                 },
-                "Bootstrap": {
+                "ComputeTasks": {
                   "description": "Customisation to setup the compute instance from its image",
                   "additionalProperties": false,
                   "type": "object",
                   "properties": {
-                    "UserComputeTasksRequired": {
+                    "UserTasksRequired": {
                       "contains": {
                         "type": "string"
                       },
@@ -270,33 +270,7 @@
                 },
                 "Image": {
                   "description": "Configures the source of the virtual machine image used for the instance",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Source": {
-                      "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-                      "type": "object",
-                      "enum": [
-                        "Reference"
-                      ]
-                    },
-                    "Source:Reference": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Type": {
-                          "default": "EC2",
-                          "description": "The image Type defined under the family in the Region AMI",
-                          "type": "object"
-                        },
-                        "OS": {
-                          "default": "Centos",
-                          "description": "The OS Image family defined in the Region AMI",
-                          "type": "object"
-                        }
-                      }
-                    }
-                  }
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-computeimage-schema.json"
                 }
               }
             },

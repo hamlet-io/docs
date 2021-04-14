@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "ecs_computeimage": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Source": {
+              "default": "Reference",
+              "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
+              "type": "object",
+              "enum": [
+                "Reference"
+              ]
+            },
+            "Source:Reference": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Type": {
+                  "default": "ECS",
+                  "description": "The image Type defined under the family in the Region AMI",
+                  "type": "object"
+                },
+                "OS": {
+                  "default": "Centos",
+                  "description": "The OS Image family defined in the Region AMI",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-ecs_computeimage-schema.json"
+}

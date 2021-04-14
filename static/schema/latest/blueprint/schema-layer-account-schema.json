@@ -1,0 +1,394 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "account": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "ProviderId": {
+              "type": "string"
+            },
+            "S3": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Versioning": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Encryption": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "EncryptionSource": {
+                      "default": "EncryptionService",
+                      "type": "string",
+                      "enum": [
+                        "EncryptionService",
+                        "aws:kms",
+                        "localservice",
+                        "aes256"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Encryption": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "aws:ecsAccountSettings": {
+              "default": {
+                "containerInstanceLongArnFormat": true,
+                "serviceLongArnFormat": true,
+                "taskLongArnFormat": true,
+                "awsvpcTrunking": true
+              },
+              "type": "object"
+            },
+            "Description": {
+              "type": "string"
+            },
+            "Modules": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Parameters": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Value": {
+                              "description": "The value of the parameter",
+                              "type": "object"
+                            },
+                            "Key": {
+                              "description": "The key of the parameter",
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "Key",
+                            "Value"
+                          ]
+                        }
+                      },
+                      "description": "The parameter values to provide to the module",
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "To enable loading the module in this profile",
+                      "type": "boolean"
+                    },
+                    "Provider": {
+                      "description": "The provider name which offers the module",
+                      "type": "object"
+                    },
+                    "Name": {
+                      "description": "The name of the scneario to load",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "Provider",
+                    "Name"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Access": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "AWSId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "AWSId"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Encryption": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Alias": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "IncludeSeed": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "Name": {
+              "type": "string"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "Console": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Encryption": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "DedicatedKey": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "LoggingDestinations": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "s3"
+                  ],
+                  "type": "array",
+                  "enum": [
+                    "cloudwatch",
+                    "s3"
+                  ]
+                }
+              }
+            },
+            "Operations": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Expiration": {
+                  "type": "number"
+                }
+              }
+            },
+            "CostCentre": {
+              "type": "string"
+            },
+            "Plugins": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Required": {
+                      "default": false,
+                      "description": "Ensure the plugin loads at all times",
+                      "type": "boolean"
+                    },
+                    "Source:git": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Path": {
+                          "description": "a path within in the repository where the plugin starts",
+                          "type": "object"
+                        },
+                        "Ref": {
+                          "default": "main",
+                          "description": "The ref to clone from the repo",
+                          "type": "object"
+                        },
+                        "Url": {
+                          "description": "The Url for the git repository",
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "Priority": {
+                      "default": 100,
+                      "description": "The priority order to load plugins - lowest first",
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "To enable loading the plugin",
+                      "type": "boolean"
+                    },
+                    "Source": {
+                      "description": "Where the plugin for the plugin can be found",
+                      "type": "object",
+                      "enum": [
+                        "local",
+                        "git"
+                      ]
+                    },
+                    "Name": {
+                      "description": "The id of the plugin to install",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "Name",
+                    "Source"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "DeploymentProfiles": {
+              "type": "object"
+            },
+            "PolicyProfiles": {
+              "type": "object"
+            },
+            "Title": {
+              "type": "string"
+            },
+            "Registry": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "ReplicaRegions": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "A list of regions to replicate registries to",
+                  "additionalProperties": false,
+                  "type": "array",
+                  "properties": {
+                    "AWSAccounts": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            },
+            "Provider": {
+              "default": "aws",
+              "description": "Define which provider this account applies to",
+              "type": "string"
+            },
+            "Audit": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Expiration": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "Offline": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            },
+            "Volume": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Encryption": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "Seed": {
+              "type": "string"
+            },
+            "Region": {
+              "type": "string"
+            },
+            "aws:SES": {
+              "description": "AWS SES Account configuration",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "RuleSet": {
+                  "description": "Ruleset details. Only one active per account",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Name": {
+                      "default": "account-default",
+                      "description": "Name of the ruleset",
+                      "type": "string"
+                    }
+                  }
+                },
+                "IPAddressGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "Id": {
+              "type": "string"
+            },
+            "Domain": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Seed"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-layer-account-schema.json"
+}

@@ -7,6 +7,79 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "ConfigPathPattern": {
+              "default": "config/*",
+              "description": "The CDN pattern used to access the config",
+              "type": "string"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "InvalidateOnUpdate": {
+              "default": true,
+              "description": "Invalidate all CDNs that host this content",
+              "type": "boolean"
+            },
+            "Port": {
+              "description": "The port used to access the SPA content.",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "HTTPS": {
+                  "default": "https",
+                  "type": "string"
+                },
+                "HTTP": {
+                  "default": "http",
+                  "type": "string"
+                }
+              }
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
+            "Image": {
+              "description": "Control the source of the image that is used for the function",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Source": {
+                  "default": "registry",
+                  "description": "The source of the image - registry is the hamlet registry",
+                  "type": "string",
+                  "enum": [
+                    "registry",
+                    "url"
+                  ]
+                },
+                "UrlSource": {
+                  "description": "Url Source specific Configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "ImageHash": {
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                      "type": "string"
+                    },
+                    "Url": {
+                      "description": "The Url to the lambda zip file",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "Source"
+              ]
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -42,11 +115,6 @@
               },
               "description": "Instances of a component configuration",
               "type": "object"
-            },
-            "ConfigPathPattern": {
-              "default": "config/*",
-              "description": "The CDN pattern used to access the config",
-              "type": "string"
             },
             "SettingNamespaces": {
               "patternProperties": {
@@ -120,32 +188,12 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
+            "azure:CORSBehaviours": {
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "description": "The CORSBehaviours applied to the Storage Account hosting the SPA",
               "type": "array"
-            },
-            "InvalidateOnUpdate": {
-              "default": true,
-              "description": "Invalidate all CDNs that host this content",
-              "type": "boolean"
-            },
-            "Port": {
-              "description": "The port used to access the SPA content.",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "HTTPS": {
-                  "default": "https",
-                  "type": "string"
-                },
-                "HTTP": {
-                  "default": "http",
-                  "type": "string"
-                }
-              }
             },
             "Profiles": {
               "additionalProperties": false,
@@ -194,47 +242,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Extensions": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing",
-              "type": "array"
-            },
-            "Image": {
-              "description": "Control the source of the image that is used for the function",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Source": {
-                  "default": "registry",
-                  "description": "The source of the image - registry is the hamlet registry",
-                  "type": "string",
-                  "enum": [
-                    "registry",
-                    "url"
-                  ]
-                },
-                "UrlSource": {
-                  "description": "Url Source specific Configuration",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "ImageHash": {
-                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                      "type": "string"
-                    },
-                    "Url": {
-                      "description": "The Url to the lambda zip file",
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "required": [
-                "Source"
-              ]
             }
           }
         }

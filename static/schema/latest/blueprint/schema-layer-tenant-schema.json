@@ -1,0 +1,290 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "tenant": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Description": {
+              "type": "string"
+            },
+            "DeploymentProfiles": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Modes": {
+                      "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Modules": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Parameters": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Value": {
+                              "description": "The value of the parameter",
+                              "type": "object"
+                            },
+                            "Key": {
+                              "description": "The key of the parameter",
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "Key",
+                            "Value"
+                          ]
+                        }
+                      },
+                      "description": "The parameter values to provide to the module",
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "To enable loading the module in this profile",
+                      "type": "boolean"
+                    },
+                    "Provider": {
+                      "description": "The provider name which offers the module",
+                      "type": "object"
+                    },
+                    "Name": {
+                      "description": "The name of the scneario to load",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "Provider",
+                    "Name"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "PolicyProfiles": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Modes": {
+                      "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "Title": {
+              "type": "string"
+            },
+            "Region": {
+              "type": "string"
+            },
+            "Id": {
+              "type": "string"
+            },
+            "CertificateBehaviours": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Wildcard": {
+                  "type": "boolean"
+                },
+                "IncludeInHost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Qualifiers": {
+                  "type": "object"
+                },
+                "Domain": {
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "HostParts": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "PlacementProfiles": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "*": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "DeploymentFramework": {
+                          "description": "The deployment framework to use to generate the outputs for deployment",
+                          "type": "string"
+                        },
+                        "Region": {
+                          "description": "The id of the region to host the component",
+                          "type": "string"
+                        },
+                        "Provider": {
+                          "description": "The provider to use to host the component",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Provider",
+                        "Region",
+                        "DeploymentFramework"
+                      ]
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Name": {
+              "type": "string"
+            },
+            "Plugins": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Required": {
+                      "default": false,
+                      "description": "Ensure the plugin loads at all times",
+                      "type": "boolean"
+                    },
+                    "Source:git": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Path": {
+                          "description": "a path within in the repository where the plugin starts",
+                          "type": "object"
+                        },
+                        "Ref": {
+                          "default": "main",
+                          "description": "The ref to clone from the repo",
+                          "type": "object"
+                        },
+                        "Url": {
+                          "description": "The Url for the git repository",
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "Priority": {
+                      "default": 100,
+                      "description": "The priority order to load plugins - lowest first",
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "To enable loading the plugin",
+                      "type": "boolean"
+                    },
+                    "Source": {
+                      "description": "Where the plugin for the plugin can be found",
+                      "type": "object",
+                      "enum": [
+                        "local",
+                        "git"
+                      ]
+                    },
+                    "Name": {
+                      "description": "The id of the plugin to install",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "Name",
+                    "Source"
+                  ]
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-layer-tenant-schema.json"
+}
