@@ -144,6 +144,9 @@
                     "Environment": {
                       "type": "boolean"
                     },
+                    "Host": {
+                      "type": "boolean"
+                    },
                     "Component": {
                       "type": "boolean"
                     },
@@ -154,6 +157,9 @@
                 },
                 "External": {
                   "type": "boolean"
+                },
+                "Host": {
+                  "type": "string"
                 },
                 "Qualifiers": {
                   "type": "object"

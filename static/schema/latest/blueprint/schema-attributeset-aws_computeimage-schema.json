@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "aws_computeimage": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "aws:Source:SSMParam": {
+              "description": "Lookup the image Id using the SSM ParameterStore",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "default": "/aws/service/ami-amazon-linux-latest/amzn-ami-hvm-x86_64-ebs",
+                  "description": "The name of the parameter to lookup",
+                  "type": "string"
+                }
+              }
+            },
+            "Source": {
+              "default": "Reference",
+              "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
+              "type": "object",
+              "enum": [
+                "Reference",
+                "aws:AMI",
+                "aws:SSMParam"
+              ]
+            },
+            "Source:Reference": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Type": {
+                  "default": "EC2",
+                  "description": "The image Type defined under the family in the Region AMI",
+                  "type": "object"
+                },
+                "OS": {
+                  "default": "Centos",
+                  "description": "The OS Image family defined in the Region AMI",
+                  "type": "object"
+                }
+              }
+            },
+            "aws:Source:AMI": {
+              "description": "Use an explicit AMI for the image ",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "ImageId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-aws_computeimage-schema.json"
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "aws_operatingsystem": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "MajorVersion": {
+              "default": "1",
+              "description": "The major version of the distribution",
+              "type": "string"
+            },
+            "Architecture": {
+              "description": "The CPU Architecture used",
+              "type": "string",
+              "enum": [
+                "i386",
+                "x86_64",
+                "arm64"
+              ]
+            },
+            "Distribution": {
+              "default": "awslinux",
+              "description": "The distribution of the operating system",
+              "type": "string"
+            },
+            "Family": {
+              "default": "linux",
+              "description": "The broad family of operating system",
+              "type": "string",
+              "enum": [
+                "linux",
+                "windows",
+                "macos"
+              ]
+            },
+            "MinorVersion": {
+              "description": "The minor version of the distribution major version",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-aws_operatingsystem-schema.json"
+}
