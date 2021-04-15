@@ -24,6 +24,19 @@ function HamletRefRouter() {
             >
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <br />
+                <h2>Layers</h2>
+                {Object.keys(schema.layer).map((instance) => (
+                  <React.Fragment>
+                    <li>
+                      <Link
+                        to={`/reference?type=layer&instance=${instance}`}
+                      >
+                        {instance}
+                      </Link>
+                    </li>
+                  </React.Fragment>
+                ))}
+                <br />
                 <h2>Attribute Sets</h2>
                 {Object.keys(schema.attributeset).map((instance) => (
                   <React.Fragment>
