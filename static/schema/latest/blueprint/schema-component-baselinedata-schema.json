@@ -144,6 +144,10 @@
                   },
                   "type": "array"
                 },
+                "Storage": {
+                  "default": "default",
+                  "type": "string"
+                },
                 "Placement": {
                   "default": "default",
                   "type": "string"

@@ -573,6 +573,10 @@
                   "default": "default",
                   "type": "string"
                 },
+                "Storage": {
+                  "default": "default",
+                  "type": "string"
+                },
                 "Placement": {
                   "default": "default",
                   "type": "string"
