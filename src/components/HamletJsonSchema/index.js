@@ -3,6 +3,14 @@
 */
 /* AttributeSet Imports */
 import linkSchema from "@site/static/schema/latest/blueprint/schema-attributeset-link-schema.json";
+import computeimageSchema from "@site/static/schema/latest/blueprint/schema-attributeset-computeimage-schema.json";
+import contextpathSchema from "@site/static/schema/latest/blueprint/schema-attributeset-contextpath-schema.json";
+import ecsComputeImageSchema from "@site/static/schema/latest/blueprint/schema-attributeset-ecs_computeimage-schema.json";
+import osSchema from "@site/static/schema/latest/blueprint/schema-attributeset-operatingsystem-schema.json";
+import osPatchingSchema from "@site/static/schema/latest/blueprint/schema-attributeset-ospatching-schema.json";
+import awsComputeImageSchema from "@site/static/schema/latest/blueprint/schema-attributeset-aws_computeimage-schema.json";
+import awsEcsComputeImageSchema from "@site/static/schema/latest/blueprint/schema-attributeset-aws_ecs_computeimage-schema.json";
+import awsOsSchema from "@site/static/schema/latest/blueprint/schema-attributeset-aws_operatingsystem-schema.json";
 
 /* Reference Data Imports */
 import alertProfileSchema from "@site/static/schema/latest/blueprint/schema-reference-alertprofile-schema.json";
@@ -243,6 +251,14 @@ const schema = {
   },
   attributeset: {
       link: { data: linkSchema },
+      computeimage: { data: computeimageSchema },
+      contextpath: { data: contextpathSchema },
+      ecs_computeimage: { data: ecsComputeImageSchema },
+      operatingsystem: { data: osSchema },
+      ospatching: { data: osPatchingSchema },
+      aws_computeimage: { data: awsComputeImageSchema },
+      aws_ecs_computeimage: { data: awsEcsComputeImageSchema },
+      aws_operatingsystem: { data: awsOsSchema },
   },
   layer: {
     account: { data: accountSchema },
