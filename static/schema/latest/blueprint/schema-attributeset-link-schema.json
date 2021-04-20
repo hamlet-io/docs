@@ -107,6 +107,9 @@
             "Environment": {
               "type": "object"
             },
+            "Rule": {
+              "type": "object"
+            },
             "Key": {
               "type": "object"
             },
