@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "definitions": {
-    "lb": {
+    "healthcheck": {
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
@@ -14,13 +14,17 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
-            "IdleTimeout": {
-              "default": 60,
-              "type": "number"
+            "Timeout": {
+              "default": 30,
+              "description": "How long a healthcheck should run without reporting status in seconds",
+              "type": "object"
             },
-            "Logs": {
-              "default": false,
-              "type": "boolean"
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
             },
             "Instances": {
               "patternProperties": {
@@ -57,6 +61,19 @@
               },
               "description": "Instances of a component configuration",
               "type": "object"
+            },
+            "Type": {
+              "description": "The type of healthcheck to perform",
+              "type": "object",
+              "enum": [
+                "simple",
+                "complex"
+              ]
+            },
+            "NetworkAccess": {
+              "default": false,
+              "description": "Run the healthcheck within the private network",
+              "type": "boolean"
             },
             "SettingNamespaces": {
               "patternProperties": {
@@ -130,8 +147,10 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "PortMappings": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-lbport-schema.json"
+            "Schedule": {
+              "default": "rate(5 mins)",
+              "description": "The schedule to run the healthcheck",
+              "type": "object"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -144,6 +163,10 @@
                   "type": "array"
                 },
                 "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Network": {
                   "default": "default",
                   "type": "string"
                 },
@@ -162,16 +185,99 @@
                   "description": "The profile used to lookup standard services provided by the segment baseline",
                   "type": "string"
                 },
-                "Security": {
-                  "default": "default",
-                  "type": "string"
-                },
                 "Testing": {
                   "contains": {
                     "type": "string"
                   },
                   "description": "The testing profiles to apply to the component",
                   "type": "array"
+                }
+              }
+            },
+            "Type:Complex": {
+              "description": "Complex specific configuration",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "RunTime": {
+                  "description": "The runtime to use for the script execution",
+                  "type": "string"
+                },
+                "Memory": {
+                  "default": 1024,
+                  "description": "The memory to allocate to the script execution",
+                  "type": "number"
+                },
+                "Handler": {
+                  "type": "string"
+                },
+                "Tracing": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Mode": {
+                      "type": "string",
+                      "enum": [
+                        "active",
+                        "passthrough"
+                      ]
+                    }
+                  }
+                },
+                "Image": {
+                  "description": "Control the source of the image for the healthcheck script",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Source:url": {
+                      "description": "Url Source specific Configuration",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "ImageHash": {
+                          "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                          "type": "string"
+                        },
+                        "Url": {
+                          "description": "The Url to the openapi file",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Source": {
+                      "default": "registry",
+                      "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
+                      "type": "string",
+                      "enum": [
+                        "registry",
+                        "url",
+                        "none"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "Source"
+                  ]
+                }
+              },
+              "required": [
+                "Handler"
+              ]
+            },
+            "ReportRetention": {
+              "description": "How long to keep status reports for in days",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Success": {
+                  "default": 30,
+                  "description": "Successful runs",
+                  "type": "object"
+                },
+                "Failure": {
+                  "default": 30,
+                  "description": "Failed runs",
+                  "type": "object"
                 }
               }
             },
@@ -184,85 +290,33 @@
               },
               "type": "array"
             },
-            "HealthCheckPort": {
-              "type": "string"
-            },
             "Alerts": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-alert-schema.json"
             },
-            "WAF": {
+            "Type:Simple": {
+              "description": "Simple healthcheck configuration",
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Logging": {
+                "Destination": {
+                  "description": "The desitination to perform the healthcheck on",
                   "additionalProperties": false,
                   "type": "object",
                   "properties": {
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
+                    "Port": {
+                      "description": "The name of a port which outlines the healthcheck and protocol details",
+                      "type": "object"
+                    },
+                    "Hostname": {
+                      "description": "An explicit Hostname that will be monitored",
+                      "type": "object"
+                    },
+                    "Link": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
                     }
                   }
-                },
-                "RateLimits": {
-                  "patternProperties": {
-                    "^[A-Za-z_][A-Za-z0-9_]*$": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "IPAddressGroups": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
-                        },
-                        "Limit": {
-                          "type": "number"
-                        }
-                      },
-                      "required": [
-                        "Limit"
-                      ]
-                    }
-                  },
-                  "type": "object"
-                },
-                "OWASP": {
-                  "default": false,
-                  "type": "boolean"
-                },
-                "Profiles": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Logging": {
-                      "default": "waf",
-                      "description": "Logging profile to process WAF Logs that are stored in the OpsData DataBucket.",
-                      "type": "string"
-                    }
-                  }
-                },
-                "CountryGroups": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                "IPAddressGroups": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
                 }
               }
-            },
-            "Engine": {
-              "default": "application",
-              "type": "string",
-              "enum": [
-                "application",
-                "network",
-                "classic"
-              ]
             }
           }
         }
@@ -270,5 +324,5 @@
       "type": "object"
     }
   },
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-lb-schema.json"
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-healthcheck-schema.json"
 }

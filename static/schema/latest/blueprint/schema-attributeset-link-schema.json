@@ -7,10 +7,11 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "Task": {
+            "IncludeInContext": {
+              "description": "Include the attributes provided by this link in the environment context",
               "type": "object"
             },
-            "IncludeInContext": {
+            "Task": {
               "type": "object"
             },
             "Platform": {
@@ -28,10 +29,11 @@
             "NetworkACL": {
               "type": "object"
             },
-            "Any": {
+            "Direction": {
+              "description": "The direction the role applies to between the components",
               "type": "object"
             },
-            "Direction": {
+            "Any": {
               "type": "object"
             },
             "Segment": {
@@ -76,29 +78,34 @@
             "Tier": {
               "type": "object"
             },
+            "ActiveRequired": {
+              "description": "Require that the linked occurrence has been deployed and is active",
+              "type": "object"
+            },
             "Connection": {
               "type": "object"
             },
             "Resource": {
               "type": "object"
             },
-            "Service": {
-              "type": "object"
-            },
             "Enabled": {
               "default": true,
               "type": "object"
             },
+            "Service": {
+              "type": "object"
+            },
             "AuthProvider": {
+              "type": "object"
+            },
+            "Role": {
+              "description": "The role of the relationship between the components",
               "type": "object"
             },
             "RouteTable": {
               "type": "object"
             },
             "Secret": {
-              "type": "object"
-            },
-            "Role": {
               "type": "object"
             },
             "Type": {
