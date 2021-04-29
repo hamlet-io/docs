@@ -18,6 +18,10 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
             "VPCAccess": {
               "default": false,
               "type": "boolean"
@@ -25,6 +29,10 @@
             "Encrypted": {
               "default": false,
               "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "IPAddressGroups": {
               "contains": {
@@ -169,6 +177,9 @@
             "AllowMajorVersionUpdates": {
               "default": true,
               "type": "boolean"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "Version": {
               "type": "string"

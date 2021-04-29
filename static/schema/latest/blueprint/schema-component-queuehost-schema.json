@@ -31,6 +31,10 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
             "EngineVersion": {
               "type": "string"
             },
@@ -49,6 +53,10 @@
             "Encrypted": {
               "default": false,
               "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "IPAddressGroups": {
               "contains": {
@@ -166,6 +174,9 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,

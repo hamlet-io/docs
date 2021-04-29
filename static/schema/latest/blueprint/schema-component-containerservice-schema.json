@@ -146,9 +146,17 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
             "ContainerNetworkLinks": {
               "default": false,
               "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Containers": {
               "patternProperties": {
@@ -397,7 +405,6 @@
               "enum": [
                 "none",
                 "bridge",
-                "awsvpc",
                 "host"
               ]
             },
@@ -509,6 +516,9 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "deployment:Unit": {
+              "type": "string"
+            },
             "Placement": {
               "additionalProperties": false,
               "type": "object",
@@ -525,6 +535,62 @@
                     "",
                     "daemon"
                   ]
+                },
+                "ComputeProvider": {
+                  "description": "The compute provider placement policy",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Additional": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Weight": {
+                              "default": 1,
+                              "description": "The ratio of containers allocated to the provider based on the configured providers",
+                              "type": "number"
+                            },
+                            "Provider": {
+                              "type": "string",
+                              "enum": [
+                                "_engine"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "Provider"
+                          ]
+                        }
+                      },
+                      "description": "Providers who will meet the additional compute capacity outside of the default",
+                      "type": "object"
+                    },
+                    "Default": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "RequiredCount": {
+                          "default": 1,
+                          "description": "The minimum count of containers to run on the default provider",
+                          "type": "number"
+                        },
+                        "Weight": {
+                          "default": 1,
+                          "description": "The ratio of containers allocated to the provider based on the configured providers",
+                          "type": "number"
+                        },
+                        "Provider": {
+                          "default": "_engine",
+                          "description": "The default container compute provider - _engine uses the default provider of the engine",
+                          "type": "string",
+                          "enum": [
+                            "_engine"
+                          ]
+                        }
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -635,6 +701,14 @@
             },
             "Alerts": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-alert-schema.json"
+            },
+            "Engine": {
+              "default": "ec2",
+              "description": "The engine used to run the container",
+              "type": "string",
+              "enum": [
+                "ec2"
+              ]
             }
           }
         }

@@ -122,6 +122,17 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "deployment:Unit": {
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",

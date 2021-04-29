@@ -122,8 +122,16 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
-            "RegistryServices": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-serviceregistryservice-schema.json"
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Unit": {
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,

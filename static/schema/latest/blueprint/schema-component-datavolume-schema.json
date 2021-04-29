@@ -7,6 +7,59 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "Encrypted": {
+              "default": false,
+              "type": "boolean"
+            },
+            "Size": {
+              "default": 20,
+              "type": "number"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Backup": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "ScheduleTimeZone": {
+                  "default": "Etc/UTC",
+                  "description": "When using a cron expression in Schedule sets the time zone to base it from",
+                  "type": "string"
+                },
+                "Schedule": {
+                  "default": "rate(1 day)",
+                  "description": "Schedule in rate() or cron() formats",
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "description": "Create scheduled snapshots of the data volume",
+                  "type": "boolean"
+                },
+                "RetentionPeriod": {
+                  "default": 35,
+                  "description": "How long to keep snapshot for in days",
+                  "type": "number"
+                }
+              }
+            },
+            "ProvisionedIops": {
+              "default": 100,
+              "type": "number"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -115,13 +168,6 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
             "VolumeType": {
               "default": "gp2",
               "type": "string",
@@ -133,39 +179,8 @@
                 "st1"
               ]
             },
-            "Encrypted": {
-              "default": false,
-              "type": "boolean"
-            },
-            "Size": {
-              "default": 20,
-              "type": "number"
-            },
-            "Backup": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "ScheduleTimeZone": {
-                  "default": "Etc/UTC",
-                  "description": "When using a cron expression in Schedule sets the time zone to base it from",
-                  "type": "string"
-                },
-                "Schedule": {
-                  "default": "rate(1 day)",
-                  "description": "Schedule in rate() or cron() formats",
-                  "type": "string"
-                },
-                "Enabled": {
-                  "default": true,
-                  "description": "Create scheduled snapshots of the data volume",
-                  "type": "boolean"
-                },
-                "RetentionPeriod": {
-                  "default": 35,
-                  "description": "How long to keep snapshot for in days",
-                  "type": "number"
-                }
-              }
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -206,10 +221,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "ProvisionedIops": {
-              "default": 100,
-              "type": "number"
             },
             "Engine": {
               "default": "ebs",

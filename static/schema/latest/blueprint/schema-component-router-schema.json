@@ -126,6 +126,17 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "segment",
+              "type": "string"
+            },
+            "deployment:Unit": {
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",
@@ -211,9 +222,6 @@
               "required": [
                 "ASN"
               ]
-            },
-            "StaticRoutes": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-routerstaticroute-schema.json"
             }
           }
         }

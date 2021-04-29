@@ -7,6 +7,10 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
             "EngineMinorVersion": {
               "type": "string"
             },
@@ -272,6 +276,10 @@
             },
             "EngineVersion": {
               "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "DatabaseName": {
               "type": "string"
@@ -556,6 +564,9 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "AllowMajorVersionUpgrade": {
               "default": true,

@@ -7,6 +7,73 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Ports": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "LB": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "LinkName": {
+                          "default": "lb",
+                          "type": "string"
+                        },
+                        "Tier": {
+                          "type": "string"
+                        },
+                        "Instance": {
+                          "type": "string"
+                        },
+                        "Version": {
+                          "type": "string"
+                        },
+                        "PortMapping": {
+                          "type": "string"
+                        },
+                        "Component": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Tier",
+                        "Component"
+                      ]
+                    },
+                    "IPAddressGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
             "FixedIP": {
               "default": false,
               "type": "boolean"
@@ -123,12 +190,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
+            "deployment:Unit": {
+              "type": "string"
             },
             "DockerHost": {
               "default": false,
@@ -187,51 +250,6 @@
             "Links": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
-            "Ports": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "LB": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "LinkName": {
-                          "default": "lb",
-                          "type": "string"
-                        },
-                        "Tier": {
-                          "type": "string"
-                        },
-                        "Instance": {
-                          "type": "string"
-                        },
-                        "Version": {
-                          "type": "string"
-                        },
-                        "PortMapping": {
-                          "type": "string"
-                        },
-                        "Component": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "Tier",
-                        "Component"
-                      ]
-                    },
-                    "IPAddressGroups": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
-                    }
-                  }
-                }
-              },
-              "type": "object"
-            },
             "Export": {
               "contains": {
                 "type": "string"
@@ -245,7 +263,8 @@
               "properties": {
                 "OperatingSystem": {
                   "description": "The operating system details of the compute instance",
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-operatingsystem-schema.json"
+                  "additionalProperties": false,
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-aws_operatingsystem-schema.json"
                 },
                 "OSPatching": {
                   "description": "Configuration for scheduled OS Patching",
@@ -267,6 +286,19 @@
                       "contains": {
                         "type": "string"
                       },
+                      "default": [
+                        "_computetask_awslinux_cfninit",
+                        "_computetask_linux_hamletenv",
+                        "_computetask_linux_volumemount",
+                        "_computetask_awslinux_ospatching",
+                        "_computetask_linux_filedir",
+                        "_computetask_linux_sshkeys",
+                        "_computetask_awscli",
+                        "_computetask_awslinux_cwlog",
+                        "_computetask_awslinux_efsmount",
+                        "_computetask_linux_userbootstrap",
+                        "_computetask_awslinux_vpc_lb"
+                      ],
                       "description": "A list of extensions to source boostrap tasks from",
                       "type": "array"
                     }
@@ -274,16 +306,10 @@
                 },
                 "Image": {
                   "description": "Configures the source of the virtual machine image used for the instance",
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-computeimage-schema.json"
+                  "additionalProperties": false,
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-aws_computeimage-schema.json"
                 }
               }
-            },
-            "Extensions": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing",
-              "type": "array"
             }
           }
         }

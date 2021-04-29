@@ -27,6 +27,20 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "segment",
+              "type": "string",
+              "enum": [
+                "segment"
+              ]
+            },
+            "deployment:Priority": {
+              "default": 1,
+              "type": "number",
+              "enum": [
+                1
+              ]
+            },
             "azure:Certificate": {
               "additionalProperties": false,
               "type": "object",
@@ -147,9 +161,6 @@
               "description": "Instances of a component configuration",
               "type": "object"
             },
-            "DataBuckets": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinedata-schema.json"
-            },
             "Active": {
               "default": false,
               "type": "boolean"
@@ -226,6 +237,13 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "deployment:Unit": {
+              "default": "baseline",
+              "type": "string",
+              "enum": [
+                "baseline"
+              ]
+            },
             "Seed": {
               "additionalProperties": false,
               "type": "object",
@@ -279,9 +297,6 @@
               ],
               "description": "The set of administrator groups controlling access to keyvault",
               "type": "array"
-            },
-            "Keys": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinekey-schema.json"
             },
             "Export": {
               "contains": {

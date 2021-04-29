@@ -30,6 +30,14 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "MaximumMessageSize": {
               "description": "The maximum size a message on the queue can be",
               "type": "number"
@@ -145,6 +153,9 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "DelaySeconds": {
               "description": "Hold messages for a delay before making them visible on the queue",

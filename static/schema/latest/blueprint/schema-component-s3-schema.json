@@ -27,11 +27,19 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
             "CORSBehaviours": {
               "contains": {
                 "type": "string"
               },
               "type": "array"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Lifecycle": {
               "additionalProperties": false,
@@ -307,6 +315,9 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,

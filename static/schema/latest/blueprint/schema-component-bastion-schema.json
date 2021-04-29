@@ -14,6 +14,14 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "segment",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "IPAddressGroups": {
               "contains": {
                 "type": "string"
@@ -144,6 +152,9 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "deployment:Unit": {
+              "type": "string"
+            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",
@@ -232,7 +243,8 @@
               "properties": {
                 "OperatingSystem": {
                   "description": "The operating system details of the compute instance",
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-operatingsystem-schema.json"
+                  "additionalProperties": false,
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-aws_operatingsystem-schema.json"
                 },
                 "OSPatching": {
                   "description": "Configuration for scheduled OS Patching",
@@ -254,6 +266,19 @@
                       "contains": {
                         "type": "string"
                       },
+                      "default": [
+                        "_computetask_awslinux_cfninit_asg",
+                        "_computetask_linux_hamletenv",
+                        "_computetask_linux_volumemount",
+                        "_computetask_awslinux_ospatching",
+                        "_computetask_linux_filedir",
+                        "_computetask_linux_sshkeys",
+                        "_computetask_awscli",
+                        "_computetask_awslinux_cwlog",
+                        "_computetask_awslinux_efsmount",
+                        "_computetask_awslinux_eip",
+                        "_computetask_linux_userbootstrap"
+                      ],
                       "description": "A list of extensions to source boostrap tasks from",
                       "type": "array"
                     }
@@ -261,7 +286,8 @@
                 },
                 "Image": {
                   "description": "Configures the source of the virtual machine image used for the instance",
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-computeimage-schema.json"
+                  "additionalProperties": false,
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-aws_computeimage-schema.json"
                 }
               }
             },

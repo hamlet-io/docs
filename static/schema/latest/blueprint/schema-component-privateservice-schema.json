@@ -122,6 +122,10 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
             "ConnectionAlerts": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -151,6 +155,9 @@
                 }
               },
               "type": "object"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "DomainName": {
               "additionalProperties": false,
@@ -198,6 +205,10 @@
                   "type": "boolean"
                 }
               }
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,

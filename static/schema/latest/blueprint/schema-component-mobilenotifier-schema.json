@@ -43,9 +43,6 @@
               "description": "Instances of a component configuration",
               "type": "object"
             },
-            "Platforms": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-mobilenotifierplatform-schema.json"
-            },
             "SettingNamespaces": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -124,6 +121,17 @@
               },
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Unit": {
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,

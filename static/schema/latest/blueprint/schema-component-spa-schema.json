@@ -19,10 +19,18 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
             "InvalidateOnUpdate": {
               "default": true,
               "description": "Invalidate all CDNs that host this content",
               "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Port": {
               "description": "The port used to access the SPA content.",
@@ -195,6 +203,9 @@
               "description": "The CORSBehaviours applied to the Storage Account hosting the SPA",
               "type": "array"
             },
+            "deployment:Unit": {
+              "type": "string"
+            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",
@@ -206,6 +217,10 @@
                   "type": "array"
                 },
                 "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "azure:Storage": {
                   "default": "default",
                   "type": "string"
                 },

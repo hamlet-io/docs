@@ -14,6 +14,14 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "IdleTimeout": {
               "default": 60,
               "type": "number"
@@ -130,8 +138,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "PortMappings": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-lbport-schema.json"
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,

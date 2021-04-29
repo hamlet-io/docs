@@ -14,10 +14,23 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
-            "Timeout": {
-              "default": 30,
-              "description": "How long a healthcheck should run without reporting status in seconds",
-              "type": "object"
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Regions": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "_all"
+              ],
+              "description": "A list of regions to run the health check from - _product: is the product region - _all: is all available regions",
+              "type": "array"
             },
             "Extensions": {
               "contains": {
@@ -66,8 +79,8 @@
               "description": "The type of healthcheck to perform",
               "type": "object",
               "enum": [
-                "simple",
-                "complex"
+                "Simple",
+                "Complex"
               ]
             },
             "NetworkAccess": {
@@ -147,10 +160,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "Schedule": {
-              "default": "rate(5 mins)",
-              "description": "The schedule to run the healthcheck",
-              "type": "object"
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -208,6 +219,11 @@
                   "description": "The memory to allocate to the script execution",
                   "type": "number"
                 },
+                "Schedule": {
+                  "default": "rate(5 minutes)",
+                  "description": "The schedule to run the healthcheck",
+                  "type": "object"
+                },
                 "Handler": {
                   "type": "string"
                 },
@@ -229,6 +245,11 @@
                   "additionalProperties": false,
                   "type": "object",
                   "properties": {
+                    "ScriptFileName": {
+                      "default": "healthcheck.py",
+                      "description": "The name of the healthcheck script if the image is a zip",
+                      "type": "string"
+                    },
                     "Source:url": {
                       "description": "Url Source specific Configuration",
                       "additionalProperties": false,
@@ -263,6 +284,28 @@
               "required": [
                 "Handler"
               ]
+            },
+            "Permissions": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Decrypt": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "AppData": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "AppPublic": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "AsFile": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
             },
             "ReportRetention": {
               "description": "How long to keep status reports for in days",
@@ -303,22 +346,47 @@
                   "additionalProperties": false,
                   "type": "object",
                   "properties": {
-                    "Port": {
-                      "description": "The name of a port which outlines the healthcheck and protocol details",
+                    "LinkAttribute": {
+                      "default": "FQDN",
+                      "description": "The attribute of the linked occurrence to use for the address",
                       "type": "object"
                     },
-                    "Hostname": {
-                      "description": "An explicit Hostname that will be monitored",
+                    "Address": {
+                      "description": "An explicit address to monitor",
                       "type": "object"
+                    },
+                    "AddressType": {
+                      "default": "Hostname",
+                      "description": "The type of address to monitor",
+                      "type": "object",
+                      "enum": [
+                        "Hostname",
+                        "IP"
+                      ]
                     },
                     "Link": {
                       "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
                     }
                   }
+                },
+                "HTTPSearchString": {
+                  "description": "When using HTTP checks a string that must be present in the response body",
+                  "type": "object"
+                },
+                "Port": {
+                  "description": "The name of a port which sets the healthcheck protocol details",
+                  "type": "object"
+                },
+                "HTTPSearchSetting": {
+                  "description": "The name of a setting that contains the HTTP Search string to use",
+                  "type": "object"
                 }
               }
             }
-          }
+          },
+          "required": [
+            "Type"
+          ]
         }
       },
       "type": "object"

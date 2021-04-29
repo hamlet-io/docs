@@ -7,6 +7,57 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "GenerateCredentials": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "EncryptionScheme": {
+                  "type": "string",
+                  "enum": [
+                    "base64"
+                  ]
+                },
+                "CharacterLength": {
+                  "default": 20,
+                  "type": "number"
+                },
+                "Formats": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "system"
+                  ],
+                  "type": "array",
+                  "enum": [
+                    "system",
+                    "console"
+                  ]
+                }
+              }
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -129,12 +180,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -170,35 +217,6 @@
                 }
               }
             },
-            "GenerateCredentials": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "EncryptionScheme": {
-                  "type": "string",
-                  "enum": [
-                    "base64"
-                  ]
-                },
-                "CharacterLength": {
-                  "default": 20,
-                  "type": "number"
-                },
-                "Formats": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "default": [
-                    "system"
-                  ],
-                  "type": "array",
-                  "enum": [
-                    "system",
-                    "console"
-                  ]
-                }
-              }
-            },
             "Permissions": {
               "additionalProperties": false,
               "type": "object",
@@ -228,13 +246,6 @@
               "contains": {
                 "type": "string"
               },
-              "type": "array"
-            },
-            "Extensions": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing",
               "type": "array"
             }
           }

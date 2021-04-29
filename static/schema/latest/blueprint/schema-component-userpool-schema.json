@@ -7,9 +7,6 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "AuthProviders": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json"
-            },
             "DeploymentUnits": {
               "contains": {
                 "type": "string"
@@ -17,9 +14,17 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
             "VerifyPhone": {
               "default": false,
               "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "AuthorizationHeader": {
               "default": "Authorization",
@@ -243,9 +248,6 @@
                 }
               }
             },
-            "Clients": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolclient-schema.json"
-            },
             "LoginAliases": {
               "contains": {
                 "type": "string"
@@ -360,6 +362,9 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "VerifyEmail": {
               "default": true,
@@ -488,9 +493,6 @@
                 "code",
                 "link"
               ]
-            },
-            "Resources": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolresource-schema.json"
             }
           }
         }

@@ -7,6 +7,115 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "Parameters": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Value": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Key"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Attributes": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "AttributeType": {
+                      "description": "The output type to map the attribute with ",
+                      "type": "string",
+                      "enum": [
+                        "dns",
+                        "arn",
+                        "url",
+                        "name",
+                        "ip",
+                        "key",
+                        "port",
+                        "username",
+                        "password",
+                        "region"
+                      ]
+                    },
+                    "TemplateOutputKey": {
+                      "description": "The name of the template output you want to map to an attribte",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "TemplateOutputKey",
+                    "AttributeType"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
+            "Image": {
+              "description": "Control the source of the image that is used for the function",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Source": {
+                  "default": "registry",
+                  "description": "The source of the image - registry is the hamlet registry",
+                  "type": "string",
+                  "enum": [
+                    "registry",
+                    "url"
+                  ]
+                },
+                "UrlSource": {
+                  "description": "Url Source specific Configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "ImageHash": {
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                      "type": "string"
+                    },
+                    "Url": {
+                      "description": "The Url to the lambda zip file",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "Source"
+              ]
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -119,31 +228,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
-            "Parameters": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Value": {
-                      "type": "string"
-                    },
-                    "Key": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "Key"
-                  ]
-                }
-              },
-              "type": "object"
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -179,40 +265,6 @@
                 }
               }
             },
-            "Attributes": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "AttributeType": {
-                      "description": "The output type to map the attribute with ",
-                      "type": "string",
-                      "enum": [
-                        "dns",
-                        "arn",
-                        "url",
-                        "name",
-                        "ip",
-                        "key",
-                        "port",
-                        "username",
-                        "password",
-                        "region"
-                      ]
-                    },
-                    "TemplateOutputKey": {
-                      "description": "The name of the template output you want to map to an attribte",
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "TemplateOutputKey",
-                    "AttributeType"
-                  ]
-                }
-              },
-              "type": "object"
-            },
             "Links": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
@@ -225,47 +277,6 @@
             "RootFile": {
               "description": "The name of the root template file in the build aretefact",
               "type": "string"
-            },
-            "Extensions": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing",
-              "type": "array"
-            },
-            "Image": {
-              "description": "Control the source of the image that is used for the function",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Source": {
-                  "default": "registry",
-                  "description": "The source of the image - registry is the hamlet registry",
-                  "type": "string",
-                  "enum": [
-                    "registry",
-                    "url"
-                  ]
-                },
-                "UrlSource": {
-                  "description": "Url Source specific Configuration",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "ImageHash": {
-                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                      "type": "string"
-                    },
-                    "Url": {
-                      "description": "The Url to the lambda zip file",
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "required": [
-                "Source"
-              ]
             }
           },
           "required": [

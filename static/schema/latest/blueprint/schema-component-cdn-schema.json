@@ -14,9 +14,17 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
             "EnableLogging": {
               "default": true,
               "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "ErrorResponseOverrides": {
               "patternProperties": {
@@ -50,9 +58,6 @@
             "AssumeSNI": {
               "default": true,
               "type": "boolean"
-            },
-            "Routes": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-cdnroute-schema.json"
             },
             "Extensions": {
               "contains": {
@@ -188,6 +193,9 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,

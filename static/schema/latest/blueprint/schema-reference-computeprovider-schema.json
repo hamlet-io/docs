@@ -36,7 +36,7 @@
                       ]
                     }
                   },
-                  "description": "Providers who will meet the additonal compute capacity outside of the default",
+                  "description": "Providers who will meet the additional compute capacity outside of the default",
                   "type": "object"
                 },
                 "Default": {

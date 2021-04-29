@@ -127,12 +127,20 @@
               "description": "Require IAM Access to EFS",
               "type": "boolean"
             },
-            "Mounts": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-efsmount-schema.json"
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "Encrypted": {
               "default": true,
               "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 50,
+              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,

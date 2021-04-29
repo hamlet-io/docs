@@ -14,6 +14,10 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "segment",
+              "type": "string"
+            },
             "DestinationPorts": {
               "contains": {
                 "type": "string"
@@ -34,8 +38,9 @@
               "description": "IP Address Groups which can access this gateway",
               "type": "array"
             },
-            "Destinations": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-gatewaydestination-schema.json"
+            "deployment:Priority": {
+              "default": 50,
+              "type": "number"
             },
             "BGP": {
               "description": "BGP Network routing",
@@ -208,6 +213,9 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,

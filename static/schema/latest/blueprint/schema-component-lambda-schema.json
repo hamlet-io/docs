@@ -161,9 +161,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Functions": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-function-schema.json"
             }
           }
         }

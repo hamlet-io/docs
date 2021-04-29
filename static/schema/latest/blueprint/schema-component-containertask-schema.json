@@ -37,6 +37,14 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "Containers": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -281,7 +289,6 @@
               "enum": [
                 "none",
                 "bridge",
-                "awsvpc",
                 "host"
               ]
             },
@@ -393,6 +400,9 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "deployment:Unit": {
+              "type": "string"
+            },
             "UseTaskRole": {
               "default": true,
               "type": "boolean"
@@ -499,10 +509,10 @@
             },
             "Engine": {
               "default": "ec2",
+              "description": "The engine used to run the container",
               "type": "string",
               "enum": [
-                "ec2",
-                "fargate"
+                "ec2"
               ]
             }
           }

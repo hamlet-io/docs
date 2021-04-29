@@ -61,6 +61,45 @@
                 }
               }
             },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "segment",
+              "type": "string"
+            },
+            "Address": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "CIDR": {
+                  "default": "10.0.0.0/16",
+                  "type": "string"
+                }
+              }
+            },
+            "deployment:Priority": {
+              "default": 20,
+              "type": "number"
+            },
+            "DNS": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "UseProvider": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "GenerateHostNames": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -173,25 +212,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
-            "NetworkACLs": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-networkacl-schema.json"
-            },
-            "Address": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "CIDR": {
-                  "default": "10.0.0.0/16",
-                  "type": "string"
-                }
-              }
+            "deployment:Unit": {
+              "type": "string"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -228,23 +250,6 @@
                   },
                   "description": "The testing profiles to apply to the component",
                   "type": "array"
-                }
-              }
-            },
-            "RouteTables": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-networkroute-schema.json"
-            },
-            "DNS": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "UseProvider": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "GenerateHostNames": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             },

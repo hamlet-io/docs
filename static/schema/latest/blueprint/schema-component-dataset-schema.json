@@ -122,12 +122,23 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "deployment:Unit": {
+              "type": "string"
+            },
             "BuildEnvironment": {
               "contains": {
                 "type": "string"
               },
               "description": "The environments used to build the dataset",
               "type": "array"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,
