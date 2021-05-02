@@ -379,6 +379,28 @@
                 }
               }
             },
+            "Permissions": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Decrypt": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "AppData": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "AppPublic": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "AsFile": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              }
+            },
             "Links": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
