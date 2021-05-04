@@ -1,4 +1,4 @@
-/* 
+/*
     These components do not render any elements, they are used for processing the Hamlet JSONSchema.
 */
 /* AttributeSet Imports */
@@ -53,13 +53,14 @@ import wafRuleGroup from "@site/static/schema/latest/blueprint/schema-reference-
 import wafValueSet from "@site/static/schema/latest/blueprint/schema-reference-wafvalueset-schema.json";
 
 /* Component Imports */
+import adaptor from  "@site/static/schema/latest/blueprint/schema-component-adaptor-schema.json";
+import apigateway from  "@site/static/schema/latest/blueprint/schema-component-apigateway-schema.json";
+import apiusageplan from "@site/static/schema/latest/blueprint/schema-component-apiusageplan-schema.json";
 import baseline from "@site/static/schema/latest/blueprint/schema-component-baseline-schema.json";
 import baselinedata from "@site/static/schema/latest/blueprint/schema-component-baselinedata-schema.json";
 import baselinekey from "@site/static/schema/latest/blueprint/schema-component-baselinekey-schema.json";
 import s3 from "@site/static/schema/latest/blueprint/schema-component-s3-schema.json";
 import ec2 from "@site/static/schema/latest/blueprint/schema-component-ec2-schema.json";
-import adaptor from "@site/static/schema/latest/blueprint/schema-component-adaptor-schema.json";
-import apiusageplan from "@site/static/schema/latest/blueprint/schema-component-apiusageplan-schema.json";
 import bastion from "@site/static/schema/latest/blueprint/schema-component-bastion-schema.json";
 import cache from "@site/static/schema/latest/blueprint/schema-component-cache-schema.json";
 import cdn from "@site/static/schema/latest/blueprint/schema-component-cdn-schema.json";
@@ -125,6 +126,7 @@ import userpoolclient from "@site/static/schema/latest/blueprint/schema-componen
 import userpoolauthprovider from "@site/static/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json";
 import userpoolresource from "@site/static/schema/latest/blueprint/schema-component-userpoolresource-schema.json";
 
+/* Layer Schema */
 import accountSchema from "@site/static/schema/latest/blueprint/schema-layer-account-schema.json";
 import environmentSchema from "@site/static/schema/latest/blueprint/schema-layer-environment-schema.json";
 import productSchema from "@site/static/schema/latest/blueprint/schema-layer-product-schema.json";
@@ -137,7 +139,7 @@ const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_]*$";
 
 const schema = {
   reference: {
-    alertprofile: { data: alertProfileSchema },
+    AlertProfile: { data: alertProfileSchema },
     AlertRule: { data: alertRuleSchema },
     BaselineProfile: { data: baselineProfileSchema },
     Bootstrap: { data: bootstrap },
@@ -157,7 +159,7 @@ const schema = {
     LogFilter: { data: logFilter},
     LoggingProfile: { data: loggingProfile},
     NetworkEndpointGroup: { data: networkEndpointGroup},
-    NEtworkProfile: { data: networkProfile},
+    NetworkProfile: { data: networkProfile},
     PlacementProfile: { data: placementProfile},
     PolicyProfile: { data: policyProfile},
     Port: { data: port},
@@ -177,13 +179,12 @@ const schema = {
     WAFValueSet: { data: wafValueSet},
   },
   component: {
+    adaptor: { data: adaptor},
+    apigateway: { data: apigateway},
+    apiusageplan: { data: apiusageplan},
     baseline:  { data: baseline },
     baselinedata: { data: baselinedata},
     baselinekey: { data: baselinekey },
-    s3: { data: s3},
-    ec2: { data: ec2},
-    adaptor: { data: adaptor},
-    apiusageplan: { data: apiusageplan},
     bastion: { data: bastion},
     cache: { data: cache},
     cdn: { data: cdn},
@@ -201,6 +202,7 @@ const schema = {
     dataset: { data: dataset },
     datavolume: { data: datavolume },
     db: { data: db},
+    ec2: { data: ec2},
     ecs: { data: ecs },
     service: { data: service },
     task: { data: task},
@@ -238,6 +240,7 @@ const schema = {
     secret: { data: secret},
     serviceregistry: { data: serviceregistry},
     serviceregistryservice: { data: serviceregistryservice},
+    s3: { data: s3},
     spa: { data: spa},
     sqs: { data: sqs},
     template: { data: template},
@@ -250,15 +253,15 @@ const schema = {
     userpoolresource: { data: userpoolresource},
   },
   attributeset: {
-      link: { data: linkSchema },
-      computeimage: { data: computeimageSchema },
-      contextpath: { data: contextpathSchema },
-      ecs_computeimage: { data: ecsComputeImageSchema },
-      operatingsystem: { data: osSchema },
-      ospatching: { data: osPatchingSchema },
-      aws_computeimage: { data: awsComputeImageSchema },
-      aws_ecs_computeimage: { data: awsEcsComputeImageSchema },
-      aws_operatingsystem: { data: awsOsSchema },
+    link: { data: linkSchema },
+    computeimage: { data: computeimageSchema },
+    contextpath: { data: contextpathSchema },
+    ecs_computeimage: { data: ecsComputeImageSchema },
+    operatingsystem: { data: osSchema },
+    ospatching: { data: osPatchingSchema },
+    aws_computeimage: { data: awsComputeImageSchema },
+    aws_ecs_computeimage: { data: awsEcsComputeImageSchema },
+    aws_operatingsystem: { data: awsOsSchema },
   },
   layer: {
     account: { data: accountSchema },
@@ -288,14 +291,14 @@ function getSchemaExample(data){
     example = getSchemaExample(Object.values(
       data.definitions)[0].patternProperties[patternPropertiesRegex].properties)
   } else {
-    example = 
+    example =
       (data.patternProperties) ? { "*" : getSchemaExample(data.patternProperties[patternPropertiesRegex].properties ) }
       : (data.properties) ? getSchemaExample(data.properties)
       : (data.anyOf) ? data.anyOf.map(a => a.type).join(' or ')
       : (data.type) ? data.type
       : new Object
   }
-    
+
    // process children
   if (Object.keys(example).length == 0) {
     Object.keys(data).map(attrName => {
