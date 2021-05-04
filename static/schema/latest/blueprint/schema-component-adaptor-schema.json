@@ -170,6 +170,43 @@
             "Links": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
+            "Environment": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Json": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Prefix": {
+                      "default": "json",
+                      "type": "string",
+                      "enum": [
+                        "json",
+                        ""
+                      ]
+                    },
+                    "Escaped": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "FileFormat": {
+                  "default": "json",
+                  "description": "The format of the file when using AsFile",
+                  "type": "string",
+                  "enum": [
+                    "json",
+                    "yaml"
+                  ]
+                },
+                "AsFile": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              }
+            },
             "Export": {
               "contains": {
                 "type": "string"
@@ -182,6 +219,41 @@
               },
               "description": "Extensions to invoke as part of component processing",
               "type": "array"
+            },
+            "Image": {
+              "description": "Control the source of the image for the adaptor scripts",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Source:url": {
+                  "description": "Url Source specific Configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "ImageHash": {
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                      "type": "string"
+                    },
+                    "Url": {
+                      "description": "The Url to a zip file containing the scripts to run",
+                      "type": "string"
+                    }
+                  }
+                },
+                "Source": {
+                  "default": "registry",
+                  "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
+                  "type": "string",
+                  "enum": [
+                    "registry",
+                    "url",
+                    "none"
+                  ]
+                }
+              },
+              "required": [
+                "Source"
+              ]
             }
           }
         }

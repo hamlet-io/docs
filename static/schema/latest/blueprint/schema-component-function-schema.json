@@ -386,6 +386,15 @@
                     }
                   }
                 },
+                "FileFormat": {
+                  "default": "json",
+                  "description": "The format of the file when using AsFile",
+                  "type": "string",
+                  "enum": [
+                    "json",
+                    "yaml"
+                  ]
+                },
                 "AsFile": {
                   "default": false,
                   "type": "boolean"
