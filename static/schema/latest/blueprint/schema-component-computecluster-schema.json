@@ -150,10 +150,6 @@
               "default": "application",
               "type": "string"
             },
-            "UseInitAsService": {
-              "default": false,
-              "type": "boolean"
-            },
             "deployment:Priority": {
               "default": 100,
               "type": "number"
@@ -210,9 +206,40 @@
               "description": "Extensions to invoke as part of component processing",
               "type": "array"
             },
-            "Role": {
-              "description": "Server configuration role",
-              "type": "string"
+            "Image": {
+              "description": "Control the source of the image that is used for the computecluster",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Source:url": {
+                  "description": "Url Source specific Configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "ImageHash": {
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                      "type": "string"
+                    },
+                    "Url": {
+                      "description": "The url to a source zip file",
+                      "type": "string"
+                    }
+                  }
+                },
+                "Source": {
+                  "default": "registry",
+                  "description": "The source of the image - registry is the hamlet registry",
+                  "type": "string",
+                  "enum": [
+                    "registry",
+                    "url",
+                    "none"
+                  ]
+                }
+              },
+              "required": [
+                "Source"
+              ]
             },
             "Instances": {
               "patternProperties": {
@@ -324,10 +351,6 @@
             },
             "deployment:Unit": {
               "type": "string"
-            },
-            "DockerHost": {
-              "default": false,
-              "type": "boolean"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -530,7 +553,6 @@
                         "_computetask_awscli",
                         "_computetask_awslinux_cwlog",
                         "_computetask_awslinux_efsmount",
-                        "_computetask_awslinux_eip",
                         "_computetask_linux_userbootstrap",
                         "_computetask_linux_scriptsdeployment",
                         "_computetask_awslinux_vpc_lb"

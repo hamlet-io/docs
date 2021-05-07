@@ -203,6 +203,57 @@
               "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
+            "MutualTLS": {
+              "description": "Configuration for enabling mutualTLS authentication for clients",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "CertificateAuthority": {
+                  "description": "The configuration for the certificate authority used to validate client certificates",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Source:link": {
+                      "description": "Use a component to source the RootCA Value",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "RootCACertAttribute": {
+                          "default": "ROOTCA_PEM",
+                          "description": "The attribute of the linked component which provides the certificate for the rootCA",
+                          "type": "string"
+                        },
+                        "Link": {
+                          "description": "A link to a component that has tbe PEM file",
+                          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                        }
+                      }
+                    },
+                    "Source:filesetting": {
+                      "description": "Use an asFile Setting on the apigateway for RootCA Public cert",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "FileName": {
+                          "default": "rootCA.pem",
+                          "description": "The name of the asFile setting",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Source": {
+                      "default": "filesetting",
+                      "description": "The way to source the certificate authority details",
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
             "deployment:Priority": {
               "default": 50,
               "type": "number"
