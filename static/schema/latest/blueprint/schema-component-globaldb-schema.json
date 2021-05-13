@@ -324,6 +324,28 @@
               },
               "description": "Key types - default is string",
               "type": "object"
+            },
+            "ChangeStream": {
+              "description": "Provides a stream of changes made to the table",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "ChangeView": {
+                  "default": "KeysOnly",
+                  "description": "The format of changes that will be provided in the stream",
+                  "type": "string",
+                  "enum": [
+                    "KeysOnly",
+                    "NewItem",
+                    "OldItem",
+                    "NewAndOldItem"
+                  ]
+                },
+                "Enabled": {
+                  "default": false,
+                  "type": "object"
+                }
+              }
             }
           },
           "required": [
