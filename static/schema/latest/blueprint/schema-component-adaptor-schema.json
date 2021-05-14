@@ -7,6 +7,108 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Attributes": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "OutputAttributeType": {
+                      "description": "The output type to map the attribute to",
+                      "type": "string",
+                      "enum": [
+                        "arn",
+                        "url",
+                        "dns",
+                        "name",
+                        "ip",
+                        "id",
+                        "canonicalid",
+                        "certificate",
+                        "key",
+                        "qualifier",
+                        "root",
+                        "port",
+                        "username",
+                        "password",
+                        "generatedpassword",
+                        "databasename",
+                        "topicname",
+                        "repository",
+                        "branch",
+                        "prefix",
+                        "lastrestore",
+                        "region",
+                        "stream",
+                        "secret",
+                        "result"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "OutputAttributeType"
+                  ]
+                }
+              },
+              "description": "Define attributes that should be included in the adaptor state",
+              "type": "object"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
+            "Image": {
+              "description": "Control the source of the image for the adaptor scripts",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Source:url": {
+                  "description": "Url Source specific Configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "ImageHash": {
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                      "type": "string"
+                    },
+                    "Url": {
+                      "description": "The Url to a zip file containing the scripts to run",
+                      "type": "string"
+                    }
+                  }
+                },
+                "Source": {
+                  "default": "registry",
+                  "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
+                  "type": "string",
+                  "enum": [
+                    "registry",
+                    "url",
+                    "none"
+                  ]
+                }
+              },
+              "required": [
+                "Source"
+              ]
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -115,23 +217,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "application",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
-            },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -212,48 +299,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Extensions": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing",
-              "type": "array"
-            },
-            "Image": {
-              "description": "Control the source of the image for the adaptor scripts",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Source:url": {
-                  "description": "Url Source specific Configuration",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "ImageHash": {
-                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                      "type": "string"
-                    },
-                    "Url": {
-                      "description": "The Url to a zip file containing the scripts to run",
-                      "type": "string"
-                    }
-                  }
-                },
-                "Source": {
-                  "default": "registry",
-                  "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
-                  "type": "string",
-                  "enum": [
-                    "registry",
-                    "url",
-                    "none"
-                  ]
-                }
-              },
-              "required": [
-                "Source"
-              ]
             }
           }
         }
