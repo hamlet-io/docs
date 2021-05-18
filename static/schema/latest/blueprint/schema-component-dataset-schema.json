@@ -7,6 +7,58 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Prefix": {
+              "type": "string"
+            },
+            "Image": {
+              "description": "Control the source of the image for dataset components",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Source:url": {
+                  "description": "Url Source specific Configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "ImageHash": {
+                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
+                      "type": "string"
+                    },
+                    "Url": {
+                      "description": "The Url to a zip file containing the mobile app source",
+                      "type": "string"
+                    }
+                  }
+                },
+                "Source": {
+                  "default": "registry",
+                  "description": "The source of the image - registry: the local hamlet registry - url: an external public url",
+                  "type": "string",
+                  "enum": [
+                    "registry",
+                    "url"
+                  ]
+                }
+              },
+              "required": [
+                "Source"
+              ]
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -115,17 +167,6 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "application",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -135,10 +176,6 @@
               },
               "description": "The environments used to build the dataset",
               "type": "array"
-            },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -182,9 +219,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Prefix": {
-              "type": "string"
             },
             "Engine": {
               "type": "string",
