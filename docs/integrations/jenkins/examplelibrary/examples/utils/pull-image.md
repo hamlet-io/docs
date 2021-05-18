@@ -2,26 +2,27 @@
 sidebar_label: docker to aws ecr
 title: Docker and AWS ECR
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+Pull a docker container from a public registry and upload it to your account registry
 
 ## Parameters
 
 **DOCKER_IMAGE**
-Expects a container image name in the format `<Docker repo>:<docker tag>`, which will be deconstructed and assigned to overwrite the default Docker environment variables **DOCKER_REPO**, **DOCKER_TAG**, **REMOTE_DOCKER_REPO** and **REMOTE_DOCKER_TAG**. 
+Expects a container image name in the format `<Docker repo>:<docker tag>`, which will be deconstructed and assigned to overwrite the default Docker environment variables **DOCKER_REPO**, **DOCKER_TAG**, **REMOTE_DOCKER_REPO** and **REMOTE_DOCKER_TAG**.
 
 Alternatively these could be presented as individual Parameters.
 
 ## Stages
 
 ### Setup
+
 Overwrite default Docker environment variables with those specified as Parameters.
 
 ### Pull Image
+
 Perform the Hamlet "Manage Docker" action, pulling the selected container image from Dockerhub to the local registry.
 
 ## Example
+
 ```groovy
 #!groovy
 

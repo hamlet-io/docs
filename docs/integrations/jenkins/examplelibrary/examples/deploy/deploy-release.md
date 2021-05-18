@@ -2,36 +2,40 @@
 sidebar_label: deploy
 title: Deploy Release Pipeline
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Deploy a release which has been prepared for the environment with the ['Prepare Release'](./prepare-release) pipeline.
 
 ## Triggers
+
 This pipeline is intended to be called after the ['Prepare Release'](./prepare-release) pipeline, but defines no triggers of its own.
 
 ## Parameters
+
 This pipeline accepts **DEPLOYMENT_UNITS** (extendedChoice), **RELEASE_IDENTIFIER** (string) and **MODE** (choice) parameters. Choices are populated by the configuration of the [`properties`](../properties/properties) file.
 
 ## Stages
 
 ### Setup
+
 Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Update Build Refs
+
 Stores the hash value of the "Git Commit" in the current Environment/Segment/DeploymentUnit's `build.json` within the Hamlet CMDB.
 
 ### Deploy
+
 Creates and deploys all application-level component templates from the list of Deployment Units supplied as a parameter. Tags the CMDB repository with the deployment reference and commits the generated application templates back to the CMDB.
 
 ### Post Job
+
 After running, this pipeline will notify a defined slack channel of either success or failure.
 
 ## Scripts
+
 This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library).
 
 ## Example
+
 ```groovy
 #!groovy
 

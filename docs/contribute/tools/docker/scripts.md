@@ -2,30 +2,32 @@
 sidebar_label: scripts
 title: Docker Scripts & Misc Files
 ---
-import Admonition from 'react-admonitions';
-
-<Admonition type="warning" title="Under Construction">
+:::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
+:::
 
 * The following scripts are used within the multi-stage docker build
 * They keep some of the more complex logic out of the Dockerfiles
 
-# azpipelines-agent/start
+## azpipelines-agent/start
+
 * installs and configures a self-hosted agent for Azure pipelines
-	* [Azure Pipelines Agents - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
+  * [Azure Pipelines Agents - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
 
-# base/build_hamlet.sh
+## base/build_hamlet.sh
+
 * builds the core hamlet repositories from source, by:
-	* feeds  `./config.json` to `jq` , which it uses to create a new script within the container - `clone.sh`
-	* Make the new script executable
-	* generate a new `version.json` file by reading from environment variables
+  * feeds  `./config.json` to `jq` , which it uses to create a new script within the container - `clone.sh`
+  * Make the new script executable
+  * generate a new `version.json` file by reading from environment variables
 
-# hamlet/shellprompt.sh
+## hamlet/shellprompt.sh
+
 * Installs a pre-defined bash prompt
-	* will appear for all users
+  * will appear for all users
 
-# jenkins-jnlp-agent/jenkins-agent
+## jenkins-jnlp-agent/jenkins-agent
+
 * bash script that starts up the JNLP agent
 
 ```sh
@@ -44,8 +46,10 @@ The hamlet.io documentation is currently under significant re-development. Exist
 # * JENKINS_PROTOCOLS:         Specify the remoting protocols to attempt when instanceIdentity is provided.
 ```
 
-# jenkins-jnlp-agent/wait-for-it
-* Evaluates the status of a given TCP host/port and if its busy, waits for it
+## jenkins-jnlp-agent/wait-for-it
+
+Evaluates the status of a given TCP host/port and if its busy, waits for it
+
 ```bash
 Usage:
     $cmdname host:port [-s] [-t timeout] [-- command args]
@@ -59,5 +63,3 @@ Usage:
     -- COMMAND ARGS             Execute command with args after the test finishes
 
 ```
-
-#work/tenants/gosource/hamlet/docs/docker/scripts

@@ -1,7 +1,8 @@
 ---
 title: Solution Diagram Generation
+author: roleyfoley
+author_url: https://github.com/roleyfoley
 ---
-import Admonition from 'react-admonitions';
 
 Instead of defining the raw infrastructure we need, hamlet works off a solution. The solution outlines the functional components required in the deployment and hamlet then takes this to build out the infrastructure definition that would perform this function.
 

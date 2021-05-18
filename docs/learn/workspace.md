@@ -2,12 +2,7 @@
 sidebar_label: workspace
 title: Setting Up a Workspace
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-
-This brief guide will walk you through the setup of a simple Hamlet Deploy development workspace. 
+This brief guide will walk you through the setup of a simple Hamlet Deploy development workspace.
 
 Other Learn guides will assume the use of this common workspace.
 
@@ -68,7 +63,7 @@ _Inside of the container_ in the terminal session, you will now have access to t
 
 By configuring a development workspace like this you will now be able to use a code-editor or IDE of choice from your host machine whilst performing Hamlet Deploy actions against them inside of the container from the terminal session.
 
-Lets quickly test everything is working as expected. 
+Lets quickly test everything is working as expected.
 
 Open up a second terminal window - this one wont be inside the container.
 
@@ -97,8 +92,8 @@ Over time you may wish to update your workspace with the latest version of Hamle
 Downloading the latest version of the Hamlet Deploy container image and re-starting your terminal session is all that you need to do.
 
 ```bash
-# in your current container 
-exit 
+# in your current container
+exit
 
 # from your local terminal
 docker pull hamletio/hamlet

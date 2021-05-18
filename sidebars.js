@@ -228,6 +228,13 @@ module.exports = {
             'contribute/contributor_reference/routines',
           ]
         },
+        {
+          type: 'category',
+          label: 'Releases',
+          items: [
+            'releases/schedule'
+          ]
+        },
       ]
     },
     {

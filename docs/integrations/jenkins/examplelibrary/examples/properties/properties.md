@@ -2,10 +2,6 @@
 sidebar_label: properties files
 title: Properties Files
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 For Jenkins to perform Hamlet tasks such as template generation and cloud deployments, each pipeline will require a number of common environment variables. To re-use this configuration they are stored within a file known as a`properties` or `<product>.properties` file.
 
 Within pipelines, this file is loaded in, injecting each key/value pair as environment variables wihin the pipeline. Whilst not every variable is used in each pipeline, it provides a single place for storing this information and prevents repetition.
@@ -14,13 +10,13 @@ Within pipelines, this file is loaded in, injecting each key/value pair as envir
 
 Storing your `properties` file inside of your Product CMDB is recommended.
 
-```
+```bash
 ./product_cmdb
 └── pipelines
-		└── deploy
-		└── manage
-		└── properties
-			└── product.properties
+        └── deploy
+        └── manage
+        └── properties
+        └── product.properties
 ```
 
 ## Configuration Template
@@ -55,6 +51,7 @@ APPLICATION_UNITS=<deployment-unit>
 ```
 
 ## Example
+
 ```bash
 ## Tenant settings
 GIT_EMAIL_DEFAULT=alm@exampleemail.com

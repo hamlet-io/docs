@@ -2,16 +2,12 @@
 sidebar_label: multi-unit
 title: Multi-Unit Build Pipelines
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-
 This pipeline contains an example for building multiple deployment units from the same code repository. This is best used with the multibranch pipeline or a pipeline stored in the application code.
 
 ## Build Units
 
-We have two build units in this pipeline example; 
+We have two build units in this pipeline example;
+
 * an `apigateway` with an openapi spec
 * a `lambda function` which implements the API backend
 
@@ -21,14 +17,16 @@ Changes to the file paths **api/spec** or **api/gw/** will trigger the build pro
 
 Changes to the files under **lambda/\*** will trigger the build process for the `lambda function`. If it completes, a build job is triggered to deploy the `lambda` deployment-unit.
 
-
 ## Parameters
+
 The "force_*" paramters allow you to override the conditional trigger on the file paths. This is useful in build pipelines that may fail on underlying services or updates to the build hosts are made.
 
 ## Scripts
+
 This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library)
 
 ## Example
+
 ```groovy
 #!groovy
 pipeline {

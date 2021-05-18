@@ -2,33 +2,36 @@
 sidebar_label: accept
 title: Accept Release Pipeline
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Accept a release into a specified environment, validate that acceptance and update that environment's build references within the Hamlet CMDB. This process provides the mechanism for promoting build artefacts through a pre-determined environment ordering.
 
 ## Triggers
+
 This pipeline is intended to be called by the ['Deploy Release' pipeline](promote-release) and defines no automatic triggers.
 
 ## Parameters
+
 This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the release that is to be accepted.
 
 ## Stages
 
 ### Setup
+
 Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Prepare
+
 Prepare the Jenkins execution environment, validate the acceptance and update the Hamlet CMDB to reflect the acceptance.
 
 ## Post Job
-After running this pipeline will notify a defined slack channel of either success or failure. 
+
+After running this pipeline will notify a defined slack channel of either success or failure.
 
 ## Scripts
+
 This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library)
 
 ## Example
+
 ```groovy
 #!groovy
 pipeline {

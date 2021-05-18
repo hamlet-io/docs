@@ -22,20 +22,6 @@ module.exports = {
       items: [
         {to: 'docs/hello/welcome', label: 'docs', position: 'left'},
         {to: "blog", label: 'blog', position: 'right'},
-        {
-          label: 'releases',
-          position: 'right',
-          items: [
-            {
-              label: 'strategy',
-              to: 'docs/releases/schedule',
-            },
-            {
-              label: 'roadmap',
-              href: 'https://github.com/orgs/hamlet-io/projects/4',
-            }
-          ]
-        },
         {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
       ],
     },
@@ -60,11 +46,11 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Docs',
-              to: 'docs/hello/welcome'
+              label: 'Gitter',
+              to: 'https://gitter.im/hamlet-io/community'
             },
             {
-              label: 'Help',
+              label: 'Hamlet help',
               href: 'https://help.hamlet.io',
             },
           ],
@@ -72,10 +58,6 @@ module.exports = {
         {
           title: 'Repositories',
           items: [
-            {
-              label: 'Overview',
-              href: 'https://docs.hamlet.io/docs/developer-guides/index'
-            },
             {
               label: 'Docs',
               href: 'https://github.com/hamlet-io/docs'

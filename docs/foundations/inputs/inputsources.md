@@ -2,8 +2,6 @@
 sidebar_label: sources
 title: Input Sources
 ---
-import Admonition from 'react-admonitions';
-
-<Admonition type="warning" title="Under Construction">
+:::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
+:::

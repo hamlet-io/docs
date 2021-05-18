@@ -2,33 +2,36 @@
 sidebar_label: promote
 title: Promote Release Pipeline
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Promote a Release Identifier from the prior environment into the environment specified on this pipeline. All build configuration from the previous environment is "promoted" into this one.
 
 ## Triggers
+
 This pipeline is intended to be triggered only when a build has passed testing. The example expects a manual trigger, although can be easily modified to incorporate other release gates.
 
 ## Parameters
+
 This pipeline accepts a **RELEASE_IDENTIFIER** which it will verify exists in the Hamlet CMDB against the environment prior to one defined in this pipeline.
 
 ## Stages
 
 ### Setup
+
 Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Prepare
+
 Promotes build references from their prior environment, verifies the promotion to this pipeline's environment and commits the changes to the Hamlet CMDB.
 
 ### Post Job
+
 After running, this pipeline will notify a defined slack channel of either success or failure.
 
 ## Scripts
+
 This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library).
 
 ## Example
+
 ```groovy
 #!groovy
 

@@ -2,13 +2,10 @@
 sidebar_label: glossary
 title: Hamlet Terminology
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Admonition type="warning" title="Under Construction">
+:::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
+:::
+
 
 This reference provides an outline of the different classes of items within the CMDB. The classes form a hierarchy in the CMDB which defines your `hamlet` deployment overall. Instances of classes are grouped together in collections and the overall collection is used to define the class
 

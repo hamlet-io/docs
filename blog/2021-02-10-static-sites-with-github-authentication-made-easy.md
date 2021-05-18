@@ -6,7 +6,7 @@ author_url: https://github.com/rossmurr4y
 import Admonition from 'react-admonitions';
 import Mermaid from '@theme/Mermaid';
 
-# Github OAuth on Static Sites with Hamlet Modules
+## Github OAuth on Static Sites with Hamlet Modules
 
 Static websites are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks like Jekyll, Gatsby and Docusaurus that allow anyone to spin up and deploy documentation, a blog or simple website, often for for little or no cost.
 

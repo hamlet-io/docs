@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Parameters
 
-**ENVIRONMENT** 
+**ENVIRONMENT**
 Add the selected [`environment(s)`](../../../../../foundations/terminology#environment) to the pipeline scope.
 
 **DEPLOYMENT_UNIT**
@@ -27,6 +27,7 @@ Disable the deployment of the OTA build artefact to the Expo Cloud Distribution 
 
 **BINARY_BUILD_PROCESS**
 Specify the build process to use for the build artefacts. `fastlane` or `turtle` are supported.
+
 * `fastlane` - for Expo ejected or bare workflows
 * `turtle` - for Expo client-based builds
 
@@ -37,21 +38,27 @@ Each Turtle version only includes a [specific collection of SDK builders](ttps:/
 ## Stages
 
 ### Setup
+
 Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Run Publish Expo
+
 Publish build artefacts to Expo.
 
 ### Sentry Release
+
 Upload application Source Map files to Sentry. Only applicable if using [Sentry](https://sentry.io/welcome/). This should only be performed in the first environment the application is published into.
 
 ### Post Job
+
 After running, this pipeline will notify a defined slack channel of either success or failure.
 
 ## Scripts
+
 This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library).
 
 ## Example
+
 ```groovy
 #!groovy
 

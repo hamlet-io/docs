@@ -2,10 +2,6 @@
 sidebar_label: cli
 title: CLI
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Hamlet Deploy CLI is a Python package based on [Click](ttps://click.palletsprojects.com).
 
 The CLI acts as a wrapper around other Hamlet Deploy components and offers a single interface from which to perform Hamlet Deploy actions.

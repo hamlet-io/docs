@@ -2,10 +2,6 @@
 sidebar_label: single-unit
 title: Basic Build Pipeline
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 A single-unit build pipeline.  This is best used with the multibranch pipeline or a pipeline stored within the application code.
 
 An alternate application of this pipeline would be to create separate build pipelines within the same repository. These could then be configured within the Jenkins Job to trigger simultaneously on all commits to the repository.
@@ -14,13 +10,16 @@ An alternate application of this pipeline would be to create separate build pipe
 
 This pipeline contains an example for building a single deployment unit and triggering a deployment if successful.
 
-# Post Job
+## Post Job
+
 On success, this job will trigger a ['Continuous Deploy'](../deploy/continuous-deploy) pipeline into the first environment.
 
 ## Scripts
+
 This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library)
 
 ## Example
+
 ```groovy
 #!groovy
 pipeline {

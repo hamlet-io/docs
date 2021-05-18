@@ -2,16 +2,14 @@
 sidebar_label: environment
 title: Manage Environment Pipeline
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Perform environment-level deployments, including performing a deployment of a specific [mode](../../../../../foundations/lifecycle#deployment-modes) against one or more deployment units.
 
 ## Triggers
+
 No triggers.
 
 ## Parameters
+
 This pipeline's available parameter values are populated by the [`properties`](../properties/properties) file and so initially, no parameters can be provided. After loading the `properties` file the pipeline will prompt for user selection of the following parameters, which will each filter the pipelines scope:
 
 **ENVIRONMENT**
@@ -35,15 +33,19 @@ Forces the deployment for every deployment unit matching the selected parameters
 ## Stages
 
 ### Get Input
+
 Loads the [`properties`](../properties/properties) file and prompts for the selection of the now-configured Parameters.
 
 ### Setup Context
+
 Establishes the execution environment context and loads any additional environment variables from the local `context.properties` file.
 
 ### Manage Env
-Executes a Hamlet "Manage Environment" action against the Parameter selection. This includes sequential template generation and deployment for all deployment units within the scope of the Parameter selection. 
+
+Executes a Hamlet "Manage Environment" action against the Parameter selection. This includes sequential template generation and deployment for all deployment units within the scope of the Parameter selection.
 
 ## Example
+
 ```groovy
 #!groovy
 

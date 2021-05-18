@@ -2,11 +2,9 @@
 sidebar_label: overview
 title: Deployment Frameworks
 ---
-import Admonition from 'react-admonitions';
-
-<Admonition type="warning" title="Under Construction">
+:::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
+:::
 
 * Deployment Frameworks define the necessary routines, macros and functions (link to this section) to construct the output file types used by Hamlet to deploy to a chosen provider
 * Not all provider frameworks expose the full potential of that provider
@@ -16,12 +14,14 @@ The hamlet.io documentation is currently under significant re-development. Exist
 * Hamlet internally uses the “default” deployment framework which is defined within the shared provider
 * Additional Deployment Frameworks can be added to Hamlet by way of engine plugins (link)
 
-# Deployment Framework Features
+## Deployment Framework Features
+
 * Deployment Frameworks must define their output types
-	* as well as all supporting functions and macros for their generation
+  * as well as all supporting functions and macros for their generation
 * They also may optionally define data models (link to models docs) relevant to that provider and framework
 
-# Official Deployment Frameworks
+## Official Deployment Frameworks
+
 * “default” (link)
 * Cloud Formation (link)
 * Azure Resource Manager (link)
