@@ -2,30 +2,34 @@
 sidebar_label: shared
 title: Shared Provider
 ---
-import Admonition from 'react-admonitions';
-
-<Admonition type="warning" title="Under Construction">
+:::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
+:::
 
-# Shared Deployment Frameworks
-# Shared Components 
-# Shared Services
-# Shared Input Sources
-## Mock
+## Shared Deployment Frameworks
 
-## Composite
+## Shared Components
 
-# Shared Reference Data
-# Shared Utility Script
-# Shared Tasks
+## Shared Services
 
-## Template Passes
+## Shared Input Sources
 
-## Passes
+### Mock
 
-### parameters
+### Composite
 
-### config
+## Shared Reference Data
 
-### cli
+## Shared Utility Script
+
+## Shared Tasks
+
+### Template Passes
+
+### Passes
+
+#### parameters
+
+#### config
+
+#### cli

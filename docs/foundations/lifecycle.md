@@ -2,16 +2,14 @@
 sidebar_label: lifecycle
 title: Hamlet Lifecycle Management
 ---
-import Admonition from 'react-admonitions';
-
-<Admonition type="warning" title="Under Construction">
+:::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-</Admonition>
+:::
 
-# Deployments
+## Deployments
 
-## Deployment Units
+### Deployment Units
 
-## Deployment Levels
+### Deployment Levels
 
-## Deployment Modes
+### Deployment Modes

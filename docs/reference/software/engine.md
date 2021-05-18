@@ -2,10 +2,6 @@
 sidebar_label: engine
 title: Hamlet Deploy Engine
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 The Hamlet Deploy Engine establishes the data models used within the Hamlet Deploy application, its Plugins and Extensions. It is written in Apache Freemarker templating language using an extended binary from the [Engine Core](./engine_core).
 
 ## Installation
@@ -30,8 +26,8 @@ These are available in the [Hamlet Deploy Library](https://github.com/hamlet-io/
 
 ### Module Configuration
 
- The following Environment Variables must be set in order for the Engine to load each module.
+The following Environment Variables must be set in order for the Engine to load each module.
 
- | Variable                | Value                                                                                                       |
- |-------------------------|-------------------------------------------------------------------------------------------------------------|
- | GENERATION_PLUGIN_DIRS  | A semicolon delimited list of fully qualified filepaths, each to a local instance of a Hamlet Deploy module |
+| Variable                | Value                                                                                                       |
+|-------------------------|-------------------------------------------------------------------------------------------------------------|
+| GENERATION_PLUGIN_DIRS  | A semicolon delimited list of fully qualified filepaths, each to a local instance of a Hamlet Deploy module |

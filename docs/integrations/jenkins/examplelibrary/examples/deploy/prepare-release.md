@@ -2,33 +2,36 @@
 sidebar_label: prepare
 title: Prepare Release Pipeline
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Creates the templates required for a release and associates the provided Release Identifier with the builds in the current environment. This Release Identifier will then represent this collection of builds to promote through the environments.
 
 ## Triggers
+
 This pipeline is intended to be called by the ['Promote Release' pipeline](promote-release) and defines no automatic triggers.
 
 ## Parameters
+
 This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the unique Release to be prepared. The **DEPLOYMENT_UNITS** parameter can be provided, however by default it will read its values from an array defined at the top of the file.
 
 ## Stages
 
 ### Setup
+
 Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
 
 ### Prepare
+
 Prepare the Jenkins execution environment, verify build references can be found (as defined by their build format) in registry, generate application-level deployment-unit templates and update them in the Hamlet CMDB.
 
 ### Post Job
-After running, this pipeline will notify a defined slack channel of either success or failure. 
+
+After running, this pipeline will notify a defined slack channel of either success or failure.
 
 ## Scripts
+
 This example uses groovy scripts from the [jenkins-shared-library](https://github.com/hamlet-io/jenkins-shared-library)
 
 ## Example
+
 ```groovy
 #!groovy
 def releaseUnits = [

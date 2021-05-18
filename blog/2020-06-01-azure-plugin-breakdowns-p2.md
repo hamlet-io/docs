@@ -3,9 +3,7 @@ title: Azure Plugin Breakdowns pt 2
 author: rossmurr4y
 author_url: https://github.com/rossmurr4y
 ---
-import Admonition from 'react-admonitions';
-
-# Component Breakdown - s3 - Azure Provider
+## Component Breakdown - s3 - Azure Provider
 
 Today we're going to get started with one of the basics of the cloud infrastructure world - the object store `s3`.
 
@@ -13,7 +11,7 @@ Today we're going to get started with one of the basics of the cloud infrastruct
 
 In Azure, the `s3` component is made up of a single `Storage Account` resource, a `Blob Service` resource assigned to it and a `Container` inside that Service. This is the bare-minimum required for blob file storage within a `Storage Account`. The final resource is a `KeyVault Secret`, which will be used to store the value of the Storage Account Key - we'll cover KeyVault and this secret a little later on.
 
-## s3 Template File
+### s3 Template File
 
 Lets take a look at an example ARM Template that hamlet may produce for an `s3` component:
 
@@ -138,7 +136,7 @@ Lets take a look at an example ARM Template that hamlet may produce for an `s3` 
 }
 ```
 
-## At a Glance
+### At a Glance
 
 Firstly, some things you may notice right away.
 
@@ -185,17 +183,17 @@ a) Learns the resource id of the Secret resource: `secretXappXstage`.
 b) From that it knows how to create an Id for a Secret Name, which is also another output: `secretXappXstageXname`.
 c) So that resource can evaluate all composite stack outputs to look for that output, and learn that the secret name in KeyVault is `hamletioKeyVault-1a2b3c4d/app-stage-secret-ConnectionKey` where the first part is the vault name, and the secodn is the name of our Secret resource.
 
-<Admonition type="important" title="Output Id Conventions">
+:::caution
   You may have noticed that all outputs for a given resource have a common structure. That's because the default output for every resource (the resource id in Azure) will set the name for all other outputs of that resource. For example the "Secret" resource from the template above sets gives us two outputs:
 
   |Ouput Id               |Output Value       |
   |-----------------------|-------------------|
   |`secretXappXstage`     |Resource Identifier|
   |`secretXappXstageXname`| Resource Name     |
-
-</Admonition>
+:::
 
 That's it for this breakdown. In our next article we'll up the complexity by jumping into the `db` component, take a closer look at how we get the most out of Parameter files and explore how hamlet can be used to fill the gaps in a provider or framework.
 
 ## Links & References
+
 [ARM Template Functions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions)

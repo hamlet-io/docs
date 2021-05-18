@@ -2,10 +2,6 @@
 sidebar_label: container
 title: Docker Container
 ---
-import Admonition from 'react-admonitions';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Hamlet Deploy is published as a Docker container on Docker Hub under the **hamletio** organisation.
 
 ```bash

@@ -2,8 +2,6 @@
 sidebar_label: validate configuration
 title: Validating the Blueprint
 ---
-import Admonition from 'react-admonitions';
-
 Regularly validating that your Blueprint contains only valid configuration is not only good practice, it will help you catch mis-configurations early.
 
 In this short guide we'll take a look over how you can make the most of Blueprint validation.
@@ -11,6 +9,7 @@ In this short guide we'll take a look over how you can make the most of Blueprin
 ## Requirements
 
 The following sections assume you are working inside the development workspace and have a District configured already.
+
 ## What Gets Validated?
 
 The validation process will construct the District's Blueprint and compare it against the [Blueprint Reference](https://docs.hamlet.io/reference). The process will alert you if any of the following issues are present:
@@ -32,6 +31,6 @@ That's all there is to it!
 
 Regular validation will help you catch issues early and ensure that Hamlet Deploy is working the way you intend it to.
 
-<Admonition type="question" title="Having Trouble?">
-You can always compare invalid configuration against the <a href="https://docs.hamlet.io/reference">Blueprint Reference</a> if you get stuck.
-</Admonition>
+:::note
+You can always compare invalid configuration against the [Blueprint Reference](https://docs.hamlet.io/reference) if you get stuck.
+:::
