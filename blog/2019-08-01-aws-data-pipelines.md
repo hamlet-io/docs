@@ -6,6 +6,7 @@ title: Data Pipeline Development
 Developing for a data pipeline is very "open" to say the least, this is primarily due to the fact that a data pipeline essentially spins up an [AWS EC2](https://aws.amazon.com/ec2/) instance which can effectively invoke or perform any action within the entire AWS stack using the [AWS CLI](https://aws.amazon.com/cli/), only limited by the instances permissions.
 
 As a result the easier way to think for developing a [AWS Data Pipeline](https://aws.amazon.com/datapipeline/) is to rather look at what tasks pipelines are useful for and what tools you need to perform the duties you wish to carry out using the Data Pipeline.
+<!--truncate-->
 
 ## Should I be using an AWS Data Pipeline
 

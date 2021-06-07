@@ -6,6 +6,7 @@ author_url: https://github.com/rossmurr4y
 
 So far in [our blog series](2020-05-20-azure-plugin-breakdowns.md) we’ve covered off the basics that show you how Hamlet is used to create ARM templates.  Today we’re going to go even further and show you how Hamlet is able to take an existing provider and extend its capabilities into orchestration. We’re also going to take a look at how Hamlet addresses some of the more frustrating parts of cloud deployments - obscure naming conventions across resources.
 
+<!--truncate-->
 ## Network Component
 
 Diving right in to what is often one of the most complex parts of cloud infrastructure design - the network component. Deciding precisely how you want to slice up your network into subnets and what their CIDR ranges should be, ensuring components that should be able to communicate can do so whilst restricting others is a big job. Hamlet however is able to determine your needs from your Solution. In fact if you already have a project with a basic `solution.json` and a `network`  component defined, then you’ve already got your network planned out! Take the following example:
