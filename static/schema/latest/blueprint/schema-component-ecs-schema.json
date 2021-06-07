@@ -532,6 +532,16 @@
                     }
                   }
                 },
+                "ManagementPorts": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "ssh"
+                  ],
+                  "description": "The network ports used for remote management of the instance",
+                  "type": "array"
+                },
                 "Image": {
                   "description": "Configures the source of the virtual machine image used for the instance",
                   "additionalProperties": false,
