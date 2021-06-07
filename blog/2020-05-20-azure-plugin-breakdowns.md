@@ -5,6 +5,8 @@ author_url: https://github.com/rossmurr4y
 ---
 Welcome to the start of a new series of blog posts centred around the Hamlet Azure provider. In each article will showcase a new hamlet component type and how it has been implemented by the Azure provider plugin. Along the way we'll review some unique Infrastructure-as-Code challenges that hamlet addresses as well as deep dive into some of its features.
 
+<!--truncate-->
+
 These articles are intended for audiences just starting out with hamlet. You will need a basic understanding of Azure and ARM templates - links provided at the end of this article to bring you up to speed. The intent is for each article to build up to the next, exploring both hamlet and the Azure provider plugin in greater depth.
 
 :::note

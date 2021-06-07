@@ -1,12 +1,11 @@
 ---
-title: Azure Plugin Breakdowns pt 2
+title: Azure Plugin Breakdowns pt 2 - S3
 author: rossmurr4y
 author_url: https://github.com/rossmurr4y
 ---
-## Component Breakdown - s3 - Azure Provider
-
 Today we're going to get started with one of the basics of the cloud infrastructure world - the object store `s3`.
 
+<!--truncate-->
 `s3` is a standalone object storage component which can be used by other components to store data. A typical hamlet deployment will include a `baseline` component which itself involves some standard storage resources, however the standalone `s3` component is for more advanced or shared configuration options where you might not want to keep this data alongside that which is stored in your `baseline` storage resources. Perhaps you need different permissions or a more long-term storage option for archival purposes.
 
 In Azure, the `s3` component is made up of a single `Storage Account` resource, a `Blob Service` resource assigned to it and a `Container` inside that Service. This is the bare-minimum required for blob file storage within a `Storage Account`. The final resource is a `KeyVault Secret`, which will be used to store the value of the Storage Account Key - we'll cover KeyVault and this secret a little later on.

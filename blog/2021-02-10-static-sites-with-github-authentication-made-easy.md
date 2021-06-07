@@ -6,9 +6,8 @@ author_url: https://github.com/rossmurr4y
 import Admonition from 'react-admonitions';
 import Mermaid from '@theme/Mermaid';
 
-## Github OAuth on Static Sites with Hamlet Modules
-
 Static websites are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks like Jekyll, Gatsby and Docusaurus that allow anyone to spin up and deploy documentation, a blog or simple website, often for for little or no cost.
+<!--truncate-->
 
 An common pattern for this deployment is to use an object store ( AWS S3, Azure Object Store ) combined with a content distribution network (CDN) such as AWS CloudFront. Most providers of these services charge on usage and often have great free tier offerings for small sites
 

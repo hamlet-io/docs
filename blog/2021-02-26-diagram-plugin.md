@@ -8,6 +8,7 @@ Instead of defining the raw infrastructure we need, hamlet works off a solution.
 
 Combining this with our pluggable architecture we can use the same solution to generate infrastructure definitions in different cloud providers like AWS and Azure. This is an interesting feature itself but in this post we are going to look at another way to use this data, diagram generation.
 
+<!--truncate-->
 ## A picture paints a 1000 words
 
 Declarative infrastructure deployments that outline the precise configuration required for an infrastructure deployment, have become the standard with hyperscale cloud providers. However they can also be quite challenging to conceptualise what has been deployed.
