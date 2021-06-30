@@ -133,10 +133,7 @@ The `IncludeInContext` optional attribute on a link is used to restrict which li
 Run the following command in the hamlet container to validate your component's link configuration:
 
 ```bash
-hamlet query describe occurrence \
-    --tier <tier> \
-    --component <component> \
-    --instance <instance> \
-    --version <version> \
+hamlet component describe-occurrence \
+    --name
     solution
 ```

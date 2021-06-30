@@ -279,7 +279,7 @@ Lets see what this looks like in hamlet:
 6. Like any other hamlet component templates provide attributes based on their state to other components
 
     ```bash
-    hamlet query describe occurrence --tier-id db --component-id glue attributes
+    hamlet component describe-occurrence --name database-glue attributes
     ╒════╤═══════╤════════════════════════════════════════════════╕
     │    │ Key   │ Value                                          │
     ╞════╪═══════╪════════════════════════════════════════════════╡
