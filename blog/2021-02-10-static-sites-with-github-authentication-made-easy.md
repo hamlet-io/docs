@@ -465,7 +465,7 @@ Remember you can list the discovered deployment units with `hamlet deploy list-d
 Our Github OAuth Application needs to be updated with the Callback Url of the Cognito userpool’s hosted UI. Once you’re `userpool` has been deployed, this can be retrieved with the Hamlet CLI:
 
 ```bash
-hamlet query describe occurrence --tier-id mgmt --component-id pool attributes
+hamlet component describe-occurrences --name management-pool attributes
 ```
 
 The result should be of the format `<UI_BASE_URL>/oauth2/idpresponse`. You should now replace the placeholder URL with this value in the Github OAuth Application.
@@ -475,7 +475,7 @@ The result should be of the format `<UI_BASE_URL>/oauth2/idpresponse`. You shoul
 Once our Github OAuth App is configured, we can now test it all out! Retrieve the `cdn` URL and test out your access.
 
 ```bash
-hamlet query describe occurrence --tier-id web --component-id door attributes
+hamlet component describe-occurrences --name web-door attributes
 ```
 
 And with that, your Single Page Application should be secured behind Github OAuth!
