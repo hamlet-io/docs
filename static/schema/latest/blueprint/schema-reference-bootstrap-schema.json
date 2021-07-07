@@ -23,6 +23,7 @@
               "type": "string"
             },
             "AutoUpgradeOnMinorVersion": {
+              "default": false,
               "type": "boolean"
             },
             "ProtectedSettings": {

@@ -7,7 +7,7 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "*": {
+            "ecs": {
               "description": "The component type the profile applies to",
               "additionalProperties": false,
               "type": "object",
@@ -18,10 +18,46 @@
                   },
                   "type": "array"
                 }
-              },
-              "required": [
-                "Bootstraps"
-              ]
+              }
+            },
+            "ec2": {
+              "description": "The component type the profile applies to",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Bootstraps": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "computecluster": {
+              "description": "The component type the profile applies to",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Bootstraps": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "bastion": {
+              "description": "The component type the profile applies to",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Bootstraps": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
             }
           }
         }

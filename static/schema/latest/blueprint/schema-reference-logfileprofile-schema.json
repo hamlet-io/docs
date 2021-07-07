@@ -7,7 +7,46 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "*": {
+            "ecs": {
+              "description": "The component type the profile applies to",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "LogFileGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "ec2": {
+              "description": "The component type the profile applies to",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "LogFileGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "computecluster": {
+              "description": "The component type the profile applies to",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "LogFileGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "bastion": {
               "description": "The component type the profile applies to",
               "additionalProperties": false,
               "type": "object",

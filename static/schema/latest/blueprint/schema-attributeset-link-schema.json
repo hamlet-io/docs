@@ -7,6 +7,9 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "SubComponent": {
+              "type": "object"
+            },
             "IncludeInContext": {
               "description": "Include the attributes provided by this link in the environment context",
               "type": "object"

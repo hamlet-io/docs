@@ -156,10 +156,31 @@
                 },
                 "Logging": {
                   "default": "default",
+                  "description": "profile to define where logs are forwarded to from this component",
                   "type": "string"
                 },
                 "Processor": {
                   "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "ComputeProvider": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "LogFile": {
+                  "default": "default",
+                  "description": "Defines the logfile profile which sets the log files to collect from the compute instance",
                   "type": "string"
                 },
                 "Storage": {
@@ -174,22 +195,12 @@
                   "default": "default",
                   "type": "string"
                 },
-                "Deployment": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                "Bootstrap": {
+                  "default": "default",
+                  "description": "A profile to include additional bootstrap sources as part of the instance startup",
+                  "type": "string"
                 },
                 "Alert": {
-                  "default": "default",
-                  "type": "string"
-                },
-                "Baseline": {
-                  "default": "default",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "type": "string"
-                },
-                "ComputeProvider": {
                   "default": "default",
                   "type": "string"
                 },

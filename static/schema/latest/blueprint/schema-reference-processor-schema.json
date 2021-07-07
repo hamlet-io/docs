@@ -7,7 +7,7 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "NAT": {
+            "nat": {
               "additionalProperties": false,
               "type": "object",
               "properties": {
@@ -29,7 +29,7 @@
                 }
               }
             },
-            "ECS": {
+            "ecs": {
               "additionalProperties": false,
               "type": "object",
               "properties": {
@@ -56,7 +56,7 @@
                 }
               }
             },
-            "EC2": {
+            "ec2": {
               "additionalProperties": false,
               "type": "object",
               "properties": {
@@ -71,6 +71,33 @@
               "properties": {
                 "MinPerZone": {
                   "type": "number"
+                },
+                "DesiredPerZone": {
+                  "type": "number"
+                },
+                "MaxPerZone": {
+                  "type": "number"
+                },
+                "MaxCount": {
+                  "type": "number"
+                },
+                "DesiredCount": {
+                  "type": "number"
+                },
+                "MinCount": {
+                  "type": "number"
+                }
+              }
+            },
+            "computecluster": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "MinPerZone": {
+                  "type": "number"
+                },
+                "Processor": {
+                  "type": "string"
                 },
                 "DesiredPerZone": {
                   "type": "number"
@@ -113,33 +140,6 @@
                 }
               }
             },
-            "ComputeCluster": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "MinPerZone": {
-                  "type": "number"
-                },
-                "Processor": {
-                  "type": "string"
-                },
-                "DesiredPerZone": {
-                  "type": "number"
-                },
-                "MaxPerZone": {
-                  "type": "number"
-                },
-                "MaxCount": {
-                  "type": "number"
-                },
-                "DesiredCount": {
-                  "type": "number"
-                },
-                "MinCount": {
-                  "type": "number"
-                }
-              }
-            },
             "bastion": {
               "additionalProperties": false,
               "type": "object",
@@ -149,7 +149,7 @@
                 }
               }
             },
-            "EMR": {
+            "emr": {
               "additionalProperties": false,
               "type": "object",
               "properties": {

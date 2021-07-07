@@ -167,6 +167,12 @@
                 },
                 "Logging": {
                   "default": "default",
+                  "description": "A profile to define where logs are forwarded to from this component",
+                  "type": "string"
+                },
+                "LogFile": {
+                  "default": "default",
+                  "description": "A profile which specifies the logfiles to collect from the compute instance",
                   "type": "string"
                 },
                 "Processor": {
@@ -190,6 +196,11 @@
                     "type": "string"
                   },
                   "type": "array"
+                },
+                "Bootstrap": {
+                  "default": "default",
+                  "description": "A profile to include additional bootstrap sources as part of the instance startup",
+                  "type": "string"
                 },
                 "Baseline": {
                   "default": "default",
