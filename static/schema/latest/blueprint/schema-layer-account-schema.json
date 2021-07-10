@@ -279,6 +279,193 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
+                "Registries": {
+                  "description": "Defines the registries available for image hosting",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "pipeline": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "objectstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "objectstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "contentnode": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "objectstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "objectstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "lambda": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "objectstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "objectstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "spa": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "objectstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "objectstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "openapi": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "objectstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "objectstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "rdssnapshot": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "snapshotstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "snapshotstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "scripts": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "objectstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "objectstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "dataset": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "objectstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "objectstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "swagger": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "objectstore",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "objectstore"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "docker": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Storage": {
+                          "default": "providerregistry",
+                          "description": "How the images are stored",
+                          "type": "object",
+                          "enum": [
+                            "providerregistry"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                },
                 "ReplicaRegions": {
                   "contains": {
                     "type": "string"
