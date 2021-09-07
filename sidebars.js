@@ -36,7 +36,8 @@ module.exports = {
               label: 'Deploy App',
               items: [
                 'getting-started/aws-serverless/build-app/build-locally',
-                'getting-started/aws-serverless/build-app/create-app-image'
+                'getting-started/aws-serverless/build-app/create-app-image',
+                'getting-started/aws-serverless/build-app/deploy-app-image',
               ]
             },
             {
