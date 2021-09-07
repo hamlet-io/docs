@@ -1,5 +1,5 @@
 ---
-sidebar_label: data pipelines
+sidebar_label: Data Pipelines
 title: Data Pipeline Development
 ---
 
