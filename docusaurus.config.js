@@ -20,7 +20,7 @@ module.exports = {
         src: 'img/icon.svg',
       },
       items: [
-        {to: 'docs/hello/welcome', label: 'docs', position: 'left'},
+        {to: 'docs/', label: 'docs', position: 'left'},
         {to: "blog", label: 'blog', position: 'right'},
         {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
       ],
@@ -38,7 +38,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: 'docs/hello/hamlet',
+              to: 'docs/getting-started',
             },
           ],
         },
@@ -102,6 +102,10 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        blog : {
+          blogSidebarTitle: "All our posts",
+          blogSidebarCount: "ALL",
+        }
       },
     ],
   ],
