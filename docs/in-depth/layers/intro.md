@@ -23,7 +23,3 @@ There are 6 layer types available in Hamlet, each representing a unique configur
 In the following sections we will walk through each one, exploring how they work together.
 
 By the end of of this tutorial you will have sufficient experience to create your own Hamlet CMDBs and begin working in Hamlet.
-
-:::note
-The following tutorials assume that you are operating inside of the [recommended development workspace](../workspace).
-:::

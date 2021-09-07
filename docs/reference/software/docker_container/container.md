@@ -19,7 +19,3 @@ A standard Hamlet Deploy installation and the recommended image for typical use-
 ### hamletio/jenkins
 
 A [Jenkins](https://www.jenkins.io) installation alongside Hamlet Deploy.
-
-### hamletio/hello
-
-A Basic "Hello World" application used in the [Hello Hamlet tutorial](../../hello/hamlet).

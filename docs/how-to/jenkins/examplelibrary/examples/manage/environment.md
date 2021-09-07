@@ -2,7 +2,7 @@
 sidebar_label: Manage Environment
 title: Manage Environment Pipeline
 ---
-Perform environment-level deployments, including performing a deployment of a specific [mode](../../../../../foundations/lifecycle#deployment-modes) against one or more deployment units.
+Perform environment-level deployments, including performing a deployment of a specific [mode](../../../../../in-depth/foundations/lifecycle#deployment-modes) against one or more deployment units.
 
 ## Triggers
 
@@ -13,19 +13,19 @@ No triggers.
 This pipeline's available parameter values are populated by the [`properties`](../properties/properties) file and so initially, no parameters can be provided. After loading the `properties` file the pipeline will prompt for user selection of the following parameters, which will each filter the pipelines scope:
 
 **ENVIRONMENT**
-Add the selected [`environment(s)`](../../../../../foundations/terminology#environment) to the deployment scope.
+Add the selected [`environment(s)`](../../../../../in-depth/foundations/terminology#environment) to the deployment scope.
 
 **LEVELS_LIST**
-Add the selected [`deployment level(s)`](../../../../../foundations/lifecycle#deployment-levels) to the deployment scope.
+Add the selected [`deployment level(s)`](../../../../../in-depth/foundations/lifecycle#deployment-levels) to the deployment scope.
 
 **SEGMENT_UNITS_LIST**
-Add the selected [Segment](../../../../../foundations/terminology#segment)-level deployment units to the deployment scope. Requires selection of the Segment deployment level on the LEVELS_LIST parameter.
+Add the selected [Segment](../../../../../in-depth/foundations/terminology#segment)-level deployment units to the deployment scope. Requires selection of the Segment deployment level on the LEVELS_LIST parameter.
 
 **SOLUTION_UNITS_LIST**
-Add the selected [Solution](../../../../../foundations/terminology#solution)-level deployment units to the deployment scope. Requires selection of the Solution deployment level on the LEVELS_LIST parameter.
+Add the selected [Solution](../../../../../in-depth/foundations/terminology#solution)-level deployment units to the deployment scope. Requires selection of the Solution deployment level on the LEVELS_LIST parameter.
 
 **APPLICATION_UNITS_LIST**
-Add the selected [Application](../../../../../foundations/terminology#application)-level deployment units to the deployment scope. Requires selection of the Application deployment level on the LEVELS_LIST parameter.
+Add the selected [Application](../../../../../in-depth/foundations/terminology#application)-level deployment units to the deployment scope. Requires selection of the Application deployment level on the LEVELS_LIST parameter.
 
 **TREAT_RUN_ID_DIFFERENCES_AS_SIGNIFICANT**
 Forces the deployment for every deployment unit matching the selected parameters, even where the deployment unit has no new or modified configuration.

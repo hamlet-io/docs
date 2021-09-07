@@ -8,7 +8,7 @@ Updates build reference(s) in the Hamlet CMDB and initiates a deployment.
 
 This pipeline is intended to be called by the ['Build' pipeline](../build/single) for Continuous Deployment into the first environment.
 
-If deployment across [Segments](/docs/foundations/anatomy) is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
+If deployment across [Segments](/docs/in-depth/foundations/anatomy) is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
 
 ## Parameters
 

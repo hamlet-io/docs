@@ -38,4 +38,4 @@ The following optional variables will further configure the Hamlet Deploy Execut
 
 ## Hamlet Deploy Executor Usage
 
-The capabilities of the Executor are exposed through the [Hamlet Deploy CLI](cli).
+The capabilities of the Executor are exposed through the [Hamlet Deploy CLI](../python_executor/cli).

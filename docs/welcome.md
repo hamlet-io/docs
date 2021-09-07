@@ -28,4 +28,4 @@ The structure of the CMDB is based on series of files and folders which create a
 
 ## How do I use it
 
-Get started with Hamlet with our hands-on [Hello Hamlet](./hamlet) guide, or learn more about Hamlet with our [Foundations documentation.](../foundations/anatomy)
+Get started with Hamlet with our hands-on [getting started](getting-started/) guides, or learn more about Hamlet with our [Foundations documentation.](in-depth/foundations/anatomy)
