@@ -1,6 +1,6 @@
 ---
-sidebar_label: Build UI
-title: Build the status UI
+sidebar_label: Build Status UI
+title: Build the Status UI
 ---
 
 This guide works through the build and deployment of a React based UI for the API that we deployed in the [API deployment](../deploy-container/hamlet-hello-api.md).
