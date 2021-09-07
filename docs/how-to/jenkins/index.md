@@ -4,7 +4,7 @@ title: Jenkins Pipelines & Hamlet
 ---
 Jenkins integration with Hamlet offers comprehensive Product lifecycle management. This section documents best-practices and common approaches to their configuration.
 
-Examples can be viewed [here](/docs/integrations/jenkins/examplelibrary/index) and the [Shared Groovy Scripts](https://github.com/hamlet-io/jenkins-streams-shared-library) provide additional ready-to-use Hamlet utilities for Jenkins pipelines.
+Examples can be viewed [here](examplelibrary/index) and the [Shared Groovy Scripts](https://github.com/hamlet-io/jenkins-streams-shared-library) provide additional ready-to-use Hamlet utilities for Jenkins pipelines.
 
 ## Recommended Pipelines
 
@@ -16,7 +16,7 @@ Hamlet Jenkins pipelines share a number of common environment variables and vali
 
 ## Jenkins Jobs
 
-Keeping [`properties`](/docs/integrations/jenkins/examplelibrary/examples/properties/properties) and pipelines within your Product CMDB under the following structure allows for separation of purpose, whilst ensuring they will always be available where your repository has been cloned down. Build pipelines are not shown as they should be committed to the root of the code repository for the code they build.
+Keeping [`properties`](examplelibrary/examples/properties/properties) and pipelines within your Product CMDB under the following structure allows for separation of purpose, whilst ensuring they will always be available where your repository has been cloned down. Build pipelines are not shown as they should be committed to the root of the code repository for the code they build.
 
 ```sh
 ./pipelines/
@@ -46,7 +46,7 @@ Create build artefacts and publish them to a Registry.
 
 Build jobs should be configgured in Jenkins as a multi-branch pipeline so as to provide feedback on new builds prior to merge.
 
-[Examples](/docs/integrations/jenkins/examplelibrary/index#build)
+[Examples](examplelibrary/index#build)
 
 ### Deploy Pipelines
 
@@ -66,13 +66,13 @@ The following exceptions to this approach should be considered:
 * environments intended for continous deployment should deploy directly - an example is provided.
 * Production environments do not require an `accept` pipeline as there are no further environments.
 
-[Examples](/docs/integrations/jenkins/examplelibrary/index#deploy)
+[Examples](examplelibrary/index#deploy)
 
 ### Management Pipelines
 
 Provide a single pipeline for performing environmental-level deployments. This includes performing a specific mode of deployment (update, stop, hibernate) against one or many deployment units.
 
-[Examples](/docs/integrations/jenkins/examplelibrary/index#manage)
+[Examples](examplelibrary/index#manage)
 
 ### Utility Pipelines
 

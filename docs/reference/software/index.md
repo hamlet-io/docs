@@ -8,10 +8,10 @@ This section serves to document the structure of the application and is not expe
 
 ## Hamlet Deploy Parts
 
-- [Container](./container)
-- [Executor (aka Executor Bash)](./executor)
-- [CLI (aka Executor Python)](./cli)
+- [Container](./docker_container/container)
+- [Executor (aka Executor Bash)](./bash_executor/executor)
+- [CLI (aka Executor Python)](./python_executor/cli)
 - Engine
-  - [Engine (general)](./engine)
-  - [Engine (core)](./engine_core)
+  - [Engine (general)](./engine/engine)
+  - [Engine (core)](./engine/engine_core)
   - [Modules](https://github.com/hamlet-io/hamlet-library)

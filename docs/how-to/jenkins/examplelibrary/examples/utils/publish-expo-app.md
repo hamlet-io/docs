@@ -9,10 +9,10 @@ import TabItem from '@theme/TabItem';
 ## Parameters
 
 **ENVIRONMENT**
-Add the selected [`environment(s)`](../../../../../foundations/terminology#environment) to the pipeline scope.
+Add the selected [`environment(s)`](../../../../../in-depth/foundations/terminology#environment) to the pipeline scope.
 
 **DEPLOYMENT_UNIT**
-Add the selected [`deployment unit`](../../../../../foundations/lifecycle#deployment-units) to the pipeline scope.
+Add the selected [`deployment unit`](../../../../../in-depth/foundations/lifecycle#deployment-units) to the pipeline scope.
 
 **FORCE_BINARY_BUILD**
 Force the application binary build, even if the version hasn't changed.

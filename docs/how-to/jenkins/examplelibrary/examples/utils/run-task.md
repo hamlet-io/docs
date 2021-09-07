@@ -7,10 +7,10 @@ Execute an [`ECS Task`](/reference?type=component&instance=task), passing it uni
 ## Parameters
 
 **ENVIRONMENT**
-Add the selected [`environment(s)`](../../../../../foundations/terminology#environment) to the deployment scope.
+Add the selected [`environment(s)`](../../../../../in-depth/foundations/terminology#environment) to the deployment scope.
 
 **TASK_INSTANCE**
-A comma-separated list of the Task [Instances](../../../../../foundations/terminology#instance) to execute.
+A comma-separated list of the Task [Instances](../../../../../in-depth/foundations/terminology#instance) to execute.
 
 **MANAGE_PY_TASK**
 Specific to this example, this Parameter is passed to the Hamlet Executor's "Run Task" script and will become the value of the environment variable passed to the Task. This Parameter would be customised on a per-Task basis.
