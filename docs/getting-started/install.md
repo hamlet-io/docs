@@ -11,9 +11,7 @@ hamlet is made up of two key parts
 - **engine** looks after generating contracts that describe what you want to do, create infrastructure, draw diagrams, find the hostname of a deployment etc. This is built on Java using the [apache freemarker](https://freemarker.apache.org/) template engine.
 - **executor** runs the contracts from the engine and provides the user interface to the engine. We have two executors which work together, a bash based backend along with a python based CLI.
 
-The CLI manages the installation of the required parts once its been installed, but we do have some extra dependencies.
-
-This task will tke you through the process of installing these dependencies, we've included some standard installations and included description of whats required
+The CLI manages the installation of the required parts once its been installed, but we do have some extra dependencies. This task will take you through the process of installing these dependencies, we've included some standard environments and included description of whats required
 
 ## Getting Everything Installed
 
@@ -139,10 +137,10 @@ Using sudo is generally the best way to do this instead of running everything as
 
 <TabItem value="macos">
 
-For MacOS instances we recommended setting up the required dependencies using [HomeBrew](https://brew.sh/) which is a great package manage for MacOS and talks a lot of hassle out of setting up an environment.
+For MacOS instances we recommended setting up the required dependencies using [HomeBrew](https://brew.sh/) which is a great package manager for MacOS and takes a lot of hassle out of setting things up.
 
-1. If you have got Homebrew installed already head over to the Homebrew docs page at https://brew.sh/, and follow the instructions provided
-1. Once you have home brew installed run the following commands to install the base packages
+1. If you haven't got Homebrew installed, head over to the [Homebrew docs page](https://brew.sh/) and follow the instructions to get homebrew running
+1. Once you have homebrew installed run the following commands to install the base packages
 
   ```console
   brew update
@@ -153,7 +151,7 @@ For MacOS instances we recommended setting up the required dependencies using [H
 
   :::info
   We recommend using pyenv to manage your python installations. This keeps your changes away from the default macOS python
-  If you prefer to manage python your own way then you'll need to make sure that python3.6 is available along with pip
+  If you prefer to manage python your own way then you'll need to make sure that at least python 3.6 is available along with pip
   :::
 
   Head over to the pyenv installation guide, https://github.com/pyenv/pyenv#installation and follow the macOS guide to installing pyenv
