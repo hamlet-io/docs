@@ -1,17 +1,17 @@
 ---
-sidebar_label: Installing Hamlet
-title: Installing Hamlet
+sidebar_label: Installing hamlet
+title: Installing hamlet
 ---
 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-hamlet is made up of two key parts
+hamlet is made up of two key parts:
 
-- **engine** looks after generating contracts that describe what you want to do, create infrastructure, draw diagrams, find the hostname of a deployment etc. This is built on Java using the [apache freemarker](https://freemarker.apache.org/) template engine.
-- **executor** runs the contracts from the engine and provides the user interface to the engine. We have two executors which work together, a bash based backend along with a python based CLI.
+- **engine** looks after generating contracts that describe what you want to do, e.g. create infrastructure, draw diagrams, find the hostname of a deployment etc. This is built on Java using the [apache freemarker](https://freemarker.apache.org/) template engine.
+- **executor** runs the contracts from the engine and provides the user interface to the engine. We have two executors which work together, a bash based backend along with a Python based CLI.
 
-The CLI manages the installation of the required parts once its been installed, but we do have some extra dependencies. This task will take you through the process of installing these dependencies, we've included some standard environments and included description of whats required
+The CLI manages the installation of the required parts once it has been installed, but we do have some extra dependencies. This task will take you through the process of installing these dependencies. Here we've included some standard environments and included a description of what's required.
 
 ## Getting Everything Installed
 
@@ -27,32 +27,32 @@ The CLI manages the installation of the required parts once its been installed, 
 
 <TabItem value="docker">
 
-Docker provides a container based workflow to isolate hamlet and it dependencies. We provide a general purpose container environment with hamlet installed and includes a number of tools and packages to setup a general purpose application build container for Continuous Integration
+Docker provides a container based workflow to isolate hamlet and its dependencies. We provide a general purpose container environment with hamlet installed and it includes a number of tools and packages to set up a general purpose application build container for Continuous Integration.
 
-1. Install docker for your operating system using the official docker guide here https://docs.docker.com/get-docker/
+1. Install docker for your operating system using the official Docker guide here https://docs.docker.com/get-docker/
 1. double-check that Docker is running. If you don't get a response from the following command, you'll need to start Docker before continuing.
 
   ```console
   docker info
   ```
 
-1. With docker running ok, pull down the hamletio/hamlet container to your local desktop
+1. Once Docker is running, pull down the hamletio/hamlet container to your local desktop.
 
   ```console
   docker pull hamletio/hamlet
   ```
 
-1. Docker storage is removed after the container stops, so we'll want a directory on our local machine that can be used to store all of our work so lets make one now. In your local terminal change into a directory that works for you ( e.g. ~/hamlet ) and then make a new directory for your hamlet work
+1. Docker storage is removed after the container stops, so we'll want a directory on our local machine that can be used to store all of our work. Let's make one now. In your local terminal change into a directory that works for you ( e.g. ~/hamlet ) and then make a new directory for your hamlet work.
 
   ```bash
   ## create a new directory
   mkdir -p ~/hamlet
   ```
 
-1. Start an interactive terminal inside of the _hamletio/hamlet_ container, and make the _hamletdeploy_ directory available in the container.
+1. Start an interactive terminal inside of the _hamletio/hamlet_ container and make the _hamletdeploy_ directory available in the container.
 
   :::info
-  Each time you would like to return to this workspace you will just need to run the following Docker CLI command inside of a terminal window.
+  Each time you would like to return to this workspace you will just need to run the following Docker CLI command inside of a terminal window
   :::
 
   ```console
@@ -66,9 +66,9 @@ Docker provides a container based workflow to isolate hamlet and it dependencies
 
   _Outside of the container_ you can open an IDE or code-editor of choice and access your _~/hamlet_ directory. Any changes you make here will be reflected inside of the container at the path `/home/hamlet/cmdb`
 
-  _Inside of the container_ in the terminal session, you will now have access to the hamlet CLI and the rest of the packages used to run hamlet
+  _Inside of the container_ in the terminal session, you will now have access to the hamlet CLI and the rest of the packages used to run hamlet.
 
-1. Check that everything is working as expected, Open up a second terminal window - this one wont be inside the container.
+1. To check that everything is working as expected open up a second terminal window - this one won't be inside the container.
 
 Navigate into the _~/hamlet_ directory and create a test file called _text.txt_
 
@@ -77,7 +77,7 @@ cd ~/hamlet
 echo "testing" > test.txt
 ```
 
-Now back in the container's terminal session, check that you can see the new file.
+Now back in the container's terminal session check that you can see the new file.
 
 ```console
 ## ls - list information in the current directory
@@ -92,10 +92,10 @@ test.txt
 
 <TabItem value="ubuntu">
 
-This process covers the installation of the required packages for running on hamlet on an ubuntu based instance.
-We used `Ubuntu 20.04` when creating this guide, other versions might be a bit different but we hope to give you enough to point you in the right direction.
+This process covers the installation of the required packages for running hamlet on an ubuntu based instance.
+We used `Ubuntu 20.04` when creating this guide. Other versions might be a bit different but we hope to give you enough information to point you in the right direction.
 
-This process should also work on Windows Subsystem for Linux if you are running on a Windows based PC
+This process should also work on Windows Subsystem for Linux if you are running on a Windows based PC.
 
 :::info
 This will require the installation of system level packages so you will need root level access to install permissions
@@ -103,35 +103,35 @@ This will require the installation of system level packages so you will need roo
 Using sudo is generally the best way to do this instead of running everything as root
 :::
 
-1. Run the following to install the required packages
+1. Run the following to install the required packages.
 
   ```console
   apt-get update && apt-get install openjdk-8-jdk jq zip unzip graphviz python3 python3-pip docker dos2unix
   ```
 
-  when prompted confirm the installation and make sure the packages you are installing are suitable for the machine you are running on
+  When prompted, confirm the installation and make sure the packages you are installing are suitable for the machine you are running on.
 
-1. After the OS packages are installed run the following to install the python based packages
+1. After the OS packages are installed run the following to install the python based packages.
 
   ```console
   pip install hamlet awscli az diagrams
   ```
 
-  This will install the cli tools that we use to run hamlet along with some extra tools like the cloud provider CLI tools
+  This will install the CLI tools that we use to run hamlet along with some extra tools like the cloud provider CLI tools.
 
-1. Start the docker service so that we can use it to manage images that we build and push using hamlet
+1. Start the Docker service so that we can use it to manage images that we build and push using hamlet.
 
   ```console
   systemctl enable --now docker
   ```
 
-1. Confirm that docker is running with the following
+1. Confirm that Docker is running with the following:
 
   ```console
   docker ps
   ```
 
-  The console should show an empty list of docker containers. If you get an error the service hasn't started up
+  The console should show an empty list of Docker containers. If you get an error the service hasn't started up.
 
 </TabItem>
 
@@ -139,24 +139,25 @@ Using sudo is generally the best way to do this instead of running everything as
 
 For MacOS instances we recommended setting up the required dependencies using [HomeBrew](https://brew.sh/) which is a great package manager for MacOS and takes a lot of hassle out of setting things up.
 
-1. If you haven't got Homebrew installed, head over to the [Homebrew docs page](https://brew.sh/) and follow the instructions to get homebrew running
-1. Once you have homebrew installed run the following commands to install the base packages
+1. If you haven't got Homebrew installed, head over to the [Homebrew docs page](https://brew.sh/) and follow the instructions to get Homebrew running.
+
+1. Once you have Homebrew installed run the following commands to install the base packages.
 
   ```console
   brew update
   brew install openjdk@8 jq bash graphviz dos2unix
   ```
 
-1. Install python using pyenv
+1. Install Python using pyenv
 
   :::info
-  We recommend using pyenv to manage your python installations. This keeps your changes away from the default macOS python
-  If you prefer to manage python your own way then you'll need to make sure that at least python 3.6 is available along with pip
+  We recommend using pyenv to manage your Python installations. This keeps your changes isolated from the default macOS Python.
+  If you prefer to manage Python yourself then you'll need to make sure that at least Python 3.6 is available along with pip
   :::
 
-  Head over to the pyenv installation guide, https://github.com/pyenv/pyenv#installation and follow the macOS guide to installing pyenv
+  Head over to the pyenv installation guide https://github.com/pyenv/pyenv#installation and follow the macOS guide to installing pyenv.
 
-  It will be something like
+  It will be something like:
 
   ```console
   # install through homebrew
@@ -171,17 +172,17 @@ For MacOS instances we recommended setting up the required dependencies using [H
   # Add pyenv into your shell
   echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
-  # Install a python version
+  # Install a Python version
   pyenv install 3.8.11
   ```
 
   :::info
-  Since hamlet uses bash itself we recommend using bash when calling hamlet to keep things familiar
+  Since hamlet uses bash itself we recommend using bash when calling hamlet to keep things consistent.
 
   This isn't required if you prefer the macOS default zsh shell
   :::
 
-1. Once you have python installed you can then install the python packages
+1. Once you have Python installed you can then install the Python packages.
 
   ```console
   pip install hamlet awscli az diagrams
@@ -191,9 +192,9 @@ For MacOS instances we recommended setting up the required dependencies using [H
 
 <TabItem value="general">
 
-This section covers the general requirements and outlines what has been covered in the other tabs and can be used if you have different requirements from whats covered above.
+This section covers the general requirements and outlines what has been covered in the other tabs and can be used if you have different requirements from what's covered above.
 
-Read through the install links below and ensure that each of the installed parts are available on your PATH
+Read through the install links below and ensure that each of the installed parts is available on your PATH.
 
 | Name     | Install Link                                 | Version                  | Purpose                  |
 |----------|----------------------------------------------|--------------------------|--------------------------|
@@ -207,8 +208,7 @@ Read through the install links below and ensure that each of the installed parts
 | Az       | https://docs.microsoft.com/en-us/cli/azure/  | No specific requirements | Azure deployments        |
 | Graphviz | https://graphviz.org/                        | No specific requirements | Diagram generation       |
 
-Once you have the required packages installed you can install hamlet
-
+Once you have the required packages installed you can install hamlet.
 ```console
 pip install hamlet
 ```
@@ -219,21 +219,21 @@ pip install hamlet
 
 ## Confirm your setup
 
-So now that we have hamlet installed we should confirm that everything is working as expected with a couple of tests
+Now that we have hamlet installed we should confirm that everything is working as expected with a couple of tests.
 
-1. Make sure hamlet is installed and available from your shell. In a terminal window run
+1. Make sure hamlet is installed and available from your shell. In a terminal window run:
 
   ```console
   hamlet --version
   ```
 
-  This will return the version of hamlet you have installed
+  This will return the version of hamlet you have installed.
 
   ```console
   hamlet, version 9.3.0
   ```
 
-1. Now we want to test that the hamlet parts are working as expected.
+1. We now want to test that the individual parts of hamlet are working as expected.
 
   Run the following command:
 
@@ -241,7 +241,7 @@ So now that we have hamlet installed we should confirm that everything is workin
   hamlet entrance list-entrances
   ```
 
-  You should see the following output which confirms that hamlet is available and that it can call the engine
+  You should now see the following output which confirms that hamlet is available and that it can call the engine.
 
   ```console
     [*] no default engine set using train
@@ -250,7 +250,7 @@ So now that we have hamlet installed we should confirm that everything is workin
     ╞════╪════════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡
     │  0 │ blueprint      │ Provides a detailed representation of everything in a given segment, this includes its parent, environment, product and tenant │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │  1 │ buildblueprint │ Provides a given deployment units occurrences and their suboccurrences                                                         │
+    │  1 │ buildblueprint │ Provides a given deployment unit's occurrences and their suboccurrences                                                         │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
     │  2 │ deployment     │ Generates the required documents to deploy a given deployment unit / deployment group combination                              │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
@@ -258,13 +258,13 @@ So now that we have hamlet installed we should confirm that everything is workin
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
     │  4 │ info           │ Provides details on the hamlet engine and the avaiable entrances                                                               │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │  5 │ loader         │ Generates a set of loader contracts which can be used to setup hamlet                                                          │
+    │  5 │ loader         │ Generates a set of loader contracts which can be used to set up hamlet                                                          │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
     │  6 │ occurrences    │ Provides the state of all occurrences within a district                                                                        │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
     │  7 │ releaseinfo    │ Provides information for release management tasks performed by executors                                                       │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │  8 │ schema         │ Povides JSON schema representations of input configuration                                                                     │
+    │  8 │ schema         │ Provides JSON schema representations of input configuration                                                                     │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
     │  9 │ schemaset      │ Generates Schema Contracts that are used to generate all JSONSchema files by their data type.                                  │
     ├────┼────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
@@ -277,9 +277,9 @@ So now that we have hamlet installed we should confirm that everything is workin
 This will:
 
 - check to see if you have an engine installed
-- if not install it and configure the engine for the cli
-- query the engine for entrances that the engine knows about
+- if not, install it and configure the engine for the CLI
+- query the engine for entrances that the engine knows about.
 
-We will get into entrances later on, this is just to make sure all the parts are setup
+We will get into entrances later on, this is just to make sure all the parts are set up.
 
-Now that we have hamlet installed and ready to go we can create our first CMDB
+Now that we have hamlet installed and ready to go we can create our first CMDB.
