@@ -3,20 +3,19 @@ sidebar_label: API Load Balancer
 title: API Load Balancer
 ---
 
-Following on from the container deployment, this guide will walk through exposing our container to the internet through a load balancer
+Following on from the container deployment, this guide will walk through exposing our container to the internet through a load balancer.
 
-Before walking through the concepts we will first run the deployment and then go through what was created
+We will run the deployment first and then discuss what was created.
 
 :::info
 If you haven't already, create a CMDB using the [create CMDB guide](../../create-cmdb.md)
-When we talk about the CMDB it will be based on the naming used in the setup guide
 :::
 
 :::warning
-For this deployment to work please complete the [Hello Status API Deployment](./hamlet-hello-api.md) guide first and then come back to this one
+For this deployment to work please complete the [Hello Status API Deployment](./hamlet-hello-api.md) guide first
 :::
 
-1. Change into the integration default segment directory to set the context
+1. Change into the integration default segment directory to set the context.
 
     ```bash
     # Make sure we are in our CMDB
@@ -26,9 +25,9 @@ For this deployment to work please complete the [Hello Status API Deployment](./
     cd myapp/config/solutionsv2/integration/default/
     ```
 
-    open the `segment.json` in your code editor
+    Open the `segment.json` in your code editor.
 
-1. Add the following to the segment file
+1. Add the following to the segment file:
 
     ```json
     {
@@ -108,10 +107,10 @@ For this deployment to work please complete the [Hello Status API Deployment](./
 
     This includes:
 
-    - a public facing load balancer that listens for http requests on port 80 and forward them to port 8000 on the backend services
-    - a CDN which will provide an HTTPS based endpoint and forward requests to the load balancer
+    - a public facing load balancer that listens for HTTP requests on port 80 and forwards them to port 8000 on the backend services
+    - a CDN which will provide an HTTPS based endpoint and forwards requests to the load balancer.
 
-1. When we define load balancers we don't define the backends that it will forward requests to, instead the backend services register with the load balancer. So lets add that to the solution as well
+1. When we define load balancers we don't define the backends that it will forward requests to, instead the backend services register with the load balancer. So let's add that to the solution as well.
 
     ```json
     {
@@ -135,7 +134,7 @@ For this deployment to work please complete the [Hello Status API Deployment](./
     }
     ```
 
-1. Update the deployments to create the load balancer and configure the containers to register with the load balancer
+1. Update the deployments to create the load balancer and configure the containers to register with the load balancer.
 
     ```bash
     hamlet --account acct01 deploy run-deployments
@@ -143,11 +142,11 @@ For this deployment to work please complete the [Hello Status API Deployment](./
 
 ## Testing the API
 
-Once the deployments have completed lets test our api and see if its working. To do that we need to know the URL of the load balancer.
+Once the deployments have completed, test the API to see if it's working. To do that we need to know the URL of the load balancer.
 
-To find this, Lets look at some new hamlet commands which give us details on our occurrences. We've been talking about components and subcomponents, occurrences are the individual instances of components and subcomponents. The occurrence represents a collection of resources which are deployed as a specific function. They are what hamlet uses as the key representation of our deployments.
+To find this, we'll look at some new hamlet commands which give us details on our occurrences. We discussed components and subcomponents earlier; occurrences are the individual instances of components and subcomponents. The occurrence represents a collection of resources which are deployed as a specific function. Occurrences are what hamlet uses as the key representation of our deployments.
 
-So first up lets see what occurrences exist in our solution
+So first up let's see what occurrences exist in our solution.
 
 ```bash
 hamlet --account acct01 component list-occurrences
@@ -176,9 +175,9 @@ hamlet --account acct01 component list-occurrences
 | mgmt     | igw           | management-igw-default-gatewaydestination | gatewaydestination |
 ```
 
-The names should look familiar in the componentId column these are the keys under the Components sections that we've been adding to the segment.json file. Each of the components listed here have multiple occurrences with different types, each type is a different collection of resources that implement a function within the component. The cdn is a good example of this, you can have one cdn endpoint, but it can have different routes based on path you ask for in your http request.
+The names in the ComponentId column should look familiar. These are the keys under the Components sections that we've been adding to the segment.json file. Each of the components listed here has multiple occurrences with different types, each type is a different collection of resources that implement a function within the component. The CDN is a good example of this, you can have one CDN endpoint, but it can have different routes based on the path you ask for in your HTTP request.
 
-So to find the url for the http port lets look at the details of the lbport.
+So to find the URL for the HTTP port let's look at the details of the lbport.
 
 ```bash
 hamlet --account acct01 component describe-occurrence -n elb-apicdn-cdn attributes
@@ -193,9 +192,9 @@ hamlet --account acct01 component describe-occurrence -n elb-apicdn-cdn attribut
 | URL             | https://abc1234567.cloudfront.net     |
 ```
 
-And here we get a collection of details about the load balancer port, including the URL.
+Here we get a set of details about the load balancer port, including the URL.
 
-Now that we have the URL lets see if our API is working
+Now that we have the URL let's see if our API is working.
 
 ```bash
 curl https://abc1234567.cloudfront.net
@@ -208,25 +207,23 @@ curl https://abc1234567.cloudfront.net
 }
 ```
 
-There is our API returning our greeting over HTTPS and served by a CDN
+There is our API returning our greeting over HTTPS and served by a CDN.
 
 ## Reference Data
 
-As part of this guide we added some new sections to the CMDB, Ports and PortMappings. These are known as reference data within hamlet, they are reusable configurations that can be reused across your solution. Ports and PortMappings are examples of the Reference Data Types that are available, and under each type you have instances of the reference. So we added a new port called flask along with a new port mapping called httpflask.
-
-You might notice that there is another port mentioned in the port mapping, http. This does exist in the Reference Data collection but has been provided as part of the references available in the engine. Hamlet provides a collection of in-built reference data that you can replace or add to as you need.
+As part of this guide we added some new sections to the CMDB, Ports and PortMappings. Within hamlet these are known as reference data and they are reusable configurations that can be reused across your solution. Ports and PortMappings are examples of the Reference Data Types that are available and under each type you have instances of the reference. So we added a new port called flask along with a new port mapping called httpflask.
 
 ## Links
 
-When we updated our service to register with the load balancer we needed to reference the load balancer. This was done using a link, A link is an object structure that is used in solutions to establish relationships between occurrences. Links have the following properties
+When we updated our service to register with the load balancer we needed to reference the load balancer. This was done using a link. A link is an object structure that is used in solutions to establish relationships between occurrences. Links have the following properties:
 
-- Tier: the id of the tier the component belongs to
-- Component: The id of the component you want to link to
-- `<Sub Component Type>`: the type of a  subcomponent you want to link to as the key with the value as the Id of the subcomponent
-- Instance: an optional id of the instance for the component to link to, by default the source component instance id is used
-- Version: an optional id of the version for the component to link to, by default the source component version id is used
-- Role: The role used is used to apply permissions between different components, for example a component can specify write access to another component and its permissions will be deployed with the appropriate permissions.
+- Tier: the ID of the tier the component belongs to
+- Component: the ID of the component you want to link to
+- `<Sub Component Type>`: the type of subcomponent you want to link to as the key with the value as the ID of the subcomponent
+- Instance: an optional ID of the instance for the component to link to; by default the source component instance ID is used
+- Version: an optional ID of the version for the component to link to; by default the source component version ID is used
+- Role: the role is used to apply permissions between different components, for example a component can specify write access to another component and its permissions will be deployed with the appropriate permissions.
 
-For the container we used the Tier, Component and Sub Component Type properties to establish a link between the container in the api service and the apilb
+For the container we used the Tier, Component and Sub Component Type properties to establish a link between the container in the API service and the apilb.
 
-Next up is configuring the location where our api is, nowhere isn't to friendly to say hello from.
+Next up is configuring the location of our API. We don't want to say hello from nowhere...

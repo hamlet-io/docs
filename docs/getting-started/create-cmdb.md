@@ -5,13 +5,13 @@ title: Creating a CMDB
 
 The Configuration Management Database (CMDB) is the heart of hamlet. It contains the configuration, infrastructure code and state of your hamlet deployed infrastructure.
 
-CMDBs use a file based structure with a strict directory layout that hamlet uses to build its configuration using an overlay style approach. We won't go to much into how all of this works at this stage, if you'd like to know more about it head to the [layer anatomy in-depth guide](/docs/in-depth/layers/)
+CMDBs use a file based structure with a strict directory layout that hamlet uses to build its configuration using an overlay style approach. We won't go into too much depth at this stage. If you'd like to know more about it head to the [layer anatomy in-depth guide](/docs/in-depth/layers/).
 
 ### Generating the CMDB
 
-We can start a CMDB using the cli
+We can start a CMDB using the CLI.
 
-1. Create a new directory that will be used for the CMDB. This directory contains your infrastructure and should be treated as code
+1. Create a new directory that will be used for the CMDB. This directory contains your infrastructure and should be treated as code.
 
     :::info
     This directory is generally added to your source control provider to share the configuration with your team or CI deployments
@@ -21,24 +21,22 @@ We can start a CMDB using the cli
     mkdir ~/hamlet_hello/mycmdb
     ```
 
-1. Change into the directory and create the root.json file. This file tells hamlet where the top of the CMDB file structure is
+1. Change into the directory and create the root.json file. This file tells hamlet where the top of the CMDB file structure is.
 
     ```bash
     cd ~/hamlet_hello/mycmdb
     echo '{}' > root.json
     ```
 
-1. Now that we have the root defined lets add our Tenant. The tenant represents your overall hamlet deployment. This can be a single application with a single cloud account or all of your applications and all of their cloud accounts. Hamlet allows you to define your infrastructure in a standardised way based on your deployment requirements.
+1. Now that we have the root defined let's add our tenant. The tenant represents your overall hamlet deployment. This can be a single application with a single cloud account or all of your applications and all of their cloud accounts. hamlet allows you to define your infrastructure in a standardised way based on your deployment requirements.
 
-    We can create a tenant using the hamlet cli. It will create the files and folder structure that we need and ask some questions to fill in the gaps
-
-    Inside your CMDB directory run the following command
+    We can create a tenant using the hamlet CLI. It will create the files and folder structure that we need and ask some questions to fill in the gaps.
 
     ```bash
     hamlet generate tenant-cmdb
     ```
 
-    You will be prompted for a details that describe your tenancy
+    You will be prompted for details that describe your tenancy.
 
     ```bash
     [?] tenant id: acmeinc
@@ -48,7 +46,7 @@ We can start a CMDB using the cli
     [?] audit log offline days [90]:
     ```
 
-    Enter the details as requested and a new directory will be created in your cmdb called **accounts**
+    Enter the details as requested and a new directory will be created in your CMDB called **accounts**.
 
     ```bash
     tree  ~/hamlet_hello/mycmdb
@@ -62,28 +60,28 @@ We can start a CMDB using the cli
     |-- root.json
     ```
 
-1. Once you have your tenant CMDB we now need to create an account to host our infrastructure in. Accounts hold the configuration of your cloud account or subscription and can be shared across different applications as you need to.
+1. Once you have your tenant CMDB we now need to create an account to host your infrastructure. Accounts hold the configuration of your cloud account or subscription and can be shared across different applications as needed.
 
-    change into the tenant cmdb directory
+    Change into the tenant cmdb directory.
 
     ```bash
     cd ~/hamlet_hello/mycmdb/accounts
     ```
 
-    run the the following to create your account cmdb
+    Run the the following to create your account CMDB:
 
     ```bash
     hamlet generate account-cmdb
     ```
 
-    Enter the required details, the ones without defaults, in the command and a new account directory will be created in your cmdb based on the account name
+    Enter the required details, the ones without defaults, in the command and a new account directory will be created in your CMDB based on the account name.
 
     :::info
     If you are planning on completing our AWS tutorial enter aws when asked for the provider type
     :::
 
     :::info
-    For now you can use a random Id for the provider id field. This is the Id of your cloud provider account that we will deploy into.
+    For now you can use a random ID for the provider ID field. This is the ID of your cloud provider account that we will deploy to
     :::
 
     ```bash
@@ -116,24 +114,24 @@ We can start a CMDB using the cli
     |-- root.json
     ```
 
-1. Now that the overall hosting environment has been defined we can create a product. Products represent applications deployed through their lifecycle
+1. Now that the overall hosting environment has been defined we can create a product. Products represent applications deployed through their lifecycle.
 
-    change into the root directory of your CMDB
+    Change into the root directory of your CMDB.
 
     ```bash
     cd ~/hamlet_hello/mycmdb
     ```
 
-    run the following to create your product cmdb
+    Run the following to create your product CMDB:
 
     ```bash
     hamlet generate product-cmdb
     ```
 
-    Enter the required details, which won't have default values
+    Enter the required details, which won't have default values.
 
     :::info
-    leave the dns zone section empty to remove the requirement to setup DNS zones
+    Leave the DNS zone section empty to remove the requirement to setup DNS zones
     :::
 
     ```bash
@@ -148,6 +146,6 @@ We can start a CMDB using the cli
 
 ## Ready To Build
 
-Now that you have your base CMDB setup you can move on to our deployment guides which cover how to use the CMDB with real world examples
+Now that you have your base CMDB set up you can move on to our deployment guides which cover how to use the CMDB with real world examples.
 
 - [AWS Serverless](aws-serverless/index.md) - Deploy an API and Web interface using serverless techniques in Amazon Web Services
