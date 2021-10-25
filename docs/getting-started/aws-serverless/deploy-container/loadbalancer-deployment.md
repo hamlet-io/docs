@@ -35,47 +35,37 @@ For this deployment to work please complete the [Hello Status API Deployment](./
             "elb" : {
                 "Components" : {
                     "apicdn" : {
-                        "cdn" : {
-                            "Instances" : {
-                                "default" : {
-                                    "deployment:Unit" : "apicdn",
-                                    "deployment:Priority" : 150
-                                }
-                            },
-                            "Pages": {
-                                "Root": "",
-                                "Denied": "",
-                                "Error": "",
-                                "NotFound": ""
-                            },
-                            "Routes" : {
-                                "default" : {
-                                    "Origin" : {
-                                        "Link" : {
-                                            "Tier" : "elb",
-                                            "Component" : "apilb",
-                                            "PortMapping" : "http"
-                                        }
-                                    },
-                                    "PathPattern" : "_default"
-                                }
+                        "Type" : "cdn",
+                        "deployment:Unit" : "apicdn",
+                        "deployment:Priority" : 150,
+                        "Pages": {
+                            "Root": "",
+                            "Denied": "",
+                            "Error": "",
+                            "NotFound": ""
+                        },
+                        "Routes" : {
+                            "default" : {
+                                "Origin" : {
+                                    "Link" : {
+                                        "Tier" : "elb",
+                                        "Component" : "apilb",
+                                        "SubComponent" : "http"
+                                    }
+                                },
+                                "PathPattern" : "_default"
                             }
                         }
                     },
                     "apilb" : {
-                        "lb" : {
-                            "Instances" : {
-                                "default" : {
-                                    "deployment:Unit" : "apilb"
-                                }
-                            },
-                            "Engine" : "application",
-                            "PortMappings" : {
-                                "http" : {
-                                    "IPAddressGroups" : [ "_global" ],
-                                    "Forward" : {},
-                                    "Mapping" : "httpflask"
-                                }
+                        "Type" : "lb",
+                        "deployment:Unit" : "apilb",
+                        "Engine" : "application",
+                        "PortMappings" : {
+                            "http" : {
+                                "IPAddressGroups" : [ "_global" ],
+                                "Forward" : {},
+                                "Mapping" : "httpflask"
                             }
                         }
                     }
@@ -123,7 +113,7 @@ For this deployment to work please complete the [Hello Status API Deployment](./
                                 "LB" : {
                                     "Tier" : "elb",
                                     "Component" : "apilb",
-                                    "PortMapping" : "http"
+                                    "SubComponent" : "http"
                                 }
                             }
                         }
@@ -219,11 +209,11 @@ When we updated our service to register with the load balancer we needed to refe
 
 - Tier: the ID of the tier the component belongs to
 - Component: the ID of the component you want to link to
-- `<Sub Component Type>`: the type of subcomponent you want to link to as the key with the value as the ID of the subcomponent
+- SubComponent: The ID of a component which belongs to another component
 - Instance: an optional ID of the instance for the component to link to; by default the source component instance ID is used
 - Version: an optional ID of the version for the component to link to; by default the source component version ID is used
 - Role: the role is used to apply permissions between different components, for example a component can specify write access to another component and its permissions will be deployed with the appropriate permissions.
 
-For the container we used the Tier, Component and Sub Component Type properties to establish a link between the container in the API service and the apilb.
+For the service we used the Tier, Component and Sub Component properties to establish a link between the container in the API service and the apilb.
 
 Next up is configuring the location of our API. We don't want to say hello from nowhere...

@@ -106,7 +106,7 @@ Using sudo is generally the best way to do this instead of running everything as
 1. Run the following to install the required packages.
 
   ```console
-  apt-get update && apt-get install openjdk-8-jdk jq zip unzip graphviz python3 python3-pip docker dos2unix
+  apt-get update && apt-get install openjdk-8-jdk jq zip unzip graphviz python3 python3-pip docker
   ```
 
   When prompted, confirm the installation and make sure the packages you are installing are suitable for the machine you are running on.
@@ -145,7 +145,7 @@ For MacOS instances we recommended setting up the required dependencies using [H
 
   ```console
   brew update
-  brew install openjdk@8 jq bash graphviz dos2unix
+  brew install openjdk@8 jq bash graphviz
   ```
 
 1. Install Python using pyenv
