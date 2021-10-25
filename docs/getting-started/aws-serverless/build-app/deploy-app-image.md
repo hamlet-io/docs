@@ -32,40 +32,30 @@ Now let's update the solution to include the required components.
             "web" : {
                 "Components" : {
                     "hellouicdn" : {
-                        "cdn" : {
-                            "Instances" : {
-                                "default" : {
-                                    "deployment:Unit" : "hellouicdn"
-                                }
-                            },
-                            "Routes" : {
-                                "default" : {
-                                    "Origin" : {
-                                        "Link" : {
-                                            "Tier" : "web",
-                                            "Component" : "helloui"
-                                        }
-                                    },
-                                    "PathPattern" : "_default",
-                                    "Compress" : true
-                                }
+                        "Type" : "cdn",
+                        "deployment:Unit" : "hellouicdn",
+                        "Routes" : {
+                            "default" : {
+                                "Origin" : {
+                                    "Link" : {
+                                        "Tier" : "web",
+                                        "Component" : "helloui"
+                                    }
+                                },
+                                "PathPattern" : "_default",
+                                "Compress" : true
                             }
                         }
                     },
                     "helloui": {
-                        "spa": {
-                            "Instances": {
-                                "default": {
-                                    "deployment:Unit": "helloui"
-                                }
-                            },
-                            "Links": {
-                                "cdn": {
-                                    "Tier": "web",
-                                    "Component": "hellouicdn",
-                                    "Route" : "default",
-                                    "Direction": "inbound"
-                                }
+                        "Type" : "spa",
+                        "deployment:Unit" : "helloui",
+                        "Links": {
+                            "cdn": {
+                                "Tier": "web",
+                                "Component": "hellouicdn",
+                                "Route" : "default",
+                                "Direction": "inbound"
                             }
                         }
                     }

@@ -94,29 +94,20 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
             "app" : {
                 "Components" : {
                     "ecshost" : {
-                        "ecs" : {
-                            "Instances" : {
-                                "default" : {
-                                    "deployment:Unit" : "ecshost"
-                                }
-                            },
-                            "Services" : {
-                                "helloapi" : {
-                                    "Instances" : {
-                                        "default" : {
-                                            "deployment:Unit" : "helloapi"
-                                        }
-                                    },
-                                    "Containers" : {
-                                        "api": {
-                                            "Cpu" : 64,
-                                            "MaximumMemory" : 64,
-                                            "MemoryReservation" : 64,
-                                            "Image": {
-                                                "Source": "containerregistry",
-                                                "Source:containerregistry": {
-                                                    "Image": "ghcr.io/hamlet-io/docs-support/hello_world:latest"
-                                                }
+                        "Type" : "ecs",
+                        "deployment:Unit" : "ecshost",
+                        "Services" : {
+                            "helloapi" : {
+                                "deployment:Unit" : "helloapi",
+                                "Containers" : {
+                                    "api": {
+                                        "Cpu" : 64,
+                                        "MaximumMemory" : 64,
+                                        "MemoryReservation" : 64,
+                                        "Image": {
+                                            "Source": "containerregistry",
+                                            "Source:containerregistry": {
+                                                "Image": "ghcr.io/hamlet-io/docs-support/hello_world:latest"
                                             }
                                         }
                                     }
@@ -177,13 +168,8 @@ Within hamlet components belong to `Tiers`; they mainly set the network subnet c
 ```json
 {
     "ecshost" : {
-        "ecs" : {
-            "Instances" : {
-                "default" : {
-                    "deployment:Unit" : "ecshost"
-                }
-            }
-        }
+        "Type" : "ecs",
+        "deployment:Unit" : "ecshost"
     }
 }
 ```
@@ -199,11 +185,7 @@ The `deployment:Unit` parameter. This parameter defines the deployment that this
 {
     "Services" : {
         "helloapi" : {
-            "Instances" : {
-                "default" : {
-                    "deployment:Unit" : "helloapi"
-                }
-            },
+            "deployment:Unit" : "helloapi",
             "Containers" : {
                 "api": {
                     "Cpu" : 64,

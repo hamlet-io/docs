@@ -82,5 +82,3 @@ If you haven't run the app locally head to the [build locally](./build-locally) 
     ```
 
 In this guide we've created a build of our application ready to host in our deployment and uploaded it to the hamlet registry. The image provides the link between the application code and the hamlet infrastructure deployment. Once the image has been created hamlet works with the images and deploys these into the environment.
-
-
