@@ -13,7 +13,7 @@ The CLI can either be built into a docker container locally, or accessed from wi
 
 ### Local Docker build
 
-The local build will create a local docker image called **hamlet-cli**
+The local build will create a local docker image called **hamlet**
 
 ```bash
 # clone the repository
@@ -24,7 +24,7 @@ cd ./executor-python
 make build
 ```
 
-You can then follow the docker steps below using the **hamlet-cli*
+You can then follow the docker steps below using the **hamlet*
 
 ### Docker
 
