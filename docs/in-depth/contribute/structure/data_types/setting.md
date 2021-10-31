@@ -8,8 +8,8 @@ The hamlet.io documentation is currently under significant re-development. Exist
 :::
 
 * the Setting input-data type defines the global variable `settingsObject` and its getter/setter macros
-* This input-data type implements a mechanism for Hamlet users to define scoped configuration that is specific to their needs within their solution
-  * The settings are then compiled into a fixed data structure within Hamlet where the engine and plugin providers can expect to find it
+* This input-data type implements a mechanism for hamlet users to define scoped configuration that is specific to their needs within their solution
+  * The settings are then compiled into a fixed data structure within hamlet where the engine and plugin providers can expect to find it
 
 ## Settings.json
 

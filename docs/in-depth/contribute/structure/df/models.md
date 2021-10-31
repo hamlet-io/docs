@@ -6,8 +6,8 @@ title: Models
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
 :::
 
-* a Model is a defined data skeleton used by the Hamlet engine to sort configuration into a structure that it can reliably seek and retrieve data from
-* Once input-data is sorted into a model, Hamlet can reliably retrieve and_or confirm the presence_absence of configuration.
+* a Model is a defined data skeleton used by the hamlet engine to sort configuration into a structure that it can reliably seek and retrieve data from
+* Once input-data is sorted into a model, hamlet can reliably retrieve and_or confirm the presence_absence of configuration.
 
 ## Context Model / Default Model
 

@@ -20,6 +20,6 @@ The hamlet.io documentation is currently under significant re-development. Exist
 
 * the “Reference” docs page is different to the rest of the “docs” pages
   * it is a Docusaurus “page”, unlike the documentation “docs” which is just a different view over each of the markdown files.
-* As a templating engine, Hamlet is capable of generating its own Reference documentation by way of JSONSchema
+* As a templating engine, hamlet is capable of generating its own Reference documentation by way of JSONSchema
 * The JSONSchema is used to generate Reference Data tables for the site
 * You do not need to make updates to this documentation yourself.

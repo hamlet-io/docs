@@ -42,7 +42,7 @@ Establishes the execution environment context and loads any additional environme
 
 ### Manage Env
 
-Executes a Hamlet "Manage Environment" action against the Parameter selection. This includes sequential template generation and deployment for all deployment units within the scope of the Parameter selection.
+Executes a hamlet "Manage Environment" action against the Parameter selection. This includes sequential template generation and deployment for all deployment units within the scope of the Parameter selection.
 
 ## Example
 

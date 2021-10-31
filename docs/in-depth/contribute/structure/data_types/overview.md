@@ -7,9 +7,9 @@ title: Input-Data Types
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
 :::
 
-* The Hamlet engine defines the input data types that are each compiled in order to create a build blueprint (link to blueprint docs)
+* The hamlet engine defines the input data types that are each compiled in order to create a build blueprint (link to blueprint docs)
 * Each input data type defines a global variable and associated macros/functions with which all related data will be compiled into at engine runtime
-* Utilising these input data type getters/setters allows each provider to implement their own provider-specific configuration requirements yet conform to data structures Hamlet understands
+* Utilising these input data type getters/setters allows each provider to implement their own provider-specific configuration requirements yet conform to data structures hamlet understands
 
 ## Data Types vs Data Sources
 

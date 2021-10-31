@@ -1,12 +1,12 @@
 ---
 sidebar_label: CLI
-title: Hamlet CLI
+title: hamlet CLI
 ---
 :::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
 :::
 
-The Hamlet CLI tool provides a helpful python wrapper around the core Hamlet repositories. Though it can be built from source, it is strongly encouraged to run Hamlet from its container
+The hamlet CLI tool provides a helpful python wrapper around the core hamlet repositories. Though it can be built from source, it is strongly encouraged to run hamlet from its container
 
 ## Usage
 

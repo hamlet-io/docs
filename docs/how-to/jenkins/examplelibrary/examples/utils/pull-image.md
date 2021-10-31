@@ -19,7 +19,7 @@ Overwrite default Docker environment variables with those specified as Parameter
 
 ### Pull Image
 
-Perform the Hamlet "Manage Docker" action, pulling the selected container image from Dockerhub to the local registry.
+Perform the hamlet "Manage Docker" action, pulling the selected container image from Dockerhub to the local registry.
 
 ## Example
 

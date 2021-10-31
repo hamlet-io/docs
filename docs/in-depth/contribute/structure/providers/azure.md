@@ -16,8 +16,8 @@ The hamlet.io documentation is currently under significant re-development. Exist
 
 ## Azure References
 
-* the Azure provider plugin adds some provider-specific references (link) to the Hamlet engine
-* Additionally Hamlet extends some shared references (link) which are identified in the Reference Data definitions (link)
+* the Azure provider plugin adds some provider-specific references (link) to the hamlet engine
+* Additionally hamlet extends some shared references (link) which are identified in the Reference Data definitions (link)
   * Where the plugin extends an existing reference, the reference is namespaced
 
 ```json
@@ -31,7 +31,7 @@ Azure defines the following reference data types:
 
 ## Utility Script
 
-* Azure provides the Hamlet engine its own Utilities script for use at runtime
+* Azure provides the hamlet engine its own Utilities script for use at runtime
 * this includes content for working with:
   * Storage Accounts
   * SSH keypair generation
