@@ -23,9 +23,9 @@ An common pattern for this deployment is to use an object store ( AWS S3, Azure 
     `}
 />
 
-However, not every static site is intended to be public. Adding authentication is considerably greater in complexity than the site alone. Thankfully, this is where Hamlet Modules really shine.
+However, not every static site is intended to be public. Adding authentication is considerably greater in complexity than the site alone. Thankfully, this is where hamlet Modules really shine.
 
-In this article, we will be stepping through the process of using two of the recently published Hamlet modules - _cfcognito_ and _githubidp_. Used alongside a Hamlet Solution for a typical `spa` deployment into AWS, these modules will include everything necessary to restrict access to our site with Github.
+In this article, we will be stepping through the process of using two of the recently published hamlet modules - _cfcognito_ and _githubidp_. Used alongside a hamlet Solution for a typical `spa` deployment into AWS, these modules will include everything necessary to restrict access to our site with Github.
 
 <Mermaid
     chart={`
@@ -46,13 +46,13 @@ Before we get started, let’s cover off what you need prior to following along.
 
 ## Prerequisites
 
-You will need to have configured a Hamlet Tenant, Account(s) and Product for our site, and have deployed all the “out-of-the-box” deployment-units:
+You will need to have configured a hamlet Tenant, Account(s) and Product for our site, and have deployed all the “out-of-the-box” deployment-units:
 
 ```bash
 hamlet deploy run-deployments -u baseline
 ```
 
-The Hamlet Modules used here are going to restrict access to your chosen GitHub team(s) in a specific GitHub organisation. Select an appropriate one to test with, and note them down as you'll need them shortly.
+The hamlet Modules used here are going to restrict access to your chosen GitHub team(s) in a specific GitHub organisation. Select an appropriate one to test with, and note them down as you'll need them shortly.
 
 Within your selected Github organisation you will need to register a new [OAuth Application](https://docs.github.com/en/developers/apps/creating-an-oauth-app). This will require admin access to the Organisation. Enter a placeholder Callback URL for the time being, we’ll update it along the way. Generate a clientSecret that we can use within our Solution.
 
@@ -152,7 +152,7 @@ This does the following:
 
 ## Working with Plugins
 
-If you haven’t used Hamlet Plugins before, Plugins extend hamlet and can provide a wide range of functions, including modules which provide prebuilt solutions that can be added to your own solution.
+If you haven’t used hamlet Plugins before, Plugins extend hamlet and can provide a wide range of functions, including modules which provide prebuilt solutions that can be added to your own solution.
 After adding a plugin it needs to be installed in your workspace so that it can be used:
 
 ```bash
@@ -462,7 +462,7 @@ Remember you can list the discovered deployment units with `hamlet deploy list-d
 
 ## Retrieving the Github App Callback
 
-Our Github OAuth Application needs to be updated with the Callback Url of the Cognito userpool’s hosted UI. Once you’re `userpool` has been deployed, this can be retrieved with the Hamlet CLI:
+Our Github OAuth Application needs to be updated with the Callback Url of the Cognito userpool’s hosted UI. Once you’re `userpool` has been deployed, this can be retrieved with the hamlet CLI:
 
 ```bash
 hamlet component describe-occurrences --name management-pool attributes

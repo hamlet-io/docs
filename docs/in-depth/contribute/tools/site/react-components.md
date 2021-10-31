@@ -15,9 +15,9 @@ The hamlet.io documentation is currently under significant re-development. Exist
 
 ### HamletComponents
 
-* Using the `HamletJsonSchema` functions below this Component reads in the publicly published JSONSchema for Hamlet component structures
+* Using the `HamletJsonSchema` functions below this Component reads in the publicly published JSONSchema for hamlet component structures
 * The Data is then rendered as reference data tables at [hamlet](https://hamlet.io/reference)
-* This allows us to use Hamlet to define its own JSONSchema for each Component and ensure the documentation is always current
+* This allows us to use hamlet to define its own JSONSchema for each Component and ensure the documentation is always current
 
 #### Props
 
@@ -57,7 +57,7 @@ type, version
 #### getComponentStructure
 
 * Props: name, attributes, requires as { props }
-* Uses the above function components to seperate out an individual Hamlet components JSONSchema into individual schemas
+* Uses the above function components to seperate out an individual hamlet components JSONSchema into individual schemas
   * each Attribute of the component that has children is separated into its own schema
   * There is also a “root” schema for the component
 
@@ -65,7 +65,7 @@ type, version
 
 Props: schema
 
-* Uses the generated and restructured component schemas from all the above functions to construct a JSON representation of the Hamlet Component as it would appear in a solution.
+* Uses the generated and restructured component schemas from all the above functions to construct a JSON representation of the hamlet Component as it would appear in a solution.
 * Presents the JSON with human-readable notation in place of type-data.
 
 ## Links

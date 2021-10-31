@@ -3,14 +3,14 @@ title: Azure Plugin Breakdowns
 author: rossmurr4y
 author_url: https://github.com/rossmurr4y
 ---
-Welcome to the start of a new series of blog posts centred around the Hamlet Azure provider. In each article will showcase a new hamlet component type and how it has been implemented by the Azure provider plugin. Along the way we'll review some unique Infrastructure-as-Code challenges that hamlet addresses as well as deep dive into some of its features.
+Welcome to the start of a new series of blog posts centred around the hamlet Azure provider. In each article will showcase a new hamlet component type and how it has been implemented by the Azure provider plugin. Along the way we'll review some unique Infrastructure-as-Code challenges that hamlet addresses as well as deep dive into some of its features.
 
 <!--truncate-->
 
 These articles are intended for audiences just starting out with hamlet. You will need a basic understanding of Azure and ARM templates - links provided at the end of this article to bring you up to speed. The intent is for each article to build up to the next, exploring both hamlet and the Azure provider plugin in greater depth.
 
 :::note
-  These articles use the Azure plugin provider to illustrate the broader hamlet approach to opionionated "Solution-as-Code". Though the implementations will differ by provider, hamlet features that we cover are applicable to all hamlet providers.
+  These articles use the Azure plugin provider to illustrate the broader hamlet approach to opinionated "Solution-as-Code". Though the implementations will differ by provider, hamlet features that we cover are applicable to all hamlet providers.
 :::
 
 ## Getting Started
@@ -66,7 +66,7 @@ This would pass the `template.json` in the same directory a parameter called "ha
 }
 ```
 
-Typically in ARM what this allows you to do is to seperate out secure or personal values for a template and then share the template/parameters files someone else or even re-use the template in a number of different ways, providing a new parameters file each time. In hamlet templates are generated and re-generated frequently. A product's solution is effectively one giant Parameters file, and hamlet takes what it requires from that and uses it to create the template file. In this way, most of the more simplistic use cases for Parameters - like assigning a resource property to the value of a parameter - are not required at all. Hamlet can just hard-code that value on the resource. We'll cover the more advanced uses for Parameters in a future article.
+Typically in ARM what this allows you to do is to separate out secure or personal values for a template and then share the template/parameters files someone else or even re-use the template in a number of different ways, providing a new parameters file each time. In hamlet templates are generated and re-generated frequently. A product's solution is effectively one giant Parameters file, and hamlet takes what it requires from that and uses it to create the template file. In this way, most of the more simplistic use cases for Parameters - like assigning a resource property to the value of a parameter - are not required at all. hamlet can just hard-code that value on the resource. We'll cover the more advanced uses for Parameters in a future article.
 
 ### variables
 
@@ -119,65 +119,65 @@ In hamlet, there are a few minor changes to the way resources are defined from h
 
 1. Sub-resources are always defined as their own resource, rather than nested within its parent.
 
-```json
-// sub resource defined as an independant resource
-{
-  "name": "storageaccount12345/default",
-  "type": "Microsoft.Storage/storageAccounts/blobServices",
-  "apiVersion": "2019-04-01",
-  "properties": {},
-  "dependsOn": [
-    "[resourceId('Microsoft.Storage/storageAccounts', 'storageaccount12345')]"
-  ]
-},
-{
-  "name": "storageaccount12345/default/container123",
-  "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-  "apiVersion": "2019-04-01",
-  "properties": {},
-  "dependsOn": [
-    "[resourceId('Microsoft.Storage/storageAccounts', 'storageaccount12345')]",
-    "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'storageaccount12345', 'default')]"
-  ]
-}
-
-// nested resource
-{
-  "name": "storageaccount12345/default",
-  "type": "Microsoft.Storage/storageAccounts/blobServices",
-  "apiVersion": "2019-04-01",
-  "properties": {},
-  "resources" : [
+    ```json
+    // sub resource defined as an independent resource
     {
-      "name": "container123",
-      "type": "containers",
+      "name": "storageaccount12345/default",
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
       "apiVersion": "2019-04-01",
-      "properties": {...}
+      "properties": {},
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', 'storageaccount12345')]"
+      ]
+    },
+    {
+      "name": "storageaccount12345/default/container123",
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "properties": {},
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', 'storageaccount12345')]",
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'storageaccount12345', 'default')]"
+      ]
     }
-  ],
-  "dependsOn": [
-    "[resourceId('Microsoft.Storage/storageAccounts', 'storageaccount12345')]"
-  ]
-}
-```
 
-This is done for consistency in resource names, and consistency in creating resource references. It's also far easier for hamlet developers to design smaller functions to generate the output of concise structures that are all used, rather than having to support some of the more monstrously-nested resources that ARM templates have to offer (see some of the networking ARM templates for reference.) and have a good portion of that structure unused.
+    // nested resource
+    {
+      "name": "storageaccount12345/default",
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2019-04-01",
+      "properties": {},
+      "resources" : [
+        {
+          "name": "container123",
+          "type": "containers",
+          "apiVersion": "2019-04-01",
+          "properties": {...}
+        }
+      ],
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', 'storageaccount12345')]"
+      ]
+    }
+    ```
 
-2. As a solution changes over time, hamlet will add and remove resources from any generated templates accordingly. Because of this, many of the quality-of-life features of template authorship - such as looping over a resource a number of times to create N copies of it - are unnecessary. Such a loop would normally enable a template author to ensure consistency across many resources and save time when maintaining those resources, however hamlet does this all for us so features would only serve to complicate the template. This does mean that hamlet generated templates are longer in length but also far simpler to read.
+    This is done for consistency in resource names, and consistency in creating resource references. It's also far easier for hamlet developers to design smaller functions to generate the output of concise structures that are all used, rather than having to support some of the more monstrously-nested resources that ARM templates have to offer (see some of the networking ARM templates for reference.) and have a good portion of that structure unused.
+
+1. As a solution changes over time, hamlet will add and remove resources from any generated templates accordingly. Because of this, many of the quality-of-life features of template authorship - such as looping over a resource a number of times to create N copies of it - are unnecessary. Such a loop would normally enable a template author to ensure consistency across many resources and save time when maintaining those resources, however hamlet does this all for us so features would only serve to complicate the template. This does mean that hamlet generated templates are longer in length but also far simpler to read.
 
 ### outputs
 
-Hamlet uses template outputs far more than you may be used to, but in a far more complex manner. To explain the how and the why, lets break down the outputs step-by-step.
+hamlet uses template outputs far more than you may be used to, but in a far more complex manner. To explain the how and the why, lets break down the outputs step-by-step.
 
 1. Upon successful ARM deployment, the output section of the ARM `template.json` is processed (standard ARM deployment behaviour - nothing new here).
-2. The results of the output processing is captured and saved into a new file - `stack.json`. The name "stack" is borrowed from AWS conventions, and represents the current deployed state of a resource.
-3. The next time a new template generation occurs (for *any* deployment-unit, not just that same one), part of the generation process is to create a composite of all the output sections across all `stack.json` files. This composite file is then used for every subsequent template generation to extract the necessary values. Effectively its a library of values on the current state of deployed resources. Because it's a direct reflection of the current state, this is also used to determine if a resource is actually deployed or not. Every resource must have at least one output - typically its the unique identifier of the resource (in Azure this is the result of a `[resourceId()]` function) in order for it to be considered deployed.
+1. The results of the output processing is captured and saved into a new file - `stack.json`. The name "stack" is borrowed from AWS conventions, and represents the current deployed state of a resource.
+1. The next time a new template generation occurs (for *any* deployment-unit, not just that same one), part of the generation process is to create a composite of all the output sections across all `stack.json` files. This composite file is then used for every subsequent template generation to extract the necessary values. Effectively its a library of values on the current state of deployed resources. Because it's a direct reflection of the current state, this is also used to determine if a resource is actually deployed or not. Every resource must have at least one output - typically its the unique identifier of the resource (in Azure this is the result of a `[resourceId()]` function) in order for it to be considered deployed.
 
 :::caution
   Steps 2 and 3 of the above process is applicable to every provider. The composite stack files include information about which provider generated that output. Then during template generation each output is transformed into a single common structure that hamlet can read and use. In this way you could have templates from multiple providers in the same repository and pass values between them without any additional effort.
 :::
 
-That should give you a good understanding of some of the basics as to how and why ARM Templates look and feel a little different when generated through hamlet. Hopefully you can see the beginings of the power behind hamlet. In our next articles we'll start to dive into components to take a closer look at the design and features behind them.
+That should give you a good understanding of some of the basics as to how and why ARM Templates look and feel a little different when generated through hamlet. Hopefully you can see the beginnings of the power behind hamlet. In our next articles we'll start to dive into components to take a closer look at the design and features behind them.
 
 ## Links & References
 

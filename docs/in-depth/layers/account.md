@@ -5,7 +5,7 @@ title: The Account
 
 An Account reflects a single, provider-specific cloud account or subscription.
 
-An Account is not restricted in how it is used. It could be used by many Products, or just a single one depending on the needs of the organisation. Wherever a new cloud provider account or subscription is to be used by Hamlet, a new Account is required.
+An Account is not restricted in how it is used. It could be used by many Products, or just a single one depending on the needs of the organisation. Wherever a new cloud provider account or subscription is to be used by hamlet, a new Account is required.
 
 Let's create one now and see how it intereacts with the Tenant and Product layers.
 
@@ -48,7 +48,7 @@ hamlet @ ~/cmdb
 
 Now alongside the Tenant `acmeinc` we have an Account: `acmedev01`.
 
-The `config` and `infrastructure` directories separate out our Account configuration - the "inputs" - from the templates, documentation and other files that the Hamlet Deploy engine will soon create for us - "outputs". We'll see this structure reflected inside of the Product shortly as well.
+The `config` and `infrastructure` directories separate out our Account configuration - the "inputs" - from the templates, documentation and other files that the hamlet engine will soon create for us - "outputs". We'll see this structure reflected inside of the Product shortly as well.
 
 Lets quickly take a look at the new Account.
 

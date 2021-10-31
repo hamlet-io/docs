@@ -1,6 +1,6 @@
 ---
 sidebar_label: Glossary
-title: Hamlet Terminology
+title: Terminology
 ---
 :::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.

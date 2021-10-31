@@ -29,7 +29,7 @@ hamlet entrance invoke-entrance -e validate
 
 That's all there is to it!
 
-Regular validation will help you catch issues early and ensure that Hamlet Deploy is working the way you intend it to.
+Regular validation will help you catch issues early and ensure that hamlet is working the way you intend it to.
 
 :::note
 You can always compare invalid configuration against the [Blueprint Reference](https://docs.hamlet.io/reference) if you get stuck.

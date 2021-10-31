@@ -5,7 +5,7 @@ author_url: https://github.com/roleyfoley
 ---
 import Mermaid from '@theme/Mermaid';
 
-Hamlet has its own opinions on how things should be done. These opinions are formed by our community based on best practice ( including the best way to workaround things ) to get you working in the cloud as efficiently as possible. Sometimes you might want to try out something new that we don't support or a component we offer isn't quite right. In this series of posts, Prototyping Deployments you should get an idea of how hamlet helps with these deployments and integrates with the rest of your solution.
+hamlet has its own opinions on how things should be done. These opinions are formed by our community based on best practice ( including the best way to workaround things ) to get you working in the cloud as efficiently as possible. Sometimes you might want to try out something new that we don't support or a component we offer isn't quite right. In this series of posts, Prototyping Deployments you should get an idea of how hamlet helps with these deployments and integrates with the rest of your solution.
 <!--truncate-->
 
 When you reach this point we have some helpers in hamlet to get you going:
@@ -120,7 +120,7 @@ Resources:
 
 One thing that stands out on initial review is that the resource exposes a number of parameters that determine the type of content the table will hold. This configuration cannot be made generic because it is fundamental to the way the resource behaves. We could add support for different values within the component itself, but this would mean embedding product-specific configuration logic inside of our infrastructure.
 
-Our Hamlet infrastructure usually provides the base level platform where we deploy code artefacts which are executed by the platform. This doesn't quite fit that model. So instead of turning this template into a generic component what if we could treat this template as a code artefact, this way changes are promoted through environments and during the promotion process we re-apply the template with the latest updates.
+Our hamlet infrastructure usually provides the base level platform where we deploy code artefacts which are executed by the platform. This doesn't quite fit that model. So instead of turning this template into a generic component what if we could treat this template as a code artefact, this way changes are promoted through environments and during the promotion process we re-apply the template with the latest updates.
 
 This is where the template component comes in. The template component has some useful features to integrate your template resources with the rest of your hamlet deployment:
 
@@ -128,7 +128,7 @@ This is where the template component comes in. The template component has some u
 - You can provide template parameter values through solution level configuration and extensions. This means you can generate dynamic parameter values using links, environment details and anything else available in hamlet. Depending on what's in your template, hamlet can look after creating multiple instances of your template.
 - We capture the outputs provided by the template and include them as part of the state of the component. This means other components can access details about the resources in your template allowing you to still use our standardised best practice components alongside your template
 
-## Deploying through Hamlet
+## Deploying through hamlet
 
 Lets see what this looks like in hamlet:
 
@@ -156,7 +156,7 @@ Lets see what this looks like in hamlet:
     echo '{}' > root.json
 
     ## Create our tenant - If you are following along update the region
-    hamlet generate cmdb tenant --tenant-id myHamlet --default-region ap-southeast-2
+    hamlet generate cmdb tenant --tenant-id myhamlet --default-region ap-southeast-2
 
     ## Add an Account - If you are following along update the provider Id to an AWS account Id
     ( cd accounts && hamlet generate cmdb account --account-id dev01 --provider-type aws --provider-id 1234567890 )
@@ -221,7 +221,7 @@ Lets see what this looks like in hamlet:
     - Name of template file - we set this to allow for working with nested templates or a package of CloudFormation templates as a zip
     - The Attributes map the Outputs from the template into our hamlet state as attributes
     - Set an extension which will be used to provide the parameters
-    - Instead of using a registry image we are going to pull the template file from a Url. Hamlet also supports providing the templates as images which can be released through environments
+    - Instead of using a registry image we are going to pull the template file from a Url. hamlet also supports providing the templates as images which can be released through environments
 
 3. Next we add our extension, in the same folder add a new file called `fragment_glue.ftl` and add the following
 
@@ -248,7 +248,7 @@ Lets see what this looks like in hamlet:
     We are using a hamlet extension here which allows you to dynamically create configuration for the component. In this extension we are doing the following:
 
     - To make the GlueDatabaseName unique we get the FullName of the occurrence this allows us to provide a standard name which will be unique to this deployment
-    - Using _context.DefaultEnvironment to find a environment setting called APPDATA_BUCKET. Hamlet deploys a series of baseline services which perform common utilities and functions. The APPDATA_BUCKET provides a general purpose datastore that applications can use.
+    - Using _context.DefaultEnvironment to find a environment setting called APPDATA_BUCKET. hamlet deploys a series of baseline services which perform common utilities and functions. The APPDATA_BUCKET provides a general purpose datastore that applications can use.
 
 4. Now lets run our deployment which will generate the required outputs and execute them in the AWS account
 
@@ -305,8 +305,8 @@ Lets see what this looks like in hamlet:
 
 ## Wrapping Up
 
-So that's a rundown on the template component and how you could use it to deploy resources into AWS which aren't part of our standard Hamlet components or have complicated business logic baked in. This gives you the full access to all resources available to CloudFormation with the contextual information provided by Hamlet.
+So that's a rundown on the template component and how you could use it to deploy resources into AWS which aren't part of our standard hamlet components or have complicated business logic baked in. This gives you the full access to all resources available to CloudFormation with the contextual information provided by hamlet.
 
-Hamlet extends the CloudFormation processing to ensure that naming is consistent and that you can integrate existing components into your solution with the state of the deployment managed through a centralised code repository
+hamlet extends the CloudFormation processing to ensure that naming is consistent and that you can integrate existing components into your solution with the state of the deployment managed through a centralised code repository
 
 Our next post will cover the adaptor component which performs a similar function but with a user defined script instead of a declarative template
