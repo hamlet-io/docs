@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Docs Site
         uses: actions/checkout@v2
 
-      - name: Generate Hamlet Schemas
+      - name: Generate hamlet Schemas
         uses: hamlet-io/github-action-hamlet@v1
         with:
           task_build_schemas: true

@@ -71,5 +71,5 @@ git push --set-upstream origin feature-my-feature-branch
 ```
 
 ## Production
-### Deployment
+
 The production instance of the docs site is hosted on Vercel, do not be confused by the deploy script in package.json. This is not used and is defunct. The publishing to Vercel is directly controlled by changes made to master and picked up by a Vercel app.
