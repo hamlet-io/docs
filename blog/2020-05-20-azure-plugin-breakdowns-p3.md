@@ -107,7 +107,7 @@ When setting up a database via template you need to tell it what the administrat
 
 ### Prologue & Epilogue Scripts
 
-Another difference with the “db” component in Hamlet is that it makes use of additional shell scripts - which Hamlet also generates as necessary - to perform actions that are typically outside of the scope of what Azure Resource Manager does. As a “desired state” templating language where you defined the desired state of your infrastructure, ARM does not include capabilities of typical utility tasks that you would perform during administration or even deployment such as file download/upload, file encoding/decrypting or in the DB’s case - password generation. That secret that we’ve referenced in the Parameters section wasn’t uploaded manually, nor can it be defined in ARM templates. Instead, Hamlet makes use of a Prologue script to ensure a complex password is created and uploaded into KeyVault whilst still ensuring that the password is not exposed.
+Another difference with the “db” component in hamlet is that it makes use of additional shell scripts - which hamlet also generates as necessary - to perform actions that are typically outside of the scope of what Azure Resource Manager does. As a “desired state” templating language where you defined the desired state of your infrastructure, ARM does not include capabilities of typical utility tasks that you would perform during administration or even deployment such as file download/upload, file encoding/decrypting or in the DB’s case - password generation. That secret that we’ve referenced in the Parameters section wasn’t uploaded manually, nor can it be defined in ARM templates. Instead, hamlet makes use of a Prologue script to ensure a complex password is created and uploaded into KeyVault whilst still ensuring that the password is not exposed.
 
 The following script uses a lot of hamlet-specific functions, but you should be able to follow along with the steps its undertaking (below):
 
@@ -136,7 +136,7 @@ fi
 
 ### Pseudo Outputs
 
-A typical ARM template might define outputs that can be consumed by another template - however with the inclusion of Prologue/Epilogue utility scripts, Hamlet needs to be able to define the outputs of those utilities to pass their outcomes on to other resources. Hamlet accomplishes this with “pseudo” outputs. You can see this on the final line of the Prologue script above. Hamlet creates a Pseudo Output - mimicking the same structure of a template deployment’s output structure - and creates a new output for the secret it created (seen below). This structure is not native to ARM but instead of native to Hamlet. The next time Hamlet compiles all the outputs that it has access to and reference, it will be able to use this Pseudo Output to discover the name of the secret in KeyVault that contains the database administration password. Anything that needs to access this password - such as a component that needs to construct a connection string to write to the database, will first lookup this output.
+A typical ARM template might define outputs that can be consumed by another template - however with the inclusion of Prologue/Epilogue utility scripts, hamlet needs to be able to define the outputs of those utilities to pass their outcomes on to other resources. hamlet accomplishes this with “pseudo” outputs. You can see this on the final line of the Prologue script above. hamlet creates a Pseudo Output - mimicking the same structure of a template deployment’s output structure - and creates a new output for the secret it created (seen below). This structure is not native to ARM but instead of native to hamlet. The next time hamlet compiles all the outputs that it has access to and reference, it will be able to use this Pseudo Output to discover the name of the secret in KeyVault that contains the database administration password. Anything that needs to access this password - such as a component that needs to construct a connection string to write to the database, will first lookup this output.
 
 ```json
 // prologue-secret-pseudo-stack.json
@@ -159,19 +159,19 @@ A typical ARM template might define outputs that can be consumed by another temp
 
 So to put all the above into context, here’s the order of operations for the template generation/deployment for this “db” component.
 
-#### Hamlet Create
+#### hamlet Create
 
 ##### `hamlet create template ...`
 
 Template generation is run, and outputs these 3 primary files: `template.json`, `parameters.json` and `prologue.sh`
 
-#### Hamlet Deployment
+#### hamlet Deployment
 
 ##### `hamlet manage deployment ...`
 
-- Hamlet checks for any prologue.sh scripts. Finding one, it executes it.
+- hamlet checks for any prologue.sh scripts. Finding one, it executes it.
   - Checking the Azure KeyVault for a secret called "hamletio-db-secret” it finds nothing, so generates a complex password and securely stores it in KeyVault under this name.
   - The prologue scripts final task is to output a new file - `prologue-secret-pseudo-stack.json` - this will allow other hamlet components to find the database secret that needs to be referenced.
-- Hamlet looks for a `template.json` file. Finding one it also checks for a `parameters.json` which is also present in this case. Hamlet creates a new ARM deployment using both files to create the database.
+- hamlet looks for a `template.json` file. Finding one it also checks for a `parameters.json` which is also present in this case. hamlet creates a new ARM deployment using both files to create the database.
   - During deployment the Parameters file performs they KeyVault lookup and retrieves the value of our new secret. It passes the value to the template as a securestring-type, which in turn sets the database administrator password.
-- Hamlet then saves the usual ARM outputs in a new file - `stack.json`
+- hamlet then saves the usual ARM outputs in a new file - `stack.json`

@@ -5,11 +5,11 @@ title: The Tenant
 
 import Admonition from 'react-admonitions';
 
-A Tenant represents an organsation or entity and is the greatest scope within Hamlet. All configuration applied at this layer is going to influence all Accounts and Products within it.
+A Tenant represents an organsation or entity and is the greatest scope within hamlet. All configuration applied at this layer is going to influence all Accounts and Products within it.
 
 Lets create one now so that we have something to look at.
 
-From your terminal, run the following to pull down and run the offical Hamlet Docker container and start an interactive terminal session inside of it:
+From your terminal, run the following to pull down and run the offical hamlet Docker container and start an interactive terminal session inside of it:
 
 ```bash
 docker run -it --rm hamletio/hamlet:latest
@@ -23,7 +23,7 @@ hamlet @ ~/cmdb
 ```
 
 :::note
-All Hamlet CLI commands have useful help pages that can be accessed within the container:
+All hamlet CLI commands have useful help pages that can be accessed within the container:
 
 ```bash
 hamlet <command> --help
@@ -33,7 +33,7 @@ hamlet <command> --help
 
 ## Creating the Tenant
 
-Create your first Hamlet Tenant. After entering the command you will be asked a series of questions to help bootstrap the Tenant structure. The default option - available by leaving the prompt blank - is displayed in square-brackets.
+Create your first hamlet Tenant. After entering the command you will be asked a series of questions to help bootstrap the Tenant structure. The default option - available by leaving the prompt blank - is displayed in square-brackets.
 
 ```bash
 hamlet @ ~/cmdb
@@ -47,7 +47,7 @@ hamlet @ ~/cmdb
 
 That's all it takes to create your first Tenant and its minimal configuration.
 
-Now let's take a look at what Hamlet has created for us.
+Now let's take a look at what hamlet has created for us.
 
 ```bash
 $ tree ./accounts
@@ -57,9 +57,9 @@ $ tree ./accounts
     └── tenant.json
 ```
 
-Notice the directory structure here - `./accounts/acmeinc`. The `tenant name` that we provided to Hamlet - _"acmeinc"_ - has been used for the directory name to store our configuration in.
+Notice the directory structure here - `./accounts/acmeinc`. The `tenant name` that we provided to hamlet - _"acmeinc"_ - has been used for the directory name to store our configuration in.
 
-A Tenant alone isn't sufficient for us to perform any Hamlet activities with it yet, so instead lets take a peek at the files Hamlet generated for us:
+A Tenant alone isn't sufficient for us to perform any hamlet activities with it yet, so instead lets take a peek at the files hamlet generated for us:
 
 ## tenant.json
 
