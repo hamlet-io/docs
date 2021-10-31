@@ -15,7 +15,7 @@ The hamlet.io documentation is currently under significant re-development. Exist
 ### Patterns
 
 * Code practices that are repeated a number of times
-* Ensures consistency across Hamlet
+* Ensures consistency across hamlet
 * Decrease the amount of learning required as different features share a common implementation approach
 
 ### Routines
@@ -63,4 +63,4 @@ The hamlet.io documentation is currently under significant re-development. Exist
 #### Common Parameter Inputs
 
 * where possible, parameter inputs should be selected from the following list.
-* this ensures consistency across Hamlet
+* this ensures consistency across hamlet

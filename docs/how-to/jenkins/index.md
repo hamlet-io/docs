@@ -1,18 +1,18 @@
 ---
 sidebar_label: Jenkins Pipelines
-title: Jenkins Pipelines & Hamlet
+title: Jenkins Pipelines & hamlet
 ---
-Jenkins integration with Hamlet offers comprehensive Product lifecycle management. This section documents best-practices and common approaches to their configuration.
+Jenkins integration with hamlet offers comprehensive Product lifecycle management. This section documents best-practices and common approaches to their configuration.
 
-Examples can be viewed [here](examplelibrary/index) and the [Shared Groovy Scripts](https://github.com/hamlet-io/jenkins-streams-shared-library) provide additional ready-to-use Hamlet utilities for Jenkins pipelines.
+Examples can be viewed [here](examplelibrary/index) and the [Shared Groovy Scripts](https://github.com/hamlet-io/jenkins-streams-shared-library) provide additional ready-to-use hamlet utilities for Jenkins pipelines.
 
 ## Recommended Pipelines
 
-Below is the recommended approach to integrating Hamlet and Jenkins. This configuration will grant comprehensive control of a Hamlet Solution.
+Below is the recommended approach to integrating hamlet and Jenkins. This configuration will grant comprehensive control of a hamlet Solution.
 
 ## Properties files
 
-Hamlet Jenkins pipelines share a number of common environment variables and valid parameter values. To re-use this configuration easily, creating a [`properties`](examplelibrary/examples/properties/properties) file is recommended.
+hamlet Jenkins pipelines share a number of common environment variables and valid parameter values. To re-use this configuration easily, creating a [`properties`](examplelibrary/examples/properties/properties) file is recommended.
 
 ## Jenkins Jobs
 

@@ -16,11 +16,11 @@ This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the unique Release 
 
 ### Setup
 
-Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [`properties`](../properties/properties) file.
 
 ### Prepare
 
-Prepare the Jenkins execution environment, verify build references can be found (as defined by their build format) in registry, generate application-level deployment-unit templates and update them in the Hamlet CMDB.
+Prepare the Jenkins execution environment, verify build references can be found (as defined by their build format) in registry, generate application-level deployment-unit templates and update them in the hamlet CMDB.
 
 ### Post Job
 

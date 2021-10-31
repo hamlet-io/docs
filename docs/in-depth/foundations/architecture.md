@@ -1,11 +1,11 @@
 ---
 sidebar_label: Architecture
-title: Hamlet Architecture
+title: hamlet Architecture
 ---
 
-Hamlet is comprised of two major parts - the `Engine` and the `Executor`. It is designed to be both modular and plug-able, so that additional cloud providers or capablities may be easily added and common deployment patterns may be shared.
+hamlet is comprised of two major parts - the `Engine` and the `Executor`. It is designed to be both modular and plug-able, so that additional cloud providers or capablities may be easily added and common deployment patterns may be shared.
 
-## Hamlet Engine
+## hamlet Engine
 
 The `Engine` compiles the `Solution` and evaluates it based on instructions it receives from the `Executor`. For tasks that involve outputs the `Engine` will initially create a list of tasks for the `Executor` called a `Contract`. Tasks may require further invocations of the `Engine` to perform more specific workloads against the `Solution`.
 
@@ -13,9 +13,9 @@ The `Engine` compiles the `Solution` and evaluates it based on instructions it r
 
 `Providers` expose new integrations with a `Solution`. Some `Providers` enable cloud infrastructure template generation capabilities, whilst others enable testing, documentation and more. The `Engine` itself contains the "Shared" `Provider`, which is used to define common `Components` and other data types which `Providers` can optionally use.
 
-## Hamlet Executor
+## hamlet Executor
 
-The Hamlet `Executor` establishes the context of the current runtime environment (known as the Execution Environment) from environment variables and command-line options and translates them into instructions for the `Engine`.
+The hamlet `Executor` establishes the context of the current runtime environment (known as the Execution Environment) from environment variables and command-line options and translates them into instructions for the `Engine`.
 
 The `Executor` can initiate tasks, such as:
 

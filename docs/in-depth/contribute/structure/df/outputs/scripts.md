@@ -40,7 +40,7 @@ The hamlet.io documentation is currently under significant re-development. Exist
 
 * Defined by the shared provider, pseudo stack outputs allow a script to generate its own outputs during runtime which are then saved in the CMDB alongside other stack outputs.
 * Pseudo stack outputs are then consumed by the engine as if they were standard stack outputs
-* In this way, any task that is performed outside of a providers typical deployment framework can still generate content that informs the Hamlet context
+* In this way, any task that is performed outside of a providers typical deployment framework can still generate content that informs the hamlet context
 * For component setup routines (link) that perform tasks solely with scripts, a pseudo stack output is necessary for hamlet to interpret its deployment-units as having been deployed.
 
 ```json

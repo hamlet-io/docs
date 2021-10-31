@@ -16,11 +16,11 @@ This pipeline accepts **DEPLOYMENT_UNITS** (extendedChoice), **RELEASE_IDENTIFIE
 
 ### Setup
 
-Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [`properties`](../properties/properties) file.
 
 ### Update Build Refs
 
-Stores the hash value of the "Git Commit" in the current Environment/Segment/DeploymentUnit's `build.json` within the Hamlet CMDB.
+Stores the hash value of the "Git Commit" in the current Environment/Segment/DeploymentUnit's `build.json` within the hamlet CMDB.
 
 ### Deploy
 

@@ -2,7 +2,7 @@
 sidebar_label: Accept Release
 title: Accept Release Pipeline
 ---
-Accept a release into a specified environment, validate that acceptance and update that environment's build references within the Hamlet CMDB. This process provides the mechanism for promoting build artefacts through a pre-determined environment ordering.
+Accept a release into a specified environment, validate that acceptance and update that environment's build references within the hamlet CMDB. This process provides the mechanism for promoting build artefacts through a pre-determined environment ordering.
 
 ## Triggers
 
@@ -16,11 +16,11 @@ This pipeline accepts a **RELEASE_IDENTIFIER** parameter for the release that is
 
 ### Setup
 
-Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [`properties`](../properties/properties) file.
 
 ### Prepare
 
-Prepare the Jenkins execution environment, validate the acceptance and update the Hamlet CMDB to reflect the acceptance.
+Prepare the Jenkins execution environment, validate the acceptance and update the hamlet CMDB to reflect the acceptance.
 
 ## Post Job
 
