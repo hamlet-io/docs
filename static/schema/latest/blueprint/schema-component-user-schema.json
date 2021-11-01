@@ -11,7 +11,6 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
@@ -27,13 +26,13 @@
               "type": "object",
               "properties": {
                 "EncryptionScheme": {
-                  "type": "string",
-                  "enum": [
-                    "base64"
-                  ]
+                  "default": "base64",
+                  "description": "A prefix added to the start of the encrypted value to show that it is encrypted",
+                  "type": "string"
                 },
                 "CharacterLength": {
                   "default": 20,
+                  "description": "When generating a console credential the length of the password",
                   "type": "number"
                 },
                 "Formats": {
@@ -43,6 +42,7 @@
                   "default": [
                     "system"
                   ],
+                  "description": "The type of credentials to generate - system provides api level access, console is user level access",
                   "type": "array",
                   "enum": [
                     "system",
@@ -63,28 +63,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -180,6 +159,10 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
+            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -243,10 +226,8 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             }
           }
         }

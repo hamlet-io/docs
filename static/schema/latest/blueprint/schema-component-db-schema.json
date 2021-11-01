@@ -7,11 +7,11 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "deployment:Group": {
-              "default": "solution",
+            "EngineMinorVersion": {
               "type": "string"
             },
-            "EngineMinorVersion": {
+            "deployment:Group": {
+              "default": "solution",
               "type": "string"
             },
             "Encrypted": {
@@ -180,10 +180,8 @@
               }
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             },
             "Engine": {
               "type": "string"
@@ -271,7 +269,6 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "EngineVersion": {
@@ -462,28 +459,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -564,6 +540,10 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
             },
             "deployment:Unit": {
               "type": "string"

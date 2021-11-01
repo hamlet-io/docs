@@ -7,103 +7,12 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "Action": {
-              "description": "The action to perform on a match of this rule",
-              "type": "object",
-              "enum": [
-                "pass",
-                "drop",
-                "inspect",
-                "alert",
-                "monitor"
-              ]
-            },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
-            "Priority": {
-              "anyOf": [
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "string"
-                }
-              ],
-              "description": "The priority of the rule - lowest number wins or use default as last rule"
-            },
-            "Inspection": {
-              "default": "Stateful",
-              "description": "How to inspect network flows through the firewall",
-              "type": "string",
-              "enum": [
-                "Stateful",
-                "Stateless"
-              ]
-            },
-            "Complex": {
-              "description": "Complex rule matching and processing",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Links": {
-                  "description": "Links to be used as part of the extension",
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-                },
-                "Ports": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "A collection of ports to use during complex processing",
-                  "type": "array"
-                },
-                "IPAddressGroups": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "A collection of IP AddressGroups to use during complex processing",
-                  "type": "array"
-                },
-                "Extensions": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "A list of extensions to use for rule generation",
-                  "type": "array"
-                }
-              }
-            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -116,6 +25,17 @@
             "Active": {
               "default": true,
               "type": "boolean"
+            },
+            "Action": {
+              "description": "The action to perform on a match of this rule",
+              "type": "object",
+              "enum": [
+                "pass",
+                "drop",
+                "inspect",
+                "alert",
+                "monitor"
+              ]
             },
             "Type": {
               "default": "NetworkTuple",
@@ -199,6 +119,17 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "Priority": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "description": "The priority of the rule - lowest number wins or use default as last rule"
+            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",
@@ -233,11 +164,18 @@
                 }
               }
             },
+            "Inspection": {
+              "default": "Stateful",
+              "description": "How to inspect network flows through the firewall",
+              "type": "string",
+              "enum": [
+                "Stateful",
+                "Stateless"
+              ]
+            },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             },
             "HostFilter": {
               "description": "Filter traffic based on Host requested",
@@ -338,6 +276,38 @@
                       "type": "array"
                     }
                   }
+                }
+              }
+            },
+            "Complex": {
+              "description": "Complex rule matching and processing",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Links": {
+                  "description": "Links to be used as part of the extension",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                },
+                "Ports": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "A collection of ports to use during complex processing",
+                  "type": "array"
+                },
+                "IPAddressGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "A collection of IP AddressGroups to use during complex processing",
+                  "type": "array"
+                },
+                "Extensions": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "A list of extensions to use for rule generation",
+                  "type": "array"
                 }
               }
             }

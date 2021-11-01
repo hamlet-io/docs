@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "definitions": {
-    "serviceregistry": {
+    "subscription": {
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
@@ -21,6 +21,10 @@
               },
               "description": "Instances of a component configuration",
               "type": "object"
+            },
+            "external:Provider": {
+              "description": "The provider owning the subscription",
+              "type": "string"
             },
             "SettingNamespaces": {
               "patternProperties": {
@@ -111,6 +115,10 @@
             "deployment:Unit": {
               "type": "string"
             },
+            "external:DeploymentFramework": {
+              "description": "The default deployment framework for the subscription",
+              "type": "string"
+            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",
@@ -149,37 +157,13 @@
               "default": 100,
               "type": "number"
             },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-            },
             "Export": {
               "default": false,
               "type": "boolean"
             },
-            "Namespace": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Domain": {
-                  "description": "Explicit domain id which will override the product domain",
-                  "type": "string"
-                },
-                "IncludeInDomain": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    }
-                  }
-                }
-              }
+            "external:ProviderId": {
+              "description": "The provider identifier for the subscription",
+              "type": "string"
             }
           }
         }
@@ -187,5 +171,5 @@
       "type": "object"
     }
   },
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-serviceregistry-schema.json"
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-subscription-schema.json"
 }

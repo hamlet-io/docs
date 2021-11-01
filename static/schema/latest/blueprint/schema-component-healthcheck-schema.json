@@ -11,12 +11,58 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
               "default": "application",
               "type": "string"
+            },
+            "Engine:Simple": {
+              "description": "Simple healthcheck configuration",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Destination": {
+                  "description": "The desitination to perform the healthcheck on",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "LinkAttribute": {
+                      "default": "FQDN",
+                      "description": "The attribute of the linked occurrence to use for the address",
+                      "type": "object"
+                    },
+                    "Address": {
+                      "description": "An explicit address to monitor",
+                      "type": "object"
+                    },
+                    "AddressType": {
+                      "default": "Hostname",
+                      "description": "The type of address to monitor",
+                      "type": "object",
+                      "enum": [
+                        "Hostname",
+                        "IP"
+                      ]
+                    },
+                    "Link": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    }
+                  }
+                },
+                "HTTPSearchString": {
+                  "description": "When using HTTP checks a string that must be present in the response body",
+                  "type": "object"
+                },
+                "Port": {
+                  "description": "The name of a port which sets the healthcheck protocol details",
+                  "type": "object"
+                },
+                "HTTPSearchSetting": {
+                  "description": "The name of a setting that contains the HTTP Search string to use",
+                  "type": "object"
+                }
+              }
             },
             "deployment:Priority": {
               "default": 100,
@@ -44,28 +90,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -74,14 +99,6 @@
               },
               "description": "Instances of a component configuration",
               "type": "object"
-            },
-            "Type": {
-              "description": "The type of healthcheck to perform",
-              "type": "object",
-              "enum": [
-                "Simple",
-                "Complex"
-              ]
             },
             "NetworkAccess": {
               "default": false,
@@ -160,52 +177,14 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
+            },
             "deployment:Unit": {
               "type": "string"
             },
-            "Profiles": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Policy": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                "Placement": {
-                  "default": "default",
-                  "type": "string"
-                },
-                "Network": {
-                  "default": "default",
-                  "type": "string"
-                },
-                "Deployment": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                "Alert": {
-                  "default": "default",
-                  "type": "string"
-                },
-                "Baseline": {
-                  "default": "default",
-                  "description": "The profile used to lookup standard services provided by the segment baseline",
-                  "type": "string"
-                },
-                "Testing": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "The testing profiles to apply to the component",
-                  "type": "array"
-                }
-              }
-            },
-            "Type:Complex": {
+            "Engine:Complex": {
               "description": "Complex specific configuration",
               "additionalProperties": false,
               "type": "object",
@@ -285,6 +264,48 @@
                 "Handler"
               ]
             },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Network": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Alert": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
             "Permissions": {
               "additionalProperties": false,
               "type": "object",
@@ -328,64 +349,23 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             },
             "Alerts": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-alert-schema.json"
             },
-            "Type:Simple": {
-              "description": "Simple healthcheck configuration",
-              "additionalProperties": false,
+            "Engine": {
+              "description": "The type of healthcheck to perform",
               "type": "object",
-              "properties": {
-                "Destination": {
-                  "description": "The desitination to perform the healthcheck on",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "LinkAttribute": {
-                      "default": "FQDN",
-                      "description": "The attribute of the linked occurrence to use for the address",
-                      "type": "object"
-                    },
-                    "Address": {
-                      "description": "An explicit address to monitor",
-                      "type": "object"
-                    },
-                    "AddressType": {
-                      "default": "Hostname",
-                      "description": "The type of address to monitor",
-                      "type": "object",
-                      "enum": [
-                        "Hostname",
-                        "IP"
-                      ]
-                    },
-                    "Link": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-                    }
-                  }
-                },
-                "HTTPSearchString": {
-                  "description": "When using HTTP checks a string that must be present in the response body",
-                  "type": "object"
-                },
-                "Port": {
-                  "description": "The name of a port which sets the healthcheck protocol details",
-                  "type": "object"
-                },
-                "HTTPSearchSetting": {
-                  "description": "The name of a setting that contains the HTTP Search string to use",
-                  "type": "object"
-                }
-              }
+              "enum": [
+                "Simple",
+                "Complex"
+              ]
             }
           },
           "required": [
-            "Type"
+            "Engine"
           ]
         }
       },

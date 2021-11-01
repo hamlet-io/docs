@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "definitions": {
-    "serviceregistry": {
+    "hostingplatform": {
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
@@ -111,6 +111,19 @@
             "deployment:Unit": {
               "type": "string"
             },
+            "Engine:region": {
+              "description": "Placement of resources within a region",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Region": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Region"
+              ]
+            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",
@@ -149,43 +162,26 @@
               "default": 100,
               "type": "number"
             },
-            "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
-            },
             "Export": {
               "default": false,
               "type": "boolean"
             },
-            "Namespace": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Domain": {
-                  "description": "Explicit domain id which will override the product domain",
-                  "type": "string"
-                },
-                "IncludeInDomain": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    }
-                  }
-                }
-              }
+            "Engine": {
+              "default": "region",
+              "description": "Engine will determine what attributes the platform exposes",
+              "type": "string",
+              "enum": [
+                "region"
+              ]
             }
-          }
+          },
+          "required": [
+            "Engine"
+          ]
         }
       },
       "type": "object"
     }
   },
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-serviceregistry-schema.json"
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-hostingplatform-schema.json"
 }

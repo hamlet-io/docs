@@ -103,6 +103,15 @@
                 }
               }
             },
+            "directory": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string"
+                }
+              }
+            },
             "db": {
               "additionalProperties": false,
               "type": "object",
@@ -124,6 +133,22 @@
                   ]
                 },
                 "Family": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            },
+            "gateway": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Generation": {
+                  "description": "The Virtual Network Gateway Generation",
+                  "type": "string"
+                },
+                "Tier": {
                   "type": "string"
                 },
                 "Name": {
