@@ -1,15 +1,15 @@
 ---
 sidebar_label: Anatomy
-title: Anatomy of a Hamlet
+title: Anatomy of a hamlet
 ---
 
-## Hamlet CMDBs
+## hamlet CMDBs
 
-A `Hamlet` is comprised of an`Account` CMDB and one or many `Product` CMDBs. An `Account` CMDB contains both the `Tenant` and all `Accounts` within it, whilst individual `Product` CMDBs contain the `Solutions` that define and configure `Components` and `ReferenceData`. Each `Product` CMDB can contain multiple instances of a `Solution`, each corresponding to an `Environment`. Together, Hamlet deploys an instance of a `Solution` into an `Account` within the `Tenant`.
+A `hamlet` is comprised of an`Account` CMDB and one or many `Product` CMDBs. An `Account` CMDB contains both the `Tenant` and all `Accounts` within it, whilst individual `Product` CMDBs contain the `Solutions` that define and configure `Components` and `ReferenceData`. Each `Product` CMDB can contain multiple instances of a `Solution`, each corresponding to an `Environment`. Together, hamlet deploys an instance of a `Solution` into an `Account` within the `Tenant`.
 
 Commonly, a single repository is used to manage the `Account` and `Tenant` and is known as the `accounts-cmdb`. In large organisations or organisations with strict security requirements they may be stored separately.
 
-A `root.json` file at the root directory of all CMDBs informs Hamlet not to search any higher for configuration.
+A `root.json` file at the root directory of all CMDBs informs hamlet not to search any higher for configuration.
 
 ### Tenant CMDB
 
@@ -17,7 +17,7 @@ The tenant CMDB is used to define an organisation or entity. Configuration appli
 
 ### Account CMDB
 
-The `Account` is linked to the `Tenant` CMDB and inherits its configuration. A `Solution` at the `Account` level defines configuration that is to be used account-wide and be applied to all current and future `Products` within it. An `Account` is tied directly to an provider-specific identifier which Hamlet uses to deploy to that cloud provider. Typically an `Account` will be required for each `Environment` that a `Tenant` contains, however this is only due to best-practice of environment isolation and is not a requirement of an `Account`.
+The `Account` is linked to the `Tenant` CMDB and inherits its configuration. A `Solution` at the `Account` level defines configuration that is to be used account-wide and be applied to all current and future `Products` within it. An `Account` is tied directly to an provider-specific identifier which hamlet uses to deploy to that cloud provider. Typically an `Account` will be required for each `Environment` that a `Tenant` contains, however this is only due to best-practice of environment isolation and is not a requirement of an `Account`.
 
 ### Product CMDB
 
@@ -25,7 +25,7 @@ A `Product` contains multipe `Solutions` which can be deployed into `Environment
 
 ## Solutions
 
-A `Solution` is a collection of `Components` which together define a functional service. `Components` each define specific functionality within it and from them, Hamlet performs both infrastructure and application deployments.
+A `Solution` is a collection of `Components` which together define a functional service. `Components` each define specific functionality within it and from them, hamlet performs both infrastructure and application deployments.
 
 Multiple `Solutions` can be deployed into an `Environment`, each one is known as a `Segment`. Each `Segment` implements its own services independent but generally related to the other segments
 
@@ -66,12 +66,12 @@ Directories immediately underneath are `config` and `infrastructure` which corre
 
 Within the `config` directory, a further distinction is made between "application runtime settings" (`settings`) and "solution definitions" (`solutionsv2`).
 
-Within the `infrastructure` directory, engine outputs are separated by type. `cf` is the output directory for infrastructure templates and scripts used for infrastructure and application deployment. `hamlet` is used by the engine itself to store outputs that inform further executions, such as Generation and Management `Contracts`. The `operations` directory is where Hamlet will store and access operational files such as generated keypairs and encrypted credentials.
+Within the `infrastructure` directory, engine outputs are separated by type. `cf` is the output directory for infrastructure templates and scripts used for infrastructure and application deployment. `hamlet` is used by the engine itself to store outputs that inform further executions, such as Generation and Management `Contracts`. The `operations` directory is where hamlet will store and access operational files such as generated keypairs and encrypted credentials.
 
 Each of the above levels can then be further broken down as required by directories named after `environment`, `segment` and `deployment-unit`, ensuring that configuration can be made to apply everywhere within an organisation (at the `Tenant` level) down to individual component instance (`Deployment Unit` level). Additionally, each level may also contain a `shared` directory, which will contain configuration to be shared across its scope. For example in the structure shown above, the `shared` directory underneath `settings` exists at the `environment` scope. Any configuration defined there will be implemented across all environments.
 
 ## Structure of a Solution File
 
-Within a CMDB, any file under the path 'config/solutionsv2' contributes to a Hamlet `Solution` and can contain [`Components`](https://hamlet.io/reference) and [`ReferenceData`](https://hamlet.io/reference) data types. Configuration is applied in a top-down manner at the CMDB-level (`Tenant > Account > Product`) and then again at the `Solution`-level (`Environment > Segment > Deployment Unit`). New content is combined with existing, whilst existing content will be overwritten if re-implemented by a more specific scope. This allows for the most effecient implementation for a given use-case.
+Within a CMDB, any file under the path 'config/solutionsv2' contributes to a hamlet `Solution` and can contain [`Components`](https://hamlet.io/reference) and [`ReferenceData`](https://hamlet.io/reference) data types. Configuration is applied in a top-down manner at the CMDB-level (`Tenant > Account > Product`) and then again at the `Solution`-level (`Environment > Segment > Deployment Unit`). New content is combined with existing, whilst existing content will be overwritten if re-implemented by a more specific scope. This allows for the most effecient implementation for a given use-case.
 
 Configuration can be removed for individual scopes by defining it at as an empty object for that scope.

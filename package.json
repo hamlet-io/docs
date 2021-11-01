@@ -7,32 +7,30 @@
     "localtest": "start-server-and-test 'start' http://localhost:3000 'test'",
     "start": "docusaurus start",
     "serve": "docusaurus serve",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy"
+    "build": "docusaurus build"
   },
   "pre-commit": [
     "localtest"
   ],
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.72",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.72",
-    "@types/react": "^16.14.2",
-    "axios": ">=0.21.1",
+    "@docusaurus/core": "^2.0.0-beta.8",
+    "@docusaurus/preset-classic": "^2.0.0-beta.8",
+    "@types/react": "^16.14.20",
+    "axios": "^0.24.0",
     "broken-link-checker": "^0.7.8",
-    "eslint": "^7.17.0",
+    "eslint": "^7.32.0",
     "fs": "0.0.1-security",
-    "infima": "^0.2.0-alpha.18",
+    "infima": "^0.2.0-alpha.34",
     "json2yaml": "^1.1.0",
-    "mermaid": "^8.8.4",
-    "qs": "^6.9.6",
+    "mermaid": "^8.13.3",
+    "qs": "^6.10.1",
     "react": "^16.14.0",
     "react-admonitions": "^2.1.0",
-    "react-data-table-component": "^6.11.6",
+    "react-data-table-component": "^6.11.8",
     "react-dom": "^16.14.0",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^5.3.0",
     "remark-admonitions": "^1.2.1",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.3.3",
     "yamljs": "^0.3.0"
   },
   "browserslist": {
@@ -48,8 +46,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
     "pre-commit": "^1.2.2",
-    "start-server-and-test": "^1.11.7"
+    "start-server-and-test": "^1.14.0"
   }
 }

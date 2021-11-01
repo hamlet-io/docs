@@ -33,17 +33,17 @@ Now that we've seen how the Layers work together, how can we tell what District 
 └── root.json
 ```
 
-The root of our Hamlet structure is defined by a root.json file, so Hamlet knows the bounds of its search for configuration.
+The root of our hamlet structure is defined by a root.json file, so hamlet knows the bounds of its search for configuration.
 
-Our _accounts_ directory contains a single tenant (acmeinc) alongside at least one account (acmedev01). Hamlet understands their association from this structure.
+Our _accounts_ directory contains a single tenant (acmeinc) alongside at least one account (acmedev01). hamlet understands their association from this structure.
 
-Alongside all of _that_ we have at least one Product. But we could have many Products in this directory alongside eachother. How can we - or Hamlet! - work out our District from all of this?
+Alongside all of _that_ we have at least one Product. But we could have many Products in this directory alongside eachother. How can we - or hamlet! - work out our District from all of this?
 
 ## Set the Segment
 
-A Segment is the smallest scope inside of our District. If we can tell Hamlet which Segment to use, it can walk up the directory tree and infer the Environment, Solution and Product.
+A Segment is the smallest scope inside of our District. If we can tell hamlet which Segment to use, it can walk up the directory tree and infer the Environment, Solution and Product.
 
-Rather than Tell Hamlet this information, it will capture it from the current working directory. So lets change into the Segment of our District.
+Rather than Tell hamlet this information, it will capture it from the current working directory. So lets change into the Segment of our District.
 
 ```bash
 hamlet @ ~/cmdb
@@ -68,7 +68,7 @@ export ACCOUNT=acmedev01
 
 ## Generate the District Blueprint
 
-It's often helpful to review what configuration Hamlet is working with taken from your Districts. Lets do pull this up to see how each of our Layers contributes to the blueprint.
+It's often helpful to review what configuration hamlet is working with taken from your Districts. Lets do pull this up to see how each of our Layers contributes to the blueprint.
 
 ```bash
 hamlet @ ~/cmdb/phonedir/config/solutionsv2/integration/default
@@ -82,10 +82,10 @@ hamlet @ ~/cmdb/phonedir/config/solutionsv2/integration/default
 ```
 
 :::info
-Entrances are simply a pass through the Hamlet Deploy engine with a specific goal. The Blueprint pass generates the Blueprint file as an output.
+Entrances are simply a pass through the hamlet engine with a specific goal. The Blueprint pass generates the Blueprint file as an output.
 :::
 
-Until now we've only been working with configuration of our Product - this CLI command has generated our first output though. You will find that Hamlet has updated your Product with your outputs under the _infrastructure_ path.
+Until now we've only been working with configuration of our Product - this CLI command has generated our first output though. You will find that hamlet has updated your Product with your outputs under the _infrastructure_ path.
 
 ```bash
 └─ $ tree ~/cmdb/phonedir/infrastructure/
@@ -111,7 +111,7 @@ hamlet @ ~/cmdb/phonedir/config/solutionsv2/integration/default
 
 ## Reviewing the Blueprint
 
-As you can no doubt see, there an enormous of data that Hamlet has already established about our District. Some of it you have provided (You should be able to spot your Tenant information near the top for example), whilst a lot of it you may not have seen before.
+As you can no doubt see, there an enormous of data that hamlet has already established about our District. Some of it you have provided (You should be able to spot your Tenant information near the top for example), whilst a lot of it you may not have seen before.
 
 If the Blueprint is the composite of your Tenant, Account and Product configuration, where is the rest coming from?
 
@@ -119,9 +119,9 @@ If the Blueprint is the composite of your Tenant, Account and Product configurat
 To get out of vim and back to the bash prompt, type `:q!<return>`
 :::
 
-### Hamlet Contributions
+### hamlet Contributions
 
-The configuration we've created so far isn't the only source of configuration for the blueprint. Hamlet's engine comes with a collection of default and common configuration references. Lets review the `Environment` as an example.
+The configuration we've created so far isn't the only source of configuration for the blueprint. hamlet's engine comes with a collection of default and common configuration references. Lets review the `Environment` as an example.
 
 When we generated the `phonedir` Product you will recall that we set our Environment to `integration`. Let's review what this Environment consists of now.
 
@@ -143,4 +143,4 @@ When we generated the `phonedir` Product you will recall that we set our Environ
 You can find this configuration in the blueprint with a word-search by typing `/"Environments"<return>`
 :::
 
-We certainly provided the `Name` and `Id`, but the remainder of this Environment configuration was contributed by a standard set of configuration in the Hamlet engine. An "integration" Environment is commonly required and it's purpose is understood - so Hamlet provides its configuration for ease of use.
+We certainly provided the `Name` and `Id`, but the remainder of this Environment configuration was contributed by a standard set of configuration in the hamlet engine. An "integration" Environment is commonly required and it's purpose is understood - so hamlet provides its configuration for ease of use.

@@ -2,13 +2,13 @@
 sidebar_label: Continuous Deploy
 title: Continuous Deploy Release Pipeline
 ---
-Updates build reference(s) in the Hamlet CMDB and initiates a deployment.
+Updates build reference(s) in the hamlet CMDB and initiates a deployment.
 
 ## Triggers
 
 This pipeline is intended to be called by the ['Build' pipeline](../build/single) for Continuous Deployment into the first environment.
 
-If deployment across [Segments](/docs/in-depth/foundations/anatomy) is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
+If deployment across [Segments](/in-depth/foundations/anatomy) is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
 
 ## Parameters
 
@@ -18,11 +18,11 @@ The 'Build' job supplies the required parameters for this pipeline.
 
 ### Setup
 
-Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [`properties`](../properties/properties) file.
 
 ### Update Build Refs
 
-Stores the hash value of the "Git Commit" in the current Environment/Segment/DeploymentUnit's `build.json` within the Hamlet CMDB.
+Stores the hash value of the "Git Commit" in the current Environment/Segment/DeploymentUnit's `build.json` within the hamlet CMDB.
 
 ### Deploy
 
@@ -43,7 +43,7 @@ This example uses groovy scripts from the [jenkins-shared-library](https://githu
 
 pipeline {
     agent {
-        label '<Hamlet label>'
+        label '<hamlet label>'
     }
 
     options {

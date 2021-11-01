@@ -131,15 +131,15 @@ Having now configured at least one of each Layer, we've now got what is called a
 
 ## Root Directory
 
-You may have noticed along the way that the directory names play an important part of the Tenant, Account and Product. As Hamlet performs a task it determines which District it is currently working with from a combination of:
+You may have noticed along the way that the directory names play an important part of the Tenant, Account and Product. As hamlet performs a task it determines which District it is currently working with from a combination of:
 
 - current working directory
 - CLI arguments
 - the Product configuration (based on the current working directory).
 
-Collectively these enable Hamlet to know which District to perform the task for, and so which configuration to include in the Blueprint - the composite configuration for the current District.
+Collectively these enable hamlet to know which District to perform the task for, and so which configuration to include in the Blueprint - the composite configuration for the current District.
 
-When it Hamlet is determining the current District it will walk up the directory tree from the current working directory, seeking out Tenants, Accounts and Products. We need to tell it where to stop walking.
+When it hamlet is determining the current District it will walk up the directory tree from the current working directory, seeking out Tenants, Accounts and Products. We need to tell it where to stop walking.
 
 Create an empty JSON object in a file called **root.json** inside the directory housing the District:
 

@@ -10,17 +10,17 @@ This pipeline is intended to be triggered only when a build has passed testing. 
 
 ## Parameters
 
-This pipeline accepts a **RELEASE_IDENTIFIER** which it will verify exists in the Hamlet CMDB against the environment prior to one defined in this pipeline.
+This pipeline accepts a **RELEASE_IDENTIFIER** which it will verify exists in the hamlet CMDB against the environment prior to one defined in this pipeline.
 
 ## Stages
 
 ### Setup
 
-Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [`properties`](../properties/properties) file.
 
 ### Prepare
 
-Promotes build references from their prior environment, verifies the promotion to this pipeline's environment and commits the changes to the Hamlet CMDB.
+Promotes build references from their prior environment, verifies the promotion to this pipeline's environment and commits the changes to the hamlet CMDB.
 
 ### Post Job
 

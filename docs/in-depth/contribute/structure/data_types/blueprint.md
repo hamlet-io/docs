@@ -24,6 +24,6 @@ The hamlet.io documentation is currently under significant re-development. Exist
 
 ## Testing
 
-* the blueprint model enables the unit testing capabilities of the Hamlet engine
+* the blueprint model enables the unit testing capabilities of the hamlet engine
 * By “mocking” the blueprint with a known configuration, tests can be defined
   * Link to testing section

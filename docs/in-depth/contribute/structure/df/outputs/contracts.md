@@ -9,7 +9,7 @@ The hamlet.io documentation is currently under significant re-development. Exist
 
 ## Contracts
 
-* the Hamlet engine generates contracts that outline a series of tasks to perform
+* the hamlet engine generates contracts that outline a series of tasks to perform
 * Tasks can be sheduled and ordered through two mechanisms - Stages and Steps
 
 ### Contract Stages

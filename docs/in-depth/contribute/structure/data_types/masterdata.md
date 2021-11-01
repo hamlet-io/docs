@@ -10,7 +10,7 @@ The hamlet.io documentation is currently under significant re-development. Exist
 
 * Masterdata input data are separate solution instances that are provided by either the engine or plugin providers
 * They enable the defining of default values and datasets such as Reference Data (link to ref data page)  and commonly used configurations
-* Hamlet users are providing their own masterdata by way of their Solution (provide link to solution docs)
+* hamlet users are providing their own masterdata by way of their Solution (provide link to solution docs)
 
 ## Masterdata.ftl Data Type
 

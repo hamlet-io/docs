@@ -36,7 +36,7 @@ Cloud Formation stacks (link) are the primary template hamlet will generate for 
 
 ### Available Testing Types
 
-* the following testing options are available for use on Hamlet’s that contain AWS-configuration
+* the following testing options are available for use on hamlets that contain AWS-configuration
 
 ### Structural
 

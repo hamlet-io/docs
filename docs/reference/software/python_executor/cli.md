@@ -1,49 +1,14 @@
 ---
-sidebar_label: Python Executor
+sidebar_label: Python Client
 title: Python Client
 ---
 
-Hamlet Deploy CLI is a Python package based on [Click](ttps://click.palletsprojects.com).
+The python client is a cli based on [Click](ttps://click.palletsprojects.com). The client acts as a wrapper around the engine and bash executor components and offers a single interface. The cli provided by the python client is the recommended way to interact with hamlet.
 
-The CLI acts as a wrapper around other Hamlet Deploy components and offers a single interface from which to perform Hamlet Deploy actions.
+## Installation
 
-## CLI Installation
+The python client is available in pypi as [hamlet](https://pypi.org/project/hamlet/)
 
-The CLI can either be built into a docker container locally, or accessed from within the Hamlet Deploy docker container.
+## Development
 
-### Local Docker build
-
-The local build will create a local docker image called **hamlet**
-
-```bash
-# clone the repository
-git clone https://github.com/hamlet-io/executor-python
-
-# build
-cd ./executor-python
-make build
-```
-
-You can then follow the docker steps below using the **hamlet*
-
-### Docker
-
-The Hamlet Deploy docker container is published to Docker Hub. You can download and run it with the one command.
-
-```bash
-docker run -it hamletio/hamlet
-```
-
-## Hamlet Deploy CLI Usage
-
-A list of available arguments is available at every level of the CLI with the `--help` argument.
-
-```bash
-hamlet @ ~/cmdb
-└─ $ hamlet --help
-Usage: hamlet [OPTIONS] COMMAND [ARGS]...
-```
-
-## Configuration
-
-The Hamlet Deploy CLI uses the configuration from the Hamlet Deploy Executor, and does not currently require further configuration of its own.
+See the [contributing readme](https://github.com/hamlet-io/executor-python/blob/master/CONTRIBUTING.md) for details on installing locally and making changes to the client

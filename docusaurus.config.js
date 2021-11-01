@@ -1,14 +1,14 @@
 module.exports = {
   title: 'hamlet',
-  tagline: 'Opinionated, ConfigFirst DevOps for everyone.',
+  tagline: 'Deploy anywhere, at scale',
   url: 'https://docs.hamlet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'hamlet-io', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  onDuplicateRoutes: 'warn',
+  onBrokenMarkdownLinks: 'throw',
+  onDuplicateRoutes: 'throw',
   themeConfig: {
     colorMode: {
       disableSwitch: true
@@ -20,9 +20,8 @@ module.exports = {
         src: 'img/icon.svg',
       },
       items: [
-        {to: 'docs/', label: 'docs', position: 'left'},
-        {to: "blog", label: 'blog', position: 'right'},
-        {to: "https://gitter.im/hamlet-io/community", label: 'community', position: 'right'},
+        {to: 'blog', label: 'blog', position: 'right'},
+        {to: 'https://github.com/hamlet-io/discussions/discussions', label: 'discussions', position: 'right'},
       ],
     },
     algolia: {
@@ -38,7 +37,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: 'docs/getting-started',
+              to: 'getting-started',
             },
           ],
         },
@@ -46,13 +45,13 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Gitter',
-              to: 'https://gitter.im/hamlet-io/community'
+              label: 'Discussions',
+              to: 'https://github.com/hamlet-io/discussions/discussions'
             },
             {
-              label: 'Hamlet help',
-              href: 'https://help.hamlet.io',
-            },
+              label: 'Library',
+              to: 'https://github.com/hamlet-io/hamlet-library'
+            }
           ],
         },
         {
@@ -98,6 +97,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: '/'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

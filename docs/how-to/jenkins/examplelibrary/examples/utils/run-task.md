@@ -1,6 +1,6 @@
 ---
 sidebar_label: Run an ECS Task
-title: Hamlet RunTask
+title: hamlet RunTask
 ---
 Execute an [`ECS Task`](/reference?type=component&instance=task), passing it unique execution configuration.
 
@@ -13,17 +13,17 @@ Add the selected [`environment(s)`](../../../../../in-depth/foundations/terminol
 A comma-separated list of the Task [Instances](../../../../../in-depth/foundations/terminology#instance) to execute.
 
 **MANAGE_PY_TASK**
-Specific to this example, this Parameter is passed to the Hamlet Executor's "Run Task" script and will become the value of the environment variable passed to the Task. This Parameter would be customised on a per-Task basis.
+Specific to this example, this Parameter is passed to the hamlet Executor's "Run Task" script and will become the value of the environment variable passed to the Task. This Parameter would be customised on a per-Task basis.
 
 ## Stages
 
 ### Setup
 
-Loads environment variables from the Hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [`properties`](../properties/properties) file.
 
 ### Run Provider Task
 
-Performs the Hamlet "Run Task" action against all Task Instances in the filtered pipeline scope.
+Performs the hamlet "Run Task" action against all Task Instances in the filtered pipeline scope.
 
 ## Example
 

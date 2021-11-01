@@ -6,13 +6,13 @@ title: Deployment Frameworks
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
 :::
 
-* Deployment Frameworks define the necessary routines, macros and functions (link to this section) to construct the output file types used by Hamlet to deploy to a chosen provider
+* Deployment Frameworks define the necessary routines, macros and functions (link to this section) to construct the output file types used by hamlet to deploy to a chosen provider
 * Not all provider frameworks expose the full potential of that provider
-* by implementing multiple frameworks that interact with a provider, Hamlet is then capable of orchestrating the best, simplest or sometimes only method of a desired configuration
+* by implementing multiple frameworks that interact with a provider, hamlet is then capable of orchestrating the best, simplest or sometimes only method of a desired configuration
 * hamlet can then incorporate cloud provider configurations no matter how they are offered to end users
 
-* Hamlet internally uses the “default” deployment framework which is defined within the shared provider
-* Additional Deployment Frameworks can be added to Hamlet by way of engine plugins (link)
+* hamlet internally uses the “default” deployment framework which is defined within the shared provider
+* Additional Deployment Frameworks can be added to hamlet by way of engine plugins (link)
 
 ## Deployment Framework Features
 

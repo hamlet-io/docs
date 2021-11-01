@@ -2,11 +2,11 @@
 sidebar_label: Software Components
 title: Software Components
 ---
-Hamlet Deploy is a modular application. This section outlines the parts that make up Hamlet Deploy.
+hamlet is a modular application. This section outlines the parts that make up hamlet Deploy.
 
-This section serves to document the structure of the application and is not expected knowledge for typical usage of Hamlet Deploy.
+This section serves to document the structure of the application and is not expected knowledge for typical usage of hamlet Deploy.
 
-## Hamlet Deploy Parts
+## Parts
 
 - [Container](./docker_container/container)
 - [Executor (aka Executor Bash)](./bash_executor/executor)
