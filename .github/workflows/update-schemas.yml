@@ -12,7 +12,7 @@ jobs:
   hamlet-schema-updater:
     runs-on: ubuntu-latest
 
-    environment:
+    env:
       HAMLET_ENGINE: unicycle
 
     steps:
