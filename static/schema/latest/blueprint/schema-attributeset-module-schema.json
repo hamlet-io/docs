@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "module": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Parameters": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Value": {
+                      "description": "The value of the parameter",
+                      "type": "object"
+                    },
+                    "Key": {
+                      "description": "The key of the parameter",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "Key",
+                    "Value"
+                  ]
+                }
+              },
+              "description": "The parameter values to provide to the module",
+              "type": "object"
+            },
+            "Enabled": {
+              "default": true,
+              "description": "To enable loading the module in this profile",
+              "type": "boolean"
+            },
+            "Provider": {
+              "description": "The provider name which offers the module",
+              "type": "object"
+            },
+            "Name": {
+              "description": "The name of the scneario to load",
+              "type": "object"
+            }
+          },
+          "required": [
+            "Provider",
+            "Name"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-module-schema.json"
+}

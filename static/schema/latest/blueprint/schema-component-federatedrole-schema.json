@@ -7,33 +7,38 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "AllowUnauthenticatedUsers": {
+              "default": false,
+              "description": "Allow unautheniated users to use a federated role",
+              "type": "boolean"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -42,11 +47,6 @@
               },
               "description": "Instances of a component configuration",
               "type": "object"
-            },
-            "AllowUnauthenticatedUsers": {
-              "default": false,
-              "description": "Allow unautheniated users to use a federated role",
-              "type": "boolean"
             },
             "SettingNamespaces": {
               "patternProperties": {
@@ -120,15 +120,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "solution",
+            "Type": {
+              "description": "The components type",
               "type": "string"
             },
             "deployment:Unit": {
@@ -142,10 +135,6 @@
                 "UseAuthenticatedRule",
                 "Deny"
               ]
-            },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -185,17 +174,8 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "Extensions": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing",
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             }
           }
         }

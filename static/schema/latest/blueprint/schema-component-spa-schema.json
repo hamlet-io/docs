@@ -16,7 +16,6 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
@@ -27,10 +26,6 @@
               "default": true,
               "description": "Invalidate all CDNs that host this content",
               "type": "boolean"
-            },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
             },
             "Port": {
               "description": "The port used to access the SPA content.",
@@ -46,6 +41,10 @@
                   "type": "string"
                 }
               }
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Extensions": {
               "contains": {
@@ -93,28 +92,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -196,6 +174,10 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
+            },
             "azure:CORSBehaviours": {
               "contains": {
                 "type": "string"
@@ -253,10 +235,8 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             }
           }
         }

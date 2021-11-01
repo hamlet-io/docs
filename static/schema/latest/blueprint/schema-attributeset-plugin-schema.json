@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "plugin": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Required": {
+              "default": false,
+              "description": "Ensure the plugin loads at all times",
+              "type": "boolean"
+            },
+            "Source:git": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Path": {
+                  "description": "a path within in the repository where the plugin starts",
+                  "type": "object"
+                },
+                "Ref": {
+                  "default": "main",
+                  "description": "The ref to clone from the repo",
+                  "type": "object"
+                },
+                "Url": {
+                  "description": "The Url for the git repository",
+                  "type": "object"
+                }
+              }
+            },
+            "Priority": {
+              "default": 100,
+              "description": "The priority order to load plugins - lowest first",
+              "type": "object"
+            },
+            "Enabled": {
+              "default": true,
+              "description": "To enable loading the plugin",
+              "type": "boolean"
+            },
+            "Source": {
+              "description": "Where the plugin for the plugin can be found",
+              "type": "object",
+              "enum": [
+                "local",
+                "git"
+              ]
+            },
+            "Name": {
+              "description": "The id of the plugin to install",
+              "type": "object"
+            }
+          },
+          "required": [
+            "Name",
+            "Source"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-plugin-schema.json"
+}

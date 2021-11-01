@@ -25,54 +25,7 @@
               "type": "object"
             },
             "Modules": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Parameters": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "Value": {
-                              "description": "The value of the parameter",
-                              "type": "object"
-                            },
-                            "Key": {
-                              "description": "The key of the parameter",
-                              "type": "object"
-                            }
-                          },
-                          "required": [
-                            "Key",
-                            "Value"
-                          ]
-                        }
-                      },
-                      "description": "The parameter values to provide to the module",
-                      "type": "object"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "description": "To enable loading the module in this profile",
-                      "type": "boolean"
-                    },
-                    "Provider": {
-                      "description": "The provider name which offers the module",
-                      "type": "object"
-                    },
-                    "Name": {
-                      "description": "The name of the scneario to load",
-                      "type": "object"
-                    }
-                  },
-                  "required": [
-                    "Provider",
-                    "Name"
-                  ]
-                }
-              },
-              "type": "object"
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-module-schema.json"
             },
             "PolicyProfiles": {
               "patternProperties": {
@@ -88,34 +41,7 @@
               },
               "type": "object"
             },
-            "Profiles": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Policy": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                "Placement": {
-                  "type": "string"
-                },
-                "Deployment": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                }
-              }
-            },
             "Title": {
-              "type": "string"
-            },
-            "Region": {
-              "type": "string"
-            },
-            "Id": {
               "type": "string"
             },
             "CertificateBehaviours": {
@@ -160,9 +86,6 @@
                 },
                 "Host": {
                   "type": "string"
-                },
-                "Qualifiers": {
-                  "type": "object"
                 },
                 "Domain": {
                   "type": "string"
@@ -226,65 +149,38 @@
             "Name": {
               "type": "string"
             },
-            "Plugins": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Required": {
-                      "default": false,
-                      "description": "Ensure the plugin loads at all times",
-                      "type": "boolean"
-                    },
-                    "Source:git": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Path": {
-                          "description": "a path within in the repository where the plugin starts",
-                          "type": "object"
-                        },
-                        "Ref": {
-                          "default": "main",
-                          "description": "The ref to clone from the repo",
-                          "type": "object"
-                        },
-                        "Url": {
-                          "description": "The Url for the git repository",
-                          "type": "object"
-                        }
-                      }
-                    },
-                    "Priority": {
-                      "default": 100,
-                      "description": "The priority order to load plugins - lowest first",
-                      "type": "object"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "description": "To enable loading the plugin",
-                      "type": "boolean"
-                    },
-                    "Source": {
-                      "description": "Where the plugin for the plugin can be found",
-                      "type": "object",
-                      "enum": [
-                        "local",
-                        "git"
-                      ]
-                    },
-                    "Name": {
-                      "description": "The id of the plugin to install",
-                      "type": "object"
-                    }
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
                   },
-                  "required": [
-                    "Name",
-                    "Source"
-                  ]
+                  "type": "array"
+                },
+                "Placement": {
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
                 }
-              },
-              "type": "object"
+              }
+            },
+            "Region": {
+              "type": "string"
+            },
+            "Id": {
+              "type": "string"
+            },
+            "LinkRefs": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Plugins": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-plugin-schema.json"
             }
           }
         }
