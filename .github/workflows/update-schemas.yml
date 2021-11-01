@@ -12,6 +12,9 @@ jobs:
   hamlet-schema-updater:
     runs-on: ubuntu-latest
 
+    environment:
+      HAMLET_ENGINE: unicycle
+
     steps:
       - name: Checkout Docs Site
         uses: actions/checkout@v2
