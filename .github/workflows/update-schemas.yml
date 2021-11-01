@@ -31,7 +31,7 @@ jobs:
       - name: Generate Schemas
         run: |
           rm -rf static/schema/latest/blueprint
-          hamlet -i mock -p shared -p aws -p azure schema schema create-schemas -o static/schema/latest/blueprint
+          hamlet -i mock -p shared -p aws -p azure schema create-schemas -o static/schema/latest/blueprint
           find .  -type f -name '*-generation-contract.json' -delete
 
       - name: Commit Schemas into Repo
