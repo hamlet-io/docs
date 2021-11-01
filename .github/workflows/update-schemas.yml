@@ -15,16 +15,26 @@ jobs:
     steps:
       - name: Checkout Docs Site
         uses: actions/checkout@v2
-
-      - name: Generate Hamlet Schemas
-        uses: hamlet-io/github-action-hamlet@v1
         with:
-          task_build_schemas: true
-          task_build_schemas_output: /github/workspace/static/schema/latest/blueprint
-          refresh_output_dir: true
+          persist-credentials: true
+
+      - name: Java Setup
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+
+      - name: Install
+        run: |
+          pip install hamlet
+
+      - name: Generate Schemas
+        run: |
+          rm -rf static/schema/latest/blueprint
+          hamlet -i mock -p shared -p aws -p azure schema schema create-schemas -o static/schema/latest/blueprint
+          find .  -type f -name '*-generation-contract.json' -delete
 
       - name: Commit Schemas into Repo
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          repository: ${{ github.workspace }}
           commit_message: publish latest hamlet schemas
