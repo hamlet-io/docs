@@ -7,51 +7,33 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "solution",
-              "type": "string"
-            },
-            "DomainName": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Domain": {
-                  "description": "Explicit domain id which will override the product domain",
-                  "type": "string"
-                },
-                "IncludeInDomain": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    }
-                  }
-                }
-              }
-            },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
-            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
                     "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -133,8 +115,15 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "Type": {
-              "description": "The components type",
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
               "type": "string"
             },
             "ConnectionAlerts": {
@@ -170,6 +159,31 @@
             "deployment:Unit": {
               "type": "string"
             },
+            "DomainName": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Domain": {
+                  "description": "Explicit domain id which will override the product domain",
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
             "Sharing": {
               "additionalProperties": false,
               "type": "object",
@@ -187,6 +201,10 @@
                   "type": "boolean"
                 }
               }
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -226,8 +244,10 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "default": false,
-              "type": "boolean"
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             }
           }
         }

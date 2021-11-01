@@ -21,6 +21,13 @@
               "description": "A prefix appended to attributes to show encryption status",
               "type": "string"
             },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
             "ClientTokenValidity": {
               "default": 30,
               "description": "Time in days that the refresh token is valid for",
@@ -84,7 +91,28 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
                     "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -210,8 +238,10 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "default": false,
-              "type": "boolean"
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             },
             "ResourceScopes": {
               "patternProperties": {

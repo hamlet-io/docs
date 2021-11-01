@@ -11,6 +11,7 @@
               "contains": {
                 "type": "string"
               },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
@@ -23,6 +24,10 @@
             },
             "Size": {
               "default": 20,
+              "type": "number"
+            },
+            "deployment:Priority": {
+              "default": 100,
               "type": "number"
             },
             "Backup": {
@@ -51,10 +56,6 @@
                 }
               }
             },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
-            },
             "ProvisionedIops": {
               "default": 100,
               "type": "number"
@@ -64,7 +65,28 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
                     "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -146,10 +168,6 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "Type": {
-              "description": "The components type",
-              "type": "string"
-            },
             "VolumeType": {
               "default": "gp2",
               "type": "string",
@@ -199,8 +217,10 @@
               }
             },
             "Export": {
-              "default": false,
-              "type": "boolean"
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             },
             "Engine": {
               "default": "ebs",

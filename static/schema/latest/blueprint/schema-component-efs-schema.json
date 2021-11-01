@@ -7,44 +7,33 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "aws:IAMRequired": {
-              "default": false,
-              "description": "Require IAM Access to EFS",
-              "type": "boolean"
-            },
-            "deployment:Group": {
-              "default": "solution",
-              "type": "string"
-            },
-            "Encrypted": {
-              "default": true,
-              "type": "boolean"
-            },
-            "deployment:Priority": {
-              "default": 50,
-              "type": "number"
-            },
-            "IPAddressGroups": {
-              "contains": {
-                "type": "string"
-              },
-              "default": [
-                "_localnet"
-              ],
-              "type": "array"
-            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
                     "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -126,12 +115,32 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "Type": {
-              "description": "The components type",
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
+            "aws:IAMRequired": {
+              "default": false,
+              "description": "Require IAM Access to EFS",
+              "type": "boolean"
+            },
+            "deployment:Group": {
+              "default": "solution",
               "type": "string"
             },
             "deployment:Unit": {
               "type": "string"
+            },
+            "Encrypted": {
+              "default": true,
+              "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 50,
+              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -175,8 +184,19 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "default": false,
-              "type": "boolean"
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "IPAddressGroups": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "_localnet"
+              ],
+              "type": "array"
             }
           }
         }

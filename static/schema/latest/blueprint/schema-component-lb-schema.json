@@ -11,6 +11,7 @@
               "contains": {
                 "type": "string"
               },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
@@ -36,7 +37,28 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
                     "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -118,10 +140,6 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "Type": {
-              "description": "The components type",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -171,8 +189,10 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "default": false,
-              "type": "boolean"
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             },
             "HealthCheckPort": {
               "description": "For classic engine the port to run health checks from",

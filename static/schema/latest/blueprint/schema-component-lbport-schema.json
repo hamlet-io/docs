@@ -12,6 +12,13 @@
               "description": "The http path the rule will be matched on",
               "type": "string"
             },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
+              "type": "array"
+            },
             "Priority": {
               "default": 100,
               "anyOf": [
@@ -73,99 +80,33 @@
                 }
               }
             },
-            "Conditions": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_]*$": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Type": {
-                      "description": "The type of the condition that will be applied",
-                      "type": "object",
-                      "enum": [
-                        "httpHeader",
-                        "httpRequestMethod",
-                        "httpQueryString",
-                        "SourceIP"
-                      ]
-                    },
-                    "type:SourceIP": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "IPAddressGroups": {
-                          "description": "A list of IPAddress Groups that will match the condition",
-                          "type": "object"
-                        }
-                      }
-                    },
-                    "type:httpRequestMethod": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Methods": {
-                          "description": "The HTTP methodss that are accepted",
-                          "type": "object",
-                          "enum": [
-                            "GET",
-                            "HEAD",
-                            "POST",
-                            "PUT",
-                            "DELETE",
-                            "CONNECT",
-                            "OPTIONS",
-                            "TRACE",
-                            "PATCH"
-                          ]
-                        }
-                      }
-                    },
-                    "type:httpHeader": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "HeaderName": {
-                          "description": "The name of the header to filter on",
-                          "type": "object"
-                        },
-                        "HeaderValues": {
-                          "description": "Then values accepted in the header",
-                          "type": "object"
-                        }
-                      }
-                    },
-                    "type:httpQueryString": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "Value": {
-                              "description": "The value of the query string",
-                              "type": "object"
-                            },
-                            "Key": {
-                              "description": "The key of the query string",
-                              "type": "object"
-                            }
-                          }
-                        }
-                      },
-                      "type": "object"
-                    }
-                  },
-                  "required": [
-                    "Type"
-                  ]
-                }
-              },
-              "description": "Inbound conditions that apply to match the port mapping",
-              "type": "object"
-            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
                     "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -341,8 +282,10 @@
               }
             },
             "Export": {
-              "default": false,
-              "type": "boolean"
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             },
             "HostFilter": {
               "default": false,

@@ -108,36 +108,13 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "checkov": {
-                  "description": "Run checkov on the file - https://github.com/bridgecrewio/checkov",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "SkipChecks": {
-                      "description": "A list of checks to skip in checkov",
-                      "type": "object"
-                    },
-                    "Framework": {
-                      "default": "cloudformation",
-                      "description": "The framework of the file to run testing against",
-                      "type": "object",
-                      "enum": [
-                        "cloudformation",
-                        "arm"
-                      ]
-                    }
-                  }
+                "CFNLint": {
+                  "default": false,
+                  "type": "boolean"
                 },
-                "cfn-lint": {
-                  "description": "Run cfn-lint on the file - https://github.com/aws-cloudformation/cfn-lint",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "IgnoreChecks": {
-                      "description": "A list of checks to ignore in cfn-lint",
-                      "type": "object"
-                    }
-                  }
+                "CFNNag": {
+                  "default": false,
+                  "type": "boolean"
                 }
               }
             },

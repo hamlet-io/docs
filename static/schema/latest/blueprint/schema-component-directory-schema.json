@@ -28,6 +28,7 @@
               "contains": {
                 "type": "string"
               },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
@@ -35,14 +36,10 @@
               "type": "string"
             },
             "Size": {
-              "default": [
-                "azure:Sku"
-              ],
               "type": "string",
               "enum": [
                 "Small",
-                "Large",
-                "azure:Sku"
+                "Large"
               ]
             },
             "deployment:Priority": {
@@ -128,31 +125,39 @@
               "contains": {
                 "type": "string"
               },
-              "default": [
-                "_localnet"
-              ],
               "type": "array"
             },
             "aws:EnableSSO": {
               "default": false,
               "type": "boolean"
             },
-            "azure:Profiles": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Sku": {
-                  "default": "default",
-                  "type": "string"
-                }
-              }
-            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
                     "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -234,10 +239,6 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "Type": {
-              "description": "The components type",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -287,20 +288,20 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "default": false,
-              "type": "boolean"
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             },
             "Engine": {
-              "default": "azure:AADDirectoryServices",
               "type": "string",
               "enum": [
                 "Simple",
-                "ActiveDirectory",
-                "azure:AADDirectoryServices"
+                "ActiveDirectory"
               ]
             },
             "RootCredentials": {
-              "description": "Secret store configuration for the administrator credentials",
+              "description": "Secret store configuration for the root credentials",
               "additionalProperties": false,
               "type": "object",
               "properties": {
@@ -380,11 +381,11 @@
                   "type": "string"
                 },
                 "Username": {
-                  "default": "Admin",
+                  "default": "root",
                   "type": "string"
                 },
-                "Link": {
-                  "description": "A link to a secret or store that will keep the secret",
+                "SecretStore": {
+                  "description": "A link to the certificate store which will keep the secret",
                   "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
                 }
               }

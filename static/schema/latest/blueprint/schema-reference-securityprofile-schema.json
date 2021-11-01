@@ -33,14 +33,6 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "StartupAction": {
-                  "description": "Initiation behaviour for vpn",
-                  "type": "string",
-                  "enum": [
-                    "add",
-                    "start"
-                  ]
-                },
                 "TunnelInsideCidr": {
                   "type": "string"
                 },

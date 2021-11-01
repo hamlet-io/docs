@@ -27,18 +27,19 @@
               "contains": {
                 "type": "string"
               },
+              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
               "default": "solution",
               "type": "string"
             },
-            "MaximumMessageSize": {
-              "description": "The maximum size a message on the queue can be",
-              "type": "number"
-            },
             "deployment:Priority": {
               "default": 100,
+              "type": "number"
+            },
+            "MaximumMessageSize": {
+              "description": "The maximum size a message on the queue can be",
               "type": "number"
             },
             "VisibilityTimeout": {
@@ -50,7 +51,28 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
+                    "DeploymentUnits": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "An singleton instance of the component, Instance & Version configuration.",
+                      "type": "array"
+                    },
                     "Versions": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_]*$": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "DeploymentUnits": {
+                              "contains": {
+                                "type": "string"
+                              },
+                              "description": "An singleton instance of the component, Instance & Version configuration.",
+                              "type": "array"
+                            }
+                          }
+                        }
+                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -132,16 +154,12 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "Type": {
-              "description": "The components type",
+            "deployment:Unit": {
               "type": "string"
             },
             "DelaySeconds": {
               "description": "Hold messages for a delay before making them visible on the queue",
               "type": "number"
-            },
-            "deployment:Unit": {
-              "type": "string"
             },
             "MessageRetentionPeriod": {
               "description": "How log messages will be kept on the queue before they are discarded",
@@ -198,8 +216,10 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "default": false,
-              "type": "boolean"
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
             },
             "Alerts": {
               "description": "Alert support for monitoring queue activity",
