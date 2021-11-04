@@ -34,6 +34,19 @@
               "default": "solution",
               "type": "string"
             },
+            "aws:engine:ADConnector": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "ADIPAddresses": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The IP addresses of the DNS servers for the AD Domain controllers",
+                  "type": "array"
+                }
+              }
+            },
             "Size": {
               "default": [
                 "azure:Sku"
@@ -296,6 +309,7 @@
               "enum": [
                 "Simple",
                 "ActiveDirectory",
+                "aws:ADConnector",
                 "azure:AADDirectoryServices"
               ]
             },
