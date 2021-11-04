@@ -58,6 +58,49 @@
                   },
                   "description": "Log flows across the network",
                   "type": "object"
+                },
+                "DNSQuery": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_]*$": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "s3": {
+                          "description": "s3 specific destination configuration",
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Link": {
+                              "description": "A link to the s3 bucket destination",
+                              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                            }
+                          }
+                        },
+                        "datafeed": {
+                          "description": "datafeed specific destination configuration",
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Link": {
+                              "description": "A link to the datafeed destination",
+                              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                            }
+                          }
+                        },
+                        "DestinationType": {
+                          "default": "s3",
+                          "description": "The destination type to send the logs to",
+                          "type": "string",
+                          "enum": [
+                            "log",
+                            "s3",
+                            "datafeed"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "description": "Log DNS Queries made in the vpc",
+                  "type": "object"
                 }
               }
             },
@@ -65,7 +108,6 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
@@ -105,28 +147,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -212,6 +233,10 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
+            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -257,10 +282,8 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             }
           }
         }

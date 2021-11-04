@@ -28,10 +28,6 @@
               },
               "type": "object"
             },
-            "deployment:Group": {
-              "default": "application",
-              "type": "string"
-            },
             "RunTime": {
               "type": "string",
               "enum": [
@@ -54,6 +50,10 @@
                 "python3.8",
                 "ruby2.5"
               ]
+            },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
             },
             "Memory": {
               "default": 0,
@@ -200,16 +200,13 @@
               "type": "boolean"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             },
             "DeploymentUnits": {
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "VPCAccess": {
@@ -255,28 +252,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }

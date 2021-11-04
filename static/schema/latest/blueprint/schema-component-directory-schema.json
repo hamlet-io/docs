@@ -1,0 +1,403 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "directory": {
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+          "additionalProperties": false,
+          "properties": {
+            "Hibernate": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "StartUpMode": {
+                  "default": "replace",
+                  "type": "string",
+                  "enum": [
+                    "replace"
+                  ]
+                }
+              }
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "Size": {
+              "default": [
+                "azure:Sku"
+              ],
+              "type": "string",
+              "enum": [
+                "Small",
+                "Large",
+                "azure:Sku"
+              ]
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Hostname": {
+              "description": "FQDN for the Directory Service",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Wildcard": {
+                  "type": "boolean"
+                },
+                "IncludeInHost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "Domain": {
+                  "description": "Explicit domain id which will override the product domain",
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "HostParts": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "ShortName": {
+              "description": "NETBIOS name of the Directory Service",
+              "type": "string"
+            },
+            "IPAddressGroups": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "_localnet"
+              ],
+              "type": "array"
+            },
+            "aws:EnableSSO": {
+              "default": false,
+              "type": "boolean"
+            },
+            "azure:Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Sku": {
+                  "default": "default",
+                  "type": "string"
+                }
+              }
+            },
+            "Instances": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Versions": {
+                      "description": "Versions of the components instance.",
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "description": "Instances of a component configuration",
+              "type": "object"
+            },
+            "SettingNamespaces": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "default": [
+                        "Tier",
+                        "Component",
+                        "Type",
+                        "SubComponent",
+                        "Instance",
+                        "Version",
+                        "Name"
+                      ],
+                      "type": "array"
+                    },
+                    "IncludeInNamespace": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SubComponent": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Type": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Tier": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Match": {
+                      "default": "exact",
+                      "description": "How to match the namespace with available settings",
+                      "type": "string",
+                      "enum": [
+                        "exact",
+                        "partial"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Additional namespaces to use during settings lookups",
+              "type": "object"
+            },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
+            },
+            "deployment:Unit": {
+              "type": "string"
+            },
+            "Profiles": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Policy": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Placement": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Network": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Deployment": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Alert": {
+                  "default": "default",
+                  "type": "string"
+                },
+                "Baseline": {
+                  "default": "default",
+                  "description": "The profile used to lookup standard services provided by the segment baseline",
+                  "type": "string"
+                },
+                "Testing": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The testing profiles to apply to the component",
+                  "type": "array"
+                }
+              }
+            },
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+            },
+            "Export": {
+              "default": false,
+              "type": "boolean"
+            },
+            "Engine": {
+              "default": "azure:AADDirectoryServices",
+              "type": "string",
+              "enum": [
+                "Simple",
+                "ActiveDirectory",
+                "azure:AADDirectoryServices"
+              ]
+            },
+            "RootCredentials": {
+              "description": "Secret store configuration for the administrator credentials",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Secret": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Source": {
+                      "default": "user",
+                      "type": "string",
+                      "enum": [
+                        "user",
+                        "generated"
+                      ]
+                    },
+                    "Requirements": {
+                      "description": "Format requirements for the Secret",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "ExcludedCharacters": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "default": [
+                            "\"",
+                            "'",
+                            "$",
+                            "@",
+                            "/",
+                            "\\"
+                          ],
+                          "description": "Characters that must be excluded",
+                          "type": "array"
+                        },
+                        "RequireAllIncludedTypes": {
+                          "default": true,
+                          "description": "Require at least one of each included type",
+                          "type": "boolean"
+                        },
+                        "MinLength": {
+                          "default": 20,
+                          "description": "The minimum character length",
+                          "type": "number"
+                        },
+                        "MaxLength": {
+                          "default": 30,
+                          "description": "The maximum character length",
+                          "type": "number"
+                        },
+                        "IncludeUpper": {
+                          "default": true,
+                          "description": "Include upper-case characters",
+                          "type": "boolean"
+                        },
+                        "IncludeLower": {
+                          "default": true,
+                          "description": "Include lower-case characters",
+                          "type": "boolean"
+                        },
+                        "IncludeSpecial": {
+                          "default": false,
+                          "description": "Include special characters",
+                          "type": "boolean"
+                        },
+                        "IncludeNumber": {
+                          "default": true,
+                          "description": "Include numbers characters",
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                "EncryptionScheme": {
+                  "description": "A prefix appended to link attributes to show encryption status",
+                  "type": "string"
+                },
+                "Username": {
+                  "default": "Admin",
+                  "type": "string"
+                },
+                "Link": {
+                  "description": "A link to a secret or store that will keep the secret",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                }
+              }
+            }
+          },
+          "required": [
+            "Engine",
+            "Size"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-directory-schema.json"
+}

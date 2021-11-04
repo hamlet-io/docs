@@ -28,12 +28,7 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
-            },
-            "deployment:Group": {
-              "default": "solution",
-              "type": "string"
             },
             "EngineVersion": {
               "type": "string"
@@ -49,6 +44,10 @@
               "required": [
                 "Type"
               ]
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
             },
             "Encrypted": {
               "default": false,
@@ -72,28 +71,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -175,6 +153,10 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
+            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -228,40 +210,14 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             },
             "Alerts": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-alert-schema.json"
             },
             "MaintenanceWindow": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "TimeOfDay": {
-                  "default": "00:00",
-                  "type": "string"
-                },
-                "DayOfTheWeek": {
-                  "default": "Sunday",
-                  "type": "string",
-                  "enum": [
-                    "Sunday",
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday"
-                  ]
-                },
-                "TimeZone": {
-                  "default": "UTC",
-                  "type": "string"
-                }
-              }
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-maintenancewindow-schema.json"
             },
             "Engine": {
               "type": "string",

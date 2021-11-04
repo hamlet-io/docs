@@ -31,6 +31,10 @@
                 "application"
               ]
             },
+            "District": {
+              "description": "The id of the district for components included in the deployment group",
+              "type": "string"
+            },
             "ResourceSets": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -47,6 +51,11 @@
                       "description": "The Deployment Unit",
                       "type": "string"
                     },
+                    "GroupDeploymentUnit": {
+                      "default": true,
+                      "description": "Does the resource set span all units in the group",
+                      "type": "boolean"
+                    },
                     "deployment:Priority": {
                       "default": 5,
                       "description": "The Deployment Priority",
@@ -58,8 +67,7 @@
                     }
                   },
                   "required": [
-                    "deployment:Unit",
-                    "ResourceLabels"
+                    "deployment:Unit"
                   ]
                 }
               },
@@ -72,7 +80,8 @@
             }
           },
           "required": [
-            "Level"
+            "Level",
+            "District"
           ]
         }
       },

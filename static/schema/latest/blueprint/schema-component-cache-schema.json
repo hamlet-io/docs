@@ -8,6 +8,7 @@
           "additionalProperties": false,
           "properties": {
             "Hibernate": {
+              "description": "Remove any services which charge by the hour",
               "additionalProperties": false,
               "type": "object",
               "properties": {
@@ -28,21 +29,18 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
+            },
+            "EngineVersion": {
+              "description": "The version of the engine type",
+              "type": "string"
             },
             "deployment:Group": {
               "default": "solution",
               "type": "string"
             },
-            "EngineVersion": {
-              "type": "string"
-            },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
-            },
             "Port": {
+              "description": "The network port the cache listens on - defaults to a port with the same name as the engine",
               "type": "string"
             },
             "Backup": {
@@ -54,6 +52,10 @@
                 }
               }
             },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "IPAddressGroups": {
               "contains": {
                 "type": "string"
@@ -61,6 +63,7 @@
               "default": [
                 "_localnet"
               ],
+              "description": "The source ip addresses that can access the cache",
               "type": "array"
             },
             "Instances": {
@@ -68,28 +71,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -171,6 +153,10 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
+            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -224,20 +210,27 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
+            },
+            "MaintenanceWindow": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-maintenancewindow-schema.json"
             },
             "Alerts": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-alert-schema.json"
             },
             "Engine": {
-              "type": "string"
+              "description": "The type of cache engine to use",
+              "type": "string",
+              "enum": [
+                "memcached",
+                "redis"
+              ]
             }
           },
           "required": [
-            "Engine"
+            "Engine",
+            "EngineVersion"
           ]
         }
       },

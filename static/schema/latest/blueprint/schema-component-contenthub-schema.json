@@ -7,33 +7,29 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "application",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Prefix": {
+              "type": "string"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -118,15 +114,8 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "application",
+            "Type": {
+              "description": "The components type",
               "type": "string"
             },
             "deployment:Unit": {
@@ -135,10 +124,6 @@
             "Branch": {
               "default": "master",
               "type": "string"
-            },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -175,13 +160,8 @@
               }
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "Prefix": {
-              "type": "string"
+              "default": false,
+              "type": "boolean"
             },
             "Engine": {
               "default": "github",

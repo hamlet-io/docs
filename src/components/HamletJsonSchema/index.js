@@ -11,6 +11,10 @@ import osPatchingSchema from "@site/static/schema/latest/blueprint/schema-attrib
 import awsComputeImageSchema from "@site/static/schema/latest/blueprint/schema-attributeset-aws_computeimage-schema.json";
 import awsEcsComputeImageSchema from "@site/static/schema/latest/blueprint/schema-attributeset-aws_ecs_computeimage-schema.json";
 import awsOsSchema from "@site/static/schema/latest/blueprint/schema-attributeset-aws_operatingsystem-schema.json";
+import awsAntiVirusSchema from "@site/static/schema/latest/blueprint/schema-attributeset-aws_antivirus-schema.json";
+import maintenanceWindowSchema from "@site/static/schema/latest/blueprint/schema-attributeset-maintenancewindow-schema.json";
+import moduleSchema from  "@site/static/schema/latest/blueprint/schema-attributeset-module-schema.json";
+import pluginSchema from  "@site/static/schema/latest/blueprint/schema-attributeset-plugin-schema.json";
 
 /* Reference Data Imports */
 import alertProfileSchema from "@site/static/schema/latest/blueprint/schema-reference-alertprofile-schema.json";
@@ -65,6 +69,7 @@ import bastion from "@site/static/schema/latest/blueprint/schema-component-basti
 import cache from "@site/static/schema/latest/blueprint/schema-component-cache-schema.json";
 import cdn from "@site/static/schema/latest/blueprint/schema-component-cdn-schema.json";
 import cdnroute from "@site/static/schema/latest/blueprint/schema-component-cdnroute-schema.json";
+import clientvpn from "@site/static/schema/latest/blueprint/schema-component-clientvpn-schema.json";
 import computecluster from "@site/static/schema/latest/blueprint/schema-component-computecluster-schema.json";
 import configstore from "@site/static/schema/latest/blueprint/schema-component-configstore-schema.json";
 import configbranch from "@site/static/schema/latest/blueprint/schema-component-configbranch-schema.json";
@@ -73,11 +78,14 @@ import containerservice from "@site/static/schema/latest/blueprint/schema-compon
 import containertask from "@site/static/schema/latest/blueprint/schema-component-containertask-schema.json";
 import contenthub from "@site/static/schema/latest/blueprint/schema-component-contenthub-schema.json";
 import contentnode from "@site/static/schema/latest/blueprint/schema-component-contentnode-schema.json";
+import correspondent from "@site/static/schema/latest/blueprint/schema-component-correspondent-schema.json";
 import datafeed from "@site/static/schema/latest/blueprint/schema-component-datafeed-schema.json";
 import datapipeline from "@site/static/schema/latest/blueprint/schema-component-datapipeline-schema.json";
 import dataset from "@site/static/schema/latest/blueprint/schema-component-dataset-schema.json";
 import datavolume from "@site/static/schema/latest/blueprint/schema-component-datavolume-schema.json";
+import directory from "@site/static/schema/latest/blueprint/schema-component-directory-schema.json";
 import db from "@site/static/schema/latest/blueprint/schema-component-db-schema.json";
+import dnszone from "@site/static/schema/latest/blueprint/schema-component-dnszone-schema.json";
 import ecs from "@site/static/schema/latest/blueprint/schema-component-ecs-schema.json";
 import service from "@site/static/schema/latest/blueprint/schema-component-service-schema.json";
 import task from "@site/static/schema/latest/blueprint/schema-component-task-schema.json";
@@ -91,9 +99,13 @@ import externalserviceendpoint from "@site/static/schema/latest/blueprint/schema
 import federatedrole from "@site/static/schema/latest/blueprint/schema-component-federatedrole-schema.json";
 import federatedroleassignment from "@site/static/schema/latest/blueprint/schema-component-federatedroleassignment-schema.json";
 import filetransfer from "@site/static/schema/latest/blueprint/schema-component-filetransfer-schema.json";
+import firewall from "@site/static/schema/latest/blueprint/schema-component-firewall-schema.json";
+import firewalldestination from "@site/static/schema/latest/blueprint/schema-component-firewalldestination-schema.json";
+import firewallrule from "@site/static/schema/latest/blueprint/schema-component-firewallrule-schema.json";
 import gateway from "@site/static/schema/latest/blueprint/schema-component-gateway-schema.json";
 import gatewaydestination from "@site/static/schema/latest/blueprint/schema-component-gatewaydestination-schema.json";
 import globaldb from "@site/static/schema/latest/blueprint/schema-component-globaldb-schema.json";
+import hostingplatform from "@site/static/schema/latest/blueprint/schema-component-hostingplatform-schema.json";
 import lambda from "@site/static/schema/latest/blueprint/schema-component-lambda-schema.json";
 import functionComponent from "@site/static/schema/latest/blueprint/schema-component-function-schema.json";
 import lb from "@site/static/schema/latest/blueprint/schema-component-lb-schema.json";
@@ -117,6 +129,7 @@ import serviceregistry from "@site/static/schema/latest/blueprint/schema-compone
 import serviceregistryservice from "@site/static/schema/latest/blueprint/schema-component-serviceregistryservice-schema.json";
 import spa from "@site/static/schema/latest/blueprint/schema-component-spa-schema.json";
 import sqs from "@site/static/schema/latest/blueprint/schema-component-sqs-schema.json";
+import subscription from "@site/static/schema/latest/blueprint/schema-component-subscription-schema.json";
 import template from "@site/static/schema/latest/blueprint/schema-component-template-schema.json";
 import topic from "@site/static/schema/latest/blueprint/schema-component-topic-schema.json";
 import topicsubscription from "@site/static/schema/latest/blueprint/schema-component-topicsubscription-schema.json";
@@ -189,6 +202,7 @@ const schema = {
     cache: { data: cache},
     cdn: { data: cdn},
     cdnroute: { data: cdnroute},
+    clientvpn: { data: clientvpn},
     computecluster: { data: computecluster},
     configstore: { data: configstore},
     configbranch: { data: configbranch},
@@ -197,11 +211,14 @@ const schema = {
     containertask: { data: containertask },
     contenthub: { data: contenthub },
     contentnode: { data: contentnode },
+    correspondent: {data: correspondent},
     datafeed: { data: datafeed },
     datapipeline: { data: datapipeline },
     dataset: { data: dataset },
     datavolume: { data: datavolume },
     db: { data: db},
+    directory: {data: directory},
+    dnszone: {data:dnszone},
     ec2: { data: ec2},
     ecs: { data: ecs },
     service: { data: service },
@@ -216,9 +233,13 @@ const schema = {
     federatedrole: { data: federatedrole},
     federatedroleassignment: { data: federatedroleassignment},
     filetransfer: { data: filetransfer},
+    firewall: {data: firewall},
+    firewalldestination: {data: firewalldestination},
+    firewallrule: {data: firewallrule},
     gateway: { data: gateway},
     gatewaydestination: { data: gatewaydestination},
     globaldb: { data: globaldb},
+    hostingplatform: { data: hostingplatform},
     lambda: { data: lambda},
     function: { data: functionComponent},
     lb: { data: lb},
@@ -236,13 +257,14 @@ const schema = {
     queuehost: { data: queuehost},
     router: { data: router},
     routerstaticroute: { data: routerstaticroute},
+    s3: { data: s3},
     secretstore: { data: secretstore},
     secret: { data: secret},
     serviceregistry: { data: serviceregistry},
     serviceregistryservice: { data: serviceregistryservice},
-    s3: { data: s3},
     spa: { data: spa},
     sqs: { data: sqs},
+    subscription: { data: subscription},
     template: { data: template},
     topic: { data: topic},
     topicsubscription: { data: topicsubscription},
@@ -257,8 +279,12 @@ const schema = {
     computeimage: { data: computeimageSchema },
     contextpath: { data: contextpathSchema },
     ecs_computeimage: { data: ecsComputeImageSchema },
+    maintenance_window: {data: maintenanceWindowSchema},
+    module: {data: moduleSchema},
     operatingsystem: { data: osSchema },
     ospatching: { data: osPatchingSchema },
+    plugin: {data: pluginSchema},
+    aws_antivirus: { data: awsAntiVirusSchema },
     aws_computeimage: { data: awsComputeImageSchema },
     aws_ecs_computeimage: { data: awsEcsComputeImageSchema },
     aws_operatingsystem: { data: awsOsSchema },

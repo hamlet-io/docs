@@ -149,10 +149,8 @@
               ]
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             },
             "AccessLogging": {
               "additionalProperties": false,
@@ -200,7 +198,6 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "MutualTLS": {
@@ -276,28 +273,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -379,6 +355,10 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
+            },
             "CloudFront": {
               "additionalProperties": false,
               "type": "object",
@@ -410,9 +390,6 @@
                 }
               }
             },
-            "deployment:Unit": {
-              "type": "string"
-            },
             "BasePathBehaviour": {
               "default": "ignore",
               "description": "How to handle base paths provided in the spec",
@@ -422,6 +399,9 @@
                 "prepend",
                 "split"
               ]
+            },
+            "deployment:Unit": {
+              "type": "string"
             },
             "Authentication": {
               "default": "IP",
@@ -574,10 +554,6 @@
                 },
                 "Host": {
                   "type": "string"
-                },
-                "Qualifiers": {
-                  "description": "District based overrides to domain properties",
-                  "type": "object"
                 },
                 "Domain": {
                   "description": "Explicit domain id which will override the product domain",

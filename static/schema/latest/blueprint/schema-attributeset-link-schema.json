@@ -75,6 +75,9 @@
             "Route": {
               "type": "object"
             },
+            "LinkRef": {
+              "type": "object"
+            },
             "DataBucket": {
               "type": "object"
             },
@@ -126,11 +129,7 @@
             "DataFeed": {
               "type": "object"
             }
-          },
-          "required": [
-            "Tier",
-            "Component"
-          ]
+          }
         }
       },
       "type": "object"

@@ -27,7 +27,6 @@
               "contains": {
                 "type": "string"
               },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
               "type": "array"
             },
             "deployment:Group": {
@@ -62,10 +61,6 @@
               "default": false,
               "type": "boolean"
             },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
-            },
             "Backup": {
               "additionalProperties": false,
               "type": "object",
@@ -90,33 +85,16 @@
                 }
               }
             },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -197,6 +175,10 @@
               },
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
+            },
+            "Type": {
+              "description": "The components type",
+              "type": "string"
             },
             "ElasticSearch": {
               "additionalProperties": false,
@@ -313,10 +295,8 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             },
             "Buffering": {
               "description": "How long data should be bufferred before being deliverd to ES",

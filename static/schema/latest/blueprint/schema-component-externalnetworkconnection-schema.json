@@ -14,6 +14,36 @@
                 "PublicIP": {
                   "description": "The public IP address of the VPN tunnel",
                   "type": "string"
+                },
+                "SharedKey": {
+                  "description": "The shared key to use to establish the VPN",
+                  "type": "string"
+                },
+                "InsideTunnelCIDRs": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "An array of IP CIDR Ranges used within the tunnel",
+                  "type": "array"
+                },
+                "BGP": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "PeerIPAddress": {
+                      "description": "The BGP Peer address for this connection",
+                      "type": "string"
+                    }
+                  }
+                },
+                "InsideTunnelIPVersion": {
+                  "default": "Ipv4",
+                  "description": "The IP Version of the internal network",
+                  "type": "string",
+                  "enum": [
+                    "Ipv4",
+                    "Ipv6"
+                  ]
                 }
               }
             },
@@ -22,28 +52,7 @@
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
                   "additionalProperties": false,
                   "properties": {
-                    "DeploymentUnits": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "description": "An singleton instance of the component, Instance & Version configuration.",
-                      "type": "array"
-                    },
                     "Versions": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_]*$": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "DeploymentUnits": {
-                              "contains": {
-                                "type": "string"
-                              },
-                              "description": "An singleton instance of the component, Instance & Version configuration.",
-                              "type": "array"
-                            }
-                          }
-                        }
-                      },
                       "description": "Versions of the components instance.",
                       "type": "object"
                     }
@@ -125,13 +134,6 @@
               "description": "Additional namespaces to use during settings lookups",
               "type": "object"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "An singleton instance of the component, Instance & Version configuration.",
-              "type": "array"
-            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",
@@ -178,10 +180,8 @@
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
+              "default": false,
+              "type": "boolean"
             },
             "Alerts": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-alert-schema.json"
