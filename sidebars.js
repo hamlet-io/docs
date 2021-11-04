@@ -56,7 +56,14 @@ module.exports = {
       items: [
         {
           type: 'category',
-          label: 'Setup Jenkins CI/CD',
+          label: 'Cloud Providers',
+          items: [
+            'how-to/cloud-providers/authentication'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Jenkins CI/CD',
           items: [
               'how-to/jenkins/index',
               {
