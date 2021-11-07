@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "definitions": {
-    "efs": {
+    "fileshare": {
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
@@ -25,6 +25,21 @@
             "Encrypted": {
               "default": true,
               "type": "boolean"
+            },
+            "Size": {
+              "description": "The size in Gb of the file share",
+              "type": "number"
+            },
+            "Backup": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "RetentionPeriod": {
+                  "default": 31,
+                  "description": "The time in days to keep backups",
+                  "type": "number"
+                }
+              }
             },
             "deployment:Priority": {
               "default": 50,
@@ -143,6 +158,10 @@
                   },
                   "type": "array"
                 },
+                "Logging": {
+                  "default": "default",
+                  "type": "string"
+                },
                 "Placement": {
                   "default": "default",
                   "type": "string"
@@ -177,6 +196,24 @@
             "Export": {
               "default": false,
               "type": "boolean"
+            },
+            "MaintenanceWindow": {
+              "description": "When to apply maintenance on the share",
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-maintenancewindow-schema.json"
+            },
+            "aws:ThroughputCapacity": {
+              "default": 512,
+              "description": "The throughput capacity in  megabytes/second for fileshares",
+              "type": "number"
+            },
+            "Engine": {
+              "default": "NFS",
+              "description": "The type of file share that the component will offer",
+              "type": "string",
+              "enum": [
+                "NFS",
+                "SMB"
+              ]
             }
           }
         }
@@ -184,5 +221,5 @@
       "type": "object"
     }
   },
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-efs-schema.json"
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-fileshare-schema.json"
 }

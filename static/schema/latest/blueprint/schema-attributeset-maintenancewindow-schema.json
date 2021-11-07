@@ -8,9 +8,11 @@
           "additionalProperties": false,
           "properties": {
             "TimeOfDay": {
+              "default": "01:00",
               "type": "string"
             },
             "DayOfTheWeek": {
+              "default": "Sunday",
               "type": "string",
               "enum": [
                 "Sunday",
@@ -23,6 +25,7 @@
               ]
             },
             "TimeZone": {
+              "default": "UTC",
               "type": "string"
             }
           }

@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "definitions": {
-    "efsmount": {
+    "filesharemount": {
       "patternProperties": {
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
@@ -181,5 +181,5 @@
       "type": "object"
     }
   },
-  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-efsmount-schema.json"
+  "$id": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-filesharemount-schema.json"
 }
