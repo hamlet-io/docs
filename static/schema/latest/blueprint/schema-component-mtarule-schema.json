@@ -178,6 +178,23 @@
                   },
                   "description": "Expected To addresses",
                   "type": "array"
+                },
+                "EventTypes": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "Expected events to action (send only)",
+                  "type": "array",
+                  "enum": [
+                    "click",
+                    "bounce",
+                    "send",
+                    "open",
+                    "complaint",
+                    "delivery",
+                    "renderingFailure",
+                    "reject"
+                  ]
                 }
               }
             }
