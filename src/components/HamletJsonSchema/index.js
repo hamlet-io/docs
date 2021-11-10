@@ -89,8 +89,8 @@ import dnszone from "@site/static/schema/latest/blueprint/schema-component-dnszo
 import ecs from "@site/static/schema/latest/blueprint/schema-component-ecs-schema.json";
 import service from "@site/static/schema/latest/blueprint/schema-component-service-schema.json";
 import task from "@site/static/schema/latest/blueprint/schema-component-task-schema.json";
-import efs from "@site/static/schema/latest/blueprint/schema-component-efs-schema.json";
-import efsmount from "@site/static/schema/latest/blueprint/schema-component-efsmount-schema.json";
+import fileshare from "@site/static/schema/latest/blueprint/schema-component-fileshare-schema.json";
+import filesharemount from "@site/static/schema/latest/blueprint/schema-component-filesharemount-schema.json";
 import elasticsearch from "@site/static/schema/latest/blueprint/schema-component-es-schema.json";
 import externalnetwork from "@site/static/schema/latest/blueprint/schema-component-externalnetwork-schema.json";
 import externalnetworkconnection from "@site/static/schema/latest/blueprint/schema-component-externalnetworkconnection-schema.json";
@@ -223,8 +223,8 @@ const schema = {
     ecs: { data: ecs },
     service: { data: service },
     task: { data: task},
-    efs: { data: efs},
-    efsmount: { data: efsmount},
+    fileshare: { data: fileshare},
+    filesharemount: { data: filesharemount},
     es: { data: elasticsearch},
     externalnetwork: { data: externalnetwork},
     externalnetworkconnection: { data: externalnetworkconnection},
