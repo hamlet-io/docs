@@ -7,6 +7,29 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "FixedName": {
+              "default": false,
+              "description": "Applies a fixed name to the topic instead of a randomly generated one",
+              "type": "boolean"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "Encrypted": {
+              "default": false,
+              "type": "boolean"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -21,11 +44,6 @@
               },
               "description": "Instances of a component configuration",
               "type": "object"
-            },
-            "FixedName": {
-              "default": false,
-              "description": "Applies a fixed name to the topic instead of a randomly generated one",
-              "type": "boolean"
             },
             "SettingNamespaces": {
               "patternProperties": {
@@ -103,22 +121,8 @@
               "description": "The components type",
               "type": "string"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "solution",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
-            },
-            "Encrypted": {
-              "default": false,
-              "type": "boolean"
             },
             "Profiles": {
               "additionalProperties": false,
@@ -154,9 +158,8 @@
                 }
               }
             },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
+            "Links": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
             "Export": {
               "default": false,

@@ -22,6 +22,30 @@
               "description": "Instances of a component configuration",
               "type": "object"
             },
+            "Filters": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_]*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Attribute": {
+                      "description": "Name of the filter",
+                      "type": "string"
+                    },
+                    "Values": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "Valid values for the filter",
+                      "type": "array"
+                    },
+                    "Links": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
             "RawMessageDelivery": {
               "default": false,
               "description": "Deliver message as received not with JSON payload strucutre",

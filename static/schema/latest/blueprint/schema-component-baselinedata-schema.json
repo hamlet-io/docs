@@ -261,6 +261,11 @@
                     },
                     "Prefix": {
                       "type": "string"
+                    },
+                    "aws:TopicPermissionMigration": {
+                      "default": false,
+                      "description": "Deprecation alert: set to true once policy updated for topic",
+                      "type": "boolean"
                     }
                   }
                 }
