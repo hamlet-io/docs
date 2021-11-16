@@ -114,6 +114,9 @@
               "default": "segment",
               "type": "string"
             },
+            "NetworkACLs": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-networkacl-schema.json"
+            },
             "Address": {
               "additionalProperties": false,
               "type": "object",
@@ -277,6 +280,9 @@
                   "type": "array"
                 }
               }
+            },
+            "RouteTables": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-networkroute-schema.json"
             },
             "Links": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"

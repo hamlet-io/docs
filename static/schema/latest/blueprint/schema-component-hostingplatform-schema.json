@@ -176,6 +176,9 @@
             }
           },
           "required": [
+            "Engine",
+            "Engine",
+            "Engine",
             "Engine"
           ]
         }

@@ -7,6 +7,98 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Table": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Capacity": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Read": {
+                      "default": 1,
+                      "description": "When using provisioned billing the maximum RCU of the table",
+                      "type": "number"
+                    },
+                    "Write": {
+                      "default": 1,
+                      "description": "When using provisioned billing the maximum WCU of the table",
+                      "type": "number"
+                    }
+                  }
+                },
+                "Encrypted": {
+                  "default": true,
+                  "description": "Enable at rest encryption",
+                  "type": "boolean"
+                },
+                "Billing": {
+                  "default": "provisioned",
+                  "description": "The billing mode for the table",
+                  "type": "string",
+                  "enum": [
+                    "provisioned",
+                    "per-request"
+                  ]
+                },
+                "Backup": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": false,
+                      "description": "Enables point in time recovery on the table",
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Stream": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": false,
+                      "description": "Enables dynamodb event stream",
+                      "type": "boolean"
+                    },
+                    "ViewType": {
+                      "default": "NEW_IMAGE",
+                      "type": "string",
+                      "enum": [
+                        "KEYS_ONLY",
+                        "NEW_IMAGE",
+                        "OLD_IMAGE",
+                        "NEW_AND_OLD_IMAGES"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "Branches": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-configbranch-schema.json"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Extensions": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Extensions to invoke as part of component processing",
+              "type": "array"
+            },
             "SecondaryKey": {
               "default": false,
               "description": "Uses the name of the branch to provide a secondary sort key on branches - id being the primary",
@@ -103,84 +195,6 @@
               "description": "The components type",
               "type": "string"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "Table": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Capacity": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Read": {
-                      "default": 1,
-                      "description": "When using provisioned billing the maximum RCU of the table",
-                      "type": "number"
-                    },
-                    "Write": {
-                      "default": 1,
-                      "description": "When using provisioned billing the maximum WCU of the table",
-                      "type": "number"
-                    }
-                  }
-                },
-                "Encrypted": {
-                  "default": true,
-                  "description": "Enable at rest encryption",
-                  "type": "boolean"
-                },
-                "Billing": {
-                  "default": "provisioned",
-                  "description": "The billing mode for the table",
-                  "type": "string",
-                  "enum": [
-                    "provisioned",
-                    "per-request"
-                  ]
-                },
-                "Backup": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Enabled": {
-                      "default": false,
-                      "description": "Enables point in time recovery on the table",
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "Stream": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Enabled": {
-                      "default": false,
-                      "description": "Enables dynamodb event stream",
-                      "type": "boolean"
-                    },
-                    "ViewType": {
-                      "default": "NEW_IMAGE",
-                      "type": "string",
-                      "enum": [
-                        "KEYS_ONLY",
-                        "NEW_IMAGE",
-                        "OLD_IMAGE",
-                        "NEW_AND_OLD_IMAGES"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "deployment:Group": {
-              "default": "solution",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -218,20 +232,9 @@
                 }
               }
             },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
-            },
             "Export": {
               "default": false,
               "type": "boolean"
-            },
-            "Extensions": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "Extensions to invoke as part of component processing",
-              "type": "array"
             }
           }
         }

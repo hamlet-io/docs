@@ -7,6 +7,38 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "IPAddressGroups": {
+              "contains": {
+                "type": "string"
+              },
+              "description": "Allowed IP addresses. If any group is provided, all unmatching traffic will be blocked",
+              "type": "array"
+            },
+            "Direction": {
+              "default": "send",
+              "type": "string",
+              "enum": [
+                "send",
+                "receive"
+              ]
+            },
+            "Rules": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-mtarule-schema.json"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -98,16 +130,6 @@
               "description": "The components type",
               "type": "string"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "solution",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -145,28 +167,9 @@
                 }
               }
             },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
-            },
             "Export": {
               "default": false,
               "type": "boolean"
-            },
-            "IPAddressGroups": {
-              "contains": {
-                "type": "string"
-              },
-              "description": "Allowed IP addresses. If any group is provided, all unmatching traffic will be blocked",
-              "type": "array"
-            },
-            "Direction": {
-              "default": "send",
-              "type": "string",
-              "enum": [
-                "send",
-                "receive"
-              ]
             },
             "Certificate": {
               "description": "Configure the domain(s) associated with this MTA",
@@ -241,6 +244,9 @@
             }
           },
           "required": [
+            "Direction",
+            "Direction",
+            "Direction",
             "Direction"
           ]
         }

@@ -7,6 +7,9 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "AuthProviders": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolauthprovider-schema.json"
+            },
             "deployment:Group": {
               "default": "solution",
               "type": "string"
@@ -331,6 +334,9 @@
                 "SoftwareToken"
               ]
             },
+            "Clients": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolclient-schema.json"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -469,6 +475,9 @@
             "UnusedAccountTimeout": {
               "default": 1,
               "type": "number"
+            },
+            "Resources": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-userpoolresource-schema.json"
             }
           }
         }

@@ -7,6 +7,69 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "segment",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "aws:ResourceSharing": {
+              "description": "Allows for the resource to be shared with other Accounts",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "AccountPrincipals": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "List of AWS Account Ids or Organisation ARNS to share the resource with",
+                  "type": "array"
+                },
+                "AllowExternalPrincipals": {
+                  "default": false,
+                  "description": "Allow resources to be shared outside of the Organisation",
+                  "type": "boolean"
+                }
+              }
+            },
+            "BGP": {
+              "description": "BGP specific configuration",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "ECMP": {
+                  "default": true,
+                  "description": "Enabled Equal Cost multipath routing where supported",
+                  "type": "boolean"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "ASN": {
+                  "description": "The BGP ASN ( Autonomous system ) Id of the router",
+                  "type": "number"
+                }
+              },
+              "required": [
+                "ASN"
+              ]
+            },
+            "StaticRoutes": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-routerstaticroute-schema.json"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -102,16 +165,6 @@
               "description": "The components type",
               "type": "string"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "segment",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -149,59 +202,9 @@
                 }
               }
             },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
-            },
-            "aws:ResourceSharing": {
-              "description": "Allows for the resource to be shared with other Accounts",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "type": "boolean"
-                },
-                "AccountPrincipals": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "description": "List of AWS Account Ids or Organisation ARNS to share the resource with",
-                  "type": "array"
-                },
-                "AllowExternalPrincipals": {
-                  "default": false,
-                  "description": "Allow resources to be shared outside of the Organisation",
-                  "type": "boolean"
-                }
-              }
-            },
             "Export": {
               "default": false,
               "type": "boolean"
-            },
-            "BGP": {
-              "description": "BGP specific configuration",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "ECMP": {
-                  "default": true,
-                  "description": "Enabled Equal Cost multipath routing where supported",
-                  "type": "boolean"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "ASN": {
-                  "description": "The BGP ASN ( Autonomous system ) Id of the router",
-                  "type": "number"
-                }
-              },
-              "required": [
-                "ASN"
-              ]
             }
           }
         }

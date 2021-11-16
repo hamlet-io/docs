@@ -246,6 +246,12 @@
           },
           "required": [
             "IPAddressGroups",
+            "Version",
+            "IPAddressGroups",
+            "Version",
+            "IPAddressGroups",
+            "Version",
+            "IPAddressGroups",
             "Version"
           ]
         }

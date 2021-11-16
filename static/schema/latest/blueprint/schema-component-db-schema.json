@@ -565,6 +565,12 @@
           },
           "required": [
             "Engine",
+            "EngineVersion",
+            "Engine",
+            "EngineVersion",
+            "Engine",
+            "EngineVersion",
+            "Engine",
             "EngineVersion"
           ]
         }

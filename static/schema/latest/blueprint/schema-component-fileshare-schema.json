@@ -18,6 +18,9 @@
               "description": "Require IAM Access to EFS",
               "type": "boolean"
             },
+            "Mounts": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-filesharemount-schema.json"
+            },
             "deployment:Group": {
               "default": "solution",
               "type": "string"

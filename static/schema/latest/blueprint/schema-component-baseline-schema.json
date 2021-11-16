@@ -135,6 +135,9 @@
               "description": "Instances of a component configuration",
               "type": "object"
             },
+            "DataBuckets": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinedata-schema.json"
+            },
             "Active": {
               "default": false,
               "type": "boolean"
@@ -280,6 +283,9 @@
               ],
               "description": "The set of administrator groups controlling access to keyvault",
               "type": "array"
+            },
+            "Keys": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-baselinekey-schema.json"
             },
             "Export": {
               "default": false,

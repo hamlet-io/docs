@@ -173,9 +173,7 @@
               "enum": [
                 "none",
                 "bridge",
-                "host",
-                "awsvpc",
-                "aws:awsvpc"
+                "host"
               ]
             },
             "Instances": {
@@ -310,9 +308,7 @@
                             "Provider": {
                               "type": "string",
                               "enum": [
-                                "_engine",
-                                "aws:fargate",
-                                "aws:fargate_spot"
+                                "_engine"
                               ]
                             }
                           },
@@ -343,9 +339,7 @@
                           "description": "The default container compute provider - _engine uses the default provider of the engine",
                           "type": "string",
                           "enum": [
-                            "_engine",
-                            "aws:fargate",
-                            "aws:fargate_spot"
+                            "_engine"
                           ]
                         }
                       }
@@ -465,9 +459,7 @@
               "description": "The engine used to run the container",
               "type": "string",
               "enum": [
-                "ec2",
-                "fargate",
-                "aws:fargate"
+                "ec2"
               ]
             }
           }

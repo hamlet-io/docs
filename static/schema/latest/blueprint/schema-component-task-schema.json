@@ -57,9 +57,7 @@
               "enum": [
                 "none",
                 "bridge",
-                "host",
-                "awsvpc",
-                "aws:awsvpc"
+                "host"
               ]
             },
             "Instances": {
@@ -259,9 +257,7 @@
               "description": "The engine used to run the container",
               "type": "string",
               "enum": [
-                "ec2",
-                "fargate",
-                "aws:fargate"
+                "ec2"
               ]
             }
           }

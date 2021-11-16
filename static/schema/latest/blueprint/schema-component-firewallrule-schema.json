@@ -313,6 +313,9 @@
             }
           },
           "required": [
+            "Priority",
+            "Priority",
+            "Priority",
             "Priority"
           ]
         }

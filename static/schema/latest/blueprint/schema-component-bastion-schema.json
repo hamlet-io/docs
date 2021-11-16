@@ -238,7 +238,7 @@
                 "OperatingSystem": {
                   "description": "The operating system details of the compute instance",
                   "additionalProperties": false,
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-aws_operatingsystem-schema.json"
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-operatingsystem-schema.json"
                 },
                 "OSPatching": {
                   "description": "Configuration for scheduled OS Patching",
@@ -291,7 +291,7 @@
                 "Image": {
                   "description": "Configures the source of the virtual machine image used for the instance",
                   "additionalProperties": false,
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-aws_computeimage-schema.json"
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-computeimage-schema.json"
                 }
               }
             },

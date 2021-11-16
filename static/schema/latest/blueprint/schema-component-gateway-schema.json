@@ -41,6 +41,9 @@
               "default": 50,
               "type": "number"
             },
+            "Destinations": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-gatewaydestination-schema.json"
+            },
             "BGP": {
               "description": "BGP Network routing",
               "additionalProperties": false,

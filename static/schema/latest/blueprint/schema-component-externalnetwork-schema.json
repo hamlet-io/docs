@@ -7,6 +7,53 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "Connections": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-externalnetworkconnection-schema.json"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "segment",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
+            "Ports": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "any"
+              ],
+              "type": "array"
+            },
+            "BGP": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "ASN": {
+                  "default": 64512,
+                  "description": "The BGP ASN (Autonomous system) Id of the external network",
+                  "type": "number"
+                }
+              }
+            },
+            "IPAddressGroups": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -98,16 +145,6 @@
               "description": "The components type",
               "type": "string"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "segment",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -145,43 +182,9 @@
                 }
               }
             },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
-            },
-            "Ports": {
-              "contains": {
-                "type": "string"
-              },
-              "default": [
-                "any"
-              ],
-              "type": "array"
-            },
             "Export": {
               "default": false,
               "type": "boolean"
-            },
-            "BGP": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "ASN": {
-                  "default": 64512,
-                  "description": "The BGP ASN (Autonomous system) Id of the external network",
-                  "type": "number"
-                }
-              }
-            },
-            "IPAddressGroups": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
             }
           }
         }

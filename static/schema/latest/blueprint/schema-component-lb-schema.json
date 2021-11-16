@@ -122,6 +122,9 @@
               "description": "The components type",
               "type": "string"
             },
+            "PortMappings": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-lbport-schema.json"
+            },
             "deployment:Unit": {
               "type": "string"
             },

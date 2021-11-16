@@ -329,6 +329,9 @@
             }
           },
           "required": [
+            "PrimaryKey",
+            "PrimaryKey",
+            "PrimaryKey",
             "PrimaryKey"
           ]
         }

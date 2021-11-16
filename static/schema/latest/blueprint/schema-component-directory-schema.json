@@ -309,7 +309,6 @@
               "enum": [
                 "Simple",
                 "ActiveDirectory",
-                "aws:ADConnector",
                 "azure:AADDirectoryServices"
               ]
             },
@@ -405,6 +404,12 @@
             }
           },
           "required": [
+            "Engine",
+            "Size",
+            "Engine",
+            "Size",
+            "Engine",
+            "Size",
             "Engine",
             "Size"
           ]

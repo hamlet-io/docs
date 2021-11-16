@@ -204,6 +204,9 @@
             }
           },
           "required": [
+            "Type",
+            "Type",
+            "Type",
             "Type"
           ]
         }

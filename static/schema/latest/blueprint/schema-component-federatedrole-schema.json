@@ -26,6 +26,9 @@
               "default": 100,
               "type": "number"
             },
+            "Assignments": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-federatedroleassignment-schema.json"
+            },
             "Extensions": {
               "contains": {
                 "type": "string"

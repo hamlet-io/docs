@@ -255,6 +255,9 @@
             }
           },
           "required": [
+            "Protocols",
+            "Protocols",
+            "Protocols",
             "Protocols"
           ]
         }

@@ -22,6 +22,9 @@
               "default": "solution",
               "type": "string"
             },
+            "Subscriptions": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-topicsubscription-schema.json"
+            },
             "Encrypted": {
               "default": false,
               "type": "boolean"

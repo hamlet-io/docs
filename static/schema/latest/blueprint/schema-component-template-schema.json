@@ -264,6 +264,9 @@
             }
           },
           "required": [
+            "RootFile",
+            "RootFile",
+            "RootFile",
             "RootFile"
           ]
         }

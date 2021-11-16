@@ -57,6 +57,26 @@
                 }
               }
             },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "segment",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 60,
+              "type": "number"
+            },
+            "Destinations": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-firewalldestination-schema.json"
+            },
+            "Rules": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-firewallrule-schema.json"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -148,16 +168,6 @@
               "description": "The components type",
               "type": "string"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "segment",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -199,10 +209,6 @@
                 }
               }
             },
-            "deployment:Priority": {
-              "default": 60,
-              "type": "number"
-            },
             "Links": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
             },
@@ -218,6 +224,9 @@
             }
           },
           "required": [
+            "Engine",
+            "Engine",
+            "Engine",
             "Engine"
           ]
         }

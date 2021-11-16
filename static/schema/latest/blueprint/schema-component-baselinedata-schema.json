@@ -274,6 +274,9 @@
             }
           },
           "required": [
+            "Role",
+            "Role",
+            "Role",
             "Role"
           ]
         }

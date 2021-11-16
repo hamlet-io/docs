@@ -111,6 +111,9 @@
             "deployment:Unit": {
               "type": "string"
             },
+            "RegistryServices": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-serviceregistryservice-schema.json"
+            },
             "Profiles": {
               "additionalProperties": false,
               "type": "object",

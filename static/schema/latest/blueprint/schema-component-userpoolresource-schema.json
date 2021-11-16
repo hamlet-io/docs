@@ -177,6 +177,9 @@
             }
           },
           "required": [
+            "Server",
+            "Server",
+            "Server",
             "Server"
           ]
         }

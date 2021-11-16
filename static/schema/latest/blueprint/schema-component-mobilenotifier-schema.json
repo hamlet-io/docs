@@ -7,6 +7,23 @@
         "^[A-Za-z_][A-Za-z0-9_]*$": {
           "additionalProperties": false,
           "properties": {
+            "Platforms": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-mobilenotifierplatform-schema.json"
+            },
+            "DeploymentUnits": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "deployment:Group": {
+              "default": "solution",
+              "type": "string"
+            },
+            "deployment:Priority": {
+              "default": 100,
+              "type": "number"
+            },
             "Instances": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
@@ -98,16 +115,6 @@
               "description": "The components type",
               "type": "string"
             },
-            "DeploymentUnits": {
-              "contains": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "deployment:Group": {
-              "default": "solution",
-              "type": "string"
-            },
             "deployment:Unit": {
               "type": "string"
             },
@@ -148,10 +155,6 @@
                   "type": "array"
                 }
               }
-            },
-            "deployment:Priority": {
-              "default": 100,
-              "type": "number"
             },
             "Links": {
               "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"

@@ -135,6 +135,9 @@
             "Export": {
               "default": false,
               "type": "boolean"
+            },
+            "Functions": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-function-schema.json"
             }
           }
         }

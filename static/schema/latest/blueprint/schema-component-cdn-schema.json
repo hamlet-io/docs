@@ -58,6 +58,9 @@
               "default": true,
               "type": "boolean"
             },
+            "Routes": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-cdnroute-schema.json"
+            },
             "Extensions": {
               "contains": {
                 "type": "string"

@@ -412,6 +412,12 @@
           },
           "required": [
             "Handler",
+            "RunTime",
+            "Handler",
+            "RunTime",
+            "Handler",
+            "RunTime",
+            "Handler",
             "RunTime"
           ]
         }

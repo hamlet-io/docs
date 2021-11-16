@@ -22,6 +22,9 @@
               "description": "Instances of a component configuration",
               "type": "object"
             },
+            "Endpoints": {
+              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-component-externalserviceendpoint-schema.json"
+            },
             "SettingNamespaces": {
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_]*$": {
