@@ -209,6 +209,35 @@
             "deployment:Unit": {
               "type": "string"
             },
+            "aws:Partitioning": {
+              "description": "Control configuration of dynamic partitioning",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Delimiter": {
+                  "description": "Control configuration of delimiter processor",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": false,
+                      "description": "Delimiter processor is added after any lambda processors",
+                      "type": "boolean"
+                    },
+                    "Token": {
+                      "default": "\\n",
+                      "description": "String added to the end of every datafeed record",
+                      "type": "string"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": false,
+                  "description": "Partitioning can only be set at time of creation so default it to false to cover existing deployments",
+                  "type": "boolean"
+                }
+              }
+            },
             "Bucket": {
               "additionalProperties": false,
               "type": "object",

@@ -170,6 +170,21 @@
                   "description": "Logging of the API Gateway Access Logs.",
                   "type": "boolean"
                 },
+                "aws:LogFormat": {
+                  "description": "Log format control",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Syntax": {
+                      "default": "text",
+                      "type": "string",
+                      "enum": [
+                        "text",
+                        "json"
+                      ]
+                    }
+                  }
+                },
                 "aws:KeepLogGroup": {
                   "default": true,
                   "description": "Prevent the destruction of existing LogGroups when enabling KinesisFirehose.",
