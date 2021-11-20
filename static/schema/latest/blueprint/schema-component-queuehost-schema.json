@@ -244,60 +244,7 @@
                     },
                     "Requirements": {
                       "description": "Format requirements for the Secret",
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "ExcludedCharacters": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "default": [
-                            "\"",
-                            "'",
-                            "$",
-                            "@",
-                            "/",
-                            "\\"
-                          ],
-                          "description": "Characters that must be excluded",
-                          "type": "array"
-                        },
-                        "RequireAllIncludedTypes": {
-                          "default": true,
-                          "description": "Require at least one of each included type",
-                          "type": "boolean"
-                        },
-                        "MinLength": {
-                          "default": 20,
-                          "description": "The minimum character length",
-                          "type": "number"
-                        },
-                        "MaxLength": {
-                          "default": 30,
-                          "description": "The maximum character length",
-                          "type": "number"
-                        },
-                        "IncludeUpper": {
-                          "default": true,
-                          "description": "Include upper-case characters",
-                          "type": "boolean"
-                        },
-                        "IncludeLower": {
-                          "default": true,
-                          "description": "Include lower-case characters",
-                          "type": "boolean"
-                        },
-                        "IncludeSpecial": {
-                          "default": false,
-                          "description": "Include special characters",
-                          "type": "boolean"
-                        },
-                        "IncludeNumber": {
-                          "default": true,
-                          "description": "Include numbers characters",
-                          "type": "boolean"
-                        }
-                      }
+                      "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-secretstring-schema.json"
                     }
                   }
                 },

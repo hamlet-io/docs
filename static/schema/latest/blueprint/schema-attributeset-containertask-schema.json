@@ -25,6 +25,7 @@
               "type": "number"
             },
             "Cpu": {
+              "description": "The CPU share to assign to the container",
               "type": "number"
             },
             "Ports": {
@@ -141,6 +142,10 @@
               "required": [
                 "Source"
               ]
+            },
+            "Gpu": {
+              "description": "The number of physical GPUs to assign to the container",
+              "type": "number"
             },
             "LocalLogging": {
               "default": false,

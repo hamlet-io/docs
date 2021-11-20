@@ -65,27 +65,15 @@
             "DBParameters": {
               "type": "object"
             },
-            "GenerateCredentials": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "EncryptionScheme": {
-                  "description": "A prefix appended to link attributes to show encryption status",
-                  "type": "string"
-                },
-                "CharacterLength": {
-                  "default": 20,
-                  "type": "number"
-                },
-                "Enabled": {
-                  "default": false,
-                  "type": "boolean"
-                },
-                "MasterUserName": {
-                  "default": "root",
-                  "type": "string"
-                }
-              }
+            "rootCredential:Source": {
+              "default": "Settings",
+              "description": "The source of the root credentials used in the database",
+              "type": "string",
+              "enum": [
+                "Generated",
+                "SecretStore",
+                "Settings"
+              ]
             },
             "azure:SecretSettings": {
               "description": "Configuration for Secrets that are defined in Settings.",
@@ -128,6 +116,35 @@
               "default": false,
               "description": "Always create the database from a snapshot",
               "type": "boolean"
+            },
+            "rootCredential:SecretStore": {
+              "description": "Use a secret store to manage the root credentials",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "UsernameAttribute": {
+                  "default": "username",
+                  "description": "The attribute of the username to store in the secret",
+                  "type": "string"
+                },
+                "Username": {
+                  "default": "root",
+                  "type": "string"
+                },
+                "GenerationRequirements": {
+                  "description": "When creating the secret using secretstore the policy for generating the secret",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-secretstring-schema.json"
+                },
+                "PasswordAttribute": {
+                  "default": "password",
+                  "description": "The attribute of the password to store in the secret",
+                  "type": "string"
+                },
+                "Link": {
+                  "description": "A link to a secret or store that will keep the secret",
+                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
+                }
+              }
             },
             "Profiles": {
               "additionalProperties": false,
@@ -247,6 +264,29 @@
                 "Disabled"
               ]
             },
+            "rootCredential:Generated": {
+              "description": "Generate credentials and store them as an encrypted string",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "EncryptionScheme": {
+                  "description": "A prefix appended to link attributes to show encryption status",
+                  "type": "string"
+                },
+                "Username": {
+                  "default": "root",
+                  "type": "string"
+                },
+                "CharacterLength": {
+                  "default": 20,
+                  "type": "number"
+                },
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              }
+            },
             "Hibernate": {
               "additionalProperties": false,
               "type": "object",
@@ -273,6 +313,23 @@
             },
             "EngineVersion": {
               "type": "string"
+            },
+            "rootCredential:Settings": {
+              "description": "Store the credentials as settings of the database occurrence",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "UsernameAttribute": {
+                  "default": "MASTER_USERNAME",
+                  "description": "The setting attribute that contains the username",
+                  "type": "string"
+                },
+                "PasswordAttribute": {
+                  "default": "MASTER_PASSWORD",
+                  "description": "The setting attribute that contains the password",
+                  "type": "string"
+                }
+              }
             },
             "deployment:Priority": {
               "default": 100,
