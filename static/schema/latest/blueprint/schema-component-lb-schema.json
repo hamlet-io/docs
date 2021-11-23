@@ -200,6 +200,15 @@
                     }
                   }
                 },
+                "Version": {
+                  "default": "v2",
+                  "description": "Version of WAF to use",
+                  "type": "string",
+                  "enum": [
+                    "v1",
+                    "v2"
+                  ]
+                },
                 "RateLimits": {
                   "patternProperties": {
                     "^[A-Za-z_][A-Za-z0-9_]*$": {
