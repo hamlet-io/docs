@@ -49,6 +49,7 @@
                       "description": "The output type to map the attribute with ",
                       "type": "string",
                       "enum": [
+                        "ref",
                         "dns",
                         "arn",
                         "url",
