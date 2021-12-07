@@ -9,7 +9,7 @@ The hamlet team maintains a collection of plugins for the major public cloud pro
 
 ## hamlet Library
 
-The [hamlet library](github.com/hamlet-io/hamlet-library/) is a list of plugins available from the hamlet team or the community. The hamlet team provide the core plugins along with module plugins which provide implementations of specific functions.
+The [hamlet library](https://github.com/hamlet-io/hamlet-library/) is a list of plugins available from the hamlet team or the community. The hamlet team provide the core plugins along with module plugins which provide implementations of specific functions.
 
 ## Installing a Plugin
 
