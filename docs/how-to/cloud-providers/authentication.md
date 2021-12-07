@@ -3,9 +3,9 @@ sidebar_label: Authentication
 title: Authentication
 ---
 
-Hamlet can deploy across different cloud provider regions and accounts. To support this, hamlet manages authentication to a cloud provider itself.
+hamlet can deploy across different cloud provider regions and accounts. To support this, hamlet manages authentication to a cloud provider itself.
 
-Hamlet supports different methods for AWS and Azure which align with their standard configuration options. The sections below outline how you can configure hamlet to access the different cloud providers.
+hamlet supports different methods for AWS and Azure which align with their standard configuration options. The sections below outline how you can configure hamlet to access the different cloud providers.
 
 ## Amazon Web Services (AWS)
 
@@ -18,7 +18,7 @@ Which supports the following values
 - `ENV` - Use the standard AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables
 - `USER` - Works like the ENV source but supports a prefix on the AWS keys that you can set with HAMLET_AWS_AUTH_USER so if you set HAMLET_AWS_AUTH_USER=SEC hamlet would look for SEC_AWS_ACCESS_KEY_ID for your aws authentication keys
 - `INSTANCE|INSTANCE:EC2|INSTANCE:ECS` - Uses the ec2 or ecs instance iam roles. If you specify INSTANCE hamlet will prefer ECS over EC2, but use either one.
-- `CONFIG` - Uses an aws cli config file to determine credentials. Hamlet will search for a profile in your config file based on the hamlet account id or the AWS account id derived from the hamlet account details
+- `CONFIG` - Uses an aws cli config file to determine credentials. hamlet will search for a profile in your config file based on the hamlet account id or the AWS account id derived from the hamlet account details
 - `NONE` - This bypasses authentication and disables the account check. This is useful when you are testing deployment generation locally and don't have access to the AWS account you are working with.
 
 After configuring the source you can optionally configure a role and MFA token
