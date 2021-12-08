@@ -492,6 +492,10 @@
                         "reducedredundancy"
                       ]
                     },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
                     "Links": {
                       "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-attributeset-link-schema.json"
                     },
