@@ -46,7 +46,8 @@
               "type": "string",
               "enum": [
                 "explicit",
-                "priority"
+                "priority",
+                "orphaned"
               ]
             },
             "Explicit": {

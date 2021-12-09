@@ -31,7 +31,8 @@
               "type": "string",
               "enum": [
                 "forward",
-                "drop"
+                "drop",
+                "log"
               ]
             },
             "SettingNamespaces": {
@@ -167,6 +168,28 @@
               "default": false,
               "type": "boolean"
             },
+            "EventTypes": {
+              "contains": {
+                "type": "string"
+              },
+              "default": [
+                "reject",
+                "bounce",
+                "complaint"
+              ],
+              "description": "Expected events to log  (send only)",
+              "type": "array",
+              "enum": [
+                "click",
+                "bounce",
+                "send",
+                "open",
+                "complaint",
+                "delivery",
+                "renderingFailure",
+                "reject"
+              ]
+            },
             "Conditions": {
               "description": "Conditions that must be met for the rule to fire. Conditions are ANDed together",
               "additionalProperties": false,
@@ -176,25 +199,15 @@
                   "contains": {
                     "type": "string"
                   },
-                  "description": "Expected To addresses",
+                  "description": "The recipient of the email to match on",
                   "type": "array"
                 },
-                "EventTypes": {
+                "Senders": {
                   "contains": {
                     "type": "string"
                   },
-                  "description": "Expected events to action (send only)",
-                  "type": "array",
-                  "enum": [
-                    "click",
-                    "bounce",
-                    "send",
-                    "open",
-                    "complaint",
-                    "delivery",
-                    "renderingFailure",
-                    "reject"
-                  ]
+                  "description": "The senders of the email to match on",
+                  "type": "array"
                 }
               }
             }

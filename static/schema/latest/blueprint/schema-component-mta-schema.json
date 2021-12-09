@@ -21,10 +21,84 @@
               "default": 100,
               "type": "number"
             },
+            "Hostname": {
+              "description": "Configure the domain(s) associated with this MTA",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Wildcard": {
+                  "type": "boolean"
+                },
+                "IncludeInHost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "Domain": {
+                  "description": "Explicit domain id which will override the product domain",
+                  "type": "string"
+                },
+                "IncludeInDomain": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "HostParts": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
             "IPAddressGroups": {
               "contains": {
                 "type": "string"
               },
+              "default": [
+                "_global"
+              ],
               "description": "Allowed IP addresses. If any group is provided, all unmatching traffic will be blocked",
               "type": "array"
             },
@@ -170,77 +244,6 @@
             "Export": {
               "default": false,
               "type": "boolean"
-            },
-            "Certificate": {
-              "description": "Configure the domain(s) associated with this MTA",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Wildcard": {
-                  "type": "boolean"
-                },
-                "IncludeInHost": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Tier": {
-                      "type": "boolean"
-                    },
-                    "Instance": {
-                      "type": "boolean"
-                    },
-                    "Version": {
-                      "type": "boolean"
-                    },
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Host": {
-                      "type": "boolean"
-                    },
-                    "Component": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "External": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "string"
-                },
-                "Domain": {
-                  "description": "Explicit domain id which will override the product domain",
-                  "type": "string"
-                },
-                "IncludeInDomain": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "HostParts": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                }
-              }
             }
           },
           "required": [
