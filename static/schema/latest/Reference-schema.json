@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
   "definitions": {
     "LogFileGroup": {
       "additionalProperties": false,
@@ -1468,7 +1469,7 @@
               "type": "boolean"
             },
             "Links": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/link"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
             }
           }
         },
@@ -1702,7 +1703,7 @@
                 },
                 "Links": {
                   "description": "The links of components which will accept fowarded logs",
-                  "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/link"
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
                 }
               },
               "required": [
@@ -1896,7 +1897,7 @@
             },
             "Links": {
               "description": "Apply network security rules based on links",
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/link"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
             }
           }
         }
@@ -1940,7 +1941,7 @@
           "type": "object",
           "properties": {
             "Volumes": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/volume"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
             },
             "Enabled": {
               "default": true,
@@ -1953,7 +1954,7 @@
           "type": "object",
           "properties": {
             "Volumes": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/volume"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
             },
             "Enabled": {
               "default": true,
@@ -1966,7 +1967,7 @@
           "type": "object",
           "properties": {
             "Volumes": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/volume"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
             },
             "Tier": {
               "description": "The storage tier to use for all volumes",
@@ -1991,7 +1992,7 @@
           "type": "object",
           "properties": {
             "Volumes": {
-              "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/volume"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
             },
             "Enabled": {
               "default": true,
@@ -2692,5 +2693,6 @@
         "Pattern"
       ]
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/Reference-schema.json"
 }
