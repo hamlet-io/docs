@@ -18,12 +18,13 @@ const defaultColumns = [
   {
     name: "Attribute",
     selector: "attribute",
+    grow: 2,
     sortable: true,
   },
   {
     name: "Description",
     selector: "description",
-    grow: 4,
+    grow: 2,
     wrap: true,
   },
   {
@@ -34,7 +35,7 @@ const defaultColumns = [
       return (
         <div data-tag="allowRowEvents">
           {
-            (row.type.startsWith('#')) ? <a href={getSchemaUrl(row.type)}>object</a> 
+            (row.type.startsWith('#')) ? <a href={getSchemaUrl(row.type)}>object</a>
             : (row.type == "object") ? <a href={getSchemaUrl('#' + row.attribute)}>object</a>
             : row.type
           }
@@ -50,7 +51,7 @@ const defaultColumns = [
   {
     name: "Valid Values",
     selector: "values",
-    grow: 2,
+    grow: 1,
     wrap: true,
   },
   {
@@ -84,72 +85,64 @@ const formatDataTableDefault = (type, value) => {
   switch (type) {
     case "object":
       return JSON.stringify(value, null, 4);
-      break;
 
     case "array":
-      return value.join(', ')
-      break;
-  
+      return value.join(', ');
+
     default:
       return value;
-      break;
   }
 }
 
-const getDataTableList = (data) => {
+const getDataTableList = (table, data) => {
   var tableList = [];
-  if (data?.definitions) {
-    const schemaName = Object.keys(data.definitions)[0];
-    const schemaAttributeRoot = data.definitions[schemaName].patternProperties[patternPropertiesRegex];
-    const schemaData = schemaAttributeRoot.properties;
-    const required = (schemaAttributeRoot?.required) ? schemaAttributeRoot.required : []; 
-    tableList = getDataTableList(schemaData);
-    tableList.unshift({table: schemaName, data: schemaData, required: required});
-  } else {
-    Object.keys(data).map(attrName => {
-      const attrValue = data[attrName];
-      const required = (attrValue?.required) ? attrValue.required : []; 
-      (attrValue?.properties) ? tableList.push({ 
-        table: attrName,
-        data: attrValue.properties,
-        required: required
-      })
-      : (attrValue?.patternProperties) ? (
-        tableList.push({
-          table: attrName, 
-          data: attrValue.patternProperties[patternPropertiesRegex].properties,
-          required: 
-            (attrValue.patternProperties[patternPropertiesRegex]?.required) ? 
-              attrValue.patternProperties[patternPropertiesRegex].required 
-              : []
-        })
-      ) : null
-      return tableList
-    })
+
+  tableList.push({
+    table: table,
+    data: data.properties,
+    required: (data?.required) ? data.required : []
+  })
+
+  if ( data.properties ) {
+
+    for ( const [key, value] of Object.entries(data.properties)) {
+      if ( value.type === "object" ) {
+        if ( value.properties ) {
+          tableList.push.apply(tableList, getDataTableList(key, value))
+        }
+
+        if ( value.patternProperties ) {
+          tableList.push.apply(tableList, getDataTableList(key, value.patternProperties[patternPropertiesRegex]))
+        }
+      }
+    }
   }
-  return tableList
+
+  return tableList;
 }
 
 const getDataTableRows = (data, required) => {
   var tableRows = [];
-  Object.keys(data).map((attrName, idx) => {
-    const attrValue = data[attrName];
-    attrValue.type = (attrValue["$ref"]) ? attrValue["$ref"] : attrValue.type;
-    const values = (attrValue?.enum) ? attrValue.enum.join(', ') : null;
-    const defaultValue = formatDataTableDefault(attrValue.type, attrValue?.default);
-    const type = (attrValue?.anyOf) ? attrValue.anyOf.map(a => a.type).join(' or ') : attrValue.type;
-    const isRequired = (required.includes(attrName)) ? "true" : "false";
+
+  for ( const [key, value] of Object.entries(data) ) {
+
+    value.type = (value["$ref"]) ? value["$ref"] : value.type;
+    const values = (value?.enum) ? value.enum.join(', ') : null;
+    const defaultValue = formatDataTableDefault(value.type, value?.default);
+    const type = Array.isArray(value.type) ? value.type.join('or ') : value.type;
+    const isRequired = (required.includes(key)) ? "true" : "false";
+
     tableRows.push({
-      id: idx,
-      attribute: attrName,
-      description: attrValue?.description,
+      id: key,
+      attribute: key,
+      description: value?.description,
       type: type,
       mandatory: isRequired,
       values: values,
       default: defaultValue
-    });
-    return tableRows
-  })
+    })
+  }
+
   return tableRows
 }
 
@@ -173,39 +166,88 @@ function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaul
 
 function HamletDataTables() {
   const { type, instance } = qs.parse(useLocation().search, { ignoreQueryPrefix: true })
-  const schemaHeader = instance + " " + type;
-  const schemaData = getJsonSchemaData(type || 'component', instance || 'baseline');
-  const dataTables = getDataTableList(schemaData);
-  const schemaExample = JSON.stringify(getSchemaExample(schemaData), null, 4);
-  return (
-    <React.Fragment>
-      <div className="item shadow--tl component" > 
-        <div className="ref-row-headers">
+
+  if (instance && type ) {
+    const schemaHeader = type + ": " + instance;
+    const schemaData = getJsonSchemaData(type, instance);
+    const dataTables = getDataTableList("", schemaData);
+    const schemaExample = JSON.stringify(getSchemaExample(schemaData), null, 4);
+
+    return (
+      <React.Fragment>
+        <div className="item component" >
           <section id={instance}>
             <h1>{schemaHeader}</h1>
           </section>
+          <div>
+            <h3>Syntax</h3>
+            <section>To use this configuration create an object with the following syntax:</section>
+            <br></br>
+          </div>
+          <HamletExample
+            codeblock={schemaExample}
+          />
+          <div>
+            <h3>Details</h3>
+            <section>Each table below provides details on the properties for each object in the syntax above </section>
+            <br></br>
+          </div>
+          {
+            dataTables.map((table) => {
+              const tableRows = getDataTableRows(table.data, table.required);
+              return (
+                  <section id={table.table.toLowerCase()}>
+                    <HamletDataTable
+                      title={table.table}
+                      data={tableRows}
+                    />
+                    <br />
+                  </section>
+              )
+            })
+          }
         </div>
-        <HamletExample
-          codeblock={schemaExample}
-        />
-        { 
-          dataTables.map((table) => {
-            const tableRows = getDataTableRows(table.data, table.required);
-            return (
-                <section id={table.table.toLowerCase()}>
-                  <HamletDataTable
-                    title={table.table + " Schema"}
-                    data={tableRows}
-                  />
-                  <br />
-                </section>
-            )
-          })
-        }
-      </div>
-      <br />
-    </React.Fragment>
-  )
+        <br />
+      </React.Fragment>
+    )
+  }
+  else {
+    return (
+      <React.Fragment>
+        <div className="item component" >
+          <section id="welcome">
+            <h1>Hamlet Solution Reference</h1>
+          </section>
+          <section>
+            The hamlet solution reference provides detailed information on what can be defined in a hamlet solution file
+          </section>
+          <br></br>
+          <section>
+            The reference is broken up into sections based on how the configuration is used:
+            <ul>
+              <li><strong>Layers</strong> Set the context of what is being deployed and allow you to describe multiple applications within a single hamlet</li>
+              <li><strong>Components</strong> Describe each function performed as part of your application</li>
+              <li><strong>Reference Data</strong> Provides a collection of metadata that can shared across components</li>
+              <li><strong>Modules</strong> Inject blueprint data into your solution to share and reuse your solution</li>
+              <li><strong>Attribute Sets</strong> Are used to define configuration which is shared throughout the solution</li>
+            </ul>
+          </section>
+          <br></br>
+          <section>
+          <h2>Using the Reference</h2>
+          <div>
+            Each reference is made up of two sections, the Syntax and the Details.
+            <ul>
+              <li><strong>Syntax</strong>  The full structure of the configuration item with all values populated by the type of the property.</li>
+              <li><strong>Details</strong> A table for each object in the configuration along with the properties of each attribute </li>
+            </ul>
+          </div>
+          </section>
+        </div>
+        <br />
+      </React.Fragment>
+    )
+  }
 };
 
 export default HamletDataTables;

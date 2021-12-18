@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "no_master_vpc": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "InhibitEnabled": {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        }
+      }
+    },
+    "consolidatelogs": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "tier": {
+          "default": "mgmt",
+          "description": "The tier to use to host the components",
+          "type": "string"
+        },
+        "namePrefix": {
+          "description": "A prefix appended to component names and deployment units to ensure uniquness",
+          "type": "string"
+        },
+        "lambdaSourceUrl": {
+          "default": "https://github.com/hamlet-io/lambda-log-processors/releases/download/v1.0.2/cloudwatch-firehose.zip",
+          "description": "A URL to the lambda zip package for sending alerts",
+          "type": "string"
+        },
+        "InhibitEnabled": {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "deploymentProfile": {
+          "description": "The deployment profile id to enable log consolidation on.",
+          "type": "string"
+        },
+        "lambdaSourceHash": {
+          "default": "3a6b1ce462aaa203477044cfe83c66f128381434",
+          "description": "A sha1 hash of the lambda image to validate the correct one",
+          "type": "string"
+        }
+      },
+      "required": [
+        "deploymentProfile"
+      ]
+    },
+    "no_master_resourcesets": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "InhibitEnabled": {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        }
+      }
+    },
+    "alarmslack": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "alertProfile": {
+          "default": "default",
+          "description": "The alert profile id to use for enabling notifications",
+          "type": "string"
+        },
+        "kmsPrefix": {
+          "default": "base64:",
+          "description": "The KMS prefix used for encrypted values",
+          "type": "string"
+        },
+        "tier": {
+          "default": "mgmt",
+          "description": "The tier to use to host the components",
+          "type": "string"
+        },
+        "slackChannel": {
+          "description": "The slack channel to send alerts to",
+          "type": "string"
+        },
+        "alertSeverity": {
+          "default": "info",
+          "description": "The lowest severity alerts to include in notifications",
+          "type": "string"
+        },
+        "namePrefix": {
+          "default": "alarmslack",
+          "description": "A prefix appended to component names and deployment units to ensure uniquness",
+          "type": "string"
+        },
+        "webHookUrl": {
+          "description": "The slack incoming webhook URL to use - Encryption is recommended",
+          "type": "string"
+        },
+        "lambdaSourceUrl": {
+          "default": "https://github.com/hamlet-io/lambda-cloudwatch-slack/releases/download/v1.1.0/cloudwatch-slack.zip",
+          "description": "A URL to the lambda zip package for sending alerts",
+          "type": "string"
+        },
+        "InhibitEnabled": {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "lambdaSourceHash": {
+          "default": "8f194db4f6ed2b826387112df144f188451ba6db",
+          "description": "A sha1 hash of the lambda image to ensure its the right one",
+          "type": "string"
+        }
+      },
+      "required": [
+        "slackChannel",
+        "webHookUrl"
+      ]
+    },
+    "privatebastion": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "component": {
+          "default": "ssh",
+          "description": "The component to use to host the private bastion",
+          "type": "string"
+        },
+        "tier": {
+          "default": "msg",
+          "description": "The tier to use to host the private bastion",
+          "type": "string"
+        },
+        "multiAZ": {
+          "default": true,
+          "description": "Multi-AZ support on the private bastion",
+          "type": "boolean"
+        },
+        "deploymentUnit": {
+          "default": "ssh",
+          "description": "The deployment unit for the private bastion",
+          "type": "string"
+        },
+        "InhibitEnabled": {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        }
+      }
+    }
+  }
+}

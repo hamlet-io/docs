@@ -12,38 +12,31 @@ import { schema } from "@site/src/components/HamletJsonSchema";
 function HamletRefRouter() {
   return (
 
-      <div className="row row-no-gutters sidebarContainer">
+      <div className="row sidebarContainer">
         <div className="col col--2">
           <div style={{ display: "flex" }}>
             <div
               style={{
-                padding: "10px",
+                padding: "20px",
                 width: "100%",
                 background: "#f0f0f0",
               }}
             >
               <ul style={{ listStyleType: "none", padding: 0 }}>
-                <br />
-                <h2>Layers</h2>
-                {Object.keys(schema.layer).map((instance) => (
+                <h2>Solution Reference</h2>
                   <React.Fragment>
                     <li>
-                      <Link
-                        to={`/reference?type=layer&instance=${instance}`}
-                      >
-                        {instance}
+                      <Link to={`/reference`}>
+                        Home
                       </Link>
                     </li>
                   </React.Fragment>
-                ))}
                 <br />
-                <h2>Attribute Sets</h2>
-                {Object.keys(schema.attributeset).map((instance) => (
+                <h2>Layers</h2>
+                {Object.keys(schema.Layer.definitions).sort().map((instance) => (
                   <React.Fragment>
                     <li>
-                      <Link
-                        to={`/reference?type=attributeset&instance=${instance}`}
-                      >
+                      <Link to={`/reference?type=Layer&instance=${instance}`}>
                         {instance}
                       </Link>
                     </li>
@@ -51,12 +44,10 @@ function HamletRefRouter() {
                 ))}
                 <br />
                 <h2>Components</h2>
-                {Object.keys(schema.component).map((instance) => (
+                {Object.keys(schema.Component.definitions).sort().map((instance) => (
                   <React.Fragment>
                     <li>
-                      <Link
-                        to={`/reference?type=component&instance=${instance}`}
-                      >
+                      <Link to={`/reference?type=Component&instance=${instance}`}>
                         {instance}
                       </Link>
                     </li>
@@ -64,17 +55,39 @@ function HamletRefRouter() {
                 ))}
                 <br />
                 <h2>Reference Data</h2>
-                {Object.keys(schema.reference).map((instance) => (
+                {Object.keys(schema.Reference.definitions).sort().map((instance) => (
                   <React.Fragment>
                     <li>
-                      <Link
-                        to={`/reference?type=reference&instance=${instance}`}
-                      >
+                      <Link to={`/reference?type=Reference&instance=${instance}`}>
                         {instance}
                       </Link>
                     </li>
                   </React.Fragment>
                 ))}
+                <br />
+                <br />
+                <h2>Modules</h2>
+                {Object.keys(schema.Module.definitions).sort().map((instance) => (
+                  <React.Fragment>
+                    <li>
+                      <Link to={`/reference?type=Module&instance=${instance}`}>
+                        {instance}
+                      </Link>
+                    </li>
+                  </React.Fragment>
+                ))}
+                <br />
+                <h2>Attribute Sets</h2>
+                {Object.keys(schema.AttributeSet.definitions).sort().map((instance) => (
+                  <React.Fragment>
+                    <li>
+                      <Link to={`/reference?type=AttributeSet&instance=${instance}`}>
+                        {instance}
+                      </Link>
+                    </li>
+                  </React.Fragment>
+                ))}
+                <br />
               </ul>
             </div>
           </div>
