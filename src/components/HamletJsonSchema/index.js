@@ -2,11 +2,11 @@
     These components do not render any elements, they are used for processing the Hamlet JSONSchema.
 */
 /* AttributeSet Imports */
-import AttributeSetSchema from "@site/static/schema/latest/schema-AttributeSet-schema.json"
-import ComponentSchema from "@site/static/schema/latest/schema-Component-schema.json"
-import LayerSchema from "@site/static/schema/latest/schema-Layer-schema.json"
-import ModuleSchema from "@site/static/schema/latest/schema-Module-schema.json"
-import ReferenceSchema from "@site/static/schema/latest/schema-Reference-schema.json"
+import AttributeSetSchema from "@site/static/schema/latest/AttributeSet-schema.json"
+import ComponentSchema from "@site/static/schema/latest/Component-schema.json"
+import LayerSchema from "@site/static/schema/latest/Layer-schema.json"
+import ModuleSchema from "@site/static/schema/latest/Module-schema.json"
+import ReferenceSchema from "@site/static/schema/latest/Reference-schema.json"
 
 const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_-]*$";
 

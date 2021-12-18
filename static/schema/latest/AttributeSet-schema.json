@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
   "definitions": {
     "aws_computeimage": {
       "additionalProperties": false,
@@ -752,7 +753,7 @@
           }
         },
         "Links": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/link"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "LogDriver": {
           "default": "awslogs",
@@ -816,7 +817,7 @@
           "type": "object"
         },
         "Alerts": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/alert"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "ContainerLogGroup": {
           "default": false,
@@ -1277,5 +1278,6 @@
         }
       }
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json"
 }

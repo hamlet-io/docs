@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
   "definitions": {
     "no_master_vpc": {
       "additionalProperties": false,
@@ -169,5 +170,6 @@
         }
       }
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/Module-schema.json"
 }

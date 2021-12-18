@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
   "definitions": {
     "Account": {
       "additionalProperties": false,
@@ -65,7 +66,7 @@
           "type": "string"
         },
         "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/module"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
         },
         "Access": {
           "patternProperties": {
@@ -190,7 +191,7 @@
           "type": "string"
         },
         "Plugins": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/plugin"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
         },
         "DeploymentProfiles": {
           "type": [
@@ -597,7 +598,7 @@
           "type": "object"
         },
         "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/module"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
         },
         "PolicyProfiles": {
           "patternProperties": {
@@ -786,10 +787,10 @@
           "type": "string"
         },
         "LinkRefs": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/link"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "Plugins": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/plugin"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
         }
       }
     },
@@ -884,7 +885,7 @@
           }
         },
         "OSPatching": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/ospatching"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/ospatching"
         },
         "Profiles": {
           "additionalProperties": false,
@@ -1044,7 +1045,7 @@
           "type": "object"
         },
         "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/module"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
         },
         "PolicyProfiles": {
           "patternProperties": {
@@ -1242,10 +1243,10 @@
           "type": "string"
         },
         "LinkRefs": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/link"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "Plugins": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/plugin"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
         }
       }
     },
@@ -1342,7 +1343,7 @@
           }
         },
         "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/module"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
         },
         "Title": {
           "type": "string"
@@ -1544,7 +1545,7 @@
           }
         },
         "Plugins": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/plugin"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
         }
       }
     },
@@ -1569,7 +1570,7 @@
           "type": "string"
         },
         "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/module"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
         },
         "Title": {
           "type": "string"
@@ -1590,7 +1591,7 @@
           "type": "string"
         },
         "LinkRefs": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/link"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "MultiAZ": {
           "type": "boolean"
@@ -1599,9 +1600,10 @@
           "type": "string"
         },
         "Plugins": {
-          "$ref": "https://docs.hamlet.io/schema/latest/blueprint/schema-AttributeSet-schema.json#/definitions/plugin"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
         }
       }
     }
-  }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/Layer-schema.json"
 }
