@@ -4,18 +4,7 @@
   "definitions": {
     "no_master_vpc": {
       "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        }
-      }
+      "type": "object"
     },
     "consolidatelogs": {
       "additionalProperties": false,
@@ -35,15 +24,6 @@
           "description": "A URL to the lambda zip package for sending alerts",
           "type": "string"
         },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
         "deploymentProfile": {
           "description": "The deployment profile id to enable log consolidation on.",
           "type": "string"
@@ -60,18 +40,7 @@
     },
     "no_master_resourcesets": {
       "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        }
-      }
+      "type": "object"
     },
     "alarmslack": {
       "additionalProperties": false,
@@ -115,15 +84,6 @@
           "description": "A URL to the lambda zip package for sending alerts",
           "type": "string"
         },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
         "lambdaSourceHash": {
           "default": "8f194db4f6ed2b826387112df144f188451ba6db",
           "description": "A sha1 hash of the lambda image to ensure its the right one",
@@ -158,15 +118,6 @@
           "default": "ssh",
           "description": "The deployment unit for the private bastion",
           "type": "string"
-        },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
         }
       }
     }

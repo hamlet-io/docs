@@ -1,0 +1,1476 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "occurrences": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "schema": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "configuration": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "loader": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "deploymenttest": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "blueprint": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "buildblueprint": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "schemalist": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "releaseinfo": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "unitlist": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "deployment": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "info": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
+    "validate": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/Entrance-schema.json"
+}

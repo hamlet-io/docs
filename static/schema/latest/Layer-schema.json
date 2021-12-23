@@ -353,6 +353,28 @@
                     }
                   }
                 },
+                "lambda_jar": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Storage": {
+                      "default": "objectstore",
+                      "const": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
                 "Enabled": {
                   "default": true,
                   "type": "boolean"
@@ -551,15 +573,6 @@
               "type": "array"
             }
           }
-        },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
         },
         "Id": {
           "type": "string"
@@ -774,15 +787,6 @@
         "Region": {
           "type": "string"
         },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
         "Id": {
           "type": "string"
         },
@@ -911,15 +915,6 @@
         },
         "Region": {
           "type": "string"
-        },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
         },
         "Id": {
           "type": "string"
@@ -1230,15 +1225,6 @@
         "Region": {
           "type": "string"
         },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
         "Domain": {
           "type": "string"
         },
@@ -1493,15 +1479,6 @@
         "Region": {
           "type": "string"
         },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
         "Id": {
           "type": "string"
         },
@@ -1577,15 +1554,6 @@
         },
         "Region": {
           "type": "string"
-        },
-        "InhibitEnabled": {
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
         },
         "Id": {
           "type": "string"

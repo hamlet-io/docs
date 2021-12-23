@@ -1,0 +1,4912 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "Bootstraps": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Bootstraps": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Type": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "HandlerVersion": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "ScriptStore": {
+                  "type": "string"
+                },
+                "AutoUpgradeOnMinorVersion": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "ProtectedSettings": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Value": {
+                          "type": [
+                            "array",
+                            "boolean",
+                            "number",
+                            "object",
+                            "string"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Key": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Key",
+                        "Value"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "Packages": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Version": {
+                          "type": "string"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "InitScript": {
+                  "type": "string"
+                },
+                "Index": {
+                  "description": "Determines script execution sequence.",
+                  "type": "number"
+                },
+                "Prefix": {
+                  "type": "string"
+                },
+                "Publisher": {
+                  "type": "string"
+                },
+                "Settings": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Value": {
+                          "type": [
+                            "array",
+                            "boolean",
+                            "number",
+                            "object",
+                            "string"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Key": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Key",
+                        "Value"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "Products": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Products": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "SES": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Region": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Builds": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Data": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Environment": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Code": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Environment": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "DeploymentProfiles": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Modes": {
+                          "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                          "type": "object"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "Modules": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
+                },
+                "PolicyProfiles": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Modes": {
+                          "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                          "type": "object"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "*": {
+                  "description": "Individual deployment-unit configuration overrides. Attribute must match the DeploymentUnit value.",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Region": {
+                      "description": "An override of the Region for a single DeploymentUnit.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "CertificateBehaviours": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Wildcard": {
+                      "type": "boolean"
+                    },
+                    "IncludeInHost": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Tier": {
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "type": "boolean"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Product": {
+                          "type": "boolean"
+                        },
+                        "Environment": {
+                          "type": "boolean"
+                        },
+                        "Host": {
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "type": "boolean"
+                        },
+                        "Segment": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "External": {
+                      "type": "boolean"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "string"
+                    },
+                    "Domain": {
+                      "type": "string"
+                    },
+                    "IncludeInDomain": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Product": {
+                          "type": "boolean"
+                        },
+                        "Environment": {
+                          "type": "boolean"
+                        },
+                        "Segment": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "HostParts": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "PlacementProfiles": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "*": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "DeploymentFramework": {
+                              "description": "The deployment framework to use to generate the outputs for deployment",
+                              "type": "string"
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "Region": {
+                              "description": "The id of the region to host the component",
+                              "type": "string"
+                            },
+                            "Provider": {
+                              "description": "The provider to use to host the component",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Provider",
+                            "Region",
+                            "DeploymentFramework"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "Profiles": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Policy": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Placement": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Deployment": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "Region": {
+                  "type": "string"
+                },
+                "Domain": {
+                  "type": "string"
+                },
+                "LinkRefs": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                },
+                "Plugins": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "AlertProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "AlertProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Rules": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "SecurityProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "SecurityProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "apigateway": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "WAFProfile": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "GatewayHTTPSProfile": {
+                      "default": "TLS_1_0",
+                      "type": "string"
+                    },
+                    "CDNHTTPSProfile": {
+                      "type": "string"
+                    },
+                    "WAFValueSet": {
+                      "type": "string"
+                    },
+                    "ProtocolPolicy": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "IPSecVPN": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "StartupAction": {
+                      "description": "Initiation behaviour for vpn",
+                      "type": "string",
+                      "enum": [
+                        "add",
+                        "start"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "TunnelInsideCidr": {
+                      "type": "string"
+                    },
+                    "IKEVersions": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "DeadPeerDetectionAction": {
+                      "type": "string",
+                      "enum": [
+                        "clear",
+                        "none",
+                        "restart"
+                      ]
+                    },
+                    "Phase2": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Lifetime": {
+                          "type": "number"
+                        },
+                        "EncryptionAlgorithms": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "IntegrityAlgorithms": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "DiffeHellmanGroups": {
+                          "contains": {
+                            "type": "number"
+                          },
+                          "type": "array"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "DeadPeerDetectionTimeout": {
+                      "type": "number"
+                    },
+                    "Phase1": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Lifetime": {
+                          "type": "number"
+                        },
+                        "EncryptionAlgorithms": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "IntegrityAlgorithms": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "DiffeHellmanGroups": {
+                          "contains": {
+                            "type": "number"
+                          },
+                          "type": "array"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "ReplayWindowSize": {
+                      "type": "number"
+                    },
+                    "Rekey": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "MarginTime": {
+                          "type": "number"
+                        },
+                        "FuzzPercentage": {
+                          "type": "number"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                "lb": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "classic": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "HTTPSProfile": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "application": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "WAFProfile": {
+                          "type": "string"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "HTTPSProfile": {
+                          "type": "string"
+                        },
+                        "WAFValueSet": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "network": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "HTTPSProfile": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "cdn": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "WAFProfile": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "HTTPSProfile": {
+                      "type": "string"
+                    },
+                    "WAFValueSet": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "db": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "SSLCertificateAuthority": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "es": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "ProtocolPolicy": {
+                      "type": "string",
+                      "enum": [
+                        "https-only",
+                        "http-https",
+                        "http-only"
+                      ]
+                    }
+                  }
+                },
+                "filetransfer": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "EncryptionPolicy": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "NetworkEndpointGroups": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "NetworkEndpointGroups": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Services": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Services"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "CountryGroups": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "CountryGroups": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Locations": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Blacklist": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "LogFiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "LogFiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "FilePath": {
+                  "type": "string"
+                },
+                "TimeFormat": {
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "MultiLinePattern": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "FilePath"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "Segments": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Segments": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "NAT": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Hosted": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "MultiAZ": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "RDS": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "AutoMinorVersionUpgrade": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "S3": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "IncludeTenant": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Tiers": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Order": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "Category": {
+                  "type": "string"
+                },
+                "Bastion": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Active": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "IPAddressGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "Modules": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "Data": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Expiration": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Offline": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "Public": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "IPAddressGroups": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      }
+                    }
+                  }
+                },
+                "IPAddressGroups": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "RotateKeys": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Profiles": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Policy": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Deployment": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "Network": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tiers": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Order": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "InternetAccess": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "CIDR": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Address": {
+                          "type": "string"
+                        },
+                        "Mask": {
+                          "default": 0,
+                          "type": "number"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "DNSHostnames": {
+                      "type": "boolean"
+                    },
+                    "DNSSupport": {
+                      "type": "boolean"
+                    },
+                    "Zones": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Order": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Region": {
+                  "type": "string"
+                },
+                "Id": {
+                  "type": "string"
+                },
+                "Operations": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "FlowLogs": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Expiration": {
+                          "type": [
+                            "number",
+                            "string"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": false,
+                          "description": "Deprecated - here to override automatically added enabled attribute",
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Expiration": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Offline": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "Plugins": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "Tenants": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Tenants": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Description": {
+                  "type": "string"
+                },
+                "DeploymentProfiles": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Modes": {
+                          "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                          "type": "object"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "Modules": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
+                },
+                "PolicyProfiles": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Modes": {
+                          "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                          "type": "object"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "CertificateBehaviours": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Wildcard": {
+                      "type": "boolean"
+                    },
+                    "IncludeInHost": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Tier": {
+                          "type": "boolean"
+                        },
+                        "Instance": {
+                          "type": "boolean"
+                        },
+                        "Version": {
+                          "type": "boolean"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Product": {
+                          "type": "boolean"
+                        },
+                        "Environment": {
+                          "type": "boolean"
+                        },
+                        "Host": {
+                          "type": "boolean"
+                        },
+                        "Component": {
+                          "type": "boolean"
+                        },
+                        "Segment": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "External": {
+                      "type": "boolean"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "string"
+                    },
+                    "Domain": {
+                      "type": "string"
+                    },
+                    "IncludeInDomain": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Product": {
+                          "type": "boolean"
+                        },
+                        "Environment": {
+                          "type": "boolean"
+                        },
+                        "Segment": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "HostParts": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "PlacementProfiles": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "*": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "DeploymentFramework": {
+                              "description": "The deployment framework to use to generate the outputs for deployment",
+                              "type": "string"
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "Region": {
+                              "description": "The id of the region to host the component",
+                              "type": "string"
+                            },
+                            "Provider": {
+                              "description": "The provider to use to host the component",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Provider",
+                            "Region",
+                            "DeploymentFramework"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Profiles": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Policy": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Placement": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Deployment": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "Region": {
+                  "type": "string"
+                },
+                "Id": {
+                  "type": "string"
+                },
+                "LinkRefs": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                },
+                "Plugins": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "LoggingProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "LoggingProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "ForwardingRules": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Filter": {
+                          "description": "The name of a Logfilter to apply to the forwarding rule",
+                          "type": "string"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Links": {
+                          "description": "The links of components which will accept fowarded logs",
+                          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                        }
+                      },
+                      "required": [
+                        "Filter"
+                      ]
+                    }
+                  },
+                  "description": "Controls the forwarding of logs after they have landed in their initial logging location",
+                  "additionalProperties": false,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "IPAddressGroups": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "IPAddressGroups": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Description": {
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "CIDR": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "IsOpen": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "PlacementProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "PlacementProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "*": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "DeploymentFramework": {
+                      "description": "The deployment framework to use to generate the outputs for deployment",
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Region": {
+                      "description": "The id of the region to host the component",
+                      "type": "string"
+                    },
+                    "Provider": {
+                      "description": "The provider to use to host the component",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Provider",
+                    "Region",
+                    "DeploymentFramework"
+                  ]
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "VMImageProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "VMImageProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "*": {
+                  "description": "The component type that the VMImage configuration belongs to.",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Publisher": {
+                      "type": "string"
+                    },
+                    "Image": {
+                      "type": "string"
+                    },
+                    "Offering": {
+                      "type": "string"
+                    },
+                    "LicenseType": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Publisher",
+                    "Offering",
+                    "Image"
+                  ]
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "BaselineProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "BaselineProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "SSHKey": {
+                  "type": "string"
+                },
+                "CDNOriginKey": {
+                  "type": "string"
+                },
+                "AppData": {
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Encryption": {
+                  "type": "string"
+                },
+                "OpsData": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "OpsData",
+                "AppData",
+                "Encryption",
+                "SSHKey",
+                "CDNOriginKey"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "CORSProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "CORSProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "ExposedHeaders": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "AllowedOrigins": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "AllowedMethods": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "AllowedHeaders": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "MaxAge": {
+                  "type": "number"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "AllowedOrigins",
+                "AllowedMethods",
+                "AllowedHeaders",
+                "ExposedHeaders",
+                "MaxAge"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "Solutions": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Solutions": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "RDS": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "AutoMinorVersionUpgrade": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "Modules": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "Region": {
+                  "type": "string"
+                },
+                "Id": {
+                  "type": "string"
+                },
+                "LinkRefs": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                },
+                "MultiAZ": {
+                  "type": "boolean"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Plugins": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "AlertRules": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "AlertRules": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Destinations": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Links": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Severity": {
+                  "type": "string",
+                  "enum": [
+                    "debug",
+                    "info",
+                    "warn",
+                    "error",
+                    "fatal"
+                  ]
+                }
+              },
+              "required": [
+                "Severity"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "WAFConditions": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "WAFConditions": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Type": {
+                  "type": "string"
+                },
+                "Filters": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Sizes": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Operators": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array",
+                      "enum": [
+                        "EQ",
+                        "NE",
+                        "LE",
+                        "LT",
+                        "GE",
+                        "GT"
+                      ]
+                    },
+                    "Constraints": {
+                      "type": "string",
+                      "enum": [
+                        "CONTAINS",
+                        "CONTAINS_WORD",
+                        "EXACTLY",
+                        "STARTS_WITH",
+                        "ENDS_WITH"
+                      ]
+                    },
+                    "FieldsToMatch": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Type": {
+                          "type": "string",
+                          "enum": [
+                            "HEADER",
+                            "METHOD",
+                            "QUERY_STRING",
+                            "URI",
+                            "BODY",
+                            "SINGLE_QUERY_ARG",
+                            "ALL_QUERY_ARGS"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Data": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Targets": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Transformations": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array",
+                      "enum": [
+                        "NONE",
+                        "CMD_LINE",
+                        "COMPRESS_WHITE_SPACE",
+                        "HTML_ENTITY_DECODE",
+                        "LOWERCASE",
+                        "URL_DECODE"
+                      ]
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "WAFValueSets": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "WAFValueSets": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "*": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "BootstrapProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "BootstrapProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "ecs": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Bootstraps": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "ec2": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Bootstraps": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "computecluster": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Bootstraps": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "bastion": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Bootstraps": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "TestProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "TestProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "*": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "TestCases": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "ComputeProviders": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "ComputeProviders": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Containers": {
+                  "description": "Compute policy for container based resources",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Additional": {
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                          "properties": {
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "Weight": {
+                              "default": 1,
+                              "description": "The ratio of containers allocated to the provider based on the configured providers",
+                              "type": "number"
+                            },
+                            "Provider": {
+                              "type": "string",
+                              "enum": [
+                                "_autoscalegroup",
+                                "aws:fargate",
+                                "aws:fargatespot"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "Provider"
+                          ]
+                        }
+                      },
+                      "description": "Providers who will meet the additional compute capacity outside of the default",
+                      "additionalProperties": false,
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Default": {
+                      "description": "Sets the default computer provider which will meet base capacity",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "RequiredCount": {
+                          "default": 1,
+                          "description": "The minimum count of containers to run on the default provider",
+                          "type": "number"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Weight": {
+                          "default": 1,
+                          "description": "The ratio of containers allocated to the provider based on the configured providers",
+                          "type": "number"
+                        },
+                        "Provider": {
+                          "default": "_autoscalegroup",
+                          "description": "The default container compute provider",
+                          "type": "string",
+                          "enum": [
+                            "_autoscalegroup",
+                            "aws:fargate",
+                            "aws:fargatespot"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "DeploymentGroups": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "DeploymentGroups": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Priority": {
+                  "default": 100,
+                  "description": "The priority this group has in deployment mode processing",
+                  "type": "number"
+                },
+                "OutputPrefix": {
+                  "description": "Overrides the prefix used when generating outputs - Defaults to the Id of the Group",
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Level": {
+                  "description": "The deployment level to use for template generation",
+                  "type": "string",
+                  "enum": [
+                    "",
+                    "account",
+                    "segment",
+                    "solution",
+                    "application"
+                  ]
+                },
+                "District": {
+                  "description": "The id of the district for components included in the deployment group",
+                  "type": "string"
+                },
+                "ResourceSets": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "ResourceLabels": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "description": "The resource labels to include in the subset",
+                          "type": "array"
+                        },
+                        "deployment:Unit": {
+                          "description": "The Deployment Unit",
+                          "type": "string"
+                        },
+                        "GroupDeploymentUnit": {
+                          "default": true,
+                          "description": "Does the resource set span all units in the group",
+                          "type": "boolean"
+                        },
+                        "deployment:Priority": {
+                          "default": 5,
+                          "description": "The Deployment Priority",
+                          "type": "number"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "deployment:Unit"
+                      ]
+                    }
+                  },
+                  "description": "Generate deployments based on resource labels across all units in the group",
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "CompositeTemplate": {
+                  "description": "A composite template file to include for this group",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Level",
+                "District"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "ServiceRoles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "ServiceRoles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Description": {
+                  "description": "A description to include as part of the Role",
+                  "type": "string"
+                },
+                "ServiceName": {
+                  "description": "The Service domain name for the service you want to create the role for",
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "ScriptStores": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "ScriptStores": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Destination": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Prefix": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Engine": {
+                  "type": "string",
+                  "enum": [
+                    "local",
+                    "github"
+                  ]
+                },
+                "Source": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Repository": {
+                      "type": "string"
+                    },
+                    "Branch": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Directory": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "WAFRuleGroups": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "WAFRuleGroups": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "WAFRules": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "Categories": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Categories": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Description": {
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "Id": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "DeploymentProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "DeploymentProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Modes": {
+                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                  "type": "object"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "PolicyProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "PolicyProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Modes": {
+                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                  "type": "object"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "Ports": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Ports": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "PortRange": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "From": {
+                      "type": "number"
+                    },
+                    "To": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "IPProtocol": {
+                  "type": "string",
+                  "enum": [
+                    "tcp",
+                    "udp",
+                    "icmp",
+                    "any",
+                    "all"
+                  ]
+                },
+                "Port": {
+                  "type": "number"
+                },
+                "HealthCheck": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Path": {
+                      "type": "string"
+                    },
+                    "SuccessCodes": {
+                      "type": "string"
+                    },
+                    "UnhealthyThreshold": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "Timeout": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "HealthyThreshold": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Interval": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Protocol": {
+                  "type": "string",
+                  "enum": [
+                    "TCP",
+                    "UDP",
+                    "HTTP",
+                    "HTTPS",
+                    "SSL"
+                  ]
+                },
+                "ICMP": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Type": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Code": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "Certificate": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "IPProtocol"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "Regions": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Regions": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Partition": {
+                  "type": "string"
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "Locality": {
+                  "type": "string"
+                },
+                "AMIs": {
+                  "type": "object"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "Id": {
+                  "type": "string"
+                },
+                "Accounts": {
+                  "type": "object"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Zones": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Description": {
+                          "type": "string"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "NetworkEndpoints": {
+                          "contains": {
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "AWSZone": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                }
+              },
+              "required": [
+                "Locality"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "CertificateBehaviours": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "CertificateBehaviours": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Wildcard": {
+                  "type": "boolean"
+                },
+                "IncludeInHost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "External": {
+                  "type": "boolean"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "HostParts": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "LogFilters": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "LogFilters": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Pattern": {
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Pattern"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "Environments": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Environments": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "RDS": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "AutoMinorVersionUpgrade": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "Category": {
+                  "type": "string"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "Data": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Expiration": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Offline": {
+                      "type": "number"
+                    },
+                    "Public": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "IPAddressGroups": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "DomainBehaviours": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "FlowLogs": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Expiration": {
+                      "default": 7,
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": false,
+                      "description": "Deprecated - here to override automatically added enabled attribute",
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "OSPatching": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/ospatching"
+                },
+                "Profiles": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Policy": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Deployment": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "Region": {
+                  "type": "string"
+                },
+                "Id": {
+                  "type": "string"
+                },
+                "MultiAZ": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "Operations": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "DeadLetterQueue": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "MaxReceives": {
+                          "default": 3,
+                          "type": "number"
+                        },
+                        "Enabled": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "FlowLogs": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Expiration": {
+                          "type": "number"
+                        },
+                        "Enabled": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Expiration": {
+                      "default": 7,
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Offline": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "PortMappings": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "PortMappings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Destination": {
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Source": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Source",
+                "Destination"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "Storage": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Storage": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "ecs": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Volumes": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "ec2": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Volumes": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "computecluster": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Volumes": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
+                    },
+                    "Tier": {
+                      "description": "The storage tier to use for all volumes",
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Replication": {
+                      "description": "The type of storage replication to use",
+                      "type": "string"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "bastion": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Volumes": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "storageAccount": {
+                  "description": "Azure Storage Account configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Type": {
+                      "type": "string"
+                    },
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "AccessTier": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Replication": {
+                      "type": "string"
+                    },
+                    "HnsEnabled": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "es": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Volumes": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "description": "A fixed volume to use for ES Data storage",
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Type": {
+                              "default": "gp2",
+                              "description": "The type of volume to provision - see provider for available types",
+                              "type": "string"
+                            },
+                            "Size": {
+                              "description": "The size in GB of the volume",
+                              "type": "number"
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "description": "Should the volume be created",
+                              "type": "boolean"
+                            },
+                            "Iops": {
+                              "description": "For volume types which support provisioned IOPS, this sets the requested IOPS",
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "Size"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "WAFRules": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "WAFRules": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "NameSuffix": {
+                  "type": "string"
+                },
+                "Conditions": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Condition": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Negated": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "LogFileProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "LogFileProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "ecs": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "LogFileGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "ec2": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "LogFileGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "computecluster": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "LogFileGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "bastion": {
+                  "description": "The component type the profile applies to",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "LogFileGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "TestCases": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "TestCases": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Structural": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "JSON": {
+                      "description": "Generic JSON level structure tests",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Length": {
+                          "patternProperties": {
+                            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                              "properties": {
+                                "Path": {
+                                  "type": "string"
+                                },
+                                "Enabled": {
+                                  "default": true,
+                                  "type": "boolean"
+                                },
+                                "Count": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          "description": "Length of an Array at a given JSON path",
+                          "additionalProperties": false,
+                          "type": "object"
+                        },
+                        "Exists": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "description": "Does a JSON path exist",
+                          "type": "array"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "NotEmpty": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "description": "Is the value of a JSON path not emtpy",
+                          "type": "array"
+                        },
+                        "Match": {
+                          "patternProperties": {
+                            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                              "properties": {
+                                "Path": {
+                                  "type": "string"
+                                },
+                                "Value": {
+                                  "type": [
+                                    "array",
+                                    "boolean",
+                                    "number",
+                                    "object",
+                                    "string"
+                                  ]
+                                },
+                                "Enabled": {
+                                  "default": true,
+                                  "type": "boolean"
+                                }
+                              }
+                            }
+                          },
+                          "description": "Does a JSON path match a value",
+                          "additionalProperties": false,
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "CFN": {
+                      "description": "Cloud formation Template structure",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Output": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "description": "Does an output with exist",
+                          "type": "array"
+                        },
+                        "Resource": {
+                          "patternProperties": {
+                            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                              "properties": {
+                                "Type": {
+                                  "type": "string"
+                                },
+                                "Enabled": {
+                                  "default": true,
+                                  "type": "boolean"
+                                },
+                                "Name": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "Name",
+                                "Type"
+                              ]
+                            }
+                          },
+                          "description": "Does a resource with the type exist",
+                          "additionalProperties": false,
+                          "type": "object"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Tools": {
+                  "description": "Tool based tests - linters etc",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "checkov": {
+                      "description": "Run checkov on the file - https://github.com/bridgecrewio/checkov",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "SkipChecks": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "description": "A list of checks to skip in checkov",
+                          "type": "array"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Framework": {
+                          "default": "cloudformation",
+                          "description": "The framework of the file to run testing against",
+                          "type": [
+                            "array",
+                            "boolean",
+                            "number",
+                            "object",
+                            "string"
+                          ],
+                          "enum": [
+                            "cloudformation",
+                            "arm"
+                          ]
+                        }
+                      }
+                    },
+                    "cfn-lint": {
+                      "description": "Run cfn-lint on the file - https://github.com/aws-cloudformation/cfn-lint",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "IgnoreChecks": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "description": "A list of checks to ignore in cfn-lint",
+                          "type": "array"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "OutputSuffix": {
+                  "type": "string",
+                  "enum": [
+                    "template.json",
+                    "config.json",
+                    "cli.json",
+                    "parameters.json",
+                    "prologue.sh",
+                    "epilogue.sh"
+                  ]
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "WAFProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "WAFProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "DefaultAction": {
+                  "type": "string",
+                  "enum": [
+                    "ALLOW",
+                    "BLOCK"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Rules": {
+                  "contains": {
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "LogFileGroups": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "LogFileGroups": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "LogFiles": {
+                  "contains": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "LogFiles"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "NetworkProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "NetworkProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "BaseSecurityGroup": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Outbound": {
+                      "description": "Outbound security group rules",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "GlobalAllow": {
+                          "default": true,
+                          "description": "Allow all outbound traffic",
+                          "type": "boolean"
+                        },
+                        "NetworkRules": {
+                          "patternProperties": {
+                            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                              "properties": {
+                                "SecurityGroups": {
+                                  "contains": {
+                                    "type": "string"
+                                  },
+                                  "description": "A list of security groups or ids - for internal use only",
+                                  "type": "array"
+                                },
+                                "Description": {
+                                  "description": "A description that will be applied to the rule",
+                                  "type": "string"
+                                },
+                                "Enabled": {
+                                  "default": true,
+                                  "type": "boolean"
+                                },
+                                "Ports": {
+                                  "contains": {
+                                    "type": "string"
+                                  },
+                                  "description": "A list of port ids from the Ports reference",
+                                  "type": "array"
+                                },
+                                "IPAddressGroups": {
+                                  "contains": {
+                                    "type": "string"
+                                  },
+                                  "description": "A list of IP Address groups ids from the IPAddressGroups reference",
+                                  "type": "array"
+                                }
+                              }
+                            }
+                          },
+                          "additionalProperties": false,
+                          "type": "object"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Links": {
+                      "description": "Apply network security rules based on links",
+                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "SkuProfiles": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "SkuProfiles": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "apigateway": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Capacity": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "type": "string",
+                      "enum": [
+                        "Developer",
+                        "Standard",
+                        "Premium",
+                        "Basic",
+                        "Consumption"
+                      ]
+                    }
+                  }
+                },
+                "s3": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Kind": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Replication": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "secretstore": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Family": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "lb": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Capacity": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "computecluster": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "string",
+                      "enum": [
+                        "Standard",
+                        "Basic"
+                      ]
+                    },
+                    "Capacity": {
+                      "default": 1,
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "bastion": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Capacity": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "directory": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "db": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Capacity": {
+                      "type": "number"
+                    },
+                    "Size": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Family": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "gateway": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Generation": {
+                      "description": "The Virtual Network Gateway Generation",
+                      "type": "string"
+                    },
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "containerhost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "string"
+                    },
+                    "Capacity": {
+                      "type": "number"
+                    },
+                    "Size": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Family": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "network": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "DeploymentModes": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "DeploymentModes": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "ExecutionPolicy": {
+                  "default": "Optional",
+                  "description": "Defines how groups can be used in this deployment mode",
+                  "type": "string",
+                  "enum": [
+                    "Required",
+                    "Optional"
+                  ]
+                },
+                "Priority": {
+                  "description": "Controls for priority membership",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Order": {
+                      "default": "LowestFirst",
+                      "description": "How to evalute the priority ordering",
+                      "type": "string",
+                      "enum": [
+                        "HighestFirst",
+                        "LowestFirst"
+                      ]
+                    },
+                    "GroupFilter": {
+                      "default": ".*",
+                      "description": "A regex filter to apply on group ids to include in the mode",
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Membership": {
+                  "description": "How deployment groups are included in the mode and their ordering",
+                  "type": "string",
+                  "enum": [
+                    "explicit",
+                    "priority",
+                    "orphaned"
+                  ]
+                },
+                "Explicit": {
+                  "description": "Controls for explicit membership",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Groups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "description": "A list of group ids in their deployment order",
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Operations": {
+                  "default": [
+                    "update"
+                  ],
+                  "contains": {
+                    "type": "string"
+                  },
+                  "description": "The deployment operations to complete for each deployment",
+                  "type": "array",
+                  "enum": [
+                    "create",
+                    "update",
+                    "delete"
+                  ]
+                }
+              },
+              "required": [
+                "Membership"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "Processors": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Processors": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "nat": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "cache": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "CountPerZone": {
+                      "default": 1,
+                      "type": "number"
+                    }
+                  }
+                },
+                "computecluster": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "emr": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "DesiredTaskPerZone": {
+                      "default": 1,
+                      "type": "number"
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "DesiredCorePerZone": {
+                      "default": 1,
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "es": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Master": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Processor": {
+                          "type": "string"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Count": {
+                          "default": 0,
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "CountPerZone": {
+                      "default": 1,
+                      "type": "number"
+                    }
+                  }
+                },
+                "containerhost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "ecs": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "ec2": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "service": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "containerservice": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "bastion": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "db": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "Accounts": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Accounts": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "ProviderId": {
+                  "type": "string"
+                },
+                "S3": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Versioning": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Encryption": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "EncryptionSource": {
+                          "default": "EncryptionService",
+                          "type": "string",
+                          "enum": [
+                            "EncryptionService",
+                            "aws:kms",
+                            "localservice",
+                            "aes256"
+                          ]
+                        },
+                        "Enabled": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Encryption": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                "aws:ecsAccountSettings": {
+                  "default": {
+                    "containerInstanceLongArnFormat": true,
+                    "serviceLongArnFormat": true,
+                    "taskLongArnFormat": true,
+                    "awsvpcTrunking": true
+                  },
+                  "type": "object"
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "Modules": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
+                },
+                "Access": {
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "AWSId": {
+                          "type": "string"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "AWSId"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object"
+                },
+                "Encryption": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Alias": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "IncludeSeed": {
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Profiles": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Policy": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Deployment": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "Console": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Encryption": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "DedicatedKey": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "LoggingDestinations": {
+                      "default": [
+                        "s3"
+                      ],
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array",
+                      "enum": [
+                        "cloudwatch",
+                        "s3"
+                      ]
+                    }
+                  }
+                },
+                "Operations": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Expiration": {
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "CostCentre": {
+                  "type": "string"
+                },
+                "Plugins": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+                },
+                "DeploymentProfiles": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "PolicyProfiles": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "Registry": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Registries": {
+                      "description": "Defines the registries available for image hosting",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "pipeline": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "contentnode": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "lambda": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "spa": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "openapi": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "rdssnapshot": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "snapshotstore",
+                              "const": "snapshotstore",
+                              "description": "How the images are stored",
+                              "type": "string"
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "lambda_jar": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "scripts": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "dataset": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "swagger": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "objectstore",
+                              "const": "objectstore",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "docker": {
+                          "additionalProperties": false,
+                          "type": "object",
+                          "properties": {
+                            "Storage": {
+                              "default": "providerregistry",
+                              "const": "providerregistry",
+                              "description": "How the images are stored",
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "ReplicaRegions": {
+                      "description": "A list of regions to replicate registries to",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "AWSAccounts": {
+                          "contains": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Provider": {
+                  "default": "aws",
+                  "description": "Define which provider this account applies to",
+                  "type": "string"
+                },
+                "Audit": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Expiration": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Offline": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "Volume": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Encryption": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": false,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Seed": {
+                  "type": "string"
+                },
+                "Region": {
+                  "type": "string"
+                },
+                "aws:SES": {
+                  "description": "AWS SES Account configuration",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "RuleSet": {
+                      "description": "Ruleset details. Only one active per account",
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Name": {
+                          "default": "account-default",
+                          "description": "Name of the ruleset",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "IPAddressGroups": {
+                      "contains": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  }
+                },
+                "Id": {
+                  "type": "string"
+                },
+                "Domain": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Seed"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/Blueprint-schema.json"
+}

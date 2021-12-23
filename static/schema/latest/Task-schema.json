@@ -1,0 +1,191 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "process_template_pass": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "outputConversion": {
+          "type": "string"
+        },
+        "passAlternative": {
+          "type": "string"
+        },
+        "outputFileName": {
+          "type": "string"
+        },
+        "pass": {
+          "type": "string"
+        },
+        "outputType": {
+          "type": "string"
+        },
+        "deploymentUnitSubset": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "outputType",
+        "outputFormat",
+        "outputConversion",
+        "pass",
+        "passAlternative",
+        "outputFileName",
+        "deploymentUnitSubset"
+      ]
+    },
+    "create_schema": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Schema": {
+          "description": "The schema to generate",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Schema"
+      ]
+    },
+    "rename_file": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "currentFileName": {
+          "type": "string"
+        },
+        "newFileName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "currentFileName",
+        "newFileName"
+      ]
+    },
+    "run_bash_script": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "scriptFileName": {
+          "description": "The name of the script to run",
+          "type": "string"
+        },
+        "source": {
+          "default": true,
+          "description": "Source the script when executing it as part of the executor process",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "scriptFileName"
+      ]
+    },
+    "install_plugin": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Required": {
+          "default": false,
+          "description": "Ensure the plugin loads at all times",
+          "type": "boolean"
+        },
+        "Source:git": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Path": {
+              "description": "a path within in the repository where the plugin starts",
+              "type": "string"
+            },
+            "Ref": {
+              "default": "main",
+              "description": "The ref to clone from the repo",
+              "type": "string"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Url": {
+              "description": "The Url for the git repository",
+              "type": "string"
+            }
+          }
+        },
+        "Priority": {
+          "default": 100,
+          "description": "The priority order to load plugins - lowest first",
+          "type": "number"
+        },
+        "Enabled": {
+          "default": true,
+          "description": "To enable loading the plugin",
+          "type": "boolean"
+        },
+        "Source": {
+          "description": "Where the plugin for the plugin can be found",
+          "type": "string",
+          "enum": [
+            "local",
+            "git"
+          ]
+        },
+        "Name": {
+          "description": "The id of the plugin to install",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Name",
+        "Source"
+      ]
+    },
+    "manage_deployment": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "CurrentState": {
+          "description": "The current state of the deployment",
+          "type": "string",
+          "enum": [
+            "notdeployed",
+            "deployed",
+            "orphaned"
+          ]
+        },
+        "DeploymentProvider": {
+          "type": "string"
+        },
+        "DeploymentUnit": {
+          "type": "string"
+        },
+        "District": {
+          "type": "string"
+        },
+        "Operations": {
+          "contains": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "DeploymentGroup": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "DeploymentUnit",
+        "DeploymentGroup",
+        "District",
+        "Operations",
+        "DeploymentProvider",
+        "CurrentState"
+      ]
+    }
+  },
+  "$id": "https://docs.hamlet.io/schema/latest/Task-schema.json"
+}

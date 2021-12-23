@@ -29,7 +29,13 @@
         "Source": {
           "default": "Reference",
           "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-          "type": "string",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ],
           "enum": [
             "Reference",
             "aws:AMI",
@@ -43,12 +49,24 @@
             "Type": {
               "default": "EC2",
               "description": "The image Type defined under the family in the Region AMI",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             },
             "OS": {
               "default": "Centos",
               "description": "The OS Image family defined in the Region AMI",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             },
             "Enabled": {
               "default": true,
@@ -84,7 +102,13 @@
           "default": "Reference",
           "const": "Reference",
           "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-          "type": "string"
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
         },
         "Source:Reference": {
           "additionalProperties": false,
@@ -93,12 +117,24 @@
             "Type": {
               "default": "ECS",
               "description": "The image Type defined under the family in the Region AMI",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             },
             "OS": {
               "default": "Centos",
               "description": "The OS Image family defined in the Region AMI",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             },
             "Enabled": {
               "default": true,
@@ -120,7 +156,13 @@
           "default": "Reference",
           "const": "Reference",
           "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-          "type": "string"
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
         },
         "Source:Reference": {
           "additionalProperties": false,
@@ -129,12 +171,24 @@
             "Type": {
               "default": "EC2",
               "description": "The image Type defined under the family in the Region AMI",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             },
             "OS": {
               "default": "Centos",
               "description": "The OS Image family defined in the Region AMI",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             },
             "Enabled": {
               "default": true,
@@ -615,12 +669,11 @@
                     },
                     "Component": {
                       "type": "string"
+                    },
+                    "LinkRef": {
+                      "type": "string"
                     }
-                  },
-                  "required": [
-                    "Tier",
-                    "Component"
-                  ]
+                  }
                 },
                 "Enabled": {
                   "default": true,
@@ -909,7 +962,13 @@
             },
             "Name": {
               "default": "/aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             }
           }
         },
@@ -920,7 +979,13 @@
         "Source": {
           "default": "Reference",
           "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-          "type": "string",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ],
           "enum": [
             "Reference",
             "aws:AMI",
@@ -934,12 +999,24 @@
             "Type": {
               "default": "ECS",
               "description": "The image Type defined under the family in the Region AMI",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             },
             "OS": {
               "default": "Centos",
               "description": "The OS Image family defined in the Region AMI",
-              "type": "string"
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
             },
             "Enabled": {
               "default": true,
