@@ -13,8 +13,8 @@
     "localtest"
   ],
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.ff31de0ff",
-    "@docusaurus/preset-classic": "^2.0.0-beta.ff31de0ff",
+    "@docusaurus/core": "^2.0.0-beta.14",
+    "@docusaurus/preset-classic": "^2.0.0-beta.14",
     "@types/react": "^16.14.21",
     "axios": "^0.24.0",
     "broken-link-checker": "^0.7.8",
@@ -22,7 +22,7 @@
     "fs": "0.0.1-security",
     "infima": "^0.2.0-alpha.37",
     "json2yaml": "^1.1.0",
-    "mermaid": "^8.13.6",
+    "mermaid": "^8.13.7",
     "qs": "^6.10.2",
     "react": "^16.14.0",
     "react-admonitions": "^2.1.0",

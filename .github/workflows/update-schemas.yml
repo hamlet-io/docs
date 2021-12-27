@@ -10,6 +10,7 @@ on:
 
 jobs:
   hamlet-schema-updater:
+    environment: schema_update
     runs-on: ubuntu-latest
 
     env:
