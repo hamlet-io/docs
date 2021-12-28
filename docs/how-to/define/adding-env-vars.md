@@ -10,7 +10,7 @@ hamlet manages the environment variables of components through settings. They ca
 In this guide we will cover how to provide application specific environment variables to your application through the explicit settings source. For more details on the available sources, see the [in-depth guide on settings](/in-depth/foundations/settings)
 
 :::info
-Adding environment variables based on other components in your solution is not part of this guide and is covered in the [accessing other components](access-components) how-to guide
+Adding environment variables based on other components in your solution is not part of this guide and is covered in the [accessing other components](accessing-components) how-to guide
 :::
 
 There are two key approaches to adding settings to your components

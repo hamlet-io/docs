@@ -9,10 +9,10 @@ import TabItem from '@theme/TabItem';
 ## Parameters
 
 **ENVIRONMENT**
-Add the selected [`environment(s)`](../../../../../in-depth/foundations/terminology#environment) to the pipeline scope.
+Add the selected [`environment(s)`](../../../../../../in-depth/foundations/terminology#environment) to the pipeline scope.
 
 **DEPLOYMENT_UNIT**
-Add the selected [`deployment unit`](../../../../../in-depth/foundations/lifecycle#deployment-units) to the pipeline scope.
+Add the selected [`deployment unit`](../../../../../../in-depth/foundations/lifecycle#deployment-units) to the pipeline scope.
 
 **FORCE_BINARY_BUILD**
 Force the application binary build, even if the version hasn't changed.
@@ -33,7 +33,7 @@ Specify the build process to use for the build artefacts. `fastlane` or `turtle`
 
 **TURTLE_VERSION**
 Optional - version-locks Turtle to a specific version, ensuring the availability of a specific Expo SDK required for your build.
-Each Turtle version only includes a [specific collection of SDK builders](ttps://github.com/expo/turtle/tree/master/shellTarballs). If you are keeping up-to-date with Expo releases, remove this environment variable to use the default.
+Each Turtle version only includes a [specific collection of SDK builders](https://github.com/expo/turtle/tree/master/shellTarballs). If you are keeping up-to-date with Expo releases, remove this environment variable to use the default.
 
 ## Stages
 
