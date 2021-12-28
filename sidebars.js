@@ -56,58 +56,79 @@ module.exports = {
       items: [
         {
           type: 'category',
-          label: 'Cloud Providers',
+          label: 'Define',
           items: [
-            'how-to/cloud-providers/authentication'
+            'how-to/define/adding-env-vars',
+            'how-to/define/accessing-components',
           ]
         },
         {
           type: 'category',
-          label: 'Jenkins CI/CD',
+          label: 'Configure',
           items: [
-              'how-to/jenkins/index',
-              {
-                type: 'category',
-                label: 'Example Library',
-                items: [
-                  'how-to/jenkins/examplelibrary/index',
-                  'how-to/jenkins/examplelibrary/examples/properties/properties',
-                  {
-                    type: 'category',
-                    label: 'Build',
-                    items: [
-                      'how-to/jenkins/examplelibrary/examples/build/single',
-                      'how-to/jenkins/examplelibrary/examples/build/multiunit',
-                    ]
-                  },
-                  {
-                    type: 'category',
-                    label: 'Deploy',
-                    items: [
-                      'how-to/jenkins/examplelibrary/examples/deploy/continuous-deploy',
-                      'how-to/jenkins/examplelibrary/examples/deploy/promote-release',
-                      'how-to/jenkins/examplelibrary/examples/deploy/prepare-release',
-                      'how-to/jenkins/examplelibrary/examples/deploy/deploy-release',
-                      'how-to/jenkins/examplelibrary/examples/deploy/accept-release',
-                    ]
-                  },
-                  {
-                    type: 'category',
-                    label: 'Manage',
-                    items: [
-                      'how-to/jenkins/examplelibrary/examples/manage/environment',
-                    ]
-                  },
-                  {
-                    type: 'category',
-                    label: 'Utilities',
-                    items: [
-                      'how-to/jenkins/examplelibrary/examples/utils/publish-expo-app',
-                      'how-to/jenkins/examplelibrary/examples/utils/pull-image',
-                      'how-to/jenkins/examplelibrary/examples/utils/run-task',
-                    ]
-                  }
-                ]
+            'how-to/configure/provider-authentication'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Run',
+          items: [
+            'how-to/run/validate',
+            {
+              type: 'category',
+              label: 'Pipelines',
+              items: [
+                {
+                  type: 'category',
+                  label: 'Jenkins CI/CD',
+                  items: [
+                      'how-to/run/jenkins/index',
+                      {
+                        type: 'category',
+                        label: 'Example Library',
+                        items: [
+                          'how-to/run/jenkins/examplelibrary/index',
+                          'how-to/run/jenkins/examplelibrary/examples/properties/properties',
+                          {
+                            type: 'category',
+                            label: 'Build',
+                            items: [
+                              'how-to/run/jenkins/examplelibrary/examples/build/single',
+                              'how-to/run/jenkins/examplelibrary/examples/build/multiunit',
+                            ]
+                          },
+                          {
+                            type: 'category',
+                            label: 'Deploy',
+                            items: [
+                              'how-to/run/jenkins/examplelibrary/examples/deploy/continuous-deploy',
+                              'how-to/run/jenkins/examplelibrary/examples/deploy/promote-release',
+                              'how-to/run/jenkins/examplelibrary/examples/deploy/prepare-release',
+                              'how-to/run/jenkins/examplelibrary/examples/deploy/deploy-release',
+                              'how-to/run/jenkins/examplelibrary/examples/deploy/accept-release',
+                            ]
+                          },
+                          {
+                            type: 'category',
+                            label: 'Manage',
+                            items: [
+                              'how-to/run/jenkins/examplelibrary/examples/manage/environment',
+                            ]
+                          },
+                          {
+                            type: 'category',
+                            label: 'Utilities',
+                            items: [
+                              'how-to/run/jenkins/examplelibrary/examples/utils/publish-expo-app',
+                              'how-to/run/jenkins/examplelibrary/examples/utils/pull-image',
+                              'how-to/run/jenkins/examplelibrary/examples/utils/run-task',
+                            ]
+                          }
+                        ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -138,6 +159,7 @@ module.exports = {
                 'in-depth/foundations/inputs/references',
               ]
             },
+            'in-depth/foundations/settings',
             'in-depth/foundations/outputtypes',
             'in-depth/foundations/links',
             'in-depth/foundations/profiles',
