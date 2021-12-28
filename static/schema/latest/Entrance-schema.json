@@ -10,10 +10,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -21,10 +17,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -52,10 +44,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -71,10 +59,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -82,10 +66,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -103,10 +83,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -123,10 +99,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -134,10 +106,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -165,10 +133,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -184,10 +148,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -195,10 +155,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -216,10 +172,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -236,10 +188,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -247,10 +195,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -278,10 +222,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -297,10 +237,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -308,10 +244,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -329,10 +261,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -349,10 +277,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -360,10 +284,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -391,10 +311,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -410,10 +326,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -421,10 +333,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -442,10 +350,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -462,10 +366,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -473,10 +373,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -504,10 +400,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -523,10 +415,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -534,10 +422,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -555,10 +439,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -575,10 +455,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -586,10 +462,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -617,10 +489,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -636,10 +504,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -647,10 +511,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -668,10 +528,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -688,10 +544,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -699,10 +551,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -730,10 +578,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -749,10 +593,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -760,10 +600,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -781,10 +617,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -801,10 +633,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -812,10 +640,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -843,10 +667,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -862,10 +682,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -873,10 +689,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -894,10 +706,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -914,10 +722,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -925,10 +729,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -956,10 +756,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -975,10 +771,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -986,10 +778,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -1007,10 +795,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -1027,10 +811,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -1038,10 +818,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -1069,10 +845,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -1088,10 +860,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1099,10 +867,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -1120,10 +884,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -1140,10 +900,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -1151,10 +907,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -1182,10 +934,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -1201,10 +949,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1212,10 +956,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -1233,10 +973,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -1253,10 +989,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -1264,10 +996,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -1295,10 +1023,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -1314,10 +1038,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1325,10 +1045,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -1346,10 +1062,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [
@@ -1366,10 +1078,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Level": {
               "type": "string"
             }
@@ -1377,10 +1085,6 @@
           "required": [
             "Level"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Deployment": {
           "additionalProperties": false,
@@ -1408,10 +1112,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Prefix": {
                   "type": [
                     "array",
@@ -1427,10 +1127,6 @@
                 "Format",
                 "Prefix"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1438,10 +1134,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Id": {
               "type": "string"
             }
@@ -1459,10 +1151,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           },
           "required": [

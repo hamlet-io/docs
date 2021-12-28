@@ -11,10 +11,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       },
       "required": [
@@ -27,10 +23,6 @@
       "properties": {
         "Description": {
           "type": "string"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Title": {
           "type": "string"
@@ -53,10 +45,6 @@
           "properties": {
             "Processor": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -67,130 +55,8 @@
             "Processor": {
               "type": "string"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "CountPerZone": {
               "default": 1,
-              "type": "number"
-            }
-          }
-        },
-        "computecluster": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "MinPerZone": {
-              "type": "number"
-            },
-            "Processor": {
-              "type": "string"
-            },
-            "DesiredPerZone": {
-              "type": "number"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "MaxPerZone": {
-              "type": "number"
-            },
-            "MaxCount": {
-              "type": "number"
-            },
-            "DesiredCount": {
-              "type": "number"
-            },
-            "MinCount": {
-              "type": "number"
-            }
-          }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
-        "emr": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "DesiredTaskPerZone": {
-              "default": 1,
-              "type": "number"
-            },
-            "Processor": {
-              "type": "string"
-            },
-            "DesiredCorePerZone": {
-              "default": 1,
-              "type": "number"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
-        },
-        "es": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Master": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Processor": {
-                  "type": "string"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Count": {
-                  "default": 0,
-                  "type": "number"
-                }
-              }
-            },
-            "Processor": {
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "CountPerZone": {
-              "default": 1,
-              "type": "number"
-            }
-          }
-        },
-        "containerhost": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "MinPerZone": {
-              "type": "number"
-            },
-            "DesiredPerZone": {
-              "type": "number"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "MaxPerZone": {
-              "type": "number"
-            },
-            "MaxCount": {
-              "type": "number"
-            },
-            "DesiredCount": {
-              "type": "number"
-            },
-            "MinCount": {
               "type": "number"
             }
           }
@@ -207,10 +73,6 @@
             },
             "DesiredPerZone": {
               "type": "number"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "MaxPerZone": {
               "type": "number"
@@ -232,10 +94,6 @@
           "properties": {
             "Processor": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -249,9 +107,32 @@
             "DesiredPerZone": {
               "type": "number"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
+            "MaxPerZone": {
+              "type": "number"
+            },
+            "MaxCount": {
+              "type": "number"
+            },
+            "DesiredCount": {
+              "type": "number"
+            },
+            "MinCount": {
+              "type": "number"
+            }
+          }
+        },
+        "computecluster": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "MinPerZone": {
+              "type": "number"
+            },
+            "Processor": {
+              "type": "string"
+            },
+            "DesiredPerZone": {
+              "type": "number"
             },
             "MaxPerZone": {
               "type": "number"
@@ -277,10 +158,6 @@
             "DesiredPerZone": {
               "type": "number"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "MaxPerZone": {
               "type": "number"
             },
@@ -301,10 +178,23 @@
           "properties": {
             "Processor": {
               "type": "string"
+            }
+          }
+        },
+        "emr": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "DesiredTaskPerZone": {
+              "default": 1,
+              "type": "number"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
+            "Processor": {
+              "type": "string"
+            },
+            "DesiredCorePerZone": {
+              "default": 1,
+              "type": "number"
             }
           }
         },
@@ -321,9 +211,55 @@
             "DesiredPerZone": {
               "type": "number"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
+            "MaxPerZone": {
+              "type": "number"
+            },
+            "MaxCount": {
+              "type": "number"
+            },
+            "DesiredCount": {
+              "type": "number"
+            },
+            "MinCount": {
+              "type": "number"
+            }
+          }
+        },
+        "es": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Master": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Processor": {
+                  "type": "string"
+                },
+                "Count": {
+                  "default": 0,
+                  "type": "number"
+                }
+              }
+            },
+            "Processor": {
+              "type": "string"
+            },
+            "CountPerZone": {
+              "default": 1,
+              "type": "number"
+            }
+          }
+        },
+        "containerhost": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "MinPerZone": {
+              "type": "number"
+            },
+            "DesiredPerZone": {
+              "type": "number"
             },
             "MaxPerZone": {
               "type": "number"
@@ -371,10 +307,6 @@
         },
         "MaxAge": {
           "type": "number"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       },
       "required": [
@@ -389,10 +321,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "*": {
           "description": "The component type the profile applies to",
           "additionalProperties": false,
@@ -403,10 +331,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         }
@@ -473,10 +397,6 @@
                 "string"
               ]
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Interval": {
               "type": [
                 "number",
@@ -484,10 +404,6 @@
               ]
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Protocol": {
           "type": "string",
@@ -505,10 +421,6 @@
           "properties": {
             "Type": {
               "type": "number"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Code": {
               "type": "number"
@@ -534,10 +446,6 @@
           "properties": {
             "WAFProfile": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "GatewayHTTPSProfile": {
               "default": "TLS_1_0",
@@ -565,10 +473,6 @@
                 "add",
                 "start"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "TunnelInsideCidr": {
               "type": "string"
@@ -611,10 +515,6 @@
                     "type": "number"
                   },
                   "type": "array"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             },
@@ -645,10 +545,6 @@
                     "type": "number"
                   },
                   "type": "array"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             },
@@ -664,10 +560,6 @@
                 },
                 "FuzzPercentage": {
                   "type": "number"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             }
@@ -681,10 +573,6 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "HTTPSProfile": {
                   "type": "string"
                 }
@@ -697,10 +585,6 @@
                 "WAFProfile": {
                   "type": "string"
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "HTTPSProfile": {
                   "type": "string"
                 },
@@ -709,18 +593,10 @@
                 }
               }
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "network": {
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "HTTPSProfile": {
                   "type": "string"
                 }
@@ -728,20 +604,12 @@
             }
           }
         },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "cdn": {
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "WAFProfile": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "HTTPSProfile": {
               "type": "string"
@@ -757,10 +625,6 @@
           "properties": {
             "SSLCertificateAuthority": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -768,10 +632,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "ProtocolPolicy": {
               "type": "string",
               "enum": [
@@ -788,10 +648,6 @@
           "properties": {
             "EncryptionPolicy": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         }
@@ -804,10 +660,6 @@
         "Modes": {
           "description": "A nested object with the deployment mode name as the root and childs based on component types",
           "type": "object"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       }
     },
@@ -815,19 +667,11 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "*": {
           "description": "The component type that the VMImage configuration belongs to.",
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Publisher": {
               "type": "string"
             },
@@ -863,10 +707,6 @@
             "Tier": {
               "type": "boolean"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Product": {
               "type": "boolean"
             },
@@ -876,10 +716,6 @@
           }
         },
         "External": {
-          "type": "boolean"
-        },
-        "Enabled": {
-          "default": true,
           "type": "boolean"
         },
         "HostParts": {
@@ -903,10 +739,6 @@
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_-]*$": {
                   "properties": {
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
                     "Weight": {
                       "default": 1,
                       "description": "The ratio of containers allocated to the provider based on the configured providers",
@@ -930,10 +762,6 @@
               "additionalProperties": false,
               "type": "object"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Default": {
               "description": "Sets the default computer provider which will meet base capacity",
               "additionalProperties": false,
@@ -943,10 +771,6 @@
                   "default": 1,
                   "description": "The minimum count of containers to run on the default provider",
                   "type": "number"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 },
                 "Weight": {
                   "default": 1,
@@ -966,10 +790,6 @@
               }
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       }
     },
@@ -982,10 +802,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "LogFileGroups": {
               "contains": {
                 "type": "string"
@@ -999,10 +815,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "LogFileGroups": {
               "contains": {
                 "type": "string"
@@ -1016,10 +828,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "LogFileGroups": {
               "contains": {
                 "type": "string"
@@ -1028,19 +836,11 @@
             }
           }
         },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "bastion": {
           "description": "The component type the profile applies to",
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "LogFileGroups": {
               "contains": {
                 "type": "string"
@@ -1060,10 +860,6 @@
         },
         "TimeFormat": {
           "type": "string"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "MultiLinePattern": {
           "type": "string"
@@ -1095,10 +891,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "Rules": {
           "contains": {
             "type": "string"
@@ -1114,10 +906,6 @@
         "Modes": {
           "description": "A nested object with the deployment mode name as the root and childs based on component types",
           "type": "object"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       }
     },
@@ -1135,10 +923,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1152,10 +936,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1169,16 +949,8 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "bastion": {
           "description": "The component type the profile applies to",
@@ -1190,10 +962,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         }
@@ -1207,10 +975,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "HandlerVersion": {
               "type": "string"
             },
@@ -1239,10 +1003,6 @@
                     "string"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Key": {
                   "type": "string"
                 }
@@ -1263,10 +1023,6 @@
                 "Version": {
                   "type": "string"
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Name": {
                   "type": "string"
                 }
@@ -1275,10 +1031,6 @@
           },
           "additionalProperties": false,
           "type": "object"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "InitScript": {
           "type": "string"
@@ -1305,10 +1057,6 @@
                     "object",
                     "string"
                   ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 },
                 "Key": {
                   "type": "string"
@@ -1356,10 +1104,6 @@
               "default": ".*",
               "description": "A regex filter to apply on group ids to include in the mode",
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1387,10 +1131,6 @@
               },
               "description": "A list of group ids in their deployment order",
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1421,10 +1161,6 @@
         "Description": {
           "type": "string"
         },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "CIDR": {
           "contains": {
             "type": "string"
@@ -1443,10 +1179,6 @@
         "Destination": {
           "type": "string"
         },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "Source": {
           "type": "string"
         }
@@ -1464,18 +1196,10 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Links": {
               "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Severity": {
           "type": "string",
@@ -1501,10 +1225,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       },
       "required": [
@@ -1568,18 +1288,10 @@
                     "ALL_QUERY_ARGS"
                   ]
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Data": {
                   "type": "string"
                 }
               }
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Targets": {
               "contains": {
@@ -1602,10 +1314,6 @@
               ]
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       }
     },
@@ -1619,10 +1327,6 @@
             "ALLOW",
             "BLOCK"
           ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Rules": {
           "contains": {
@@ -1640,18 +1344,10 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Prefix": {
               "type": "string"
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "Engine": {
           "type": "string",
@@ -1670,10 +1366,6 @@
             "Branch": {
               "type": "string"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Directory": {
               "type": "string"
             }
@@ -1685,10 +1377,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "ForwardingRules": {
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
@@ -1696,10 +1384,6 @@
                 "Filter": {
                   "description": "The name of a Logfilter to apply to the forwarding rule",
                   "type": "string"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 },
                 "Links": {
                   "description": "The links of components which will accept fowarded logs",
@@ -1721,10 +1405,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "*": {
           "additionalProperties": false,
           "type": "object",
@@ -1732,10 +1412,6 @@
             "DeploymentFramework": {
               "description": "The deployment framework to use to generate the outputs for deployment",
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Region": {
               "description": "The id of the region to host the component",
@@ -1767,10 +1443,6 @@
         "AppData": {
           "type": "string"
         },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "Encryption": {
           "type": "string"
         },
@@ -1790,10 +1462,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "*": {
           "type": [
             "array",
@@ -1815,10 +1483,6 @@
           },
           "type": "array"
         },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "Blacklist": {
           "type": "boolean"
         }
@@ -1828,10 +1492,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "BaseSecurityGroup": {
           "additionalProperties": false,
           "type": "object",
@@ -1861,10 +1521,6 @@
                           "description": "A description that will be applied to the rule",
                           "type": "string"
                         },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
                         "Ports": {
                           "contains": {
                             "type": "string"
@@ -1884,16 +1540,8 @@
                   },
                   "additionalProperties": false,
                   "type": "object"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Links": {
               "description": "Apply network security rules based on links",
@@ -1907,10 +1555,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "NameSuffix": {
           "type": "string"
         },
@@ -1920,10 +1564,6 @@
           "properties": {
             "Condition": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Negated": {
               "type": "boolean"
@@ -1942,10 +1582,6 @@
           "properties": {
             "Volumes": {
               "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1955,10 +1591,6 @@
           "properties": {
             "Volumes": {
               "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1973,19 +1605,11 @@
               "description": "The storage tier to use for all volumes",
               "type": "string"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Replication": {
               "description": "The type of storage replication to use",
               "type": "string"
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "bastion": {
           "additionalProperties": false,
@@ -1993,10 +1617,6 @@
           "properties": {
             "Volumes": {
               "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/volume"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -2013,10 +1633,6 @@
             },
             "AccessTier": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Replication": {
               "type": "string"
@@ -2061,16 +1677,8 @@
                   "required": [
                     "Size"
                   ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         }
@@ -2085,10 +1693,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       }
     },
@@ -2100,10 +1704,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "JSON": {
               "description": "Generic JSON level structure tests",
               "additionalProperties": false,
@@ -2115,10 +1715,6 @@
                       "properties": {
                         "Path": {
                           "type": "string"
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
                         },
                         "Count": {
                           "type": "number"
@@ -2136,10 +1732,6 @@
                   },
                   "description": "Does a JSON path exist",
                   "type": "array"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 },
                 "NotEmpty": {
                   "contains": {
@@ -2163,10 +1755,6 @@
                             "object",
                             "string"
                           ]
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
                         }
                       }
                     }
@@ -2196,10 +1784,6 @@
                         "Type": {
                           "type": "string"
                         },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
                         "Name": {
                           "type": "string"
                         }
@@ -2213,10 +1797,6 @@
                   "description": "Does a resource with the type exist",
                   "additionalProperties": false,
                   "type": "object"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             }
@@ -2277,16 +1857,8 @@
                   "type": "boolean"
                 }
               }
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "OutputSuffix": {
           "type": "string",
@@ -2312,10 +1884,6 @@
             "Capacity": {
               "type": "number"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Name": {
               "type": "string",
               "enum": [
@@ -2338,10 +1906,6 @@
             "Kind": {
               "type": "string"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Replication": {
               "type": "string"
             }
@@ -2351,10 +1915,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Family": {
               "type": "string"
             },
@@ -2372,10 +1932,6 @@
             },
             "Capacity": {
               "type": "number"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Name": {
               "type": "string"
@@ -2397,18 +1953,10 @@
               "default": 1,
               "type": "number"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Name": {
               "type": "string"
             }
           }
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         },
         "bastion": {
           "additionalProperties": false,
@@ -2420,10 +1968,6 @@
             "Capacity": {
               "type": "number"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Name": {
               "type": "string"
             }
@@ -2433,10 +1977,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Name": {
               "type": "string"
             }
@@ -2458,10 +1998,6 @@
                 "string"
               ]
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Family": {
               "type": "string"
             },
@@ -2480,10 +2016,6 @@
             },
             "Tier": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Name": {
               "type": "string"
@@ -2506,10 +2038,6 @@
                 "string"
               ]
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Family": {
               "type": "string"
             },
@@ -2522,10 +2050,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Name": {
               "type": "string"
             }
@@ -2549,10 +2073,6 @@
         "AMIs": {
           "type": "object"
         },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
         "Title": {
           "type": "string"
         },
@@ -2571,10 +2091,6 @@
               "properties": {
                 "Description": {
                   "type": "string"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 },
                 "NetworkEndpoints": {
                   "contains": {
@@ -2683,10 +2199,6 @@
       "properties": {
         "Pattern": {
           "type": "string"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
         }
       },
       "required": [

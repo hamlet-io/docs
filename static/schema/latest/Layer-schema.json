@@ -23,10 +23,6 @@
                 }
               }
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Encryption": {
               "additionalProperties": false,
               "type": "object",
@@ -74,10 +70,6 @@
               "properties": {
                 "AWSId": {
                   "type": "string"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               },
               "required": [
@@ -99,16 +91,8 @@
                 "IncludeSeed": {
                   "default": false,
                   "type": "boolean"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -125,10 +109,6 @@
               },
               "type": "array"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Deployment": {
               "contains": {
                 "type": "string"
@@ -141,18 +121,10 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Encryption": {
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "DedicatedKey": {
                   "default": false,
                   "type": "boolean"
@@ -180,10 +152,6 @@
           "properties": {
             "Expiration": {
               "type": "number"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -218,10 +186,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Registries": {
               "description": "Defines the registries available for image hosting",
               "additionalProperties": false,
@@ -375,10 +339,6 @@
                     }
                   }
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "scripts": {
                   "additionalProperties": false,
                   "type": "object",
@@ -474,10 +434,6 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "AWSAccounts": {
                   "contains": {
                     "type": "string"
@@ -503,10 +459,6 @@
                 "string"
               ]
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Offline": {
               "type": [
                 "number",
@@ -519,10 +471,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Encryption": {
               "additionalProperties": false,
               "type": "object",
@@ -551,20 +499,12 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Name": {
                   "default": "account-default",
                   "description": "Name of the ruleset",
                   "type": "string"
                 }
               }
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "IPAddressGroups": {
               "contains": {
@@ -599,10 +539,6 @@
                 "Modes": {
                   "description": "A nested object with the deployment mode name as the root and childs based on component types",
                   "type": "object"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             }
@@ -620,10 +556,6 @@
                 "Modes": {
                   "description": "A nested object with the deployment mode name as the root and childs based on component types",
                   "type": "object"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             }
@@ -654,10 +586,6 @@
                 "Version": {
                   "type": "boolean"
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Product": {
                   "type": "boolean"
                 },
@@ -678,10 +606,6 @@
             "External": {
               "type": "boolean"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Host": {
               "type": "string"
             },
@@ -692,10 +616,6 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Product": {
                   "type": "boolean"
                 },
@@ -719,10 +639,6 @@
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "*": {
                   "additionalProperties": false,
                   "type": "object",
@@ -730,10 +646,6 @@
                     "DeploymentFramework": {
                       "description": "The deployment framework to use to generate the outputs for deployment",
                       "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
                     },
                     "Region": {
                       "description": "The id of the region to host the component",
@@ -772,10 +684,6 @@
             "Placement": {
               "type": "string"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Deployment": {
               "contains": {
                 "type": "string"
@@ -806,10 +714,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "AutoMinorVersionUpgrade": {
               "default": true,
               "type": "boolean"
@@ -831,10 +735,6 @@
           "properties": {
             "Expiration": {
               "type": "number"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Offline": {
               "type": "number"
@@ -864,10 +764,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Segment": {
               "type": "string"
             }
@@ -900,10 +796,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Deployment": {
               "contains": {
@@ -957,10 +849,6 @@
               "default": 7,
               "type": "number"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Offline": {
               "type": "number"
             }
@@ -976,10 +864,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Region": {
               "type": "string"
             }
@@ -989,18 +873,10 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Data": {
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Environment": {
                   "type": "string"
                 }
@@ -1010,10 +886,6 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Environment": {
                   "type": "string"
                 }
@@ -1028,10 +900,6 @@
                 "Modes": {
                   "description": "A nested object with the deployment mode name as the root and childs based on component types",
                   "type": "object"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             }
@@ -1049,10 +917,6 @@
                 "Modes": {
                   "description": "A nested object with the deployment mode name as the root and childs based on component types",
                   "type": "object"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             }
@@ -1065,10 +929,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Region": {
               "description": "An override of the Region for a single DeploymentUnit.",
               "type": "string"
@@ -1095,10 +955,6 @@
                 "Version": {
                   "type": "boolean"
                 },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Product": {
                   "type": "boolean"
                 },
@@ -1119,10 +975,6 @@
             "External": {
               "type": "boolean"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Host": {
               "type": "string"
             },
@@ -1133,10 +985,6 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "Product": {
                   "type": "boolean"
                 },
@@ -1160,10 +1008,6 @@
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
                 "*": {
                   "additionalProperties": false,
                   "type": "object",
@@ -1171,10 +1015,6 @@
                     "DeploymentFramework": {
                       "description": "The deployment framework to use to generate the outputs for deployment",
                       "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
                     },
                     "Region": {
                       "description": "The id of the region to host the component",
@@ -1209,10 +1049,6 @@
             },
             "Placement": {
               "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Deployment": {
               "contains": {
@@ -1262,10 +1098,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "AutoMinorVersionUpgrade": {
               "default": true,
               "type": "boolean"
@@ -1279,10 +1111,6 @@
             "IncludeTenant": {
               "default": false,
               "type": "boolean"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1295,10 +1123,6 @@
                 "type": "string"
               },
               "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             }
           }
         },
@@ -1343,10 +1167,6 @@
                 "number",
                 "string"
               ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
             },
             "Offline": {
               "type": [
@@ -1395,10 +1215,6 @@
               },
               "type": "array"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Deployment": {
               "contains": {
                 "type": "string"
@@ -1420,18 +1236,10 @@
                     "type": "string"
                   },
                   "type": "array"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             },
             "InternetAccess": {
-              "default": true,
-              "type": "boolean"
-            },
-            "Enabled": {
               "default": true,
               "type": "boolean"
             },
@@ -1467,10 +1275,6 @@
                     "type": "string"
                   },
                   "type": "array"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
                 }
               }
             }
@@ -1509,10 +1313,6 @@
                 "string"
               ]
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Offline": {
               "type": [
                 "number",
@@ -1534,10 +1334,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "AutoMinorVersionUpgrade": {
               "type": "boolean"
             }

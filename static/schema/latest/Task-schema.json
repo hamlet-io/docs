@@ -107,10 +107,6 @@
               "description": "The ref to clone from the repo",
               "type": "string"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
             "Url": {
               "description": "The Url for the git repository",
               "type": "string"
