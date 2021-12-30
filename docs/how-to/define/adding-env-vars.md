@@ -3,9 +3,9 @@ sidebar_label: Environment Variables
 title: Setting Environment Variables
 ---
 
-Configuring an application through environment variables allows you to manage the behaviour in your application across multiple environments. Using environment variables you can define environment specific configuration such as database connections, log levels or feature flags without having to change the applications code. The variables are instead provided through the run time environment and the application code looks for these variables when thy are required.
+Configuring an application through environment variables allows you to manage the behaviour in your application across multiple environments. Using environment variables you can define environment specific configuration such as database connections, log levels or feature flags without having to change the applications code. The variables are instead provided through the run time environment and the application code looks for these variables when they are required.
 
-hamlet manages the environment variables of components through settings. They can be converted into environment variables, configuration files or used to stage files that can be accessed an application.
+hamlet manages the environment variables of components through settings. They can be converted into environment variables, configuration files or used to stage files that can be accessed by an application.
 
 In this guide we will cover how to provide application specific environment variables to your application through the explicit settings source. For more details on the available sources, see the [in-depth guide on settings](/in-depth/foundations/settings)
 
@@ -74,7 +74,7 @@ Generating the CloudFormation deployment for this component shows it has no envi
 }
 ```
 
-Now we add the LOG_LEVEL setting to the lambda component
+Now we add the LOG_LEVEL setting to the lambda component:-
 
 ```json
 {
@@ -108,7 +108,7 @@ Now we add the LOG_LEVEL setting to the lambda component
 }
 ```
 
-And the environment variable has now been added to the CloudFormation deployment
+and the environment variable has now been added to the CloudFormation deployment:-
 
 ```json
 {
