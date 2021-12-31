@@ -63,6 +63,14 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Engine',
+          items : [
+            'how-to/engine/plugins',
+            'how-to/engine/validate'
+          ]
+        },
+        {
+          type: 'category',
           label: 'Jenkins CI/CD',
           items: [
               'how-to/jenkins/index',
