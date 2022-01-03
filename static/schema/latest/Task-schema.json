@@ -38,6 +38,67 @@
         "deploymentUnitSubset"
       ]
     },
+    "aws_decrypt_kms_ciphertext": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "EncryptionScheme": {
+          "description": "A scheme prefix to show that the value is encrypted",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "Ciphertext": {
+          "description": "The ciphertext value",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "Base64Encoded": {
+          "default": true,
+          "description": "Is the Ciphertext base64 encoded",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "Ciphertext"
+      ]
+    },
+    "set_provider_credentials": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "ProviderId": {
+          "description": "The Id that represents the account with the provider",
+          "type": "string"
+        },
+        "AccountId": {
+          "description": "The hamlet Account Id for the provider login",
+          "type": "string"
+        },
+        "Provider": {
+          "description": "The name of the provider the account is defined for",
+          "type": "string"
+        }
+      },
+      "required": [
+        "AccountId",
+        "Provider",
+        "ProviderId"
+      ]
+    },
     "create_schema": {
       "additionalProperties": false,
       "type": "object",
@@ -141,6 +202,71 @@
         "Source"
       ]
     },
+    "conditional_stage_skip": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Condition": {
+          "description": "How to test the value",
+          "type": "string",
+          "enum": [
+            "Equals",
+            "StartsWith",
+            "EndsWith",
+            "Contains"
+          ]
+        },
+        "Test": {
+          "description": "The value compared to",
+          "type": "string"
+        },
+        "Value": {
+          "description": "The value to test the match on",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Test",
+        "Condition",
+        "Value"
+      ]
+    },
+    "start_ssh_shell": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "SSHKey": {
+          "description": "The path or content of an ssh private key to use for authentication",
+          "type": "string"
+        },
+        "Shell": {
+          "default": "/bin/bash",
+          "description": "The command to execute to start the shell",
+          "type": "string"
+        },
+        "Username": {
+          "description": "The username on the remote host",
+          "type": "string"
+        },
+        "Port": {
+          "default": 22,
+          "description": "The port number the host is listening on for ssh connections",
+          "type": "number"
+        },
+        "Host": {
+          "description": "The IP or Hostname of the remote host",
+          "type": "string"
+        },
+        "Password": {
+          "description": "The password for the username on the remote host",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Host",
+        "Username"
+      ]
+    },
     "manage_deployment": {
       "additionalProperties": false,
       "type": "object",
@@ -164,10 +290,10 @@
           "type": "string"
         },
         "Operations": {
-          "contains": {
-            "type": "string"
-          },
-          "type": "array"
+          "type": [
+            "array",
+            "string"
+          ]
         },
         "DeploymentGroup": {
           "type": "string"

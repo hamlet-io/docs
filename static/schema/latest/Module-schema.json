@@ -34,6 +34,39 @@
         "deploymentProfile"
       ]
     },
+    "ssh_bastion": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "component": {
+          "default": "ssh",
+          "description": "The component to use to host the private bastion",
+          "type": "string"
+        },
+        "tier": {
+          "default": "mgmt",
+          "description": "The tier to use to host the private bastion",
+          "type": "string"
+        },
+        "activeDeploymentMode": {
+          "default": "activebastion",
+          "description": "The name of the deployment Mode to use to activate the bastion",
+          "type": "string"
+        },
+        "deploymentUnit": {
+          "default": "ssh",
+          "description": "The deployment unit for the private bastion",
+          "type": "string"
+        },
+        "IPAddressGroups": {
+          "description": "A list of IPAddressGroups that can access the bastion host",
+          "type": [
+            "array",
+            "string"
+          ]
+        }
+      }
+    },
     "alarmslack": {
       "additionalProperties": false,
       "type": "object",

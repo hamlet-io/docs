@@ -263,10 +263,10 @@
                       }
                     },
                     "HostParts": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -308,19 +308,19 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Placement": {
                       "type": "string"
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -353,10 +353,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "Rules": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -412,10 +412,10 @@
                       "type": "string"
                     },
                     "IKEVersions": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "DeadPeerDetectionAction": {
                       "type": "string",
@@ -433,22 +433,22 @@
                           "type": "number"
                         },
                         "EncryptionAlgorithms": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "IntegrityAlgorithms": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "DiffeHellmanGroups": {
-                          "contains": {
-                            "type": "number"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "number"
+                          ]
                         }
                       }
                     },
@@ -463,22 +463,22 @@
                           "type": "number"
                         },
                         "EncryptionAlgorithms": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "IntegrityAlgorithms": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "DiffeHellmanGroups": {
-                          "contains": {
-                            "type": "number"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "number"
+                          ]
                         }
                       }
                     },
@@ -602,10 +602,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "Services": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               },
               "required": [
@@ -627,10 +627,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "Locations": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "Blacklist": {
                   "type": "boolean"
@@ -722,10 +722,10 @@
                   "type": "object",
                   "properties": {
                     "Order": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -748,10 +748,10 @@
                       "type": "boolean"
                     },
                     "IPAddressGroups": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -786,20 +786,20 @@
                           "type": "boolean"
                         },
                         "IPAddressGroups": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     }
                   }
                 },
                 "IPAddressGroups": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "Name": {
                   "type": "string"
@@ -813,16 +813,16 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -835,10 +835,10 @@
                       "type": "object",
                       "properties": {
                         "Order": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     },
@@ -874,10 +874,10 @@
                       "type": "object",
                       "properties": {
                         "Order": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     }
@@ -1042,10 +1042,10 @@
                       }
                     },
                     "HostParts": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1090,19 +1090,19 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Placement": {
                       "type": "string"
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1176,10 +1176,10 @@
                   "type": "string"
                 },
                 "CIDR": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "IsOpen": {
                   "type": "boolean"
@@ -1318,28 +1318,28 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "ExposedHeaders": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "AllowedOrigins": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "AllowedMethods": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "AllowedHeaders": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "MaxAge": {
                   "type": "number"
@@ -1465,16 +1465,16 @@
                   "type": "object",
                   "properties": {
                     "Sizes": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Operators": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array",
+                      "type": [
+                        "array",
+                        "string"
+                      ],
                       "enum": [
                         "EQ",
                         "NE",
@@ -1516,16 +1516,16 @@
                       }
                     },
                     "Targets": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Transformations": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array",
+                      "type": [
+                        "array",
+                        "string"
+                      ],
                       "enum": [
                         "NONE",
                         "CMD_LINE",
@@ -1584,10 +1584,10 @@
                   "type": "object",
                   "properties": {
                     "Bootstraps": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1597,10 +1597,10 @@
                   "type": "object",
                   "properties": {
                     "Bootstraps": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1610,10 +1610,10 @@
                   "type": "object",
                   "properties": {
                     "Bootstraps": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1623,10 +1623,10 @@
                   "type": "object",
                   "properties": {
                     "Bootstraps": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 }
@@ -1652,10 +1652,10 @@
                   "type": "object",
                   "properties": {
                     "TestCases": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 }
@@ -1785,11 +1785,11 @@
                     "^[A-Za-z_][A-Za-z0-9_-]*$": {
                       "properties": {
                         "ResourceLabels": {
-                          "contains": {
-                            "type": "string"
-                          },
                           "description": "The resource labels to include in the subset",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "deployment:Unit": {
                           "description": "The Deployment Unit",
@@ -1919,10 +1919,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "WAFRules": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -2150,10 +2150,10 @@
                           "type": "string"
                         },
                         "NetworkEndpoints": {
-                          "contains": {
-                            "type": "object"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "object"
+                          ]
                         },
                         "AWSZone": {
                           "type": "string"
@@ -2205,10 +2205,10 @@
                   "type": "boolean"
                 },
                 "HostParts": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -2286,10 +2286,10 @@
                           "type": "boolean"
                         },
                         "IPAddressGroups": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     }
@@ -2330,16 +2330,16 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -2593,10 +2593,10 @@
                   "type": "object",
                   "properties": {
                     "LogFileGroups": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -2606,10 +2606,10 @@
                   "type": "object",
                   "properties": {
                     "LogFileGroups": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -2619,10 +2619,10 @@
                   "type": "object",
                   "properties": {
                     "LogFileGroups": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -2632,10 +2632,10 @@
                   "type": "object",
                   "properties": {
                     "LogFileGroups": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 }
@@ -2682,18 +2682,18 @@
                           "type": "object"
                         },
                         "Exists": {
-                          "contains": {
-                            "type": "string"
-                          },
                           "description": "Does a JSON path exist",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "NotEmpty": {
-                          "contains": {
-                            "type": "string"
-                          },
                           "description": "Is the value of a JSON path not emtpy",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "Match": {
                           "patternProperties": {
@@ -2726,11 +2726,11 @@
                       "type": "object",
                       "properties": {
                         "Output": {
-                          "contains": {
-                            "type": "string"
-                          },
                           "description": "Does an output with exist",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "Resource": {
                           "patternProperties": {
@@ -2768,11 +2768,11 @@
                       "type": "object",
                       "properties": {
                         "SkipChecks": {
-                          "contains": {
-                            "type": "string"
-                          },
                           "description": "A list of checks to skip in checkov",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "Enabled": {
                           "default": true,
@@ -2801,11 +2801,11 @@
                       "type": "object",
                       "properties": {
                         "IgnoreChecks": {
-                          "contains": {
-                            "type": "string"
-                          },
                           "description": "A list of checks to ignore in cfn-lint",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "Enabled": {
                           "default": true,
@@ -2818,6 +2818,7 @@
                 "OutputSuffix": {
                   "type": "string",
                   "enum": [
+                    "contract.json",
                     "template.json",
                     "config.json",
                     "cli.json",
@@ -2850,10 +2851,10 @@
                   ]
                 },
                 "Rules": {
-                  "contains": {
-                    "type": "object"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "object"
+                  ]
                 }
               }
             }
@@ -2872,10 +2873,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "LogFiles": {
-                  "contains": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               },
               "required": [
@@ -2915,29 +2916,29 @@
                             "^[A-Za-z_][A-Za-z0-9_-]*$": {
                               "properties": {
                                 "SecurityGroups": {
-                                  "contains": {
-                                    "type": "string"
-                                  },
                                   "description": "A list of security groups or ids - for internal use only",
-                                  "type": "array"
+                                  "type": [
+                                    "array",
+                                    "string"
+                                  ]
                                 },
                                 "Description": {
                                   "description": "A description that will be applied to the rule",
                                   "type": "string"
                                 },
                                 "Ports": {
-                                  "contains": {
-                                    "type": "string"
-                                  },
                                   "description": "A list of port ids from the Ports reference",
-                                  "type": "array"
+                                  "type": [
+                                    "array",
+                                    "string"
+                                  ]
                                 },
                                 "IPAddressGroups": {
-                                  "contains": {
-                                    "type": "string"
-                                  },
                                   "description": "A list of IP Address groups ids from the IPAddressGroups reference",
-                                  "type": "array"
+                                  "type": [
+                                    "array",
+                                    "string"
+                                  ]
                                 }
                               }
                             }
@@ -3212,11 +3213,11 @@
                   "type": "object",
                   "properties": {
                     "Groups": {
-                      "contains": {
-                        "type": "string"
-                      },
                       "description": "A list of group ids in their deployment order",
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -3224,11 +3225,11 @@
                   "default": [
                     "update"
                   ],
-                  "contains": {
-                    "type": "string"
-                  },
                   "description": "The deployment operations to complete for each deployment",
-                  "type": "array",
+                  "type": [
+                    "array",
+                    "string"
+                  ],
                   "enum": [
                     "create",
                     "update",
@@ -3604,16 +3605,16 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -3635,10 +3636,10 @@
                       "default": [
                         "s3"
                       ],
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array",
+                      "type": [
+                        "array",
+                        "string"
+                      ],
                       "enum": [
                         "cloudwatch",
                         "s3"
@@ -3935,10 +3936,10 @@
                       "type": "object",
                       "properties": {
                         "AWSAccounts": {
-                          "contains": {
-                            "type": "string"
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     }
@@ -4007,10 +4008,10 @@
                       }
                     },
                     "IPAddressGroups": {
-                      "contains": {
-                        "type": "string"
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
