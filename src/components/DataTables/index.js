@@ -12,7 +12,30 @@ import qs from "qs";
 
 import "./styles.css";
 
-const getSchemaUrl = (ref) => (! ref.startsWith('#definitions')) ? useBaseUrl(ref) : ref;
+const getSchemaUrl = (ref) => {
+  if ( ! ref.startsWith('#definitions')) {
+    return {
+      "url" : useBaseUrl(ref),
+      "name" : ref
+    }
+  }
+  else {
+    return {
+      "url" : ref,
+      "name" : ref
+    }
+  }
+}
+
+const getExternalSchemaUrl = (ref) => {
+  const url = new URL(ref);
+  const schema_source = url.pathname.substring(url.pathname.lastIndexOf('/')+1).split("-")[0];
+  const definition = url.hash.substring(url.hash.lastIndexOf('/')+1);
+  return {
+    "url" : useBaseUrl("reference?type=" + schema_source + "&instance=" + definition),
+    "name" : schema_source + ":" + definition
+  }
+}
 
 const defaultColumns = [
   {
@@ -28,15 +51,16 @@ const defaultColumns = [
     wrap: true,
   },
   {
-    name: "Type",
+    name: "Types",
     selector: "type",
     center: true,
     cell: row => {
       return (
         <div data-tag="allowRowEvents">
           {
-            (row.type.startsWith('#')) ? <a href={getSchemaUrl(row.type)}>object</a>
-            : (row.type == "object") ? <a href={getSchemaUrl('#' + row.attribute)}>object</a>
+            (row.type.startsWith('#')) ? <a href={getSchemaUrl(row.type).url}>{getSchemaUrl(row.type).name}</a>
+            : (row.type.startsWith('https://')) ? <a href={getExternalSchemaUrl(row.type).url}>{getExternalSchemaUrl(row.type).name}</a>
+            : (row.type == "object") ? <a href={getSchemaUrl('#' + row.attribute).url}>{getSchemaUrl(row.attribute).name}</a>
             : row.type
           }
         </div>
@@ -49,7 +73,7 @@ const defaultColumns = [
     center: true,
   },
   {
-    name: "Valid Values",
+    name: "Possible Values",
     selector: "values",
     grow: 1,
     wrap: true,
@@ -129,7 +153,7 @@ const getDataTableRows = (data, required) => {
     value.type = (value["$ref"]) ? value["$ref"] : value.type;
     const values = (value?.enum) ? value.enum.join(', ') : null;
     const defaultValue = formatDataTableDefault(value.type, value?.default);
-    const type = Array.isArray(value.type) ? value.type.join('or ') : value.type;
+    const type = Array.isArray(value.type) ? value.type.join(', ') : value.type;
     const isRequired = (required.includes(key)) ? "true" : "false";
 
     tableRows.push({
@@ -178,6 +202,8 @@ function HamletDataTables() {
         <div className="item component" >
           <section id={instance}>
             <h1>{schemaHeader}</h1>
+            <p>{schemaData.description}</p>
+            <br></br>
           </section>
           <div>
             <h3>Syntax</h3>
@@ -229,6 +255,7 @@ function HamletDataTables() {
               <li><strong>Components</strong> Describe each function performed as part of your application</li>
               <li><strong>Reference Data</strong> Provides a collection of metadata that can shared across components</li>
               <li><strong>Modules</strong> Inject blueprint data into your solution to share and reuse your solution</li>
+              <li><strong>Tasks</strong> Describe a task that should be executed based on a hamlet provided contract such as a runbook</li>
               <li><strong>Attribute Sets</strong> Are used to define configuration which is shared throughout the solution</li>
             </ul>
           </section>

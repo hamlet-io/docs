@@ -65,12 +65,22 @@ function HamletRefRouter() {
                   </React.Fragment>
                 ))}
                 <br />
-                <br />
                 <h2>Modules</h2>
                 {Object.keys(schema.Module.definitions).sort().map((instance) => (
                   <React.Fragment>
                     <li>
                       <Link to={`/reference?type=Module&instance=${instance}`}>
+                        {instance}
+                      </Link>
+                    </li>
+                  </React.Fragment>
+                ))}
+                <br />
+                <h2>Tasks</h2>
+                {Object.keys(schema.Task.definitions).sort().map((instance) => (
+                  <React.Fragment>
+                    <li>
+                      <Link to={`/reference?type=Task&instance=${instance}`}>
                         {instance}
                       </Link>
                     </li>

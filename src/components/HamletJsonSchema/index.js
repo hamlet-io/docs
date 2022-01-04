@@ -7,6 +7,7 @@ import ComponentSchema from "@site/static/schema/latest/Component-schema.json"
 import LayerSchema from "@site/static/schema/latest/Layer-schema.json"
 import ModuleSchema from "@site/static/schema/latest/Module-schema.json"
 import ReferenceSchema from "@site/static/schema/latest/Reference-schema.json"
+import TaskSchema from "@site/static/schema/latest/Task-schema.json"
 
 const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_-]*$";
 
@@ -15,6 +16,7 @@ const schema = {
   Component: ComponentSchema,
   Reference: ReferenceSchema,
   Module: ModuleSchema,
+  Task: TaskSchema,
   AttributeSet: AttributeSetSchema,
 };
 
