@@ -4834,8 +4834,26 @@
               "type": "string"
             },
             "Parameters": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Value": {
+                      "description": "The value of the parameter (supports substitution syntax)",
+                      "type": [
+                        "string",
+                        "number",
+                        "boolean"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
               "description": "The parameters required to run the task type",
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/runbook_value"
+              "additionalProperties": false,
+              "type": "object"
             }
           },
           "required": [
@@ -4877,7 +4895,11 @@
                   ]
                 },
                 "Value": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/runbook_value"
+                  "description": "The value to compare the test to",
+                  "type": [
+                    "string",
+                    "boolean"
+                  ]
                 },
                 "Match": {
                   "default": "Equals",
@@ -4892,6 +4914,7 @@
                 }
               },
               "required": [
+                "Value",
                 "Test"
               ]
             }
@@ -5960,7 +5983,7 @@
         "Engine": {
           "default": "hamlet",
           "const": "hamlet",
-          "description": "The implemntation that will run the runbook",
+          "description": "The engine that will execute the runbook",
           "type": [
             "array",
             "boolean",

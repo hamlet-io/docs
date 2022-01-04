@@ -34,6 +34,24 @@
         "deploymentProfile"
       ]
     },
+    "runbook_rds_pgdump": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "bastionLink": {
+          "description": "A Link to an ssh bastion host which can access the db component",
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "dbLink": {
+          "description": "A link to the db component running postgres that the dump will be created from",
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        }
+      },
+      "required": [
+        "bastionLink",
+        "dbLink"
+      ]
+    },
     "ssh_bastion": {
       "additionalProperties": false,
       "type": "object",
