@@ -3,6 +3,7 @@
   "additionalProperties": false,
   "definitions": {
     "aws_computeimage": {
+      "description": "AWS Specific overrides to source compute images",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -75,6 +76,7 @@
       }
     },
     "ecs_computeimage": {
+      "description": "ECS Specific overrides to source compute images",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -121,6 +123,7 @@
       }
     },
     "computeimage": {
+      "description": "Configuration for the source of compute instance images",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -167,6 +170,7 @@
       }
     },
     "module": {
+      "description": "Defines the CMDB modules to load",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -219,6 +223,7 @@
       ]
     },
     "secretstring": {
+      "description": "Defines the policy for generating secret strings",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -231,11 +236,13 @@
             "/",
             "\\"
           ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
           "description": "Characters that must be excluded",
-          "type": [
-            "array",
-            "string"
-          ]
+          "type": "array"
         },
         "RequireAllIncludedTypes": {
           "default": true,
@@ -275,6 +282,7 @@
       }
     },
     "link": {
+      "description": "A relationship between Components.",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -282,11 +290,13 @@
           "type": "string"
         },
         "IncludeInContext": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
           "description": "Include the attributes provided by this link in the environment context",
-          "type": [
-            "array",
-            "string"
-          ]
+          "type": "array"
         },
         "Task": {
           "type": "string"
@@ -406,6 +416,7 @@
       }
     },
     "operatingsystem": {
+      "description": "Standard Configuration options to define an operating system",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -442,6 +453,7 @@
       }
     },
     "aws_operatingsystem": {
+      "description": "Standard Configuration options to define an operating system",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -481,6 +493,7 @@
       }
     },
     "aws_antivirus": {
+      "description": "Standard Configuration options to define antivirus configuration",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -489,16 +502,20 @@
           "type": "object",
           "properties": {
             "AllowedApps": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             },
             "Folders": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         },
@@ -507,22 +524,28 @@
           "type": "object",
           "properties": {
             "FilePaths": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             },
             "FileTypes": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             },
             "Folders": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         },
@@ -538,6 +561,7 @@
       }
     },
     "containertask": {
+      "description": "Descirbes each container that will be used as part of a service or task",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -545,10 +569,12 @@
           "type": "number"
         },
         "ContainerNetworkLinks": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "Privileged": {
           "default": false,
@@ -631,10 +657,12 @@
                   ]
                 },
                 "IPAddressGroups": {
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
                 }
               }
             }
@@ -643,11 +671,13 @@
           "type": "object"
         },
         "Extensions": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
           "description": "Extensions to invoke as part of component processing",
-          "type": [
-            "array",
-            "string"
-          ]
+          "type": "array"
         },
         "Image": {
           "description": "Set the source of the components image",
@@ -688,10 +718,12 @@
           "type": "boolean"
         },
         "RunCapabilities": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "Version": {
           "description": "Override the version from the deployment unit",
@@ -780,6 +812,7 @@
       ]
     },
     "maintenancewindow": {
+      "description": "Standard Configuration options to define a maintenance window",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -807,6 +840,7 @@
       }
     },
     "volume": {
+      "description": "Defines the standard configuration of a storage volume",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -843,6 +877,7 @@
       ]
     },
     "aws_ecs_computeimage": {
+      "description": "AWS ECS Specific overrides to source compute images",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -919,6 +954,7 @@
       }
     },
     "ospatching": {
+      "description": "OS Patching configuration definitions",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -940,6 +976,7 @@
       }
     },
     "plugin": {
+      "description": "Defines a CMDB plugin and how its loaded",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -996,6 +1033,7 @@
       ]
     },
     "alert": {
+      "description": "Configuration of alerts that monitor component resources",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1110,6 +1148,7 @@
       ]
     },
     "contextpath": {
+      "description": "Combined with the getContextPath() function creates a name or path based on your current context",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1128,10 +1167,12 @@
             "Host",
             "Custom"
           ],
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "IncludeInPath": {
           "additionalProperties": false,
