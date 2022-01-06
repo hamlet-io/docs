@@ -3,14 +3,17 @@
   "additionalProperties": false,
   "definitions": {
     "LogFileGroup": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
         "LogFiles": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -18,6 +21,7 @@
       ]
     },
     "Category": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -36,6 +40,7 @@
       }
     },
     "Processor": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -278,32 +283,41 @@
       }
     },
     "CORSProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
         "ExposedHeaders": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "AllowedOrigins": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "AllowedMethods": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "AllowedHeaders": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "MaxAge": {
           "type": "number"
@@ -318,6 +332,7 @@
       ]
     },
     "TestProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -327,16 +342,19 @@
           "type": "object",
           "properties": {
             "TestCases": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         }
       }
     },
     "Port": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -437,6 +455,7 @@
       ]
     },
     "SecurityProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -478,10 +497,12 @@
               "type": "string"
             },
             "IKEVersions": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             },
             "DeadPeerDetectionAction": {
               "type": "string",
@@ -499,22 +520,28 @@
                   "type": "number"
                 },
                 "EncryptionAlgorithms": {
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
                 },
                 "IntegrityAlgorithms": {
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
                 },
                 "DiffeHellmanGroups": {
-                  "type": [
-                    "array",
-                    "number"
-                  ]
+                  "contains": {
+                    "type": [
+                      "number"
+                    ]
+                  },
+                  "type": "array"
                 }
               }
             },
@@ -529,22 +556,28 @@
                   "type": "number"
                 },
                 "EncryptionAlgorithms": {
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
                 },
                 "IntegrityAlgorithms": {
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
                 },
                 "DiffeHellmanGroups": {
-                  "type": [
-                    "array",
-                    "number"
-                  ]
+                  "contains": {
+                    "type": [
+                      "number"
+                    ]
+                  },
+                  "type": "array"
                 }
               }
             },
@@ -654,6 +687,7 @@
       }
     },
     "PolicyProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -664,6 +698,7 @@
       }
     },
     "VMImageProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -694,6 +729,7 @@
       }
     },
     "CertificateBehaviour": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -719,14 +755,17 @@
           "type": "boolean"
         },
         "HostParts": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         }
       }
     },
     "ComputeProvider": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -794,6 +833,7 @@
       }
     },
     "LogFileProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -803,10 +843,12 @@
           "type": "object",
           "properties": {
             "LogFileGroups": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         },
@@ -816,10 +858,12 @@
           "type": "object",
           "properties": {
             "LogFileGroups": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         },
@@ -829,10 +873,12 @@
           "type": "object",
           "properties": {
             "LogFileGroups": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         },
@@ -842,16 +888,19 @@
           "type": "object",
           "properties": {
             "LogFileGroups": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         }
       }
     },
     "LogFile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -870,6 +919,7 @@
       ]
     },
     "ServiceRole": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -888,18 +938,22 @@
       }
     },
     "AlertProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
         "Rules": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         }
       }
     },
     "DeploymentProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -910,6 +964,7 @@
       }
     },
     "BootstrapProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -919,10 +974,12 @@
           "type": "object",
           "properties": {
             "Bootstraps": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         },
@@ -932,10 +989,12 @@
           "type": "object",
           "properties": {
             "Bootstraps": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         },
@@ -945,10 +1004,12 @@
           "type": "object",
           "properties": {
             "Bootstraps": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         },
@@ -958,16 +1019,19 @@
           "type": "object",
           "properties": {
             "Bootstraps": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             }
           }
         }
       }
     },
     "Bootstrap": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1074,6 +1138,7 @@
       }
     },
     "DeploymentMode": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1126,11 +1191,13 @@
           "type": "object",
           "properties": {
             "Groups": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
               "description": "A list of group ids in their deployment order",
-              "type": [
-                "array",
-                "string"
-              ]
+              "type": "array"
             }
           }
         },
@@ -1138,11 +1205,13 @@
           "default": [
             "update"
           ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
           "description": "The deployment operations to complete for each deployment",
-          "type": [
-            "array",
-            "string"
-          ],
+          "type": "array",
           "enum": [
             "create",
             "update",
@@ -1155,6 +1224,7 @@
       ]
     },
     "IPAddressGroup": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1162,10 +1232,12 @@
           "type": "string"
         },
         "CIDR": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "IsOpen": {
           "type": "boolean"
@@ -1173,6 +1245,7 @@
       }
     },
     "PortMapping": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1189,6 +1262,7 @@
       ]
     },
     "AlertRule": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1217,14 +1291,17 @@
       ]
     },
     "NetworkEndpointGroup": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
         "Services": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -1232,6 +1309,7 @@
       ]
     },
     "WAFCondition": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1243,16 +1321,20 @@
           "type": "object",
           "properties": {
             "Sizes": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             },
             "Operators": {
-              "type": [
-                "array",
-                "string"
-              ],
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array",
               "enum": [
                 "EQ",
                 "NE",
@@ -1294,16 +1376,20 @@
               }
             },
             "Targets": {
-              "type": [
-                "array",
-                "string"
-              ]
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
             },
             "Transformations": {
-              "type": [
-                "array",
-                "string"
-              ],
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array",
               "enum": [
                 "NONE",
                 "CMD_LINE",
@@ -1318,6 +1404,7 @@
       }
     },
     "WAFProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1329,14 +1416,17 @@
           ]
         },
         "Rules": {
-          "type": [
-            "array",
-            "object"
-          ]
+          "contains": {
+            "type": [
+              "object"
+            ]
+          },
+          "type": "array"
         }
       }
     },
     "ScriptStore": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1374,6 +1464,7 @@
       }
     },
     "LoggingProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1402,6 +1493,7 @@
       }
     },
     "PlacementProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1431,6 +1523,7 @@
       }
     },
     "BaselineProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1459,6 +1552,7 @@
       ]
     },
     "WAFValueSet": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1474,14 +1568,17 @@
       }
     },
     "CountryGroup": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
         "Locations": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "Blacklist": {
           "type": "boolean"
@@ -1489,6 +1586,7 @@
       }
     },
     "NetworkProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1511,29 +1609,35 @@
                     "^[A-Za-z_][A-Za-z0-9_-]*$": {
                       "properties": {
                         "SecurityGroups": {
+                          "contains": {
+                            "type": [
+                              "string"
+                            ]
+                          },
                           "description": "A list of security groups or ids - for internal use only",
-                          "type": [
-                            "array",
-                            "string"
-                          ]
+                          "type": "array"
                         },
                         "Description": {
                           "description": "A description that will be applied to the rule",
                           "type": "string"
                         },
                         "Ports": {
+                          "contains": {
+                            "type": [
+                              "string"
+                            ]
+                          },
                           "description": "A list of port ids from the Ports reference",
-                          "type": [
-                            "array",
-                            "string"
-                          ]
+                          "type": "array"
                         },
                         "IPAddressGroups": {
+                          "contains": {
+                            "type": [
+                              "string"
+                            ]
+                          },
                           "description": "A list of IP Address groups ids from the IPAddressGroups reference",
-                          "type": [
-                            "array",
-                            "string"
-                          ]
+                          "type": "array"
                         }
                       }
                     }
@@ -1552,6 +1656,7 @@
       }
     },
     "WAFRule": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1573,6 +1678,7 @@
       }
     },
     "Storage": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1685,18 +1791,22 @@
       }
     },
     "WAFRuleGroup": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
         "WAFRules": {
-          "type": [
-            "array",
-            "string"
-          ]
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         }
       }
     },
     "TestCase": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1727,18 +1837,22 @@
                   "type": "object"
                 },
                 "Exists": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
                   "description": "Does a JSON path exist",
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "type": "array"
                 },
                 "NotEmpty": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
                   "description": "Is the value of a JSON path not emtpy",
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "type": "array"
                 },
                 "Match": {
                   "patternProperties": {
@@ -1771,11 +1885,13 @@
               "type": "object",
               "properties": {
                 "Output": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
                   "description": "Does an output with exist",
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "type": "array"
                 },
                 "Resource": {
                   "patternProperties": {
@@ -1813,11 +1929,13 @@
               "type": "object",
               "properties": {
                 "SkipChecks": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
                   "description": "A list of checks to skip in checkov",
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "type": "array"
                 },
                 "Enabled": {
                   "default": true,
@@ -1846,11 +1964,13 @@
               "type": "object",
               "properties": {
                 "IgnoreChecks": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
                   "description": "A list of checks to ignore in cfn-lint",
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "type": "array"
                 },
                 "Enabled": {
                   "default": true,
@@ -1875,6 +1995,7 @@
       }
     },
     "SkuProfile": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2059,6 +2180,7 @@
       }
     },
     "Region": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2094,10 +2216,12 @@
                   "type": "string"
                 },
                 "NetworkEndpoints": {
-                  "type": [
-                    "array",
-                    "object"
-                  ]
+                  "contains": {
+                    "type": [
+                      "object"
+                    ]
+                  },
+                  "type": "array"
                 },
                 "AWSZone": {
                   "type": "string"
@@ -2114,6 +2238,7 @@
       ]
     },
     "DeploymentGroup": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2150,11 +2275,13 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "ResourceLabels": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
                   "description": "The resource labels to include in the subset",
-                  "type": [
-                    "array",
-                    "string"
-                  ]
+                  "type": "array"
                 },
                 "deployment:Unit": {
                   "description": "The Deployment Unit",
@@ -2195,6 +2322,7 @@
       ]
     },
     "LogFilter": {
+      "description": "",
       "additionalProperties": false,
       "type": "object",
       "properties": {
