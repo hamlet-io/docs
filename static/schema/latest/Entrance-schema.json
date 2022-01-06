@@ -3,7 +3,6 @@
   "additionalProperties": false,
   "definitions": {
     "occurrences": {
-      "description": "Provides the state of all occurrences within a district",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -80,12 +79,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -95,7 +92,6 @@
       }
     },
     "schema": {
-      "description": "Povides JSON schema representations of input configuration",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -172,12 +168,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -187,7 +181,6 @@
       }
     },
     "configuration": {
-      "description": "Provides details on the hamlet engine and the avaiable entrances",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -264,12 +257,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -279,7 +270,6 @@
       }
     },
     "loader": {
-      "description": "Generates a set of loader contracts which can be used to setup hamlet",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -356,12 +346,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -371,7 +359,6 @@
       }
     },
     "deploymenttest": {
-      "description": "Generates the required documents to deploy a given deployment unit / deployment group combination",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -448,12 +435,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -463,7 +448,6 @@
       }
     },
     "blueprint": {
-      "description": "Provides a detailed representation of everything in a given segment, this includes its parent, environment, product and tenant",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -540,12 +524,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -555,7 +537,6 @@
       }
     },
     "buildblueprint": {
-      "description": "Provides a given deployment units occurrences and their suboccurrences",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -632,12 +613,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -647,7 +626,6 @@
       }
     },
     "schemalist": {
-      "description": "Lists the available schemas",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -724,12 +702,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -739,7 +715,6 @@
       }
     },
     "releaseinfo": {
-      "description": "Provides information for release management tasks performed by executors",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -816,12 +791,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -831,7 +804,6 @@
       }
     },
     "runbookinfo": {
-      "description": "Provides a list of the available runbooks",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -908,12 +880,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -923,7 +893,6 @@
       }
     },
     "unitlist": {
-      "description": "Provides details on all deployment unit | deployment group combinations",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1000,12 +969,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -1015,7 +982,6 @@
       }
     },
     "runbook": {
-      "description": "Creates a runbook contract to perform tasks using components",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1092,12 +1058,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -1107,7 +1071,6 @@
       }
     },
     "deployment": {
-      "description": "Generates the required documents to deploy a given deployment unit / deployment group combination",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1184,12 +1147,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -1199,7 +1160,6 @@
       }
     },
     "info": {
-      "description": "Provides details on the hamlet engine and the avaiable entrances",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1276,12 +1236,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [
@@ -1291,7 +1249,6 @@
       }
     },
     "validate": {
-      "description": "Performs validation of the current Blueprint Object",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1368,12 +1325,10 @@
           "type": "object",
           "properties": {
             "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           },
           "required": [

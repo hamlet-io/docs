@@ -3,7 +3,6 @@
   "additionalProperties": false,
   "definitions": {
     "process_template_pass": {
-      "description": "Execute the codeontap freemarker engine to create an occurrence template file for subset",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -40,7 +39,6 @@
       ]
     },
     "ssh_copy_file": {
-      "description": "Copy a file between the local host and a remote ssh host",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -97,7 +95,6 @@
       ]
     },
     "aws_decrypt_kms_ciphertext": {
-      "description": "Given an encrypted KMS ciphertext object decrypt it and return the plaintext result as a string",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -136,7 +133,6 @@
       ]
     },
     "set_provider_credentials": {
-      "description": "Use the hamlet context to define the credentials for cloud providers",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -160,7 +156,6 @@
       ]
     },
     "create_schema": {
-      "description": "Create a JSONSchema for a give schema set",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -174,7 +169,6 @@
       ]
     },
     "rename_file": {
-      "description": "Renames a file to a new value within the same directory",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -191,7 +185,6 @@
       ]
     },
     "run_bash_script": {
-      "description": "Execute a shell script",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -210,7 +203,6 @@
       ]
     },
     "install_plugin": {
-      "description": "Install a hamlet plugin from the source provided",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -267,7 +259,6 @@
       ]
     },
     "conditional_stage_skip": {
-      "description": "If a condition doesn't match skip the rest of the steps in the stage",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -297,7 +288,6 @@
       ]
     },
     "ssh_run_command": {
-      "description": "Run an ssh command with an interactive shell",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -334,7 +324,6 @@
       ]
     },
     "manage_deployment": {
-      "description": "Generate a list of deployment units and groups that can be used to manage a segment",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -357,12 +346,10 @@
           "type": "string"
         },
         "Operations": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
+          "type": [
+            "array",
+            "string"
+          ]
         },
         "DeploymentGroup": {
           "type": "string"

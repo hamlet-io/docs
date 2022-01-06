@@ -3,7 +3,6 @@
   "additionalProperties": false,
   "definitions": {
     "Bootstraps": {
-      "description": "User defined initialisation for virtual machine based components",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -120,7 +119,6 @@
       }
     },
     "Products": {
-      "description": "A product layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -265,12 +263,10 @@
                       }
                     },
                     "HostParts": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -312,23 +308,19 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Placement": {
                       "type": "string"
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -353,7 +345,6 @@
       }
     },
     "AlertProfiles": {
-      "description": "A collection of alert rules applied to a component",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -362,12 +353,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "Rules": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -378,7 +367,6 @@
       }
     },
     "SecurityProfiles": {
-      "description": "Security Configuration Options",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -424,12 +412,10 @@
                       "type": "string"
                     },
                     "IKEVersions": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "DeadPeerDetectionAction": {
                       "type": "string",
@@ -447,28 +433,22 @@
                           "type": "number"
                         },
                         "EncryptionAlgorithms": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "IntegrityAlgorithms": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "DiffeHellmanGroups": {
-                          "contains": {
-                            "type": [
-                              "number"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "number"
+                          ]
                         }
                       }
                     },
@@ -483,28 +463,22 @@
                           "type": "number"
                         },
                         "EncryptionAlgorithms": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "IntegrityAlgorithms": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "DiffeHellmanGroups": {
-                          "contains": {
-                            "type": [
-                              "number"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "number"
+                          ]
                         }
                       }
                     },
@@ -620,7 +594,6 @@
       }
     },
     "NetworkEndpointGroups": {
-      "description": "A group of network endpoints",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -629,12 +602,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "Services": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               },
               "required": [
@@ -648,7 +619,6 @@
       }
     },
     "CountryGroups": {
-      "description": "A collection of Country Codes used for access control",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -657,12 +627,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "Locations": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "Blacklist": {
                   "type": "boolean"
@@ -676,7 +644,6 @@
       }
     },
     "LogFiles": {
-      "description": "A log file and its collection pattern",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -705,7 +672,6 @@
       }
     },
     "Segments": {
-      "description": "A segment layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -756,12 +722,10 @@
                   "type": "object",
                   "properties": {
                     "Order": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -784,12 +748,10 @@
                       "type": "boolean"
                     },
                     "IPAddressGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -824,24 +786,20 @@
                           "type": "boolean"
                         },
                         "IPAddressGroups": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     }
                   }
                 },
                 "IPAddressGroups": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "Name": {
                   "type": "string"
@@ -855,20 +813,16 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -881,12 +835,10 @@
                       "type": "object",
                       "properties": {
                         "Order": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     },
@@ -922,12 +874,10 @@
                       "type": "object",
                       "properties": {
                         "Order": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     }
@@ -986,7 +936,6 @@
       }
     },
     "Tenants": {
-      "description": "A tenant layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1093,12 +1042,10 @@
                       }
                     },
                     "HostParts": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1143,23 +1090,19 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Placement": {
                       "type": "string"
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1184,7 +1127,6 @@
       }
     },
     "LoggingProfiles": {
-      "description": "A profile to describe logging rules for a component",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1223,7 +1165,6 @@
       }
     },
     "IPAddressGroups": {
-      "description": "A collection of CIDR based IP Addresses used for access control",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1235,12 +1176,10 @@
                   "type": "string"
                 },
                 "CIDR": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "IsOpen": {
                   "type": "boolean"
@@ -1254,7 +1193,6 @@
       }
     },
     "PlacementProfiles": {
-      "description": "Determines where a component will be deployed to",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1294,7 +1232,6 @@
       }
     },
     "VMImageProfiles": {
-      "description": "A virtual machine operating system configuration",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1335,7 +1272,6 @@
       }
     },
     "BaselineProfiles": {
-      "description": "The baseline components to use for a given baseilne function",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1374,7 +1310,6 @@
       }
     },
     "CORSProfiles": {
-      "description": "Cross Origin Resource Sharing Policy",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1383,36 +1318,28 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "ExposedHeaders": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "AllowedOrigins": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "AllowedMethods": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "AllowedHeaders": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 },
                 "MaxAge": {
                   "type": "number"
@@ -1433,7 +1360,6 @@
       }
     },
     "Solutions": {
-      "description": "The solution layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1486,7 +1412,6 @@
       }
     },
     "AlertRules": {
-      "description": "A alert filtering rule to forward alerts based on their severity",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1525,7 +1450,6 @@
       }
     },
     "WAFConditions": {
-      "description": "Web Application Firewall Condition",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1541,20 +1465,16 @@
                   "type": "object",
                   "properties": {
                     "Sizes": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Operators": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array",
+                      "type": [
+                        "array",
+                        "string"
+                      ],
                       "enum": [
                         "EQ",
                         "NE",
@@ -1596,20 +1516,16 @@
                       }
                     },
                     "Targets": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Transformations": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array",
+                      "type": [
+                        "array",
+                        "string"
+                      ],
                       "enum": [
                         "NONE",
                         "CMD_LINE",
@@ -1630,7 +1546,6 @@
       }
     },
     "WAFValueSets": {
-      "description": "Web Application Firewall Rule",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1656,7 +1571,6 @@
       }
     },
     "BootstrapProfiles": {
-      "description": "A collection of boostraps to apply",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1670,12 +1584,10 @@
                   "type": "object",
                   "properties": {
                     "Bootstraps": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1685,12 +1597,10 @@
                   "type": "object",
                   "properties": {
                     "Bootstraps": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1700,12 +1610,10 @@
                   "type": "object",
                   "properties": {
                     "Bootstraps": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -1715,12 +1623,10 @@
                   "type": "object",
                   "properties": {
                     "Bootstraps": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 }
@@ -1733,7 +1639,6 @@
       }
     },
     "TestProfiles": {
-      "description": "A collection of test cases",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1747,12 +1652,10 @@
                   "type": "object",
                   "properties": {
                     "TestCases": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 }
@@ -1765,7 +1668,6 @@
       }
     },
     "ComputeProviders": {
-      "description": "Policies to determine the compute services used to host a given resource",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1843,7 +1745,6 @@
       }
     },
     "DeploymentGroups": {
-      "description": "A collection of deployment units and their relationships",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1884,13 +1785,11 @@
                     "^[A-Za-z_][A-Za-z0-9_-]*$": {
                       "properties": {
                         "ResourceLabels": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
                           "description": "The resource labels to include in the subset",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "deployment:Unit": {
                           "description": "The Deployment Unit",
@@ -1937,7 +1836,6 @@
       }
     },
     "ServiceRoles": {
-      "description": "Security Roles assigned to cloud services",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1966,7 +1864,6 @@
       }
     },
     "ScriptStores": {
-      "description": "A physical location for infrastructure deployment",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2014,7 +1911,6 @@
       }
     },
     "WAFRuleGroups": {
-      "description": "Web Application Firewall Rule",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2023,12 +1919,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "WAFRules": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -2039,7 +1933,6 @@
       }
     },
     "Categories": {
-      "description": "A high level grouping of environments",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2068,7 +1961,6 @@
       }
     },
     "DeploymentProfiles": {
-      "description": "Creates a collection of configuration which can be applied to multiple components",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2089,7 +1981,6 @@
       }
     },
     "PolicyProfiles": {
-      "description": "Creates a collection of configuration which can be applied to multiple components",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2110,7 +2001,6 @@
       }
     },
     "Ports": {
-      "description": "An IP based network port",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2221,7 +2111,6 @@
       }
     },
     "Regions": {
-      "description": "A physical location for infrastructure deployment",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2261,12 +2150,10 @@
                           "type": "string"
                         },
                         "NetworkEndpoints": {
-                          "contains": {
-                            "type": [
-                              "object"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "object"
+                          ]
                         },
                         "AWSZone": {
                           "type": "string"
@@ -2289,7 +2176,6 @@
       }
     },
     "CertificateBehaviours": {
-      "description": "How to format the hostname used in a certificate",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2319,12 +2205,10 @@
                   "type": "boolean"
                 },
                 "HostParts": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -2335,7 +2219,6 @@
       }
     },
     "LogFilters": {
-      "description": "A filter to apply when searching log files",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2358,7 +2241,6 @@
       }
     },
     "Environments": {
-      "description": "The environment layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2404,12 +2286,10 @@
                           "type": "boolean"
                         },
                         "IPAddressGroups": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     }
@@ -2450,20 +2330,16 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -2525,7 +2401,6 @@
       }
     },
     "PortMappings": {
-      "description": "A mapping between two ports when dealing with translation or offload services",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2552,7 +2427,6 @@
       }
     },
     "Storage": {
-      "description": "Storage configuration for components",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2675,7 +2549,6 @@
       }
     },
     "WAFRules": {
-      "description": "Web Application Firewall Rule",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2707,7 +2580,6 @@
       }
     },
     "LogFileProfiles": {
-      "description": "A collectio of log file groups based on component type",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2721,12 +2593,10 @@
                   "type": "object",
                   "properties": {
                     "LogFileGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -2736,12 +2606,10 @@
                   "type": "object",
                   "properties": {
                     "LogFileGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -2751,12 +2619,10 @@
                   "type": "object",
                   "properties": {
                     "LogFileGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -2766,12 +2632,10 @@
                   "type": "object",
                   "properties": {
                     "LogFileGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 }
@@ -2784,7 +2648,6 @@
       }
     },
     "TestCases": {
-      "description": "An output test case",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2819,22 +2682,18 @@
                           "type": "object"
                         },
                         "Exists": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
                           "description": "Does a JSON path exist",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "NotEmpty": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
                           "description": "Is the value of a JSON path not emtpy",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "Match": {
                           "patternProperties": {
@@ -2867,13 +2726,11 @@
                       "type": "object",
                       "properties": {
                         "Output": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
                           "description": "Does an output with exist",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "Resource": {
                           "patternProperties": {
@@ -2911,13 +2768,11 @@
                       "type": "object",
                       "properties": {
                         "SkipChecks": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
                           "description": "A list of checks to skip in checkov",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "Enabled": {
                           "default": true,
@@ -2946,13 +2801,11 @@
                       "type": "object",
                       "properties": {
                         "IgnoreChecks": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
                           "description": "A list of checks to ignore in cfn-lint",
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         },
                         "Enabled": {
                           "default": true,
@@ -2983,7 +2836,6 @@
       }
     },
     "WAFProfiles": {
-      "description": "Web Application Firewall Profile",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -2999,12 +2851,10 @@
                   ]
                 },
                 "Rules": {
-                  "contains": {
-                    "type": [
-                      "object"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "object"
+                  ]
                 }
               }
             }
@@ -3015,7 +2865,6 @@
       }
     },
     "LogFileGroups": {
-      "description": "A group of log files",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -3024,12 +2873,10 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "LogFiles": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               },
               "required": [
@@ -3043,7 +2890,6 @@
       }
     },
     "NetworkProfiles": {
-      "description": "A profile to desribe network level controls",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -3070,35 +2916,29 @@
                             "^[A-Za-z_][A-Za-z0-9_-]*$": {
                               "properties": {
                                 "SecurityGroups": {
-                                  "contains": {
-                                    "type": [
-                                      "string"
-                                    ]
-                                  },
                                   "description": "A list of security groups or ids - for internal use only",
-                                  "type": "array"
+                                  "type": [
+                                    "array",
+                                    "string"
+                                  ]
                                 },
                                 "Description": {
                                   "description": "A description that will be applied to the rule",
                                   "type": "string"
                                 },
                                 "Ports": {
-                                  "contains": {
-                                    "type": [
-                                      "string"
-                                    ]
-                                  },
                                   "description": "A list of port ids from the Ports reference",
-                                  "type": "array"
+                                  "type": [
+                                    "array",
+                                    "string"
+                                  ]
                                 },
                                 "IPAddressGroups": {
-                                  "contains": {
-                                    "type": [
-                                      "string"
-                                    ]
-                                  },
                                   "description": "A list of IP Address groups ids from the IPAddressGroups reference",
-                                  "type": "array"
+                                  "type": [
+                                    "array",
+                                    "string"
+                                  ]
                                 }
                               }
                             }
@@ -3123,7 +2963,6 @@
       }
     },
     "SkuProfiles": {
-      "description": "Compute SKU model and hardware type.",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -3318,7 +3157,6 @@
       }
     },
     "DeploymentModes": {
-      "description": "A collection of deployment groups which are executed in a defined order",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -3375,13 +3213,11 @@
                   "type": "object",
                   "properties": {
                     "Groups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
                       "description": "A list of group ids in their deployment order",
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -3389,13 +3225,11 @@
                   "default": [
                     "update"
                   ],
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
                   "description": "The deployment operations to complete for each deployment",
-                  "type": "array",
+                  "type": [
+                    "array",
+                    "string"
+                  ],
                   "enum": [
                     "create",
                     "update",
@@ -3414,7 +3248,6 @@
       }
     },
     "Processors": {
-      "description": "Compute resources and hardware type",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -3667,7 +3500,6 @@
       }
     },
     "Accounts": {
-      "description": "The deployment provider account layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -3773,20 +3605,16 @@
                   "type": "object",
                   "properties": {
                     "Policy": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     },
                     "Deployment": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },
@@ -3808,12 +3636,10 @@
                       "default": [
                         "s3"
                       ],
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array",
+                      "type": [
+                        "array",
+                        "string"
+                      ],
                       "enum": [
                         "cloudwatch",
                         "s3"
@@ -4110,12 +3936,10 @@
                       "type": "object",
                       "properties": {
                         "AWSAccounts": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
+                          "type": [
+                            "array",
+                            "string"
+                          ]
                         }
                       }
                     }
@@ -4184,12 +4008,10 @@
                       }
                     },
                     "IPAddressGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
+                      "type": [
+                        "array",
+                        "string"
+                      ]
                     }
                   }
                 },

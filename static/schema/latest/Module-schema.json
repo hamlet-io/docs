@@ -3,7 +3,6 @@
   "additionalProperties": false,
   "definitions": {
     "consolidatelogs": {
-      "description": "Solution-wide consolidation of logs into ops data bucket",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -36,7 +35,6 @@
       ]
     },
     "runbook_rds_pgdump": {
-      "description": "Run a pgdump on a postgres db component and save the result locally",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -55,7 +53,6 @@
       ]
     },
     "ssh_bastion": {
-      "description": "Public bastion server with ssh support",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -80,18 +77,15 @@
           "type": "string"
         },
         "IPAddressGroups": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
           "description": "A list of IPAddressGroups that can access the bastion host",
-          "type": "array"
+          "type": [
+            "array",
+            "string"
+          ]
         }
       }
     },
     "alarmslack": {
-      "description": "Sends slack notifications based on cloudwatch alarms",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -145,7 +139,6 @@
       ]
     },
     "privatebastion": {
-      "description": "Bastion access via SSM only",
       "additionalProperties": false,
       "type": "object",
       "properties": {

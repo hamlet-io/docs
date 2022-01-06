@@ -3,7 +3,6 @@
   "additionalProperties": false,
   "definitions": {
     "Account": {
-      "description": "The deployment provider account layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -105,20 +104,16 @@
           "type": "object",
           "properties": {
             "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             },
             "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -140,12 +135,10 @@
               "default": [
                 "s3"
               ],
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array",
+              "type": [
+                "array",
+                "string"
+              ],
               "enum": [
                 "cloudwatch",
                 "s3"
@@ -442,12 +435,10 @@
               "type": "object",
               "properties": {
                 "AWSAccounts": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -516,12 +507,10 @@
               }
             },
             "IPAddressGroups": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -537,7 +526,6 @@
       ]
     },
     "Tenant": {
-      "description": "A tenant layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -640,12 +628,10 @@
               }
             },
             "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -690,23 +676,19 @@
           "type": "object",
           "properties": {
             "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             },
             "Placement": {
               "type": "string"
             },
             "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -725,7 +707,6 @@
       }
     },
     "Environment": {
-      "description": "The environment layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -767,12 +748,10 @@
                   "type": "boolean"
                 },
                 "IPAddressGroups": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -813,20 +792,16 @@
           "type": "object",
           "properties": {
             "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             },
             "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -882,7 +857,6 @@
       }
     },
     "Product": {
-      "description": "A product layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1023,12 +997,10 @@
               }
             },
             "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -1070,23 +1042,19 @@
           "type": "object",
           "properties": {
             "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             },
             "Placement": {
               "type": "string"
             },
             "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -1105,7 +1073,6 @@
       }
     },
     "Segment": {
-      "description": "A segment layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -1152,12 +1119,10 @@
           "type": "object",
           "properties": {
             "Order": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -1180,12 +1145,10 @@
               "type": "boolean"
             },
             "IPAddressGroups": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -1220,24 +1183,20 @@
                   "type": "boolean"
                 },
                 "IPAddressGroups": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
           }
         },
         "IPAddressGroups": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
+          "type": [
+            "array",
+            "string"
+          ]
         },
         "Name": {
           "type": "string"
@@ -1251,20 +1210,16 @@
           "type": "object",
           "properties": {
             "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             },
             "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
+              "type": [
+                "array",
+                "string"
+              ]
             }
           }
         },
@@ -1277,12 +1232,10 @@
               "type": "object",
               "properties": {
                 "Order": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             },
@@ -1318,12 +1271,10 @@
               "type": "object",
               "properties": {
                 "Order": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
+                  "type": [
+                    "array",
+                    "string"
+                  ]
                 }
               }
             }
@@ -1376,7 +1327,6 @@
       }
     },
     "Solution": {
-      "description": "The solution layer",
       "additionalProperties": false,
       "type": "object",
       "properties": {
