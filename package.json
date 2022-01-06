@@ -22,7 +22,7 @@
     "fs": "0.0.1-security",
     "infima": "^0.2.0-alpha.37",
     "json2yaml": "^1.1.0",
-    "mermaid": "^8.13.7",
+    "mermaid": "^8.13.8",
     "qs": "^6.10.2",
     "react": "^16.14.0",
     "react-admonitions": "^2.1.0",
