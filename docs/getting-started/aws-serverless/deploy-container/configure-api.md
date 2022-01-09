@@ -4,7 +4,7 @@ title: API Configuration
 ---
 
 This guide works through configuring the API using hamlet settings. When we first looked at the [hello_world](https://github.com/hamlet-io/docs-support/pkgs/container/docs-support%2Fhello_world) container it had an environment variable `LOCATION` that specifies where we are saying the greeting from.
-With hamlet we can define environment variables using settings. A setting is a namespaced configuration object that can be shared across your solution components and can include files or complex structures that will be converted to environment variables as required.
+With hamlet we can define environment variables using settings. The most common use for settings is to provide environment variables to our components, but they can also be used for providing files and adding support for dynamic resource setups. This guide will focus on using them for environment variables.
 
 So let's set the environment variable `LOCATION` to "work".
 
@@ -22,106 +22,31 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
     cd myapp/config/solutionsv2/integration/default/
     ```
 
-1. The next step is to find the settings namespace for our API component. Components are configured with setting namespaces that are merged to form the settings for a component. The default namespaces are based on the name of the components and the deployment unit the component belongs to and you can create your own namespaces if you need to.
-
-    First, let's find the name of our API occurrence; this is its unique reference within the solution.
-
-    ```bash
-    hamlet --account acct01 component list-occurrences
-    ```
-
-    ```terminal
-    | TierId   | ComponentId   | Name                                      | Type               |
-    |----------|---------------|-------------------------------------------|--------------------|
-    | elb      | apilb         | elb-apilb-lb                              | lb                 |
-    | elb      | apilb         | elb-apilb-http-lbport                     | lbport             |
-    | app      | ecshost       | application-ecshost-ecs                   | ecs                |
-    | app      | ecshost       | application-ecshost-helloapi-service      | service            |
-    | mgmt     | baseline      | management-baseline-baseline              | baseline           |
-    | mgmt     | baseline      | management-baseline-opsdata-baselinedata  | baselinedata       |
-    | mgmt     | baseline      | management-baseline-appdata-baselinedata  | baselinedata       |
-    | mgmt     | baseline      | management-baseline-ssh-baselinekey       | baselinekey        |
-    | mgmt     | baseline      | management-baseline-cmk-baselinekey       | baselinekey        |
-    | mgmt     | baseline      | management-baseline-oai-baselinekey       | baselinekey        |
-    | mgmt     | vpc           | management-vpc-network                    | network            |
-    | mgmt     | vpc           | management-vpc-internal-networkroute      | networkroute       |
-    | mgmt     | vpc           | management-vpc-external-networkroute      | networkroute       |
-    | mgmt     | vpc           | management-vpc-open-networkacl            | networkacl         |
-    | mgmt     | igw           | management-igw-gateway                    | gateway            |
-    | mgmt     | igw           | management-igw-default-gatewaydestination | gatewaydestination |
-    ```
-
-1. The helloapi service is the one that we want to find the settings for, so the occurrence we are looking for is application-ecshost-helloapi-service. To find the setting-namespace we add a query argument to our description.
-
-    ```bash
-    hamlet --account acct01 component describe-occurrence --name application-ecshost-helloapi-service setting-namespaces
-    ```
-
-    ```terminal
-    [
-        {
-            "Key": "application-ecshost-helloapi",
-            "Match": "partial"
-        },
-        {
-            "Key": "application-ecshost-helloapi-service",
-            "Match": "partial"
-        },
-        {
-            "Key": "app-ecshost-helloapi",
-            "Match": "partial"
-        },
-        {
-            "Key": "app-ecshost-helloapi-service",
-            "Match": "partial"
-        },
-        {
-            "Key": "helloapi",
-            "Match": "exact"
-        }
-    ]
-    ```
-
-    When you look through this list you can see that all the default namespaces are based on details of the occurrence and where it is hosted. These values are similar to the link configuration that we looked at before.
-
-    To be consistent with what we've configured in the solution we will use the ID based namespace, `app-ecshost-helloapi`.
-
-1. Create the directory for the settings namespace.
-
-    ```bash
-    # change into the root of your cmdb
-    cd ~/hamlet_hello/mycmdb
-
-    # Create the setting namespace directory in the product
-    mkdir -p myapp/config/settings/integration/default/app-ecshost-helloapi
-
-    # change into the settings directory
-    cd myapp/config/settings/integration/default/app-ecshost-helloapi
-    ```
-
-    Setting namespaces belong to each of the segments, so the directory structure for settings follows the same structure we use to set the deployment context.
-
-1. Now that we have the directory let's add the settings.
-
-    From your editor add a file called `settings.json` in the setting namespace repository and add the following:
+1. Open the segment.json file in your code editor and update the helloapi Service to include the Settings section
 
     ```json
     {
-        "LOCATION" : "work"
+        "Tiers" : {
+            "app" : {
+                "Components" : {
+                    "ecshost" : {
+                        "Services" : {
+                            "helloapi" : {
+                                "Settings" : {
+                                    "LOCATION" : {
+                                        "Value" : "work"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     ```
 
-    By default all settings are provided to the container as environment variables, so this will add an environment variable called LOCATION with the value called "work" into our container.
-
-1. Change back to the solutions directory to run the deployment.
-
-    ```bash
-    # change to the root of the CMDB
-    cd ~/hamlet_hello/mycmdb
-
-    # change to the integration segment to set context
-    cd myapp/config/solutionsv2/integration/default/
-    ```
+    The Settings attribute is available on every component in hamlet and is a simple way to provide environment variables to your components.
 
 1. Now we can generate the deployment. This time we will have a look at what will change before the deployment is run:
 
@@ -192,7 +117,7 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
     app-helloapi-acct01-ap-southeast-2-template.json
     ```
 
-    - generation-contract.json - tells hamlet what other files need to be generated
+    - generation-contract.json - tells hamlet the files need to be generated for the deployment
     - lastchange.json - collects the changeset that hamlet generates for each CloudFormation update. This shows the updates that have been completed.
     - pregeneration.sh - is a script run before the standard outputs are generated by the engine. For this deployment it is used to pull down the container image.
     - stack.json - captures the cloudformation stack outputs so that hamlet can reference them
@@ -224,7 +149,7 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
     curl http://myapp-int-elb-apilb-1234567890.ap-southeast-2.elb.amazonaws.com
     ```
 
-    ```terminal
+    ```json
     {
         "Greeting": "Hello!",
         "Location": "work"

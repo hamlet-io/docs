@@ -32,13 +32,13 @@ Docker provides a container based workflow to isolate hamlet and its dependencie
 1. Install docker for your operating system using the official Docker guide here https://docs.docker.com/get-docker/
 1. double-check that Docker is running. If you don't get a response from the following command, you'll need to start Docker before continuing.
 
-  ```console
+  ```bash
   docker info
   ```
 
 1. Once Docker is running, pull down the hamletio/hamlet container to your local desktop.
 
-  ```console
+  ```bash
   docker pull hamletio/hamlet
   ```
 
@@ -55,11 +55,11 @@ Docker provides a container based workflow to isolate hamlet and its dependencie
   Each time you would like to return to this workspace you will just need to run the following Docker CLI command inside of a terminal window
   :::
 
-  ```console
+  ```bash
   docker run -it --volume ~/hamlet:/home/hamlet/cmdb hamletio/hamlet
   ```
 
-  ```console
+  ```terminal
   hamlet @ ~/cmdb
   └─ $
   ```
@@ -72,19 +72,19 @@ Docker provides a container based workflow to isolate hamlet and its dependencie
 
 Navigate into the _~/hamlet_ directory and create a test file called _text.txt_
 
-```console
+```bash
 cd ~/hamlet
 echo "testing" > test.txt
 ```
 
 Now back in the container's terminal session check that you can see the new file.
 
-```console
+```terminal
 ## ls - list information in the current directory
 ls
 ```
 
-```console
+```terminal
 test.txt
 ```
 
@@ -105,7 +105,7 @@ Using sudo is generally the best way to do this instead of running everything as
 
 1. Run the following to install the required packages.
 
-  ```console
+  ```bash
   apt-get update && apt-get install openjdk-8-jdk jq zip unzip graphviz python3 python3-pip docker
   ```
 
@@ -113,7 +113,7 @@ Using sudo is generally the best way to do this instead of running everything as
 
 1. After the OS packages are installed run the following to install the python based packages.
 
-  ```console
+  ```bash
   pip install hamlet awscli az diagrams
   ```
 
@@ -121,13 +121,13 @@ Using sudo is generally the best way to do this instead of running everything as
 
 1. Start the Docker service so that we can use it to manage images that we build and push using hamlet.
 
-  ```console
+  ```bash
   systemctl enable --now docker
   ```
 
 1. Confirm that Docker is running with the following:
 
-  ```console
+  ```bash
   docker ps
   ```
 
@@ -143,7 +143,7 @@ For MacOS instances we recommended setting up the required dependencies using [H
 
 1. Once you have Homebrew installed run the following commands to install the base packages.
 
-  ```console
+  ```bash
   brew update
   brew install openjdk@8 jq bash graphviz
   ```
@@ -159,7 +159,7 @@ For MacOS instances we recommended setting up the required dependencies using [H
 
   It will be something like:
 
-  ```console
+  ```bash
   # install through homebrew
   brew update
   brew install pyenv
@@ -184,7 +184,7 @@ For MacOS instances we recommended setting up the required dependencies using [H
 
 1. Once you have Python installed you can then install the Python packages.
 
-  ```console
+  ```bash
   pip install hamlet awscli az diagrams
   ```
 
@@ -207,9 +207,11 @@ Read through the install links below and ensure that each of the installed parts
 | AWS Cli  | https://aws.amazon.com/cli/                  | v1 currently supported   | AWS deployments          |
 | Az       | https://docs.microsoft.com/en-us/cli/azure/  | No specific requirements | Azure deployments        |
 | Graphviz | https://graphviz.org/                        | No specific requirements | Diagram generation       |
+| AWS SSM Plugin | https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html | No Specific requirements | AWS Runbook Container access |
 
 Once you have the required packages installed you can install hamlet.
-```console
+
+```bash
 pip install hamlet
 ```
 
@@ -223,13 +225,13 @@ Now that we have hamlet installed we should confirm that everything is working a
 
 1. Make sure hamlet is installed and available from your shell. In a terminal window run:
 
-  ```console
+  ```bash
   hamlet --version
   ```
 
   This will return the version of hamlet you have installed.
 
-  ```console
+  ```bash
   hamlet, version 9.3.0
   ```
 
@@ -237,13 +239,13 @@ Now that we have hamlet installed we should confirm that everything is working a
 
   Run the following command:
 
-  ```console
+  ```bash
   hamlet entrance list-entrances
   ```
 
   You should now see the following output which confirms that hamlet is available and that it can call the engine.
 
-  ```console
+  ```terminal
     [*] no default engine set using train
     ╒════╤════════════════╤════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╕
     │    │ Type           │ Description                                                                                                                    │
