@@ -60,6 +60,6 @@ Setting the REACT_APP_API_URL tells the UI where to get the status update from. 
 
 ![UI Showing work location](ui_work.png)
 
-The location and the greeting have both come from the API and are being displayed by the UI. The UI will check the API periodicallly to see if the status has changed.
+The location and the greeting have both come from the API and are being displayed by the UI. The UI will check the API periodically to see if the status has changed.
 
 Now that we've seen what the API and UI do, you can break both the UI and API to stop them running.

@@ -26,7 +26,7 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
 
     :::tip
     hamlet uses your current directory to determine where this deployment should run
-:::
+    :::
 
     ```bash
     # Make sure we are in our CMDB

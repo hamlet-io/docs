@@ -184,7 +184,7 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
     hamlet --account acct01 deploy list-deployments
     ```
 
-    ```bash
+    ```terminal
     | Deployment Group   | Deployment Unit   | Provider   | State       | District   |
     |--------------------|-------------------|------------|-------------|------------|
     | segment            | baseline          | aws        | deployed    | segment    |
@@ -208,7 +208,7 @@ Now we have our environment baseline set up and ready to go, along with a networ
 hamlet --account acct01 component describe-occurrence -n management-vpc-network resources
 ```
 
-```terminal
+```json
 {
     "vpc": {
         "Type": "vpc",
