@@ -41,7 +41,7 @@ const defaultColumns = [
   {
     name: "Attribute",
     selector: "attribute",
-    grow: 2,
+    grow: 1,
     sortable: true,
   },
   {
@@ -54,6 +54,8 @@ const defaultColumns = [
     name: "Types",
     selector: "type",
     center: true,
+    wrap: true,
+    grow: 1,
     cell: row => {
       return (
         <div data-tag="allowRowEvents">
@@ -70,28 +72,38 @@ const defaultColumns = [
   {
     name: "Mandatory",
     selector: "mandatory",
+    grow: 1,
     center: true,
+    sortable: true,
+    wrap: true,
   },
   {
     name: "Possible Values",
     selector: "values",
     grow: 1,
     wrap: true,
+    cell: row => {
+      return (
+        <div>{row.values}</div>
+      )
+    }
   },
   {
     name: "Default Value",
     selector: "default",
     grow: 1,
     wrap: true,
+    cell: row => {
+      return (
+        <div>{row.default}</div>
+      )
+    }
   },
 ];
 
 createTheme("hamlet", {
   text: {
     primary: "#0b2e6d",
-  },
-  background: {
-    default: "#f0f0f0",
   },
   context: {
     text: "#be282d",
@@ -111,7 +123,7 @@ const formatDataTableDefault = (type, value) => {
       return JSON.stringify(value, null, 4);
 
     case "array":
-      return value.join(', ');
+      return value.join('\n');
 
     default:
       return value;
@@ -151,10 +163,10 @@ const getDataTableRows = (data, required) => {
   for ( const [key, value] of Object.entries(data) ) {
 
     value.type = (value["$ref"]) ? value["$ref"] : value.type;
-    const values = (value?.enum) ? value.enum.join(', ') : null;
+    const values = (value?.enum) ? value.enum.join('\n') : null;
     const defaultValue = formatDataTableDefault(value.type, value?.default);
-    const type = Array.isArray(value.type) ? value.type.join(', ') : value.type;
-    const isRequired = (required.includes(key)) ? "true" : "false";
+    const type = Array.isArray(value.type) ? value.type.join('\n') : value.type;
+    const isRequired = (required.includes(key)) ? "yes" : null;
 
     tableRows.push({
       id: key,
@@ -170,7 +182,7 @@ const getDataTableRows = (data, required) => {
   return tableRows
 }
 
-function HamletDataTable({title, data, stripeTables=true, denseRows=true, defaultSort="attribute", columns=defaultColumns}) {
+function HamletDataTable({title, data, stripeTables=false, denseRows=false, defaultSort="mandatory", columns=defaultColumns}) {
   return (
     <div className="reference">
       <section id={title} key={title}>

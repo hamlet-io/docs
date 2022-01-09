@@ -42,8 +42,7 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "@babel/plugin-proposal-class-properties": "^7.16.5",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
     "pre-commit": "^1.2.2"
   }
 }
