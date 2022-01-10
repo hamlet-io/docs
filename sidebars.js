@@ -60,6 +60,17 @@ module.exports = {
           items: [
             'how-to/define/adding-env-vars',
             'how-to/define/accessing-components',
+            {
+              type: 'category',
+              label: 'Navigate the CMDB',
+              items: [
+                'how-to/define/navigate-the-cmdb/index',
+                'how-to/define/navigate-the-cmdb/tenant',
+                'how-to/define/navigate-the-cmdb/account',
+                'how-to/define/navigate-the-cmdb/product',
+                'how-to/define/navigate-the-cmdb/blueprint',
+              ]
+            },
           ]
         },
         {
@@ -149,13 +160,11 @@ module.exports = {
           type: 'category',
           label: 'Foundations',
           items: [
-            'in-depth/foundations/anatomy',
             'in-depth/foundations/architecture',
             {
               type: 'category',
               label: 'Inputs',
               items: [
-                'in-depth/foundations/inputs/inputsources',
                 'in-depth/foundations/inputs/references',
               ]
             },
@@ -165,17 +174,6 @@ module.exports = {
             'in-depth/foundations/profiles',
             'in-depth/foundations/lifecycle',
             'in-depth/foundations/terminology',
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Layers',
-          items: [
-            'in-depth/layers/intro',
-            'in-depth/layers/tenant',
-            'in-depth/layers/account',
-            'in-depth/layers/product',
-            'in-depth/layers/blueprint',
           ]
         },
         {
@@ -258,45 +256,6 @@ module.exports = {
             },
             {
               type: 'category',
-              label: 'Tools',
-              items: [
-                'in-depth/contribute/tools/cli',
-                {
-                  type: 'category',
-                  label: 'Docker',
-                  items: [
-                    'in-depth/contribute/tools/docker/images',
-                    'in-depth/contribute/tools/docker/scripts',
-                  ]
-                },
-                {
-                  type: 'category',
-                  label: 'Site',
-                  items: [
-                    'in-depth/contribute/tools/site/docusaurus',
-                    'in-depth/contribute/tools/site/documentation',
-                    'in-depth/contribute/tools/site/blogs-and-releases',
-                    'in-depth/contribute/tools/site/react-components',
-                  ]
-                },
-                {
-                  type: 'category',
-                  label: 'Patterns',
-                  items: [
-                    'in-depth/contribute/tools/patterns/patterns'
-                  ]
-                },
-                {
-                  type: 'category',
-                  label: 'Jenkins',
-                  items: [
-                    'in-depth/contribute/tools/jenkins/jenkins',
-                  ]
-                },
-              ]
-            },
-            {
-              type: 'category',
               label: 'Contributor Reference',
               items: [
                 'in-depth/contribute/contributor_reference/definitions',
@@ -308,7 +267,7 @@ module.exports = {
               type: 'category',
               label: 'Releases',
               items: [
-                'in-depth/contribute/releases/schedule'
+                'in-depth/releases/schedule'
               ]
             },
           ]
@@ -329,13 +288,23 @@ module.exports = {
           label: 'Software Reference',
           items: [
             'reference/software/index',
-            'reference/software/engine/engine',
+            'reference/software/engine/index',
             'reference/software/engine/engine_core',
-            'reference/software/python_executor/cli',
-            'reference/software/bash_executor/executor',
-            'reference/software/docker_container/container',
+            'reference/software/python_executor/index',
+            'reference/software/bash_executor/index',
+            'reference/software/docker_container/index',
+            {
+              type: 'category',
+              label: 'Docs Site',
+              items: [
+                'reference/software/docs_site/index',
+                'reference/software/docs_site/docs',
+                'reference/software/docs_site/blog',
+                'reference/software/docs_site/react-components',
+              ]
+            },
           ]
-        }
+        },
       ]
     }
   ]
