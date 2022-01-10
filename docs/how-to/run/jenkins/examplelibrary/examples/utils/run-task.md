@@ -19,7 +19,7 @@ Specific to this example, this Parameter is passed to the hamlet Executor's "Run
 
 ### Setup
 
-Loads environment variables from the hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [properties](../properties/properties) file.
 
 ### Run Provider Task
 

@@ -12,13 +12,13 @@ Below is the recommended approach to integrating hamlet and Jenkins. This config
 
 ## Properties files
 
-hamlet Jenkins pipelines share a number of common environment variables and valid parameter values. To re-use this configuration easily, creating a [`properties`](examplelibrary/examples/properties/properties) file is recommended.
+hamlet Jenkins pipelines share a number of common environment variables and valid parameter values. To re-use this configuration easily, creating a [properties](examplelibrary/examples/properties/properties) file is recommended.
 
 ## Jenkins Jobs
 
-Keeping [`properties`](examplelibrary/examples/properties/properties) and pipelines within your Product CMDB under the following structure allows for separation of purpose, whilst ensuring they will always be available where your repository has been cloned down. Build pipelines are not shown as they should be committed to the root of the code repository for the code they build.
+Keeping [properties](examplelibrary/examples/properties/properties) and pipelines within your Product CMDB under the following structure allows for separation of purpose, whilst ensuring they will always be available where your repository has been cloned down. Build pipelines are not shown as they should be committed to the root of the code repository for the code they build.
 
-```sh
+```terminal
 ./pipelines/
 ├── deploy
 │   ├── staging
@@ -37,16 +37,16 @@ Keeping [`properties`](examplelibrary/examples/properties/properties) and pipeli
 │   └── environment
 │       └── Jenkinsfile
 └── properties
-    └── abtc.properties
+    └── product.properties
 ```
 
 ### Build Pipelines
 
 Create build artefacts and publish them to a Registry.
 
-Build jobs should be configgured in Jenkins as a multi-branch pipeline so as to provide feedback on new builds prior to merge.
+Build jobs should be configured in Jenkins as a multi-branch pipeline so as to provide feedback on new builds prior to merge.
 
-[Examples](examplelibrary/index#build)
+[Examples](examplelibrary/index#Build)
 
 ### Deploy Pipelines
 
@@ -63,16 +63,16 @@ After accepting a release, the pattern would begin again by promoting the releas
 
 The following exceptions to this approach should be considered:
 
-* environments intended for continous deployment should deploy directly - an example is provided.
+* environments intended for continuous deployment should deploy directly - an example is provided.
 * Production environments do not require an `accept` pipeline as there are no further environments.
 
-[Examples](examplelibrary/index#deploy)
+[Examples](examplelibrary/index#Deploy)
 
 ### Management Pipelines
 
 Provide a single pipeline for performing environmental-level deployments. This includes performing a specific mode of deployment (update, stop, hibernate) against one or many deployment units.
 
-[Examples](examplelibrary/index#manage)
+[Examples](examplelibrary/index#Manage)
 
 ### Utility Pipelines
 

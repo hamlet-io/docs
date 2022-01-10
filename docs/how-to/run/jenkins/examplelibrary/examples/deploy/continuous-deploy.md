@@ -8,7 +8,7 @@ Updates build reference(s) in the hamlet CMDB and initiates a deployment.
 
 This pipeline is intended to be called by the ['Build' pipeline](../build/single) for Continuous Deployment into the first environment.
 
-If deployment across [Segments](/in-depth/foundations/anatomy) is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
+If deployment across Segments is required, an additional parameter could be created in the 'Build' pipeline to supply the Segment value alongside the other parameters.
 
 ## Parameters
 
@@ -18,7 +18,7 @@ The 'Build' job supplies the required parameters for this pipeline.
 
 ### Setup
 
-Loads environment variables from the hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [properties](../properties/properties) file.
 
 ### Update Build Refs
 

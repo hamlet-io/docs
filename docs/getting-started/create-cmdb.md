@@ -5,7 +5,7 @@ title: Creating a CMDB
 
 The Configuration Management Database (CMDB) is the heart of hamlet. It contains the configuration, infrastructure code and state of your hamlet deployed infrastructure.
 
-CMDBs use a file based structure with a strict directory layout that hamlet uses to build its configuration using an overlay style approach. We won't go into too much depth at this stage. If you'd like to know more about it head to the [layer anatomy in-depth guide](/in-depth/layers).
+CMDBs use a file based structure with a strict directory layout that hamlet uses to build its configuration using an overlay style approach. We won't go into too much depth at this stage. If you'd like to know more about it head to the [navigating the cmdb how-to guide](/how-to/define/navigate-the-cmdb).
 
 ### Generating the CMDB
 
