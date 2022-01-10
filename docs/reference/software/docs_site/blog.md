@@ -1,10 +1,7 @@
 ---
-sidebar_label: Blog & Releases
-title: Blog & Releases
+sidebar_label: Blog
+title: Blog
 ---
-:::caution
-The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-:::
 
 * Blog page is a feature of the Docusaurus (link) framework
 * Releases are just a second blog type

@@ -9,23 +9,11 @@ We're going to use it to represent a basic phone directory website for our "Acme
 
 ```bash
 hamlet @ ~/cmdb
-└─ $ hamlet generate product base
+└─ $ hamlet generate product-cmdb
 [?] product id: phonedir
-[?] dns zone []:
-[?] product name [phonedir]:
-[?] environment id [int]:
-[?] environment name [integration]:
-[?] segment id [default]:
-[?] segment name [default]:
 ```
 
-There are a number of default Product types that we can generate but here we've chosen the "base" Product - this will give us a well-rounded set of configuration to start us off.
-
-Prompt 3 here is asking us what the `Id` value is for the Domain our Product will use. Our new Tenant does not contain any Domains yet, so we just leave this empty and no configuration is created for it.
-
-Our Product generation prompts are also going to ask us for the `Id` and `Name` values for the final 3 layers - Solution, Environment and Segment. Each of these provide a new way for us to define unique instances of our Product, and we need at least 1 of each of them in order to move forward.
-
-Here we've configured our Solution based on our Product's name, we'll use the common "integration" environment as our sole deployment environment and name our Segment "default".
+This command will create a basic product shell cmdb that will get you started with our recommended CMDB approach. This will define the initial Environment and Segment layers as well, with the default ids of integration for Environment and default for the Segment.
 
 And the outputs:
 
@@ -57,7 +45,7 @@ phonedir/
             └── default
 ```
 
-## product.json
+## Product
 
 ```bash
 hamlet @ ~/cmdb
@@ -65,8 +53,7 @@ hamlet @ ~/cmdb
 {
     "Product" : {
         "Id" : "phonedir",
-        "Name" : "phonedir",
-        "Domain" : "acmeinc"
+        "Name" : "phonedir"
     }
 }
 ```
@@ -79,15 +66,15 @@ Our Solution directory looks to have made a created a number of files though, le
 .
 └── phonedir
     └── config
-       └── solutionsv2
-           ├── integration
-           │   ├── default
-           │   │   └── segment.json
-           │   └── environment.json
-           └── shared
-               └── default
-                   ├── segment.json
-                   └── solution.json
+      └── solutionsv2
+           ├── integration
+           │   ├── default
+           │   │   └── segment.json
+           │   └── environment.json
+           └── shared
+               └── default
+                   ├── segment.json
+                   └── solution.json
 ```
 
 ### Environment Layer
@@ -96,13 +83,13 @@ The Environment layer enables configuration for different deployment environment
 
 ### Segment Layer
 
-Under our Environment directory, a simmilar structure has been created for our Segment layer too. The Segment layer provides an a mechanism to further separate out configuration within a given Environment. A single development Environment may contain unique Segments for each developer on a project for instance. For our needs today however, we've opted to go with the `default` segment name. We could create a `shared` Segment directory too, however in this instance we'll only be using the one Segment so its unnecessary.
+Under our Environment directory, a similar structure has been created for our Segment layer too. The Segment layer provides an a mechanism to further separate out configuration within a given Environment. A single development Environment may contain unique Segments for each developer on a project for instance. For our needs today however, we've opted to go with the `default` segment name. We could create a `shared` Segment directory too, however in this instance we'll only be using the one Segment so its unnecessary.
 
 ### Tiers
 
-Tiers - whilst not considered a layer - offer a final scope of configuration separation specifically for Components. Tiers are an expansion on the concept of a modular 3-tier architecture design. Not merely a way to group together components that operate together, Tier's offer a way to separate and secure components from eachother. For instance its common to place all "management" components into their own tier, which can then be tightly controlled, whilst components in a "web" tier might be publicly available.
+Tiers - whilst not considered a layer - offer a final scope of configuration separation specifically for Components. Tiers are an expansion on the concept of a modular 3-tier architecture design. Not merely a way to group together components that operate together, Tier's offer a way to separate and secure components from each other. For instance its common to place all "management" components into their own tier, which can then be tightly controlled, whilst components in a "web" tier might be publicly available.
 
-Inside of our Product each of the new files defines only it's layer's `Name` and `Id` to distinguish them from eachother, and the solution file also configures an empty `Tiers` object. Though this could have been defined on any Layer, assigning it here means that it will become a part of every Solution for our `phonedir` Product.
+Inside of our Product each of the new files defines only it's layer's `Name` and `Id` to distinguish them from each other, and the solution file also configures an empty `Tiers` object. Though this could have been defined on any Layer, assigning it here means that it will become a part of every Solution for our `phonedir` Product.
 
 ```json
 {
@@ -120,12 +107,11 @@ We have a complete set of Layers defined.
 
 To recap, they are:
 
-Tenant: `acmeinc`
-Account: `acmedev01`
-Product: `phonedir`
-Solution: `phonedir`
-Environment: `integration`
-Segment: `default`
+- **Tenant:** acmeinc
+- **Account:** acmedev01
+- **Product:** phonedir
+- **Environment:** integration
+- **Segment:** default
 
 Having now configured at least one of each Layer, we've now got what is called a District - any full set of Layers. Each District is the sum of its configuration.
 
@@ -151,11 +137,11 @@ hamlet @ ~/cmdb
 └─ $ tree -L 2
 .
 ├── accounts
-│   ├── acmedev01
-│   └── acmeinc
+│   ├── acmedev01
+│   └── acmeinc
 ├── phonedir
-│   ├── config
-│   └── infrastructure
+│   ├── config
+│   └── infrastructure
 └── root.json
 ```
 

@@ -2,9 +2,6 @@
 sidebar_label: React Components
 title: React Components
 ---
-:::caution
-The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-:::
 
 * we have developed a few React components specific to hamlet data
 * currently can be found in the hamlet-docs repo under `./src/components`

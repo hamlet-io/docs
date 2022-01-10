@@ -3,12 +3,7 @@ sidebar_label: Definitions
 title: Patterns, Routines, Macros & Functions
 ---
 
-:::caution
-The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
-:::
-
-* This section documents common macros, functions and patterns
-* This is not intended to be an exhaustive list, but a starting point for understanding the design of common features
+This section documents common macros, functions and patterns. This is not intended to be an exhaustive list, but a starting point for understanding the design of common features
 
 ## Definitions
 
