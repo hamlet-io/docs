@@ -20,4 +20,4 @@ The structure of the CMDB is based on a tree like structure that defines your te
 
 ## How do I use it
 
-Get started with our hands-on [getting started](getting-started/) guide, or learn more about hamlet with our [Foundations documentation.](in-depth/foundations/anatomy)
+Get started with our hands-on [getting started](getting-started/) guide

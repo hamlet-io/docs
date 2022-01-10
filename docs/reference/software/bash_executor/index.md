@@ -12,7 +12,7 @@ It is broken into two parts:-
 
 ## Usage
 
-The bash executor provides the most complete implementation of hamlet execution. It can be called directory and is also used as backend for the [cli](../python_executor/cli).
+The bash executor provides the most complete implementation of hamlet execution and can be used by other executors along with users of hamlet.
 
 ## Configuration
 

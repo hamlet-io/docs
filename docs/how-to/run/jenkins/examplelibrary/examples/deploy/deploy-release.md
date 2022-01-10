@@ -10,13 +10,13 @@ This pipeline is intended to be called after the ['Prepare Release'](./prepare-r
 
 ## Parameters
 
-This pipeline accepts **DEPLOYMENT_UNITS** (extendedChoice), **RELEASE_IDENTIFIER** (string) and **MODE** (choice) parameters. Choices are populated by the configuration of the [`properties`](../properties/properties) file.
+This pipeline accepts **DEPLOYMENT_UNITS** (extendedChoice), **RELEASE_IDENTIFIER** (string) and **MODE** (choice) parameters. Choices are populated by the configuration of the [properties](../properties/properties) file.
 
 ## Stages
 
 ### Setup
 
-Loads environment variables from the hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [properties](../properties/properties) file.
 
 ### Update Build Refs
 

@@ -39,7 +39,7 @@ Each Turtle version only includes a [specific collection of SDK builders](https:
 
 ### Setup
 
-Loads environment variables from the hamlet [`properties`](../properties/properties) file.
+Loads environment variables from the hamlet [properties](../properties/properties) file.
 
 ### Run Publish Expo
 
