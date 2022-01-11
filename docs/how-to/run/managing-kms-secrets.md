@@ -16,14 +16,18 @@ When you deploy a hamlet product, in each segment a baseline encryption key is c
 When you want to provide your own secrets, api keys, super user credentials etc. you use this key to encrypt the secret for each segment you want to use the secret in. Sometimes this does create duplication across your deployments, but the main goal here is to encourage you to use distinct secrets for each segment so you can reduce the risk of exposing your production environment credentials.
 
 :::info
-If you don't have an AWS hamlet deployment available and would like to try this yourself, head to the getting started guide and perform the steps up to the [environment bootstrap](getting-started/aws-serverless/deploy-baseline/environment-boostrap). This will create the same resources that we are working with
+If you don't have an AWS hamlet deployment available and would like to try this yourself, head to the getting started guide and perform the steps up to the [environment bootstrap](/getting-started/aws-serverless/deploy-baseline/environment-bootstrap). This will create the same resources that we are working with
+:::
+
+:::note
+If you have multiple environments or segments you will need to encrypt the secret for each environment/segment to ensure the right key is being used.
 :::
 
 ## Encrypting a Setting
 
 This will take you through encrypting a setting value, this is commonly used for passwords or API keys for external services
 
-1. We have been aksed to provide an environment variable to an app with the name `API_PASSWORD` and value `password123` the value should be encrypted so that it can be found in our CMDB
+1. We have been asked to provide an environment variable to an app with the name `API_PASSWORD` and value `password123` the value should be encrypted so that it can be found in our CMDB
 1. Set the context to the integration environment within your cmdb
 
     ```bash
@@ -62,15 +66,11 @@ This will take you through encrypting a setting value, this is commonly used for
 
 1. This will provide the secret to the component as an environment variable. Your application code will need to be able to run the kms decryption as part of the start process of the app. In this case we've added a prefix of `kms+base64:` to tell the application that the value is encrypted and base64 encoded.
 
-:::note
-If you have multiple environments or segments you will need to encrypt the secret for each environment/segment to ensure the right key is being used.
-:::
-
 ## Decrypting a Setting
 
 This will take you through decrypting a setting value that has already been encrypted
 
-1. We have an issue with the application and have been asked to provide the API_PASSWOD from our lambda app to make sure its right
+1. We have an issue with the application and have been asked to provide the API_PASSWORD from our lambda app to make sure its right
 1. Set the context to the integration environment
 
     ```bash
@@ -187,7 +187,7 @@ This will take you through decrypting the default SSH key that is generated as p
 1. You can now access the private key and use it to ssh into your ec2 instances
 
 :::warning
-When we generate the private key a .gitignore is added to ignore any files ending in decrypted. Make sure that you don't include the decyrpted files in your git commits
+When we generate the private key a .gitignore is added to ignore any files ending in decrypted. Make sure that you don't include the decrypted files in your git commits
 :::
 
 ## Encrypting a secret file
