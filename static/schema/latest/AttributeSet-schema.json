@@ -783,6 +783,11 @@
           "additionalProperties": false,
           "type": "object"
         },
+        "InitProcess": {
+          "default": false,
+          "description": "Enable a docker based init process to manage processes",
+          "type": "boolean"
+        },
         "LogMetrics": {
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {

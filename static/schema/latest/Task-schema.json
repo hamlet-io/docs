@@ -39,6 +39,20 @@
         "deploymentUnitSubset"
       ]
     },
+    "bash_run_command": {
+      "description": "Run a bash command locally and use the stdout as the returned result",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Command": {
+          "description": "The command to run",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Command"
+      ]
+    },
     "ssh_copy_file": {
       "description": "Copy a file between the local host and a remote ssh host",
       "additionalProperties": false,
@@ -48,14 +62,18 @@
           "description": "The path or content of an ssh private key to use for authentication",
           "type": "string"
         },
-        "Username": {
-          "description": "The username on the remote host",
+        "BastionPassword": {
+          "description": "The password for the username on the bastion host",
           "type": "string"
         },
         "Port": {
           "default": 22,
           "description": "The port number the host is listening on for ssh connections",
           "type": "number"
+        },
+        "BastionHost": {
+          "description": "The IP or Hostname of the bastion host",
+          "type": "string"
         },
         "Host": {
           "description": "The IP or Hostname of the remote host",
@@ -82,6 +100,23 @@
             "RemoteToLocal",
             "LocalToRemote"
           ]
+        },
+        "BastionSSHKey": {
+          "description": "The path or content of an ssh private key to use for authentication",
+          "type": "string"
+        },
+        "Username": {
+          "description": "The username on the remote host",
+          "type": "string"
+        },
+        "BastionPort": {
+          "default": 22,
+          "description": "The port number the bastion host is listening on for ssh connections",
+          "type": "number"
+        },
+        "BastionUsername": {
+          "description": "The username on the bastion host",
+          "type": "string"
         },
         "Password": {
           "description": "The password for the username on the remote host",
@@ -313,13 +348,34 @@
           "description": "The command to execute",
           "type": "string"
         },
+        "BastionPort": {
+          "default": 22,
+          "description": "The port number the bastion host is listening on for ssh connections",
+          "type": "number"
+        },
+        "BastionPassword": {
+          "description": "The password for the username on the bastion host",
+          "type": "string"
+        },
         "Port": {
           "default": 22,
           "description": "The port number the host is listening on for ssh connections",
           "type": "number"
         },
+        "BastionHost": {
+          "description": "The IP or Hostname of the bastion host",
+          "type": "string"
+        },
+        "BastionUsername": {
+          "description": "The username on the bastion host",
+          "type": "string"
+        },
         "Host": {
           "description": "The IP or Hostname of the remote host",
+          "type": "string"
+        },
+        "BastionSSHKey": {
+          "description": "The path or content of an ssh private key to use for authentication",
           "type": "string"
         },
         "Password": {
