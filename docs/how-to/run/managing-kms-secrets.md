@@ -3,7 +3,7 @@ sidebar_label: Manage AWS KMS Secrets
 title: Manage AWS KMS Secrets
 ---
 
-The AWS plugin for hamlet by default, manages all secret data through AWS Key Management Service(KMS) encryption. The service encrypts content and returns a ciphertext binary object with details of the key that encrypted the input. If you have the appropriate permissions in AWS to access the key listed in the content then you can decrypt the content.
+By default, the AWS plugin for hamlet manages all secret data through AWS Key Management Service(KMS) encryption. The service encrypts content and returns a ciphertext binary object with details of the key that encrypted the input. If you have the appropriate permissions in AWS to access the key listed in the content then you can decrypt the content.
 
 Using some encoding we can easily store these encrypted files within the CMDB and pass them between components or share them in the code repository. If someone gets the encrypted value they still need access to your AWS infrastructure to decrypt the key.
 
@@ -16,18 +16,18 @@ When you deploy a hamlet product, in each segment a baseline encryption key is c
 When you want to provide your own secrets, api keys, super user credentials etc. you use this key to encrypt the secret for each segment you want to use the secret in. Sometimes this does create duplication across your deployments, but the main goal here is to encourage you to use distinct secrets for each segment so you can reduce the risk of exposing your production environment credentials.
 
 :::info
-If you don't have an AWS hamlet deployment available and would like to try this yourself, head to the getting started guide and perform the steps up to the [environment bootstrap](/getting-started/aws-serverless/deploy-baseline/environment-bootstrap). This will create the same resources that we are working with
+If you don't have an AWS hamlet deployment available and would like to try this yourself, head to the getting started guide and perform the steps up to the [environment bootstrap](/getting-started/aws-serverless/deploy-baseline/environment-bootstrap). This will create the same resources that we are working with.
 :::
 
 :::note
-If you have multiple environments or segments you will need to encrypt the secret for each environment/segment to ensure the right key is being used.
+If you have multiple environments or segments you will need to individually encrypt the secret for each environment/segment to ensure the right key is being used.
 :::
 
 ## Encrypting a Setting
 
-This will take you through encrypting a setting value, this is commonly used for passwords or API keys for external services
+This will take you through encrypting a setting value. This is commonly used for passwords or API keys for external services.
 
-1. We have been asked to provide an environment variable to an app with the name `API_PASSWORD` and value `password123` the value should be encrypted so that it can be found in our CMDB
+1. We have been asked to provide an environment variable to an app with the name `API_PASSWORD` and value `password123`, with the value encrypted so that it can be found in our CMDB
 1. Set the context to the integration environment within your cmdb
 
     ```bash
@@ -90,9 +90,9 @@ This will take you through decrypting a setting value that has already been encr
 
 ## Decrypting an encrypted file
 
-This will take you through decrypting the default SSH key that is generated as part of a hamlet baseline component deployment
+This will take you through decrypting the default SSH key that is generated as part of a hamlet baseline component deployment.
 
-1. In a terminal window head to your product CMDB, from the root of the CMDB head to infrastructure/operations.
+1. In a terminal window head to your product CMDB and from the root of the CMDB head to infrastructure/operations.
 1. Run a tree on this directory to see what it has
 
     :::note
@@ -142,7 +142,7 @@ This will take you through decrypting the default SSH key that is generated as p
     -----BEGIN RSA PRIVATE KEY-----
     ```
 
-    This key has been encrypted by hamlet using the AWS KMS service, so we need to decrypt the file
+    This key has been encrypted by hamlet using the AWS KMS service, so we need to decrypt the file.
 
 1. First get the full path to the kms key
 
@@ -150,7 +150,7 @@ This will take you through decrypting the default SSH key that is generated as p
     realpath integration/default/.aws-acct01-ap-southeast-2-ssh-prv.pem
     ```
 
-    This will return the full path to the file copy this or note it down
+    This will return the full path to the file copy this or note it down.
 
 1. Set your CMDB context by changing into the config directory
 
@@ -192,7 +192,7 @@ When we generate the private key a .gitignore is added to ignore any files endin
 
 ## Encrypting a secret file
 
-We have now been provided a certificate file to access another service. We need to encrypt it and store it in the CMDB so that it can be accessed by our application
+We have now been provided a certificate file to access another service. We need to encrypt it and store it in the CMDB so that it can be accessed by our application.
 
 1. Our lambda function looks like this in our solution
 
@@ -251,7 +251,7 @@ We have now been provided a certificate file to access another service. We need 
     mkdir -p <product cmdb>/config/settings/integration/default/application-lambda-run/asFile/
     ```
 
-1. In the new file generate a random key that will the application needs
+1. In the new file generate a random key that will meet the application needs
 
     ```bash
     echo "${RANDOM}" | sha1sum > <product cmdb>/config/settings/integration/default/application-lambda-run/asFile/random.key
