@@ -34,7 +34,7 @@ The train release is the stable product release which is the recommended release
 
 ### Patch Releases
 
-Patch releases releases are bugfix releases for a train release. They are not scheduled and will be released as required. By their nature, trams and unicycle releases do not have patch releases associated with them. Bug fixes are simply included in the next release.
+Patch releases are bugfix releases for a train release. They are not scheduled and will be released as required. By their nature, trams and unicycle releases do not have patch releases associated with them. Bug fixes are simply included in the next release.
 
 ## Feature Tags
 
