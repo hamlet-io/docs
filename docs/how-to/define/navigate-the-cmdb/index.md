@@ -14,7 +14,7 @@ If you haven't already been through the [install guide for hamlet](/getting-star
 
 ## A Layered Approach
 
-hamlet captures a holistic view of an organisations application deployment requirements, and applies them across its entire scope. A particular security policy may be applied for just a single product, or across the entire organisation. The implementation of that policy is the same either way, and in both cases it is only implemented once - but the layer at which it is defined ensures it will apply across the scope it is intended.
+hamlet captures a holistic view of an organisation's application deployment requirements, and applies them across its entire scope. A particular security policy may be applied for just a single product, or across the entire organisation. The implementation of that policy is the same either way, and in both cases it is only implemented once - but the layer at which it is defined ensures it will apply across the scope it is intended.
 
 There are 6 layer types available in hamlet, each representing a unique configuration scope
 
