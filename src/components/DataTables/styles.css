@@ -83,4 +83,9 @@ tr, td {
     border-style: none;
     font-size: 0.8em;
     padding: calc( var(--ifm-table-cell-padding ) * 0.25 );
+
+}
+
+.rdt_TableCell {
+    white-space: pre-wrap;
 }

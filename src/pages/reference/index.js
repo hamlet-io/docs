@@ -19,7 +19,6 @@ function HamletRefRouter() {
               style={{
                 padding: "20px",
                 width: "100%",
-                background: "#f0f0f0",
               }}
             >
               <ul style={{ listStyleType: "none", padding: 0 }}>
