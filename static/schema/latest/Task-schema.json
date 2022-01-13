@@ -2,43 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
-    "process_template_pass": {
-      "description": "Execute the codeontap freemarker engine to create an occurrence template file for subset",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "outputConversion": {
-          "type": "string"
-        },
-        "passAlternative": {
-          "type": "string"
-        },
-        "outputFileName": {
-          "type": "string"
-        },
-        "pass": {
-          "type": "string"
-        },
-        "outputType": {
-          "type": "string"
-        },
-        "deploymentUnitSubset": {
-          "type": "string"
-        },
-        "outputFormat": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "outputType",
-        "outputFormat",
-        "outputConversion",
-        "pass",
-        "passAlternative",
-        "outputFileName",
-        "deploymentUnitSubset"
-      ]
-    },
     "bash_run_command": {
       "description": "Run a bash command locally and use the stdout as the returned result",
       "additionalProperties": false,
@@ -170,6 +133,37 @@
         "Ciphertext"
       ]
     },
+    "aws_ec2_select_instance": {
+      "description": "Lists the available instances and allows the user to select one - returns the selected instance id",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "VpcId": {
+          "description": "The VPCId that instances are assiged to",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "Tags": {
+          "description": "An object of Key=Value tags that the instances must have",
+          "type": "object"
+        }
+      }
+    },
     "set_provider_credentials": {
       "description": "Use the hamlet context to define the credentials for cloud providers",
       "additionalProperties": false,
@@ -194,20 +188,6 @@
         "ProviderId"
       ]
     },
-    "create_schema": {
-      "description": "Create a JSONSchema for a give schema set",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Schema": {
-          "description": "The schema to generate",
-          "type": "string"
-        }
-      },
-      "required": [
-        "Schema"
-      ]
-    },
     "rename_file": {
       "description": "Renames a file to a new value within the same directory",
       "additionalProperties": false,
@@ -223,25 +203,6 @@
       "required": [
         "currentFileName",
         "newFileName"
-      ]
-    },
-    "run_bash_script": {
-      "description": "Execute a shell script",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "scriptFileName": {
-          "description": "The name of the script to run",
-          "type": "string"
-        },
-        "source": {
-          "default": true,
-          "description": "Source the script when executing it as part of the executor process",
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "scriptFileName"
       ]
     },
     "install_plugin": {
@@ -299,6 +260,201 @@
       "required": [
         "Name",
         "Source"
+      ]
+    },
+    "manage_deployment": {
+      "description": "Generate a list of deployment units and groups that can be used to manage a segment",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "CurrentState": {
+          "description": "The current state of the deployment",
+          "type": "string",
+          "enum": [
+            "notdeployed",
+            "deployed",
+            "orphaned"
+          ]
+        },
+        "DeploymentProvider": {
+          "type": "string"
+        },
+        "DeploymentUnit": {
+          "type": "string"
+        },
+        "District": {
+          "type": "string"
+        },
+        "Operations": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "DeploymentGroup": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "DeploymentUnit",
+        "DeploymentGroup",
+        "District",
+        "Operations",
+        "DeploymentProvider",
+        "CurrentState"
+      ]
+    },
+    "process_template_pass": {
+      "description": "Execute the codeontap freemarker engine to create an occurrence template file for subset",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "outputConversion": {
+          "type": "string"
+        },
+        "passAlternative": {
+          "type": "string"
+        },
+        "outputFileName": {
+          "type": "string"
+        },
+        "pass": {
+          "type": "string"
+        },
+        "outputType": {
+          "type": "string"
+        },
+        "deploymentUnitSubset": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "outputType",
+        "outputFormat",
+        "outputConversion",
+        "pass",
+        "passAlternative",
+        "outputFileName",
+        "deploymentUnitSubset"
+      ]
+    },
+    "aws_ecs_select_task": {
+      "description": "List the running tasks for a service or task family and return the user selected task",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "ClusterArn": {
+          "description": "The ARN of the ECS Cluster to list running tasks from",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "ServiceName": {
+          "description": "The Arn or Name of a service deployed to the cluster",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "TaskFamily": {
+          "description": "The name of a Task definition family that to show tasks for",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ClusterArn"
+      ]
+    },
+    "aws_ecs_run_command": {
+      "description": "Runs an interactive task on a provided task arn",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "ClusterArn": {
+          "description": "The ARN of the ECS Cluster to list running tasks from",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "Command": {
+          "description": "The command to run in the command",
+          "type": "string"
+        },
+        "ContainerName": {
+          "description": "The name of the container in the task definition",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "TaskArn": {
+          "description": "The Arn or Name of a running task to run the command on",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "TaskArn"
+      ]
+    },
+    "create_schema": {
+      "description": "Create a JSONSchema for a give schema set",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Schema": {
+          "description": "The schema to generate",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Schema"
+      ]
+    },
+    "run_bash_script": {
+      "description": "Execute a shell script",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "scriptFileName": {
+          "description": "The name of the script to run",
+          "type": "string"
+        },
+        "source": {
+          "default": true,
+          "description": "Source the script when executing it as part of the executor process",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "scriptFileName"
       ]
     },
     "conditional_stage_skip": {
@@ -387,50 +543,6 @@
         "Host",
         "Username",
         "Command"
-      ]
-    },
-    "manage_deployment": {
-      "description": "Generate a list of deployment units and groups that can be used to manage a segment",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "CurrentState": {
-          "description": "The current state of the deployment",
-          "type": "string",
-          "enum": [
-            "notdeployed",
-            "deployed",
-            "orphaned"
-          ]
-        },
-        "DeploymentProvider": {
-          "type": "string"
-        },
-        "DeploymentUnit": {
-          "type": "string"
-        },
-        "District": {
-          "type": "string"
-        },
-        "Operations": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
-        "DeploymentGroup": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "DeploymentUnit",
-        "DeploymentGroup",
-        "District",
-        "Operations",
-        "DeploymentProvider",
-        "CurrentState"
       ]
     }
   },
