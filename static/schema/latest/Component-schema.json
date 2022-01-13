@@ -24123,6 +24123,11 @@
           "default": 100,
           "type": "number"
         },
+        "aws:ExecuteCommand": {
+          "default": false,
+          "description": "Enable Support for execute command through ECS Exec on tasks within the service",
+          "type": "boolean"
+        },
         "Enabled": {
           "default": true,
           "type": "boolean"

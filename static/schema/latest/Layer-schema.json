@@ -515,6 +515,15 @@
                 }
               }
             },
+            "IPAccessPolicy": {
+              "default": "allow",
+              "description": "Controls how IPAddressGroups are handled - deny: deny these groups - allow: only allow these groups",
+              "type": "string",
+              "enum": [
+                "allow",
+                "deny"
+              ]
+            },
             "IPAddressGroups": {
               "contains": {
                 "type": [
