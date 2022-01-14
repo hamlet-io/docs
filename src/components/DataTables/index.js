@@ -103,7 +103,7 @@ const defaultColumns = [
 
 createTheme("hamlet", {
   text: {
-    primary: "#0b2e6d",
+    primary: "#1c1e21",
   },
   context: {
     text: "#be282d",
@@ -112,6 +112,14 @@ createTheme("hamlet", {
     default: "#4d94ff",
   },
 });
+
+const customStyles = {
+  cells: {
+      style: {
+        whiteSpace: "pre-wrap"
+      },
+  },
+};
 
 const formatDataTableDefault = (type, value) => {
   // format an attributes default value based on its attribute type.
@@ -193,6 +201,7 @@ function HamletDataTable({title, data, stripeTables=false, denseRows=false, defa
           striped={stripeTables}
           dense={denseRows}
           defaultSortField={defaultSort}
+          customStyles={customStyles}
           theme="hamlet"
         />
       </section>
