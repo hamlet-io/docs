@@ -2561,21 +2561,18 @@
                     "secondary"
                   ]
                 },
-                "Parent": {
+                "Zone": {
+                  "description": "The zone the endpoint belongs to",
+                  "type": "string"
+                },
+                "Parents": {
                   "contains": {
                     "type": [
                       "string"
                     ]
                   },
-                  "description": "The parent of this domain",
-                  "type": [
-                    "string",
-                    "array"
-                  ]
-                },
-                "Zone": {
-                  "description": "The zone the endpoint belongs to",
-                  "type": "string"
+                  "description": "The parent of this domain segment",
+                  "type": "array"
                 },
                 "Bare": {
                   "default": false,
