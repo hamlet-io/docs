@@ -2237,6 +2237,49 @@
         "Locality"
       ]
     },
+    "Domain": {
+      "description": "",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Role": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary"
+          ]
+        },
+        "Parent": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "The parent of this domain",
+          "type": [
+            "string",
+            "array"
+          ]
+        },
+        "Zone": {
+          "description": "The zone the endpoint belongs to",
+          "type": "string"
+        },
+        "Bare": {
+          "default": false,
+          "description": "Use the name value of the domain as the full domain name value",
+          "type": "boolean"
+        },
+        "Stem": {
+          "description": "The root stem domain name that children will be based on",
+          "type": "string"
+        },
+        "Name": {
+          "description": "The name of the domain",
+          "type": "string"
+        }
+      }
+    },
     "DeploymentGroup": {
       "description": "",
       "additionalProperties": false,
@@ -2333,6 +2376,17 @@
       "required": [
         "Pattern"
       ]
+    },
+    "Certificate": {
+      "description": "",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Domain": {
+          "description": "The Id of a domain reference to map to a product",
+          "type": "string"
+        }
+      }
     }
   },
   "$id": "https://docs.hamlet.io/schema/latest/Reference-schema.json"

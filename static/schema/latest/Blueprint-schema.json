@@ -647,6 +647,27 @@
         }
       }
     },
+    "Certificates": {
+      "description": "Mapping of a domain to a product certificate entry - the Id of the reference should be a product Id",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Certificates": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Domain": {
+                  "description": "The Id of a domain reference to map to a product",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
     "CountryGroups": {
       "description": "A collection of Country Codes used for access control",
       "additionalProperties": false,
@@ -2515,6 +2536,59 @@
                       "type": "number"
                     }
                   }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "Domains": {
+      "description": "Represents a segment of a domain name",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Domains": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Role": {
+                  "type": "string",
+                  "enum": [
+                    "primary",
+                    "secondary"
+                  ]
+                },
+                "Parent": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "description": "The parent of this domain",
+                  "type": [
+                    "string",
+                    "array"
+                  ]
+                },
+                "Zone": {
+                  "description": "The zone the endpoint belongs to",
+                  "type": "string"
+                },
+                "Bare": {
+                  "default": false,
+                  "description": "Use the name value of the domain as the full domain name value",
+                  "type": "boolean"
+                },
+                "Stem": {
+                  "description": "The root stem domain name that children will be based on",
+                  "type": "string"
+                },
+                "Name": {
+                  "description": "The name of the domain",
+                  "type": "string"
                 }
               }
             }
