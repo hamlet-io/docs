@@ -120,10 +120,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -132,6 +134,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -423,10 +426,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -435,6 +440,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -667,6 +673,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -675,6 +682,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -687,6 +695,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -1026,10 +1035,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -1038,6 +1049,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -1399,21 +1411,7 @@
               "type": "string"
             },
             "Tracing": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Mode": {
-                  "type": "string",
-                  "enum": [
-                    "active",
-                    "passthrough"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                }
-              }
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/tracing"
             },
             "Image": {
               "description": "Control the source of the image for the healthcheck script",
@@ -1470,10 +1468,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -1486,6 +1486,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -1764,10 +1765,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -1776,6 +1779,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -1991,10 +1995,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -2003,6 +2009,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -2276,10 +2283,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -2288,6 +2297,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -2663,10 +2673,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -2679,6 +2691,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -3058,10 +3071,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -3070,6 +3085,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -3237,6 +3253,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -3254,6 +3271,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -3276,6 +3294,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -3389,49 +3408,7 @@
           }
         },
         "AutoScaling": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "MinUpdateInstances": {
-              "default": 1,
-              "description": "The minimum number of instances which must be available during an update",
-              "type": "number"
-            },
-            "ReplaceCluster": {
-              "default": false,
-              "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
-              "type": "boolean"
-            },
-            "DetailedMetrics": {
-              "default": true,
-              "description": "Enable the collection of autoscale group detailed metrics",
-              "type": "boolean"
-            },
-            "UpdatePauseTime": {
-              "default": "10M",
-              "description": "How long to pause betweeen updates of instances",
-              "type": "string"
-            },
-            "ActivityCooldown": {
-              "default": 30,
-              "type": "number"
-            },
-            "MinSuccessInstances": {
-              "default": 75,
-              "description": "The minimum percantage of instances that must sucessfully update",
-              "type": "number"
-            },
-            "StartupTimeout": {
-              "default": "15M",
-              "description": "How long to wait for a cfn-signal to be received from a host",
-              "type": "string"
-            },
-            "AlwaysReplaceOnUpdate": {
-              "default": false,
-              "description": "Replace instances on every update action",
-              "type": "boolean"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
         },
         "Settings": {
           "patternProperties": {
@@ -3498,184 +3475,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/task"
         },
         "HostScalingPolicies": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Type": {
-                  "default": "ComputeProvider",
-                  "type": "string",
-                  "enum": [
-                    "Stepped",
-                    "Tracked",
-                    "Scheduled",
-                    "ComputeProvider"
-                  ]
-                },
-                "ComputeProvider": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Scheduled": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Schedule": {
-                          "type": "string"
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "ProcessorProfile": {
-                          "default": "default",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "Type": {
-                      "default": "Stepped",
-                      "type": "string",
-                      "enum": [
-                        "Stepped",
-                        "Tracked",
-                        "Scheduled"
-                      ]
-                    },
-                    "Tracked": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "TargetValue": {
-                          "type": "number"
-                        },
-                        "ScaleInEnabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "RecommendedMetric": {
-                          "description": "Use a recommended (predefined) metric for scaling",
-                          "type": "string"
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        }
-                      }
-                    },
-                    "TrackingResource": {
-                      "description": "The resource metric used to trigger scaling",
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Link": {
-                          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                        },
-                        "MetricTrigger": {
-                          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-                        }
-                      }
-                    },
-                    "ManageTermination": {
-                      "default": true,
-                      "description": "Alow the computer provider to manage when instances will be terminated",
-                      "type": "boolean"
-                    },
-                    "Cooldown": {
-                      "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "ScaleIn": {
-                          "default": 300,
-                          "type": "number"
-                        },
-                        "ScaleOut": {
-                          "default": 600,
-                          "type": "number"
-                        }
-                      }
-                    },
-                    "MaxAdjustment": {
-                      "default": 10000,
-                      "description": "The maximum instances to  update during scaling activities",
-                      "type": "number"
-                    },
-                    "Stepped": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "CapacityAdjustment": {
-                          "default": "Change",
-                          "description": "How to scale when the policy is triggered",
-                          "type": "string",
-                          "enum": [
-                            "Change",
-                            "Exact",
-                            "Percentage"
-                          ]
-                        },
-                        "MetricAggregation": {
-                          "default": "Average",
-                          "description": "The method used to agregate the cloudwatch metric",
-                          "type": "string",
-                          "enum": [
-                            "Average",
-                            "Minimum",
-                            "Maximum"
-                          ]
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "Adjustments": {
-                          "patternProperties": {
-                            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                              "properties": {
-                                "LowerBound": {
-                                  "description": "The lower bound for the difference between the alarm threshold and the metric",
-                                  "type": "number"
-                                },
-                                "AdjustmentValue": {
-                                  "default": 1,
-                                  "description": "The value to apply when the adjustment step is triggered",
-                                  "type": "number"
-                                },
-                                "UpperBound": {
-                                  "description": "The upper bound for the difference between the alarm threshold and the metric",
-                                  "type": "number"
-                                }
-                              }
-                            }
-                          },
-                          "description": "The adjustments to apply at each step",
-                          "additionalProperties": false,
-                          "type": "object"
-                        },
-                        "MinAdjustment": {
-                          "default": -1,
-                          "description": "When minimum scale adjustment value to apply when triggered",
-                          "type": "number"
-                        }
-                      }
-                    },
-                    "MinAdjustment": {
-                      "default": 1,
-                      "description": "The minimum instances to update during scaling activities",
-                      "type": "number"
-                    },
-                    "TargetCapacity": {
-                      "default": 90,
-                      "description": "The target usage of the autoscale group to maintain as a percentage",
-                      "type": "number"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy_ecs"
         },
         "deployment:Priority": {
           "default": 100,
@@ -3814,20 +3614,7 @@
           ]
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
@@ -4001,6 +3788,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -4009,6 +3797,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -4021,6 +3810,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -4124,23 +3914,7 @@
           "type": "boolean"
         },
         "LogWatchers": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Links": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                },
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logwatcher"
         },
         "Timeout": {
           "default": 0,
@@ -4267,77 +4041,16 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "Environment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Json": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Prefix": {
-                  "default": "json",
-                  "type": "string",
-                  "enum": [
-                    "json",
-                    ""
-                  ]
-                },
-                "Escaped": {
-                  "default": true,
-                  "type": "boolean"
-                }
-              }
-            },
-            "FileFormat": {
-              "default": "json",
-              "description": "The format of the file when using AsFile",
-              "type": "string",
-              "enum": [
-                "json",
-                "yaml"
-              ]
-            },
-            "AsFile": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/environmentformat"
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "Tracing": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Mode": {
-              "type": "string",
-              "enum": [
-                "active",
-                "passthrough"
-              ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/tracing"
         }
       },
       "required": [
@@ -4500,10 +4213,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -4512,6 +4227,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -4739,10 +4455,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -4751,6 +4469,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -4970,10 +4689,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -4982,6 +4703,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -5257,10 +4979,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -5269,6 +4993,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -5508,6 +5233,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -5530,6 +5256,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -5542,6 +5269,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Bootstrap": {
@@ -5654,49 +5382,7 @@
           }
         },
         "AutoScaling": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "MinUpdateInstances": {
-              "default": 1,
-              "description": "The minimum number of instances which must be available during an update",
-              "type": "number"
-            },
-            "ReplaceCluster": {
-              "default": false,
-              "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
-              "type": "boolean"
-            },
-            "DetailedMetrics": {
-              "default": true,
-              "description": "Enable the collection of autoscale group detailed metrics",
-              "type": "boolean"
-            },
-            "UpdatePauseTime": {
-              "default": "10M",
-              "description": "How long to pause betweeen updates of instances",
-              "type": "string"
-            },
-            "ActivityCooldown": {
-              "default": 30,
-              "type": "number"
-            },
-            "MinSuccessInstances": {
-              "default": 75,
-              "description": "The minimum percantage of instances that must sucessfully update",
-              "type": "number"
-            },
-            "StartupTimeout": {
-              "default": "15M",
-              "description": "How long to wait for a cfn-signal to be received from a host",
-              "type": "string"
-            },
-            "AlwaysReplaceOnUpdate": {
-              "default": false,
-              "description": "Replace instances on every update action",
-              "type": "boolean"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
         },
         "Settings": {
           "patternProperties": {
@@ -5983,10 +5669,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -5995,6 +5683,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -6181,10 +5870,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -6193,6 +5884,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -6363,15 +6055,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "EncryptionSource": {
-              "default": "EncryptionService",
-              "description": "The encryption service to use - LocalService = S3, EncryptionService = native encryption service (kms)",
-              "type": "string",
-              "enum": [
-                "EncryptionService",
-                "LocalService"
-              ]
-            },
             "Enabled": {
               "default": false,
               "description": "Enable at rest encryption",
@@ -6398,6 +6081,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Storage": {
@@ -6406,6 +6090,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -6414,6 +6099,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -6866,54 +6552,7 @@
           "type": "object"
         },
         "Notifications": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Suffix": {
-                  "type": "string"
-                },
-                "aws:QueuePermissionMigration": {
-                  "default": false,
-                  "description": "Deprecation alert: set to true once policy updated for queue",
-                  "type": "boolean"
-                },
-                "Events": {
-                  "default": [
-                    "create"
-                  ],
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array",
-                  "enum": [
-                    "create",
-                    "delete",
-                    "restore",
-                    "reducedredundancy"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Links": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                },
-                "Prefix": {
-                  "type": "string"
-                },
-                "aws:TopicPermissionMigration": {
-                  "default": false,
-                  "description": "Deprecation alert: set to true once policy updated for topic",
-                  "type": "boolean"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/objectstore_notification"
         }
       }
     },
@@ -7107,6 +6746,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Processor": {
@@ -7115,6 +6755,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -7127,6 +6768,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -7396,10 +7038,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -7408,6 +7052,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -7695,10 +7340,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "azure:Storage": {
@@ -7711,6 +7358,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -8020,10 +7668,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -8032,6 +7682,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -8487,10 +8138,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "azure:Storage": {
@@ -8504,6 +8157,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -8797,10 +8451,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -8809,6 +8465,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -8839,88 +8496,7 @@
           "type": "boolean"
         },
         "WAF": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Logging": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                }
-              }
-            },
-            "Version": {
-              "default": "v1",
-              "description": "Version of WAF to use",
-              "type": "string",
-              "enum": [
-                "v1",
-                "v2"
-              ]
-            },
-            "RateLimits": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                  "properties": {
-                    "IPAddressGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
-                    },
-                    "Limit": {
-                      "type": "number"
-                    }
-                  },
-                  "required": [
-                    "Limit"
-                  ]
-                }
-              },
-              "additionalProperties": false,
-              "type": "object"
-            },
-            "OWASP": {
-              "default": false,
-              "type": "boolean"
-            },
-            "Profiles": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Logging": {
-                  "default": "waf",
-                  "description": "Logging profile to process WAF Logs that are stored in the OpsData DataBucket.",
-                  "type": "string"
-                }
-              }
-            },
-            "CountryGroups": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "IPAddressGroups": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/waf"
         },
         "Settings": {
           "patternProperties": {
@@ -9161,10 +8737,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -9173,6 +8751,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -9466,10 +9045,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -9478,6 +9059,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -9758,6 +9340,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -9774,6 +9357,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -9786,6 +9370,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -10039,10 +9624,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -10051,6 +9638,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -10270,6 +9858,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -10278,6 +9867,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -10286,6 +9876,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -10657,121 +10248,13 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Tracing": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Mode": {
-              "type": "string",
-              "enum": [
-                "active",
-                "passthrough"
-              ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/tracing"
         },
         "WAF": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Logging": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                }
-              }
-            },
-            "Version": {
-              "default": "v1",
-              "description": "Version of WAF to use",
-              "type": "string",
-              "enum": [
-                "v1",
-                "v2"
-              ]
-            },
-            "RateLimits": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                  "properties": {
-                    "IPAddressGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
-                    },
-                    "Limit": {
-                      "type": "number"
-                    }
-                  },
-                  "required": [
-                    "Limit"
-                  ]
-                }
-              },
-              "additionalProperties": false,
-              "type": "object"
-            },
-            "OWASP": {
-              "default": false,
-              "type": "boolean"
-            },
-            "Profiles": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Logging": {
-                  "default": "waf",
-                  "description": "Logging profile to process WAF Logs that are stored in the OpsData DataBucket.",
-                  "type": "string"
-                }
-              }
-            },
-            "CountryGroups": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "IPAddressGroups": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/waf"
         },
         "Certificate": {
           "additionalProperties": false,
@@ -11033,10 +10516,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -11045,6 +10530,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -11278,10 +10764,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -11290,6 +10778,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -11543,6 +11032,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -11551,6 +11041,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -11563,6 +11054,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -11619,20 +11111,7 @@
           "type": "boolean"
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
@@ -11890,10 +11369,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -11902,6 +11383,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -12113,10 +11595,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -12125,6 +11609,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -12360,10 +11845,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -12372,6 +11859,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -12558,10 +12046,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -12570,6 +12060,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -12801,10 +12292,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -12813,6 +12306,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -13032,10 +12526,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -13044,6 +12540,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -13367,10 +12864,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -13379,6 +12878,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -13573,6 +13073,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -13581,6 +13082,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -13589,6 +13091,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -13619,20 +13122,7 @@
           "type": "boolean"
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
@@ -13699,148 +13189,7 @@
       "type": "object",
       "properties": {
         "ScalingPolicies": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Scheduled": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Schedule": {
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "ProcessorProfile": {
-                      "default": "default",
-                      "type": "string"
-                    }
-                  }
-                },
-                "Type": {
-                  "default": "Stepped",
-                  "type": "string",
-                  "enum": [
-                    "Stepped",
-                    "Tracked",
-                    "Scheduled"
-                  ]
-                },
-                "Tracked": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "TargetValue": {
-                      "type": "number"
-                    },
-                    "ScaleInEnabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "RecommendedMetric": {
-                      "description": "Use a recommended (predefined) metric for scaling",
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "TrackingResource": {
-                  "description": "The resource metric used to trigger scaling",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Link": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                    },
-                    "MetricTrigger": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-                    }
-                  }
-                },
-                "Cooldown": {
-                  "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "ScaleIn": {
-                      "default": 300,
-                      "type": "number"
-                    },
-                    "ScaleOut": {
-                      "default": 600,
-                      "type": "number"
-                    }
-                  }
-                },
-                "Stepped": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "CapacityAdjustment": {
-                      "default": "Change",
-                      "description": "How to scale when the policy is triggered",
-                      "type": "string",
-                      "enum": [
-                        "Change",
-                        "Exact",
-                        "Percentage"
-                      ]
-                    },
-                    "MetricAggregation": {
-                      "default": "Average",
-                      "description": "The method used to agregate the cloudwatch metric",
-                      "type": "string",
-                      "enum": [
-                        "Average",
-                        "Minimum",
-                        "Maximum"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "Adjustments": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                          "properties": {
-                            "LowerBound": {
-                              "description": "The lower bound for the difference between the alarm threshold and the metric",
-                              "type": "number"
-                            },
-                            "AdjustmentValue": {
-                              "default": 1,
-                              "description": "The value to apply when the adjustment step is triggered",
-                              "type": "number"
-                            },
-                            "UpperBound": {
-                              "description": "The upper bound for the difference between the alarm threshold and the metric",
-                              "type": "number"
-                            }
-                          }
-                        }
-                      },
-                      "description": "The adjustments to apply at each step",
-                      "additionalProperties": false,
-                      "type": "object"
-                    },
-                    "MinAdjustment": {
-                      "default": -1,
-                      "description": "When minimum scale adjustment value to apply when triggered",
-                      "type": "number"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy"
         },
         "DeploymentUnits": {
           "contains": {
@@ -13867,32 +13216,7 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "LB": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "LinkName": {
-                      "default": "lb",
-                      "type": "string"
-                    },
-                    "Tier": {
-                      "type": "string"
-                    },
-                    "Instance": {
-                      "type": "string"
-                    },
-                    "Version": {
-                      "type": "string"
-                    },
-                    "PortMapping": {
-                      "type": "string"
-                    },
-                    "Component": {
-                      "type": "string"
-                    },
-                    "LinkRef": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/lbattach"
                 },
                 "IPAddressGroups": {
                   "contains": {
@@ -14072,6 +13396,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -14094,6 +13419,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -14106,6 +13432,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Bootstrap": {
@@ -14298,49 +13625,7 @@
           }
         },
         "AutoScaling": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "MinUpdateInstances": {
-              "default": 1,
-              "description": "The minimum number of instances which must be available during an update",
-              "type": "number"
-            },
-            "ReplaceCluster": {
-              "default": false,
-              "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
-              "type": "boolean"
-            },
-            "DetailedMetrics": {
-              "default": true,
-              "description": "Enable the collection of autoscale group detailed metrics",
-              "type": "boolean"
-            },
-            "UpdatePauseTime": {
-              "default": "10M",
-              "description": "How long to pause betweeen updates of instances",
-              "type": "string"
-            },
-            "ActivityCooldown": {
-              "default": 30,
-              "type": "number"
-            },
-            "MinSuccessInstances": {
-              "default": 75,
-              "description": "The minimum percantage of instances that must sucessfully update",
-              "type": "number"
-            },
-            "StartupTimeout": {
-              "default": "15M",
-              "description": "How long to wait for a cfn-signal to be received from a host",
-              "type": "string"
-            },
-            "AlwaysReplaceOnUpdate": {
-              "default": false,
-              "description": "Replace instances on every update action",
-              "type": "boolean"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
         },
         "Settings": {
           "patternProperties": {
@@ -14576,10 +13861,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -14588,6 +13875,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -14877,10 +14165,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -14889,6 +14179,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -15235,6 +14526,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -15244,6 +14536,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -15256,6 +14549,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -15549,10 +14843,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -15561,6 +14857,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -15800,10 +15097,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -15812,6 +15111,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -16061,6 +15361,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -16069,6 +15370,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -16081,6 +15383,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -16137,20 +15440,7 @@
           "type": "boolean"
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
@@ -16493,10 +15783,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -16509,6 +15801,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -16861,10 +16154,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -16873,6 +16168,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -17327,6 +16623,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -17335,6 +16632,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -17343,6 +16641,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -17696,6 +16995,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -17704,6 +17004,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -17712,6 +17013,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -17961,10 +17263,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -17973,6 +17277,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -18085,32 +17390,7 @@
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
                 "LB": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "LinkName": {
-                      "default": "lb",
-                      "type": "string"
-                    },
-                    "Tier": {
-                      "type": "string"
-                    },
-                    "Instance": {
-                      "type": "string"
-                    },
-                    "Version": {
-                      "type": "string"
-                    },
-                    "PortMapping": {
-                      "type": "string"
-                    },
-                    "Component": {
-                      "type": "string"
-                    },
-                    "LinkRef": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/lbattach"
                 },
                 "IPAddressGroups": {
                   "contains": {
@@ -18272,6 +17552,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -18294,6 +17575,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -18306,6 +17588,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Bootstrap": {
@@ -18471,72 +17754,7 @@
           "type": "array"
         },
         "Table": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Capacity": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Read": {
-                  "default": 1,
-                  "description": "When using provisioned billing the maximum RCU of the table",
-                  "type": "number"
-                },
-                "Write": {
-                  "default": 1,
-                  "description": "When using provisioned billing the maximum WCU of the table",
-                  "type": "number"
-                }
-              }
-            },
-            "Encrypted": {
-              "default": true,
-              "description": "Enable at rest encryption",
-              "type": "boolean"
-            },
-            "Billing": {
-              "default": "provisioned",
-              "description": "The billing mode for the table",
-              "type": "string",
-              "enum": [
-                "provisioned",
-                "per-request"
-              ]
-            },
-            "Backup": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "description": "Enables point in time recovery on the table",
-                  "type": "boolean"
-                }
-              }
-            },
-            "Stream": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "description": "Enables dynamodb event stream",
-                  "type": "boolean"
-                },
-                "ViewType": {
-                  "default": "NEW_IMAGE",
-                  "type": "string",
-                  "enum": [
-                    "KEYS_ONLY",
-                    "NEW_IMAGE",
-                    "OLD_IMAGE",
-                    "NEW_AND_OLD_IMAGES"
-                  ]
-                }
-              }
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/table_hosting"
         },
         "Description": {
           "description": "A description of the component",
@@ -18738,10 +17956,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -18750,6 +17970,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -19045,6 +18266,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Processor": {
@@ -19053,6 +18275,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -19065,6 +18288,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -19359,10 +18583,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -19371,6 +18597,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -19691,10 +18918,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -19703,6 +18932,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -19811,23 +19041,7 @@
           "type": "boolean"
         },
         "LogWatchers": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Links": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                },
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logwatcher"
         },
         "Encrypted": {
           "default": false,
@@ -20094,6 +19308,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -20102,6 +19317,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -20110,6 +19326,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -20310,10 +19527,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -20322,6 +19541,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -20647,10 +19867,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -20663,6 +19885,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -20932,10 +20155,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -20944,6 +20169,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -21213,10 +20439,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -21225,6 +20453,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -21445,10 +20674,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -21457,6 +20688,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -21549,15 +20781,6 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
-            "EncryptionSource": {
-              "default": "EncryptionService",
-              "description": "The encryption service to use - LocalService = S3, EncryptionService = native encryption service (kms)",
-              "type": "string",
-              "enum": [
-                "EncryptionService",
-                "LocalService"
-              ]
-            },
             "Enabled": {
               "default": false,
               "description": "Enable at rest encryption",
@@ -21682,6 +20905,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Storage": {
@@ -21690,6 +20914,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -21698,6 +20923,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -21775,54 +21001,7 @@
           "type": "object"
         },
         "Notifications": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Suffix": {
-                  "type": "string"
-                },
-                "aws:QueuePermissionMigration": {
-                  "default": false,
-                  "description": "Deprecation alert: set to true once policy updated for queue",
-                  "type": "boolean"
-                },
-                "Events": {
-                  "default": [
-                    "create"
-                  ],
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array",
-                  "enum": [
-                    "create",
-                    "delete",
-                    "restore",
-                    "reducedredundancy"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Links": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                },
-                "Prefix": {
-                  "type": "string"
-                },
-                "aws:TopicPermissionMigration": {
-                  "default": false,
-                  "description": "Deprecation alert: set to true once policy updated for topic",
-                  "type": "boolean"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/objectstore_notification"
         },
         "Settings": {
           "patternProperties": {
@@ -22101,10 +21280,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -22113,6 +21294,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -22135,41 +21317,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "Environment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Json": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Prefix": {
-                  "default": "json",
-                  "type": "string",
-                  "enum": [
-                    "json",
-                    ""
-                  ]
-                },
-                "Escaped": {
-                  "default": true,
-                  "type": "boolean"
-                }
-              }
-            },
-            "FileFormat": {
-              "default": "json",
-              "description": "The format of the file when using AsFile",
-              "type": "string",
-              "enum": [
-                "json",
-                "yaml"
-              ]
-            },
-            "AsFile": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/environmentformat"
         },
         "Export": {
           "default": false,
@@ -22373,6 +21521,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -22390,6 +21539,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -22412,6 +21562,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -22525,49 +21676,7 @@
           }
         },
         "AutoScaling": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "MinUpdateInstances": {
-              "default": 1,
-              "description": "The minimum number of instances which must be available during an update",
-              "type": "number"
-            },
-            "ReplaceCluster": {
-              "default": false,
-              "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
-              "type": "boolean"
-            },
-            "DetailedMetrics": {
-              "default": true,
-              "description": "Enable the collection of autoscale group detailed metrics",
-              "type": "boolean"
-            },
-            "UpdatePauseTime": {
-              "default": "10M",
-              "description": "How long to pause betweeen updates of instances",
-              "type": "string"
-            },
-            "ActivityCooldown": {
-              "default": 30,
-              "type": "number"
-            },
-            "MinSuccessInstances": {
-              "default": 75,
-              "description": "The minimum percantage of instances that must sucessfully update",
-              "type": "number"
-            },
-            "StartupTimeout": {
-              "default": "15M",
-              "description": "How long to wait for a cfn-signal to be received from a host",
-              "type": "string"
-            },
-            "AlwaysReplaceOnUpdate": {
-              "default": false,
-              "description": "Replace instances on every update action",
-              "type": "boolean"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
         },
         "Engine": {
           "type": "string"
@@ -22634,184 +21743,7 @@
           "type": "array"
         },
         "HostScalingPolicies": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Type": {
-                  "default": "ComputeProvider",
-                  "type": "string",
-                  "enum": [
-                    "Stepped",
-                    "Tracked",
-                    "Scheduled",
-                    "ComputeProvider"
-                  ]
-                },
-                "ComputeProvider": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Scheduled": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Schedule": {
-                          "type": "string"
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "ProcessorProfile": {
-                          "default": "default",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "Type": {
-                      "default": "Stepped",
-                      "type": "string",
-                      "enum": [
-                        "Stepped",
-                        "Tracked",
-                        "Scheduled"
-                      ]
-                    },
-                    "Tracked": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "TargetValue": {
-                          "type": "number"
-                        },
-                        "ScaleInEnabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "RecommendedMetric": {
-                          "description": "Use a recommended (predefined) metric for scaling",
-                          "type": "string"
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        }
-                      }
-                    },
-                    "TrackingResource": {
-                      "description": "The resource metric used to trigger scaling",
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Link": {
-                          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                        },
-                        "MetricTrigger": {
-                          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-                        }
-                      }
-                    },
-                    "ManageTermination": {
-                      "default": true,
-                      "description": "Alow the computer provider to manage when instances will be terminated",
-                      "type": "boolean"
-                    },
-                    "Cooldown": {
-                      "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "ScaleIn": {
-                          "default": 300,
-                          "type": "number"
-                        },
-                        "ScaleOut": {
-                          "default": 600,
-                          "type": "number"
-                        }
-                      }
-                    },
-                    "MaxAdjustment": {
-                      "default": 10000,
-                      "description": "The maximum instances to  update during scaling activities",
-                      "type": "number"
-                    },
-                    "Stepped": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "CapacityAdjustment": {
-                          "default": "Change",
-                          "description": "How to scale when the policy is triggered",
-                          "type": "string",
-                          "enum": [
-                            "Change",
-                            "Exact",
-                            "Percentage"
-                          ]
-                        },
-                        "MetricAggregation": {
-                          "default": "Average",
-                          "description": "The method used to agregate the cloudwatch metric",
-                          "type": "string",
-                          "enum": [
-                            "Average",
-                            "Minimum",
-                            "Maximum"
-                          ]
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "Adjustments": {
-                          "patternProperties": {
-                            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                              "properties": {
-                                "LowerBound": {
-                                  "description": "The lower bound for the difference between the alarm threshold and the metric",
-                                  "type": "number"
-                                },
-                                "AdjustmentValue": {
-                                  "default": 1,
-                                  "description": "The value to apply when the adjustment step is triggered",
-                                  "type": "number"
-                                },
-                                "UpperBound": {
-                                  "description": "The upper bound for the difference between the alarm threshold and the metric",
-                                  "type": "number"
-                                }
-                              }
-                            }
-                          },
-                          "description": "The adjustments to apply at each step",
-                          "additionalProperties": false,
-                          "type": "object"
-                        },
-                        "MinAdjustment": {
-                          "default": -1,
-                          "description": "When minimum scale adjustment value to apply when triggered",
-                          "type": "number"
-                        }
-                      }
-                    },
-                    "MinAdjustment": {
-                      "default": 1,
-                      "description": "The minimum instances to update during scaling activities",
-                      "type": "number"
-                    },
-                    "TargetCapacity": {
-                      "default": 90,
-                      "description": "The target usage of the autoscale group to maintain as a percentage",
-                      "type": "number"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy_ecs"
         },
         "deployment:Priority": {
           "default": 100,
@@ -22944,20 +21876,7 @@
           ]
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
@@ -23112,10 +22031,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -23124,6 +22045,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -23353,10 +22275,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -23365,6 +22289,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -23648,6 +22573,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -23656,6 +22582,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -23664,6 +22591,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -23742,148 +22670,7 @@
       "type": "object",
       "properties": {
         "ScalingPolicies": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Scheduled": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Schedule": {
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "ProcessorProfile": {
-                      "default": "default",
-                      "type": "string"
-                    }
-                  }
-                },
-                "Type": {
-                  "default": "Stepped",
-                  "type": "string",
-                  "enum": [
-                    "Stepped",
-                    "Tracked",
-                    "Scheduled"
-                  ]
-                },
-                "Tracked": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "TargetValue": {
-                      "type": "number"
-                    },
-                    "ScaleInEnabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "RecommendedMetric": {
-                      "description": "Use a recommended (predefined) metric for scaling",
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "TrackingResource": {
-                  "description": "The resource metric used to trigger scaling",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Link": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                    },
-                    "MetricTrigger": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-                    }
-                  }
-                },
-                "Cooldown": {
-                  "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "ScaleIn": {
-                      "default": 300,
-                      "type": "number"
-                    },
-                    "ScaleOut": {
-                      "default": 600,
-                      "type": "number"
-                    }
-                  }
-                },
-                "Stepped": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "CapacityAdjustment": {
-                      "default": "Change",
-                      "description": "How to scale when the policy is triggered",
-                      "type": "string",
-                      "enum": [
-                        "Change",
-                        "Exact",
-                        "Percentage"
-                      ]
-                    },
-                    "MetricAggregation": {
-                      "default": "Average",
-                      "description": "The method used to agregate the cloudwatch metric",
-                      "type": "string",
-                      "enum": [
-                        "Average",
-                        "Minimum",
-                        "Maximum"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "Adjustments": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                          "properties": {
-                            "LowerBound": {
-                              "description": "The lower bound for the difference between the alarm threshold and the metric",
-                              "type": "number"
-                            },
-                            "AdjustmentValue": {
-                              "default": 1,
-                              "description": "The value to apply when the adjustment step is triggered",
-                              "type": "number"
-                            },
-                            "UpperBound": {
-                              "description": "The upper bound for the difference between the alarm threshold and the metric",
-                              "type": "number"
-                            }
-                          }
-                        }
-                      },
-                      "description": "The adjustments to apply at each step",
-                      "additionalProperties": false,
-                      "type": "object"
-                    },
-                    "MinAdjustment": {
-                      "default": -1,
-                      "description": "When minimum scale adjustment value to apply when triggered",
-                      "type": "number"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy"
         },
         "aws:FargatePlatform": {
           "default": "LATEST",
@@ -23995,6 +22782,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -24007,6 +22795,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -24019,6 +22808,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -24257,20 +23047,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
@@ -24435,10 +23212,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -24447,6 +23226,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -24490,88 +23270,7 @@
         },
         "WAF": {
           "description": "Web Application Firewall Integration",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Logging": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                }
-              }
-            },
-            "Version": {
-              "default": "v1",
-              "description": "Version of WAF to use",
-              "type": "string",
-              "enum": [
-                "v1",
-                "v2"
-              ]
-            },
-            "RateLimits": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                  "properties": {
-                    "IPAddressGroups": {
-                      "contains": {
-                        "type": [
-                          "string"
-                        ]
-                      },
-                      "type": "array"
-                    },
-                    "Limit": {
-                      "type": "number"
-                    }
-                  },
-                  "required": [
-                    "Limit"
-                  ]
-                }
-              },
-              "additionalProperties": false,
-              "type": "object"
-            },
-            "OWASP": {
-              "default": false,
-              "type": "boolean"
-            },
-            "Profiles": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Logging": {
-                  "default": "waf",
-                  "description": "Logging profile to process WAF Logs that are stored in the OpsData DataBucket.",
-                  "type": "string"
-                }
-              }
-            },
-            "CountryGroups": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "IPAddressGroups": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/waf"
         },
         "Engine": {
           "default": "application",
@@ -24629,148 +23328,7 @@
       "type": "object",
       "properties": {
         "ScalingPolicies": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Scheduled": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Schedule": {
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "ProcessorProfile": {
-                      "default": "default",
-                      "type": "string"
-                    }
-                  }
-                },
-                "Type": {
-                  "default": "Stepped",
-                  "type": "string",
-                  "enum": [
-                    "Stepped",
-                    "Tracked",
-                    "Scheduled"
-                  ]
-                },
-                "Tracked": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "TargetValue": {
-                      "type": "number"
-                    },
-                    "ScaleInEnabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "RecommendedMetric": {
-                      "description": "Use a recommended (predefined) metric for scaling",
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "TrackingResource": {
-                  "description": "The resource metric used to trigger scaling",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Link": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                    },
-                    "MetricTrigger": {
-                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-                    }
-                  }
-                },
-                "Cooldown": {
-                  "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "ScaleIn": {
-                      "default": 300,
-                      "type": "number"
-                    },
-                    "ScaleOut": {
-                      "default": 600,
-                      "type": "number"
-                    }
-                  }
-                },
-                "Stepped": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "CapacityAdjustment": {
-                      "default": "Change",
-                      "description": "How to scale when the policy is triggered",
-                      "type": "string",
-                      "enum": [
-                        "Change",
-                        "Exact",
-                        "Percentage"
-                      ]
-                    },
-                    "MetricAggregation": {
-                      "default": "Average",
-                      "description": "The method used to agregate the cloudwatch metric",
-                      "type": "string",
-                      "enum": [
-                        "Average",
-                        "Minimum",
-                        "Maximum"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    },
-                    "Adjustments": {
-                      "patternProperties": {
-                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                          "properties": {
-                            "LowerBound": {
-                              "description": "The lower bound for the difference between the alarm threshold and the metric",
-                              "type": "number"
-                            },
-                            "AdjustmentValue": {
-                              "default": 1,
-                              "description": "The value to apply when the adjustment step is triggered",
-                              "type": "number"
-                            },
-                            "UpperBound": {
-                              "description": "The upper bound for the difference between the alarm threshold and the metric",
-                              "type": "number"
-                            }
-                          }
-                        }
-                      },
-                      "description": "The adjustments to apply at each step",
-                      "additionalProperties": false,
-                      "type": "object"
-                    },
-                    "MinAdjustment": {
-                      "default": -1,
-                      "description": "When minimum scale adjustment value to apply when triggered",
-                      "type": "number"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy"
         },
         "Description": {
           "description": "A description of the component",
@@ -24877,6 +23435,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -24889,6 +23448,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -24901,6 +23461,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -25138,20 +23699,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "LogMetrics": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "LogFilter": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "LogFilter"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
@@ -25281,10 +23829,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -25293,6 +23843,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -25521,10 +24072,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -25533,6 +24086,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -25634,72 +24188,7 @@
           "type": "array"
         },
         "Table": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Capacity": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Read": {
-                  "default": 1,
-                  "description": "When using provisioned billing the maximum RCU of the table",
-                  "type": "number"
-                },
-                "Write": {
-                  "default": 1,
-                  "description": "When using provisioned billing the maximum WCU of the table",
-                  "type": "number"
-                }
-              }
-            },
-            "Encrypted": {
-              "default": true,
-              "description": "Enable at rest encryption",
-              "type": "boolean"
-            },
-            "Billing": {
-              "default": "provisioned",
-              "description": "The billing mode for the table",
-              "type": "string",
-              "enum": [
-                "provisioned",
-                "per-request"
-              ]
-            },
-            "Backup": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "description": "Enables point in time recovery on the table",
-                  "type": "boolean"
-                }
-              }
-            },
-            "Stream": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "description": "Enables dynamodb event stream",
-                  "type": "boolean"
-                },
-                "ViewType": {
-                  "default": "NEW_IMAGE",
-                  "type": "string",
-                  "enum": [
-                    "KEYS_ONLY",
-                    "NEW_IMAGE",
-                    "OLD_IMAGE",
-                    "NEW_AND_OLD_IMAGES"
-                  ]
-                }
-              }
-            }
-          }
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/table_hosting"
         },
         "Description": {
           "description": "A description of the component",
@@ -25850,10 +24339,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -25862,6 +24353,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -26069,10 +24561,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -26081,6 +24575,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -26329,6 +24824,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Logging": {
@@ -26337,6 +24833,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -26349,6 +24846,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -26623,10 +25121,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -26635,6 +25135,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -26911,10 +25412,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -26923,6 +25426,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -27170,6 +25674,7 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Processor": {
@@ -27178,6 +25683,7 @@
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -27190,6 +25696,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Alert": {
@@ -27404,148 +25911,7 @@
           "type": "object",
           "properties": {
             "ScalingPolicies": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                  "properties": {
-                    "Scheduled": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Schedule": {
-                          "type": "string"
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "ProcessorProfile": {
-                          "default": "default",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "Type": {
-                      "default": "Stepped",
-                      "type": "string",
-                      "enum": [
-                        "Stepped",
-                        "Tracked",
-                        "Scheduled"
-                      ]
-                    },
-                    "Tracked": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "TargetValue": {
-                          "type": "number"
-                        },
-                        "ScaleInEnabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "RecommendedMetric": {
-                          "description": "Use a recommended (predefined) metric for scaling",
-                          "type": "string"
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        }
-                      }
-                    },
-                    "TrackingResource": {
-                      "description": "The resource metric used to trigger scaling",
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Link": {
-                          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                        },
-                        "MetricTrigger": {
-                          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-                        }
-                      }
-                    },
-                    "Cooldown": {
-                      "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "ScaleIn": {
-                          "default": 300,
-                          "type": "number"
-                        },
-                        "ScaleOut": {
-                          "default": 600,
-                          "type": "number"
-                        }
-                      }
-                    },
-                    "Stepped": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "CapacityAdjustment": {
-                          "default": "Change",
-                          "description": "How to scale when the policy is triggered",
-                          "type": "string",
-                          "enum": [
-                            "Change",
-                            "Exact",
-                            "Percentage"
-                          ]
-                        },
-                        "MetricAggregation": {
-                          "default": "Average",
-                          "description": "The method used to agregate the cloudwatch metric",
-                          "type": "string",
-                          "enum": [
-                            "Average",
-                            "Minimum",
-                            "Maximum"
-                          ]
-                        },
-                        "Enabled": {
-                          "default": true,
-                          "type": "boolean"
-                        },
-                        "Adjustments": {
-                          "patternProperties": {
-                            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                              "properties": {
-                                "LowerBound": {
-                                  "description": "The lower bound for the difference between the alarm threshold and the metric",
-                                  "type": "number"
-                                },
-                                "AdjustmentValue": {
-                                  "default": 1,
-                                  "description": "The value to apply when the adjustment step is triggered",
-                                  "type": "number"
-                                },
-                                "UpperBound": {
-                                  "description": "The upper bound for the difference between the alarm threshold and the metric",
-                                  "type": "number"
-                                }
-                              }
-                            }
-                          },
-                          "description": "The adjustments to apply at each step",
-                          "additionalProperties": false,
-                          "type": "object"
-                        },
-                        "MinAdjustment": {
-                          "default": -1,
-                          "description": "When minimum scale adjustment value to apply when triggered",
-                          "type": "number"
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "additionalProperties": false,
-              "type": "object"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy"
             },
             "Parameters": {
               "patternProperties": {
@@ -27825,10 +26191,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -27837,6 +26205,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -28034,10 +26403,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Network": {
@@ -28051,6 +26422,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {
@@ -28459,10 +26831,12 @@
                   "string"
                 ]
               },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
             "Placement": {
               "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
             "Deployment": {
@@ -28471,6 +26845,7 @@
                   "string"
                 ]
               },
+              "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
             "Baseline": {

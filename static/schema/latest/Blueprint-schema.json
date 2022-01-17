@@ -3137,45 +3137,7 @@
                           "type": "boolean"
                         },
                         "NetworkRules": {
-                          "patternProperties": {
-                            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                              "properties": {
-                                "SecurityGroups": {
-                                  "contains": {
-                                    "type": [
-                                      "string"
-                                    ]
-                                  },
-                                  "description": "A list of security groups or ids - for internal use only",
-                                  "type": "array"
-                                },
-                                "Description": {
-                                  "description": "A description that will be applied to the rule",
-                                  "type": "string"
-                                },
-                                "Ports": {
-                                  "contains": {
-                                    "type": [
-                                      "string"
-                                    ]
-                                  },
-                                  "description": "A list of port ids from the Ports reference",
-                                  "type": "array"
-                                },
-                                "IPAddressGroups": {
-                                  "contains": {
-                                    "type": [
-                                      "string"
-                                    ]
-                                  },
-                                  "description": "A list of IP Address groups ids from the IPAddressGroups reference",
-                                  "type": "array"
-                                }
-                              }
-                            }
-                          },
-                          "additionalProperties": false,
-                          "type": "object"
+                          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/networkrule"
                         }
                       }
                     },
