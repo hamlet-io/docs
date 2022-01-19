@@ -2,7 +2,6 @@
 sidebar_label: Publish Expo Apps
 title: Publishing an Expo App
 ---
-import Admonition from 'react-admonitions';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -39,7 +38,7 @@ Each Turtle version only includes a [specific collection of SDK builders](https:
 
 ### Setup
 
-Loads environment variables from the hamlet [properties](../properties/properties) file.
+Loads environment variables from the hamlet [properties](../properties) file.
 
 ### Run Publish Expo
 

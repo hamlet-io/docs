@@ -109,13 +109,4 @@ module.exports = {
       },
     ],
   ],
-  scripts: [
-    {
-      src: "yaml.js",
-    },
-    {
-      src: "https://p.trellocdn.com/embed.min.js",
-      async: true,
-    }
-  ],
 };

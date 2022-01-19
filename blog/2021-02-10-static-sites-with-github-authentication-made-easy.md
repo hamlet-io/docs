@@ -3,7 +3,7 @@ title: Static Sites with Github Authentication Made Easy
 author: rossmurr4y
 author_url: https://github.com/rossmurr4y
 ---
-import Admonition from 'react-admonitions';
+
 import Mermaid from '@theme/Mermaid';
 
 Static websites are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks like Jekyll, Gatsby and Docusaurus that allow anyone to spin up and deploy documentation, a blog or simple website, often for for little or no cost.
@@ -56,7 +56,7 @@ The hamlet Modules used here are going to restrict access to your chosen GitHub 
 
 Within your selected Github organisation you will need to register a new [OAuth Application](https://docs.github.com/en/developers/apps/creating-an-oauth-app). This will require admin access to the Organisation. Enter a placeholder Callback URL for the time being, we’ll update it along the way. Generate a clientSecret that we can use within our Solution.
 
-Finally, you’ll need to build and publish into our Solution’s artefact registry a unique build for the _githubidp_ module’s lambda function. Though already developed, the function is used to sign JWT’s and the private key for this is generated during the build. A Jenkins pipeline template for the build can be found [here](https://github.com/gs-gs/github-idp/blob/master/hamlet/pipelines/Jenkinsfile-example), and requires the following additions to our [product.properties file](how-to/run/jenkins/examplelibrary/examples/properties/properties):
+Finally, you’ll need to build and publish into our Solution’s artefact registry a unique build for the _githubidp_ module’s lambda function. Though already developed, the function is used to sign JWT’s and the private key for this is generated during the build. A Jenkins pipeline template for the build can be found [here](https://github.com/gs-gs/github-idp/blob/master/hamlet/pipelines/Jenkinsfile-example), and requires the following additions to our [product.properties file](how-to/run/jenkins/examplelibrary/examples/properties):
 
 ```bash
 APPLICATION_UNITS=<MODULE_ID>-lambda

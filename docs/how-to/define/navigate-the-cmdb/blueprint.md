@@ -2,6 +2,7 @@
 sidebar_label: Blueprint
 title: District Blueprint
 ---
+
 import Mermaid from '@theme/Mermaid';
 
 ## Blueprint Layer-by-Layer
@@ -11,11 +12,12 @@ A District is a unique combination of the Layer instances and the Blueprint is t
 The resulting Blueprint is a reflection of all entities (Layers) having their say in how the District is built, and anything that comes from the district - such as cloud infrastructure templates or application deployments - should be implemented.
 
 <Mermaid chart={`
-  stateDiagram-v2
-  District
-  state District {
-    Tenant --> Blueprint : 1 Account --> Blueprint : 2 Product --> Blueprint : 3 Solution --> Blueprint : 4 Environment --> Blueprint : 5 Segment --> Blueprint : 6
-  }
+  flowchart LR
+      Masterdata--> Tenant
+      Tenant --> Account
+      Account --> Product
+      Product --> Environment
+      Environment --> Segment
 `}/>
 
 ## Determining the District

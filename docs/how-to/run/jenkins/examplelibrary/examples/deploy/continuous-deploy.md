@@ -18,7 +18,7 @@ The 'Build' job supplies the required parameters for this pipeline.
 
 ### Setup
 
-Loads environment variables from the hamlet [properties](../properties/properties) file.
+Loads environment variables from the hamlet [properties](../properties) file.
 
 ### Update Build Refs
 

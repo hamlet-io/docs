@@ -2,7 +2,6 @@
 sidebar_label: Architecture
 title: hamlet Architecture
 ---
-import Admonition from 'react-admonitions';
 
 hamlet is comprised of two major parts - the engine and the executor. It is designed to be both modular and plug-able, so that additional cloud providers or capabilities may be easily added and common deployment patterns shared.
 
