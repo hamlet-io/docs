@@ -2,6 +2,53 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
+    "aws_s3_notification": {
+      "description": "AWS S3 specific configuration options for notifications",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Suffix": {
+          "type": "string"
+        },
+        "aws:QueuePermissionMigration": {
+          "default": false,
+          "description": "Deprecation alert: set to true once policy updated for queue",
+          "type": "boolean"
+        },
+        "Events": {
+          "default": [
+            "create"
+          ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array",
+          "enum": [
+            "create",
+            "delete",
+            "restore",
+            "reducedredundancy"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Prefix": {
+          "type": "string"
+        },
+        "aws:TopicPermissionMigration": {
+          "default": false,
+          "description": "Deprecation alert: set to true once policy updated for topic",
+          "type": "boolean"
+        }
+      }
+    },
     "link": {
       "description": "A relationship between Components.",
       "additionalProperties": false,
