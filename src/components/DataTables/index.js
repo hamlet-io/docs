@@ -123,15 +123,19 @@ const customStyles = {
 
 const formatDataTableDefault = (type, value) => {
   // format an attributes default value based on its attribute type.
-  if (!value) {
+  if (value === null || value === undefined) {
     return '';
   }
+
   switch (type) {
     case "object":
-      return JSON.stringify(value, null, 4);
+      return JSON.stringify(value, null, 2);
 
     case "array":
       return value.join('\n');
+
+    case "boolean":
+      return value ? "true" : "false";
 
     default:
       return value;
