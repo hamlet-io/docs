@@ -33,7 +33,7 @@ function HamletRefRouter() {
                 <br />
                 <h2>Layers</h2>
                 {Object.keys(schema.Layer.definitions).sort().map((instance) => (
-                  <React.Fragment>
+                  <React.Fragment key={instance}>
                     <li>
                       <Link to={`/reference?type=Layer&instance=${instance}`}>
                         {instance}
@@ -44,7 +44,7 @@ function HamletRefRouter() {
                 <br />
                 <h2>Components</h2>
                 {Object.keys(schema.Component.definitions).sort().map((instance) => (
-                  <React.Fragment>
+                  <React.Fragment key={instance}>
                     <li>
                       <Link to={`/reference?type=Component&instance=${instance}`}>
                         {instance}
@@ -55,7 +55,7 @@ function HamletRefRouter() {
                 <br />
                 <h2>Reference Data</h2>
                 {Object.keys(schema.Reference.definitions).sort().map((instance) => (
-                  <React.Fragment>
+                  <React.Fragment key={instance}>
                     <li>
                       <Link to={`/reference?type=Reference&instance=${instance}`}>
                         {instance}
@@ -66,7 +66,7 @@ function HamletRefRouter() {
                 <br />
                 <h2>Modules</h2>
                 {Object.keys(schema.Module.definitions).sort().map((instance) => (
-                  <React.Fragment>
+                  <React.Fragment key={instance}>
                     <li>
                       <Link to={`/reference?type=Module&instance=${instance}`}>
                         {instance}
@@ -77,7 +77,7 @@ function HamletRefRouter() {
                 <br />
                 <h2>Tasks</h2>
                 {Object.keys(schema.Task.definitions).sort().map((instance) => (
-                  <React.Fragment>
+                  <React.Fragment key={instance}>
                     <li>
                       <Link to={`/reference?type=Task&instance=${instance}`}>
                         {instance}
@@ -88,7 +88,7 @@ function HamletRefRouter() {
                 <br />
                 <h2>Attribute Sets</h2>
                 {Object.keys(schema.AttributeSet.definitions).sort().map((instance) => (
-                  <React.Fragment>
+                  <React.Fragment key={instance}>
                     <li>
                       <Link to={`/reference?type=AttributeSet&instance=${instance}`}>
                         {instance}
@@ -123,7 +123,7 @@ const Reference = () => {
 
   return (
     <Layout id="HamletComponents">
-      <HamletRefRouter />
+      <HamletRefRouter key="RefRouter" />
     </Layout>
   );
 };

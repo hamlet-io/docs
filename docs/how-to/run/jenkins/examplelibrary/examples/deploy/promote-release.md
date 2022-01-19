@@ -16,7 +16,7 @@ This pipeline accepts a **RELEASE_IDENTIFIER** which it will verify exists in th
 
 ### Setup
 
-Loads environment variables from the hamlet [properties](../properties/properties) file.
+Loads environment variables from the hamlet [properties](../properties) file.
 
 ### Prepare
 

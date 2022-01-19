@@ -40,19 +40,19 @@ const getExternalSchemaUrl = (ref) => {
 const defaultColumns = [
   {
     name: "Attribute",
-    selector: "attribute",
+    selector: row => row.attribute,
     grow: 1,
     sortable: true,
   },
   {
     name: "Description",
-    selector: "description",
+    selector: row => row.description,
     grow: 2,
     wrap: true,
   },
   {
     name: "Types",
-    selector: "type",
+    selector: row => row.type,
     center: true,
     wrap: true,
     grow: 1,
@@ -71,7 +71,7 @@ const defaultColumns = [
   },
   {
     name: "Mandatory",
-    selector: "mandatory",
+    selector: row => row.mandatory,
     grow: 1,
     center: true,
     sortable: true,
@@ -79,7 +79,7 @@ const defaultColumns = [
   },
   {
     name: "Possible Values",
-    selector: "values",
+    selector: row => row.values,
     grow: 1,
     wrap: true,
     cell: row => {
@@ -90,7 +90,7 @@ const defaultColumns = [
   },
   {
     name: "Default Value",
-    selector: "default",
+    selector: row => row.default,
     grow: 1,
     wrap: true,
     cell: row => {
@@ -243,7 +243,7 @@ function HamletDataTables() {
             dataTables.map((table) => {
               const tableRows = getDataTableRows(table.data, table.required);
               return (
-                  <section id={table.table.toLowerCase()}>
+                  <section key={table.table} id={table.table.toLowerCase()}>
                     <HamletDataTable
                       title={table.table}
                       data={tableRows}

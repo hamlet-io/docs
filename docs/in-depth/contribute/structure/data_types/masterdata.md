@@ -2,7 +2,6 @@
 sidebar_label: Masterdata
 title: Masterdata
 ---
-import Admonition from 'react-admonitions';
 
 :::caution
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.

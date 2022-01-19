@@ -3,6 +3,7 @@ title: Prototyping Deployments - Part 1 - Templates
 author: roleyfoley
 author_url: https://github.com/roleyfoley
 ---
+
 import Mermaid from '@theme/Mermaid';
 
 hamlet has its own opinions on how things should be done. These opinions are formed by our community based on best practice ( including the best way to workaround things ) to get you working in the cloud as efficiently as possible. Sometimes you might want to try out something new that we don't support or a component we offer isn't quite right. In this series of posts, Prototyping Deployments you should get an idea of how hamlet helps with these deployments and integrates with the rest of your solution.

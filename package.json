@@ -13,21 +13,15 @@
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.14",
     "@docusaurus/preset-classic": "^2.0.0-beta.14",
-    "@types/react": "^16.14.21",
-    "axios": "^0.24.0",
-    "fs": "0.0.1-security",
-    "infima": "^0.2.0-alpha.37",
-    "json2yaml": "^1.1.0",
-    "mermaid": "^8.13.8",
-    "qs": "^6.10.2",
-    "react": "^16.14.0",
-    "react-admonitions": "^2.1.0",
-    "react-data-table-component": "^6.11.8",
-    "react-dom": "^16.14.0",
-    "react-router-dom": "^5.3.0",
-    "remark-admonitions": "^1.2.1",
-    "styled-components": "^5.3.3",
-    "yamljs": "^0.3.0"
+    "@types/react": "^17.0.38",
+    "axios": "^0.25.0",
+    "mermaid": "^8.13.9",
+    "qs": "^6.10.3",
+    "react": "^17.0.2",
+    "react-data-table-component": "^7.4.6",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "styled-components": "^5.3.3"
   },
   "browserslist": {
     "production": [
