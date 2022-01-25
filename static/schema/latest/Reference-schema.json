@@ -1468,6 +1468,18 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
+        "Encryption": {
+          "description": "Mange encryption of log storage",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "description": "Enable at rest encryption",
+              "type": "boolean"
+            }
+          }
+        },
         "ForwardingRules": {
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {

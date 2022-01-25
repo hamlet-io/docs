@@ -8,13 +8,16 @@
       "type": "object",
       "properties": {
         "ProviderId": {
+          "description": "The unique Id of the account from the provider",
           "type": "string"
         },
         "S3": {
+          "description": "Account level S3/Object store configuration",
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "Versioning": {
+              "description": "Enable versioning on all account level object stores",
               "additionalProperties": false,
               "type": "object",
               "properties": {
@@ -25,11 +28,13 @@
               }
             },
             "Encryption": {
+              "description": "At-rest encryption management",
               "additionalProperties": false,
               "type": "object",
               "properties": {
                 "EncryptionSource": {
                   "default": "EncryptionService",
+                  "description": "The encryption service to use to encrypt data",
                   "type": "string",
                   "enum": [
                     "EncryptionService",
@@ -57,40 +62,30 @@
             "taskLongArnFormat": true,
             "awsvpcTrunking": true
           },
+          "description": "AWS manage account level configuration of the Elastic Container Service",
           "type": "object"
         },
         "Description": {
+          "description": "A description of the account",
           "type": "string"
         },
         "Modules": {
+          "description": "Modules to import and apply for any component that belongs to the account",
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
         },
-        "Access": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "AWSId": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "AWSId"
-              ]
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
-        },
         "Encryption": {
+          "description": "Manage Account level encryption keys",
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "Alias": {
+              "description": "Control the alias of the KMS Key",
               "additionalProperties": false,
               "type": "object",
               "properties": {
                 "IncludeSeed": {
                   "default": false,
+                  "description": "Include a unique seed in the alias to ensure it is unique in the account",
                   "type": "boolean"
                 }
               }
@@ -98,9 +93,11 @@
           }
         },
         "Name": {
+          "description": "A hamlet specific unique name for the Account - Uses Id if not defined",
           "type": "string"
         },
         "Profiles": {
+          "description": "Account wide profiles to apply to account and child resources",
           "additionalProperties": false,
           "type": "object",
           "properties": {
@@ -110,6 +107,7 @@
                   "string"
                 ]
               },
+              "description": "The id of a PolicyProfile Reference or Account attribute to apply to all components",
               "type": "array"
             },
             "Deployment": {
@@ -118,20 +116,24 @@
                   "string"
                 ]
               },
+              "description": "The id of a DeploymentProfile Reference or Account attribute to apply to all components",
               "type": "array"
             }
           }
         },
         "Console": {
+          "description": "Configuration control for virtual machine consoles",
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "Encryption": {
+              "description": "Enable encryption of all content between the virtual machine and the console service",
               "additionalProperties": false,
               "type": "object",
               "properties": {
                 "DedicatedKey": {
                   "default": false,
+                  "description": "Use a dedicated KMS key instead of the default account kms key",
                   "type": "boolean"
                 }
               }
@@ -145,6 +147,7 @@
                   "string"
                 ]
               },
+              "description": "AWS: where logs from the console session will be sent",
               "type": "array",
               "enum": [
                 "cloudwatch",
@@ -154,21 +157,44 @@
           }
         },
         "Operations": {
+          "description": "Account wide control over the operations object store created within segments",
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "Expiration": {
+              "description": "The maximum time to keep opbjects in operations stores",
               "type": "number"
             }
           }
         },
         "CostCentre": {
+          "description": "A cost centre tag to apply to all components the account belongs to",
           "type": "string"
         },
         "Plugins": {
+          "description": "Pluings to import and apply for any component that belongs to the account",
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
         },
+        "Logging": {
+          "description": "Account level resource logging configuration",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Encryption": {
+              "description": "Manage at-rest encryption of log storage",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
         "DeploymentProfiles": {
+          "description": "Account specific DeploymentProfiles to apply across all account components",
           "type": [
             "array",
             "boolean",
@@ -178,6 +204,7 @@
           ]
         },
         "PolicyProfiles": {
+          "description": "Account specific PolicyProfiles to apply across all account components",
           "type": [
             "array",
             "boolean",
@@ -187,9 +214,11 @@
           ]
         },
         "Title": {
+          "description": "A long form title of the account for documentation",
           "type": "string"
         },
         "Registry": {
+          "description": "Manage the registries used to host account based copies for images",
           "additionalProperties": false,
           "type": "object",
           "properties": {
@@ -441,12 +470,13 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
-                "AWSAccounts": {
+                "ProviderIds": {
                   "contains": {
                     "type": [
                       "string"
                     ]
                   },
+                  "description": "The provider Ids of provider accounts to share with",
                   "type": "array"
                 }
               }
@@ -455,20 +485,23 @@
         },
         "Provider": {
           "default": "aws",
-          "description": "Define which provider this account applies to",
+          "description": "The name of the provider that the account belongs to",
           "type": "string"
         },
         "Audit": {
+          "description": "Manage the object store audit logging",
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "Expiration": {
+              "description": "The duration to keep logs for",
               "type": [
                 "number",
                 "string"
               ]
             },
             "Offline": {
+              "description": "The duration to keep logs before sending to offline storage",
               "type": [
                 "number",
                 "string"
@@ -477,10 +510,12 @@
           }
         },
         "Volume": {
+          "description": "Account wide controls over block storage volumes",
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "Encryption": {
+              "description": "Manage at-rest encryption of volumes",
               "additionalProperties": false,
               "type": "object",
               "properties": {
@@ -493,13 +528,15 @@
           }
         },
         "Seed": {
+          "description": "A random seed to ensure global resource names are unique",
           "type": "string"
         },
         "Region": {
+          "description": "The id of a Region Reference to use as the default",
           "type": "string"
         },
         "aws:SES": {
-          "description": "AWS SES Account configuration",
+          "description": "AWS: Simple Email Service Account wide configuration",
           "additionalProperties": false,
           "type": "object",
           "properties": {
@@ -535,9 +572,11 @@
           }
         },
         "Id": {
+          "description": "A hamlet specific unique Id for the Account",
           "type": "string"
         },
         "Domain": {
+          "description": "The id of a Domain Reference to use as the default",
           "type": "string"
         }
       },
@@ -659,37 +698,7 @@
           }
         },
         "PlacementProfiles": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "*": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "DeploymentFramework": {
-                      "description": "The deployment framework to use to generate the outputs for deployment",
-                      "type": "string"
-                    },
-                    "Region": {
-                      "description": "The id of the region to host the component",
-                      "type": "string"
-                    },
-                    "Provider": {
-                      "description": "The provider to use to host the component",
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "Provider",
-                    "Region",
-                    "DeploymentFramework"
-                  ]
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/placementprofile"
         },
         "Name": {
           "type": "string"
@@ -1042,37 +1051,7 @@
           }
         },
         "PlacementProfiles": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "*": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "DeploymentFramework": {
-                      "description": "The deployment framework to use to generate the outputs for deployment",
-                      "type": "string"
-                    },
-                    "Region": {
-                      "description": "The id of the region to host the component",
-                      "type": "string"
-                    },
-                    "Provider": {
-                      "description": "The provider to use to host the component",
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "Provider",
-                    "Region",
-                    "DeploymentFramework"
-                  ]
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/placementprofile"
         },
         "Profiles": {
           "additionalProperties": false,

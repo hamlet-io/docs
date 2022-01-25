@@ -1222,6 +1222,36 @@
         }
       }
     },
+    "placementprofile": {
+      "description": "Manages where resource groups in a component are placed",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "*": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "DeploymentFramework": {
+              "description": "The deployment framework to use to generate the outputs for deployment",
+              "type": "string"
+            },
+            "Region": {
+              "description": "The id of the region to host the component",
+              "type": "string"
+            },
+            "Provider": {
+              "description": "The provider to use to host the component",
+              "type": "string"
+            }
+          },
+          "required": [
+            "Provider",
+            "Region",
+            "DeploymentFramework"
+          ]
+        }
+      }
+    },
     "aws_computeimage": {
       "description": "AWS Specific overrides to source compute images",
       "additionalProperties": false,

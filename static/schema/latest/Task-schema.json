@@ -2,6 +2,40 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
+    "aws_kms_decrypt_ciphertext": {
+      "description": "Given an encrypted KMS ciphertext object decrypt it and return the plaintext result as a string",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "EncryptionScheme": {
+          "description": "A scheme prefix to show that the value is encrypted",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "Ciphertext": {
+          "description": "The ciphertext value",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Ciphertext"
+      ]
+    },
     "bash_run_command": {
       "description": "Run a bash command locally and use the stdout as the returned result",
       "additionalProperties": false,
@@ -94,45 +128,6 @@
         "RemotePath"
       ]
     },
-    "aws_decrypt_kms_ciphertext": {
-      "description": "Given an encrypted KMS ciphertext object decrypt it and return the plaintext result as a string",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "EncryptionScheme": {
-          "description": "A scheme prefix to show that the value is encrypted",
-          "type": "string"
-        },
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "Ciphertext": {
-          "description": "The ciphertext value",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "Base64Encoded": {
-          "default": true,
-          "description": "Is the Ciphertext base64 encoded",
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "Ciphertext"
-      ]
-    },
     "aws_ec2_select_instance": {
       "description": "Lists the available instances and allows the user to select one - returns the selected instance id",
       "additionalProperties": false,
@@ -203,6 +198,20 @@
       "required": [
         "currentFileName",
         "newFileName"
+      ]
+    },
+    "file_read_content": {
+      "description": "Read the contents of a file and provide the content as a result output",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "FilePath": {
+          "description": "The path to the file",
+          "type": "string"
+        }
+      },
+      "required": [
+        "FilePath"
       ]
     },
     "install_plugin": {
@@ -343,6 +352,38 @@
         "deploymentUnitSubset"
       ]
     },
+    "output_echo": {
+      "description": "Echo the provided value to stdout or stderr",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Format": {
+          "default": "string",
+          "description": "The format of the data to output - pretty prints if possible",
+          "type": "string",
+          "enum": [
+            "string",
+            "json"
+          ]
+        },
+        "OutputStream": {
+          "default": "stdout",
+          "description": "The stream to output the value to",
+          "type": "string",
+          "enum": [
+            "stdout",
+            "stderr"
+          ]
+        },
+        "Value": {
+          "description": "The value to echo",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Value"
+      ]
+    },
     "aws_ecs_select_task": {
       "description": "List the running tasks for a service or task family and return the user selected task",
       "additionalProperties": false,
@@ -455,6 +496,45 @@
       },
       "required": [
         "scriptFileName"
+      ]
+    },
+    "aws_kms_encrypt_value": {
+      "description": "Given a value return the a base64 encoded string of the KMS Symetric encrypted ciphertext",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "EncryptionScheme": {
+          "description": "A scheme style prefix to add to the base64 encoded value",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Value": {
+          "description": "The value that needs to be encrypted",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "KeyArn": {
+          "description": "The Arn of the kms key or alias to encrypt the value with",
+          "type": "string"
+        }
+      },
+      "required": [
+        "KeyArn",
+        "Value"
       ]
     },
     "conditional_stage_skip": {

@@ -5934,6 +5934,16 @@
                     "boolean"
                   ]
                 },
+                "Values": {
+                  "description": "Restricts the provided value to one of these values",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
                 "Default": {
                   "description": "The default value of the input",
                   "type": [
@@ -8453,6 +8463,10 @@
               },
               "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
+            },
+            "Logging": {
+              "default": "default",
+              "type": "string"
             },
             "Placement": {
               "default": "default",
