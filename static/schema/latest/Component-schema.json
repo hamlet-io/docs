@@ -217,6 +217,310 @@
         }
       }
     },
+    "backupstore": {
+      "description": "Store for holding backups",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "deployment:Group": {
+          "default": "solution",
+          "type": "string"
+        },
+        "deployment:Priority": {
+          "default": 100,
+          "type": "number"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        },
+        "Encryption": {
+          "description": "At-rest encryption management",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "type": "boolean"
+            },
+            "Key": {
+              "default": "Encryption",
+              "description": "Baseline key to use for snapshot encryption",
+              "type": "string"
+            }
+          }
+        },
+        "Lock": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "MinRetention": {
+              "description": "Minimum number of days to retain backups",
+              "type": "number"
+            },
+            "Enabled": {
+              "default": false,
+              "description": "Enable locking of backups to prevent unintended modification or deletion",
+              "type": "boolean"
+            },
+            "MaxRetention": {
+              "default": 0,
+              "description": "Maximum number of days to retain backups. 0 = no maximum",
+              "type": "number"
+            }
+          },
+          "required": [
+            "MinRetention"
+          ]
+        },
+        "Instances": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "description": "Instances of a component configuration",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Order": {
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
+                },
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "type": "string",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ]
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "description": "Additional namespaces to use during settings lookups",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Type": {
+          "description": "The components type",
+          "type": "string"
+        },
+        "Regimes": {
+          "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/backupstoreregime"
+        },
+        "deployment:Unit": {
+          "type": "string"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Notifications": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Events": {
+                  "default": [
+                    "BACKUP_JOB_STARTED",
+                    "BACKUP_JOB_COMPLETED"
+                  ],
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array",
+                  "enum": [
+                    "BACKUP_JOB_STARTED",
+                    "BACKUP_JOB_COMPLETED",
+                    "COPY_JOB_STARTED",
+                    "COPY_JOB_SUCCESSFUL",
+                    "COPY_JOB_FAILED",
+                    "RESTORE_JOB_STARTED",
+                    "RESTORE_JOB_COMPLETED",
+                    "RECOVERY_POINT_MODIFIED"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Links": {
+                  "description": "Links to components which should receive the notifications",
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
     "mobileapp": {
       "description": "mobile apps with over the air update hosting",
       "additionalProperties": false,
@@ -13916,6 +14220,334 @@
           "default": "ebs",
           "const": "ebs",
           "type": "string"
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
+    },
+    "backupstoreregime": {
+      "description": "Defines a schedule of backups and the affected targets",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Instances": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "description": "Instances of a component configuration",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Order": {
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
+                },
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "type": "string",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ]
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "description": "Additional namespaces to use during settings lookups",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Targets": {
+          "description": "Mechanisms to determine what should be backed up",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Components": {
+              "description": "Specific components to include/exclude",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Exclusions": {
+                  "description": "Specific components to exclude",
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                },
+                "Inclusions": {
+                  "description": "Specific components to include",
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                }
+              }
+            },
+            "MatchesStore": {
+              "description": "Enabled conditions must match those of the store and are ANDed",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Tier": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Enabled": {
+                  "default": false,
+                  "description": "Permit matching against the backup store",
+                  "type": "boolean"
+                },
+                "Product": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Environment": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Segment": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            },
+            "Tag": {
+              "description": "Target must carry a tag specific to the store. Tag is added by linking from the component to the store",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "description": "Permit matching against a regime specific tag",
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "Rules": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "FinishWindow": {
+                  "default": 0,
+                  "description": "Period in minutes after a snapshot has started in which it must finish. 0 = no limit",
+                  "type": "number"
+                },
+                "StartWindow": {
+                  "default": 0,
+                  "description": "Period in minutes in which snapshot must start. 0 = no limit",
+                  "type": "number"
+                },
+                "Copies": {
+                  "description": "Additional backup stores that should hold a copy of the snapshot",
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                },
+                "Schedule": {
+                  "description": "When to produce snapshots",
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "PointInTimeSupport": {
+                      "default": false,
+                      "description": "Enable ability for point-in-time restoration",
+                      "type": "boolean"
+                    },
+                    "Expression": {
+                      "description": "UTC based cron schedule to create backup snapshots",
+                      "type": "string"
+                    }
+                  }
+                },
+                "Lifecycle": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Expiration": {
+                      "default": 0,
+                      "description": "Days until snapshot is deleted. Must be greater than Offline (if provided). 0 = not deleted",
+                      "type": "number"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "Lifecycle the snapshot",
+                      "type": "boolean"
+                    },
+                    "Offline": {
+                      "default": 0,
+                      "description": "Days until backup is moved to longer term storage. 0 = not moved",
+                      "type": "number"
+                    }
+                  }
+                },
+                "Enabled": {
+                  "default": true,
+                  "description": "Permit the rule to be considered",
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "description": "Rules defining the schedule of backups",
+          "additionalProperties": false,
+          "type": "object"
         },
         "Settings": {
           "patternProperties": {
