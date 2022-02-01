@@ -23861,6 +23861,10 @@
               "description": "A list of enforced deployment profiles which override component configuraiton",
               "type": "array"
             },
+            "Logging": {
+              "default": "default",
+              "type": "string"
+            },
             "Placement": {
               "default": "default",
               "description": "The resource group assignment placement for resources in the component",
