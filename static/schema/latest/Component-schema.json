@@ -14421,10 +14421,22 @@
           "type": "boolean"
         },
         "Targets": {
-          "description": "Mechanisms to determine what should be backed up",
+          "description": "Mechanisms to determine what should be backed up. Conditions are ORed",
           "additionalProperties": false,
           "type": "object",
           "properties": {
+            "All": {
+              "description": "Consider all resources. Normally used with the MatchesStore condition",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "description": "All resources are targets",
+                  "type": "boolean"
+                }
+              }
+            },
             "Components": {
               "description": "Specific components to include/exclude",
               "additionalProperties": false,
@@ -14440,36 +14452,8 @@
                 }
               }
             },
-            "MatchesStore": {
-              "description": "Enabled conditions must match those of the store and are ANDed",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Tier": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Enabled": {
-                  "default": false,
-                  "description": "Permit matching against the backup store",
-                  "type": "boolean"
-                },
-                "Product": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "default": true,
-                  "type": "boolean"
-                }
-              }
-            },
             "Tag": {
-              "description": "Target must carry a tag specific to the store. Tag is added by linking from the component to the store",
+              "description": "Include any target carrying a tag specific to the regime. Tag is added by linking from the component to the regime",
               "additionalProperties": false,
               "type": "object",
               "properties": {
@@ -14548,6 +14532,41 @@
           "description": "Rules defining the schedule of backups",
           "additionalProperties": false,
           "type": "object"
+        },
+        "Conditions": {
+          "description": "Mechanisms to filter selected targets",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "MatchesStore": {
+              "description": "Enabled conditions must match those of the store and are ANDed",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Tier": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Enabled": {
+                  "default": false,
+                  "description": "Permit matching against the backup store",
+                  "type": "boolean"
+                },
+                "Product": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Environment": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Segment": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
         },
         "Settings": {
           "patternProperties": {
@@ -18619,6 +18638,10 @@
               "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
             "Baseline": {
               "default": "default",
               "description": "The profile used to lookup standard services provided by the segment baseline",
@@ -18680,6 +18703,9 @@
               "type": "boolean"
             }
           }
+        },
+        "Alerts": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "Settings": {
           "patternProperties": {
