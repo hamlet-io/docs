@@ -258,11 +258,6 @@
             "Enabled": {
               "default": false,
               "type": "boolean"
-            },
-            "Key": {
-              "default": "Encryption",
-              "description": "Baseline key to use for snapshot encryption",
-              "type": "string"
             }
           }
         },
