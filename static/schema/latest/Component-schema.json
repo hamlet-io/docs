@@ -19727,6 +19727,25 @@
                 "FailedDocumentsOnly"
               ]
             },
+            "Compression": {
+              "description": "Apply compression to files saved to the bucket",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Format": {
+                  "default": "GZIP",
+                  "type": "string",
+                  "enum": [
+                    "GZIP",
+                    "ZIP"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            },
             "Enabled": {
               "default": true,
               "type": "boolean"
@@ -19911,6 +19930,25 @@
           "additionalProperties": false,
           "type": "object",
           "properties": {
+            "Compression": {
+              "description": "Apply compression to files saved to the bucket",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Format": {
+                  "default": "GZIP",
+                  "type": "string",
+                  "enum": [
+                    "GZIP",
+                    "ZIP"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              }
+            },
             "Include": {
               "description": "Deployment specific details to add to prefix",
               "additionalProperties": false,

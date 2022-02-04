@@ -638,32 +638,6 @@
             }
           }
         },
-        "shared:ComputeProvider": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "ManageTermination": {
-              "default": true,
-              "description": "Alow the computer provider to manage when instances will be terminated",
-              "type": "boolean"
-            },
-            "MaxAdjustment": {
-              "default": 10000,
-              "description": "The maximum instances to  update during scaling activities",
-              "type": "number"
-            },
-            "MinAdjustment": {
-              "default": 1,
-              "description": "The minimum instances to update during scaling activities",
-              "type": "number"
-            },
-            "TargetCapacity": {
-              "default": 90,
-              "description": "The target usage of the autoscale group to maintain as a percentage",
-              "type": "number"
-            }
-          }
-        },
         "Type": {
           "default": "ComputeProvider",
           "type": "string",
@@ -671,10 +645,7 @@
             "Stepped",
             "Tracked",
             "Scheduled",
-            "shared:Stepped",
-            "shared:Tracked",
-            "shared:Scheduled",
-            "shared:ComputeProvider"
+            "ComputeProvider"
           ]
         },
         "Tracked": {
@@ -781,6 +752,32 @@
             "MinAdjustment": {
               "default": -1,
               "description": "When minimum scale adjustment value to apply when triggered",
+              "type": "number"
+            }
+          }
+        },
+        "ComputeProvider": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "ManageTermination": {
+              "default": true,
+              "description": "Alow the computer provider to manage when instances will be terminated",
+              "type": "boolean"
+            },
+            "MaxAdjustment": {
+              "default": 10000,
+              "description": "The maximum instances to  update during scaling activities",
+              "type": "number"
+            },
+            "MinAdjustment": {
+              "default": 1,
+              "description": "The minimum instances to update during scaling activities",
+              "type": "number"
+            },
+            "TargetCapacity": {
+              "default": 90,
+              "description": "The target usage of the autoscale group to maintain as a percentage",
               "type": "number"
             }
           }
