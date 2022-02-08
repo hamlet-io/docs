@@ -16156,29 +16156,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "Hibernate": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Enabled": {
-              "default": false,
-              "type": "boolean"
-            },
-            "StartUpMode": {
-              "default": "replace",
-              "const": "replace",
-              "type": "string"
-            }
-          }
-        },
-        "DeploymentUnits": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
         "Description": {
           "description": "A description of the component",
           "type": "string"
@@ -16212,6 +16189,175 @@
             "Large",
             "azure:Sku"
           ]
+        },
+        "ShortName": {
+          "description": "NETBIOS name of the Directory Service",
+          "type": "string"
+        },
+        "aws:EnableSSO": {
+          "default": false,
+          "type": "boolean"
+        },
+        "IPAddressGroups": {
+          "default": [
+            "_localnet"
+          ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "azure:Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Sku": {
+              "default": "default",
+              "type": "string"
+            }
+          }
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Logging": {
+              "default": "default",
+              "type": "string"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Engine": {
+          "default": "azure:AADDirectoryServices",
+          "type": "string",
+          "enum": [
+            "Simple",
+            "ActiveDirectory",
+            "azure:AADDirectoryServices"
+          ]
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Logging": {
+          "description": "Manage the logging services enabled for the directory",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "Hibernate": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "type": "boolean"
+            },
+            "StartUpMode": {
+              "default": "replace",
+              "const": "replace",
+              "type": "string"
+            }
+          }
+        },
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "deployment:Priority": {
           "default": 100,
@@ -16301,35 +16447,6 @@
         "Title": {
           "description": "A longer form title of the component",
           "type": "string"
-        },
-        "ShortName": {
-          "description": "NETBIOS name of the Directory Service",
-          "type": "string"
-        },
-        "aws:EnableSSO": {
-          "default": false,
-          "type": "boolean"
-        },
-        "IPAddressGroups": {
-          "default": [
-            "_localnet"
-          ],
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
-        "azure:Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Sku": {
-              "default": "default",
-              "type": "string"
-            }
-          }
         },
         "Instances": {
           "patternProperties": {
@@ -16433,72 +16550,8 @@
         "deployment:Unit": {
           "type": "string"
         },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of enforced deployment profiles which override component configuraiton",
-              "type": "array"
-            },
-            "Placement": {
-              "default": "default",
-              "description": "The resource group assignment placement for resources in the component",
-              "type": "string"
-            },
-            "Network": {
-              "default": "default",
-              "type": "string"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of deployment profiles to apply to this component",
-              "type": "array"
-            },
-            "Alert": {
-              "default": "default",
-              "type": "string"
-            },
-            "Baseline": {
-              "default": "default",
-              "description": "The profile used to lookup standard services provided by the segment baseline",
-              "type": "string"
-            },
-            "Testing": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The testing profiles to apply to the component",
-              "type": "array"
-            }
-          }
-        },
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "Export": {
-          "default": false,
-          "type": "boolean"
-        },
-        "Engine": {
-          "default": "azure:AADDirectoryServices",
-          "type": "string",
-          "enum": [
-            "Simple",
-            "ActiveDirectory",
-            "azure:AADDirectoryServices"
-          ]
         },
         "RootCredentials": {
           "description": "Secret store configuration for the administrator credentials",
@@ -16536,44 +16589,6 @@
               "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
             }
           }
-        },
-        "Settings": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Internal": {
-                  "default": false,
-                  "description": "Don't include this setting as part of environment variable generation",
-                  "type": "boolean"
-                },
-                "Value": {
-                  "description": "The value of the setting",
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Sensitive": {
-                  "default": false,
-                  "description": "Hide the value of this setting when using it in output",
-                  "type": "boolean"
-                }
-              },
-              "required": [
-                "Value"
-              ]
-            }
-          },
-          "description": "Application settings that can provide configuration for code",
-          "additionalProperties": false,
-          "type": "object"
         }
       },
       "required": [
