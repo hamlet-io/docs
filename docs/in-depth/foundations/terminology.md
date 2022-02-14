@@ -7,17 +7,17 @@ The hamlet.io documentation is currently under significant re-development. Exist
 :::
 
 
-This reference provides an outline of the different classes of items within the CMDB. The classes form a hierarchy in the CMDB which defines your `hamlet` deployment overall. Instances of classes are grouped together in collections and the overall collection is used to define the class
+This reference provides an outline of the different classes of items within the CMDB. The classes form a hierarchy in the CMDB which defines your  hamlet  deployment overall. Instances of classes are grouped together in collections and the overall collection is used to define the class
 
 ## Tenant
 
 - **Description**
-    A tenant represents an overall `hamlet` deployment
+    A tenant represents an overall  hamlet  deployment
 
 ## Account
 
 - **Description**
-    Represents a cloud providers highest billing entity, for AWS this would be an Account
+    Represents a cloud provider's highest billing entity, for AWS this would be an Account
 - **Parent** Tenant
 
 ## Product
@@ -28,12 +28,12 @@ This reference provides an outline of the different classes of items within the 
 ## Solution
 
 - **Description**
-    A solution defines the infrastructure in a product. Solutions describe each component and its configuration. A an instance of the solution is then deployed based on the environment and segment of a product
+    A solution defines the infrastructure in a product. Solutions describe each component and its configuration. An instance of the solution is then deployed based on the environment and segment of a product.
 
 ## Environment
 
 - **Description**
-    An environment represents a stage in the application life cycle, for example integration, preproduction, production would be three environments within a product. They represent the basic stages of an application life cycle, integration is to make sure new code introduced is technically working, preproduction is used for business testing and confirmation and production is the real world.
+    An environment represents a stage in the application life cycle, for example integration, preproduction, production would be three environments within a product. They represent the basic stages of an application life cycle. Integration is to make sure new code introduced is technically working, preproduction is used for business testing and confirmation and production is the real world.
 
 ## Segment
 
@@ -44,19 +44,19 @@ This reference provides an outline of the different classes of items within the 
 ## Tier
 
 - **Description**
-    A solution is divided up into tiers. A tier is a collection of components with a similar function or security boundary. For example you might have external load balancer tier which contains the internet facing load balancers, then an app tier would contain the containers which server your application. Tiers are primarily used in Network configuration. In this example the external load balancer tier would be available on the internet the app tier would be in a private network.
+    A solution is divided up into tiers. A tier is a collection of components with a similar function or security boundary. For example you might have an external load balancer tier which contains the internet facing load balancers, then an app tier would contain the containers which serve your application. Tiers are primarily used in network configuration. In this example the external load balancer tier would be available on the internet and the app tier would be in a private network.
 - **Parent** Solution
 
 ## Component
 
 - **Description**
-    A component represents an infrastructure unit such as a lambda function, load balancer or network. Components have a type which defines the configuration required for the component
+    A component represents an infrastructure unit such as a Lambda function, load balancer or network. Components have a type which defines the configuration required for the component.
 - **Parent** - Tier
 
 ## Instance
 
 - **Description**
-    Within a solution your solution you might have a set of components which have very similar requirements, same type, same hardware etc but they have some slightly different settings. A component can have an instance which will use the components configuration by default and if more specific is set in the instance definition this will be overridden.
+    Within a solution you might have a set of components which have very similar requirements, the same type, the same hardware and so on but they have some slightly different settings. A component can have an instance which will use the component's configuration by default and if a more specific one is set in the instance definition this will be overridden.
 - **Parent** Component
 
 ## Version
