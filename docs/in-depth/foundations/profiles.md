@@ -4,7 +4,7 @@ title: Profiles Overview
 ---
 Profiles define a set of common component configuration with filters to limit the components that may access it. Profiles can be defined at any CMDB scope and will be available to all components matching the filters across that scope.
 
-   json
+```json
 {
     "< Profile-Type >" : {
         "< Profile-Name >" : {
@@ -18,7 +18,7 @@ Profiles define a set of common component configuration with filters to limit th
         }
     }
 }
-   
+```
 
 ## Profile Scopes
 
@@ -48,7 +48,7 @@ Profiles are assigned to a scope though the  Profiles  Reference Data object, co
 
 Only applicable profile types are exposed through  Profiles  for each component. For example a "Bootstrap" profile - which defines a set of actions required to provision a compute resource - is not applicable to non-compute components. See the component reference docs for details on which profiles are available for each component type.
 
-   json
+```json
 {
     "Profiles": {
         "Alert": "<array>",
@@ -67,13 +67,13 @@ Only applicable profile types are exposed through  Profiles  for each component.
         "WAF" : "<array>"
     }
 }
-   
+```
 
 ## Profile Examples
 
 A Deployment Profile assignment at the Environment scope.
 
-   json
+```json
 {
   "Environment" : {
     "Id" : "test",
@@ -83,11 +83,11 @@ A Deployment Profile assignment at the Environment scope.
     }
   }
 }
-   
+```
 
 A Deployment Profile overriden for a specific Segment.
 
-   json
+```json
 {
   "Segment" : {
     "Id" : "default",
@@ -97,4 +97,4 @@ A Deployment Profile overriden for a specific Segment.
     }
   }
 }
-   
+```
