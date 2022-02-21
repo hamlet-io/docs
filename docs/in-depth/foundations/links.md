@@ -136,4 +136,3 @@ Run the following command in the hamlet container to validate your component's l
 hamlet component describe-occurrence \
     --name
     solution
-   
