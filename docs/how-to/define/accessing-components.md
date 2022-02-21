@@ -1,13 +1,13 @@
 ---
-sidebar_label: Access Other Components
-title: Accessing Other Components
+sidebar_label: Access other components
+title: Accessing other components
 ---
 
-hamlet works on the concept of a solution, a collection of components which work together to deliver your application. For the components to work together they need to know each other exist, how to connect to them and have the appropriate permissions to access the component. hamlet uses Links as the standard approach to providing access between components in a solution.
+hamlet works on the concept of a solution, a collection of components which work together to deliver your application. For the components to work together they need to know each other exists, how to connect to them and they need to have the appropriate permissions to access the component. hamlet uses links as the standard approach to providing access between components in a solution.
 
-In this guide we will cover the link between a standard client and database connection using the lambda and globaldb component on AWS.
+In this guide we will cover the link between a standard client and database connection using the Lambda and globaldb component on AWS.
 
-For this how-to we will be using the following solution
+For this how-to we will be using the following solution:
 
 ```json
 {
@@ -50,7 +50,7 @@ For this how-to we will be using the following solution
 }
 ```
 
-Before we start lets look at the CloudFormation Deployment for the process_order lambda function
+Before we start let's look at the CloudFormation Deployment for the process_order Lambda function:
 
 ```bash
 hamlet deploy create-deployments -u api
@@ -78,11 +78,11 @@ hamlet deploy create-deployments -u api
 }
 ```
 
-The lambda function is pretty simple, the code is in S3, its using python and it has 128mb of memory
+The Lambda function is pretty simple: the code is in S3, it's using Python and it has 128mb of memory.
 
-At the moment this solution has a lambda component and a globadb component, but they don't know anything about each other. There are two functions in the lambda component, process_order needs read access to the usertable and the create_user table needs read/write access to the usertable.
+At this point the solution has a Lambda component and a globaldb component, but they don't know anything about each other. There are two functions in the Lambda component: process_order needs read access to the user table and the create_user table needs read/write access to the user table.
 
-1. The first part of the configuration is to link the functions to the user table
+1. The first part of the configuration is to link the functions to the user table:
 
     ```json
     {
@@ -137,7 +137,7 @@ At the moment this solution has a lambda component and a globadb component, but 
     }
     ```
 
-1. Generate the api template again and see if anything has changed
+1. Generate the API template again and see if anything has changed:
 
     ```json
     {
@@ -167,11 +167,11 @@ At the moment this solution has a lambda component and a globadb component, but 
     }
     ```
 
-    The process_order function now has 3 environment variables defined which set the ARN, PrimaryKey and Name of the usertable globaldb. Adding the link between the components updated the settings for the process_order occurrence to include details about the table which were then converted to environment variables.
+    The process_order function now has 3 environment variables defined, which set the ARN, PrimaryKey and Name of the user table globaldb. Adding the link between the components updated the settings for the process_order occurrence to include details about the table which were then converted to environment variables.
 
-1. Now that the lambda is passing details of the globaldb to the application run time environment we need to make sure the permissions align with the requirements. The process_order function only needs read only access to the globaldb. The permissions can also be configured using links, through the Role property.
+1. Now that Lambda is passing details of the globaldb to the application run time environment we need to make sure the permissions align with the requirements. The process_order function only needs read only access to the globaldb. The permissions can also be configured using links, through the Role property.
 
-    To see the roles that a component offers in links we can look at occurrence
+    To see the roles that a component offers in links we can look at the occurrence:
 
     ```bash
     hamlet component describe-occurrence -n database-usertable-globaldb -q 'State.Roles'
@@ -357,16 +357,16 @@ At the moment this solution has a lambda component and a globadb component, but 
     }
     ```
 
-    So the global db offers 4 outbound roles
+    So the global db offers 4 outbound roles:
 
-    - all - full read/write ( get, delete, put, scan, query)
-    - consume - read access ( get, scan, query )
-    - produce - read/write ( get, put, scan, query)
+    - all - full read/write (get, delete, put, scan, query)
+    - consume - read access (get, scan, query)
+    - produce - read/write (get, put, scan, query)
     - stream - no permissions
 
-    Another role is listed under outbound called `default` this is a special role value that maps to the default role when a role isn't defined on the link. In this case the default role is consume. So the role for process_order function doesn't need to be updated as it only has read access to the global db.
+    Another role is listed under outbound called `default`. This is a special role value that maps to the default role when a role isn't defined on the link. In this case the default role is `consume`. The role for process_order function doesn't need to be updated, as it only has read access to the global db.
 
-1. The create_user function needs write access to the global db. Update the solution to include the role
+1. The create_user function needs write access to the global db. Update the solution to include the role.
 
     ```json
     {
@@ -422,6 +422,6 @@ At the moment this solution has a lambda component and a globadb component, but 
     }
     ```
 
-    Now when the IAM role is created for create_user it will be configured with the all role from the global db, the process_order role will get the consume role from the global db.
+    Now when the IAM role is created for create_user it will be configured with the `all` role from the global db and the process_order role will get the `consume` role from the global db.
 
-This is an example of how you can use links to access other components in your solution and to control the permissions that one component has on another. It also highlights the integration between Links and Settings when it comes to providing configuration to your application run time.
+This is an example of how you can use links to access other components in your solution and how to control the permissions that one component has on another. It also highlights the integration between links and settings when providing configuration to your application run time.

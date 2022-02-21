@@ -7,9 +7,9 @@ import Mermaid from '@theme/Mermaid';
 
 ## Blueprint Layer-by-Layer
 
-A District is a unique combination of the Layer instances and the Blueprint is the composite configuration for that District. The configuration for each layer in the District is combined with any "shared" configuration and layered on top of the others.
+A district is a unique combination of the layer instances and the blueprint is the composite configuration for that district. The configuration for each layer in the district is combined with any shared configuration and layered on top of the others.
 
-The resulting Blueprint is a reflection of all entities (Layers) having their say in how the District is built, and anything that comes from the district - such as cloud infrastructure templates or application deployments - should be implemented.
+The resulting blueprint is a reflection of all entities (layers) having their say in how the district is built and anything that comes from the district such as cloud infrastructure templates or application deployments should be implemented.
 
 <Mermaid chart={`
   flowchart LR
@@ -22,7 +22,7 @@ The resulting Blueprint is a reflection of all entities (Layers) having their sa
 
 ## Determining the District
 
-Now that we've seen how the Layers work together, how can we tell what District we're working in? Lets take a closer look at the directory structure we've created.
+Now that we've seen how the layers work together, how can we tell what district we're working in? Let's take a closer look at the directory structure we've created:
 
 ```bash
 .
@@ -35,43 +35,38 @@ Now that we've seen how the Layers work together, how can we tell what District 
 └── root.json
 ```
 
-The root of our hamlet structure is defined by a root.json file, so hamlet knows the bounds of its search for configuration.
+The root of our hamlet structure is defined by a **root.json** file, so hamlet knows the bounds of its search for configuration.
 
-Our _accounts_ directory contains a single tenant (acmeinc) alongside at least one account (acmedev01). hamlet understands their association from this structure.
+Our accounts directory contains a single tenant (acmeinc) alongside at least one account (acmedev01). hamlet understands their association from this structure.
 
-Alongside that we have at least one Product. But we could have many Products in this directory next to each other. How can we - or hamlet! - work out our District from all of this?
+In addition to that we have at least one product. But we could have many products in this directory next to each other. How can we - or hamlet! - work out our district from all of this?
 
 ## Set the Segment
 
-A Segment is the smallest scope inside of our District. If we can tell hamlet which Segment to use, it can walk up the directory tree and infer the Environment, Solution and Product.
+A segment is the smallest scope inside of our district. If we can tell hamlet which segment to use, it can walk up the directory tree and infer the environment, solution and product.
 
-Rather than Tell hamlet this information, it will capture it from the current working directory. So lets change into the Segment of our District.
+Rather than tell hamlet this information, it will capture it from the current working directory. So let's change into the segment of our district.
 
 ```bash
 hamlet @ ~/cmdb
 └─ $ cd phonedir/config/solutionsv2/integration/default/
 ```
 
-:::note
-The shared directory for any Layer is not its own definition; It's configuration is shared amongst all Layer instances.
-This means we do not include it in our list of available Segments.
-:::
-
 ## Set the Account
 
-With Layers Product through Segment now covered, the last step is to set which Account belongs to our current District.
+Now that we have covered the layers product through segment, the last step is to set which account belongs to our current district.
 
-We set an Environment Variable of `ACCOUNT` to a value of the `Id` that matches the target Account.
+We set an environment variable of `ACCOUNT` to a value of the `ID` that matches the target account.
 
 ```bash
 export ACCOUNT=acmedev01
 ```
 
-This is where we have two districts meet. The Tenant and Account act as one District and the Product, Environment, and Segment act as another. Since we can deploy multiple Products into the same account we need to tell the product which account it will work with.
+This is where we have two districts meet. The tenant and account act as one district and the product, environment and segment act as another. Since we can deploy multiple products into the same account we need to tell the product which account it will work with.
 
 ## Generate the District Blueprint
 
-It's often helpful to review what configuration hamlet is working with taken from your Districts. Lets do pull this up to see how each of our Layers contributes to the blueprint.
+It's often helpful to review what configuration hamlet is working with in the district. Let's pull this up to see how each of our layers contributes to the blueprint.
 
 ```bash
 hamlet @ ~/cmdb/phonedir/config/solutionsv2/integration/default
@@ -84,11 +79,7 @@ hamlet @ ~/cmdb/phonedir/config/solutionsv2/integration/default
 (Info)  - updating blueprint-config.json
 ```
 
-:::info
-Entrances are simply a pass through the hamlet engine with a specific goal. The Blueprint pass generates the Blueprint file as an output.
-:::
-
-Until now we've only been working with configuration of our Product - this CLI command has generated our first output though. You will find that hamlet has updated your Product with your outputs under the infrastructure path.
+Until now we've only been working with the configuration of our product. This CLI command has generated our first output. You will find that hamlet has updated your product with your outputs under the infrastructure path.
 
 ```bash
 └─ $ tree ~/cmdb/phonedir/infrastructure/
@@ -112,28 +103,26 @@ hamlet @ ~/cmdb/phonedir/config/solutionsv2/integration/default
 └─ $ vim ~/cmdb/phonedir/infrastructure/hamlet/integration/default/default/blueprint-config.json
 ```
 
-## Reviewing the Blueprint
-
-As you can no doubt see, there an enormous of data that hamlet has already established about our District. Some of it you have provided (You should be able to spot your Tenant information near the top for example), whilst a lot of it you may not have seen before.
-
-If the Blueprint is the composite of your Tenant, Account and Product configuration, where is the rest coming from?
-
 :::warning
 To get out of vim and back to the bash prompt, type `:q!<return>`
 :::
 
-### hamlet Contributions
+## Reviewing the Blueprint
 
-The configuration we've created so far isn't the only source of configuration for the blueprint. hamlet's engine comes with a collection of default and common configuration references. Lets review the `Environment` as an example.
+There is an enormous of data that hamlet has already established about our district. Some of it you have provided (e.g. you should be able to spot your tenant information near the top) and some of it will be new.
 
-When we generated the `phonedir` Product you will recall that we set our Environment to `integration`. Let's review what this Environment consists of now.
+If the blueprint is the composite of your tenant, account and product configuration, where is the rest coming from?
+
+The configuration we've created so far isn't the only source of configuration for the blueprint. hamlet's engine comes with default and common configuration. Let's review the `Environment` as an example.
+
+When we generated the `phonedir` product you will recall that we set our environment to `integration`. Let's review what this environment consists of now.
 
 ```json
 {
   "Environments": [
     {
       "Id": "int",
-      "Name": "intengration",
+      "Name": "integration",
       "Title": "Integration Environment",
       "Description": "Mainly for devs to confirm components work together"
       /* ... */
@@ -146,6 +135,6 @@ When we generated the `phonedir` Product you will recall that we set our Environ
 You can find this configuration in the blueprint with a word-search by typing `/"Environments"<return>`
 :::
 
-We certainly provided the `Name` and `Id`, but the remainder of this Environment configuration was contributed by a standard set of configuration in the hamlet engine. An "integration" Environment is commonly required and it's purpose is understood - so hamlet provides its configuration for ease of use.
+We provided the name and ID, but the remainder of this environment configuration was contributed by a standard set of configuration in the hamlet engine. An integration environment is often required so hamlet provides its configuration for ease of use.
 
-Hamlet provides this data with its own Layer of CMDB data called the Master Data. This includes our best practice recommendations for environments along with some basic data around things like network ports and regional endpoints and configuration for cloud providers. This is the first layer of configuration included in the blueprint so any data within the Master Data can be overridden by your own configuration.
+hamlet provides this data with its own layer of CMDB data called the Master Data. This includes our best practice recommendations for environments as well as some basic data relating to things like network ports and regional endpoints and configuration for cloud providers. This is the first layer of configuration included in the blueprint so any data within the Master Data can be overridden by your own configuration.

@@ -3,27 +3,27 @@ sidebar_label: Environment Variables
 title: Setting Environment Variables
 ---
 
-Configuring an application through environment variables allows you to manage the behaviour in your application across multiple environments. Using environment variables you can define environment specific configuration such as database connections, log levels or feature flags without having to change the applications code. The variables are instead provided through the run time environment and the application code looks for these variables when they are required.
+Configuring an application through environment variables allows you to manage the behaviour in your application across multiple environments. Using environment variables you can define environment specific configuration such as database connections, log levels or feature flags without having to change the application's code. The variables are instead provided through the run time environment and the application code looks for these variables when they are required.
 
 hamlet manages the environment variables of components through settings. They can be converted into environment variables, configuration files or used to stage files that can be accessed by an application.
 
-In this guide we will cover how to provide application specific environment variables to your application through the explicit settings source. For more details on the available sources, see the [in-depth guide on settings](/in-depth/foundations/settings)
+In this guide we will cover how to provide application specific environment variables to your application through the explicit settings source. For more details on the available sources, see the [in-depth guide on settings.](/in-depth/foundations/settings)
 
 :::info
 Adding environment variables based on other components in your solution is not part of this guide and is covered in the [accessing other components](accessing-components) how-to guide
 :::
 
-There are two key approaches to adding settings to your components
+**There are two key approaches to adding settings to your components.**
 
 ## Solution Settings
 
-Solution settings are the simplest approach, they are defined as part of the components in a solution file and are supported across all components. By default all components will include these as environment variables when they are supported.
+Using solution settings is the simplest approach; they are defined as part of the components in a solution file and are supported across all components. By default all components will include these as environment variables when they are supported.
 
 ### Example: Setting the log level
 
-The LOG_LEVEL environment variable is often used in python based applications to set how verbose logging should be. Let's set the LOG_LEVEL through the solution config
+The LOG_LEVEL environment variable is often used in Python based applications to set how verbose logging should be. Let's set the LOG_LEVEL through the solution config.
 
-Here is a lambda function in our solution.json file for an api
+Here is a Lambda function in our solution.json file for an API:
 
 ```json
 {
@@ -50,7 +50,7 @@ Here is a lambda function in our solution.json file for an api
 }
 ```
 
-Generating the CloudFormation deployment for this component shows it has no environment variables defined ( they are normally set under Properties.Environment.Variables )
+Generating the CloudFormation deployment for this component shows it has no environment variables defined (they are normally set under Properties.Environment.Variables).
 
 ```json
 {
@@ -74,7 +74,7 @@ Generating the CloudFormation deployment for this component shows it has no envi
 }
 ```
 
-Now we add the LOG_LEVEL setting to the lambda component:-
+Now we add the LOG_LEVEL setting to the Lambda component:
 
 ```json
 {
@@ -108,7 +108,7 @@ Now we add the LOG_LEVEL setting to the lambda component:-
 }
 ```
 
-and the environment variable has now been added to the CloudFormation deployment:-
+and the environment variable has now been added to the CloudFormation deployment.
 
 ```json
 {
@@ -137,25 +137,25 @@ and the environment variable has now been added to the CloudFormation deployment
 }
 ```
 
-Solution settings support providing text based environment variables, you can provide any data types as the Value and they will be converted to string escaped JSON values of the types provided. They do not support providing files, such as certificates or configuration files.
+Solution settings support providing text based environment variables. You can provide any data types as the Value and they will be converted to string escaped JSON values of the types provided. They do not support providing files, such as certificates or configuration files.
 
 ## Setting Namespaces
 
-Setting Namespaces are a more complex approach to defining settings. Setting namespace collections are defined in a separate folder structure in the CMDB and allow you to define complex setting structures along with providing files that are staged in an object store and can be accessed from the component when required.
+Setting Namespaces is a more advanced approach to defining settings. Setting namespace collections are defined in a separate folder structure in the CMDB and allow you to define complex setting structures, as well as providing files that are staged in an object store and can be accessed from the component when required.
 
-The name of the setting namespace is defined based on the folder structure that you place a settings.json file into. This structure is based on the district you are deploying into.
+The name of the setting namespace is defined based on the folder structure in which you place a settings.json file. This structure is based on the district you are deploying into.
 
 ### Example: External Mutual TLS API
 
-In this example our lambda function needs to connect to an external API that uses Mutual TLS to authenticate our system. To connect to the API we need to provide the lambda function with a few different settings
+In this example our Lambda function needs to connect to an external API that uses Mutual TLS to authenticate our system. To connect to the API we need to provide the Lambda function with a few different settings:
 
-- The API Url
-- A Client Id which is used to identify if we are testing or in production
-- A public certificate file that the lambda function needs to present to the API
+- The API URL
+- A Client ID which is used to identify if we are testing or in production
+- A public certificate file that the Lambda function needs to present to the API.
 
-By default hamlet assigns setting namespaces to components automatically based on the properties of the component, this includes details like the component name, the tier the component belongs to along with any instance or version details if they are being used.
+By default hamlet assigns setting namespaces to components automatically, based on the properties of the component. This includes details like the component name, the tier the component belongs to as well as any instance or version details if they are being used.
 
-Using the same Solution as our previous example
+Using the same solution as our previous example
 
 ```json
 {
@@ -182,7 +182,7 @@ Using the same Solution as our previous example
 }
 ```
 
-1. We can get the available setting namespaces of our api function with the following command
+1. We can get the available setting namespaces of our API function with the following command:
 
     ```bash
     hamlet component describe-occurrence -n application-apifunction-get-function setting-namespaces
@@ -229,9 +229,9 @@ Using the same Solution as our previous example
     ]
     ```
 
-    This provides a list of the namespaces that will be included when calculating the settings ( and in turn environment variables ) for this lambda function. To align with structure of the solution file we will use the `app-apifunction-get` namespace for the settings we want to add.
+    This provides a list of the namespaces that will be included when calculating the settings (and in turn environment variables) for this Lambda function. To align with structure of the solution file we will use the `app-apifunction-get` namespace for the settings we want to add.
 
-1. Now that we have the namespace lets add the settings to our CMDB. Your CMDB product folder structure should look something like this:
+1. Now that we have the namespace let's add the settings to our CMDB. Your CMDB product folder structure should look something like this:
 
     ```terminal
     myapi/
@@ -256,25 +256,25 @@ Using the same Solution as our previous example
                 └── default
     ```
 
-    The `config/settings/` directory is where our setting namespace collections live. Namespaces can either be placed under a specific layer, in this case the integration environment and default segment have been defined, or shared across layers using the shared directory. In the case of our external API the API URL and public certificate are the same across all environments, but we need to set the client Id for each environment.
+    The `config/settings/` directory is where our setting namespace collections live. Namespaces can either be placed under a specific layer - in this case the integration environment and default segment have been defined - or shared across layers using the shared directory. In the case of our external API, the API URL and public certificate are the same across all environments, but we need to set the client ID for each environment.
 
-    To create the shared settings namespace for our API Connection details
+1. Create the shared settings namespace for our API Connection details
 
     ```bash
     mkdir -p myapi/config/settings/shared/default/app-apifunction-get/
     ```
 
-1. Add a settings.json file to the new directory with the following
+1. Add a settings.json file to the new directory with the following:
 
-  ```json
-  {
-    "API" : {
-      "URL" : "https://an.external.api/rest"
+    ```json
+    {
+      "API" : {
+        "URL" : "https://an.external.api/rest"
+      }
     }
-  }
-  ```
+    ```
 
-1. Then we add the public certificate using the asFile settings configuration
+1. Then we add the public certificate using the asFile settings configuration.
 
     Create a new directory within the setting namespace collection
 
@@ -282,13 +282,13 @@ Using the same Solution as our previous example
     mkdir -p myapi/config/settings/shared/default/app-apifunction-get/asFile
     ```
 
-    And add the certificate file to the directory
+    And add the certificate file to the directory.
 
     ```bash
     echo "my-public-cert-content" > myapi/config/settings/shared/default/app-apifunction-get/asFile/api-public.crt
     ```
 
-1. Now that the shared configuration is in place we can add the district specific configuration
+1. Now that the shared configuration is in place we can add the district specific configuration.
 
   Create the setting namespace collection for the integration environment in the default segment
 
@@ -296,7 +296,7 @@ Using the same Solution as our previous example
   mkdir -p myapi/config/settings/integration/default/app-apifunction-get/
   ```
 
-  Add add a settings.json file to the directory with the following content
+  Add add a settings.json file to the directory with the following content:
 
   ```json
   {
@@ -306,7 +306,7 @@ Using the same Solution as our previous example
   }
   ```
 
-1. After all of that you should now have the following structure in your settings folder
+1. After that you should now have the following structure in your settings folder.
 
   ```terminal
   myapi/config/settings/
@@ -327,9 +327,9 @@ Using the same Solution as our previous example
       └── settings.json
   ```
 
-  Some extra settings files are listed in this tree. You can also define settings at each layer, these will be included for all components that are part of the layer that the settings belong to.
+  Some extra settings files are listed in this tree. You can also define settings at each layer. These will be included for all components that are part of the layer that the settings belong to.
 
-1. Now generating the CloudFormation deployment we can see that the settings have been taken from the namespaces
+1. Now generating the CloudFormation deployment we can see that the settings have been taken from the namespaces:
 
   ```json
   {
@@ -363,9 +363,10 @@ Using the same Solution as our previous example
   ```
 
 - The environment variable names have been defined by combining the keys in our settings.json file and adding a _ between each key.
-- The layer specific client Id has been included along with our shared API URL.
+- The layer specific client ID has been included along with our shared API URL.
 - The public certificate file name is provided using the file name without the file suffix provided.
-- The file itself is stored in an object store and can be collected by the lambda function during startup.
-- The LOG_LEVEL we set on the solution settings has also been included in the environment variables. The solution settings are preferred over the namespaces when conflicts occur
+- The file itself is stored in an object store and can be collected by the Lambda function during startup.
+- The LOG_LEVEL we set on the solution settings has also been included in the environment variables. The solution settings are preferred   
+  over the namespaces when conflicts occur.
 
-As you can see setting namespaces are a more complicated approach to defining settings but they can be useful when you have large configuration requirements which would take over your solution file. The dedicated file allows for you to define easier to understand JSON structures for your environment variables to make the configuration more maintainable
+As you can see, setting namespaces is a more advanced approach to defining settings, but can be useful when you have large configuration requirements which would take over your solution file. The dedicated file allows you to define more easily understandable JSON structures for your environment variables and makes the configuration easier to maintain.

@@ -15,7 +15,6 @@ Plugins extend the engine to expose new integrations with a Solution. Some plugi
 
 ## Executors
 
-A hamlet executor establishes the context of the current runtime environment (known as the execution environment) from environment variables and command-line options and translates them into instructions for the engine.
 
 The executor can initiate tasks, such as:
 
