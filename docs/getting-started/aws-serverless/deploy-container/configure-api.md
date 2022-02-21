@@ -108,7 +108,7 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
     cd myapp/infrastructure/cf/integration/default/helloapi/default
     ```
 
-1. Let's look at what's in the directory. We will find a collection of JSON and SH scripts which are used to deploy the helloapi:
+1. Let's look at what's in the directory. We will find a collection of .json and .sh files which are used to deploy the helloapi:
 
     ```terminal
     app-helloapi-acct01-ap-southeast-2-generation-contract.json
