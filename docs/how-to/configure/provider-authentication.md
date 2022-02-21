@@ -46,7 +46,7 @@ Which supports the following values:
 After configuring the source you have the option to configure a role and MFA token.
 
 - `HAMLET_AWS_AUTH_ROLE` - Is either a role ARN or name that would be used to switch into the account that you are deploying into.
-- `AWS_AUTH_MFA_SERIAL` - If you need MFA you can set the MFA_SERIAL ARN here and hamlet will use it on any of the authentication sources. If you are using the config provider it should be set in your config file.
+- `HAMLET_AWS_AUTH_MFA_SERIAL` - If you need MFA you can set the MFA_SERIAL ARN here and hamlet will use it on any of the authentication sources. If you are using the config provider it should be set in your config file.
 
 The default source for AWS is ENV unless an [AWS CLI config file](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) can be found. In this case the CONFIG source will be used.
 

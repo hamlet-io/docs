@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import HamletExample from "@site/src/components/HamletExample";
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -7,7 +7,7 @@ import {
   getSchemaExample,
   patternPropertiesRegex,
 } from "@site/src/components/HamletJsonSchema";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import qs from "qs";
 
 import "./styles.css";
