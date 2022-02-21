@@ -39,7 +39,7 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
 1. Check the available deployments that you can run.
 
     ```bash
-    hamlet deploy list-deployments --district account
+    hamlet deploy list-deployments --deployment-group account
     ```
 
     ```bash
@@ -63,7 +63,7 @@ If you haven't already, create a CMDB using the [create CMDB guide](../../create
 1. Let's run a deployment now to create the S3 registry.
 
     ```bash
-    hamlet deploy run-deployments --district account -u s3
+    hamlet deploy run-deployments --deployment-group account -u s3
     ```
 
     :::tip
