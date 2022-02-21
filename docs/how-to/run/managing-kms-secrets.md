@@ -110,7 +110,7 @@ This will take you through decrypting the default SSH key that is generated as p
     2 directories, 4 files
     ```
 
-1. Here you can see we have two files, a CRT file which contains the public key -
+1. Here you can see we have two files, a crt.pem file which contains the public key -
 
     ```bash
     cat integration/default/.aws-acct01-ap-southeast-2-ssh-crt.pem
