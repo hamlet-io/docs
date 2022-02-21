@@ -109,7 +109,7 @@ To get out of vim and back to the bash prompt, type `:q!<return>`
 
 ## Reviewing the Blueprint
 
-There an enormous of data that hamlet has already established about our district. Some of it you have provided (e.g. you should be able to spot your tenant information near the top) and some of it will be new.
+There is an enormous of data that hamlet has already established about our district. Some of it you have provided (e.g. you should be able to spot your tenant information near the top) and some of it will be new.
 
 If the blueprint is the composite of your tenant, account and product configuration, where is the rest coming from?
 
