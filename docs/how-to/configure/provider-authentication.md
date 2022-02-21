@@ -38,7 +38,7 @@ You can select how you want to authenticate using the environment variable
 Which supports the following values:
 
 - `ENV` - Use the standard AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables.
-- `USER` - Works like the ENV source but supports a prefix on the AWS keys that you can set with.`HAMLET_AWS_AUTH_USER` if you set HAMLET_AWS_AUTH_USER=SEC hamlet would look for SEC_AWS_ACCESS_KEY_ID for your AWS authentication keys.
+- `USER` - Works like the ENV source but supports a prefix on the AWS keys that you can set with `HAMLET_AWS_AUTH_USER`. If you set HAMLET_AWS_AUTH_USER=SEC hamlet would look for SEC_AWS_ACCESS_KEY_ID for your AWS authentication keys.
 - `INSTANCE|INSTANCE:EC2|INSTANCE:ECS` - Uses the ec2 or ecs instance IAM roles. If you specify INSTANCE hamlet will prefer ecs over ec2, but use either one.
 - `CONFIG` - Uses an [AWS CLI config file](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) to determine credentials. hamlet will use a profile with the name of the hamlet account ID or the AWS account ID derived from the hamlet account details. The AWS account is preferred over the hamlet account ID.
 - `NONE` - This bypasses authentication and disables the account check. This is useful when you are testing deployment generation locally and don't have access to the AWS account you are working with.
