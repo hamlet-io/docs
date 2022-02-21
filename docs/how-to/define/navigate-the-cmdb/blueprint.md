@@ -113,7 +113,7 @@ There is an enormous of data that hamlet has already established about our distr
 
 If the blueprint is the composite of your tenant, account and product configuration, where is the rest coming from?
 
-The configuration we've created so far isn't the only source of configuration for the blueprint. hamlet's engine comes with a collection of default and common configuration references. Let's review the `Environment` as an example.
+The configuration we've created so far isn't the only source of configuration for the blueprint. hamlet's engine comes with default and common configuration. Let's review the `Environment` as an example.
 
 When we generated the `phonedir` product you will recall that we set our environment to `integration`. Let's review what this environment consists of now.
 
