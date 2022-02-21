@@ -11,7 +11,7 @@ module.exports = {
   onDuplicateRoutes: 'throw',
   themeConfig: {
     colorMode: {
-      disableSwitch: true
+      disableSwitch: false
     },
     navbar: {
       title: 'hamlet',
@@ -84,7 +84,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Built with Docusaurus.`,
+      copyright: `Built with Docusaurus | Hamlet`,
     },
     prism: {
       theme: require("./src/theme/hamlet"),
@@ -97,7 +97,9 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: '/'
+          routeBasePath: '/',
+          // Please change this to your repo.
+          editUrl: 'https://github.com/hamlet-io/docs/edit/master/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
