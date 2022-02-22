@@ -11189,14 +11189,6 @@
           "default": false,
           "type": "boolean"
         },
-        "DeploymentUnits": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
         "aws:FargatePlatform": {
           "default": "LATEST",
           "description": "The version of the fargate platform to use",
@@ -11210,12 +11202,170 @@
           "default": "application",
           "type": "string"
         },
+        "Containers": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/containertask"
+        },
+        "Placement": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "ComputeProvider": {
+              "description": "The compute provider placement policy",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Default": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Provider": {
+                      "default": "_engine",
+                      "const": "_engine",
+                      "description": "The default container compute provider - _engine uses the default provider of the engine",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Logging": {
+              "default": "default",
+              "type": "string"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Permissions": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Decrypt": {
+              "default": true,
+              "type": "boolean"
+            },
+            "AppData": {
+              "default": true,
+              "type": "boolean"
+            },
+            "AppPublic": {
+              "default": true,
+              "type": "boolean"
+            },
+            "AsFile": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Engine": {
+          "default": "ec2",
+          "const": "ec2",
+          "description": "The engine used to run the container",
+          "type": "string"
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
-        },
-        "Containers": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/containertask"
         },
         "Enabled": {
           "default": true,
@@ -11335,83 +11485,6 @@
           "default": true,
           "type": "boolean"
         },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of enforced deployment profiles which override component configuraiton",
-              "type": "array"
-            },
-            "Logging": {
-              "default": "default",
-              "type": "string"
-            },
-            "Placement": {
-              "default": "default",
-              "description": "The resource group assignment placement for resources in the component",
-              "type": "string"
-            },
-            "Network": {
-              "default": "default",
-              "type": "string"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of deployment profiles to apply to this component",
-              "type": "array"
-            },
-            "Alert": {
-              "default": "default",
-              "type": "string"
-            },
-            "Baseline": {
-              "default": "default",
-              "description": "The profile used to lookup standard services provided by the segment baseline",
-              "type": "string"
-            },
-            "Testing": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The testing profiles to apply to the component",
-              "type": "array"
-            }
-          }
-        },
-        "Permissions": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Decrypt": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AsFile": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
-        },
         "TaskLogGroup": {
           "default": true,
           "type": "boolean"
@@ -11419,59 +11492,11 @@
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
-        "Export": {
-          "default": false,
-          "type": "boolean"
-        },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-        },
-        "Engine": {
-          "default": "ec2",
-          "const": "ec2",
-          "description": "The engine used to run the container",
-          "type": "string"
-        },
-        "Settings": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Internal": {
-                  "default": false,
-                  "description": "Don't include this setting as part of environment variable generation",
-                  "type": "boolean"
-                },
-                "Value": {
-                  "description": "The value of the setting",
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Sensitive": {
-                  "default": false,
-                  "description": "Hide the value of this setting when using it in output",
-                  "type": "boolean"
-                }
-              },
-              "required": [
-                "Value"
-              ]
-            }
-          },
-          "description": "Application settings that can provide configuration for code",
-          "additionalProperties": false,
-          "type": "object"
         }
       }
     },
@@ -15866,14 +15891,6 @@
           "default": false,
           "type": "boolean"
         },
-        "DeploymentUnits": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
         "Description": {
           "description": "A description of the component",
           "type": "string"
@@ -15882,12 +15899,170 @@
           "default": "application",
           "type": "string"
         },
+        "Containers": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/containertask"
+        },
+        "Placement": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "ComputeProvider": {
+              "description": "The compute provider placement policy",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Default": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Provider": {
+                      "default": "_engine",
+                      "const": "_engine",
+                      "description": "The default container compute provider - _engine uses the default provider of the engine",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Logging": {
+              "default": "default",
+              "type": "string"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Permissions": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Decrypt": {
+              "default": true,
+              "type": "boolean"
+            },
+            "AppData": {
+              "default": true,
+              "type": "boolean"
+            },
+            "AppPublic": {
+              "default": true,
+              "type": "boolean"
+            },
+            "AsFile": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Engine": {
+          "default": "ec2",
+          "const": "ec2",
+          "description": "The engine used to run the container",
+          "type": "string"
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
-        },
-        "Containers": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/containertask"
         },
         "Enabled": {
           "default": true,
@@ -16011,83 +16186,6 @@
           "default": true,
           "type": "boolean"
         },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of enforced deployment profiles which override component configuraiton",
-              "type": "array"
-            },
-            "Logging": {
-              "default": "default",
-              "type": "string"
-            },
-            "Placement": {
-              "default": "default",
-              "description": "The resource group assignment placement for resources in the component",
-              "type": "string"
-            },
-            "Network": {
-              "default": "default",
-              "type": "string"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of deployment profiles to apply to this component",
-              "type": "array"
-            },
-            "Alert": {
-              "default": "default",
-              "type": "string"
-            },
-            "Baseline": {
-              "default": "default",
-              "description": "The profile used to lookup standard services provided by the segment baseline",
-              "type": "string"
-            },
-            "Testing": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The testing profiles to apply to the component",
-              "type": "array"
-            }
-          }
-        },
-        "Permissions": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Decrypt": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AsFile": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
-        },
         "TaskLogGroup": {
           "default": true,
           "type": "boolean"
@@ -16095,59 +16193,11 @@
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
-        "Export": {
-          "default": false,
-          "type": "boolean"
-        },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-        },
-        "Engine": {
-          "default": "ec2",
-          "const": "ec2",
-          "description": "The engine used to run the container",
-          "type": "string"
-        },
-        "Settings": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Internal": {
-                  "default": false,
-                  "description": "Don't include this setting as part of environment variable generation",
-                  "type": "boolean"
-                },
-                "Value": {
-                  "description": "The value of the setting",
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Sensitive": {
-                  "default": false,
-                  "description": "Hide the value of this setting when using it in output",
-                  "type": "boolean"
-                }
-              },
-              "required": [
-                "Value"
-              ]
-            }
-          },
-          "description": "Application settings that can provide configuration for code",
-          "additionalProperties": false,
-          "type": "object"
         }
       }
     },
