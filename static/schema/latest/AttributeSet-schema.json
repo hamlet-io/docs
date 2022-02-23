@@ -1926,6 +1926,62 @@
         "Source"
       ]
     },
+    "district": {
+      "description": "Configuration of a district",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "NamePartOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Parts to be included in the name of an instance of the district. If not provided, the InstanceOrder is assumed. If not a defined name part, the part is assumed to be a layer.",
+          "type": "array"
+        },
+        "NameParts": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Ignore": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "description": "An array of values to not include if encountered",
+                  "type": "array"
+                },
+                "Enabled": {
+                  "default": true,
+                  "description": "Should this part be ignored/omitted?",
+                  "type": "boolean"
+                },
+                "Fixed": {
+                  "description": "Include a fixed string",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "InstanceOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Layers whose configuration data should be included in the solution for an instance of the district",
+          "type": "array"
+        }
+      },
+      "required": [
+        "InstanceOrder"
+      ]
+    },
     "lbattach": {
       "description": "Attaches a components port to a load balancer",
       "additionalProperties": false,

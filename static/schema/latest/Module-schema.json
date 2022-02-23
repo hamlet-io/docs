@@ -83,6 +83,51 @@
         "dbLink"
       ]
     },
+    "runbook_run_task": {
+      "description": "Run an ecs task to perform a single command and exit",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "environment": {
+          "description": "A fixed environment variable overrides to apply to the command",
+          "type": "string"
+        },
+        "taskLink": {
+          "description": "A Link to a task that will be started to run the command",
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "id": {
+          "default": "sh",
+          "description": "A unique id for this exec command - allows for multiple commands on the same service",
+          "type": "string"
+        },
+        "containerId": {
+          "description": "The id of the container to run the command on",
+          "type": "string"
+        },
+        "Inputs": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Inputs requred from to run the task",
+          "type": "array",
+          "enum": [
+            "command",
+            "environment"
+          ]
+        },
+        "command": {
+          "description": "A fixed command to run on the container",
+          "type": "string"
+        }
+      },
+      "required": [
+        "taskLink",
+        "containerId"
+      ]
+    },
     "ssh_bastion": {
       "description": "Public bastion server with ssh support",
       "additionalProperties": false,
