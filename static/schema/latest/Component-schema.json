@@ -1857,6 +1857,14 @@
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
+        "Engine": {
+          "description": "The type of healthcheck to perform",
+          "type": "string",
+          "enum": [
+            "Simple",
+            "Complex"
+          ]
+        },
         "Settings": {
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
@@ -1895,7 +1903,10 @@
           "additionalProperties": false,
           "type": "object"
         }
-      }
+      },
+      "required": [
+        "Engine"
+      ]
     },
     "serviceregistryservice": {
       "description": "An individual service in the registry",
@@ -21813,7 +21824,7 @@
       ]
     },
     "adaptor": {
-      "description": "A generic deployment process for non standard components",
+      "description": "A generic deployment process for non standard components provides a full context along with an occurrence that can be used for developing apis",
       "additionalProperties": false,
       "type": "object",
       "properties": {
@@ -22063,6 +22074,10 @@
               "description": "A list of deployment profiles to apply to this component",
               "type": "array"
             },
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
             "Baseline": {
               "default": "default",
               "description": "The profile used to lookup standard services provided by the segment baseline",
@@ -22088,6 +22103,10 @@
         "Export": {
           "default": false,
           "type": "boolean"
+        },
+        "Alerts": {
+          "description": "Custom namespace alerts deployed as part of the adaptor",
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "Settings": {
           "patternProperties": {

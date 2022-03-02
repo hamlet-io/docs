@@ -1290,6 +1290,98 @@
         }
       }
     },
+    "inputinfo": {
+      "description": "Provides information about the pipelines used for processing inputs",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
     "validate": {
       "description": "Performs validation of the current Blueprint Object",
       "additionalProperties": false,
