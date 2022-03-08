@@ -25,9 +25,9 @@ module.exports = {
       ],
     },
     algolia: {
+      appId: 'hamlet',
       apiKey: '919c25df3c384329b25098f1dcb5c5a6',
-      indexName: 'hamlet',
-      algoliaOptions: {},
+      indexName: 'hamlet'
     },
     footer: {
       style: 'dark',
@@ -94,12 +94,14 @@ module.exports = {
   presets: [
     [
       '@docusaurus/preset-classic',
+      /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
           // Please change this to your repo.
           editUrl: 'https://github.com/hamlet-io/docs/edit/master/',
+          remarkPlugins: [require("mdx-mermaid")],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -107,6 +109,7 @@ module.exports = {
         blog : {
           blogSidebarTitle: "All our posts",
           blogSidebarCount: "ALL",
+          remarkPlugins: [require("mdx-mermaid")],
         }
       },
     ],

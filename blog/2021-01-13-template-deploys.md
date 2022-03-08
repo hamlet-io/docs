@@ -4,8 +4,6 @@ author: roleyfoley
 author_url: https://github.com/roleyfoley
 ---
 
-import Mermaid from '@theme/Mermaid';
-
 hamlet has its own opinions on how things should be done. These opinions are formed by our community based on best practice ( including the best way to workaround things ) to get you working in the cloud as efficiently as possible. Sometimes you might want to try out something new that we don't support or a component we offer isn't quite right. In this series of posts, Prototyping Deployments you should get an idea of how hamlet helps with these deployments and integrates with the rest of your solution.
 <!--truncate-->
 
@@ -25,8 +23,8 @@ I recently worked on a product which was used for tracking people and the projec
 
 The overall process is something like this
 
-<Mermaid chart={`
-    graph LR;
+```mermaid
+graph LR
     quicksight[Reporting Client]
     athena[Athena]
     s3[S3 Bucket]
@@ -34,7 +32,7 @@ The overall process is something like this
     quicksight-->|runs SQL query|athena
     athena-->|collects data schema|dataCatalog
     athena-->|runs query against data|s3
-`}/>
+```
 
 During the development of this reporting process one of the developers in the team created a CloudFormation template which deployed the data catalog. As someone looking after Cloud Deployments for the team this was great, I could see what they had already discovered, review the template and see what is required to get this going in production.
 

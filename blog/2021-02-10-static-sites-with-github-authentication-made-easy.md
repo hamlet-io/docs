@@ -4,43 +4,38 @@ author: rossmurr4y
 author_url: https://github.com/rossmurr4y
 ---
 
-import Mermaid from '@theme/Mermaid';
 
 Static websites are everywhere nowadays, alongside them on their rise in popularity are the numerous app frameworks like Jekyll, Gatsby and Docusaurus that allow anyone to spin up and deploy documentation, a blog or simple website, often for for little or no cost.
 <!--truncate-->
 
 An common pattern for this deployment is to use an object store ( AWS S3, Azure Object Store ) combined with a content distribution network (CDN) such as AWS CloudFront. Most providers of these services charge on usage and often have great free tier offerings for small sites
 
-<Mermaid
-    chart={`
-        graph LR;
-        cdn[CDN]
-        s3[S3 Bucket]
-        user[User]
-        user-->|browses to website|cdn
-        cdn-->|cdn gets content from object store|s3
-        style s3 height:75px,width:90px;
-    `}
-/>
+```mermaid
+graph LR;
+    cdn[CDN]
+    s3[S3 Bucket]
+    user[User]
+    user-->|browses to website|cdn
+    cdn-->|cdn gets content from object store|s3
+    style s3 height:75px,width:90px;
+```
 
 However, not every static site is intended to be public. Adding authentication is considerably greater in complexity than the site alone. Thankfully, this is where hamlet Modules really shine.
 
 In this article, we will be stepping through the process of using two of the recently published hamlet modules - _cfcognito_ and _githubidp_. Used alongside a hamlet Solution for a typical `spa` deployment into AWS, these modules will include everything necessary to restrict access to our site with Github.
 
-<Mermaid
-    chart={`
-        graph LR;
-        cdn[CDN]
-        s3[S3 Bucket]
-        user[User]
-        auth[AuthService]
-        github[GitHub]
-        user-->|browses to website|cdn
-        cdn-->|sends user to authenticate|auth
-        auth-->|sends user to Github|github
-        cdn-->|cdn returns static content after authentication|s3
-    `}
-/>
+```mermaid
+graph LR;
+    cdn[CDN]
+    s3[S3 Bucket]
+    user[User]
+    auth[AuthService]
+    github[GitHub]
+    user-->|browses to website|cdn
+    cdn-->|sends user to authenticate|auth
+    auth-->|sends user to Github|github
+    cdn-->|cdn returns static content after authentication|s3
+```
 
 Before we get started, let’s cover off what you need prior to following along.
 
