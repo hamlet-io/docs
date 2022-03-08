@@ -40,12 +40,6 @@
   height: 3.25rem;
 }
 
-[id^="mermaid"] {
-  padding: 1rem;
-  font-size: 90%;
-  overflow: visible;
-}
-
 foreignObject {
   text-align: center;
   padding-top: 0rem;

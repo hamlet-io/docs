@@ -2,7 +2,6 @@
 sidebar_label: Hello Status API
 title: Hello Status API
 ---
-import Mermaid from '@theme/Mermaid';
 
 This guide works through the deployment of [hamlet hello](https://github.com/hamlet-io/docs-support/tree/master/hello_world_api), a simple hello world API built using [Flask](https://www.palletsprojects.com/p/flask/) and hosted in a [Docker container](https://github.com/hamlet-io/docs-support/pkgs/container/docs-support%2Fhello_world).
 
@@ -176,7 +175,7 @@ Within hamlet components belong to `Tiers`; they mainly set the network subnet c
 
 This section defines a new component called `ecshost` and it has a type of `ecs`: the second level in the object defines the type. The ecs component type is a container host which provides the base level infrastructure to host containers. The name ecs is a legacy name that aligns with the AWS service ECS.
 
-The component then has an `Instance`. 
+The component then has an `Instance`.
 Instances allow you to create copies of a component which might have some minor configuration changes but you'd like to share as much configuration from a single component as possible.
 
 The `deployment:Unit` parameter. This parameter defines the deployment that this component belongs to. You can put multiple components into the same deployment if you want to. This is useful when you have related components that can all be deployed at the same time.

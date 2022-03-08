@@ -40,12 +40,6 @@ module.exports = {
                 'getting-started/aws-serverless/build-app/deploy-app-image',
               ]
             },
-            {
-              type: 'category',
-              label: 'Operations',
-              items: [
-              ]
-            }
           ]
         }
       ]
