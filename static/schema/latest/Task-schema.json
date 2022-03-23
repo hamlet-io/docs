@@ -291,9 +291,6 @@
         "DeploymentUnit": {
           "type": "string"
         },
-        "District": {
-          "type": "string"
-        },
         "Operations": {
           "contains": {
             "type": [
@@ -309,7 +306,6 @@
       "required": [
         "DeploymentUnit",
         "DeploymentGroup",
-        "District",
         "Operations",
         "DeploymentProvider",
         "CurrentState"

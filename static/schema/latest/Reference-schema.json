@@ -2256,6 +2256,10 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
+        "DistrictType": {
+          "description": "The DistrictType to include as part of the Deployment Group",
+          "type": "string"
+        },
         "Priority": {
           "default": 100,
           "description": "The priority this group has in deployment mode processing",
@@ -2279,10 +2283,6 @@
             "solution",
             "application"
           ]
-        },
-        "District": {
-          "description": "The id of the district for components included in the deployment group",
-          "type": "string"
         },
         "ResourceSets": {
           "patternProperties": {
@@ -2332,7 +2332,7 @@
       },
       "required": [
         "Level",
-        "District"
+        "DistrictType"
       ]
     },
     "LogFilter": {
