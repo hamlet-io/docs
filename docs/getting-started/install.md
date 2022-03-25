@@ -202,13 +202,13 @@ Read through the install links below and ensure that each of the installed parts
 
 | Name                                                               | Version                  | Purpose                  |
 |--------------------------------------------------------------------|--------------------------|--------------------------|
-| [Python](https://www.python.org/about/gettingstarted/)             | 3.6 and above            | Hamlet Cli               |
+| [Python](https://www.python.org/about/gettingstarted/)             | 3.6 and above            | Hamlet CLI               |
 | [pip](https://packaging.python.org/tutorials/installing-packages/) | latest                   | Python packages          |
 | [Jq](https://stedolan.github.io/jq/)                               | 1.6 and above            | JSON data processing     |
 | [Bash](https://www.gnu.org/software/bash/)                         | 4.0 and above            | core hamlet execution    |
 | [Docker](https://www.docker.com/get-started)                       | No specific requirements | Container deployments    |
-| [AWS Cli](https://aws.amazon.com/cli/)                             | v1 currently supported   | AWS deployments          |
-| [Azure Cli](https://docs.microsoft.com/en-us/cli/azure/)           | No specific requirements | Azure deployments        |
+| [AWS CLI](https://aws.amazon.com/cli/)                             | v1 currently supported   | AWS deployments          |
+| [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/)           | No specific requirements | Azure deployments        |
 | [Graphviz](https://graphviz.org/)                                  | No specific requirements | Diagram generation       |
 | [AWS SSM Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html) | No Specific requirements | AWS Runbook Container access |
 
