@@ -106,7 +106,7 @@ Using sudo is generally the best way to do this instead of running everything as
 1. Run the following to install the required packages.
 
   ```bash
-  apt-get update && apt-get install openjdk-8-jdk jq zip unzip graphviz python3 python3-pip docker
+  apt-get update && apt-get install jq zip unzip graphviz python3 python3-pip docker
   ```
 
   When prompted, confirm the installation and make sure the packages you are installing are suitable for the machine you are running on.
@@ -145,7 +145,7 @@ For MacOS instances we recommended setting up the required dependencies using [H
 
   ```bash
   brew update
-  brew install openjdk@8 jq bash graphviz
+  brew install jq bash graphviz
   ```
 
 1. Install Python using pyenv
@@ -196,18 +196,17 @@ This section covers the general requirements and outlines what has been covered 
 
 Read through the install links below and ensure that each of the installed parts is available on your PATH.
 
-| Name     | Install Link                                 | Version                  | Purpose                  |
-|----------|----------------------------------------------|--------------------------|--------------------------|
-| Python   | https://www.python.org/about/gettingstarted/ | 3.6 and above            |                          |
-| pip      | https://packaging.python.org/tutorials/installing-packages/ | latest    | Python packages          |
-| Java     | https://openjdk.java.net/install/            | 8 (1.8) required         |                          |
-| Jq       | https://stedolan.github.io/jq/               | 1.6 and above            |                          |
-| Bash     | https://www.gnu.org/software/bash/           | 4.0 and above            |                          |
-| Docker   | https://www.docker.com/get-started           | No specific requirements | Container deployments    |
-| AWS Cli  | https://aws.amazon.com/cli/                  | v1 currently supported   | AWS deployments          |
-| Az       | https://docs.microsoft.com/en-us/cli/azure/  | No specific requirements | Azure deployments        |
-| Graphviz | https://graphviz.org/                        | No specific requirements | Diagram generation       |
-| AWS SSM Plugin | https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html | No Specific requirements | AWS Runbook Container access |
+| Name                                                               | Version                  | Purpose                  |
+|--------------------------------------------------------------------|--------------------------|--------------------------|
+| [Python](https://www.python.org/about/gettingstarted/)             | 3.6 and above            | Hamlet Cli               |
+| [pip](https://packaging.python.org/tutorials/installing-packages/) | latest                   | Python packages          |
+| [Jq](https://stedolan.github.io/jq/)                               | 1.6 and above            | JSON data processing     |
+| [Bash](https://www.gnu.org/software/bash/)                         | 4.0 and above            | core hamlet execution    |
+| [Docker](https://www.docker.com/get-started)                       | No specific requirements | Container deployments    |
+| [AWS Cli](https://aws.amazon.com/cli/)                             | v1 currently supported   | AWS deployments          |
+| [Azure Cli](https://docs.microsoft.com/en-us/cli/azure/)           | No specific requirements | Azure deployments        |
+| [Graphviz](https://graphviz.org/)                                  | No specific requirements | Diagram generation       |
+| [AWS SSM Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html) | No Specific requirements | AWS Runbook Container access |
 
 Once you have the required packages installed you can install hamlet.
 
