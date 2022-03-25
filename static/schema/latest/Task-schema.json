@@ -389,10 +389,6 @@
           "description": "The ARN of the ECS Cluster to list running tasks from",
           "type": "string"
         },
-        "OverrideContainerName": {
-          "description": "The name of the container to apply overrides to",
-          "type": "string"
-        },
         "PublicIP": {
           "default": false,
           "description": "Assign a public IP address to the task",
@@ -429,6 +425,10 @@
           "description": "The AWS Secret Access Key with access to decrypt",
           "type": "string"
         },
+        "ContainerName": {
+          "description": "The name of the container to apply overrrides and watch for exit status",
+          "type": "string"
+        },
         "CapacityProvider": {
           "description": "The capacity provider used to host the task",
           "type": "string"
@@ -437,18 +437,6 @@
           "description": "The AWS Session Token with access to decrypt",
           "type": "string"
         },
-        "ShowStatus": {
-          "default": true,
-          "description": "Show the status of running the task",
-          "type": [
-            "boolean",
-            "string"
-          ],
-          "enum": [
-            "true",
-            "false"
-          ]
-        },
         "Region": {
           "description": "The name of the region to use for the aws session",
           "type": "string"
@@ -456,24 +444,44 @@
         "EnvironmentOverrides": {
           "description": "A json escaped object string or string with overrides for environment variables",
           "type": "string"
-        },
-        "WaitToStop": {
-          "default": true,
-          "description": "Wait for the task to stop",
-          "type": [
-            "boolean",
-            "string"
-          ],
-          "enum": [
-            "true",
-            "false"
-          ]
         }
       },
       "required": [
         "ClusterArn",
-        "TaskFamily"
+        "TaskFamily",
+        "ContainerName"
       ]
+    },
+    "aws_lambda_invoke_function": {
+      "description": "Invoke a lambda function with a payload and return the returned payload",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "FunctionArn": {
+          "description": "The ARN of the lambda function",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "Payload": {
+          "description": "A json encoded string with the lambda payload",
+          "type": "string"
+        }
+      }
     },
     "aws_ecs_select_task": {
       "description": "List the running tasks for a service or task family and return the user selected task",
@@ -511,6 +519,57 @@
       },
       "required": [
         "ClusterArn"
+      ]
+    },
+    "aws_rds_create_snapshot": {
+      "description": "Create an rds native snapshot for either an instance or cluster, wait for it to become available and then return the arn",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "DbId": {
+          "description": "The Arn or Id of the rds instance or cluster",
+          "type": "string"
+        },
+        "Cluster": {
+          "description": "If the database is a cluster or instance",
+          "type": [
+            "string",
+            "boolean"
+          ]
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "SnapshotName": {
+          "description": "The name of the snapshot",
+          "type": "string"
+        },
+        "IncludeDateSuffix": {
+          "default": true,
+          "description": "Include a date based suffix in the snapshot name",
+          "type": [
+            "string",
+            "boolean"
+          ]
+        }
+      },
+      "required": [
+        "DbId",
+        "Cluster",
+        "SnapshotName"
       ]
     },
     "aws_ecs_run_command": {

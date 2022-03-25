@@ -64,6 +64,20 @@
         "containerId"
       ]
     },
+    "runbook_rds_snapshot": {
+      "description": "Create a native snapshot of an RDS cluster or instance",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "dbLink": {
+          "description": "A link to the db component running postgres that the dump will be created from",
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        }
+      },
+      "required": [
+        "dbLink"
+      ]
+    },
     "runbook_rds_pgdump": {
       "description": "Run a pgdump on a postgres db component and save the result locally",
       "additionalProperties": false,
@@ -90,11 +104,24 @@
       "properties": {
         "environment": {
           "description": "A fixed environment variable overrides to apply to the command",
-          "type": "string"
+          "type": "object"
         },
         "taskLink": {
           "description": "A Link to a task that will be started to run the command",
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "inputs": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "User provided inputs requred to run the task",
+          "type": "array",
+          "enum": [
+            "command",
+            "environment"
+          ]
         },
         "id": {
           "default": "sh",
@@ -105,22 +132,14 @@
           "description": "The id of the container to run the command on",
           "type": "string"
         },
-        "Inputs": {
+        "command": {
           "contains": {
             "type": [
               "string"
             ]
           },
-          "description": "Inputs requred from to run the task",
-          "type": "array",
-          "enum": [
-            "command",
-            "environment"
-          ]
-        },
-        "command": {
-          "description": "A fixed command to run on the container",
-          "type": "string"
+          "description": "A fixed command to run on the container everytime the runbook is run",
+          "type": "array"
         }
       },
       "required": [
