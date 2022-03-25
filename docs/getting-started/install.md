@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem'
 
 hamlet is made up of two key parts:
 
-- **engine** looks after generating contracts that describe what you want to do, e.g. create infrastructure, draw diagrams, find the hostname of a deployment etc. This is built on Java using the [apache freemarker](https://freemarker.apache.org/) template engine.
+- **engine** looks after generating `contracts` that describe what you want to do, e.g. create infrastructure, draw diagrams, find the hostname of a deployment etc. This is built on Java using the [apache freemarker](https://freemarker.apache.org/) template engine.
 - **executor** runs the contracts from the engine and provides the user interface to the engine. We have two executors which work together, a bash based backend along with a Python based CLI.
 
 The CLI manages the installation of the required parts once it has been installed, but we do have some extra dependencies. This task will take you through the process of installing these dependencies. Here we've included some standard environments and included a description of what's required.
@@ -27,10 +27,10 @@ The CLI manages the installation of the required parts once it has been installe
 
 <TabItem value="docker">
 
-Docker provides a container based workflow to isolate hamlet and its dependencies. We provide a general purpose container environment with hamlet installed and it includes a number of tools and packages to set up a general purpose application build container for Continuous Integration.
+Docker provides a container based workflow to isolate hamlet and its dependencies. This image provides a general purpose environment with hamlet installed, and also includes a number of tools and packages that make it well suited for use within Continuous Integration pipelines.
 
 1. Install docker for your operating system using the official Docker guide here https://docs.docker.com/get-docker/
-1. double-check that Docker is running. If you don't get a response from the following command, you'll need to start Docker before continuing.
+1. Ensure that Docker is running. If you don't get a response from the following command, you'll need to start Docker before continuing.
 
   ```bash
   docker info
@@ -42,21 +42,25 @@ Docker provides a container based workflow to isolate hamlet and its dependencie
   docker pull hamletio/hamlet
   ```
 
-1. Docker storage is removed after the container stops, so we'll want a directory on our local machine that can be used to store all of our work. Let's make one now. In your local terminal change into a directory that works for you ( e.g. ~/hamlet ) and then make a new directory for your hamlet work.
+1. As docker containers are ephemeral by nature, we'll need a directory on our local machine that can be used to store all of our work. In your local terminal change into a directory that works for you ( e.g. `~/hamlet` ) and then make a new directory for your hamlet work.
+
+  :::info
+  If you intend to follow through the rest of the "getting started" guide, it's recommended you call this directory `hamlet_hello`!
+  :::
 
   ```bash
   ## create a new directory
-  mkdir -p ~/hamlet
+  mkdir ~/hamlet_hello
   ```
 
-1. Start an interactive terminal inside of the _hamletio/hamlet_ container and make the _hamletdeploy_ directory available in the container.
+1. Start an interactive terminal inside of the _hamletio/hamlet_ container and make the directory you created in the previous step available inside the container.
 
   :::info
   Each time you would like to return to this workspace you will just need to run the following Docker CLI command inside of a terminal window
   :::
 
   ```bash
-  docker run -it --volume ~/hamlet:/home/hamlet/cmdb hamletio/hamlet
+  docker run -it --rm --volume ~/hamlet_hello:/home/hamlet/cmdb hamletio/hamlet
   ```
 
   ```terminal
@@ -70,10 +74,10 @@ Docker provides a container based workflow to isolate hamlet and its dependencie
 
 1. To check that everything is working as expected open up a second terminal window - this one won't be inside the container.
 
-Navigate into the _~/hamlet_ directory and create a test file called _text.txt_
+Navigate into the directory you created earlier and create a test file called _text.txt_
 
 ```bash
-cd ~/hamlet
+cd ~/hamlet_hello
 echo "testing" > test.txt
 ```
 
@@ -106,7 +110,7 @@ Using sudo is generally the best way to do this instead of running everything as
 1. Run the following to install the required packages.
 
   ```bash
-  apt-get update && apt-get install openjdk-8-jdk jq zip unzip graphviz python3 python3-pip docker
+  sudo apt-get update && apt-get install openjdk-8-jdk jq zip unzip graphviz python3 python3-pip docker
   ```
 
   When prompted, confirm the installation and make sure the packages you are installing are suitable for the machine you are running on.
@@ -122,7 +126,7 @@ Using sudo is generally the best way to do this instead of running everything as
 1. Start the Docker service so that we can use it to manage images that we build and push using hamlet.
 
   ```bash
-  systemctl enable --now docker
+  sudo systemctl enable --now docker
   ```
 
 1. Confirm that Docker is running with the following:
@@ -282,6 +286,6 @@ This will:
 - if not, install it and configure the engine for the CLI
 - query the engine for entrances that the engine knows about.
 
-We will get into entrances later on, this is just to make sure all the parts are set up.
+We will get into some of these concepts later on, for now just ensures all the parts are set up correctly.
 
 Now that we have hamlet installed and ready to go we can create our first CMDB.
