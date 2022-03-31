@@ -18160,6 +18160,18 @@
           "description": "The time in seconds to wait for startup configuration to complete",
           "type": "number"
         },
+        "Zones": {
+          "default": [
+            "_all"
+          ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A list of zoneIds to create virtual machines in, default is _all which will use all zones or the first for SingleAz",
+          "type": "array"
+        },
         "FixedIP": {
           "default": false,
           "type": "boolean"
