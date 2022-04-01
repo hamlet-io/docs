@@ -2148,6 +2148,18 @@
                         "string"
                       ]
                     },
+                    "Protocol": {
+                      "default": "_protocol",
+                      "description": "The protocol used for healthchecks. _protocol uses the ports protocol",
+                      "type": "string",
+                      "enum": [
+                        "_protocol",
+                        "TCP",
+                        "UDP",
+                        "HTTP",
+                        "HTTPS"
+                      ]
+                    },
                     "Interval": {
                       "type": [
                         "number",
