@@ -483,6 +483,45 @@
         }
       }
     },
+    "aws_s3_download_bucket": {
+      "description": "Download the contents of an S3 bucket to a local directory",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "BucketName": {
+          "description": "The name of the S3 Bucket",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "LocalPath": {
+          "description": "A local directory path to store the objects in",
+          "type": "string"
+        },
+        "Prefix": {
+          "description": "A prefix required for all items to download",
+          "type": "string"
+        }
+      },
+      "required": [
+        "BucketName",
+        "LocalPath"
+      ]
+    },
     "aws_ecs_select_task": {
       "description": "List the running tasks for a service or task family and return the user selected task",
       "additionalProperties": false,
@@ -570,6 +609,40 @@
         "DbId",
         "Cluster",
         "SnapshotName"
+      ]
+    },
+    "aws_s3_empty_bucket": {
+      "description": "Delete all versions of objects in an S3 Bucket",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "BucketName": {
+          "description": "The name of the S3 Bucket",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "Prefix": {
+          "description": "A prefix required for all items to download",
+          "type": "string"
+        }
+      },
+      "required": [
+        "BucketName"
       ]
     },
     "aws_ecs_run_command": {
