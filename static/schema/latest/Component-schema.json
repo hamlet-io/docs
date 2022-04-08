@@ -1149,6 +1149,7 @@
       "type": "object",
       "properties": {
         "Origin": {
+          "description": "The service which provides the content for the cdn to distribute",
           "additionalProperties": false,
           "type": "object",
           "properties": {
@@ -1189,22 +1190,27 @@
         },
         "Compress": {
           "default": false,
+          "description": "Compress content from the origin to the client using the CDN",
           "type": "boolean"
         },
         "CachingTTL": {
+          "description": "Default Time To Live values for cache management",
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "Maximum": {
               "default": 31536000,
+              "description": "The maximum time that an origin can specify to cache content - seconds",
               "type": "number"
             },
             "Minimum": {
               "default": 0,
+              "description": "The minimum time that an origin can specify to cache content - seconds",
               "type": "number"
             },
             "Default": {
               "default": 600,
+              "description": "The default cache time when the origin has not specified a time - seconds",
               "type": "number"
             }
           }
@@ -1215,6 +1221,7 @@
         },
         "InvalidateOnUpdate": {
           "default": true,
+          "description": "Clear the CDN cache on deployment updates to the CDN",
           "type": "boolean"
         },
         "Enabled": {
@@ -1247,7 +1254,7 @@
           "type": "object"
         },
         "PathPattern": {
-          "description": "The path based pattern to match for this route to apply",
+          "description": "The path based pattern to match for this route to apply - one _default path pattern must be supplied",
           "type": "string"
         },
         "SettingNamespaces": {
@@ -1368,7 +1375,7 @@
           }
         },
         "RedirectAliases": {
-          "description": "Redirect secondary domains to the primary domain name",
+          "description": "Redirect secondary domains to the primary domain name ",
           "additionalProperties": false,
           "type": "object",
           "properties": {
@@ -1393,10 +1400,16 @@
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
-                "Function": {
+                "SubComponent": {
+                  "type": "string"
+                },
+                "Type": {
+                  "default": "function",
+                  "const": "function",
                   "type": "string"
                 },
                 "Action": {
+                  "description": "The action in the workflow that the function handles",
                   "type": "string",
                   "enum": [
                     "viewer-request",
@@ -1414,6 +1427,10 @@
                 "Version": {
                   "type": "string"
                 },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
                 "Component": {
                   "type": "string"
                 }
@@ -1421,12 +1438,12 @@
               "required": [
                 "Tier",
                 "Component",
-                "Function",
+                "SubComponent",
                 "Action"
               ]
             }
           },
-          "description": "Attach a function to a stage in the Cloudfront Processing",
+          "description": "Attach a function to a stage in the CDN request workflow",
           "additionalProperties": false,
           "type": "object"
         },
@@ -8566,6 +8583,7 @@
         },
         "EnableLogging": {
           "default": true,
+          "description": "Enable request logging for client requests sent to the CDN",
           "type": "boolean"
         },
         "Description": {
@@ -8582,12 +8600,15 @@
               "properties": {
                 "ResponseCode": {
                   "default": 200,
+                  "description": "The HTTP Response code returned to the user",
                   "type": "number"
                 },
                 "ErrorCode": {
+                  "description": "The code to trigger the response for",
                   "type": "number"
                 },
                 "ResponsePagePath": {
+                  "description": "The path to return content from in the client response",
                   "type": "string"
                 }
               },
@@ -8596,6 +8617,7 @@
               ]
             }
           },
+          "description": "Error code specific overrides for origin responses based on HTTP codes",
           "additionalProperties": false,
           "type": "object"
         },
@@ -8609,10 +8631,12 @@
               "string"
             ]
           },
+          "description": "A list of Country Group reference Ids that will be used to restrict access",
           "type": "array"
         },
         "AssumeSNI": {
           "default": true,
+          "description": "Use TLS Server Name Identification to route clients requests to the CDN",
           "type": "boolean"
         },
         "Enabled": {
@@ -8636,21 +8660,26 @@
           "type": "array"
         },
         "Pages": {
+          "description": "The default page to return for a given response",
           "additionalProperties": false,
           "type": "object",
           "properties": {
             "Root": {
               "default": "index.html",
+              "description": "The page to return when accessing the root url '/'",
               "type": "string"
             },
             "Denied": {
+              "description": "The page to return when 403 HTTP response is returned from the origin - set to an empty string to disable",
               "type": "string"
             },
             "Error": {
               "default": "/index.html",
+              "description": "The page to return when 4XX or 5XX response is returned from the origin - set to an empty string to disable",
               "type": "string"
             },
             "NotFound": {
+              "description": "The page to return when 404 HTTP response is returned from the origin - set to an empty string to disable",
               "type": "string"
             }
           }
@@ -8772,6 +8801,7 @@
             },
             "Logging": {
               "default": "default",
+              "description": "Controls log management",
               "type": "string"
             },
             "Placement": {
@@ -8795,6 +8825,7 @@
             },
             "Security": {
               "default": "default",
+              "description": "Controls the TLS protocols using a SecurityProfile reference id",
               "type": "string"
             },
             "Testing": {
@@ -8816,6 +8847,7 @@
           "type": "boolean"
         },
         "WAF": {
+          "description": "Configuration for Web Application Firewall on CDN",
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/waf"
         },
         "Settings": {
@@ -8857,6 +8889,7 @@
           "type": "object"
         },
         "Certificate": {
+          "description": "The hostname to use of the CDN",
           "additionalProperties": false,
           "type": "object",
           "properties": {
@@ -14041,32 +14074,6 @@
           "default": 20,
           "type": "number"
         },
-        "Backup": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "ScheduleTimeZone": {
-              "default": "Etc/UTC",
-              "description": "When using a cron expression in Schedule sets the time zone to base it from",
-              "type": "string"
-            },
-            "Schedule": {
-              "default": "rate(1 day)",
-              "description": "Schedule in rate() or cron() formats",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "description": "Create scheduled snapshots of the data volume",
-              "type": "boolean"
-            },
-            "RetentionPeriod": {
-              "default": 35,
-              "description": "How long to keep snapshot for in days",
-              "type": "number"
-            }
-          }
-        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -14080,8 +14087,19 @@
           "type": "string"
         },
         "ProvisionedIops": {
-          "default": 100,
           "type": "number"
+        },
+        "Zones": {
+          "default": [
+            "_all"
+          ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A list of zoneIds to create virtual machines in, default is _all which will use all zones or the first for SingleAz",
+          "type": "array"
         },
         "Instances": {
           "patternProperties": {
@@ -14242,11 +14260,6 @@
         "Export": {
           "default": false,
           "type": "boolean"
-        },
-        "Engine": {
-          "default": "ebs",
-          "const": "ebs",
-          "type": "string"
         },
         "Settings": {
           "patternProperties": {
