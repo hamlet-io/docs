@@ -462,6 +462,98 @@
         }
       }
     },
+    "imagedetails": {
+      "description": "Provide details of the images used by occurrences",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ]
+        },
+        "Deployment": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ]
+            }
+          }
+        },
+        "Run": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ]
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ]
+        }
+      }
+    },
     "blueprint": {
       "description": "Provides a detailed representation of everything in a given segment, this includes its parent, environment, product and tenant",
       "additionalProperties": false,
