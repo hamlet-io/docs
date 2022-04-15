@@ -747,66 +747,11 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "RDS": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "AutoMinorVersionUpgrade": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
-        },
         "Description": {
           "type": "string"
         },
         "Category": {
           "type": "string"
-        },
-        "Title": {
-          "type": "string"
-        },
-        "Data": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Expiration": {
-              "type": "number"
-            },
-            "Offline": {
-              "type": "number"
-            },
-            "Public": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "type": "boolean"
-                },
-                "IPAddressGroups": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "Name": {
-          "type": "string"
-        },
-        "DomainBehaviours": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Segment": {
-              "type": "string"
-            }
-          }
         },
         "FlowLogs": {
           "additionalProperties": false,
@@ -848,15 +793,44 @@
             }
           }
         },
+        "Title": {
+          "type": "string"
+        },
         "Region": {
           "type": "string"
         },
+        "Data": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Expiration": {
+              "type": "number"
+            },
+            "Offline": {
+              "type": "number"
+            },
+            "Public": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "IPAddressGroups": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
         "Id": {
           "type": "string"
-        },
-        "MultiAZ": {
-          "default": false,
-          "type": "boolean"
         },
         "Operations": {
           "additionalProperties": false,
@@ -894,6 +868,18 @@
             },
             "Offline": {
               "type": "number"
+            }
+          }
+        },
+        "Name": {
+          "type": "string"
+        },
+        "DomainBehaviours": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Segment": {
+              "type": "string"
             }
           }
         }
@@ -1097,34 +1083,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "NAT": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Hosted": {
-              "default": false,
-              "type": "boolean"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "MultiAZ": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
-        },
-        "RDS": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "AutoMinorVersionUpgrade": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
-        },
         "S3": {
           "additionalProperties": false,
           "type": "object",
@@ -1368,15 +1326,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "RDS": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "AutoMinorVersionUpgrade": {
-              "type": "boolean"
-            }
-          }
-        },
         "Description": {
           "type": "string"
         },
@@ -1394,9 +1343,6 @@
         },
         "LinkRefs": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "MultiAZ": {
-          "type": "boolean"
         },
         "Name": {
           "type": "string"

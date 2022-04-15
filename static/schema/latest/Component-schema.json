@@ -1024,6 +1024,11 @@
           "default": false,
           "type": "boolean"
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
         "Settings": {
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
@@ -3734,6 +3739,11 @@
             }
           }
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
         "AutoScaling": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
         },
@@ -5704,6 +5714,11 @@
             }
           }
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
         "AutoScaling": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
         },
@@ -7136,6 +7151,11 @@
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
         },
         "Engine": {
           "description": "The type of cache engine to use",
@@ -9491,6 +9511,160 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "deployment:Group": {
+          "default": "solution",
+          "type": "string"
+        },
+        "Encrypted": {
+          "default": false,
+          "type": "boolean"
+        },
+        "IPAddressGroups": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A list of IP Address Groups which will be permitted to access the ES index",
+          "type": "array"
+        },
+        "AdvancedOptions": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Value": {
+                  "type": "string"
+                },
+                "Id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Version": {
+          "type": "string"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Logging": {
+              "default": "default",
+              "type": "string"
+            },
+            "Processor": {
+              "default": "default",
+              "type": "string"
+            },
+            "Storage": {
+              "default": "default",
+              "type": "string"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Security": {
+              "default": "default",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        },
         "Logging": {
           "default": false,
           "type": "boolean"
@@ -9503,19 +9677,7 @@
           },
           "type": "array"
         },
-        "Description": {
-          "description": "A description of the component",
-          "type": "string"
-        },
-        "deployment:Group": {
-          "default": "solution",
-          "type": "string"
-        },
         "VPCAccess": {
-          "default": false,
-          "type": "boolean"
-        },
-        "Encrypted": {
           "default": false,
           "type": "boolean"
         },
@@ -9530,15 +9692,6 @@
         "Title": {
           "description": "A longer form title of the component",
           "type": "string"
-        },
-        "IPAddressGroups": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "A list of IP Address Groups which will be permitted to access the ES index",
-          "type": "array"
         },
         "Instances": {
           "patternProperties": {
@@ -9558,22 +9711,6 @@
             }
           },
           "description": "Instances of a component configuration",
-          "additionalProperties": false,
-          "type": "object"
-        },
-        "AdvancedOptions": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Value": {
-                  "type": "string"
-                },
-                "Id": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "additionalProperties": false,
           "type": "object"
         },
@@ -9671,9 +9808,6 @@
         "deployment:Unit": {
           "type": "string"
         },
-        "Version": {
-          "type": "string"
-        },
         "Authentication": {
           "default": "IP",
           "type": "string",
@@ -9683,120 +9817,11 @@
             "SIG4ANDIP"
           ]
         },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of enforced deployment profiles which override component configuraiton",
-              "type": "array"
-            },
-            "Logging": {
-              "default": "default",
-              "type": "string"
-            },
-            "Processor": {
-              "default": "default",
-              "type": "string"
-            },
-            "Storage": {
-              "default": "default",
-              "type": "string"
-            },
-            "Placement": {
-              "default": "default",
-              "description": "The resource group assignment placement for resources in the component",
-              "type": "string"
-            },
-            "Network": {
-              "default": "default",
-              "type": "string"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of deployment profiles to apply to this component",
-              "type": "array"
-            },
-            "Alert": {
-              "default": "default",
-              "type": "string"
-            },
-            "Baseline": {
-              "default": "default",
-              "description": "The profile used to lookup standard services provided by the segment baseline",
-              "type": "string"
-            },
-            "Security": {
-              "default": "default",
-              "type": "string"
-            },
-            "Testing": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The testing profiles to apply to the component",
-              "type": "array"
-            }
-          }
-        },
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
-        "Export": {
-          "default": false,
-          "type": "boolean"
-        },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-        },
-        "Settings": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Internal": {
-                  "default": false,
-                  "description": "Don't include this setting as part of environment variable generation",
-                  "type": "boolean"
-                },
-                "Value": {
-                  "description": "The value of the setting",
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Sensitive": {
-                  "default": false,
-                  "description": "Hide the value of this setting when using it in output",
-                  "type": "boolean"
-                }
-              },
-              "required": [
-                "Value"
-              ]
-            }
-          },
-          "description": "Application settings that can provide configuration for code",
-          "additionalProperties": false,
-          "type": "object"
         }
       },
       "required": [
@@ -11349,6 +11374,11 @@
         },
         "Export": {
           "default": false,
+          "type": "boolean"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
           "type": "boolean"
         },
         "Engine": {
@@ -14002,6 +14032,11 @@
             }
           }
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
         "AutoScaling": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
         },
@@ -14259,6 +14294,11 @@
         },
         "Export": {
           "default": false,
+          "type": "boolean"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
           "type": "boolean"
         },
         "Settings": {
@@ -16026,6 +16066,11 @@
         },
         "Export": {
           "default": false,
+          "type": "boolean"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
           "type": "boolean"
         },
         "Engine": {
@@ -18110,14 +18155,6 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
-        "DeploymentUnits": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
         "Description": {
           "description": "A description of the component",
           "type": "string"
@@ -18125,6 +18162,234 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "Extensions": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Extensions to invoke as part of component processing",
+          "type": "array"
+        },
+        "Zones": {
+          "default": [
+            "_all"
+          ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A list of zoneIds to create virtual machines in, default is _all which will use all zones or the first for SingleAz",
+          "type": "array"
+        },
+        "FixedIP": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Logging": {
+              "default": "default",
+              "description": "profile to define where logs are forwarded to from this component",
+              "type": "string"
+            },
+            "LogFile": {
+              "default": "default",
+              "description": "Defines the logfile profile which sets the log files to collect from the compute instance",
+              "type": "string"
+            },
+            "Processor": {
+              "default": "default",
+              "type": "string"
+            },
+            "Storage": {
+              "default": "default",
+              "type": "string"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Bootstrap": {
+              "default": "default",
+              "description": "A profile to include additional bootstrap sources as part of the instance startup",
+              "type": "string"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Permissions": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Decrypt": {
+              "default": false,
+              "type": "boolean"
+            },
+            "AppData": {
+              "default": false,
+              "type": "boolean"
+            },
+            "AppPublic": {
+              "default": false,
+              "type": "boolean"
+            },
+            "AsFile": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "ComputeInstance": {
+          "description": "Configuration of compute instances used in the component",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "OperatingSystem": {
+              "description": "The operating system details of the compute instance",
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/operatingsystem"
+            },
+            "OSPatching": {
+              "description": "Configuration for scheduled OS Patching",
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/ospatching"
+            },
+            "ComputeTasks": {
+              "description": "Customisation to setup the compute instance from its image",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "UserTasksRequired": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "description": "A list of compute task types which must be accounted for in extensions on top of the component tasks",
+                  "type": "array"
+                },
+                "Extensions": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "description": "A list of extensions to source boostrap tasks from",
+                  "type": "array"
+                }
+              }
+            },
+            "ManagementPorts": {
+              "default": [
+                "ssh"
+              ],
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The network ports used for remote management of the instance",
+              "type": "array"
+            },
+            "Image": {
+              "description": "Configures the source of the virtual machine image used for the instance",
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/computeimage"
+            }
+          }
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
         },
         "deployment:Priority": {
           "default": 100,
@@ -18159,35 +18424,10 @@
           "description": "A longer form title of the component",
           "type": "string"
         },
-        "Extensions": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "Extensions to invoke as part of component processing",
-          "type": "array"
-        },
         "StartupTimeout": {
           "default": 300,
           "description": "The time in seconds to wait for startup configuration to complete",
           "type": "number"
-        },
-        "Zones": {
-          "default": [
-            "_all"
-          ],
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "A list of zoneIds to create virtual machines in, default is _all which will use all zones or the first for SingleAz",
-          "type": "array"
-        },
-        "FixedIP": {
-          "default": false,
-          "type": "boolean"
         },
         "Role": {
           "description": "Server configuration role",
@@ -18299,201 +18539,11 @@
           "default": false,
           "type": "boolean"
         },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of enforced deployment profiles which override component configuraiton",
-              "type": "array"
-            },
-            "Logging": {
-              "default": "default",
-              "description": "profile to define where logs are forwarded to from this component",
-              "type": "string"
-            },
-            "LogFile": {
-              "default": "default",
-              "description": "Defines the logfile profile which sets the log files to collect from the compute instance",
-              "type": "string"
-            },
-            "Processor": {
-              "default": "default",
-              "type": "string"
-            },
-            "Storage": {
-              "default": "default",
-              "type": "string"
-            },
-            "Placement": {
-              "default": "default",
-              "description": "The resource group assignment placement for resources in the component",
-              "type": "string"
-            },
-            "Network": {
-              "default": "default",
-              "type": "string"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of deployment profiles to apply to this component",
-              "type": "array"
-            },
-            "Bootstrap": {
-              "default": "default",
-              "description": "A profile to include additional bootstrap sources as part of the instance startup",
-              "type": "string"
-            },
-            "Baseline": {
-              "default": "default",
-              "description": "The profile used to lookup standard services provided by the segment baseline",
-              "type": "string"
-            },
-            "Testing": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The testing profiles to apply to the component",
-              "type": "array"
-            }
-          }
-        },
-        "Permissions": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Decrypt": {
-              "default": false,
-              "type": "boolean"
-            },
-            "AppData": {
-              "default": false,
-              "type": "boolean"
-            },
-            "AppPublic": {
-              "default": false,
-              "type": "boolean"
-            },
-            "AsFile": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
-        },
         "aws:AntiVirus": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/aws_antivirus"
         },
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "Export": {
-          "default": false,
-          "type": "boolean"
-        },
-        "ComputeInstance": {
-          "description": "Configuration of compute instances used in the component",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "OperatingSystem": {
-              "description": "The operating system details of the compute instance",
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/operatingsystem"
-            },
-            "OSPatching": {
-              "description": "Configuration for scheduled OS Patching",
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/ospatching"
-            },
-            "ComputeTasks": {
-              "description": "Customisation to setup the compute instance from its image",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "UserTasksRequired": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "description": "A list of compute task types which must be accounted for in extensions on top of the component tasks",
-                  "type": "array"
-                },
-                "Extensions": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "description": "A list of extensions to source boostrap tasks from",
-                  "type": "array"
-                }
-              }
-            },
-            "ManagementPorts": {
-              "default": [
-                "ssh"
-              ],
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The network ports used for remote management of the instance",
-              "type": "array"
-            },
-            "Image": {
-              "description": "Configures the source of the virtual machine image used for the instance",
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/computeimage"
-            }
-          }
-        },
-        "Settings": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Internal": {
-                  "default": false,
-                  "description": "Don't include this setting as part of environment variable generation",
-                  "type": "boolean"
-                },
-                "Value": {
-                  "description": "The value of the setting",
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Sensitive": {
-                  "default": false,
-                  "description": "Hide the value of this setting when using it in output",
-                  "type": "boolean"
-                }
-              },
-              "required": [
-                "Value"
-              ]
-            }
-          },
-          "description": "Application settings that can provide configuration for code",
-          "additionalProperties": false,
-          "type": "object"
         }
       }
     },
@@ -20484,6 +20534,143 @@
       "additionalProperties": false,
       "type": "object",
       "properties": {
+        "Processor": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Type"
+          ]
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "deployment:Group": {
+          "default": "solution",
+          "type": "string"
+        },
+        "Encrypted": {
+          "default": false,
+          "type": "boolean"
+        },
+        "IPAddressGroups": {
+          "default": [
+            "_localnet"
+          ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
+        "Engine": {
+          "const": "rabbitmq",
+          "type": "string"
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        },
         "Hibernate": {
           "additionalProperties": false,
           "type": "object",
@@ -20510,30 +20697,6 @@
         "EngineVersion": {
           "type": "string"
         },
-        "Processor": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Type": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Type"
-          ]
-        },
-        "Description": {
-          "description": "A description of the component",
-          "type": "string"
-        },
-        "deployment:Group": {
-          "default": "solution",
-          "type": "string"
-        },
-        "Encrypted": {
-          "default": false,
-          "type": "boolean"
-        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -20546,16 +20709,9 @@
           "description": "A longer form title of the component",
           "type": "string"
         },
-        "IPAddressGroups": {
-          "default": [
-            "_localnet"
-          ],
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
+        "AutoMinorVersionUpgrade": {
+          "default": true,
+          "type": "boolean"
         },
         "Instances": {
           "patternProperties": {
@@ -20659,77 +20815,14 @@
         "deployment:Unit": {
           "type": "string"
         },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of enforced deployment profiles which override component configuraiton",
-              "type": "array"
-            },
-            "Placement": {
-              "default": "default",
-              "description": "The resource group assignment placement for resources in the component",
-              "type": "string"
-            },
-            "Network": {
-              "default": "default",
-              "type": "string"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of deployment profiles to apply to this component",
-              "type": "array"
-            },
-            "Alert": {
-              "default": "default",
-              "type": "string"
-            },
-            "Baseline": {
-              "default": "default",
-              "description": "The profile used to lookup standard services provided by the segment baseline",
-              "type": "string"
-            },
-            "Testing": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The testing profiles to apply to the component",
-              "type": "array"
-            }
-          }
-        },
-        "AutoMinorUpgrade": {
-          "default": true,
-          "type": "boolean"
-        },
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "Export": {
-          "default": false,
-          "type": "boolean"
         },
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "MaintenanceWindow": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/maintenancewindow"
-        },
-        "Engine": {
-          "const": "rabbitmq",
-          "type": "string"
         },
         "RootCredentials": {
           "description": "Secret store configuration for the root credentials",
@@ -20767,44 +20860,6 @@
               "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
             }
           }
-        },
-        "Settings": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Internal": {
-                  "default": false,
-                  "description": "Don't include this setting as part of environment variable generation",
-                  "type": "boolean"
-                },
-                "Value": {
-                  "description": "The value of the setting",
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "Sensitive": {
-                  "default": false,
-                  "description": "Hide the value of this setting when using it in output",
-                  "type": "boolean"
-                }
-              },
-              "required": [
-                "Value"
-              ]
-            }
-          },
-          "description": "Application settings that can provide configuration for code",
-          "additionalProperties": false,
-          "type": "object"
         }
       },
       "required": [
@@ -22485,6 +22540,11 @@
             }
           }
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
         "AutoScaling": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
         },
@@ -23427,6 +23487,11 @@
           "default": false,
           "type": "boolean"
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
         "Engine": {
           "const": "network",
           "type": "string"
@@ -23665,6 +23730,11 @@
         },
         "Export": {
           "default": false,
+          "type": "boolean"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
           "type": "boolean"
         },
         "Engine": {
@@ -24082,6 +24152,11 @@
           "description": "Alerting rules based on metrics generated by the lb",
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Zones for high availablity",
+          "type": "boolean"
+        },
         "WAF": {
           "description": "Web Application Firewall Integration",
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/waf"
@@ -24322,6 +24397,11 @@
         },
         "Export": {
           "default": false,
+          "type": "boolean"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
           "type": "boolean"
         },
         "Engine": {
@@ -25695,6 +25775,11 @@
           "description": "The throughput capacity in  megabytes/second for fileshares",
           "type": "number"
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
         "Engine": {
           "default": "NFS",
           "description": "The type of file share that the component will offer",
@@ -26541,6 +26626,11 @@
           "default": false,
           "type": "boolean"
         },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
         "Engine": {
           "type": "string"
         },
@@ -26763,6 +26853,7 @@
           "type": "string"
         },
         "AutoMinorVersionUpgrade": {
+          "default": true,
           "type": "boolean"
         },
         "Instances": {
@@ -26869,7 +26960,7 @@
         },
         "AllowMajorVersionUpgrade": {
           "default": true,
-          "description": "If the EngineVersion paramter is updated allow for major version updates to run",
+          "description": "If the EngineVersion parameter is updated allow for major version updates to run",
           "type": "boolean"
         },
         "Links": {
@@ -27275,6 +27366,11 @@
             "network",
             "zone"
           ]
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
         },
         "Engine": {
           "type": "string",
