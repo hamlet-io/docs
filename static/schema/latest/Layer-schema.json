@@ -1320,37 +1320,6 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
         }
       }
-    },
-    "Solution": {
-      "description": "The solution layer",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Description": {
-          "type": "string"
-        },
-        "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
-        },
-        "Title": {
-          "type": "string"
-        },
-        "Region": {
-          "type": "string"
-        },
-        "Id": {
-          "type": "string"
-        },
-        "LinkRefs": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "Name": {
-          "type": "string"
-        },
-        "Plugins": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
-        }
-      }
     }
   },
   "$id": "https://docs.hamlet.io/schema/latest/Layer-schema.json"

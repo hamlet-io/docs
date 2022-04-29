@@ -19240,6 +19240,16 @@
           "description": "A longer form title of the component",
           "type": "string"
         },
+        "RuleType": {
+          "default": "NetworkTuple",
+          "description": "The type of rule to be applied",
+          "type": "string",
+          "enum": [
+            "NetworkTuple",
+            "HostFilter",
+            "Complex"
+          ]
+        },
         "Complex": {
           "description": "Complex rule matching and processing",
           "additionalProperties": false,
@@ -19302,16 +19312,6 @@
         "Active": {
           "default": true,
           "type": "boolean"
-        },
-        "Type": {
-          "default": "NetworkTuple",
-          "description": "The type of rule to be applied",
-          "type": "string",
-          "enum": [
-            "NetworkTuple",
-            "HostFilter",
-            "Complex"
-          ]
         },
         "SettingNamespaces": {
           "patternProperties": {
@@ -22996,6 +22996,368 @@
       "required": [
         "Directory"
       ]
+    },
+    "certificateauthority": {
+      "description": "A private x509 certficate authority",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "deployment:Group": {
+          "default": "solution",
+          "type": "string"
+        },
+        "level:Subordinate": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "ParentAuthority": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "Link": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                }
+              }
+            },
+            "MaxLevels": {
+              "default": 0,
+              "description": "The maximum number of subordinate CA's permitted under this CA",
+              "type": "number"
+            }
+          }
+        },
+        "deployment:Priority": {
+          "default": 100,
+          "type": "number"
+        },
+        "SigningAlgorithm": {
+          "default": "SHA256WITHRSA",
+          "description": "The algorithm used for signing certificates",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ],
+          "enum": [
+            "SHA256WITHECDSA",
+            "SHA256WITHRSA",
+            "SHA384WITHECDSA",
+            "SHA384WITHRSA",
+            "SHA512WITHECDSA",
+            "SHA512WITHRSA"
+          ]
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        },
+        "Subject": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "CommonName": {
+              "description": "The Common name of the root CA",
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "IncludeInHost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Tier": {
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "type": "boolean"
+                    },
+                    "Product": {
+                      "type": "boolean"
+                    },
+                    "Environment": {
+                      "type": "boolean"
+                    },
+                    "Host": {
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "type": "boolean"
+                    },
+                    "Segment": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Host": {
+                  "type": "string"
+                },
+                "HostParts": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "KeyAlgorithm": {
+          "default": "RSA_2048",
+          "description": "The algorithm used for the private key",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ],
+          "enum": [
+            "EC_prime256v1",
+            "EC_secp384r1",
+            "RSA_2048",
+            "RSA_4096"
+          ]
+        },
+        "Instances": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "description": "Instances of a component configuration",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Validity": {
+          "description": "Certificate Validity",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Length": {
+              "default": 1095,
+              "description": "How long (in days) the certificate is valid for",
+              "type": "number"
+            }
+          }
+        },
+        "SettingNamespaces": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Order": {
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
+                },
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "type": "string",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ]
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "description": "Additional namespaces to use during settings lookups",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Type": {
+          "description": "The components type",
+          "type": "string"
+        },
+        "deployment:Unit": {
+          "type": "string"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Level": {
+          "default": "Root",
+          "description": "The level of the authority",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ],
+          "enum": [
+            "Root",
+            "Subordinate"
+          ]
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        }
+      }
     },
     "secretstore": {
       "description": "A Secret Manager",

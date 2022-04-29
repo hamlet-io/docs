@@ -2029,7 +2029,6 @@
             "Account",
             "ProviderId",
             "Product",
-            "Solution",
             "Environment",
             "Segment",
             "Tier",
@@ -2093,11 +2092,6 @@
             "Component": {
               "default": false,
               "description": "The name of the component",
-              "type": "boolean"
-            },
-            "Solution": {
-              "default": false,
-              "description": "The name of the solution",
               "type": "boolean"
             },
             "Segment": {

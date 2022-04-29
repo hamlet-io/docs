@@ -1377,47 +1377,6 @@
         }
       }
     },
-    "Solutions": {
-      "description": "The solution layer",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Solutions": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Description": {
-                  "type": "string"
-                },
-                "Modules": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
-                },
-                "Title": {
-                  "type": "string"
-                },
-                "Region": {
-                  "type": "string"
-                },
-                "Id": {
-                  "type": "string"
-                },
-                "LinkRefs": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                },
-                "Name": {
-                  "type": "string"
-                },
-                "Plugins": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
-        }
-      }
-    },
     "AlertRules": {
       "description": "A alert filtering rule to forward alerts based on their severity",
       "additionalProperties": false,
