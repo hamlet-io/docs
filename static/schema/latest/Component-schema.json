@@ -21304,6 +21304,10 @@
               "description": "The resource group assignment placement for resources in the component",
               "type": "string"
             },
+            "Network": {
+              "description": "Defines the private network profile applied to the zone ( public if empty)",
+              "type": "string"
+            },
             "Deployment": {
               "contains": {
                 "type": [
@@ -21332,6 +21336,25 @@
         "Export": {
           "default": false,
           "type": "boolean"
+        },
+        "Domain": {
+          "description": "Explicit domain id which will override the product domain",
+          "type": "string"
+        },
+        "IncludeInDomain": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Product": {
+              "type": "boolean"
+            },
+            "Environment": {
+              "type": "boolean"
+            },
+            "Segment": {
+              "type": "boolean"
+            }
+          }
         },
         "Settings": {
           "patternProperties": {
