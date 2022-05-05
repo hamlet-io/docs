@@ -3075,6 +3075,11 @@
               "additionalProperties": false,
               "type": "object",
               "properties": {
+                "External": {
+                  "default": true,
+                  "description": "If the static endpoint is inside the local network or external",
+                  "type": "boolean"
+                },
                 "Links": {
                   "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
                 }
@@ -4015,6 +4020,11 @@
           "default": "application",
           "type": "string"
         },
+        "ProvisionedExecutions": {
+          "default": -1,
+          "description": "Minimum number of instances that should be available to service requests. It forms part of any configured reserved execution limit.",
+          "type": "number"
+        },
         "Memory": {
           "default": 0,
           "type": "number"
@@ -4255,6 +4265,7 @@
         },
         "ReservedExecutions": {
           "default": -1,
+          "description": "Number of instances within the overall account limit reserved for this function. This ensure it can scale out to this reservation regardless of what other functions do.",
           "type": "number"
         },
         "deployment:Priority": {

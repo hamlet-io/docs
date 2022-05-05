@@ -36,6 +36,25 @@
         "Ciphertext"
       ]
     },
+    "aws_ses_smtp_password": {
+      "description": "Generate a Sig4 based SMTP credential that is used to authenciate with ses via SMTP",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "AWSSecretAccessKey": {
+          "description": "The secret key of the access key pair that will be used to send emails via SMTP",
+          "type": "string"
+        },
+        "SESRegion": {
+          "description": "The name of the region that the SMTP endpoint will be used",
+          "type": "string"
+        }
+      },
+      "required": [
+        "SESRegion",
+        "AWSSecretAccessKey"
+      ]
+    },
     "bash_run_command": {
       "description": "Run a bash command locally and use the stdout as the returned result",
       "additionalProperties": false,
