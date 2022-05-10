@@ -3346,6 +3346,127 @@
                     }
                   }
                 },
+                "docdb": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "computecluster": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "emr": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "DesiredTaskPerZone": {
+                      "default": 1,
+                      "type": "number"
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "DesiredCorePerZone": {
+                      "default": 1,
+                      "type": "number"
+                    }
+                  }
+                },
+                "es": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "Master": {
+                      "additionalProperties": false,
+                      "type": "object",
+                      "properties": {
+                        "Processor": {
+                          "type": "string"
+                        },
+                        "Count": {
+                          "default": 0,
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "Processor": {
+                      "type": "string"
+                    },
+                    "CountPerZone": {
+                      "default": 1,
+                      "type": "number"
+                    }
+                  }
+                },
+                "containerhost": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "MinPerZone": {
+                      "type": "number"
+                    },
+                    "DesiredPerZone": {
+                      "type": "number"
+                    },
+                    "MaxPerZone": {
+                      "type": "number"
+                    },
+                    "MaxCount": {
+                      "type": "number"
+                    },
+                    "DesiredCount": {
+                      "type": "number"
+                    },
+                    "MinCount": {
+                      "type": "number"
+                    }
+                  }
+                },
                 "ecs": {
                   "additionalProperties": false,
                   "type": "object",
@@ -3406,33 +3527,6 @@
                     }
                   }
                 },
-                "computecluster": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "MinPerZone": {
-                      "type": "number"
-                    },
-                    "Processor": {
-                      "type": "string"
-                    },
-                    "DesiredPerZone": {
-                      "type": "number"
-                    },
-                    "MaxPerZone": {
-                      "type": "number"
-                    },
-                    "MaxCount": {
-                      "type": "number"
-                    },
-                    "DesiredCount": {
-                      "type": "number"
-                    },
-                    "MinCount": {
-                      "type": "number"
-                    }
-                  }
-                },
                 "containerservice": {
                   "additionalProperties": false,
                   "type": "object",
@@ -3466,23 +3560,6 @@
                     }
                   }
                 },
-                "emr": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "DesiredTaskPerZone": {
-                      "default": 1,
-                      "type": "number"
-                    },
-                    "Processor": {
-                      "type": "string"
-                    },
-                    "DesiredCorePerZone": {
-                      "default": 1,
-                      "type": "number"
-                    }
-                  }
-                },
                 "db": {
                   "additionalProperties": false,
                   "type": "object",
@@ -3492,56 +3569,6 @@
                     },
                     "Processor": {
                       "type": "string"
-                    },
-                    "DesiredPerZone": {
-                      "type": "number"
-                    },
-                    "MaxPerZone": {
-                      "type": "number"
-                    },
-                    "MaxCount": {
-                      "type": "number"
-                    },
-                    "DesiredCount": {
-                      "type": "number"
-                    },
-                    "MinCount": {
-                      "type": "number"
-                    }
-                  }
-                },
-                "es": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Master": {
-                      "additionalProperties": false,
-                      "type": "object",
-                      "properties": {
-                        "Processor": {
-                          "type": "string"
-                        },
-                        "Count": {
-                          "default": 0,
-                          "type": "number"
-                        }
-                      }
-                    },
-                    "Processor": {
-                      "type": "string"
-                    },
-                    "CountPerZone": {
-                      "default": 1,
-                      "type": "number"
-                    }
-                  }
-                },
-                "containerhost": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "MinPerZone": {
-                      "type": "number"
                     },
                     "DesiredPerZone": {
                       "type": "number"

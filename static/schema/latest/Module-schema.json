@@ -64,6 +64,33 @@
         "containerId"
       ]
     },
+    "ses_smtp_user": {
+      "description": "Fixed user credentials that can be used for SMTP access to SES",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "component": {
+          "default": "smtp_user",
+          "description": "The name of the smtp user component",
+          "type": "string"
+        },
+        "tier": {
+          "default": "app",
+          "description": "The tier the user will be part of",
+          "type": "string"
+        },
+        "deploymentUnit": {
+          "default": "smtp-user",
+          "description": "The deployment unit for the private bastion",
+          "type": "string"
+        },
+        "sesRegion": {
+          "default": "us-east-1",
+          "description": "The SES region that will be used for sending emails",
+          "type": "string"
+        }
+      }
+    },
     "runbook_rds_snapshot": {
       "description": "Create a native snapshot of an RDS cluster or instance",
       "additionalProperties": false,

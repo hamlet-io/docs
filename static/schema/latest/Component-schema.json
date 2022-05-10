@@ -2,6 +2,465 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
+    "docdb": {
+      "description": "A managed NoSQL database instance",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "EngineMinorVersion": {
+          "type": "string"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "deployment:Group": {
+          "default": "solution",
+          "type": "string"
+        },
+        "Encrypted": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Port": {
+          "type": "string"
+        },
+        "Backup": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "DeletionPolicy": {
+              "default": "Snapshot",
+              "type": "string",
+              "enum": [
+                "Snapshot",
+                "Delete",
+                "Retain"
+              ]
+            },
+            "DeleteAutoBackups": {
+              "default": true,
+              "description": "Delete automated snapshots when the instance is deleted",
+              "type": "boolean"
+            },
+            "UpdateReplacePolicy": {
+              "default": "Snapshot",
+              "type": "string",
+              "enum": [
+                "Snapshot",
+                "Delete",
+                "Retain"
+              ]
+            },
+            "BackupWindow": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/backupwindow"
+            },
+            "RetentionPeriod": {
+              "default": 35,
+              "type": "number"
+            },
+            "SnapshotOnDeploy": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "DBParameters": {
+          "type": "object"
+        },
+        "rootCredential:Source": {
+          "default": "Settings",
+          "description": "The source of the root credentials used in the database",
+          "type": "string",
+          "enum": [
+            "Generated",
+            "SecretStore",
+            "Settings"
+          ]
+        },
+        "IPAddressGroups": {
+          "default": [
+            "_localnet"
+          ],
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "AlwaysCreateFromSnapshot": {
+          "default": false,
+          "description": "Always create the database from a snapshot",
+          "type": "boolean"
+        },
+        "rootCredential:SecretStore": {
+          "description": "Use a secret store to manage the root credentials",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "UsernameAttribute": {
+              "default": "username",
+              "description": "The attribute of the username to store in the secret",
+              "type": "string"
+            },
+            "Username": {
+              "default": "root",
+              "type": "string"
+            },
+            "GenerationRequirements": {
+              "description": "When creating the secret using secretstore the policy for generating the secret",
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/secretstring"
+            },
+            "PasswordAttribute": {
+              "default": "password",
+              "description": "The attribute of the password to store in the secret",
+              "type": "string"
+            },
+            "Link": {
+              "description": "A link to a secret or store that will keep the secret",
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            }
+          }
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Processor": {
+              "default": "default",
+              "type": "string"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Security": {
+              "default": "default",
+              "type": "string"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          }
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
+        "Settings": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "description": "Application settings that can provide configuration for code",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "rootCredential:Generated": {
+          "description": "Generate credentials and store them as an encrypted string",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "EncryptionScheme": {
+              "description": "A prefix appended to link attributes to show encryption status",
+              "type": "string"
+            },
+            "Username": {
+              "default": "root",
+              "type": "string"
+            },
+            "CharacterLength": {
+              "default": 20,
+              "type": "number"
+            },
+            "Enabled": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "Hibernate": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "type": "boolean"
+            },
+            "StartUpMode": {
+              "default": "restore",
+              "type": "string",
+              "enum": [
+                "restore",
+                "replace"
+              ]
+            }
+          }
+        },
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "EngineVersion": {
+          "type": "string"
+        },
+        "rootCredential:Settings": {
+          "description": "Store the credentials as settings of the database occurrence",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "UsernameAttribute": {
+              "default": "MASTER_USERNAME",
+              "description": "The setting attribute that contains the username",
+              "type": "string"
+            },
+            "PasswordAttribute": {
+              "default": "MASTER_PASSWORD",
+              "description": "The setting attribute that contains the password",
+              "type": "string"
+            }
+          }
+        },
+        "deployment:Priority": {
+          "default": 100,
+          "type": "number"
+        },
+        "Cluster": {
+          "description": "Cluster specific configuration when using a clustered database engine",
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "ScalingPolicies": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy"
+            },
+            "Parameters": {
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Value": {
+                      "type": [
+                        "string",
+                        "number",
+                        "boolean"
+                      ]
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Name",
+                    "Value"
+                  ]
+                }
+              },
+              "description": "Cluster level database parameters",
+              "additionalProperties": false,
+              "type": "object"
+            }
+          }
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        },
+        "Instances": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "description": "Instances of a component configuration",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Order": {
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
+                },
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "type": "object",
+                  "properties": {
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "type": "string",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ]
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "description": "Additional namespaces to use during settings lookups",
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "Type": {
+          "description": "The components type",
+          "type": "string"
+        },
+        "deployment:Unit": {
+          "type": "string"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "MaintenanceWindow": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/maintenancewindow"
+        },
+        "Alerts": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+        }
+      },
+      "required": [
+        "EngineVersion"
+      ]
+    },
     "internaltest": {
       "description": "A hamlet internal testing component",
       "additionalProperties": false,

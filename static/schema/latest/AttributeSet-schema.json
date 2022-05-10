@@ -1654,6 +1654,21 @@
         }
       }
     },
+    "backupwindow": {
+      "description": "Standard Configuration options to define a backup window",
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "TimeOfDay": {
+          "default": "01:00",
+          "type": "string"
+        },
+        "TimeZone": {
+          "default": "UTC",
+          "type": "string"
+        }
+      }
+    },
     "scalingpolicy": {
       "description": "Defines the behaviour of auto scaling resources",
       "additionalProperties": false,
