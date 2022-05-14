@@ -1,593 +1,18 @@
 {
+  "$id": "https://docs.hamlet.io/schema/latest/Entrance-schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
-    "occurrences": {
-      "description": "Provides the state of all occurrences within a district",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
-    },
-    "schema": {
-      "description": "Povides JSON schema representations of input configuration",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
-    },
-    "configuration": {
-      "description": "Provides details on the hamlet engine and the avaiable entrances",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
-    },
-    "loader": {
-      "description": "Generates a set of loader contracts which can be used to setup hamlet",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
-    },
-    "deploymenttest": {
-      "description": "Generates the required documents to deploy a given deployment unit / deployment group combination",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
-    },
-    "imagedetails": {
-      "description": "Provide details of the images used by occurrences",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
-    },
     "blueprint": {
-      "description": "Provides a detailed representation of everything in a given segment, this includes its parent, environment, product and tenant",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Provides a detailed representation of everything in a given segment, this includes its parent, environment, product and tenant",
       "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
         "Deployment": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Output": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
                 "Format": {
                   "type": [
                     "array",
@@ -605,31 +30,29 @@
                     "object",
                     "string"
                   ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
                 }
               },
               "required": [
                 "Types",
                 "Format",
                 "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
+              ],
+              "type": "object"
             }
           },
-          "required": [
-            "Id"
-          ]
+          "type": "object"
         },
         "Flow": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Names": {
               "contains": {
@@ -642,44 +65,46 @@
           },
           "required": [
             "Names"
-          ]
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
     },
     "buildblueprint": {
+      "additionalProperties": false,
       "description": "Provides a given deployment units occurrences and their suboccurrences",
-      "additionalProperties": false,
-      "type": "object",
       "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
         "Deployment": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Output": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
                 "Format": {
                   "type": [
                     "array",
@@ -697,31 +122,29 @@
                     "object",
                     "string"
                   ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
                 }
               },
               "required": [
                 "Types",
                 "Format",
                 "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
+              ],
+              "type": "object"
             }
           },
-          "required": [
-            "Id"
-          ]
+          "type": "object"
         },
         "Flow": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Names": {
               "contains": {
@@ -734,44 +157,46 @@
           },
           "required": [
             "Names"
-          ]
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
     },
-    "schemalist": {
-      "description": "Lists the available schemas",
+    "configuration": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Provides details on the hamlet engine and the avaiable entrances",
       "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
         "Deployment": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Output": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
                 "Format": {
                   "type": [
                     "array",
@@ -789,72 +214,7 @@
                     "object",
                     "string"
                   ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
-    },
-    "releaseinfo": {
-      "description": "Provides information for release management tasks performed by executors",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
+                },
                 "Types": {
                   "type": [
                     "array",
@@ -863,49 +223,20 @@
                     "object",
                     "string"
                   ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
                 }
               },
               "required": [
                 "Types",
                 "Format",
                 "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
+              ],
+              "type": "object"
             }
           },
-          "required": [
-            "Id"
-          ]
+          "type": "object"
         },
         "Flow": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Names": {
               "contains": {
@@ -918,18 +249,11 @@
           },
           "required": [
             "Names"
-          ]
-        }
-      }
-    },
-    "runbookinfo": {
-      "description": "Provides a list of the available runbooks",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
+          ],
+          "type": "object"
+        },
         "Logging": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Level": {
               "type": "string"
@@ -937,55 +261,11 @@
           },
           "required": [
             "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
+          ],
+          "type": "object"
         },
         "Run": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Id": {
               "type": "string"
@@ -993,245 +273,22 @@
           },
           "required": [
             "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
+          ],
+          "type": "object"
         }
-      }
-    },
-    "unitlist": {
-      "description": "Provides details on all deployment unit | deployment group combinations",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
-    },
-    "runbook": {
-      "description": "Creates a runbook contract to perform tasks using components",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
-        "Deployment": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Output": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Format": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Prefix": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                }
-              },
-              "required": [
-                "Types",
-                "Format",
-                "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Id"
-          ]
-        },
-        "Flow": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Names": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "Names"
-          ]
-        }
-      }
+      },
+      "type": "object"
     },
     "deployment": {
-      "description": "Generates the required documents to deploy a given deployment unit / deployment group combination",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Generates the required documents to deploy a given deployment unit / deployment group combination",
       "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
         "Deployment": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Output": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
                 "Format": {
                   "type": [
                     "array",
@@ -1249,31 +306,29 @@
                     "object",
                     "string"
                   ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
                 }
               },
               "required": [
                 "Types",
                 "Format",
                 "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
+              ],
+              "type": "object"
             }
           },
-          "required": [
-            "Id"
-          ]
+          "type": "object"
         },
         "Flow": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Names": {
               "contains": {
@@ -1286,44 +341,230 @@
           },
           "required": [
             "Names"
-          ]
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
+    },
+    "deploymenttest": {
+      "additionalProperties": false,
+      "description": "Generates the required documents to deploy a given deployment unit / deployment group combination",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "imagedetails": {
+      "additionalProperties": false,
+      "description": "Provide details of the images used by occurrences",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
     },
     "info": {
-      "description": "Provides details on the hamlet engine and the avaiable entrances",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Provides details on the hamlet engine and the avaiable entrances",
       "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
         "Deployment": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Output": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
                 "Format": {
                   "type": [
                     "array",
@@ -1341,31 +582,29 @@
                     "object",
                     "string"
                   ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
                 }
               },
               "required": [
                 "Types",
                 "Format",
                 "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
+              ],
+              "type": "object"
             }
           },
-          "required": [
-            "Id"
-          ]
+          "type": "object"
         },
         "Flow": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Names": {
               "contains": {
@@ -1378,44 +617,46 @@
           },
           "required": [
             "Names"
-          ]
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
     },
     "inputinfo": {
-      "description": "Provides information about the pipelines used for processing inputs",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Provides information about the pipelines used for processing inputs",
       "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
         "Deployment": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Output": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
                 "Format": {
                   "type": [
                     "array",
@@ -1433,31 +674,29 @@
                     "object",
                     "string"
                   ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
                 }
               },
               "required": [
                 "Types",
                 "Format",
                 "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
+              ],
+              "type": "object"
             }
           },
-          "required": [
-            "Id"
-          ]
+          "type": "object"
         },
         "Flow": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Names": {
               "contains": {
@@ -1470,44 +709,782 @@
           },
           "required": [
             "Names"
-          ]
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
+    },
+    "loader": {
+      "additionalProperties": false,
+      "description": "Generates a set of loader contracts which can be used to setup hamlet",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "occurrences": {
+      "additionalProperties": false,
+      "description": "Provides the state of all occurrences within a district",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "releaseinfo": {
+      "additionalProperties": false,
+      "description": "Provides information for release management tasks performed by executors",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "runbook": {
+      "additionalProperties": false,
+      "description": "Creates a runbook contract to perform tasks using components",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "runbookinfo": {
+      "additionalProperties": false,
+      "description": "Provides a list of the available runbooks",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "schema": {
+      "additionalProperties": false,
+      "description": "Povides JSON schema representations of input configuration",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "schemalist": {
+      "additionalProperties": false,
+      "description": "Lists the available schemas",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "unitlist": {
+      "additionalProperties": false,
+      "description": "Provides details on all deployment unit | deployment group combinations",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
     },
     "validate": {
-      "description": "Performs validation of the current Blueprint Object",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Performs validation of the current Blueprint Object",
       "properties": {
-        "Logging": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Level": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Level"
-          ]
-        },
         "Deployment": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Output": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
-                "Types": {
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
                 "Format": {
                   "type": [
                     "array",
@@ -1525,31 +1502,29 @@
                     "object",
                     "string"
                   ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
                 }
               },
               "required": [
                 "Types",
                 "Format",
                 "Prefix"
-              ]
-            }
-          }
-        },
-        "Run": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Id": {
-              "type": "string"
+              ],
+              "type": "object"
             }
           },
-          "required": [
-            "Id"
-          ]
+          "type": "object"
         },
         "Flow": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Names": {
               "contains": {
@@ -1562,10 +1537,35 @@
           },
           "required": [
             "Names"
-          ]
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
     }
-  },
-  "$id": "https://docs.hamlet.io/schema/latest/Entrance-schema.json"
+  }
 }

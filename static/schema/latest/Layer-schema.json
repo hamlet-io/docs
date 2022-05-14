@@ -1,497 +1,15 @@
 {
+  "$id": "https://docs.hamlet.io/schema/latest/Layer-schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
     "Account": {
-      "description": "The deployment provider account layer",
       "additionalProperties": false,
-      "type": "object",
+      "description": "The deployment provider account layer",
       "properties": {
-        "ProviderId": {
-          "description": "The unique Id of the account from the provider",
-          "type": "string"
-        },
-        "S3": {
-          "description": "Account level S3/Object store configuration",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Versioning": {
-              "description": "Enable versioning on all account level object stores",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "type": "boolean"
-                }
-              }
-            },
-            "Encryption": {
-              "description": "At-rest encryption management",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "EncryptionSource": {
-                  "default": "EncryptionService",
-                  "description": "The encryption service to use to encrypt data",
-                  "type": "string",
-                  "enum": [
-                    "EncryptionService",
-                    "aws:kms",
-                    "localservice",
-                    "aes256"
-                  ]
-                },
-                "Enabled": {
-                  "default": false,
-                  "type": "boolean"
-                },
-                "Encryption": {
-                  "default": false,
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        },
-        "aws:ecsAccountSettings": {
-          "default": {
-            "containerInstanceLongArnFormat": true,
-            "serviceLongArnFormat": true,
-            "taskLongArnFormat": true,
-            "awsvpcTrunking": true
-          },
-          "description": "AWS manage account level configuration of the Elastic Container Service",
-          "type": "object"
-        },
-        "Description": {
-          "description": "A description of the account",
-          "type": "string"
-        },
-        "Modules": {
-          "description": "Modules to import and apply for any component that belongs to the account",
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
-        },
-        "Encryption": {
-          "description": "Manage Account level encryption keys",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Alias": {
-              "description": "Control the alias of the KMS Key",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "IncludeSeed": {
-                  "default": false,
-                  "description": "Include a unique seed in the alias to ensure it is unique in the account",
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        },
-        "Name": {
-          "description": "A hamlet specific unique name for the Account - Uses Id if not defined",
-          "type": "string"
-        },
-        "Profiles": {
-          "description": "Account wide profiles to apply to account and child resources",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The id of a PolicyProfile Reference or Account attribute to apply to all components",
-              "type": "array"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The id of a DeploymentProfile Reference or Account attribute to apply to all components",
-              "type": "array"
-            }
-          }
-        },
-        "Console": {
-          "description": "Configuration control for virtual machine consoles",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Encryption": {
-              "description": "Enable encryption of all content between the virtual machine and the console service",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "DedicatedKey": {
-                  "default": false,
-                  "description": "Use a dedicated KMS key instead of the default account kms key",
-                  "type": "boolean"
-                }
-              }
-            },
-            "LoggingDestinations": {
-              "default": [
-                "s3"
-              ],
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "AWS: where logs from the console session will be sent",
-              "type": "array",
-              "enum": [
-                "cloudwatch",
-                "s3"
-              ]
-            }
-          }
-        },
-        "Operations": {
-          "description": "Account wide control over the operations object store created within segments",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Expiration": {
-              "description": "The maximum time to keep opbjects in operations stores",
-              "type": "number"
-            }
-          }
-        },
-        "CostCentre": {
-          "description": "A cost centre tag to apply to all components the account belongs to",
-          "type": "string"
-        },
-        "Plugins": {
-          "description": "Pluings to import and apply for any component that belongs to the account",
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
-        },
-        "Logging": {
-          "description": "Account level resource logging configuration",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Encryption": {
-              "description": "Manage at-rest encryption of log storage",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        },
-        "DeploymentProfiles": {
-          "description": "Account specific DeploymentProfiles to apply across all account components",
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
-        "PolicyProfiles": {
-          "description": "Account specific PolicyProfiles to apply across all account components",
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
-        "Title": {
-          "description": "A long form title of the account for documentation",
-          "type": "string"
-        },
-        "Registry": {
-          "description": "Manage the registries used to host account based copies for images",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Registries": {
-              "description": "Defines the registries available for image hosting",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "pipeline": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "contentnode": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "lambda": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "spa": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "openapi": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "rdssnapshot": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "snapshotstore",
-                      "const": "snapshotstore",
-                      "description": "How the images are stored",
-                      "type": "string"
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "lambda_jar": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "scripts": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "dataset": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "swagger": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "objectstore",
-                      "const": "objectstore",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "docker": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "properties": {
-                    "Storage": {
-                      "default": "providerregistry",
-                      "const": "providerregistry",
-                      "description": "How the images are stored",
-                      "type": [
-                        "array",
-                        "boolean",
-                        "number",
-                        "object",
-                        "string"
-                      ]
-                    },
-                    "Enabled": {
-                      "default": true,
-                      "type": "boolean"
-                    }
-                  }
-                }
-              }
-            },
-            "ReplicaRegions": {
-              "description": "A list of regions to replicate registries to",
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "ProviderIds": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "description": "The provider Ids of provider accounts to share with",
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "Provider": {
-          "default": "aws",
-          "description": "The name of the provider that the account belongs to",
-          "type": "string"
-        },
         "Audit": {
-          "description": "Manage the object store audit logging",
           "additionalProperties": false,
-          "type": "object",
+          "description": "Manage the object store audit logging",
           "properties": {
             "Expiration": {
               "description": "The duration to keep logs for",
@@ -507,59 +25,526 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": "object"
         },
-        "Volume": {
-          "description": "Account wide controls over block storage volumes",
+        "Console": {
           "additionalProperties": false,
-          "type": "object",
+          "description": "Configuration control for virtual machine consoles",
           "properties": {
             "Encryption": {
-              "description": "Manage at-rest encryption of volumes",
               "additionalProperties": false,
-              "type": "object",
+              "description": "Enable encryption of all content between the virtual machine and the console service",
+              "properties": {
+                "DedicatedKey": {
+                  "default": false,
+                  "description": "Use a dedicated KMS key instead of the default account kms key",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "LoggingDestinations": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "default": [
+                "s3"
+              ],
+              "description": "AWS: where logs from the console session will be sent",
+              "enum": [
+                "cloudwatch",
+                "s3"
+              ],
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "CostCentre": {
+          "description": "A cost centre tag to apply to all components the account belongs to",
+          "type": "string"
+        },
+        "DeploymentProfiles": {
+          "description": "Account specific DeploymentProfiles to apply across all account components",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Description": {
+          "description": "A description of the account",
+          "type": "string"
+        },
+        "Domain": {
+          "description": "The id of a Domain Reference to use as the default",
+          "type": "string"
+        },
+        "Encryption": {
+          "additionalProperties": false,
+          "description": "Manage Account level encryption keys",
+          "properties": {
+            "Alias": {
+              "additionalProperties": false,
+              "description": "Control the alias of the KMS Key",
+              "properties": {
+                "IncludeSeed": {
+                  "default": false,
+                  "description": "Include a unique seed in the alias to ensure it is unique in the account",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Id": {
+          "description": "A hamlet specific unique Id for the Account",
+          "type": "string"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "description": "Account level resource logging configuration",
+          "properties": {
+            "Encryption": {
+              "additionalProperties": false,
+              "description": "Manage at-rest encryption of log storage",
               "properties": {
                 "Enabled": {
                   "default": false,
                   "type": "boolean"
                 }
-              }
+              },
+              "type": "object"
             }
-          }
+          },
+          "type": "object"
         },
-        "Seed": {
-          "description": "A random seed to ensure global resource names are unique",
+        "Modules": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module",
+          "description": "Modules to import and apply for any component that belongs to the account"
+        },
+        "Name": {
+          "description": "A hamlet specific unique name for the Account - Uses Id if not defined",
+          "type": "string"
+        },
+        "Operations": {
+          "additionalProperties": false,
+          "description": "Account wide control over the operations object store created within segments",
+          "properties": {
+            "Expiration": {
+              "description": "The maximum time to keep opbjects in operations stores",
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "Plugins": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin",
+          "description": "Pluings to import and apply for any component that belongs to the account"
+        },
+        "PolicyProfiles": {
+          "description": "Account specific PolicyProfiles to apply across all account components",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "description": "Account wide profiles to apply to account and child resources",
+          "properties": {
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The id of a DeploymentProfile Reference or Account attribute to apply to all components",
+              "type": "array"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The id of a PolicyProfile Reference or Account attribute to apply to all components",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "Provider": {
+          "default": "aws",
+          "description": "The name of the provider that the account belongs to",
+          "type": "string"
+        },
+        "ProviderId": {
+          "description": "The unique Id of the account from the provider",
           "type": "string"
         },
         "Region": {
           "description": "The id of a Region Reference to use as the default",
           "type": "string"
         },
-        "aws:SES": {
-          "description": "AWS: Simple Email Service Account wide configuration",
+        "Registry": {
           "additionalProperties": false,
-          "type": "object",
+          "description": "Manage the registries used to host account based copies for images",
           "properties": {
-            "RuleSet": {
-              "description": "Ruleset details. Only one active per account",
+            "Registries": {
               "additionalProperties": false,
-              "type": "object",
+              "description": "Defines the registries available for image hosting",
               "properties": {
-                "Name": {
-                  "default": "account-default",
-                  "description": "Name of the ruleset",
+                "contentnode": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "dataset": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "docker": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "providerregistry",
+                      "default": "providerregistry",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "lambda": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "lambda_jar": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "openapi": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "pipeline": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "rdssnapshot": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "snapshotstore",
+                      "default": "snapshotstore",
+                      "description": "How the images are stored",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scripts": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "spa": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "swagger": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Storage": {
+                      "const": "objectstore",
+                      "default": "objectstore",
+                      "description": "How the images are stored",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "ReplicaRegions": {
+              "additionalProperties": false,
+              "description": "A list of regions to replicate registries to",
+              "properties": {
+                "ProviderIds": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "description": "The provider Ids of provider accounts to share with",
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "S3": {
+          "additionalProperties": false,
+          "description": "Account level S3/Object store configuration",
+          "properties": {
+            "Encryption": {
+              "additionalProperties": false,
+              "description": "At-rest encryption management",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "Encryption": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "EncryptionSource": {
+                  "default": "EncryptionService",
+                  "description": "The encryption service to use to encrypt data",
+                  "enum": [
+                    "EncryptionService",
+                    "aws:kms",
+                    "localservice",
+                    "aes256"
+                  ],
                   "type": "string"
                 }
-              }
+              },
+              "type": "object"
             },
+            "Versioning": {
+              "additionalProperties": false,
+              "description": "Enable versioning on all account level object stores",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Seed": {
+          "description": "A random seed to ensure global resource names are unique",
+          "type": "string"
+        },
+        "Title": {
+          "description": "A long form title of the account for documentation",
+          "type": "string"
+        },
+        "Volume": {
+          "additionalProperties": false,
+          "description": "Account wide controls over block storage volumes",
+          "properties": {
+            "Encryption": {
+              "additionalProperties": false,
+              "description": "Manage at-rest encryption of volumes",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "aws:SES": {
+          "additionalProperties": false,
+          "description": "AWS: Simple Email Service Account wide configuration",
+          "properties": {
             "IPAccessPolicy": {
               "default": "allow",
               "description": "Controls how IPAddressGroups are handled - deny: deny these groups - allow: only allow these groups",
-              "type": "string",
               "enum": [
                 "allow",
                 "deny"
-              ]
+              ],
+              "type": "string"
             },
             "IPAddressGroups": {
               "contains": {
@@ -568,240 +553,47 @@
                 ]
               },
               "type": "array"
+            },
+            "RuleSet": {
+              "additionalProperties": false,
+              "description": "Ruleset details. Only one active per account",
+              "properties": {
+                "Name": {
+                  "default": "account-default",
+                  "description": "Name of the ruleset",
+                  "type": "string"
+                }
+              },
+              "type": "object"
             }
-          }
+          },
+          "type": "object"
         },
-        "Id": {
-          "description": "A hamlet specific unique Id for the Account",
-          "type": "string"
-        },
-        "Domain": {
-          "description": "The id of a Domain Reference to use as the default",
-          "type": "string"
+        "aws:ecsAccountSettings": {
+          "default": {
+            "awsvpcTrunking": true,
+            "containerInstanceLongArnFormat": true,
+            "serviceLongArnFormat": true,
+            "taskLongArnFormat": true
+          },
+          "description": "AWS manage account level configuration of the Elastic Container Service",
+          "type": "object"
         }
       },
       "required": [
         "Seed"
-      ]
-    },
-    "Tenant": {
-      "description": "A tenant layer",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Description": {
-          "type": "string"
-        },
-        "DeploymentProfiles": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Modes": {
-                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
-        },
-        "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
-        },
-        "PolicyProfiles": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Modes": {
-                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
-        },
-        "Title": {
-          "type": "string"
-        },
-        "CertificateBehaviours": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Wildcard": {
-              "type": "boolean"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Component": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              }
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "Domain": {
-              "type": "string"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Product": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              }
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          }
-        },
-        "PlacementProfiles": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/placementprofile"
-        },
-        "Name": {
-          "type": "string"
-        },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "Placement": {
-              "type": "string"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          }
-        },
-        "Region": {
-          "type": "string"
-        },
-        "Id": {
-          "type": "string"
-        },
-        "LinkRefs": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "Plugins": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
-        }
-      }
+      ],
+      "type": "object"
     },
     "Environment": {
-      "description": "The environment layer",
       "additionalProperties": false,
-      "type": "object",
+      "description": "The environment layer",
       "properties": {
-        "Description": {
-          "type": "string"
-        },
         "Category": {
-          "type": "string"
-        },
-        "FlowLogs": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Expiration": {
-              "default": 7,
-              "type": "number"
-            },
-            "Enabled": {
-              "default": false,
-              "description": "Deprecated - here to override automatically added enabled attribute",
-              "type": "boolean"
-            }
-          }
-        },
-        "OSPatching": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/ospatching"
-        },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          }
-        },
-        "Title": {
-          "type": "string"
-        },
-        "Region": {
           "type": "string"
         },
         "Data": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Expiration": {
               "type": "number"
@@ -811,7 +603,6 @@
             },
             "Public": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
                 "Enabled": {
                   "default": false,
@@ -825,206 +616,168 @@
                   },
                   "type": "array"
                 }
-              }
+              },
+              "type": "object"
             }
-          }
+          },
+          "type": "object"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "DomainBehaviours": {
+          "additionalProperties": false,
+          "properties": {
+            "Segment": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "FlowLogs": {
+          "additionalProperties": false,
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "description": "Deprecated - here to override automatically added enabled attribute",
+              "type": "boolean"
+            },
+            "Expiration": {
+              "default": 7,
+              "type": "number"
+            }
+          },
+          "type": "object"
         },
         "Id": {
           "type": "string"
         },
+        "Name": {
+          "type": "string"
+        },
+        "OSPatching": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/ospatching"
+        },
         "Operations": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "DeadLetterQueue": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
-                "MaxReceives": {
-                  "default": 3,
-                  "type": "number"
-                },
                 "Enabled": {
                   "default": false,
                   "type": "boolean"
-                }
-              }
-            },
-            "FlowLogs": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Expiration": {
-                  "type": "number"
                 },
-                "Enabled": {
-                  "type": "boolean"
+                "MaxReceives": {
+                  "default": 3,
+                  "type": "number"
                 }
-              }
+              },
+              "type": "object"
             },
             "Expiration": {
               "default": 7,
               "type": "number"
             },
+            "FlowLogs": {
+              "additionalProperties": false,
+              "properties": {
+                "Enabled": {
+                  "type": "boolean"
+                },
+                "Expiration": {
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
             "Offline": {
               "type": "number"
             }
-          }
+          },
+          "type": "object"
         },
-        "Name": {
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "Region": {
           "type": "string"
         },
-        "DomainBehaviours": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Segment": {
-              "type": "string"
-            }
-          }
+        "Title": {
+          "type": "string"
         }
-      }
+      },
+      "type": "object"
     },
     "Product": {
-      "description": "A product layer",
       "additionalProperties": false,
-      "type": "object",
+      "description": "A product layer",
       "properties": {
-        "SES": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Region": {
-              "type": "string"
-            }
-          }
-        },
-        "Builds": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Data": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Environment": {
-                  "type": "string"
-                }
-              }
-            },
-            "Code": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Environment": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "DeploymentProfiles": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Modes": {
-                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
-        },
-        "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
-        },
-        "PolicyProfiles": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Modes": {
-                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
-        },
         "*": {
-          "description": "Individual deployment-unit configuration overrides. Attribute must match the DeploymentUnit value.",
           "additionalProperties": false,
-          "type": "object",
+          "description": "Individual deployment-unit configuration overrides. Attribute must match the DeploymentUnit value.",
           "properties": {
             "Region": {
               "description": "An override of the Region for a single DeploymentUnit.",
               "type": "string"
             }
-          }
+          },
+          "type": "object"
+        },
+        "Builds": {
+          "additionalProperties": false,
+          "properties": {
+            "Code": {
+              "additionalProperties": false,
+              "properties": {
+                "Environment": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "Data": {
+              "additionalProperties": false,
+              "properties": {
+                "Environment": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
         },
         "CertificateBehaviours": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "Wildcard": {
-              "type": "boolean"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Component": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              }
+            "Domain": {
+              "type": "string"
             },
             "External": {
               "type": "boolean"
             },
             "Host": {
               "type": "string"
-            },
-            "Domain": {
-              "type": "string"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Product": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              }
             },
             "HostParts": {
               "contains": {
@@ -1033,17 +786,105 @@
                 ]
               },
               "type": "array"
+            },
+            "IncludeInDomain": {
+              "additionalProperties": false,
+              "properties": {
+                "Environment": {
+                  "type": "boolean"
+                },
+                "Product": {
+                  "type": "boolean"
+                },
+                "Segment": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "IncludeInHost": {
+              "additionalProperties": false,
+              "properties": {
+                "Component": {
+                  "type": "boolean"
+                },
+                "Environment": {
+                  "type": "boolean"
+                },
+                "Host": {
+                  "type": "boolean"
+                },
+                "Instance": {
+                  "type": "boolean"
+                },
+                "Product": {
+                  "type": "boolean"
+                },
+                "Segment": {
+                  "type": "boolean"
+                },
+                "Tier": {
+                  "type": "boolean"
+                },
+                "Version": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "Wildcard": {
+              "type": "boolean"
             }
-          }
+          },
+          "type": "object"
+        },
+        "DeploymentProfiles": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Modes": {
+                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Domain": {
+          "type": "string"
+        },
+        "LinkRefs": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Modules": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
         },
         "PlacementProfiles": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/placementprofile"
         },
+        "Plugins": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+        },
+        "PolicyProfiles": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Modes": {
+                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
         "Profiles": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "Policy": {
+            "Deployment": {
               "contains": {
                 "type": [
                   "string"
@@ -1054,7 +895,7 @@
             "Placement": {
               "type": "string"
             },
-            "Deployment": {
+            "Policy": {
               "contains": {
                 "type": [
                   "string"
@@ -1062,60 +903,30 @@
               },
               "type": "array"
             }
-          }
+          },
+          "type": "object"
         },
         "Region": {
           "type": "string"
         },
-        "Domain": {
-          "type": "string"
-        },
-        "LinkRefs": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "Plugins": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+        "SES": {
+          "additionalProperties": false,
+          "properties": {
+            "Region": {
+              "type": "string"
+            }
+          },
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
     },
     "Segment": {
-      "description": "A segment layer",
       "additionalProperties": false,
-      "type": "object",
+      "description": "A segment layer",
       "properties": {
-        "S3": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "IncludeTenant": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
-        },
-        "Tiers": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Order": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          }
-        },
-        "Description": {
-          "type": "string"
-        },
-        "Category": {
-          "type": "string"
-        },
         "Bastion": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Active": {
               "default": false,
@@ -1133,17 +944,14 @@
               },
               "type": "array"
             }
-          }
+          },
+          "type": "object"
         },
-        "Modules": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
-        },
-        "Title": {
+        "Category": {
           "type": "string"
         },
         "Data": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Expiration": {
               "type": [
@@ -1159,7 +967,6 @@
             },
             "Public": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
                 "Enabled": {
                   "default": false,
@@ -1173,9 +980,14 @@
                   },
                   "type": "array"
                 }
-              }
+              },
+              "type": "object"
             }
-          }
+          },
+          "type": "object"
+        },
+        "Description": {
+          "type": "string"
         },
         "IPAddressGroups": {
           "contains": {
@@ -1185,73 +997,34 @@
           },
           "type": "array"
         },
+        "Id": {
+          "type": "string"
+        },
+        "Modules": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
+        },
         "Name": {
           "type": "string"
         },
-        "RotateKeys": {
-          "default": true,
-          "type": "boolean"
-        },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            }
-          }
-        },
         "Network": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "Tiers": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Order": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
-                }
-              }
-            },
-            "InternetAccess": {
-              "default": true,
-              "type": "boolean"
-            },
             "CIDR": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
                 "Address": {
                   "type": "string"
                 },
-                "Mask": {
-                  "default": 0,
-                  "type": "number"
-                },
                 "Enabled": {
                   "default": true,
                   "type": "boolean"
+                },
+                "Mask": {
+                  "default": 0,
+                  "type": "number"
                 }
-              }
+              },
+              "type": "object"
             },
             "DNSHostnames": {
               "type": "boolean"
@@ -1259,9 +1032,12 @@
             "DNSSupport": {
               "type": "boolean"
             },
-            "Zones": {
+            "InternetAccess": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Tiers": {
               "additionalProperties": false,
-              "type": "object",
               "properties": {
                 "Order": {
                   "contains": {
@@ -1271,42 +1047,51 @@
                   },
                   "type": "array"
                 }
-              }
+              },
+              "type": "object"
+            },
+            "Zones": {
+              "additionalProperties": false,
+              "properties": {
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
             }
-          }
-        },
-        "Region": {
-          "type": "string"
-        },
-        "Id": {
-          "type": "string"
+          },
+          "type": "object"
         },
         "Operations": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "FlowLogs": {
-              "additionalProperties": false,
-              "type": "object",
-              "properties": {
-                "Expiration": {
-                  "type": [
-                    "number",
-                    "string"
-                  ]
-                },
-                "Enabled": {
-                  "default": false,
-                  "description": "Deprecated - here to override automatically added enabled attribute",
-                  "type": "boolean"
-                }
-              }
-            },
             "Expiration": {
               "type": [
                 "number",
                 "string"
               ]
+            },
+            "FlowLogs": {
+              "additionalProperties": false,
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "description": "Deprecated - here to override automatically added enabled attribute",
+                  "type": "boolean"
+                },
+                "Expiration": {
+                  "type": [
+                    "number",
+                    "string"
+                  ]
+                }
+              },
+              "type": "object"
             },
             "Offline": {
               "type": [
@@ -1314,13 +1099,228 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": "object"
         },
         "Plugins": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "Region": {
+          "type": "string"
+        },
+        "RotateKeys": {
+          "default": true,
+          "type": "boolean"
+        },
+        "S3": {
+          "additionalProperties": false,
+          "properties": {
+            "IncludeTenant": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "Tiers": {
+          "additionalProperties": false,
+          "properties": {
+            "Order": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "Title": {
+          "type": "string"
         }
-      }
+      },
+      "type": "object"
+    },
+    "Tenant": {
+      "additionalProperties": false,
+      "description": "A tenant layer",
+      "properties": {
+        "CertificateBehaviours": {
+          "additionalProperties": false,
+          "properties": {
+            "Domain": {
+              "type": "string"
+            },
+            "External": {
+              "type": "boolean"
+            },
+            "Host": {
+              "type": "string"
+            },
+            "HostParts": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            },
+            "IncludeInDomain": {
+              "additionalProperties": false,
+              "properties": {
+                "Environment": {
+                  "type": "boolean"
+                },
+                "Product": {
+                  "type": "boolean"
+                },
+                "Segment": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "IncludeInHost": {
+              "additionalProperties": false,
+              "properties": {
+                "Component": {
+                  "type": "boolean"
+                },
+                "Environment": {
+                  "type": "boolean"
+                },
+                "Host": {
+                  "type": "boolean"
+                },
+                "Instance": {
+                  "type": "boolean"
+                },
+                "Product": {
+                  "type": "boolean"
+                },
+                "Segment": {
+                  "type": "boolean"
+                },
+                "Tier": {
+                  "type": "boolean"
+                },
+                "Version": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "Wildcard": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "DeploymentProfiles": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Modes": {
+                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Id": {
+          "type": "string"
+        },
+        "LinkRefs": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Modules": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/module"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "PlacementProfiles": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/placementprofile"
+        },
+        "Plugins": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/plugin"
+        },
+        "PolicyProfiles": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Modes": {
+                  "description": "A nested object with the deployment mode name as the root and childs based on component types",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            },
+            "Placement": {
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "Region": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
     }
-  },
-  "$id": "https://docs.hamlet.io/schema/latest/Layer-schema.json"
+  }
 }

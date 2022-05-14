@@ -1,22 +1,18 @@
 {
+  "$id": "https://docs.hamlet.io/schema/latest/Task-schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
-    "aws_kms_decrypt_ciphertext": {
-      "description": "Given an encrypted KMS ciphertext object decrypt it and return the plaintext result as a string",
+    "aws_ec2_select_instance": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Lists the available instances and allows the user to select one - returns the selected instance id",
       "properties": {
-        "EncryptionScheme": {
-          "description": "A scheme prefix to show that the value is encrypted",
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
           "type": "string"
         },
         "AWSSecretAccessKey": {
           "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "Ciphertext": {
-          "description": "The ciphertext value",
           "type": "string"
         },
         "AWSSessionToken": {
@@ -27,19 +23,401 @@
           "description": "The name of the region to use for the aws session",
           "type": "string"
         },
+        "Tags": {
+          "description": "An object of Key=Value tags that the instances must have",
+          "type": "object"
+        },
+        "VpcId": {
+          "description": "The VPCId that instances are assiged to",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "aws_ecs_run_command": {
+      "additionalProperties": false,
+      "description": "Runs an interactive task on a provided task arn",
+      "properties": {
         "AWSAccessKeyId": {
           "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "ClusterArn": {
+          "description": "The ARN of the ECS Cluster to list running tasks from",
+          "type": "string"
+        },
+        "Command": {
+          "description": "The command to run in the command",
+          "type": "string"
+        },
+        "ContainerName": {
+          "description": "The name of the container in the task definition",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "TaskArn": {
+          "description": "The Arn or Name of a running task to run the command on",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "TaskArn"
+      ],
+      "type": "object"
+    },
+    "aws_ecs_run_task": {
+      "additionalProperties": false,
+      "description": "Run an ecs task with provided overrided and wait for it to run or to run and stop",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "CapacityProvider": {
+          "description": "The capacity provider used to host the task",
+          "type": "string"
+        },
+        "ClusterArn": {
+          "description": "The ARN of the ECS Cluster to list running tasks from",
+          "type": "string"
+        },
+        "CommandOverride": {
+          "description": "A json escaped string array or string with an override of the container command",
+          "type": "string"
+        },
+        "ContainerName": {
+          "description": "The name of the container to apply overrrides and watch for exit status",
+          "type": "string"
+        },
+        "EnvironmentOverrides": {
+          "description": "A json escaped object string or string with overrides for environment variables",
+          "type": "string"
+        },
+        "PublicIP": {
+          "default": false,
+          "description": "Assign a public IP address to the task",
+          "enum": [
+            "true",
+            "false"
+          ],
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "SecurityGroupIds": {
+          "description": "A comma seperated list of security group ids to apply to task interfaces",
+          "type": "string"
+        },
+        "SubnetIds": {
+          "description": "A comma seperated list of subnetIds the task can be hosted in",
+          "type": "string"
+        },
+        "TaskFamily": {
+          "description": "The name of a Task definition family that to show tasks for",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "TaskFamily",
+        "ContainerName"
+      ],
+      "type": "object"
+    },
+    "aws_ecs_select_task": {
+      "additionalProperties": false,
+      "description": "List the running tasks for a service or task family and return the user selected task",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "ClusterArn": {
+          "description": "The ARN of the ECS Cluster to list running tasks from",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "ServiceName": {
+          "description": "The Arn or Name of a service deployed to the cluster",
+          "type": "string"
+        },
+        "TaskFamily": {
+          "description": "The name of a Task definition family that to show tasks for",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ClusterArn"
+      ],
+      "type": "object"
+    },
+    "aws_kms_decrypt_ciphertext": {
+      "additionalProperties": false,
+      "description": "Given an encrypted KMS ciphertext object decrypt it and return the plaintext result as a string",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Ciphertext": {
+          "description": "The ciphertext value",
+          "type": "string"
+        },
+        "EncryptionScheme": {
+          "description": "A scheme prefix to show that the value is encrypted",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
           "type": "string"
         }
       },
       "required": [
         "Ciphertext"
-      ]
+      ],
+      "type": "object"
+    },
+    "aws_kms_encrypt_value": {
+      "additionalProperties": false,
+      "description": "Given a value return the a base64 encoded string of the KMS Symetric encrypted ciphertext",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "EncryptionScheme": {
+          "description": "A scheme style prefix to add to the base64 encoded value",
+          "type": "string"
+        },
+        "KeyArn": {
+          "description": "The Arn of the kms key or alias to encrypt the value with",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "Value": {
+          "description": "The value that needs to be encrypted",
+          "type": "string"
+        }
+      },
+      "required": [
+        "KeyArn",
+        "Value"
+      ],
+      "type": "object"
+    },
+    "aws_lambda_invoke_function": {
+      "additionalProperties": false,
+      "description": "Invoke a lambda function with a payload and return the returned payload",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "FunctionArn": {
+          "description": "The ARN of the lambda function",
+          "type": "string"
+        },
+        "Payload": {
+          "description": "A json encoded string with the lambda payload",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "aws_rds_create_snapshot": {
+      "additionalProperties": false,
+      "description": "Create an rds native snapshot for either an instance or cluster, wait for it to become available and then return the arn",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Cluster": {
+          "description": "If the database is a cluster or instance",
+          "type": [
+            "string",
+            "boolean"
+          ]
+        },
+        "DbId": {
+          "description": "The Arn or Id of the rds instance or cluster",
+          "type": "string"
+        },
+        "IncludeDateSuffix": {
+          "default": true,
+          "description": "Include a date based suffix in the snapshot name",
+          "type": [
+            "string",
+            "boolean"
+          ]
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "SnapshotName": {
+          "description": "The name of the snapshot",
+          "type": "string"
+        }
+      },
+      "required": [
+        "DbId",
+        "Cluster",
+        "SnapshotName"
+      ],
+      "type": "object"
+    },
+    "aws_s3_download_bucket": {
+      "additionalProperties": false,
+      "description": "Download the contents of an S3 bucket to a local directory",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "BucketName": {
+          "description": "The name of the S3 Bucket",
+          "type": "string"
+        },
+        "LocalPath": {
+          "description": "A local directory path to store the objects in",
+          "type": "string"
+        },
+        "Prefix": {
+          "description": "A prefix required for all items to download",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        }
+      },
+      "required": [
+        "BucketName",
+        "LocalPath"
+      ],
+      "type": "object"
+    },
+    "aws_s3_empty_bucket": {
+      "additionalProperties": false,
+      "description": "Delete all versions of objects in an S3 Bucket",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "BucketName": {
+          "description": "The name of the S3 Bucket",
+          "type": "string"
+        },
+        "Prefix": {
+          "description": "A prefix required for all items to download",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        }
+      },
+      "required": [
+        "BucketName"
+      ],
+      "type": "object"
     },
     "aws_ses_smtp_password": {
-      "description": "Generate a Sig4 based SMTP credential that is used to authenciate with ses via SMTP",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Generate a Sig4 based SMTP credential that is used to authenciate with ses via SMTP",
       "properties": {
         "AWSSecretAccessKey": {
           "description": "The secret key of the access key pair that will be used to send emails via SMTP",
@@ -53,12 +431,12 @@
       "required": [
         "SESRegion",
         "AWSSecretAccessKey"
-      ]
+      ],
+      "type": "object"
     },
     "bash_run_command": {
-      "description": "Run a bash command locally and use the stdout as the returned result",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Run a bash command locally and use the stdout as the returned result",
       "properties": {
         "Command": {
           "description": "The command to run",
@@ -67,732 +445,22 @@
       },
       "required": [
         "Command"
-      ]
-    },
-    "ssh_copy_file": {
-      "description": "Copy a file between the local host and a remote ssh host",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "SSHKey": {
-          "description": "The path or content of an ssh private key to use for authentication",
-          "type": "string"
-        },
-        "BastionPassword": {
-          "description": "The password for the username on the bastion host",
-          "type": "string"
-        },
-        "Port": {
-          "default": 22,
-          "description": "The port number the host is listening on for ssh connections",
-          "type": "number"
-        },
-        "BastionHost": {
-          "description": "The IP or Hostname of the bastion host",
-          "type": "string"
-        },
-        "Host": {
-          "description": "The IP or Hostname of the remote host",
-          "type": "string"
-        },
-        "LocalPath": {
-          "description": "The path to the local file",
-          "type": "string"
-        },
-        "RemotePath": {
-          "description": "The path to the remote file",
-          "type": "string"
-        },
-        "Direction": {
-          "description": "The direction to copy the file",
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ],
-          "enum": [
-            "RemoteToLocal",
-            "LocalToRemote"
-          ]
-        },
-        "BastionSSHKey": {
-          "description": "The path or content of an ssh private key to use for authentication",
-          "type": "string"
-        },
-        "Username": {
-          "description": "The username on the remote host",
-          "type": "string"
-        },
-        "BastionPort": {
-          "default": 22,
-          "description": "The port number the bastion host is listening on for ssh connections",
-          "type": "number"
-        },
-        "BastionUsername": {
-          "description": "The username on the bastion host",
-          "type": "string"
-        },
-        "Password": {
-          "description": "The password for the username on the remote host",
-          "type": "string"
-        }
-      },
-      "required": [
-        "Host",
-        "Username",
-        "Direction",
-        "LocalPath",
-        "RemotePath"
-      ]
-    },
-    "aws_ec2_select_instance": {
-      "description": "Lists the available instances and allows the user to select one - returns the selected instance id",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "VpcId": {
-          "description": "The VPCId that instances are assiged to",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "Tags": {
-          "description": "An object of Key=Value tags that the instances must have",
-          "type": "object"
-        }
-      }
-    },
-    "set_provider_credentials": {
-      "description": "Use the hamlet context to define the credentials for cloud providers",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "ProviderId": {
-          "description": "The Id that represents the account with the provider",
-          "type": "string"
-        },
-        "AccountId": {
-          "description": "The hamlet Account Id for the provider login",
-          "type": "string"
-        },
-        "Provider": {
-          "description": "The name of the provider the account is defined for",
-          "type": "string"
-        }
-      },
-      "required": [
-        "AccountId",
-        "Provider",
-        "ProviderId"
-      ]
-    },
-    "rename_file": {
-      "description": "Renames a file to a new value within the same directory",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "currentFileName": {
-          "type": "string"
-        },
-        "newFileName": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "currentFileName",
-        "newFileName"
-      ]
-    },
-    "file_read_content": {
-      "description": "Read the contents of a file and provide the content as a result output",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "FilePath": {
-          "description": "The path to the file",
-          "type": "string"
-        }
-      },
-      "required": [
-        "FilePath"
-      ]
-    },
-    "install_plugin": {
-      "description": "Install a hamlet plugin from the source provided",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Required": {
-          "default": false,
-          "description": "Ensure the plugin loads at all times",
-          "type": "boolean"
-        },
-        "Source:git": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Path": {
-              "description": "a path within in the repository where the plugin starts",
-              "type": "string"
-            },
-            "Ref": {
-              "default": "main",
-              "description": "The ref to clone from the repo",
-              "type": "string"
-            },
-            "Url": {
-              "description": "The Url for the git repository",
-              "type": "string"
-            }
-          }
-        },
-        "Priority": {
-          "default": 100,
-          "description": "The priority order to load plugins - lowest first",
-          "type": "number"
-        },
-        "Enabled": {
-          "default": true,
-          "description": "To enable loading the plugin",
-          "type": "boolean"
-        },
-        "Source": {
-          "description": "Where the plugin for the plugin can be found",
-          "type": "string",
-          "enum": [
-            "local",
-            "git"
-          ]
-        },
-        "Name": {
-          "description": "The id of the plugin to install",
-          "type": "string"
-        }
-      },
-      "required": [
-        "Name",
-        "Source"
-      ]
-    },
-    "manage_deployment": {
-      "description": "Generate a list of deployment units and groups that can be used to manage a segment",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "CurrentState": {
-          "description": "The current state of the deployment",
-          "type": "string",
-          "enum": [
-            "notdeployed",
-            "deployed",
-            "orphaned"
-          ]
-        },
-        "DeploymentProvider": {
-          "type": "string"
-        },
-        "DeploymentUnit": {
-          "type": "string"
-        },
-        "Operations": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
-        "DeploymentGroup": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "DeploymentUnit",
-        "DeploymentGroup",
-        "Operations",
-        "DeploymentProvider",
-        "CurrentState"
-      ]
-    },
-    "process_template_pass": {
-      "description": "Execute the codeontap freemarker engine to create an occurrence template file for subset",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "outputConversion": {
-          "type": "string"
-        },
-        "passAlternative": {
-          "type": "string"
-        },
-        "outputFileName": {
-          "type": "string"
-        },
-        "pass": {
-          "type": "string"
-        },
-        "outputType": {
-          "type": "string"
-        },
-        "deploymentUnitSubset": {
-          "type": "string"
-        },
-        "outputFormat": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "outputType",
-        "outputFormat",
-        "outputConversion",
-        "pass",
-        "passAlternative",
-        "outputFileName",
-        "deploymentUnitSubset"
-      ]
-    },
-    "output_echo": {
-      "description": "Echo the provided value to stdout or stderr",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Format": {
-          "default": "string",
-          "description": "The format of the data to output - pretty prints if possible",
-          "type": "string",
-          "enum": [
-            "string",
-            "json"
-          ]
-        },
-        "OutputStream": {
-          "default": "stdout",
-          "description": "The stream to output the value to",
-          "type": "string",
-          "enum": [
-            "stdout",
-            "stderr"
-          ]
-        },
-        "Value": {
-          "description": "The value to echo",
-          "type": "string"
-        }
-      },
-      "required": [
-        "Value"
-      ]
-    },
-    "aws_ecs_run_task": {
-      "description": "Run an ecs task with provided overrided and wait for it to run or to run and stop",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "ClusterArn": {
-          "description": "The ARN of the ECS Cluster to list running tasks from",
-          "type": "string"
-        },
-        "PublicIP": {
-          "default": false,
-          "description": "Assign a public IP address to the task",
-          "type": [
-            "boolean",
-            "string"
-          ],
-          "enum": [
-            "true",
-            "false"
-          ]
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "SubnetIds": {
-          "description": "A comma seperated list of subnetIds the task can be hosted in",
-          "type": "string"
-        },
-        "SecurityGroupIds": {
-          "description": "A comma seperated list of security group ids to apply to task interfaces",
-          "type": "string"
-        },
-        "TaskFamily": {
-          "description": "The name of a Task definition family that to show tasks for",
-          "type": "string"
-        },
-        "CommandOverride": {
-          "description": "A json escaped string array or string with an override of the container command",
-          "type": "string"
-        },
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "ContainerName": {
-          "description": "The name of the container to apply overrrides and watch for exit status",
-          "type": "string"
-        },
-        "CapacityProvider": {
-          "description": "The capacity provider used to host the task",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "EnvironmentOverrides": {
-          "description": "A json escaped object string or string with overrides for environment variables",
-          "type": "string"
-        }
-      },
-      "required": [
-        "ClusterArn",
-        "TaskFamily",
-        "ContainerName"
-      ]
-    },
-    "aws_lambda_invoke_function": {
-      "description": "Invoke a lambda function with a payload and return the returned payload",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "FunctionArn": {
-          "description": "The ARN of the lambda function",
-          "type": "string"
-        },
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "Payload": {
-          "description": "A json encoded string with the lambda payload",
-          "type": "string"
-        }
-      }
-    },
-    "aws_s3_download_bucket": {
-      "description": "Download the contents of an S3 bucket to a local directory",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "BucketName": {
-          "description": "The name of the S3 Bucket",
-          "type": "string"
-        },
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "LocalPath": {
-          "description": "A local directory path to store the objects in",
-          "type": "string"
-        },
-        "Prefix": {
-          "description": "A prefix required for all items to download",
-          "type": "string"
-        }
-      },
-      "required": [
-        "BucketName",
-        "LocalPath"
-      ]
-    },
-    "aws_ecs_select_task": {
-      "description": "List the running tasks for a service or task family and return the user selected task",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "ClusterArn": {
-          "description": "The ARN of the ECS Cluster to list running tasks from",
-          "type": "string"
-        },
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "ServiceName": {
-          "description": "The Arn or Name of a service deployed to the cluster",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "TaskFamily": {
-          "description": "The name of a Task definition family that to show tasks for",
-          "type": "string"
-        }
-      },
-      "required": [
-        "ClusterArn"
-      ]
-    },
-    "aws_rds_create_snapshot": {
-      "description": "Create an rds native snapshot for either an instance or cluster, wait for it to become available and then return the arn",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "DbId": {
-          "description": "The Arn or Id of the rds instance or cluster",
-          "type": "string"
-        },
-        "Cluster": {
-          "description": "If the database is a cluster or instance",
-          "type": [
-            "string",
-            "boolean"
-          ]
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "SnapshotName": {
-          "description": "The name of the snapshot",
-          "type": "string"
-        },
-        "IncludeDateSuffix": {
-          "default": true,
-          "description": "Include a date based suffix in the snapshot name",
-          "type": [
-            "string",
-            "boolean"
-          ]
-        }
-      },
-      "required": [
-        "DbId",
-        "Cluster",
-        "SnapshotName"
-      ]
-    },
-    "aws_s3_empty_bucket": {
-      "description": "Delete all versions of objects in an S3 Bucket",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "BucketName": {
-          "description": "The name of the S3 Bucket",
-          "type": "string"
-        },
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "Prefix": {
-          "description": "A prefix required for all items to download",
-          "type": "string"
-        }
-      },
-      "required": [
-        "BucketName"
-      ]
-    },
-    "aws_ecs_run_command": {
-      "description": "Runs an interactive task on a provided task arn",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "ClusterArn": {
-          "description": "The ARN of the ECS Cluster to list running tasks from",
-          "type": "string"
-        },
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "Command": {
-          "description": "The command to run in the command",
-          "type": "string"
-        },
-        "ContainerName": {
-          "description": "The name of the container in the task definition",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "TaskArn": {
-          "description": "The Arn or Name of a running task to run the command on",
-          "type": "string"
-        }
-      },
-      "required": [
-        "ClusterArn",
-        "TaskArn"
-      ]
-    },
-    "create_schema": {
-      "description": "Create a JSONSchema for a give schema set",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Schema": {
-          "description": "The schema to generate",
-          "type": "string"
-        }
-      },
-      "required": [
-        "Schema"
-      ]
-    },
-    "run_bash_script": {
-      "description": "Execute a shell script",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "scriptFileName": {
-          "description": "The name of the script to run",
-          "type": "string"
-        },
-        "source": {
-          "default": true,
-          "description": "Source the script when executing it as part of the executor process",
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "scriptFileName"
-      ]
-    },
-    "aws_kms_encrypt_value": {
-      "description": "Given a value return the a base64 encoded string of the KMS Symetric encrypted ciphertext",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "EncryptionScheme": {
-          "description": "A scheme style prefix to add to the base64 encoded value",
-          "type": "string"
-        },
-        "AWSSecretAccessKey": {
-          "description": "The AWS Secret Access Key with access to decrypt",
-          "type": "string"
-        },
-        "AWSSessionToken": {
-          "description": "The AWS Session Token with access to decrypt",
-          "type": "string"
-        },
-        "Value": {
-          "description": "The value that needs to be encrypted",
-          "type": "string"
-        },
-        "Region": {
-          "description": "The name of the region to use for the aws session",
-          "type": "string"
-        },
-        "AWSAccessKeyId": {
-          "description": "The AWS Access Key Id with access to decrypt",
-          "type": "string"
-        },
-        "KeyArn": {
-          "description": "The Arn of the kms key or alias to encrypt the value with",
-          "type": "string"
-        }
-      },
-      "required": [
-        "KeyArn",
-        "Value"
-      ]
+      ],
+      "type": "object"
     },
     "conditional_stage_skip": {
-      "description": "If a condition doesn't match skip the rest of the steps in the stage",
       "additionalProperties": false,
-      "type": "object",
+      "description": "If a condition doesn't match skip the rest of the steps in the stage",
       "properties": {
         "Condition": {
           "description": "How to test the value",
-          "type": "string",
           "enum": [
             "Equals",
             "StartsWith",
             "EndsWith",
             "Contains"
-          ]
+          ],
+          "type": "string"
         },
         "Test": {
           "description": "The value compared to",
@@ -807,23 +475,273 @@
         "Test",
         "Condition",
         "Value"
-      ]
+      ],
+      "type": "object"
     },
-    "ssh_run_command": {
-      "description": "Run an ssh command with an interactive shell",
+    "create_schema": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Create a JSONSchema for a give schema set",
       "properties": {
-        "SSHKey": {
-          "description": "The path or content of an ssh private key to use for authentication",
+        "Schema": {
+          "description": "The schema to generate",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Schema"
+      ],
+      "type": "object"
+    },
+    "file_read_content": {
+      "additionalProperties": false,
+      "description": "Read the contents of a file and provide the content as a result output",
+      "properties": {
+        "FilePath": {
+          "description": "The path to the file",
+          "type": "string"
+        }
+      },
+      "required": [
+        "FilePath"
+      ],
+      "type": "object"
+    },
+    "install_plugin": {
+      "additionalProperties": false,
+      "description": "Install a hamlet plugin from the source provided",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "description": "To enable loading the plugin",
+          "type": "boolean"
+        },
+        "Name": {
+          "description": "The id of the plugin to install",
           "type": "string"
         },
-        "Username": {
-          "description": "The username on the remote host",
+        "Priority": {
+          "default": 100,
+          "description": "The priority order to load plugins - lowest first",
+          "type": "number"
+        },
+        "Required": {
+          "default": false,
+          "description": "Ensure the plugin loads at all times",
+          "type": "boolean"
+        },
+        "Source": {
+          "description": "Where the plugin for the plugin can be found",
+          "enum": [
+            "local",
+            "git"
+          ],
           "type": "string"
         },
-        "Command": {
-          "description": "The command to execute",
+        "Source:git": {
+          "additionalProperties": false,
+          "properties": {
+            "Path": {
+              "description": "a path within in the repository where the plugin starts",
+              "type": "string"
+            },
+            "Ref": {
+              "default": "main",
+              "description": "The ref to clone from the repo",
+              "type": "string"
+            },
+            "Url": {
+              "description": "The Url for the git repository",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "Name",
+        "Source"
+      ],
+      "type": "object"
+    },
+    "manage_deployment": {
+      "additionalProperties": false,
+      "description": "Generate a list of deployment units and groups that can be used to manage a segment",
+      "properties": {
+        "CurrentState": {
+          "description": "The current state of the deployment",
+          "enum": [
+            "notdeployed",
+            "deployed",
+            "orphaned"
+          ],
+          "type": "string"
+        },
+        "DeploymentGroup": {
+          "type": "string"
+        },
+        "DeploymentProvider": {
+          "type": "string"
+        },
+        "DeploymentUnit": {
+          "type": "string"
+        },
+        "Operations": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "DeploymentUnit",
+        "DeploymentGroup",
+        "Operations",
+        "DeploymentProvider",
+        "CurrentState"
+      ],
+      "type": "object"
+    },
+    "output_echo": {
+      "additionalProperties": false,
+      "description": "Echo the provided value to stdout or stderr",
+      "properties": {
+        "Format": {
+          "default": "string",
+          "description": "The format of the data to output - pretty prints if possible",
+          "enum": [
+            "string",
+            "json"
+          ],
+          "type": "string"
+        },
+        "OutputStream": {
+          "default": "stdout",
+          "description": "The stream to output the value to",
+          "enum": [
+            "stdout",
+            "stderr"
+          ],
+          "type": "string"
+        },
+        "Value": {
+          "description": "The value to echo",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Value"
+      ],
+      "type": "object"
+    },
+    "process_template_pass": {
+      "additionalProperties": false,
+      "description": "Execute the codeontap freemarker engine to create an occurrence template file for subset",
+      "properties": {
+        "deploymentUnitSubset": {
+          "type": "string"
+        },
+        "outputConversion": {
+          "type": "string"
+        },
+        "outputFileName": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string"
+        },
+        "outputType": {
+          "type": "string"
+        },
+        "pass": {
+          "type": "string"
+        },
+        "passAlternative": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "outputType",
+        "outputFormat",
+        "outputConversion",
+        "pass",
+        "passAlternative",
+        "outputFileName",
+        "deploymentUnitSubset"
+      ],
+      "type": "object"
+    },
+    "rename_file": {
+      "additionalProperties": false,
+      "description": "Renames a file to a new value within the same directory",
+      "properties": {
+        "currentFileName": {
+          "type": "string"
+        },
+        "newFileName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "currentFileName",
+        "newFileName"
+      ],
+      "type": "object"
+    },
+    "run_bash_script": {
+      "additionalProperties": false,
+      "description": "Execute a shell script",
+      "properties": {
+        "scriptFileName": {
+          "description": "The name of the script to run",
+          "type": "string"
+        },
+        "source": {
+          "default": true,
+          "description": "Source the script when executing it as part of the executor process",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "scriptFileName"
+      ],
+      "type": "object"
+    },
+    "set_provider_credentials": {
+      "additionalProperties": false,
+      "description": "Use the hamlet context to define the credentials for cloud providers",
+      "properties": {
+        "AccountId": {
+          "description": "The hamlet Account Id for the provider login",
+          "type": "string"
+        },
+        "Provider": {
+          "description": "The name of the provider the account is defined for",
+          "type": "string"
+        },
+        "ProviderId": {
+          "description": "The Id that represents the account with the provider",
+          "type": "string"
+        }
+      },
+      "required": [
+        "AccountId",
+        "Provider",
+        "ProviderId"
+      ],
+      "type": "object"
+    },
+    "ssh_copy_file": {
+      "additionalProperties": false,
+      "description": "Copy a file between the local host and a remote ssh host",
+      "properties": {
+        "BastionHost": {
+          "description": "The IP or Hostname of the bastion host",
+          "type": "string"
+        },
+        "BastionPassword": {
+          "description": "The password for the username on the bastion host",
           "type": "string"
         },
         "BastionPort": {
@@ -831,8 +749,38 @@
           "description": "The port number the bastion host is listening on for ssh connections",
           "type": "number"
         },
-        "BastionPassword": {
-          "description": "The password for the username on the bastion host",
+        "BastionSSHKey": {
+          "description": "The path or content of an ssh private key to use for authentication",
+          "type": "string"
+        },
+        "BastionUsername": {
+          "description": "The username on the bastion host",
+          "type": "string"
+        },
+        "Direction": {
+          "description": "The direction to copy the file",
+          "enum": [
+            "RemoteToLocal",
+            "LocalToRemote"
+          ],
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Host": {
+          "description": "The IP or Hostname of the remote host",
+          "type": "string"
+        },
+        "LocalPath": {
+          "description": "The path to the local file",
+          "type": "string"
+        },
+        "Password": {
+          "description": "The password for the username on the remote host",
           "type": "string"
         },
         "Port": {
@@ -840,24 +788,76 @@
           "description": "The port number the host is listening on for ssh connections",
           "type": "number"
         },
+        "RemotePath": {
+          "description": "The path to the remote file",
+          "type": "string"
+        },
+        "SSHKey": {
+          "description": "The path or content of an ssh private key to use for authentication",
+          "type": "string"
+        },
+        "Username": {
+          "description": "The username on the remote host",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Host",
+        "Username",
+        "Direction",
+        "LocalPath",
+        "RemotePath"
+      ],
+      "type": "object"
+    },
+    "ssh_run_command": {
+      "additionalProperties": false,
+      "description": "Run an ssh command with an interactive shell",
+      "properties": {
         "BastionHost": {
           "description": "The IP or Hostname of the bastion host",
+          "type": "string"
+        },
+        "BastionPassword": {
+          "description": "The password for the username on the bastion host",
+          "type": "string"
+        },
+        "BastionPort": {
+          "default": 22,
+          "description": "The port number the bastion host is listening on for ssh connections",
+          "type": "number"
+        },
+        "BastionSSHKey": {
+          "description": "The path or content of an ssh private key to use for authentication",
           "type": "string"
         },
         "BastionUsername": {
           "description": "The username on the bastion host",
           "type": "string"
         },
+        "Command": {
+          "description": "The command to execute",
+          "type": "string"
+        },
         "Host": {
           "description": "The IP or Hostname of the remote host",
           "type": "string"
         },
-        "BastionSSHKey": {
+        "Password": {
+          "description": "The password for the username on the remote host",
+          "type": "string"
+        },
+        "Port": {
+          "default": 22,
+          "description": "The port number the host is listening on for ssh connections",
+          "type": "number"
+        },
+        "SSHKey": {
           "description": "The path or content of an ssh private key to use for authentication",
           "type": "string"
         },
-        "Password": {
-          "description": "The password for the username on the remote host",
+        "Username": {
+          "description": "The username on the remote host",
           "type": "string"
         }
       },
@@ -865,8 +865,8 @@
         "Host",
         "Username",
         "Command"
-      ]
+      ],
+      "type": "object"
     }
-  },
-  "$id": "https://docs.hamlet.io/schema/latest/Task-schema.json"
+  }
 }

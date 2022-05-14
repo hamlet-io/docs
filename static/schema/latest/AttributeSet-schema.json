@@ -1,341 +1,180 @@
 {
+  "$id": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
-    "aws_s3_notification": {
-      "description": "AWS S3 specific configuration options for notifications",
+    "alert": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Configuration of alerts that monitor component resources",
       "properties": {
-        "Suffix": {
+        "Comparison": {
+          "default": "Threshold",
           "type": "string"
-        },
-        "aws:QueuePermissionMigration": {
-          "default": false,
-          "description": "Deprecation alert: set to true once policy updated for queue",
-          "type": "boolean"
-        },
-        "Events": {
-          "default": [
-            "create"
-          ],
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array",
-          "enum": [
-            "create",
-            "delete",
-            "restore",
-            "reducedredundancy"
-          ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
-        "Links": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "Prefix": {
-          "type": "string"
-        },
-        "aws:TopicPermissionMigration": {
-          "default": false,
-          "description": "Deprecation alert: set to true once policy updated for topic",
-          "type": "boolean"
-        }
-      }
-    },
-    "link": {
-      "description": "A relationship between Components.",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "SubComponent": {
-          "type": "string"
-        },
-        "IncludeInContext": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "Include the attributes provided by this link in the environment context",
-          "type": "array"
-        },
-        "Task": {
-          "type": "string"
-        },
-        "Platform": {
-          "type": "string"
-        },
-        "Instance": {
-          "type": "string"
-        },
-        "Mount": {
-          "type": "string"
-        },
-        "Product": {
-          "type": "string"
-        },
-        "NetworkACL": {
-          "type": "string"
-        },
-        "Direction": {
-          "description": "The direction the role applies to between the components",
-          "type": "string"
-        },
-        "Any": {
-          "type": "string"
-        },
-        "Segment": {
-          "type": "string"
-        },
-        "Assignment": {
-          "type": "string"
-        },
-        "Function": {
-          "type": "string"
-        },
-        "Tenant": {
-          "type": "string"
-        },
-        "Endpoint": {
-          "type": "string"
-        },
-        "Version": {
-          "type": "string"
-        },
-        "Branch": {
-          "type": "string"
-        },
-        "PortMapping": {
-          "type": "string"
-        },
-        "Component": {
-          "type": "string"
-        },
-        "Client": {
-          "type": "string"
-        },
-        "RegistryService": {
-          "type": "string"
-        },
-        "Route": {
-          "type": "string"
-        },
-        "LinkRef": {
-          "type": "string"
-        },
-        "DataBucket": {
-          "type": "string"
-        },
-        "Tier": {
-          "type": "string"
-        },
-        "ActiveRequired": {
-          "description": "Require that the linked occurrence has been deployed and is active",
-          "type": "boolean"
-        },
-        "Connection": {
-          "type": "string"
-        },
-        "Resource": {
-          "type": "string"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
-        "Service": {
-          "type": "string"
-        },
-        "AuthProvider": {
-          "type": "string"
-        },
-        "Role": {
-          "description": "The role of the relationship between the components",
-          "type": "string"
-        },
-        "RouteTable": {
-          "type": "string"
-        },
-        "Secret": {
-          "type": "string"
-        },
-        "Type": {
-          "type": "string"
-        },
-        "Environment": {
-          "type": "string"
-        },
-        "Rule": {
-          "type": "string"
-        },
-        "Key": {
-          "type": "string"
-        },
-        "DataFeed": {
-          "type": "string"
-        }
-      }
-    },
-    "networkrule": {
-      "description": "Network Access rule configuration",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "SecurityGroups": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "A list of security groups or ids - for internal use only",
-          "type": "array"
         },
         "Description": {
-          "description": "A description that will be applied to the rule",
           "type": "string"
         },
-        "Ports": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "A list of port ids from the Ports reference",
-          "type": "array"
-        },
-        "IPAddressGroups": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "A list of IP Address groups ids from the IPAddressGroups reference",
-          "type": "array"
-        }
-      }
-    },
-    "operatingsystem": {
-      "description": "Standard Configuration options to define an operating system",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "MajorVersion": {
-          "description": "The major version of the distribution",
-          "type": "string"
-        },
-        "Architecture": {
-          "description": "The CPU Architecture used",
-          "type": "string",
+        "DimensionSource": {
+          "default": "Resource",
+          "description": "The source of the alert dimensions - resource lookup or explicit configuration",
           "enum": [
-            "i386",
-            "x86_64",
-            "arm64"
-          ]
-        },
-        "Distribution": {
-          "description": "The distribution of the operating system",
+            "Resource",
+            "Configured"
+          ],
           "type": "string"
         },
-        "Family": {
-          "description": "The broad family of operating system",
-          "type": "string",
-          "enum": [
-            "linux",
-            "windows",
-            "macos"
-          ]
-        },
-        "MinorVersion": {
-          "description": "The minor version of the distribution major version",
-          "type": "string"
-        }
-      }
-    },
-    "table_hosting": {
-      "description": "Hosting and capacity configuration for global db tables",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Capacity": {
+        "Dimensions": {
           "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Read": {
-              "default": 1,
-              "description": "When using provisioned billing the maximum RCU of the table",
-              "type": "number"
-            },
-            "Write": {
-              "default": 1,
-              "description": "When using provisioned billing the maximum WCU of the table",
-              "type": "number"
+          "description": "Explicit configured dimensions",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Key": {
+                  "description": "The Key of the dimension",
+                  "type": "string"
+                },
+                "SettingEnvName": {
+                  "description": "A setting name as env that will provide the dimension value",
+                  "type": "string"
+                },
+                "Value": {
+                  "description": "The value of the dimension to match",
+                  "type": "string"
+                }
+              }
             }
-          }
+          },
+          "type": "object"
         },
-        "Encrypted": {
+        "Enabled": {
           "default": true,
-          "description": "Enable at rest encryption",
+          "description": "Should the alert be created",
           "type": "boolean"
         },
-        "Billing": {
-          "default": "provisioned",
-          "description": "The billing mode for the table",
-          "type": "string",
-          "enum": [
-            "provisioned",
-            "per-request"
-          ]
+        "Metric": {
+          "type": "string"
         },
-        "Backup": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Enabled": {
-              "default": false,
-              "description": "Enables point in time recovery on the table",
-              "type": "boolean"
-            }
-          }
+        "MissingData": {
+          "default": "notBreaching",
+          "type": "string"
         },
-        "Stream": {
+        "Name": {
+          "type": "string"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "Operator": {
+          "default": "GreaterThanOrEqualToThreshold",
+          "type": "string"
+        },
+        "Periods": {
+          "default": 1,
+          "type": "number"
+        },
+        "ReportOk": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Resource": {
           "additionalProperties": false,
-          "type": "object",
+          "description": "Provide a component resource to determine the dimensions of the metric",
           "properties": {
-            "Enabled": {
-              "default": false,
-              "description": "Enables event change streams for the table",
-              "type": "boolean"
+            "Id": {
+              "type": "string"
             },
-            "ViewType": {
-              "default": "NEW_IMAGE",
-              "description": "The change notification event content",
-              "type": "string",
-              "enum": [
-                "KEYS_ONLY",
-                "NEW_IMAGE",
-                "OLD_IMAGE",
-                "NEW_AND_OLD_IMAGES"
-              ]
+            "Type": {
+              "type": "string"
             }
-          }
+          },
+          "type": "object"
+        },
+        "Severity": {
+          "default": "info",
+          "enum": [
+            "debug",
+            "info",
+            "warn",
+            "error",
+            "fatal"
+          ],
+          "type": "string"
+        },
+        "Statistic": {
+          "default": "Sum",
+          "type": "string"
+        },
+        "Threshold": {
+          "default": 1,
+          "type": "number"
+        },
+        "Time": {
+          "default": 300,
+          "type": "number"
+        },
+        "Unit": {
+          "default": "Count",
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "Metric",
+        "Name"
+      ],
+      "type": "object"
+    },
+    "autoscalegroup": {
+      "additionalProperties": false,
+      "description": "Control how a virtual machine based autoscaling group behaves",
+      "properties": {
+        "ActivityCooldown": {
+          "default": 30,
+          "type": "number"
+        },
+        "AlwaysReplaceOnUpdate": {
+          "default": false,
+          "description": "Replace instances on every update action",
+          "type": "boolean"
+        },
+        "DetailedMetrics": {
+          "default": true,
+          "description": "Enable the collection of autoscale group detailed metrics",
+          "type": "boolean"
+        },
+        "MinSuccessInstances": {
+          "default": 75,
+          "description": "The minimum percantage of instances that must sucessfully update",
+          "type": "number"
+        },
+        "MinUpdateInstances": {
+          "default": 1,
+          "description": "The minimum number of instances which must be available during an update",
+          "type": "number"
+        },
+        "ReplaceCluster": {
+          "default": false,
+          "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
+          "type": "boolean"
+        },
+        "StartupTimeout": {
+          "default": "15M",
+          "description": "How long to wait for a cfn-signal to be received from a host",
+          "type": "string"
+        },
+        "UpdatePauseTime": {
+          "default": "10M",
+          "description": "How long to pause betweeen updates of instances",
+          "type": "string"
+        }
+      },
+      "type": "object"
     },
     "aws_antivirus": {
-      "description": "Standard Configuration options to define antivirus configuration",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Standard Configuration options to define antivirus configuration",
       "properties": {
         "ControlledFolders": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "AllowedApps": {
               "contains": {
@@ -353,11 +192,11 @@
               },
               "type": "array"
             }
-          }
+          },
+          "type": "object"
         },
         "Exclusions": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "FilePaths": {
               "contains": {
@@ -383,26 +222,330 @@
               },
               "type": "array"
             }
-          }
+          },
+          "type": "object"
         },
         "Mode": {
           "default": "Active",
-          "type": "string",
           "enum": [
             "Active",
             "Passive",
             "Disabled"
-          ]
+          ],
+          "type": "string"
         }
-      }
+      },
+      "type": "object"
+    },
+    "aws_computeimage": {
+      "additionalProperties": false,
+      "description": "AWS Specific overrides to source compute images",
+      "properties": {
+        "Source": {
+          "default": "Reference",
+          "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
+          "enum": [
+            "Reference",
+            "aws:AMI",
+            "aws:SSMParam"
+          ],
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Source:Reference": {
+          "additionalProperties": false,
+          "properties": {
+            "OS": {
+              "default": "Centos",
+              "description": "The OS Image family defined in the Region AMI",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "Type": {
+              "default": "EC2",
+              "description": "The image Type defined under the family in the Region AMI",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "aws:Source:AMI": {
+          "additionalProperties": false,
+          "description": "Use an explicit AMI for the image ",
+          "properties": {
+            "ImageId": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "aws:Source:SSMParam": {
+          "additionalProperties": false,
+          "description": "Lookup the image Id using the SSM ParameterStore",
+          "properties": {
+            "Name": {
+              "default": "/aws/service/ami-amazon-linux-latest/amzn-ami-hvm-x86_64-ebs",
+              "description": "The name of the parameter to lookup",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "aws_ecs_computeimage": {
+      "additionalProperties": false,
+      "description": "AWS ECS Specific overrides to source compute images",
+      "properties": {
+        "Source": {
+          "default": "Reference",
+          "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
+          "enum": [
+            "Reference",
+            "aws:AMI",
+            "aws:SSMParam"
+          ],
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Source:Reference": {
+          "additionalProperties": false,
+          "properties": {
+            "OS": {
+              "default": "Centos",
+              "description": "The OS Image family defined in the Region AMI",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "Type": {
+              "default": "ECS",
+              "description": "The image Type defined under the family in the Region AMI",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "aws:Source:AMI": {
+          "additionalProperties": false,
+          "description": "Use an explicit AMI for the image ",
+          "properties": {
+            "ImageId": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "aws:Source:SSMParam": {
+          "additionalProperties": false,
+          "properties": {
+            "Name": {
+              "default": "/aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "aws_operatingsystem": {
+      "additionalProperties": false,
+      "description": "Standard Configuration options to define an operating system",
+      "properties": {
+        "Architecture": {
+          "description": "The CPU Architecture used",
+          "enum": [
+            "i386",
+            "x86_64",
+            "arm64"
+          ],
+          "type": "string"
+        },
+        "Distribution": {
+          "default": "awslinux",
+          "description": "The distribution of the operating system",
+          "type": "string"
+        },
+        "Family": {
+          "default": "linux",
+          "description": "The broad family of operating system",
+          "enum": [
+            "linux",
+            "windows",
+            "macos"
+          ],
+          "type": "string"
+        },
+        "MajorVersion": {
+          "default": "1",
+          "description": "The major version of the distribution",
+          "type": "string"
+        },
+        "MinorVersion": {
+          "description": "The minor version of the distribution major version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "aws_s3_notification": {
+      "additionalProperties": false,
+      "description": "AWS S3 specific configuration options for notifications",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Events": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "create"
+          ],
+          "enum": [
+            "create",
+            "delete",
+            "restore",
+            "reducedredundancy"
+          ],
+          "type": "array"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Prefix": {
+          "type": "string"
+        },
+        "Suffix": {
+          "type": "string"
+        },
+        "aws:QueuePermissionMigration": {
+          "default": false,
+          "description": "Deprecation alert: set to true once policy updated for queue",
+          "type": "boolean"
+        },
+        "aws:TopicPermissionMigration": {
+          "default": false,
+          "description": "Deprecation alert: set to true once policy updated for topic",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "backupwindow": {
+      "additionalProperties": false,
+      "description": "Standard Configuration options to define a backup window",
+      "properties": {
+        "TimeOfDay": {
+          "default": "01:00",
+          "type": "string"
+        },
+        "TimeZone": {
+          "default": "UTC",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "computeimage": {
+      "additionalProperties": false,
+      "description": "Configuration for the source of compute instance images",
+      "properties": {
+        "Source": {
+          "const": "Reference",
+          "default": "Reference",
+          "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Source:Reference": {
+          "additionalProperties": false,
+          "properties": {
+            "OS": {
+              "default": "Centos",
+              "description": "The OS Image family defined in the Region AMI",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "Type": {
+              "default": "EC2",
+              "description": "The image Type defined under the family in the Region AMI",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
     },
     "containertask": {
-      "description": "Descirbes each container that will be used as part of a service or task",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Descirbes each container that will be used as part of a service or task",
       "properties": {
-        "MemoryReservation": {
-          "type": "number"
+        "Alerts": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+        },
+        "ContainerLogGroup": {
+          "default": false,
+          "type": "boolean"
         },
         "ContainerNetworkLinks": {
           "contains": {
@@ -412,48 +555,9 @@
           },
           "type": "array"
         },
-        "Privileged": {
-          "default": false,
-          "type": "boolean"
-        },
-        "MaximumMemory": {
-          "description": "Set to 0 to not set a maximum",
-          "type": "number"
-        },
         "Cpu": {
           "description": "The CPU share to assign to the container",
           "type": "number"
-        },
-        "Ports": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Container": {
-                  "type": "string"
-                },
-                "DynamicHostPort": {
-                  "default": false,
-                  "type": "boolean"
-                },
-                "LB": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/lbattach"
-                },
-                "Registry": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/srvregattach"
-                },
-                "IPAddressGroups": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
         },
         "Extensions": {
           "contains": {
@@ -464,43 +568,115 @@
           "description": "Extensions to invoke as part of component processing",
           "type": "array"
         },
+        "Gpu": {
+          "description": "The number of physical GPUs to assign to the container",
+          "type": "number"
+        },
         "Image": {
-          "description": "Set the source of the components image",
           "additionalProperties": false,
-          "type": "object",
+          "description": "Set the source of the components image",
           "properties": {
+            "Source": {
+              "default": "Registry",
+              "description": "The source of the image",
+              "enum": [
+                "registry",
+                "containerregistry"
+              ],
+              "type": "string"
+            },
             "Source:containerregistry": {
-              "description": "A docker container registry to source the image from",
               "additionalProperties": false,
-              "type": "object",
+              "description": "A docker container registry to source the image from",
               "properties": {
                 "Image": {
                   "description": "The docker image that you want to use",
                   "type": "string"
                 }
-              }
-            },
-            "Source": {
-              "default": "Registry",
-              "description": "The source of the image",
-              "type": "string",
-              "enum": [
-                "registry",
-                "containerregistry"
-              ]
+              },
+              "type": "object"
             }
           },
           "required": [
             "Source"
-          ]
+          ],
+          "type": "object"
         },
-        "Gpu": {
-          "description": "The number of physical GPUs to assign to the container",
-          "type": "number"
+        "InitProcess": {
+          "default": false,
+          "description": "Enable a docker based init process to manage processes",
+          "type": "boolean"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "LocalLogging": {
           "default": false,
           "type": "boolean"
+        },
+        "LogDriver": {
+          "default": "awslogs",
+          "enum": [
+            "awslogs",
+            "json-file",
+            "fluentd"
+          ],
+          "type": "string"
+        },
+        "LogMetrics": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "MaximumMemory": {
+          "description": "Set to 0 to not set a maximum",
+          "type": "number"
+        },
+        "MemoryReservation": {
+          "type": "number"
+        },
+        "Ports": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Container": {
+                  "type": "string"
+                },
+                "DynamicHostPort": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "IPAddressGroups": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "type": "array"
+                },
+                "LB": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/lbattach"
+                },
+                "Registry": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/srvregattach"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Privileged": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            }
+          },
+          "type": "object"
         },
         "RunCapabilities": {
           "contains": {
@@ -510,45 +686,16 @@
           },
           "type": "array"
         },
-        "Version": {
-          "description": "Override the version from the deployment unit",
-          "type": "string"
-        },
         "RunMode": {
           "description": "A per container setting which can be used by the app to determine run mode for a container in a task - defaults to the second half of a dash separated id",
           "type": "string"
         },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Alert": {
-              "default": "default",
-              "type": "string"
-            }
-          }
-        },
-        "Links": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "LogDriver": {
-          "default": "awslogs",
-          "type": "string",
-          "enum": [
-            "awslogs",
-            "json-file",
-            "fluentd"
-          ]
-        },
         "Ulimits": {
+          "additionalProperties": false,
+          "description": "Linux OS based limits for the container",
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
-                "SoftLimit": {
-                  "default": 1024,
-                  "description": "The User level limit to apply",
-                  "type": "number"
-                },
                 "HardLimit": {
                   "default": 1024,
                   "description": "The OS level hard limit to apply",
@@ -557,6 +704,11 @@
                 "Name": {
                   "description": "The name of the ulimit to apply",
                   "type": "string"
+                },
+                "SoftLimit": {
+                  "default": 1024,
+                  "description": "The User level limit to apply",
+                  "type": "number"
                 }
               },
               "required": [
@@ -564,42 +716,515 @@
               ]
             }
           },
-          "description": "Linux OS based limits for the container",
-          "additionalProperties": false,
           "type": "object"
         },
-        "InitProcess": {
-          "default": false,
-          "description": "Enable a docker based init process to manage processes",
-          "type": "boolean"
-        },
-        "LogMetrics": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
-        },
-        "Alerts": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-        },
-        "ContainerLogGroup": {
-          "default": false,
-          "type": "boolean"
+        "Version": {
+          "description": "Override the version from the deployment unit",
+          "type": "string"
         }
       },
       "required": [
         "MemoryReservation"
-      ]
+      ],
+      "type": "object"
     },
-    "maintenancewindow": {
-      "description": "Standard Configuration options to define a maintenance window",
+    "contextpath": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Combined with the getContextPath() function creates a name or path based on your current context",
       "properties": {
-        "TimeOfDay": {
-          "default": "01:00",
+        "Custom": {
+          "description": "The custom string to include if custom is included in the path",
           "type": "string"
         },
+        "IncludeInPath": {
+          "additionalProperties": false,
+          "properties": {
+            "Account": {
+              "default": false,
+              "description": "The name of the Account",
+              "type": "boolean"
+            },
+            "Component": {
+              "default": false,
+              "description": "The name of the component",
+              "type": "boolean"
+            },
+            "Custom": {
+              "default": false,
+              "description": "Include a custom string",
+              "type": "boolean"
+            },
+            "Environment": {
+              "default": false,
+              "description": "The name of the environment",
+              "type": "boolean"
+            },
+            "Instance": {
+              "default": false,
+              "description": "The name of the instance",
+              "type": "boolean"
+            },
+            "Product": {
+              "default": true,
+              "description": "The name of the product",
+              "type": "boolean"
+            },
+            "ProviderId": {
+              "default": false,
+              "description": "The Provider Id for the account",
+              "type": "boolean"
+            },
+            "Segment": {
+              "default": true,
+              "description": "The name of the segment",
+              "type": "boolean"
+            },
+            "Tier": {
+              "default": false,
+              "description": "The name of the tier",
+              "type": "boolean"
+            },
+            "Version": {
+              "default": false,
+              "description": "The name of the version",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "Order": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "Account",
+            "ProviderId",
+            "Product",
+            "Environment",
+            "Segment",
+            "Tier",
+            "Component",
+            "Instance",
+            "Version",
+            "Host",
+            "Custom"
+          ],
+          "type": "array"
+        },
+        "Style": {
+          "default": "single",
+          "description": "Provide the value as a single string or a file system style path",
+          "enum": [
+            "single",
+            "path"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "core_profile": {
+      "additionalProperties": false,
+      "description": "Internal: desribes the base profiles for all components",
+      "properties": {
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "district": {
+      "additionalProperties": false,
+      "description": "Configuration of a district",
+      "properties": {
+        "InstanceOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Layers whose configuration data should be included in the solution for an instance of the district",
+          "type": "array"
+        },
+        "NamePartOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Parts to be included in the name of an instance of the district. If not provided, the InstanceOrder is assumed. If not a defined name part, the part is assumed to be a layer.",
+          "type": "array"
+        },
+        "NameParts": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Should this part be ignored/omitted?",
+                  "type": "boolean"
+                },
+                "Fixed": {
+                  "description": "Include a fixed string",
+                  "type": "string"
+                },
+                "Ignore": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "description": "An array of values to not include if encountered",
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "InstanceOrder"
+      ],
+      "type": "object"
+    },
+    "ecs_computeimage": {
+      "additionalProperties": false,
+      "description": "ECS Specific overrides to source compute images",
+      "properties": {
+        "Source": {
+          "const": "Reference",
+          "default": "Reference",
+          "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Source:Reference": {
+          "additionalProperties": false,
+          "properties": {
+            "OS": {
+              "default": "Centos",
+              "description": "The OS Image family defined in the Region AMI",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "Type": {
+              "default": "ECS",
+              "description": "The image Type defined under the family in the Region AMI",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "environmentformat": {
+      "additionalProperties": false,
+      "description": "How to format environment variables from settings",
+      "properties": {
+        "AsFile": {
+          "default": false,
+          "type": "boolean"
+        },
+        "FileFormat": {
+          "default": "json",
+          "description": "The format of the file when using AsFile",
+          "enum": [
+            "json",
+            "yaml"
+          ],
+          "type": "string"
+        },
+        "Json": {
+          "additionalProperties": false,
+          "properties": {
+            "Escaped": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Prefix": {
+              "default": "json",
+              "enum": [
+                "json",
+                ""
+              ],
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "lbattach": {
+      "additionalProperties": false,
+      "description": "Attaches a components port to a load balancer",
+      "properties": {
+        "Component": {
+          "type": "string"
+        },
+        "Instance": {
+          "type": "string"
+        },
+        "LinkName": {
+          "default": "lb",
+          "type": "string"
+        },
+        "LinkRef": {
+          "type": "string"
+        },
+        "PortMapping": {
+          "type": "string"
+        },
+        "SubComponent": {
+          "type": "string"
+        },
+        "Tier": {
+          "type": "string"
+        },
+        "Type": {
+          "const": "lbport",
+          "default": "lbport",
+          "type": "string"
+        },
+        "Version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "link": {
+      "additionalProperties": false,
+      "description": "A relationship between Components.",
+      "properties": {
+        "ActiveRequired": {
+          "description": "Require that the linked occurrence has been deployed and is active",
+          "type": "boolean"
+        },
+        "Any": {
+          "type": "string"
+        },
+        "Assignment": {
+          "type": "string"
+        },
+        "AuthProvider": {
+          "type": "string"
+        },
+        "Branch": {
+          "type": "string"
+        },
+        "Client": {
+          "type": "string"
+        },
+        "Component": {
+          "type": "string"
+        },
+        "Connection": {
+          "type": "string"
+        },
+        "DataBucket": {
+          "type": "string"
+        },
+        "DataFeed": {
+          "type": "string"
+        },
+        "Direction": {
+          "description": "The direction the role applies to between the components",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Endpoint": {
+          "type": "string"
+        },
+        "Environment": {
+          "type": "string"
+        },
+        "Function": {
+          "type": "string"
+        },
+        "IncludeInContext": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Include the attributes provided by this link in the environment context",
+          "type": "array"
+        },
+        "Instance": {
+          "type": "string"
+        },
+        "Key": {
+          "type": "string"
+        },
+        "LinkRef": {
+          "type": "string"
+        },
+        "Mount": {
+          "type": "string"
+        },
+        "NetworkACL": {
+          "type": "string"
+        },
+        "Platform": {
+          "type": "string"
+        },
+        "PortMapping": {
+          "type": "string"
+        },
+        "Product": {
+          "type": "string"
+        },
+        "RegistryService": {
+          "type": "string"
+        },
+        "Resource": {
+          "type": "string"
+        },
+        "Role": {
+          "description": "The role of the relationship between the components",
+          "type": "string"
+        },
+        "Route": {
+          "type": "string"
+        },
+        "RouteTable": {
+          "type": "string"
+        },
+        "Rule": {
+          "type": "string"
+        },
+        "Secret": {
+          "type": "string"
+        },
+        "Segment": {
+          "type": "string"
+        },
+        "Service": {
+          "type": "string"
+        },
+        "SubComponent": {
+          "type": "string"
+        },
+        "Task": {
+          "type": "string"
+        },
+        "Tenant": {
+          "type": "string"
+        },
+        "Tier": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "Version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "logmetric": {
+      "additionalProperties": false,
+      "description": "Generates a monitoring metric whenever the filter is matched in a log message",
+      "properties": {
+        "LogFilter": {
+          "description": "A filter expression to apply to logs that will trigger a metric bump",
+          "type": "string"
+        }
+      },
+      "required": [
+        "LogFilter"
+      ],
+      "type": "object"
+    },
+    "logwatcher": {
+      "additionalProperties": false,
+      "description": "Configuration for services which can act on log subscriptions",
+      "properties": {
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "Links to the components with logs to watch"
+        },
+        "LogFilter": {
+          "description": "A filter expression to apply to logs that will be sent to the watcher",
+          "type": "string"
+        }
+      },
+      "required": [
+        "LogFilter"
+      ],
+      "type": "object"
+    },
+    "maintenancewindow": {
+      "additionalProperties": false,
+      "description": "Standard Configuration options to define a maintenance window",
+      "properties": {
         "DayOfTheWeek": {
           "default": "Sunday",
-          "type": "string",
           "enum": [
             "Sunday",
             "Monday",
@@ -608,84 +1233,301 @@
             "Thursday",
             "Friday",
             "Saturday"
-          ]
+          ],
+          "type": "string"
+        },
+        "TimeOfDay": {
+          "default": "01:00",
+          "type": "string"
         },
         "TimeZone": {
           "default": "UTC",
           "type": "string"
         }
-      }
+      },
+      "type": "object"
     },
-    "scalingpolicy_ecs": {
-      "description": "ECS Specific overrides for scaling policies",
+    "module": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Defines the CMDB modules to load",
       "properties": {
-        "Scheduled": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Schedule": {
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "ProcessorProfile": {
-              "default": "default",
-              "type": "string"
-            }
-          }
+        "Enabled": {
+          "default": true,
+          "description": "To enable loading the module in this profile",
+          "type": "boolean"
         },
-        "Type": {
-          "default": "ComputeProvider",
-          "type": "string",
+        "Name": {
+          "description": "The name of the scneario to load",
+          "type": "string"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameter values to provide to the module",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Key": {
+                  "description": "The key of the parameter",
+                  "type": "string"
+                },
+                "Value": {
+                  "description": "The value of the parameter",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Key",
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Provider": {
+          "description": "The provider name which offers the module",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Provider",
+        "Name"
+      ],
+      "type": "object"
+    },
+    "networkrule": {
+      "additionalProperties": false,
+      "description": "Network Access rule configuration",
+      "properties": {
+        "Description": {
+          "description": "A description that will be applied to the rule",
+          "type": "string"
+        },
+        "IPAddressGroups": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A list of IP Address groups ids from the IPAddressGroups reference",
+          "type": "array"
+        },
+        "Ports": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A list of port ids from the Ports reference",
+          "type": "array"
+        },
+        "SecurityGroups": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A list of security groups or ids - for internal use only",
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "objectstore_notification": {
+      "additionalProperties": false,
+      "description": "Event notification for object changes in an object store",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Events": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "create"
+          ],
           "enum": [
-            "Stepped",
-            "Tracked",
-            "Scheduled",
-            "ComputeProvider"
-          ]
+            "create",
+            "delete",
+            "restore",
+            "reducedredundancy"
+          ],
+          "type": "array"
         },
-        "Tracked": {
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Prefix": {
+          "type": "string"
+        },
+        "Suffix": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "operatingsystem": {
+      "additionalProperties": false,
+      "description": "Standard Configuration options to define an operating system",
+      "properties": {
+        "Architecture": {
+          "description": "The CPU Architecture used",
+          "enum": [
+            "i386",
+            "x86_64",
+            "arm64"
+          ],
+          "type": "string"
+        },
+        "Distribution": {
+          "description": "The distribution of the operating system",
+          "type": "string"
+        },
+        "Family": {
+          "description": "The broad family of operating system",
+          "enum": [
+            "linux",
+            "windows",
+            "macos"
+          ],
+          "type": "string"
+        },
+        "MajorVersion": {
+          "description": "The major version of the distribution",
+          "type": "string"
+        },
+        "MinorVersion": {
+          "description": "The minor version of the distribution major version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ospatching": {
+      "additionalProperties": false,
+      "description": "OS Patching configuration definitions",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "description": "Enable automatic OS Patching",
+          "type": "boolean"
+        },
+        "Schedule": {
+          "default": "59 13 * * *",
+          "description": "UTC based cron schedule to apply updates",
+          "type": "string"
+        },
+        "SecurityOnly": {
+          "default": false,
+          "description": "Only apply security updates",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "placementprofile": {
+      "additionalProperties": false,
+      "description": "Manages where resource groups in a component are placed",
+      "properties": {
+        "*": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "TargetValue": {
-              "type": "number"
-            },
-            "ScaleInEnabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "RecommendedMetric": {
-              "description": "Use a recommended (predefined) metric for scaling",
+            "DeploymentFramework": {
+              "description": "The deployment framework to use to generate the outputs for deployment",
               "type": "string"
             },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
-        },
-        "TrackingResource": {
-          "description": "The resource metric used to trigger scaling",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            "Provider": {
+              "description": "The provider to use to host the component",
+              "type": "string"
             },
-            "MetricTrigger": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+            "Region": {
+              "description": "The id of the region to host the component",
+              "type": "string"
             }
-          }
+          },
+          "required": [
+            "Provider",
+            "Region",
+            "DeploymentFramework"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "plugin": {
+      "additionalProperties": false,
+      "description": "Defines a CMDB plugin and how its loaded",
+      "properties": {
+        "Enabled": {
+          "default": true,
+          "description": "To enable loading the plugin",
+          "type": "boolean"
         },
-        "Cooldown": {
-          "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
+        "Name": {
+          "description": "The id of the plugin to install",
+          "type": "string"
+        },
+        "Priority": {
+          "default": 100,
+          "description": "The priority order to load plugins - lowest first",
+          "type": "number"
+        },
+        "Required": {
+          "default": false,
+          "description": "Ensure the plugin loads at all times",
+          "type": "boolean"
+        },
+        "Source": {
+          "description": "Where the plugin for the plugin can be found",
+          "enum": [
+            "local",
+            "git"
+          ],
+          "type": "string"
+        },
+        "Source:git": {
           "additionalProperties": false,
-          "type": "object",
+          "properties": {
+            "Path": {
+              "description": "a path within in the repository where the plugin starts",
+              "type": "string"
+            },
+            "Ref": {
+              "default": "main",
+              "description": "The ref to clone from the repo",
+              "type": "string"
+            },
+            "Url": {
+              "description": "The Url for the git repository",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "Name",
+        "Source"
+      ],
+      "type": "object"
+    },
+    "scalingpolicy": {
+      "additionalProperties": false,
+      "description": "Defines the behaviour of auto scaling resources",
+      "properties": {
+        "Cooldown": {
+          "additionalProperties": false,
+          "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
           "properties": {
             "ScaleIn": {
               "default": 300,
@@ -695,47 +1537,42 @@
               "default": 600,
               "type": "number"
             }
-          }
+          },
+          "type": "object"
         },
-        "Stepped": {
+        "Scheduled": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "CapacityAdjustment": {
-              "default": "Change",
-              "description": "How to scale when the policy is triggered",
-              "type": "string",
-              "enum": [
-                "Change",
-                "Exact",
-                "Percentage"
-              ]
-            },
-            "MetricAggregation": {
-              "default": "Average",
-              "description": "The method used to agregate the cloudwatch metric",
-              "type": "string",
-              "enum": [
-                "Average",
-                "Minimum",
-                "Maximum"
-              ]
-            },
             "Enabled": {
               "default": true,
               "type": "boolean"
             },
+            "ProcessorProfile": {
+              "default": "default",
+              "type": "string"
+            },
+            "Schedule": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "Stepped": {
+          "additionalProperties": false,
+          "properties": {
             "Adjustments": {
+              "additionalProperties": false,
+              "description": "The adjustments to apply at each step",
               "patternProperties": {
                 "^[A-Za-z_][A-Za-z0-9_-]*$": {
                   "properties": {
-                    "LowerBound": {
-                      "description": "The lower bound for the difference between the alarm threshold and the metric",
-                      "type": "number"
-                    },
                     "AdjustmentValue": {
                       "default": 1,
                       "description": "The value to apply when the adjustment step is triggered",
+                      "type": "number"
+                    },
+                    "LowerBound": {
+                      "description": "The lower bound for the difference between the alarm threshold and the metric",
                       "type": "number"
                     },
                     "UpperBound": {
@@ -745,20 +1582,92 @@
                   }
                 }
               },
-              "description": "The adjustments to apply at each step",
-              "additionalProperties": false,
               "type": "object"
+            },
+            "CapacityAdjustment": {
+              "default": "Change",
+              "description": "How to scale when the policy is triggered",
+              "enum": [
+                "Change",
+                "Exact",
+                "Percentage"
+              ],
+              "type": "string"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "MetricAggregation": {
+              "default": "Average",
+              "description": "The method used to agregate the cloudwatch metric",
+              "enum": [
+                "Average",
+                "Minimum",
+                "Maximum"
+              ],
+              "type": "string"
             },
             "MinAdjustment": {
               "default": -1,
               "description": "When minimum scale adjustment value to apply when triggered",
               "type": "number"
             }
-          }
+          },
+          "type": "object"
         },
+        "Tracked": {
+          "additionalProperties": false,
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "RecommendedMetric": {
+              "description": "Use a recommended (predefined) metric for scaling",
+              "type": "string"
+            },
+            "ScaleInEnabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "TargetValue": {
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "TrackingResource": {
+          "additionalProperties": false,
+          "description": "The resource metric used to trigger scaling",
+          "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
+            "MetricTrigger": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+            }
+          },
+          "type": "object"
+        },
+        "Type": {
+          "default": "Stepped",
+          "enum": [
+            "Stepped",
+            "Tracked",
+            "Scheduled"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "scalingpolicy_ecs": {
+      "additionalProperties": false,
+      "description": "ECS Specific overrides for scaling policies",
+      "properties": {
         "ComputeProvider": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "ManageTermination": {
               "default": true,
@@ -780,347 +1689,420 @@
               "description": "The target usage of the autoscale group to maintain as a percentage",
               "type": "number"
             }
-          }
-        }
-      }
-    },
-    "srvregattach": {
-      "description": "Attachs a component port to a service registry",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "LinkName": {
-          "default": "srvreg",
-          "type": "string"
+          },
+          "type": "object"
         },
-        "SubComponent": {
-          "type": "string"
+        "Cooldown": {
+          "additionalProperties": false,
+          "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
+          "properties": {
+            "ScaleIn": {
+              "default": 300,
+              "type": "number"
+            },
+            "ScaleOut": {
+              "default": 600,
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "Scheduled": {
+          "additionalProperties": false,
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "ProcessorProfile": {
+              "default": "default",
+              "type": "string"
+            },
+            "Schedule": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "Stepped": {
+          "additionalProperties": false,
+          "properties": {
+            "Adjustments": {
+              "additionalProperties": false,
+              "description": "The adjustments to apply at each step",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "AdjustmentValue": {
+                      "default": 1,
+                      "description": "The value to apply when the adjustment step is triggered",
+                      "type": "number"
+                    },
+                    "LowerBound": {
+                      "description": "The lower bound for the difference between the alarm threshold and the metric",
+                      "type": "number"
+                    },
+                    "UpperBound": {
+                      "description": "The upper bound for the difference between the alarm threshold and the metric",
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "CapacityAdjustment": {
+              "default": "Change",
+              "description": "How to scale when the policy is triggered",
+              "enum": [
+                "Change",
+                "Exact",
+                "Percentage"
+              ],
+              "type": "string"
+            },
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "MetricAggregation": {
+              "default": "Average",
+              "description": "The method used to agregate the cloudwatch metric",
+              "enum": [
+                "Average",
+                "Minimum",
+                "Maximum"
+              ],
+              "type": "string"
+            },
+            "MinAdjustment": {
+              "default": -1,
+              "description": "When minimum scale adjustment value to apply when triggered",
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "Tracked": {
+          "additionalProperties": false,
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "RecommendedMetric": {
+              "description": "Use a recommended (predefined) metric for scaling",
+              "type": "string"
+            },
+            "ScaleInEnabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "TargetValue": {
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "TrackingResource": {
+          "additionalProperties": false,
+          "description": "The resource metric used to trigger scaling",
+          "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
+            "MetricTrigger": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+            }
+          },
+          "type": "object"
         },
         "Type": {
-          "default": "serviceregistryservice",
-          "const": "serviceregistryservice",
+          "default": "ComputeProvider",
+          "enum": [
+            "Stepped",
+            "Tracked",
+            "Scheduled",
+            "ComputeProvider"
+          ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "secretstring": {
+      "additionalProperties": false,
+      "description": "Defines the policy for generating secret strings",
+      "properties": {
+        "ExcludedCharacters": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "\"",
+            "'",
+            "$",
+            "@",
+            "/",
+            "\\"
+          ],
+          "description": "Characters that must be excluded",
+          "type": "array"
         },
-        "Tier": {
+        "IncludeLower": {
+          "default": true,
+          "description": "Include lower-case characters",
+          "type": "boolean"
+        },
+        "IncludeNumber": {
+          "default": true,
+          "description": "Include numbers characters",
+          "type": "boolean"
+        },
+        "IncludeSpecial": {
+          "default": false,
+          "description": "Include special characters",
+          "type": "boolean"
+        },
+        "IncludeUpper": {
+          "default": true,
+          "description": "Include upper-case characters",
+          "type": "boolean"
+        },
+        "MaxLength": {
+          "default": 30,
+          "description": "The maximum character length",
+          "type": "number"
+        },
+        "MinLength": {
+          "default": 20,
+          "description": "The minimum character length",
+          "type": "number"
+        },
+        "RequireAllIncludedTypes": {
+          "default": true,
+          "description": "Require at least one of each included type",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "srvregattach": {
+      "additionalProperties": false,
+      "description": "Attachs a component port to a service registry",
+      "properties": {
+        "Component": {
           "type": "string"
         },
         "Instance": {
           "type": "string"
         },
-        "Version": {
-          "type": "string"
-        },
-        "Component": {
+        "LinkName": {
+          "default": "srvreg",
           "type": "string"
         },
         "RegistryService": {
+          "type": "string"
+        },
+        "SubComponent": {
+          "type": "string"
+        },
+        "Tier": {
+          "type": "string"
+        },
+        "Type": {
+          "const": "serviceregistryservice",
+          "default": "serviceregistryservice",
+          "type": "string"
+        },
+        "Version": {
           "type": "string"
         }
       },
       "required": [
         "Tier",
         "Component"
-      ]
+      ],
+      "type": "object"
     },
-    "autoscalegroup": {
-      "description": "Control how a virtual machine based autoscaling group behaves",
+    "table_hosting": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Hosting and capacity configuration for global db tables",
       "properties": {
-        "MinUpdateInstances": {
-          "default": 1,
-          "description": "The minimum number of instances which must be available during an update",
-          "type": "number"
-        },
-        "ReplaceCluster": {
-          "default": false,
-          "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
-          "type": "boolean"
-        },
-        "DetailedMetrics": {
-          "default": true,
-          "description": "Enable the collection of autoscale group detailed metrics",
-          "type": "boolean"
-        },
-        "UpdatePauseTime": {
-          "default": "10M",
-          "description": "How long to pause betweeen updates of instances",
-          "type": "string"
-        },
-        "ActivityCooldown": {
-          "default": 30,
-          "type": "number"
-        },
-        "MinSuccessInstances": {
-          "default": 75,
-          "description": "The minimum percantage of instances that must sucessfully update",
-          "type": "number"
-        },
-        "StartupTimeout": {
-          "default": "15M",
-          "description": "How long to wait for a cfn-signal to be received from a host",
-          "type": "string"
-        },
-        "AlwaysReplaceOnUpdate": {
-          "default": false,
-          "description": "Replace instances on every update action",
-          "type": "boolean"
-        }
-      }
-    },
-    "aws_ecs_computeimage": {
-      "description": "AWS ECS Specific overrides to source compute images",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "aws:Source:SSMParam": {
+        "Backup": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "Name": {
-              "default": "/aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
+            "Enabled": {
+              "default": false,
+              "description": "Enables point in time recovery on the table",
+              "type": "boolean"
             }
-          }
+          },
+          "type": "object"
         },
-        "Source": {
-          "default": "Reference",
-          "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ],
+        "Billing": {
+          "default": "provisioned",
+          "description": "The billing mode for the table",
           "enum": [
-            "Reference",
-            "aws:AMI",
-            "aws:SSMParam"
-          ]
+            "provisioned",
+            "per-request"
+          ],
+          "type": "string"
         },
-        "Source:Reference": {
+        "Capacity": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "Type": {
-              "default": "ECS",
-              "description": "The image Type defined under the family in the Region AMI",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
+            "Read": {
+              "default": 1,
+              "description": "When using provisioned billing the maximum RCU of the table",
+              "type": "number"
             },
-            "OS": {
-              "default": "Centos",
-              "description": "The OS Image family defined in the Region AMI",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
+            "Write": {
+              "default": 1,
+              "description": "When using provisioned billing the maximum WCU of the table",
+              "type": "number"
             }
-          }
+          },
+          "type": "object"
         },
-        "aws:Source:AMI": {
-          "description": "Use an explicit AMI for the image ",
+        "Encrypted": {
+          "default": true,
+          "description": "Enable at rest encryption",
+          "type": "boolean"
+        },
+        "Stream": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
-            "ImageId": {
+            "Enabled": {
+              "default": false,
+              "description": "Enables event change streams for the table",
+              "type": "boolean"
+            },
+            "ViewType": {
+              "default": "NEW_IMAGE",
+              "description": "The change notification event content",
+              "enum": [
+                "KEYS_ONLY",
+                "NEW_IMAGE",
+                "OLD_IMAGE",
+                "NEW_AND_OLD_IMAGES"
+              ],
               "type": "string"
             }
-          }
+          },
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
     },
-    "ospatching": {
-      "description": "OS Patching configuration definitions",
+    "tracing": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Application tracing configuration",
       "properties": {
-        "Schedule": {
-          "default": "59 13 * * *",
-          "description": "UTC based cron schedule to apply updates",
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Mode": {
+          "enum": [
+            "active",
+            "passthrough"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "volume": {
+      "additionalProperties": false,
+      "description": "Defines the standard configuration of a storage volume",
+      "properties": {
+        "Device": {
+          "description": "The deivce Id of the volume where the disk will be attached",
           "type": "string"
         },
         "Enabled": {
           "default": true,
-          "description": "Enable automatic OS Patching",
+          "description": "Should the volume be created",
           "type": "boolean"
         },
-        "SecurityOnly": {
-          "default": false,
-          "description": "Only apply security updates",
-          "type": "boolean"
-        }
-      }
-    },
-    "alert": {
-      "description": "Configuration of alerts that monitor component resources",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Operator": {
-          "default": "GreaterThanOrEqualToThreshold",
-          "type": "string"
-        },
-        "Description": {
-          "type": "string"
-        },
-        "Resource": {
-          "description": "Provide a component resource to determine the dimensions of the metric",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Type": {
-              "type": "string"
-            },
-            "Id": {
-              "type": "string"
-            }
-          }
-        },
-        "Dimensions": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Value": {
-                  "description": "The value of the dimension to match",
-                  "type": "string"
-                },
-                "SettingEnvName": {
-                  "description": "A setting name as env that will provide the dimension value",
-                  "type": "string"
-                },
-                "Key": {
-                  "description": "The Key of the dimension",
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "description": "Explicit configured dimensions",
-          "additionalProperties": false,
-          "type": "object"
-        },
-        "Severity": {
-          "default": "info",
-          "type": "string",
-          "enum": [
-            "debug",
-            "info",
-            "warn",
-            "error",
-            "fatal"
-          ]
-        },
-        "Time": {
-          "default": 300,
+        "Iops": {
+          "description": "For volume types which support provisioned IOPS, this sets the requested IOPS",
           "type": "number"
         },
-        "Unit": {
-          "default": "Count",
+        "MountPath": {
+          "description": "An OS path where the disk will be mounted",
           "type": "string"
         },
-        "MissingData": {
-          "default": "notBreaching",
-          "type": "string"
-        },
-        "Namespace": {
-          "type": "string"
-        },
-        "Name": {
-          "type": "string"
-        },
-        "Periods": {
-          "default": 1,
+        "Size": {
+          "description": "The size in GB of the volume",
           "type": "number"
         },
-        "Statistic": {
-          "default": "Sum",
-          "type": "string"
-        },
-        "Comparison": {
-          "default": "Threshold",
-          "type": "string"
-        },
-        "ReportOk": {
-          "default": false,
-          "type": "boolean"
-        },
-        "DimensionSource": {
-          "default": "Resource",
-          "description": "The source of the alert dimensions - resource lookup or explicit configuration",
-          "type": "string",
-          "enum": [
-            "Resource",
-            "Configured"
-          ]
-        },
-        "Metric": {
-          "type": "string"
-        },
-        "Threshold": {
-          "default": 1,
-          "type": "number"
-        }
-      },
-      "required": [
-        "Metric",
-        "Name"
-      ]
-    },
-    "logmetric": {
-      "description": "Generates a monitoring metric whenever the filter is matched in a log message",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "LogFilter": {
-          "description": "A filter expression to apply to logs that will trigger a metric bump",
+        "Type": {
+          "default": "gp2",
+          "description": "The type of volume to provision - see provider for available types",
           "type": "string"
         }
       },
       "required": [
-        "LogFilter"
-      ]
+        "Device",
+        "Size"
+      ],
+      "type": "object"
     },
     "waf": {
-      "description": "The Web Application Firewall Policy to apply",
       "additionalProperties": false,
-      "type": "object",
+      "description": "The Web Application Firewall Policy to apply",
       "properties": {
+        "CountryGroups": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "IPAddressGroups": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
         "Logging": {
           "additionalProperties": false,
-          "type": "object",
           "properties": {
             "Enabled": {
               "default": true,
               "type": "boolean"
             }
-          }
+          },
+          "type": "object"
         },
-        "Version": {
-          "default": "v1",
-          "description": "Version of WAF to use",
-          "type": "string",
-          "enum": [
-            "v1",
-            "v2"
-          ]
+        "OWASP": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Logging": {
+              "default": "waf",
+              "description": "Logging profile to process WAF Logs that are stored in the OpsData DataBucket.",
+              "type": "string"
+            }
+          },
+          "type": "object"
         },
         "RateLimits": {
+          "additionalProperties": false,
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
@@ -1141,996 +2123,19 @@
               ]
             }
           },
-          "additionalProperties": false,
           "type": "object"
-        },
-        "OWASP": {
-          "default": false,
-          "type": "boolean"
-        },
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Logging": {
-              "default": "waf",
-              "description": "Logging profile to process WAF Logs that are stored in the OpsData DataBucket.",
-              "type": "string"
-            }
-          }
-        },
-        "CountryGroups": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
-        "IPAddressGroups": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        }
-      }
-    },
-    "environmentformat": {
-      "description": "How to format environment variables from settings",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Json": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Prefix": {
-              "default": "json",
-              "type": "string",
-              "enum": [
-                "json",
-                ""
-              ]
-            },
-            "Escaped": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
-        },
-        "FileFormat": {
-          "default": "json",
-          "description": "The format of the file when using AsFile",
-          "type": "string",
-          "enum": [
-            "json",
-            "yaml"
-          ]
-        },
-        "AsFile": {
-          "default": false,
-          "type": "boolean"
-        }
-      }
-    },
-    "placementprofile": {
-      "description": "Manages where resource groups in a component are placed",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "*": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "DeploymentFramework": {
-              "description": "The deployment framework to use to generate the outputs for deployment",
-              "type": "string"
-            },
-            "Region": {
-              "description": "The id of the region to host the component",
-              "type": "string"
-            },
-            "Provider": {
-              "description": "The provider to use to host the component",
-              "type": "string"
-            }
-          },
-          "required": [
-            "Provider",
-            "Region",
-            "DeploymentFramework"
-          ]
-        }
-      }
-    },
-    "aws_computeimage": {
-      "description": "AWS Specific overrides to source compute images",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "aws:Source:SSMParam": {
-          "description": "Lookup the image Id using the SSM ParameterStore",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Name": {
-              "default": "/aws/service/ami-amazon-linux-latest/amzn-ami-hvm-x86_64-ebs",
-              "description": "The name of the parameter to lookup",
-              "type": "string"
-            }
-          }
-        },
-        "Source": {
-          "default": "Reference",
-          "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ],
-          "enum": [
-            "Reference",
-            "aws:AMI",
-            "aws:SSMParam"
-          ]
-        },
-        "Source:Reference": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Type": {
-              "default": "EC2",
-              "description": "The image Type defined under the family in the Region AMI",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
-            },
-            "OS": {
-              "default": "Centos",
-              "description": "The OS Image family defined in the Region AMI",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
-            }
-          }
-        },
-        "aws:Source:AMI": {
-          "description": "Use an explicit AMI for the image ",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "ImageId": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
-    "tracing": {
-      "description": "Application tracing configuration",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Mode": {
-          "type": "string",
-          "enum": [
-            "active",
-            "passthrough"
-          ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        }
-      }
-    },
-    "ecs_computeimage": {
-      "description": "ECS Specific overrides to source compute images",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Source": {
-          "default": "Reference",
-          "const": "Reference",
-          "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
-        "Source:Reference": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Type": {
-              "default": "ECS",
-              "description": "The image Type defined under the family in the Region AMI",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
-            },
-            "OS": {
-              "default": "Centos",
-              "description": "The OS Image family defined in the Region AMI",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "logwatcher": {
-      "description": "Configuration for services which can act on log subscriptions",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Links": {
-          "description": "Links to the components with logs to watch",
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "LogFilter": {
-          "description": "A filter expression to apply to logs that will be sent to the watcher",
-          "type": "string"
-        }
-      },
-      "required": [
-        "LogFilter"
-      ]
-    },
-    "computeimage": {
-      "description": "Configuration for the source of compute instance images",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Source": {
-          "default": "Reference",
-          "const": "Reference",
-          "description": "Where to source the image id from - Reference: uses the Regions AMIs reference property to find the image",
-          "type": [
-            "array",
-            "boolean",
-            "number",
-            "object",
-            "string"
-          ]
-        },
-        "Source:Reference": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Type": {
-              "default": "EC2",
-              "description": "The image Type defined under the family in the Region AMI",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
-            },
-            "OS": {
-              "default": "Centos",
-              "description": "The OS Image family defined in the Region AMI",
-              "type": [
-                "array",
-                "boolean",
-                "number",
-                "object",
-                "string"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "core_profile": {
-      "description": "Internal: desribes the base profiles for all components",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Profiles": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Policy": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of enforced deployment profiles which override component configuraiton",
-              "type": "array"
-            },
-            "Placement": {
-              "default": "default",
-              "description": "The resource group assignment placement for resources in the component",
-              "type": "string"
-            },
-            "Deployment": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "A list of deployment profiles to apply to this component",
-              "type": "array"
-            },
-            "Baseline": {
-              "default": "default",
-              "description": "The profile used to lookup standard services provided by the segment baseline",
-              "type": "string"
-            },
-            "Testing": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "description": "The testing profiles to apply to the component",
-              "type": "array"
-            }
-          }
-        }
-      }
-    },
-    "module": {
-      "description": "Defines the CMDB modules to load",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Parameters": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Value": {
-                  "description": "The value of the parameter",
-                  "type": [
-                    "array",
-                    "boolean",
-                    "number",
-                    "object",
-                    "string"
-                  ]
-                },
-                "Key": {
-                  "description": "The key of the parameter",
-                  "type": "string"
-                }
-              },
-              "required": [
-                "Key",
-                "Value"
-              ]
-            }
-          },
-          "description": "The parameter values to provide to the module",
-          "additionalProperties": false,
-          "type": "object"
-        },
-        "Enabled": {
-          "default": true,
-          "description": "To enable loading the module in this profile",
-          "type": "boolean"
-        },
-        "Provider": {
-          "description": "The provider name which offers the module",
-          "type": "string"
-        },
-        "Name": {
-          "description": "The name of the scneario to load",
-          "type": "string"
-        }
-      },
-      "required": [
-        "Provider",
-        "Name"
-      ]
-    },
-    "secretstring": {
-      "description": "Defines the policy for generating secret strings",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "ExcludedCharacters": {
-          "default": [
-            "\"",
-            "'",
-            "$",
-            "@",
-            "/",
-            "\\"
-          ],
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "Characters that must be excluded",
-          "type": "array"
-        },
-        "RequireAllIncludedTypes": {
-          "default": true,
-          "description": "Require at least one of each included type",
-          "type": "boolean"
-        },
-        "MinLength": {
-          "default": 20,
-          "description": "The minimum character length",
-          "type": "number"
-        },
-        "MaxLength": {
-          "default": 30,
-          "description": "The maximum character length",
-          "type": "number"
-        },
-        "IncludeUpper": {
-          "default": true,
-          "description": "Include upper-case characters",
-          "type": "boolean"
-        },
-        "IncludeLower": {
-          "default": true,
-          "description": "Include lower-case characters",
-          "type": "boolean"
-        },
-        "IncludeSpecial": {
-          "default": false,
-          "description": "Include special characters",
-          "type": "boolean"
-        },
-        "IncludeNumber": {
-          "default": true,
-          "description": "Include numbers characters",
-          "type": "boolean"
-        }
-      }
-    },
-    "aws_operatingsystem": {
-      "description": "Standard Configuration options to define an operating system",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "MajorVersion": {
-          "default": "1",
-          "description": "The major version of the distribution",
-          "type": "string"
-        },
-        "Architecture": {
-          "description": "The CPU Architecture used",
-          "type": "string",
-          "enum": [
-            "i386",
-            "x86_64",
-            "arm64"
-          ]
-        },
-        "Distribution": {
-          "default": "awslinux",
-          "description": "The distribution of the operating system",
-          "type": "string"
-        },
-        "Family": {
-          "default": "linux",
-          "description": "The broad family of operating system",
-          "type": "string",
-          "enum": [
-            "linux",
-            "windows",
-            "macos"
-          ]
-        },
-        "MinorVersion": {
-          "description": "The minor version of the distribution major version",
-          "type": "string"
-        }
-      }
-    },
-    "backupwindow": {
-      "description": "Standard Configuration options to define a backup window",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "TimeOfDay": {
-          "default": "01:00",
-          "type": "string"
-        },
-        "TimeZone": {
-          "default": "UTC",
-          "type": "string"
-        }
-      }
-    },
-    "scalingpolicy": {
-      "description": "Defines the behaviour of auto scaling resources",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Scheduled": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Schedule": {
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "ProcessorProfile": {
-              "default": "default",
-              "type": "string"
-            }
-          }
-        },
-        "Type": {
-          "default": "Stepped",
-          "type": "string",
-          "enum": [
-            "Stepped",
-            "Tracked",
-            "Scheduled"
-          ]
-        },
-        "Tracked": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "TargetValue": {
-              "type": "number"
-            },
-            "ScaleInEnabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "RecommendedMetric": {
-              "description": "Use a recommended (predefined) metric for scaling",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            }
-          }
-        },
-        "TrackingResource": {
-          "description": "The resource metric used to trigger scaling",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "MetricTrigger": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
-            }
-          }
-        },
-        "Cooldown": {
-          "description": "Cooldown time ( seconds ) after a scaling event has occurred before another event can be triggered",
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "ScaleIn": {
-              "default": 300,
-              "type": "number"
-            },
-            "ScaleOut": {
-              "default": 600,
-              "type": "number"
-            }
-          }
-        },
-        "Stepped": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "CapacityAdjustment": {
-              "default": "Change",
-              "description": "How to scale when the policy is triggered",
-              "type": "string",
-              "enum": [
-                "Change",
-                "Exact",
-                "Percentage"
-              ]
-            },
-            "MetricAggregation": {
-              "default": "Average",
-              "description": "The method used to agregate the cloudwatch metric",
-              "type": "string",
-              "enum": [
-                "Average",
-                "Minimum",
-                "Maximum"
-              ]
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "Adjustments": {
-              "patternProperties": {
-                "^[A-Za-z_][A-Za-z0-9_-]*$": {
-                  "properties": {
-                    "LowerBound": {
-                      "description": "The lower bound for the difference between the alarm threshold and the metric",
-                      "type": "number"
-                    },
-                    "AdjustmentValue": {
-                      "default": 1,
-                      "description": "The value to apply when the adjustment step is triggered",
-                      "type": "number"
-                    },
-                    "UpperBound": {
-                      "description": "The upper bound for the difference between the alarm threshold and the metric",
-                      "type": "number"
-                    }
-                  }
-                }
-              },
-              "description": "The adjustments to apply at each step",
-              "additionalProperties": false,
-              "type": "object"
-            },
-            "MinAdjustment": {
-              "default": -1,
-              "description": "When minimum scale adjustment value to apply when triggered",
-              "type": "number"
-            }
-          }
-        }
-      }
-    },
-    "volume": {
-      "description": "Defines the standard configuration of a storage volume",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "MountPath": {
-          "description": "An OS path where the disk will be mounted",
-          "type": "string"
-        },
-        "Type": {
-          "default": "gp2",
-          "description": "The type of volume to provision - see provider for available types",
-          "type": "string"
-        },
-        "Device": {
-          "description": "The deivce Id of the volume where the disk will be attached",
-          "type": "string"
-        },
-        "Size": {
-          "description": "The size in GB of the volume",
-          "type": "number"
-        },
-        "Enabled": {
-          "default": true,
-          "description": "Should the volume be created",
-          "type": "boolean"
-        },
-        "Iops": {
-          "description": "For volume types which support provisioned IOPS, this sets the requested IOPS",
-          "type": "number"
-        }
-      },
-      "required": [
-        "Device",
-        "Size"
-      ]
-    },
-    "objectstore_notification": {
-      "description": "Event notification for object changes in an object store",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Suffix": {
-          "type": "string"
-        },
-        "Events": {
-          "default": [
-            "create"
-          ],
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array",
-          "enum": [
-            "create",
-            "delete",
-            "restore",
-            "reducedredundancy"
-          ]
-        },
-        "Enabled": {
-          "default": true,
-          "type": "boolean"
-        },
-        "Links": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "Prefix": {
-          "type": "string"
-        }
-      }
-    },
-    "plugin": {
-      "description": "Defines a CMDB plugin and how its loaded",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Required": {
-          "default": false,
-          "description": "Ensure the plugin loads at all times",
-          "type": "boolean"
-        },
-        "Source:git": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "Path": {
-              "description": "a path within in the repository where the plugin starts",
-              "type": "string"
-            },
-            "Ref": {
-              "default": "main",
-              "description": "The ref to clone from the repo",
-              "type": "string"
-            },
-            "Url": {
-              "description": "The Url for the git repository",
-              "type": "string"
-            }
-          }
-        },
-        "Priority": {
-          "default": 100,
-          "description": "The priority order to load plugins - lowest first",
-          "type": "number"
-        },
-        "Enabled": {
-          "default": true,
-          "description": "To enable loading the plugin",
-          "type": "boolean"
-        },
-        "Source": {
-          "description": "Where the plugin for the plugin can be found",
-          "type": "string",
-          "enum": [
-            "local",
-            "git"
-          ]
-        },
-        "Name": {
-          "description": "The id of the plugin to install",
-          "type": "string"
-        }
-      },
-      "required": [
-        "Name",
-        "Source"
-      ]
-    },
-    "district": {
-      "description": "Configuration of a district",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "NamePartOrder": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "Parts to be included in the name of an instance of the district. If not provided, the InstanceOrder is assumed. If not a defined name part, the part is assumed to be a layer.",
-          "type": "array"
-        },
-        "NameParts": {
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Ignore": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "description": "An array of values to not include if encountered",
-                  "type": "array"
-                },
-                "Enabled": {
-                  "default": true,
-                  "description": "Should this part be ignored/omitted?",
-                  "type": "boolean"
-                },
-                "Fixed": {
-                  "description": "Include a fixed string",
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "type": "object"
-        },
-        "InstanceOrder": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "Layers whose configuration data should be included in the solution for an instance of the district",
-          "type": "array"
-        }
-      },
-      "required": [
-        "InstanceOrder"
-      ]
-    },
-    "lbattach": {
-      "description": "Attaches a components port to a load balancer",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "LinkName": {
-          "default": "lb",
-          "type": "string"
-        },
-        "SubComponent": {
-          "type": "string"
-        },
-        "Type": {
-          "default": "lbport",
-          "const": "lbport",
-          "type": "string"
-        },
-        "Tier": {
-          "type": "string"
-        },
-        "Instance": {
-          "type": "string"
         },
         "Version": {
-          "type": "string"
-        },
-        "PortMapping": {
-          "type": "string"
-        },
-        "Component": {
-          "type": "string"
-        },
-        "LinkRef": {
-          "type": "string"
-        }
-      }
-    },
-    "contextpath": {
-      "description": "Combined with the getContextPath() function creates a name or path based on your current context",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "Order": {
-          "default": [
-            "Account",
-            "ProviderId",
-            "Product",
-            "Environment",
-            "Segment",
-            "Tier",
-            "Component",
-            "Instance",
-            "Version",
-            "Host",
-            "Custom"
-          ],
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "type": "array"
-        },
-        "IncludeInPath": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "ProviderId": {
-              "default": false,
-              "description": "The Provider Id for the account",
-              "type": "boolean"
-            },
-            "Account": {
-              "default": false,
-              "description": "The name of the Account",
-              "type": "boolean"
-            },
-            "Tier": {
-              "default": false,
-              "description": "The name of the tier",
-              "type": "boolean"
-            },
-            "Instance": {
-              "default": false,
-              "description": "The name of the instance",
-              "type": "boolean"
-            },
-            "Version": {
-              "default": false,
-              "description": "The name of the version",
-              "type": "boolean"
-            },
-            "Product": {
-              "default": true,
-              "description": "The name of the product",
-              "type": "boolean"
-            },
-            "Environment": {
-              "default": false,
-              "description": "The name of the environment",
-              "type": "boolean"
-            },
-            "Custom": {
-              "default": false,
-              "description": "Include a custom string",
-              "type": "boolean"
-            },
-            "Component": {
-              "default": false,
-              "description": "The name of the component",
-              "type": "boolean"
-            },
-            "Segment": {
-              "default": true,
-              "description": "The name of the segment",
-              "type": "boolean"
-            }
-          }
-        },
-        "Style": {
-          "default": "single",
-          "description": "Provide the value as a single string or a file system style path",
-          "type": "string",
+          "default": "v1",
+          "description": "Version of WAF to use",
           "enum": [
-            "single",
-            "path"
-          ]
-        },
-        "Custom": {
-          "description": "The custom string to include if custom is included in the path",
+            "v1",
+            "v2"
+          ],
           "type": "string"
         }
-      }
+      },
+      "type": "object"
     }
-  },
-  "$id": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json"
+  }
 }

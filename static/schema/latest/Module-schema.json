@@ -1,26 +1,66 @@
 {
+  "$id": "https://docs.hamlet.io/schema/latest/Module-schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
-    "consolidatelogs": {
-      "description": "Solution-wide consolidation of logs into ops data bucket",
+    "alarmslack": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Sends slack notifications based on cloudwatch alarms",
       "properties": {
+        "alertProfile": {
+          "default": "default",
+          "description": "The alert profile id to use for enabling notifications",
+          "type": "string"
+        },
+        "alertSeverity": {
+          "default": "info",
+          "description": "The lowest severity alerts to include in notifications",
+          "type": "string"
+        },
+        "kmsPrefix": {
+          "default": "base64:",
+          "description": "The KMS prefix used for encrypted values",
+          "type": "string"
+        },
+        "lambdaSourceHash": {
+          "default": "8f194db4f6ed2b826387112df144f188451ba6db",
+          "description": "A sha1 hash of the lambda image to ensure its the right one",
+          "type": "string"
+        },
+        "lambdaSourceUrl": {
+          "default": "https://github.com/hamlet-io/lambda-cloudwatch-slack/releases/download/v1.1.0/cloudwatch-slack.zip",
+          "description": "A URL to the lambda zip package for sending alerts",
+          "type": "string"
+        },
+        "namePrefix": {
+          "default": "alarmslack",
+          "description": "A prefix appended to component names and deployment units to ensure uniquness",
+          "type": "string"
+        },
+        "slackChannel": {
+          "description": "The slack channel to send alerts to",
+          "type": "string"
+        },
         "tier": {
           "default": "mgmt",
           "description": "The tier to use to host the components",
           "type": "string"
         },
-        "namePrefix": {
-          "description": "A prefix appended to component names and deployment units to ensure uniquness",
+        "webHookUrl": {
+          "description": "The slack incoming webhook URL to use - Encryption is recommended",
           "type": "string"
-        },
-        "lambdaSourceUrl": {
-          "default": "https://github.com/hamlet-io/lambda-log-processors/releases/download/v1.0.2/cloudwatch-firehose.zip",
-          "description": "A URL to the lambda zip package for sending alerts",
-          "type": "string"
-        },
+        }
+      },
+      "required": [
+        "slackChannel",
+        "webHookUrl"
+      ],
+      "type": "object"
+    },
+    "consolidatelogs": {
+      "additionalProperties": false,
+      "description": "Solution-wide consolidation of logs into ops data bucket",
+      "properties": {
         "deploymentProfile": {
           "description": "The deployment profile id to enable log consolidation on.",
           "type": "string"
@@ -29,54 +69,173 @@
           "default": "3a6b1ce462aaa203477044cfe83c66f128381434",
           "description": "A sha1 hash of the lambda image to validate the correct one",
           "type": "string"
+        },
+        "lambdaSourceUrl": {
+          "default": "https://github.com/hamlet-io/lambda-log-processors/releases/download/v1.0.2/cloudwatch-firehose.zip",
+          "description": "A URL to the lambda zip package for sending alerts",
+          "type": "string"
+        },
+        "namePrefix": {
+          "description": "A prefix appended to component names and deployment units to ensure uniquness",
+          "type": "string"
+        },
+        "tier": {
+          "default": "mgmt",
+          "description": "The tier to use to host the components",
+          "type": "string"
         }
       },
       "required": [
         "deploymentProfile"
-      ]
+      ],
+      "type": "object"
     },
-    "runbook_service_exec_command": {
-      "description": "Run an interactive command on a container running as part of a service using ecs exec",
+    "privatebastion": {
       "additionalProperties": false,
-      "type": "object",
+      "description": "Bastion access via SSM only",
       "properties": {
-        "serviceLink": {
-          "description": "A Link to a service you want to open the shell on",
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        "component": {
+          "default": "ssh",
+          "description": "The component to use to host the private bastion",
+          "type": "string"
+        },
+        "deploymentUnit": {
+          "default": "ssh",
+          "description": "The deployment unit for the private bastion",
+          "type": "string"
+        },
+        "multiAZ": {
+          "default": true,
+          "description": "Multi-AZ support on the private bastion",
+          "type": "boolean"
+        },
+        "tier": {
+          "default": "msg",
+          "description": "The tier to use to host the private bastion",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "runbook_rds_pgdump": {
+      "additionalProperties": false,
+      "description": "Run a pgdump on a postgres db component and save the result locally",
+      "properties": {
+        "bastionLink": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "A Link to an ssh bastion host which can access the db component"
+        },
+        "dbLink": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "A link to the db component running postgres that the dump will be created from"
+        }
+      },
+      "required": [
+        "bastionLink",
+        "dbLink"
+      ],
+      "type": "object"
+    },
+    "runbook_rds_snapshot": {
+      "additionalProperties": false,
+      "description": "Create a native snapshot of an RDS cluster or instance",
+      "properties": {
+        "dbLink": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "A link to the db component running postgres that the dump will be created from"
+        }
+      },
+      "required": [
+        "dbLink"
+      ],
+      "type": "object"
+    },
+    "runbook_run_task": {
+      "additionalProperties": false,
+      "description": "Run an ecs task to perform a single command and exit",
+      "properties": {
+        "command": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A fixed command to run on the container everytime the runbook is run",
+          "type": "array"
+        },
+        "containerId": {
+          "description": "The id of the container to run the command on",
+          "type": "string"
+        },
+        "environment": {
+          "description": "A fixed environment variable overrides to apply to the command",
+          "type": "object"
         },
         "id": {
           "default": "sh",
           "description": "A unique id for this exec command - allows for multiple commands on the same service",
           "type": "string"
         },
-        "containerId": {
-          "description": "The id of the container to run the command on",
-          "type": "string"
+        "inputs": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "User provided inputs requred to run the task",
+          "enum": [
+            "command",
+            "environment"
+          ],
+          "type": "array"
         },
+        "taskLink": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "A Link to a task that will be started to run the command"
+        }
+      },
+      "required": [
+        "taskLink",
+        "containerId"
+      ],
+      "type": "object"
+    },
+    "runbook_service_exec_command": {
+      "additionalProperties": false,
+      "description": "Run an interactive command on a container running as part of a service using ecs exec",
+      "properties": {
         "command": {
           "default": "/bin/sh",
           "description": "The command to run on the container",
           "type": "string"
+        },
+        "containerId": {
+          "description": "The id of the container to run the command on",
+          "type": "string"
+        },
+        "id": {
+          "default": "sh",
+          "description": "A unique id for this exec command - allows for multiple commands on the same service",
+          "type": "string"
+        },
+        "serviceLink": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "A Link to a service you want to open the shell on"
         }
       },
       "required": [
         "serviceLink",
         "containerId"
-      ]
+      ],
+      "type": "object"
     },
     "ses_smtp_user": {
-      "description": "Fixed user credentials that can be used for SMTP access to SES",
       "additionalProperties": false,
-      "type": "object",
+      "description": "Fixed user credentials that can be used for SMTP access to SES",
       "properties": {
         "component": {
           "default": "smtp_user",
           "description": "The name of the smtp user component",
-          "type": "string"
-        },
-        "tier": {
-          "default": "app",
-          "description": "The tier the user will be part of",
           "type": "string"
         },
         "deploymentUnit": {
@@ -88,117 +247,19 @@
           "default": "us-east-1",
           "description": "The SES region that will be used for sending emails",
           "type": "string"
-        }
-      }
-    },
-    "runbook_rds_snapshot": {
-      "description": "Create a native snapshot of an RDS cluster or instance",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "dbLink": {
-          "description": "A link to the db component running postgres that the dump will be created from",
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        }
-      },
-      "required": [
-        "dbLink"
-      ]
-    },
-    "runbook_rds_pgdump": {
-      "description": "Run a pgdump on a postgres db component and save the result locally",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "bastionLink": {
-          "description": "A Link to an ssh bastion host which can access the db component",
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "dbLink": {
-          "description": "A link to the db component running postgres that the dump will be created from",
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        }
-      },
-      "required": [
-        "bastionLink",
-        "dbLink"
-      ]
-    },
-    "runbook_run_task": {
-      "description": "Run an ecs task to perform a single command and exit",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "environment": {
-          "description": "A fixed environment variable overrides to apply to the command",
-          "type": "object"
-        },
-        "taskLink": {
-          "description": "A Link to a task that will be started to run the command",
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-        },
-        "inputs": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "User provided inputs requred to run the task",
-          "type": "array",
-          "enum": [
-            "command",
-            "environment"
-          ]
-        },
-        "id": {
-          "default": "sh",
-          "description": "A unique id for this exec command - allows for multiple commands on the same service",
-          "type": "string"
-        },
-        "containerId": {
-          "description": "The id of the container to run the command on",
-          "type": "string"
-        },
-        "command": {
-          "contains": {
-            "type": [
-              "string"
-            ]
-          },
-          "description": "A fixed command to run on the container everytime the runbook is run",
-          "type": "array"
-        }
-      },
-      "required": [
-        "taskLink",
-        "containerId"
-      ]
-    },
-    "ssh_bastion": {
-      "description": "Public bastion server with ssh support",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "component": {
-          "default": "ssh",
-          "description": "The component to use to host the private bastion",
-          "type": "string"
         },
         "tier": {
-          "default": "mgmt",
-          "description": "The tier to use to host the private bastion",
+          "default": "app",
+          "description": "The tier the user will be part of",
           "type": "string"
-        },
-        "activeDeploymentMode": {
-          "default": "activebastion",
-          "description": "The name of the deployment Mode to use to activate the bastion",
-          "type": "string"
-        },
-        "deploymentUnit": {
-          "default": "ssh",
-          "description": "The deployment unit for the private bastion",
-          "type": "string"
-        },
+        }
+      },
+      "type": "object"
+    },
+    "ssh_bastion": {
+      "additionalProperties": false,
+      "description": "Public bastion server with ssh support",
+      "properties": {
         "IPAddressGroups": {
           "contains": {
             "type": [
@@ -207,90 +268,29 @@
           },
           "description": "A list of IPAddressGroups that can access the bastion host",
           "type": "array"
-        }
-      }
-    },
-    "alarmslack": {
-      "description": "Sends slack notifications based on cloudwatch alarms",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "alertProfile": {
-          "default": "default",
-          "description": "The alert profile id to use for enabling notifications",
+        },
+        "activeDeploymentMode": {
+          "default": "activebastion",
+          "description": "The name of the deployment Mode to use to activate the bastion",
           "type": "string"
         },
-        "kmsPrefix": {
-          "default": "base64:",
-          "description": "The KMS prefix used for encrypted values",
-          "type": "string"
-        },
-        "tier": {
-          "default": "mgmt",
-          "description": "The tier to use to host the components",
-          "type": "string"
-        },
-        "slackChannel": {
-          "description": "The slack channel to send alerts to",
-          "type": "string"
-        },
-        "alertSeverity": {
-          "default": "info",
-          "description": "The lowest severity alerts to include in notifications",
-          "type": "string"
-        },
-        "namePrefix": {
-          "default": "alarmslack",
-          "description": "A prefix appended to component names and deployment units to ensure uniquness",
-          "type": "string"
-        },
-        "webHookUrl": {
-          "description": "The slack incoming webhook URL to use - Encryption is recommended",
-          "type": "string"
-        },
-        "lambdaSourceUrl": {
-          "default": "https://github.com/hamlet-io/lambda-cloudwatch-slack/releases/download/v1.1.0/cloudwatch-slack.zip",
-          "description": "A URL to the lambda zip package for sending alerts",
-          "type": "string"
-        },
-        "lambdaSourceHash": {
-          "default": "8f194db4f6ed2b826387112df144f188451ba6db",
-          "description": "A sha1 hash of the lambda image to ensure its the right one",
-          "type": "string"
-        }
-      },
-      "required": [
-        "slackChannel",
-        "webHookUrl"
-      ]
-    },
-    "privatebastion": {
-      "description": "Bastion access via SSM only",
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
         "component": {
           "default": "ssh",
           "description": "The component to use to host the private bastion",
           "type": "string"
         },
-        "tier": {
-          "default": "msg",
-          "description": "The tier to use to host the private bastion",
-          "type": "string"
-        },
-        "multiAZ": {
-          "default": true,
-          "description": "Multi-AZ support on the private bastion",
-          "type": "boolean"
-        },
         "deploymentUnit": {
           "default": "ssh",
           "description": "The deployment unit for the private bastion",
           "type": "string"
+        },
+        "tier": {
+          "default": "mgmt",
+          "description": "The tier to use to host the private bastion",
+          "type": "string"
         }
-      }
+      },
+      "type": "object"
     }
-  },
-  "$id": "https://docs.hamlet.io/schema/latest/Module-schema.json"
+  }
 }
