@@ -15396,6 +15396,15 @@
               "description": "A sha256 hash of the code zip file",
               "type": "string"
             },
+            "DeletionPolicy": {
+              "default": "Retain",
+              "description": "What should happen to the superceded version when new version on deploy?",
+              "enum": [
+                "Delete",
+                "Retain"
+              ],
+              "type": "string"
+            },
             "Enabled": {
               "default": true,
               "type": "boolean"
