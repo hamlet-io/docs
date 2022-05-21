@@ -9148,6 +9148,26 @@
           "description": "The components type",
           "type": "string"
         },
+        "aws:Capacity": {
+          "additionalProperties": false,
+          "description": "Manages the capacity of the datastream available",
+          "properties": {
+            "ProvisiningMode": {
+              "default": "on-demand",
+              "enum": [
+                "provisioned",
+                "on-demand"
+              ],
+              "type": "string"
+            },
+            "Shards": {
+              "default": 1,
+              "description": "The number of shards that the data is dividied into for consumers to access",
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Group": {
           "default": "solution",
           "type": "string"
