@@ -415,6 +415,40 @@
       ],
       "type": "object"
     },
+    "aws_secretsmanager_get_secret_value": {
+      "additionalProperties": false,
+      "description": "Get the value of a secret stored in secrets manager",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "JSONKeyPath": {
+          "description": "A path to the key as JMES path for the value",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "SecretArn": {
+          "description": "The name of the S3 Bucket",
+          "type": "string"
+        }
+      },
+      "required": [
+        "SecretArn"
+      ],
+      "type": "object"
+    },
     "aws_ses_smtp_password": {
       "additionalProperties": false,
       "description": "Generate a Sig4 based SMTP credential that is used to authenciate with ses via SMTP",

@@ -18962,6 +18962,268 @@
       },
       "type": "object"
     },
+    "logstore": {
+      "additionalProperties": false,
+      "description": "Defines a standalong log store used to capture function base logs",
+      "properties": {
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Engine": {
+          "description": "The service used to store the logs",
+          "type": "string"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Extensions": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Extensions to invoke as part of component processing",
+          "type": "array"
+        },
+        "Instances": {
+          "additionalProperties": false,
+          "description": "Instances of a component configuration",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Lifecycle": {
+          "additionalProperties": false,
+          "description": "The lifecycle policy for the log store",
+          "properties": {
+            "Expiration": {
+              "default": "_operations",
+              "description": "The time in days to keep logs for, _operations follows the layer expiration policy",
+              "type": [
+                "string",
+                "number"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Path": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/contextpath_fullpath",
+          "description": "The log store path based on occurrence attributes"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Logging": {
+              "default": "default",
+              "description": "Profile to define where logs are forwarded to from this component",
+              "type": "string"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "additionalProperties": false,
+          "description": "Additional namespaces to use during settings lookups",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ],
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Settings": {
+          "additionalProperties": false,
+          "description": "Application settings that can provide configuration for code",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        },
+        "Type": {
+          "description": "The components type",
+          "type": "string"
+        },
+        "deployment:Group": {
+          "default": "segment",
+          "type": "string"
+        },
+        "deployment:Priority": {
+          "default": 100,
+          "type": "number"
+        },
+        "deployment:Unit": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "mobileapp": {
       "additionalProperties": false,
       "description": "mobile apps with over the air update hosting",

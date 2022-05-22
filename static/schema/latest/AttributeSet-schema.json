@@ -825,6 +825,103 @@
       },
       "type": "object"
     },
+    "contextpath_fullpath": {
+      "additionalProperties": false,
+      "description": "Creates a Segment unique context path by default",
+      "properties": {
+        "Custom": {
+          "description": "The custom string to include if custom is included in the path",
+          "type": "string"
+        },
+        "IncludeInPath": {
+          "additionalProperties": false,
+          "properties": {
+            "Account": {
+              "default": false,
+              "description": "The name of the Account",
+              "type": "boolean"
+            },
+            "Component": {
+              "default": true,
+              "description": "The name of the component",
+              "type": "boolean"
+            },
+            "Custom": {
+              "default": false,
+              "description": "Include a custom string",
+              "type": "boolean"
+            },
+            "Environment": {
+              "default": true,
+              "description": "The name of the environment",
+              "type": "boolean"
+            },
+            "Instance": {
+              "default": true,
+              "description": "The name of the instance",
+              "type": "boolean"
+            },
+            "Product": {
+              "default": true,
+              "description": "The name of the product",
+              "type": "boolean"
+            },
+            "ProviderId": {
+              "default": false,
+              "description": "The Provider Id for the account",
+              "type": "boolean"
+            },
+            "Segment": {
+              "default": true,
+              "description": "The name of the segment",
+              "type": "boolean"
+            },
+            "Tier": {
+              "default": true,
+              "description": "The name of the tier",
+              "type": "boolean"
+            },
+            "Version": {
+              "default": true,
+              "description": "The name of the version",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "Order": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "Account",
+            "ProviderId",
+            "Product",
+            "Environment",
+            "Segment",
+            "Tier",
+            "Component",
+            "Instance",
+            "Version",
+            "Host",
+            "Custom"
+          ],
+          "type": "array"
+        },
+        "Style": {
+          "default": "path",
+          "description": "Provide the value as a single string or a file system style path",
+          "enum": [
+            "single",
+            "path"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "core_profile": {
       "additionalProperties": false,
       "description": "Internal: desribes the base profiles for all components",

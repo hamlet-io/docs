@@ -723,6 +723,25 @@
             ]
           },
           "type": "array"
+        },
+        "LogStore": {
+          "additionalProperties": false,
+          "properties": {
+            "Destination": {
+              "default": "component",
+              "description": "The type of logstore to use for this log file group - component is local and link is an external store",
+              "enum": [
+                "component",
+                "link"
+              ],
+              "type": "string"
+            },
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+              "description": "A link to an external log store"
+            }
+          },
+          "type": "object"
         }
       },
       "required": [
