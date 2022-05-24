@@ -972,6 +972,45 @@
       },
       "type": "object"
     },
+    "dbsysevent": {
+      "additionalProperties": false,
+      "description": "Configuration of reported system notifications from component resources",
+      "properties": {
+        "Categories": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "_all"
+          ],
+          "description": "Optional array of event categories to report",
+          "enum": [
+            "availability",
+            "backup",
+            "configuration change",
+            "creation",
+            "deletion",
+            "failover",
+            "failure",
+            "low storage",
+            "maintenance",
+            "notification",
+            "read replica",
+            "recovery",
+            "restoration",
+            "security",
+            "_all"
+          ],
+          "type": "array"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        }
+      },
+      "type": "object"
+    },
     "district": {
       "additionalProperties": false,
       "description": "Configuration of a district",

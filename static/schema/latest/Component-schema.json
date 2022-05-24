@@ -472,12 +472,15 @@
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
-        "Authentication": {
+        "AuthorisationModel": {
           "default": "IP",
+          "description": "Model to use where IP filtering is part of the desired authorization approach",
           "enum": [
             "IP",
-            "SIG4ORIP",
-            "SIG4ANDIP"
+            "AUTHORISER_OR_IP",
+            "AUTHORIZER_OR_IP",
+            "AUTHORISER_AND_IP",
+            "AUTHORIZER_AND_IP"
           ],
           "type": "string"
         },
@@ -12274,6 +12277,9 @@
           "default": 20,
           "type": "number"
         },
+        "SystemNotifications": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/dbsysevent"
+        },
         "Tags": {
           "additionalProperties": false,
           "description": "Key value pairs to apply to resources to identify them",
@@ -20165,6 +20171,35 @@
         "VPCAccess": {
           "default": true,
           "type": "boolean"
+        },
+        "aws:EventSources": {
+          "additionalProperties": false,
+          "description": "Control how event sources are processed for AWS specific services",
+          "properties": {
+            "SQS": {
+              "additionalProperties": false,
+              "description": "SQS specific controls",
+              "properties": {
+                "BatchSize": {
+                  "default": 1,
+                  "description": "How many messages to pull from the queue in a batch",
+                  "type": "number"
+                },
+                "MaximumBatchingWindow": {
+                  "default": 0,
+                  "description": "How long to gather records for batch processing",
+                  "type": "number"
+                },
+                "ReportBatchItemFailures": {
+                  "default": false,
+                  "description": "Report the status of particular items that failed in the batch",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
         },
         "deployment:Group": {
           "default": "application",
