@@ -23920,6 +23920,7 @@
           "type": "boolean"
         },
         "Engine": {
+          "default": "aws:cloudwatchlogs",
           "description": "The service used to store the logs",
           "type": "string"
         },
