@@ -1179,8 +1179,11 @@
           "type": "string"
         },
         "Type": {
-          "const": "lbport",
           "default": "lbport",
+          "enum": [
+            "lbport",
+            "lbbackend"
+          ],
           "type": "string"
         },
         "Version": {
