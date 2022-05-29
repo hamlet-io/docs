@@ -9,10 +9,10 @@ So far in [our blog series](2020-05-20-azure-plugin-breakdowns.md) we’ve cover
 <!--truncate-->
 ## Network Component
 
-Diving right in to what is often one of the most complex parts of cloud infrastructure design - the network component. Deciding precisely how you want to slice up your network into subnets and what their CIDR ranges should be, ensuring components that should be able to communicate can do so whilst restricting others is a big job. hamlet however is able to determine your needs from your Solution. In fact if you already have a project with a basic `solution.json` and a `network`  component defined, then you’ve already got your network planned out! Take the following example:
+Diving right in to what is often one of the most complex parts of cloud infrastructure design - the network component. Deciding precisely how you want to slice up your network into subnets and what their CIDR ranges should be, ensuring components that should be able to communicate can do so whilst restricting others is a big job. hamlet however is able to determine your needs from your Solution. In fact if you already have a project with a basic `segment.json` and a `network`  component defined, then you’ve already got your network planned out! Take the following example:
 
 ```json
-// basic solution.json file with:
+// basic segment.json file with:
 - 3 tiers and a network deployment-unit with min. config
   - Two accessible to the public
   - One private only
@@ -20,7 +20,7 @@ Diving right in to what is often one of the most complex parts of cloud infrastr
 - A DB in a private tier.
 ```
 
-The above example `solution.json` file defines 3 tiers that will be used to house our basic application, and a `network` component we’ve called `vnet`.
+The above example `segment.json` file defines 3 tiers that will be used to house our basic application, and a `network` component we’ve called `vnet`.
 
 hamlet breaks this down as follows:
 

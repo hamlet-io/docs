@@ -35,8 +35,7 @@ phonedir/
 │       │   └── environment.json
 │       └── shared
 │           └── default
-│               ├── segment.json
-│               └── solution.json
+│               └── segment.json
 └── infrastructure
     └── operations
         └── integration
@@ -55,6 +54,7 @@ hamlet @ ~/cmdb
     }
 }
 ```
+
 Let's take a closer look at the files created by our solution directory.
 
 ```bash
@@ -68,8 +68,7 @@ Let's take a closer look at the files created by our solution directory.
            │   └── environment.json
            └── shared
                └── default
-                   ├── segment.json
-                   └── solution.json
+                   └── segment.json
 ```
 
 ### Environment Layer
@@ -78,7 +77,7 @@ The environment layer enables configuration for different deployment environment
 
 ### Segment Layer
 
-Under our environment directory, a similar structure has been created for our segment layer. The segment layer provides a mechanism to further separate out configuration within a given environment. For instance, a single development environment may contain segments unique to each developer on a project. Today we've chosen the option of the default segment name. 
+Under our environment directory, a similar structure has been created for our segment layer. The segment layer provides a mechanism to further separate out configuration within a given environment. For instance, a single development environment may contain segments unique to each developer on a project. Today we've chosen the option of the default segment name.
 
 ### Tiers
 
@@ -88,17 +87,13 @@ Inside of our product each of the new files defines only its layer's name and ID
 
 ```json
 {
-  "Solution": {
-    "Id": "phonedir",
-    "Name": "phonedir"
-  },
   "Tiers": {}
 }
 ```
 
 ## Your District
 
-Having now configured at least one of each layer, we now have what is called a district - any full set of layers. 
+Having now configured at least one of each layer, we now have what is called a district - any full set of layers.
 
 To recap, these layers are:
 
