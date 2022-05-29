@@ -23,13 +23,10 @@ Using solution settings is the simplest approach; they are defined as part of th
 
 The LOG_LEVEL environment variable is often used in Python based applications to set how verbose logging should be. Let's set the LOG_LEVEL through the solution config.
 
-Here is a Lambda function in our solution.json file for an API:
+Here is a Lambda function in our segment.json file for an API:
 
 ```json
 {
-    "Solution" : {
-        "Id": "solution"
-    },
     "Tiers" : {
         "app" : {
             "Components" : {
@@ -78,9 +75,6 @@ Now we add the LOG_LEVEL setting to the Lambda component:
 
 ```json
 {
-    "Solution" : {
-        "Id": "solution"
-    },
     "Tiers" : {
         "app" : {
             "Components" : {
@@ -155,13 +149,10 @@ In this example our Lambda function needs to connect to an external API that use
 
 By default hamlet assigns setting namespaces to components automatically, based on the properties of the component. This includes details like the component name, the tier the component belongs to as well as any instance or version details if they are being used.
 
-Using the same solution as our previous example
+Using the same segment as our previous example
 
 ```json
 {
-    "Solution" : {
-        "Id": "solution"
-    },
     "Tiers" : {
         "app" : {
             "Components" : {
@@ -366,7 +357,7 @@ Using the same solution as our previous example
 - The layer specific client ID has been included along with our shared API URL.
 - The public certificate file name is provided using the file name without the file suffix provided.
 - The file itself is stored in an object store and can be collected by the Lambda function during startup.
-- The LOG_LEVEL we set on the solution settings has also been included in the environment variables. The solution settings are preferred   
+- The LOG_LEVEL we set on the solution settings has also been included in the environment variables. The segment settings are preferred
   over the namespaces when conflicts occur.
 
 As you can see, setting namespaces is a more advanced approach to defining settings, but can be useful when you have large configuration requirements which would take over your solution file. The dedicated file allows you to define more easily understandable JSON structures for your environment variables and makes the configuration easier to maintain.

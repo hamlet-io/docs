@@ -180,10 +180,10 @@ Lets see what this looks like in hamlet:
 
     ```
 
-2. Now let's add the component into our solution. Add the following to `solution.json` in the current hamlet directory
+2. Now let's add the component into our solution. Add the following to `segment.json` in the current hamlet directory
 
     ```bash
-    cat << EOF >> solution.json
+    cat << EOF >> segment.json
     {
         "Tiers" : {
             "db" : {

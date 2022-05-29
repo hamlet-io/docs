@@ -312,7 +312,7 @@ This post used the diagramstest plugin which provides a predefined solution that
                 }
             }
         },
-        "Solution" : {
+        "Segment" : {
             "Modules" : {
                 "diagrams_overviews" : {
                     "Provider" : "diagrams",

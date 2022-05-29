@@ -91,7 +91,7 @@ This does the following:
 
 ```json
 {
-    "Solution": {
+    "Segment": {
         "Plugins" : {
             "cfcognito" : {
                 "Enabled" : true,
@@ -186,7 +186,7 @@ Add the following to the Solution to configure the module :
 
 ```json
 {
-    "Solution": {
+    "Segment": {
         "Plugins" : { /*...*/ },
         "Modules" : {
             "githubauth" : {
@@ -309,7 +309,7 @@ Lets add the module to our solution:
 
 ```json
 {
-    "Solution": {
+    "Segment": {
         "Plugins" : { /*...*/ },
         "Modules" : {
             "door" : {
@@ -362,7 +362,7 @@ The `cdnlambda` module includes a lambda ( deployment unit `door-lmb`) that must
 
 ```json
 {
-  "Solution" : { /* ... */ },
+  "Segment" : { /* ... */ },
   "Product" : {
     "door-lmb" : {
       "Region" : "us-east-1"
@@ -384,7 +384,7 @@ We also want to add in our `spa` now, which has a pre-requisite of at least one 
 
 ```json
 {
-    "Solution" : { /* ... */ },
+    "Segment" : { /* ... */ },
     "Product" : { /* ... */ },
     "Tiers": {
         "mgmt" : {

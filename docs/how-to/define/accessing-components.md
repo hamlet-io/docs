@@ -11,9 +11,6 @@ For this how-to we will be using the following solution:
 
 ```json
 {
-    "Solution" : {
-        "Id": "solution"
-    },
     "Tiers" : {
         "app" : {
             "Components" : {
@@ -86,9 +83,6 @@ At this point the solution has a Lambda component and a globaldb component, but 
 
     ```json
     {
-        "Solution" : {
-            "Id": "solution"
-        },
         "Tiers" : {
             "app" : {
                 "Components" : {
@@ -370,9 +364,6 @@ At this point the solution has a Lambda component and a globaldb component, but 
 
     ```json
     {
-        "Solution" : {
-            "Id": "solution"
-        },
         "Tiers" : {
             "app" : {
                 "Components" : {
