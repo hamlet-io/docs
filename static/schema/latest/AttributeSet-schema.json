@@ -1169,9 +1169,6 @@
         "LinkRef": {
           "type": "string"
         },
-        "PortMapping": {
-          "type": "string"
-        },
         "SubComponent": {
           "type": "string"
         },
