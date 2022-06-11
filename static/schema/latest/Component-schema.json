@@ -23749,6 +23749,11 @@
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable the use of the condition",
+                  "type": "boolean"
+                },
                 "Type": {
                   "description": "The type of the condition that will be applied",
                   "enum": [
