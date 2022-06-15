@@ -1,0 +1,179 @@
+{
+  "$id": "https://docs.hamlet.io/schema/latest/DyanmicValues-schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "attribute": {
+      "additionalProperties": false,
+      "description": "Returns the attribute of a link configured under the components Links",
+      "properties": {
+        "ParameterOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "type",
+            "linkId",
+            "attributeName"
+          ],
+          "description": "The order that the parameters are set in the substitution value",
+          "type": "array"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameters in the dynamic value used for the provider",
+          "properties": {
+            "attributeName": {
+              "description": "The name of the attribute on the link",
+              "type": "string"
+            },
+            "linkId": {
+              "description": "The Id of the link to get the attribute from",
+              "type": "string"
+            },
+            "type": {
+              "const": "attribute",
+              "default": "attribute",
+              "description": "The type of the provider",
+              "type": "string"
+            }
+          },
+          "required": [
+            "linkId",
+            "attributeName"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "input": {
+      "additionalProperties": false,
+      "description": "Returns the value of a runbook input",
+      "properties": {
+        "ParameterOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "type",
+            "inputId"
+          ],
+          "description": "The order that the parameters are set in the substitution value",
+          "type": "array"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameters in the dynamic value used for the provider",
+          "properties": {
+            "inputId": {
+              "description": "The Id of the runbook input",
+              "type": "string"
+            },
+            "type": {
+              "const": "input",
+              "default": "input",
+              "description": "The type of the provider",
+              "type": "string"
+            }
+          },
+          "required": [
+            "inputId"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "output": {
+      "additionalProperties": false,
+      "description": "Returns the value of a runbook step output",
+      "properties": {
+        "ParameterOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "type",
+            "stepId",
+            "outputKey"
+          ],
+          "description": "The order that the parameters are set in the substitution value",
+          "type": "array"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameters in the dynamic value used for the provider",
+          "properties": {
+            "outputKey": {
+              "description": "The key of the output to return",
+              "type": "string"
+            },
+            "stepId": {
+              "description": "The Id of the step to collect the output from",
+              "type": "string"
+            },
+            "type": {
+              "const": "output",
+              "default": "output",
+              "description": "The type of the provider",
+              "type": "string"
+            }
+          },
+          "required": [
+            "stepId",
+            "outputKey"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "setting": {
+      "additionalProperties": false,
+      "description": "Returns the value of a components setting",
+      "properties": {
+        "ParameterOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "type",
+            "settingEnvKey"
+          ],
+          "description": "The order that the parameters are set in the substitution value",
+          "type": "array"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameters in the dynamic value used for the provider",
+          "properties": {
+            "settingEnvKey": {
+              "description": "The Key of the setting when defined as an environment variable",
+              "type": "string"
+            },
+            "type": {
+              "const": "setting",
+              "default": "setting",
+              "description": "The type of the provider",
+              "type": "string"
+            }
+          },
+          "required": [
+            "settingEnvKey"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  }
+}
