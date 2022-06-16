@@ -20074,6 +20074,10 @@
         "FixedCodeVersion": {
           "additionalProperties": false,
           "properties": {
+            "Alias": {
+              "description": "Provide a logical name pointing to the most recent version",
+              "type": "string"
+            },
             "CodeHash": {
               "description": "A sha256 hash of the code zip file",
               "type": "string"
