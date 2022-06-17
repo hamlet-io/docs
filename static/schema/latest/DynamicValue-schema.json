@@ -1,5 +1,5 @@
 {
-  "$id": "https://docs.hamlet.io/schema/latest/DyanmicValues-schema.json",
+  "$id": "https://docs.hamlet.io/schema/latest/DynamicValue-schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
@@ -43,6 +43,57 @@
           "required": [
             "linkId",
             "attributeName"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "aws_secret": {
+      "additionalProperties": false,
+      "description": "Returns a reference to a secret stored in a secretstore",
+      "properties": {
+        "ParameterOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "type",
+            "linkId",
+            "jsonKey",
+            "version"
+          ],
+          "description": "The order that the parameters are set in the substitution value",
+          "type": "array"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameters in the dynamic value used for the provider",
+          "properties": {
+            "jsonKey": {
+              "description": "If the secret is a json object the key of the value to return",
+              "type": "string"
+            },
+            "linkId": {
+              "description": "The Id of the link to the secret",
+              "type": "string"
+            },
+            "type": {
+              "const": "aws_secret",
+              "default": "aws_secret",
+              "description": "The type of the provider",
+              "type": "string"
+            },
+            "version": {
+              "default": "LATEST",
+              "description": "The version of the secret to reference",
+              "type": "string"
+            }
+          },
+          "required": [
+            "linkId"
           ],
           "type": "object"
         }
