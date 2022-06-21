@@ -10190,7 +10190,7 @@
               "description": "The push notification public certificate",
               "type": "string"
             },
-            "PrivateKeySource": {
+            "PrivateKey": {
               "description": "The push notification private key",
               "type": "string"
             }
