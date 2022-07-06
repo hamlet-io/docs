@@ -22674,6 +22674,373 @@
       ],
       "type": "object"
     },
+    "image": {
+      "additionalProperties": false,
+      "description": "An Application image used by other components in the solution",
+      "properties": {
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Format": {
+          "description": "The format of the image whih defines the components that support the image",
+          "enum": [
+            "scripts",
+            "spa",
+            "docker",
+            "dataset",
+            "contentnode",
+            "lambda",
+            "lambda_jar",
+            "openapi"
+          ],
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Instances": {
+          "additionalProperties": false,
+          "description": "Instances of a component configuration",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "additionalProperties": false,
+          "description": "Additional namespaces to use during settings lookups",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ],
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Settings": {
+          "additionalProperties": false,
+          "description": "Application settings that can provide configuration for code",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Source": {
+          "default": "Local",
+          "description": "The source of the image - Local: an image built locally - ContainerRegistry: a public container registry - URL: a public URL",
+          "enum": [
+            "Local",
+            "ContainerRegistry",
+            "URL"
+          ],
+          "type": "string"
+        },
+        "Source:ContainerRegistry": {
+          "additionalProperties": false,
+          "description": "A docker container registry to source the image from",
+          "properties": {
+            "Image": {
+              "description": "The docker image that you want to use",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "Source:URL": {
+          "additionalProperties": false,
+          "description": "Download the image from an external service based on URL",
+          "properties": {
+            "ImageHash": {
+              "description": "The expected sha1 hash of the Url if empty any will be accepted",
+              "type": "string"
+            },
+            "URL": {
+              "description": "The URL to the image to download",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "Tags": {
+          "additionalProperties": false,
+          "description": "Key value pairs to apply to resources to identify them",
+          "properties": {
+            "Additional": {
+              "additionalProperties": false,
+              "description": "Extra tags to include",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Include the tag",
+                      "type": "boolean"
+                    },
+                    "Key": {
+                      "description": "The key of the tag ( uses the key of this object by default)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the tag",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Common": {
+              "additionalProperties": false,
+              "description": "Include tags based on properties of the occurrence",
+              "properties": {
+                "Component": {
+                  "default": true,
+                  "description": "Include tags provided by the component",
+                  "type": "boolean"
+                },
+                "CostCentre": {
+                  "default": true,
+                  "description": "Include the cost centre for the account",
+                  "type": "boolean"
+                },
+                "Deployment": {
+                  "default": true,
+                  "description": "Include details of the deployment",
+                  "type": "boolean"
+                },
+                "Layers": {
+                  "default": true,
+                  "description": "Include the names of the active layers",
+                  "type": "boolean"
+                },
+                "Name": {
+                  "default": "FullName",
+                  "description": "The component name attribute to use",
+                  "enum": [
+                    "FullName",
+                    "FullRawName",
+                    "RawName",
+                    "Name",
+                    "ShortName",
+                    "ShortRawName",
+                    "ShortFullName",
+                    "ShortRawFullName"
+                  ],
+                  "type": "string"
+                },
+                "Prefix": {
+                  "default": "cot:",
+                  "description": "A prefix to apply to common tags",
+                  "type": "string"
+                },
+                "Solution": {
+                  "default": true,
+                  "description": "Include details of the solution",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        },
+        "Type": {
+          "description": "The components type",
+          "type": "string"
+        },
+        "deployment:Group": {
+          "default": "application",
+          "type": "string"
+        },
+        "deployment:Priority": {
+          "default": 100,
+          "type": "number"
+        },
+        "deployment:Unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Source"
+      ],
+      "type": "object"
+    },
     "internaltest": {
       "additionalProperties": false,
       "description": "A hamlet internal testing component",
@@ -30060,7 +30427,8 @@
                     "Contains",
                     "Equals",
                     "StartsWith",
-                    "EndsWith"
+                    "EndsWith",
+                    "NotEquals"
                   ],
                   "type": "string"
                 },
@@ -30080,8 +30448,7 @@
                 }
               },
               "required": [
-                "Value",
-                "Test"
+                "Value"
               ]
             }
           },
