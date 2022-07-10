@@ -492,7 +492,8 @@
             "Equals",
             "StartsWith",
             "EndsWith",
-            "Contains"
+            "Contains",
+            "NotEquals"
           ],
           "type": "string"
         },
@@ -526,6 +527,39 @@
       ],
       "type": "object"
     },
+    "docker_pull_image": {
+      "additionalProperties": false,
+      "description": "Perfom a docker login using credentials from AWS ECR",
+      "properties": {
+        "Image": {
+          "description": "The image to pull from a registry",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Image"
+      ],
+      "type": "object"
+    },
+    "docker_push_image": {
+      "additionalProperties": false,
+      "description": "Perfom a docker login using credentials from AWS ECR",
+      "properties": {
+        "DestinationImage": {
+          "description": "The destination image name",
+          "type": "string"
+        },
+        "SourceImage": {
+          "description": "The local image to push to the destination",
+          "type": "string"
+        }
+      },
+      "required": [
+        "DestinationImage",
+        "SourceImage"
+      ],
+      "type": "object"
+    },
     "file_read_content": {
       "additionalProperties": false,
       "description": "Read the contents of a file and provide the content as a result output",
@@ -537,6 +571,25 @@
       },
       "required": [
         "FilePath"
+      ],
+      "type": "object"
+    },
+    "file_zip_path": {
+      "additionalProperties": false,
+      "description": "Crate a zip based archive of a source path and save it to the destination path. If already a zip then copy to destination",
+      "properties": {
+        "DestinationPath": {
+          "description": "The path to output the zip to",
+          "type": "string"
+        },
+        "SourcePath": {
+          "description": "The path to the directory to zip or an existing zip",
+          "type": "string"
+        }
+      },
+      "required": [
+        "SourcePath",
+        "DestinationPath"
       ],
       "type": "object"
     },

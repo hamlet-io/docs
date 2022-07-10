@@ -16392,7 +16392,7 @@
     },
     "externalservice": {
       "additionalProperties": false,
-      "description": "An external component which is not part of codeontap",
+      "description": "An external component which is not part of your solution",
       "properties": {
         "Description": {
           "description": "A description of the component",
@@ -33706,6 +33706,15 @@
           "default": false,
           "type": "boolean"
         },
+        "Extensions": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Extensions to invoke as part of component processing",
+          "type": "array"
+        },
         "Instances": {
           "additionalProperties": false,
           "description": "Instances of a component configuration",
@@ -35229,6 +35238,15 @@
         "Export": {
           "default": false,
           "type": "boolean"
+        },
+        "Extensions": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Extensions to invoke as part of component processing",
+          "type": "array"
         },
         "FixedName": {
           "default": false,
