@@ -482,6 +482,75 @@
       ],
       "type": "object"
     },
+    "cmdb_write_stack_output": {
+      "additionalProperties": false,
+      "description": "Write a stack output as part of a runbook",
+      "properties": {
+        "Account": {
+          "description": "The Name of the account layer",
+          "type": "string"
+        },
+        "DeploymentGroup": {
+          "description": "The deployment group the stack belongs to",
+          "type": "string"
+        },
+        "DeploymentUnit": {
+          "description": "The deployment unit the stack belongs to",
+          "type": "string"
+        },
+        "DistrictType": {
+          "description": "The type of district used in the deployment",
+          "type": "string"
+        },
+        "Environment": {
+          "description": "The Name of the environment layer",
+          "type": "string"
+        },
+        "GenerationFramework": {
+          "description": "The framework to use for generating the template",
+          "type": "string"
+        },
+        "GenerationInputSource": {
+          "description": "The input source used for te engine",
+          "type": "string"
+        },
+        "GenerationProviders": {
+          "description": "A list of generation providers used for the engine",
+          "type": "string"
+        },
+        "Product": {
+          "description": "The Name of the product layer",
+          "type": "string"
+        },
+        "RootDir": {
+          "description": "The CMDB root directory path",
+          "type": "string"
+        },
+        "Segment": {
+          "description": "The Name of the segment layer",
+          "type": "string"
+        },
+        "StackOutputContent": {
+          "description": "The key value parirs to write to the file as a JSON escaped string",
+          "type": "string"
+        },
+        "Tenant": {
+          "description": "The Name of the tenant layer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackOutputContent",
+        "DeploymentUnit",
+        "DeploymentGroup",
+        "GenerationFramework",
+        "GenerationProviders",
+        "GenerationInputSource",
+        "RootDir",
+        "DistrictType"
+      ],
+      "type": "object"
+    },
     "conditional_stage_skip": {
       "additionalProperties": false,
       "description": "If a condition doesn't match skip the rest of the steps in the stage",

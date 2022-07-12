@@ -1383,6 +1383,98 @@
       },
       "type": "object"
     },
+    "stackoutput": {
+      "additionalProperties": false,
+      "description": "Writes the provided content as a stack output",
+      "properties": {
+        "Deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "Output": {
+              "additionalProperties": false,
+              "properties": {
+                "Format": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Prefix": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Types": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Types",
+                "Format",
+                "Prefix"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Flow": {
+          "additionalProperties": false,
+          "properties": {
+            "Names": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "Names"
+          ],
+          "type": "object"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "properties": {
+            "Level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Level"
+          ],
+          "type": "object"
+        },
+        "Run": {
+          "additionalProperties": false,
+          "properties": {
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "unitlist": {
       "additionalProperties": false,
       "description": "Provides details on all deployment unit | deployment group combinations",
