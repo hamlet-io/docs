@@ -34,6 +34,33 @@
       },
       "type": "object"
     },
+    "aws_ecr_docker_login": {
+      "additionalProperties": false,
+      "description": "Perfom a docker login using credentials from AWS ECR",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "RegistryId": {
+          "description": "The Registry Id ( AWS Account Id) to login into",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "aws_ecs_run_command": {
       "additionalProperties": false,
       "description": "Runs an interactive task on a provided task arn",
@@ -381,6 +408,46 @@
       ],
       "type": "object"
     },
+    "aws_s3_download_object": {
+      "additionalProperties": false,
+      "description": "Download a file from an S3 bucket to a local path",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "BucketName": {
+          "description": "The name of the S3 Bucket",
+          "type": "string"
+        },
+        "LocalPath": {
+          "description": "The local path to download the object to",
+          "type": "string"
+        },
+        "Object": {
+          "description": "The path of the object in the bucket",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        }
+      },
+      "required": [
+        "BucketName",
+        "Object",
+        "LocalPath"
+      ],
+      "type": "object"
+    },
     "aws_s3_empty_bucket": {
       "additionalProperties": false,
       "description": "Delete all versions of objects in an S3 Bucket",
@@ -412,6 +479,46 @@
       },
       "required": [
         "BucketName"
+      ],
+      "type": "object"
+    },
+    "aws_s3_upload_object": {
+      "additionalProperties": false,
+      "description": "Upload a file to an S3 bucket",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "BucketName": {
+          "description": "The name of the S3 Bucket",
+          "type": "string"
+        },
+        "LocalPath": {
+          "description": "The local path to the object to upload",
+          "type": "string"
+        },
+        "Object": {
+          "description": "The path of the object in the bucket",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        }
+      },
+      "required": [
+        "BucketName",
+        "Object",
+        "LocalPath"
       ],
       "type": "object"
     },
