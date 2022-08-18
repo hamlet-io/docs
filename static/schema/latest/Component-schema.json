@@ -2737,6 +2737,15 @@
           "default": false,
           "type": "boolean"
         },
+        "Extensions": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Extensions to invoke as part of component processing",
+          "type": "array"
+        },
         "Instances": {
           "additionalProperties": false,
           "description": "Instances of a component configuration",

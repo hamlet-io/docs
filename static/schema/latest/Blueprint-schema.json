@@ -1999,6 +1999,11 @@
                 "HealthCheck": {
                   "additionalProperties": false,
                   "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Will the health check be run",
+                      "type": "boolean"
+                    },
                     "HealthyThreshold": {
                       "type": [
                         "number",
