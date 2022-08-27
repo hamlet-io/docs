@@ -17,7 +17,7 @@
     "@types/react": "^17.0.45",
     "axios": "^0.25.0",
     "mdx-mermaid": "^1.2.3",
-    "mermaid": "~8.11.0",
+    "mermaid": "~9.1.2",
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-data-table-component": "^7.5.2",
