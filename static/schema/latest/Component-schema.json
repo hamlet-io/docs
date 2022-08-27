@@ -4274,6 +4274,9 @@
           "description": "Use TLS Server Name Identification to route clients requests to the CDN",
           "type": "boolean"
         },
+        "CachePolicies": {
+          "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/cdncachepolicy"
+        },
         "Certificate": {
           "additionalProperties": false,
           "description": "The hostname to use of the CDN",
@@ -4387,6 +4390,11 @@
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable the response override",
+                  "type": "boolean"
+                },
                 "ErrorCode": {
                   "description": "The code to trigger the response for",
                   "type": "number"
@@ -4444,6 +4452,9 @@
         },
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Origins": {
+          "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/cdnorigin"
         },
         "Pages": {
           "additionalProperties": false,
@@ -4522,6 +4533,9 @@
             }
           },
           "type": "object"
+        },
+        "ResponsePolicies": {
+          "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/cdnresponsepolicy"
         },
         "Routes": {
           "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/cdnroute"
@@ -4750,31 +4764,1300 @@
       },
       "type": "object"
     },
+    "cdncachepolicy": {
+      "additionalProperties": false,
+      "description": "A policy for how content should be cached",
+      "properties": {
+        "CompressionEncoding": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "gzip",
+            "brotli"
+          ],
+          "description": "A list of compression processes that are normalised and included in the cache policy",
+          "enum": [
+            "gzip",
+            "brotli"
+          ],
+          "type": "array"
+        },
+        "Cookies": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "_all"
+          ],
+          "description": "A list of cookie names that will be included in cache entry ( _all - all cookies )",
+          "type": "array"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Headers": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A list of header names that will be included in the cache entry ( _all - all cookies)",
+          "type": "array"
+        },
+        "Instances": {
+          "additionalProperties": false,
+          "description": "Instances of a component configuration",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Methods": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "GET",
+            "HEAD"
+          ],
+          "description": "A list of HTTP methods which will allow caching",
+          "enum": [
+            "GET",
+            "HEAD",
+            "OPTIONS"
+          ],
+          "type": "array"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "QueryParams": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "_all"
+          ],
+          "description": "A list of query parameter names to be included in the cache entry ( _all - all parameters )",
+          "type": "array"
+        },
+        "SettingNamespaces": {
+          "additionalProperties": false,
+          "description": "Additional namespaces to use during settings lookups",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ],
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Settings": {
+          "additionalProperties": false,
+          "description": "Application settings that can provide configuration for code",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "TTL": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/cdnttl",
+          "description": "Default Time To Live values for cache management"
+        },
+        "Tags": {
+          "additionalProperties": false,
+          "description": "Key value pairs to apply to resources to identify them",
+          "properties": {
+            "Additional": {
+              "additionalProperties": false,
+              "description": "Extra tags to include",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Include the tag",
+                      "type": "boolean"
+                    },
+                    "Key": {
+                      "description": "The key of the tag ( uses the key of this object by default)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the tag",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Common": {
+              "additionalProperties": false,
+              "description": "Include tags based on properties of the occurrence",
+              "properties": {
+                "Component": {
+                  "default": true,
+                  "description": "Include tags provided by the component",
+                  "type": "boolean"
+                },
+                "CostCentre": {
+                  "default": true,
+                  "description": "Include the cost centre for the account",
+                  "type": "boolean"
+                },
+                "Deployment": {
+                  "default": true,
+                  "description": "Include details of the deployment",
+                  "type": "boolean"
+                },
+                "Layers": {
+                  "default": true,
+                  "description": "Include the names of the active layers",
+                  "type": "boolean"
+                },
+                "Name": {
+                  "default": "FullName",
+                  "description": "The component name attribute to use",
+                  "enum": [
+                    "FullName",
+                    "FullRawName",
+                    "RawName",
+                    "Name",
+                    "ShortName",
+                    "ShortRawName",
+                    "ShortFullName",
+                    "ShortRawFullName"
+                  ],
+                  "type": "string"
+                },
+                "Prefix": {
+                  "default": "cot:",
+                  "description": "A prefix to apply to common tags",
+                  "type": "string"
+                },
+                "Solution": {
+                  "default": true,
+                  "description": "Include details of the solution",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "cdnorigin": {
+      "additionalProperties": false,
+      "description": "A Origin which serves content",
+      "properties": {
+        "BasePath": {
+          "description": "The base path at the origin destination",
+          "type": "string"
+        },
+        "ConnectionTimeout": {
+          "default": 30,
+          "description": "How long to wait until a response is received from the origin",
+          "type": "number"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Instances": {
+          "additionalProperties": false,
+          "description": "Instances of a component configuration",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Link": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "RequestForwarding": {
+          "additionalProperties": false,
+          "description": "Controls how the request is forwarded to the origin",
+          "properties": {
+            "AdditionalHeaders": {
+              "additionalProperties": false,
+              "description": "Headers to add when forwarding the request to the origin",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Name": {
+                      "description": "The name of the header ( object id used if not provided)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the header",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Policy": {
+              "default": "LinkType",
+              "description": "How the request forwarding policy is determined - LinkType = Use a predefined policy for the link type, custom = your own",
+              "enum": [
+                "LinkType",
+                "Custom"
+              ],
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "Policy:Custom": {
+              "additionalProperties": false,
+              "properties": {
+                "Cookies": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "_all"
+                  ],
+                  "description": "A list of cookie names to forward to the origin ( _all - all cookies )",
+                  "type": "array"
+                },
+                "Headers": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "_all"
+                  ],
+                  "description": "A list of header keys to forward to the origin ( _all - all headers, _cdn - CDN included headers )",
+                  "type": "array"
+                },
+                "Methods": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT",
+                    "PATCH",
+                    "POST",
+                    "DELETE"
+                  ],
+                  "description": "The HTTP Methods that will be forwarded to the origin",
+                  "enum": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT",
+                    "PATCH",
+                    "POST",
+                    "DELETE"
+                  ],
+                  "type": "array"
+                },
+                "QueryParams": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "_all"
+                  ],
+                  "description": "A list of query parameter names to forward ( _all - all parameters )",
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "additionalProperties": false,
+          "description": "Additional namespaces to use during settings lookups",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ],
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Settings": {
+          "additionalProperties": false,
+          "description": "Application settings that can provide configuration for code",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "TLSProtocols": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "TLSv1.2"
+          ],
+          "description": "When using a TLS backend the protocols the CDN will use as a client",
+          "enum": [
+            "TLSv1.2",
+            "TLSv1.1",
+            "TLSv1",
+            "SSLv3"
+          ],
+          "type": "array"
+        },
+        "Tags": {
+          "additionalProperties": false,
+          "description": "Key value pairs to apply to resources to identify them",
+          "properties": {
+            "Additional": {
+              "additionalProperties": false,
+              "description": "Extra tags to include",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Include the tag",
+                      "type": "boolean"
+                    },
+                    "Key": {
+                      "description": "The key of the tag ( uses the key of this object by default)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the tag",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Common": {
+              "additionalProperties": false,
+              "description": "Include tags based on properties of the occurrence",
+              "properties": {
+                "Component": {
+                  "default": true,
+                  "description": "Include tags provided by the component",
+                  "type": "boolean"
+                },
+                "CostCentre": {
+                  "default": true,
+                  "description": "Include the cost centre for the account",
+                  "type": "boolean"
+                },
+                "Deployment": {
+                  "default": true,
+                  "description": "Include details of the deployment",
+                  "type": "boolean"
+                },
+                "Layers": {
+                  "default": true,
+                  "description": "Include the names of the active layers",
+                  "type": "boolean"
+                },
+                "Name": {
+                  "default": "FullName",
+                  "description": "The component name attribute to use",
+                  "enum": [
+                    "FullName",
+                    "FullRawName",
+                    "RawName",
+                    "Name",
+                    "ShortName",
+                    "ShortRawName",
+                    "ShortFullName",
+                    "ShortRawFullName"
+                  ],
+                  "type": "string"
+                },
+                "Prefix": {
+                  "default": "cot:",
+                  "description": "A prefix to apply to common tags",
+                  "type": "string"
+                },
+                "Solution": {
+                  "default": true,
+                  "description": "Include details of the solution",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Link"
+      ],
+      "type": "object"
+    },
+    "cdnresponsepolicy": {
+      "additionalProperties": false,
+      "description": "A policy to control how the CDN controls responses",
+      "properties": {
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "HeaderInjection": {
+          "additionalProperties": false,
+          "description": "Include headers as part of the response",
+          "properties": {
+            "Additional": {
+              "additionalProperties": false,
+              "default": "Custom headers to include in the responses",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Name": {
+                      "description": "The name of the header ( object id used if not provided)",
+                      "type": "string"
+                    },
+                    "PreferOrigin": {
+                      "default": false,
+                      "description": "Prefer the origin value over this value",
+                      "type": "boolean"
+                    },
+                    "Value": {
+                      "description": "The value of the header",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "CORS": {
+              "additionalProperties": false,
+              "description": "Manage the CORS Headers that will be included",
+              "properties": {
+                "AccessControlAllowCredentials": {
+                  "default": false,
+                  "description": "Include the Allow Credentials header",
+                  "type": "boolean"
+                },
+                "AccessControlAllowHeaders": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "*"
+                  ],
+                  "description": "A list of methods permitted on this route",
+                  "type": "array"
+                },
+                "AccessControlAllowMethods": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "ALL"
+                  ],
+                  "description": "A list of methods permitted on this route",
+                  "type": "array"
+                },
+                "AccessControlAllowOrigins": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "*"
+                  ],
+                  "description": "A list of origins permitted on this route",
+                  "type": "array"
+                },
+                "AccessControlExposeHeaders": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "*"
+                  ],
+                  "description": "A list of headers that will be exposed",
+                  "type": "array"
+                },
+                "AccessControlMaxAgeSec": {
+                  "default": 3600,
+                  "description": "How long the CORS headers are cached for",
+                  "type": "number"
+                },
+                "Enabled": {
+                  "default": false,
+                  "description": "Manage CORS responses from the CDN",
+                  "type": "boolean"
+                },
+                "PreferOrigin": {
+                  "default": true,
+                  "description": "Prefer the headers provided by the origin over these",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "Security": {
+              "additionalProperties": false,
+              "description": "Manage the standard security that will be included",
+              "properties": {
+                "ContentSecurityPolicy": {
+                  "description": "Include a ContentSecurityPolicy header",
+                  "type": "string"
+                },
+                "ContentTypeOptions": {
+                  "default": true,
+                  "description": "Set the X-Content-Type-Options to nosniff",
+                  "type": "boolean"
+                },
+                "Enabled": {
+                  "default": false,
+                  "description": "Manage Security header repsponses with the CDN",
+                  "type": "boolean"
+                },
+                "FrameOptions": {
+                  "default": "DENY",
+                  "description": "Control the X-Frame-Options header",
+                  "enum": [
+                    "DENY",
+                    "SAMEORIGIN"
+                  ],
+                  "type": "string"
+                },
+                "PreferOrigin": {
+                  "default": true,
+                  "description": "Prefer the headers provided by the origin over these",
+                  "type": "boolean"
+                },
+                "ReferrerPolicy": {
+                  "default": "strict-origin-when-cross-origin",
+                  "description": "Set the Referrer-Policy that is used",
+                  "enum": [
+                    "no-referrer",
+                    "no-referrer-when-downgrade",
+                    "origin",
+                    "origin-when-cross-origin",
+                    "same-origin",
+                    "strict-origin",
+                    "strict-origin-when-cross-origin",
+                    "unsafe-url"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "StrictTransportSecurity": {
+              "additionalProperties": false,
+              "description": "Set how HSTS manages requests",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable the inclusion of HSTS",
+                  "type": "boolean"
+                },
+                "IncludeSubdomains": {
+                  "default": false,
+                  "description": "Should subdomains be included in the policy",
+                  "type": "boolean"
+                },
+                "MaxAge": {
+                  "default": 31536000,
+                  "description": "How long the HSTS policy should be valid for",
+                  "type": "number"
+                },
+                "PreferOrigin": {
+                  "default": true,
+                  "description": "Prefer the headers provided by the origin over these",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Instances": {
+          "additionalProperties": false,
+          "description": "Instances of a component configuration",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "additionalProperties": false,
+          "description": "Additional namespaces to use during settings lookups",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ],
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Settings": {
+          "additionalProperties": false,
+          "description": "Application settings that can provide configuration for code",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Tags": {
+          "additionalProperties": false,
+          "description": "Key value pairs to apply to resources to identify them",
+          "properties": {
+            "Additional": {
+              "additionalProperties": false,
+              "description": "Extra tags to include",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Include the tag",
+                      "type": "boolean"
+                    },
+                    "Key": {
+                      "description": "The key of the tag ( uses the key of this object by default)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the tag",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Common": {
+              "additionalProperties": false,
+              "description": "Include tags based on properties of the occurrence",
+              "properties": {
+                "Component": {
+                  "default": true,
+                  "description": "Include tags provided by the component",
+                  "type": "boolean"
+                },
+                "CostCentre": {
+                  "default": true,
+                  "description": "Include the cost centre for the account",
+                  "type": "boolean"
+                },
+                "Deployment": {
+                  "default": true,
+                  "description": "Include details of the deployment",
+                  "type": "boolean"
+                },
+                "Layers": {
+                  "default": true,
+                  "description": "Include the names of the active layers",
+                  "type": "boolean"
+                },
+                "Name": {
+                  "default": "FullName",
+                  "description": "The component name attribute to use",
+                  "enum": [
+                    "FullName",
+                    "FullRawName",
+                    "RawName",
+                    "Name",
+                    "ShortName",
+                    "ShortRawName",
+                    "ShortFullName",
+                    "ShortRawFullName"
+                  ],
+                  "type": "string"
+                },
+                "Prefix": {
+                  "default": "cot:",
+                  "description": "A prefix to apply to common tags",
+                  "type": "string"
+                },
+                "Solution": {
+                  "default": true,
+                  "description": "Include details of the solution",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "cdnroute": {
       "additionalProperties": false,
       "description": "A path based route on the CDN instance",
       "properties": {
-        "CachingTTL": {
+        "CachePolicy": {
+          "default": "Default",
+          "description": "The Cache Policy to use Default - use the Default CDN policy or Custom for custom policy defined on the CDN",
+          "enum": [
+            "Default",
+            "Custom"
+          ],
+          "type": "string"
+        },
+        "CachePolicy:Custom": {
           "additionalProperties": false,
-          "description": "Default Time To Live values for cache management",
+          "description": "Configuration for the Custom Cache policy",
           "properties": {
-            "Default": {
-              "default": 600,
-              "description": "The default cache time when the origin has not specified a time - seconds",
-              "type": "number"
+            "Id": {
+              "description": "The Id of the CachePolicy",
+              "type": "string"
             },
-            "Maximum": {
-              "default": 31536000,
-              "description": "The maximum time that an origin can specify to cache content - seconds",
-              "type": "number"
+            "Instance": {
+              "description": "The instance id of the CachePolicy",
+              "type": "string"
             },
-            "Minimum": {
-              "default": 0,
-              "description": "The minimum time that an origin can specify to cache content - seconds",
-              "type": "number"
+            "Version": {
+              "description": "The version id of the CachePolicy",
+              "type": "string"
             }
           },
           "type": "object"
+        },
+        "CachingTTL": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/cdnttl",
+          "description": "Default Time To Live values for cache management"
         },
         "Compress": {
           "default": false,
@@ -4873,45 +6156,38 @@
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
-        "Origin": {
+        "OriginSource": {
+          "default": "Route",
+          "description": "Use an origin for the route only ( defined under the Origin object) or CDN for subcomponent origins",
+          "enum": [
+            "Route",
+            "CDN",
+            "Placeholder"
+          ],
+          "type": "string"
+        },
+        "OriginSource:CDN": {
           "additionalProperties": false,
-          "description": "The service which provides the content for the cdn to distribute",
+          "description": "Configuration for the CDN origin source",
           "properties": {
-            "BasePath": {
-              "description": "The base path at the origin destination",
+            "Id": {
+              "description": "The Id of the origin in the CDN Origins",
               "type": "string"
             },
-            "ConnectionTimeout": {
-              "default": 30,
-              "description": "How long to wait until a response is received from the origin",
-              "type": "number"
+            "Instance": {
+              "description": "The instance id of the origin to use",
+              "type": "string"
             },
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "TLSProtocols": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "default": [
-                "TLSv1.2"
-              ],
-              "description": "When using a TLS backend the protocols the CDN will use as a client",
-              "enum": [
-                "TLSv1.2",
-                "TLSv1.1",
-                "TLSv1",
-                "SSLv3"
-              ],
-              "type": "array"
+            "Version": {
+              "description": "The version id of the origin to use",
+              "type": "string"
             }
           },
-          "required": [
-            "Link"
-          ],
           "type": "object"
+        },
+        "OriginSource:Route": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/cdnorigin",
+          "description": "The origin the route forwards requests to"
         },
         "PathPattern": {
           "description": "The path based pattern to match for this route to apply - one _default path pattern must be supplied",
@@ -4975,6 +6251,25 @@
             },
             "RedirectVersion": {
               "default": "v1",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "ResponsePolicy": {
+          "additionalProperties": false,
+          "description": "A Response Policy to use for the route",
+          "properties": {
+            "Id": {
+              "description": "The Id of the origin in the CDN Origins",
+              "type": "string"
+            },
+            "Instance": {
+              "description": "The instance id of the origin to use",
+              "type": "string"
+            },
+            "Version": {
+              "description": "The version id of the origin to use",
               "type": "string"
             }
           },

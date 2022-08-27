@@ -489,6 +489,181 @@
       },
       "type": "object"
     },
+    "cdnorigin": {
+      "additionalProperties": false,
+      "description": "Configuration for a CDN origin",
+      "properties": {
+        "BasePath": {
+          "description": "The base path at the origin destination",
+          "type": "string"
+        },
+        "ConnectionTimeout": {
+          "default": 30,
+          "description": "How long to wait until a response is received from the origin",
+          "type": "number"
+        },
+        "Link": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "RequestForwarding": {
+          "additionalProperties": false,
+          "description": "Controls how the request is forwarded to the origin",
+          "properties": {
+            "AdditionalHeaders": {
+              "additionalProperties": false,
+              "description": "Headers to add when forwarding the request to the origin",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Name": {
+                      "description": "The name of the header ( object id used if not provided)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the header",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Policy": {
+              "default": "LinkType",
+              "description": "How the request forwarding policy is determined - LinkType = Use a predefined policy for the link type, custom = your own",
+              "enum": [
+                "LinkType",
+                "Custom"
+              ],
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "Policy:Custom": {
+              "additionalProperties": false,
+              "properties": {
+                "Cookies": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "_all"
+                  ],
+                  "description": "A list of cookie names to forward to the origin ( _all - all cookies )",
+                  "type": "array"
+                },
+                "Headers": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "_all"
+                  ],
+                  "description": "A list of header keys to forward to the origin ( _all - all headers, _cdn - CDN included headers )",
+                  "type": "array"
+                },
+                "Methods": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT",
+                    "PATCH",
+                    "POST",
+                    "DELETE"
+                  ],
+                  "description": "The HTTP Methods that will be forwarded to the origin",
+                  "enum": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT",
+                    "PATCH",
+                    "POST",
+                    "DELETE"
+                  ],
+                  "type": "array"
+                },
+                "QueryParams": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "_all"
+                  ],
+                  "description": "A list of query parameter names to forward ( _all - all parameters )",
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "TLSProtocols": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "TLSv1.2"
+          ],
+          "description": "When using a TLS backend the protocols the CDN will use as a client",
+          "enum": [
+            "TLSv1.2",
+            "TLSv1.1",
+            "TLSv1",
+            "SSLv3"
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "Link"
+      ],
+      "type": "object"
+    },
+    "cdnttl": {
+      "additionalProperties": false,
+      "description": "Configuration for the cache TTL of a CDN",
+      "properties": {
+        "Default": {
+          "default": 600,
+          "description": "The default cache time when the origin has not specified a time - seconds",
+          "type": "number"
+        },
+        "Maximum": {
+          "default": 31536000,
+          "description": "The maximum time that an origin can specify to cache content - seconds",
+          "type": "number"
+        },
+        "Minimum": {
+          "default": 0,
+          "description": "The minimum time that an origin can specify to cache content - seconds",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "computeimage": {
       "additionalProperties": false,
       "description": "Configuration for the source of compute instance images",
