@@ -964,24 +964,6 @@
                 "number",
                 "string"
               ]
-            },
-            "Public": {
-              "additionalProperties": false,
-              "properties": {
-                "Enabled": {
-                  "default": false,
-                  "type": "boolean"
-                },
-                "IPAddressGroups": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
-                }
-              },
-              "type": "object"
             }
           },
           "type": "object"

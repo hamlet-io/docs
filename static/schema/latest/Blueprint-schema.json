@@ -1167,6 +1167,7 @@
                   "type": "string"
                 },
                 "DistrictType": {
+                  "default": "*",
                   "description": "The DistrictType to include as part of the Deployment Group",
                   "type": "string"
                 },
@@ -1237,8 +1238,7 @@
                 }
               },
               "required": [
-                "Level",
-                "DistrictType"
+                "Level"
               ]
             }
           },
@@ -3000,24 +3000,6 @@
                         "number",
                         "string"
                       ]
-                    },
-                    "Public": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "Enabled": {
-                          "default": false,
-                          "type": "boolean"
-                        },
-                        "IPAddressGroups": {
-                          "contains": {
-                            "type": [
-                              "string"
-                            ]
-                          },
-                          "type": "array"
-                        }
-                      },
-                      "type": "object"
                     }
                   },
                   "type": "object"
@@ -3417,6 +3399,119 @@
                     },
                     "Name": {
                       "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Solution": {
+      "additionalProperties": false,
+      "description": "",
+      "properties": {
+        "Solutions": {
+          "additionalProperties": false,
+          "description": "Defines the components that belong to a district",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "District": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Layers": {
+                      "additionalProperties": false,
+                      "description": "The layers to match in a given district",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                          "properties": {
+                            "Id": {
+                              "default": "*",
+                              "description": "The Id of a layer the solution applies to - * applies to all layers that match the type",
+                              "type": "string"
+                            },
+                            "Type": {
+                              "description": "The type of layer the solution applies to",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Type"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "Type": {
+                      "default": "segment",
+                      "description": "The type of district the solution applies to",
+                      "type": [
+                        "array",
+                        "boolean",
+                        "number",
+                        "object",
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "Priority": {
+                  "default": 100,
+                  "description": "The priority order for the inclusion of this solution - Lowest = last loaded",
+                  "type": "number"
+                },
+                "Tiers": {
+                  "additionalProperties": false,
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Active": {
+                          "default": false,
+                          "description": "Defines if the layer should be used. Automatically true if components are defined",
+                          "type": "boolean"
+                        },
+                        "Components": {
+                          "type": [
+                            "array",
+                            "boolean",
+                            "number",
+                            "object",
+                            "string"
+                          ]
+                        },
+                        "Index": {
+                          "description": "A unique index number used when ordering tiers",
+                          "type": "number"
+                        },
+                        "Network": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "Enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "Link": {
+                              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                            },
+                            "NetworkACL": {
+                              "type": "string"
+                            },
+                            "RouteTable": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "Index"
+                      ]
                     }
                   },
                   "type": "object"

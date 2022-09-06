@@ -92,10 +92,14 @@
           "additionalProperties": false,
           "description": "Control the source of the image for the adaptor scripts",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
               "enum": [
+                "link",
                 "registry",
                 "url",
                 "none"
@@ -495,80 +499,7 @@
           "type": "string"
         },
         "Certificate": {
-          "additionalProperties": false,
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate"
         },
         "CloudFront": {
           "additionalProperties": false,
@@ -662,10 +593,14 @@
           "additionalProperties": false,
           "description": "Control the source of the image for the openapi specification",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
               "enum": [
+                "link",
                 "registry",
                 "url",
                 "none"
@@ -2604,80 +2539,7 @@
           "type": "array"
         },
         "azure:Certificate": {
-          "additionalProperties": false,
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate"
         },
         "azure:Lifecycle": {
           "additionalProperties": false,
@@ -3436,6 +3298,9 @@
           "additionalProperties": false,
           "description": "Configuration of compute instances used in the component",
           "properties": {
+            "AntiVirus": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/antivirus"
+            },
             "ComputeTasks": {
               "additionalProperties": false,
               "description": "Customisation to setup the compute instance from its image",
@@ -3559,10 +3424,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": false,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": false,
               "type": "boolean"
             },
@@ -3856,9 +3717,6 @@
         "Type": {
           "description": "The components type",
           "type": "string"
-        },
-        "aws:AntiVirus": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/aws_antivirus"
         },
         "deployment:Group": {
           "default": "segment",
@@ -4278,81 +4136,8 @@
           "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/cdncachepolicy"
         },
         "Certificate": {
-          "additionalProperties": false,
-          "description": "The hostname to use of the CDN",
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate",
+          "description": "The hostname to use of the CDN"
         },
         "CountryGroups": {
           "contains": {
@@ -6741,52 +6526,8 @@
           "additionalProperties": false,
           "properties": {
             "CommonName": {
-              "additionalProperties": false,
-              "description": "The Common name of the root CA",
-              "properties": {
-                "Host": {
-                  "type": "string"
-                },
-                "HostParts": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
-                },
-                "IncludeInHost": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Component": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Host": {
-                      "type": "boolean"
-                    },
-                    "Instance": {
-                      "type": "boolean"
-                    },
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    },
-                    "Tier": {
-                      "type": "boolean"
-                    },
-                    "Version": {
-                      "type": "boolean"
-                    }
-                  },
-                  "type": "object"
-                }
-              },
-              "type": "object"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/hostname",
+              "description": "The Common name of the root CA"
             }
           },
           "type": "object"
@@ -7006,81 +6747,8 @@
           "type": "object"
         },
         "Certificate": {
-          "additionalProperties": false,
-          "description": "The certificate hostname to use for the clientVPN",
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate",
+          "description": "The certificate hostname to use for the clientVPN"
         },
         "DeploymentUnits": {
           "contains": {
@@ -7475,6 +7143,9 @@
           "additionalProperties": false,
           "description": "Configuration of compute instances used in the component",
           "properties": {
+            "AntiVirus": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/antivirus"
+            },
             "ComputeTasks": {
               "additionalProperties": false,
               "description": "Customisation to setup the compute instance from its image",
@@ -7560,10 +7231,14 @@
           "additionalProperties": false,
           "description": "Control the source of the image that is used for the computecluster",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry is the hamlet registry",
               "enum": [
+                "link",
                 "registry",
                 "url",
                 "none"
@@ -7624,10 +7299,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": false,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": false,
               "type": "boolean"
             },
@@ -7941,9 +7612,6 @@
         "Type": {
           "description": "The components type",
           "type": "string"
-        },
-        "aws:AntiVirus": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/aws_antivirus"
         },
         "azure:ScalingProfiles": {
           "additionalProperties": false,
@@ -8689,6 +8357,9 @@
           "additionalProperties": false,
           "description": "Configuration of compute instances used in the component",
           "properties": {
+            "AntiVirus": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/antivirus"
+            },
             "ComputeTasks": {
               "additionalProperties": false,
               "description": "Customisation to setup the compute instance from its image",
@@ -8859,10 +8530,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": false,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": false,
               "type": "boolean"
             },
@@ -9294,7 +8961,7 @@
           "type": "boolean"
         },
         "Containers": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/containertask"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
         "DeploymentUnits": {
           "contains": {
@@ -9369,10 +9036,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": true,
               "type": "boolean"
             },
@@ -9765,7 +9428,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "Containers": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/containertask"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
         "DeploymentUnits": {
           "contains": {
@@ -9841,10 +9504,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": true,
               "type": "boolean"
             },
@@ -10543,10 +10202,14 @@
           "additionalProperties": false,
           "description": "Control the source of the content node zip package",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry: the local hamlet registry - url: an external public url",
               "enum": [
+                "link",
                 "registry",
                 "url"
               ],
@@ -12106,10 +11769,14 @@
           "additionalProperties": false,
           "description": "Control the source of the image for the mobile ota source zip image",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry: the local hamlet registry - url: an external public url",
               "enum": [
+                "link",
                 "registry",
                 "url"
               ],
@@ -12164,10 +11831,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": true,
               "type": "boolean"
             },
@@ -12497,10 +12160,14 @@
           "additionalProperties": false,
           "description": "Control the source of the image for dataset components",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry: the local hamlet registry - url: an external public url",
               "enum": [
+                "link",
                 "registry",
                 "url"
               ],
@@ -14226,81 +13893,8 @@
           "type": "object"
         },
         "Hostname": {
-          "additionalProperties": false,
-          "description": "FQDN for the Directory Service",
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate",
+          "description": "FQDN for the Directory Service"
         },
         "IPAddressGroups": {
           "contains": {
@@ -14416,22 +14010,7 @@
               "description": "A link to a secret or store that will keep the secret"
             },
             "Secret": {
-              "additionalProperties": false,
-              "properties": {
-                "Requirements": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/secretstring",
-                  "description": "Format requirements for the Secret"
-                },
-                "Source": {
-                  "default": "user",
-                  "enum": [
-                    "user",
-                    "generated"
-                  ],
-                  "type": "string"
-                }
-              },
-              "type": "object"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/secretsource"
             },
             "Username": {
               "default": "Admin",
@@ -15596,6 +15175,9 @@
           "additionalProperties": false,
           "description": "Configuration of compute instances used in the component",
           "properties": {
+            "AntiVirus": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/antivirus"
+            },
             "ComputeTasks": {
               "additionalProperties": false,
               "description": "Customisation to setup the compute instance from its image",
@@ -15718,10 +15300,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": false,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": false,
               "type": "boolean"
             },
@@ -16054,9 +15632,6 @@
           "description": "A list of zoneIds to create virtual machines in, default is _all which will use all zones or the first for SingleAz",
           "type": "array"
         },
-        "aws:AntiVirus": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/aws_antivirus"
-        },
         "deployment:Group": {
           "default": "solution",
           "type": "string"
@@ -16089,6 +15664,9 @@
           "additionalProperties": false,
           "description": "Configuration of compute instances used in the component",
           "properties": {
+            "AntiVirus": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/antivirus"
+            },
             "ComputeTasks": {
               "additionalProperties": false,
               "description": "Customisation to setup the compute instance from its image",
@@ -16256,10 +15834,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": false,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": false,
               "type": "boolean"
             },
@@ -16576,9 +16150,6 @@
             ]
           },
           "type": "array"
-        },
-        "aws:AntiVirus": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/aws_antivirus"
         },
         "deployment:Group": {
           "default": "solution",
@@ -18698,10 +18269,6 @@
               "default": false,
               "type": "boolean"
             },
-            "AppPublic": {
-              "default": false,
-              "type": "boolean"
-            },
             "AsFile": {
               "default": false,
               "type": "boolean"
@@ -19726,80 +19293,7 @@
       "description": "File Transfer Service based on standard protocols",
       "properties": {
         "Certificate": {
-          "additionalProperties": false,
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate"
         },
         "DeploymentUnits": {
           "contains": {
@@ -21414,10 +20908,14 @@
           "additionalProperties": false,
           "description": "Control the source of the image that is used for the function",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry is the hamlet registry",
               "enum": [
+                "link",
                 "registry",
                 "url",
                 "extension"
@@ -21500,10 +20998,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": true,
               "type": "boolean"
             },
@@ -23167,6 +22661,9 @@
               "additionalProperties": false,
               "description": "Control the source of the image for the healthcheck script",
               "properties": {
+                "Link": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+                },
                 "ScriptFileName": {
                   "default": "healthcheck.py",
                   "description": "The name of the healthcheck script if the image is a zip",
@@ -23176,6 +22673,7 @@
                   "default": "registry",
                   "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
                   "enum": [
+                    "link",
                     "registry",
                     "url",
                     "none"
@@ -23325,10 +22823,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": true,
               "type": "boolean"
             },
@@ -25684,81 +25178,8 @@
           "type": "object"
         },
         "Certificate": {
-          "additionalProperties": false,
-          "description": "The configuration of the hostname used for this lb port rule",
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate",
+          "description": "The configuration of the hostname used for this lb port rule"
         },
         "Conditions": {
           "additionalProperties": false,
@@ -26706,10 +26127,15 @@
           "additionalProperties": false,
           "description": "Control the source of the image for the mobile ota source zip image",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+              "description": "The link to an image"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry: the local hamlet registry - url: an external public url",
               "enum": [
+                "link",
                 "registry",
                 "url"
               ],
@@ -27712,81 +27138,8 @@
           "type": "boolean"
         },
         "Hostname": {
-          "additionalProperties": false,
-          "description": "Configure the domain(s) associated with this MTA",
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate",
+          "description": "Configure the domain(s) associated with this MTA"
         },
         "IPAddressGroups": {
           "contains": {
@@ -29921,29 +29274,7 @@
           "type": "string"
         },
         "DomainName": {
-          "additionalProperties": false,
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/domainname"
         },
         "Enabled": {
           "default": true,
@@ -30432,22 +29763,7 @@
               "type": "string"
             },
             "Secret": {
-              "additionalProperties": false,
-              "properties": {
-                "Requirements": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/secretstring",
-                  "description": "Format requirements for the Secret"
-                },
-                "Source": {
-                  "default": "user",
-                  "enum": [
-                    "user",
-                    "generated"
-                  ],
-                  "type": "string"
-                }
-              },
-              "type": "object"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/secretsource"
             },
             "SecretStore": {
               "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
@@ -32623,80 +31939,7 @@
           "type": "object"
         },
         "azure:Certificate": {
-          "additionalProperties": false,
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "Enabled": {
-              "default": true,
-              "type": "boolean"
-            },
-            "External": {
-              "type": "boolean"
-            },
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "Wildcard": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate"
         },
         "azure:Lifecycle": {
           "additionalProperties": false,
@@ -33390,7 +32633,7 @@
           "type": "boolean"
         },
         "Containers": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/containertask"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
         "DeploymentUnits": {
           "contains": {
@@ -33465,10 +32708,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": true,
               "type": "boolean"
             },
@@ -33908,29 +33147,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "Namespace": {
-          "additionalProperties": false,
-          "properties": {
-            "Domain": {
-              "description": "Explicit domain id which will override the product domain",
-              "type": "string"
-            },
-            "IncludeInDomain": {
-              "additionalProperties": false,
-              "properties": {
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/domainname"
         },
         "Profiles": {
           "additionalProperties": false,
@@ -34311,52 +33528,8 @@
           "type": "string"
         },
         "ServiceName": {
-          "additionalProperties": false,
-          "description": "The hostname portion of the DNS record which will identify this service",
-          "properties": {
-            "Host": {
-              "type": "string"
-            },
-            "HostParts": {
-              "contains": {
-                "type": [
-                  "string"
-                ]
-              },
-              "type": "array"
-            },
-            "IncludeInHost": {
-              "additionalProperties": false,
-              "properties": {
-                "Component": {
-                  "type": "boolean"
-                },
-                "Environment": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "boolean"
-                },
-                "Instance": {
-                  "type": "boolean"
-                },
-                "Product": {
-                  "type": "boolean"
-                },
-                "Segment": {
-                  "type": "boolean"
-                },
-                "Tier": {
-                  "type": "boolean"
-                },
-                "Version": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/hostname",
+          "description": "The hostname portion of the DNS record which will identify this service"
         },
         "SettingNamespaces": {
           "additionalProperties": false,
@@ -34610,10 +33783,15 @@
           "additionalProperties": false,
           "description": "Control the source of the image that is used for the function",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+              "description": "The link to an image"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry is the hamlet registry",
               "enum": [
+                "link",
                 "registry",
                 "url"
               ],
@@ -35661,7 +34839,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "Containers": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/containertask"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
         "DeploymentUnits": {
           "contains": {
@@ -35737,10 +34915,6 @@
           "additionalProperties": false,
           "properties": {
             "AppData": {
-              "default": true,
-              "type": "boolean"
-            },
-            "AppPublic": {
               "default": true,
               "type": "boolean"
             },
@@ -36163,10 +35337,15 @@
           "additionalProperties": false,
           "description": "Control the source of the image that is used for the function",
           "properties": {
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+              "description": "The link to an image"
+            },
             "Source": {
               "default": "registry",
               "description": "The source of the image - registry is the hamlet registry",
               "enum": [
+                "link",
                 "registry",
                 "url"
               ],
@@ -37307,10 +36486,6 @@
               "default": true,
               "type": "boolean"
             },
-            "AppPublic": {
-              "default": true,
-              "type": "boolean"
-            },
             "AsFile": {
               "default": true,
               "type": "boolean"
@@ -37647,80 +36822,7 @@
           "description": "Provision a managed endpoint for login and oauth endpoints",
           "properties": {
             "Certificate": {
-              "additionalProperties": false,
-              "properties": {
-                "Domain": {
-                  "description": "Explicit domain id which will override the product domain",
-                  "type": "string"
-                },
-                "Enabled": {
-                  "default": true,
-                  "type": "boolean"
-                },
-                "External": {
-                  "type": "boolean"
-                },
-                "Host": {
-                  "type": "string"
-                },
-                "HostParts": {
-                  "contains": {
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "type": "array"
-                },
-                "IncludeInDomain": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    }
-                  },
-                  "type": "object"
-                },
-                "IncludeInHost": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Component": {
-                      "type": "boolean"
-                    },
-                    "Environment": {
-                      "type": "boolean"
-                    },
-                    "Host": {
-                      "type": "boolean"
-                    },
-                    "Instance": {
-                      "type": "boolean"
-                    },
-                    "Product": {
-                      "type": "boolean"
-                    },
-                    "Segment": {
-                      "type": "boolean"
-                    },
-                    "Tier": {
-                      "type": "boolean"
-                    },
-                    "Version": {
-                      "type": "boolean"
-                    }
-                  },
-                  "type": "object"
-                },
-                "Wildcard": {
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate"
             }
           },
           "type": "object"

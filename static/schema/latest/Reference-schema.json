@@ -460,6 +460,7 @@
           "type": "string"
         },
         "DistrictType": {
+          "default": "*",
           "description": "The DistrictType to include as part of the Deployment Group",
           "type": "string"
         },
@@ -530,8 +531,7 @@
         }
       },
       "required": [
-        "Level",
-        "DistrictType"
+        "Level"
       ],
       "type": "object"
     },

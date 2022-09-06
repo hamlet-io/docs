@@ -123,53 +123,7 @@
       ],
       "type": "object"
     },
-    "autoscalegroup": {
-      "additionalProperties": false,
-      "description": "Control how a virtual machine based autoscaling group behaves",
-      "properties": {
-        "ActivityCooldown": {
-          "default": 30,
-          "type": "number"
-        },
-        "AlwaysReplaceOnUpdate": {
-          "default": false,
-          "description": "Replace instances on every update action",
-          "type": "boolean"
-        },
-        "DetailedMetrics": {
-          "default": true,
-          "description": "Enable the collection of autoscale group detailed metrics",
-          "type": "boolean"
-        },
-        "MinSuccessInstances": {
-          "default": 75,
-          "description": "The minimum percantage of instances that must sucessfully update",
-          "type": "number"
-        },
-        "MinUpdateInstances": {
-          "default": 1,
-          "description": "The minimum number of instances which must be available during an update",
-          "type": "number"
-        },
-        "ReplaceCluster": {
-          "default": false,
-          "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
-          "type": "boolean"
-        },
-        "StartupTimeout": {
-          "default": "15M",
-          "description": "How long to wait for a cfn-signal to be received from a host",
-          "type": "string"
-        },
-        "UpdatePauseTime": {
-          "default": "10M",
-          "description": "How long to pause betweeen updates of instances",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "aws_antivirus": {
+    "antivirus": {
       "additionalProperties": false,
       "description": "Standard Configuration options to define antivirus configuration",
       "properties": {
@@ -232,6 +186,52 @@
             "Passive",
             "Disabled"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "autoscalegroup": {
+      "additionalProperties": false,
+      "description": "Control how a virtual machine based autoscaling group behaves",
+      "properties": {
+        "ActivityCooldown": {
+          "default": 30,
+          "type": "number"
+        },
+        "AlwaysReplaceOnUpdate": {
+          "default": false,
+          "description": "Replace instances on every update action",
+          "type": "boolean"
+        },
+        "DetailedMetrics": {
+          "default": true,
+          "description": "Enable the collection of autoscale group detailed metrics",
+          "type": "boolean"
+        },
+        "MinSuccessInstances": {
+          "default": 75,
+          "description": "The minimum percantage of instances that must sucessfully update",
+          "type": "number"
+        },
+        "MinUpdateInstances": {
+          "default": 1,
+          "description": "The minimum number of instances which must be available during an update",
+          "type": "number"
+        },
+        "ReplaceCluster": {
+          "default": false,
+          "description": "When set to true a brand new cluster will be built, if false the instances in the current cluster will be replaced",
+          "type": "boolean"
+        },
+        "StartupTimeout": {
+          "default": "15M",
+          "description": "How long to wait for a cfn-signal to be received from a host",
+          "type": "string"
+        },
+        "UpdatePauseTime": {
+          "default": "10M",
+          "description": "How long to pause betweeen updates of instances",
           "type": "string"
         }
       },
@@ -664,6 +664,83 @@
       },
       "type": "object"
     },
+    "certificate": {
+      "additionalProperties": false,
+      "description": "Controls the full CN used for a certificate along with how the certificate should be generated",
+      "properties": {
+        "Domain": {
+          "description": "Explicit domain id which will override the product domain",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "External": {
+          "type": "boolean"
+        },
+        "Host": {
+          "type": "string"
+        },
+        "HostParts": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "IncludeInDomain": {
+          "additionalProperties": false,
+          "properties": {
+            "Environment": {
+              "type": "boolean"
+            },
+            "Product": {
+              "type": "boolean"
+            },
+            "Segment": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "IncludeInHost": {
+          "additionalProperties": false,
+          "properties": {
+            "Component": {
+              "type": "boolean"
+            },
+            "Environment": {
+              "type": "boolean"
+            },
+            "Host": {
+              "type": "boolean"
+            },
+            "Instance": {
+              "type": "boolean"
+            },
+            "Product": {
+              "type": "boolean"
+            },
+            "Segment": {
+              "type": "boolean"
+            },
+            "Tier": {
+              "type": "boolean"
+            },
+            "Version": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "Wildcard": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "computeimage": {
       "additionalProperties": false,
       "description": "Configuration for the source of compute instance images",
@@ -711,7 +788,7 @@
       },
       "type": "object"
     },
-    "containertask": {
+    "container": {
       "additionalProperties": false,
       "description": "Descirbes each container that will be used as part of a service or task",
       "properties": {
@@ -901,6 +978,534 @@
       "required": [
         "MemoryReservation"
       ],
+      "type": "object"
+    },
+    "containerhost": {
+      "additionalProperties": false,
+      "description": "Describes the configuration required for a container host",
+      "properties": {
+        "Alerts": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+        },
+        "AutoScaling": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/autoscalegroup"
+        },
+        "ClusterLogGroup": {
+          "default": true,
+          "type": "boolean"
+        },
+        "ComputeInstance": {
+          "additionalProperties": false,
+          "description": "Configuration of compute instances used in the component",
+          "properties": {
+            "AntiVirus": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/antivirus"
+            },
+            "ComputeTasks": {
+              "additionalProperties": false,
+              "description": "Customisation to setup the compute instance from its image",
+              "properties": {
+                "Extensions": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "description": "A list of extensions to source boostrap tasks from",
+                  "type": "array"
+                },
+                "UserTasksRequired": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "description": "A list of compute task types which must be accounted for in extensions on top of the component tasks",
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            },
+            "Image": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/ecs_computeimage",
+              "description": "Configures the source of the virtual machine image used for the instance"
+            },
+            "ManagementPorts": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "default": [
+                "ssh"
+              ],
+              "description": "The network ports used for remote management of the instance",
+              "type": "array"
+            },
+            "OSPatching": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/ospatching",
+              "description": "Configuration for scheduled OS Patching"
+            },
+            "OperatingSystem": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/operatingsystem",
+              "description": "The operating system details of the compute instance"
+            }
+          },
+          "type": "object"
+        },
+        "DockerUsers": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "UID": {
+                  "type": "number"
+                },
+                "UserName": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "UID"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Extensions": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Extensions to invoke as part of component processing",
+          "type": "array"
+        },
+        "FixedIP": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Hibernate": {
+          "additionalProperties": false,
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "type": "boolean"
+            },
+            "StartUpMode": {
+              "const": "replace",
+              "default": "replace",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "HostScalingPolicies": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy_ecs"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "LogDriver": {
+          "default": "awslogs",
+          "enum": [
+            "awslogs",
+            "json-file",
+            "fluentd"
+          ],
+          "type": "string"
+        },
+        "LogMetrics": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
+        "Permissions": {
+          "additionalProperties": false,
+          "properties": {
+            "AppData": {
+              "default": false,
+              "type": "boolean"
+            },
+            "AsFile": {
+              "default": false,
+              "type": "boolean"
+            },
+            "Decrypt": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Bootstrap": {
+              "default": "default",
+              "description": "A profile to include additional bootstrap sources as part of the instance startup",
+              "type": "string"
+            },
+            "ComputeProvider": {
+              "default": "default",
+              "type": "string"
+            },
+            "LogFile": {
+              "default": "default",
+              "description": "Defines the logfile profile which sets the log files to collect from the compute instance",
+              "type": "string"
+            },
+            "Logging": {
+              "default": "default",
+              "description": "profile to define where logs are forwarded to from this component",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Processor": {
+              "default": "default",
+              "type": "string"
+            },
+            "Storage": {
+              "default": "default",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "Role": {
+          "description": "Server configuration role",
+          "type": "string"
+        },
+        "VolumeDrivers": {
+          "const": "ebs",
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "containerservice": {
+      "additionalProperties": false,
+      "description": "Describes the configuration required for a container service",
+      "properties": {
+        "Alerts": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+        },
+        "ContainerNetworkLinks": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Containers": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
+        },
+        "DesiredCount": {
+          "type": "number"
+        },
+        "Engine": {
+          "const": "ec2",
+          "default": "ec2",
+          "description": "The engine used to run the container",
+          "type": "string"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "LogMetrics": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
+        "NetworkMode": {
+          "enum": [
+            "none",
+            "bridge",
+            "host"
+          ],
+          "type": "string"
+        },
+        "Permissions": {
+          "additionalProperties": false,
+          "properties": {
+            "AppData": {
+              "default": true,
+              "type": "boolean"
+            },
+            "AsFile": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Decrypt": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "Placement": {
+          "additionalProperties": false,
+          "properties": {
+            "ComputeProvider": {
+              "additionalProperties": false,
+              "description": "The compute provider placement policy",
+              "properties": {
+                "Additional": {
+                  "additionalProperties": false,
+                  "description": "Providers who will meet the additional compute capacity outside of the default",
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Provider": {
+                          "const": "_engine",
+                          "type": "string"
+                        },
+                        "Weight": {
+                          "default": 1,
+                          "description": "The ratio of containers allocated to the provider based on the configured providers",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "Provider"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "Default": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Provider": {
+                      "const": "_engine",
+                      "default": "_engine",
+                      "description": "The default container compute provider - _engine uses the default provider of the engine",
+                      "type": "string"
+                    },
+                    "RequiredCount": {
+                      "default": 1,
+                      "description": "The minimum count of containers to run on the default provider",
+                      "type": "number"
+                    },
+                    "Weight": {
+                      "default": 1,
+                      "description": "The ratio of containers allocated to the provider based on the configured providers",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "DistinctInstance": {
+              "default": true,
+              "description": "Each task is running on a different container instance when true",
+              "type": "boolean"
+            },
+            "Strategy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "How to place containers on the cluster",
+              "enum": [
+                "spread-multiAZ",
+                "spread-instance",
+                "binpack-cpu",
+                "binpack-memory",
+                "daemon",
+                "random"
+              ],
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Logging": {
+              "default": "default",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Processor": {
+              "default": "default",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "ScalingPolicies": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/scalingpolicy"
+        },
+        "TaskLogGroup": {
+          "default": true,
+          "type": "boolean"
+        },
+        "UseTaskRole": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "containertask": {
+      "additionalProperties": false,
+      "description": "Describes the configuration required for a container task",
+      "properties": {
+        "Alerts": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
+        },
+        "Containers": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
+        },
+        "Engine": {
+          "const": "ec2",
+          "default": "ec2",
+          "description": "The engine used to run the container",
+          "type": "string"
+        },
+        "FixedName": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "LogMetrics": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "MultiAZ": {
+          "default": false,
+          "description": "Deploy resources to multiple Availablity Zones",
+          "type": "boolean"
+        },
+        "NetworkMode": {
+          "enum": [
+            "none",
+            "bridge",
+            "host"
+          ],
+          "type": "string"
+        },
+        "Permissions": {
+          "additionalProperties": false,
+          "properties": {
+            "AppData": {
+              "default": true,
+              "type": "boolean"
+            },
+            "AsFile": {
+              "default": true,
+              "type": "boolean"
+            },
+            "Decrypt": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "Placement": {
+          "additionalProperties": false,
+          "properties": {
+            "ComputeProvider": {
+              "additionalProperties": false,
+              "description": "The compute provider placement policy",
+              "properties": {
+                "Default": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Provider": {
+                      "const": "_engine",
+                      "default": "_engine",
+                      "description": "The default container compute provider - _engine uses the default provider of the engine",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Alert": {
+              "default": "default",
+              "type": "string"
+            },
+            "Logging": {
+              "default": "default",
+              "type": "string"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "Schedules": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Expression": {
+                  "default": "rate(1 hours)",
+                  "type": "string"
+                },
+                "TaskCount": {
+                  "default": 1,
+                  "description": "The number of tasks to run on the schedule",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "TaskLogGroup": {
+          "default": true,
+          "type": "boolean"
+        },
+        "UseTaskRole": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "contextpath": {
@@ -1242,6 +1847,32 @@
       ],
       "type": "object"
     },
+    "domainname": {
+      "additionalProperties": false,
+      "description": "The base domain and contextual information to include in domain names",
+      "properties": {
+        "Domain": {
+          "description": "Explicit domain id which will override the product domain",
+          "type": "string"
+        },
+        "IncludeInDomain": {
+          "additionalProperties": false,
+          "properties": {
+            "Environment": {
+              "type": "boolean"
+            },
+            "Product": {
+              "type": "boolean"
+            },
+            "Segment": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ecs_computeimage": {
       "additionalProperties": false,
       "description": "ECS Specific overrides to source compute images",
@@ -1320,6 +1951,54 @@
                 ""
               ],
               "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "hostname": {
+      "additionalProperties": false,
+      "description": "Control the information include in the host part of a Fully qualified domain name",
+      "properties": {
+        "Host": {
+          "type": "string"
+        },
+        "HostParts": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "IncludeInHost": {
+          "additionalProperties": false,
+          "properties": {
+            "Component": {
+              "type": "boolean"
+            },
+            "Environment": {
+              "type": "boolean"
+            },
+            "Host": {
+              "type": "boolean"
+            },
+            "Instance": {
+              "type": "boolean"
+            },
+            "Product": {
+              "type": "boolean"
+            },
+            "Segment": {
+              "type": "boolean"
+            },
+            "Tier": {
+              "type": "boolean"
+            },
+            "Version": {
+              "type": "boolean"
             }
           },
           "type": "object"
@@ -2135,6 +2814,25 @@
             "Tracked",
             "Scheduled",
             "ComputeProvider"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "secretsource": {
+      "additionalProperties": false,
+      "description": "Control how a secret is sourced",
+      "properties": {
+        "Requirements": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/secretstring",
+          "description": "Format requirements for the Secret"
+        },
+        "Source": {
+          "default": "user",
+          "enum": [
+            "user",
+            "generated"
           ],
           "type": "string"
         }
