@@ -22351,6 +22351,11 @@
                   },
                   "type": "object"
                 },
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable the creation of the secondary index",
+                  "type": "boolean"
+                },
                 "KeyTypes": {
                   "contains": {
                     "type": [
