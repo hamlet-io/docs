@@ -100,6 +100,58 @@
       },
       "type": "object"
     },
+    "baseline": {
+      "additionalProperties": false,
+      "description": "Returns the attribute of a baseline component",
+      "properties": {
+        "ParameterOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "type",
+            "BaselineComponentName",
+            "AttributeName"
+          ],
+          "description": "The order that the parameters are set in the substitution value",
+          "type": "array"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameters in the dynamic value used for the provider",
+          "properties": {
+            "AttributeName": {
+              "description": "The name of the attribute on the link",
+              "type": "string"
+            },
+            "BaselineComponentName": {
+              "description": "The Name of the baseline component name",
+              "enum": [
+                "OpsData",
+                "AppData",
+                "Encryption",
+                "SSHKey"
+              ],
+              "type": "string"
+            },
+            "type": {
+              "const": "baseline",
+              "default": "baseline",
+              "description": "The type of the provider",
+              "type": "string"
+            }
+          },
+          "required": [
+            "BaselineComponentName",
+            "AttributeName"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "input": {
       "additionalProperties": false,
       "description": "Returns the value of a runbook input",
