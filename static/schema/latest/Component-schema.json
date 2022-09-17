@@ -26078,6 +26078,67 @@
       "additionalProperties": false,
       "description": "mobile apps with over the air update hosting",
       "properties": {
+        "AppFrameworks": {
+          "const": "expo",
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "expo"
+          ],
+          "description": "A list of app frameworks used to generate the app",
+          "type": "array"
+        },
+        "AppFrameworks:expo": {
+          "additionalProperties": false,
+          "description": "Expo specific configuration",
+          "properties": {
+            "IdOverride": {
+              "default": "__setting:ENVIRONMENT__",
+              "description": "Override the existing id used in the expo app",
+              "type": "string"
+            },
+            "ReleaseChannel": {
+              "default": "__setting:ENVIRONMENT__",
+              "description": "The release channel of the app",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "Badge": {
+          "additionalProperties": false,
+          "description": "Adds a badge to the app icon",
+          "properties": {
+            "Color": {
+              "default": "blue",
+              "description": "The colour of the badgethe badge",
+              "enum": [
+                "brightgreen",
+                "green",
+                "yellow",
+                "orange",
+                "red",
+                "blue",
+                "lightgrey"
+              ],
+              "type": "string"
+            },
+            "Enabled": {
+              "default": false,
+              "description": "Enable adding badge to app icons",
+              "type": "boolean"
+            },
+            "Value": {
+              "default": "__setting:ENVIRONMENT__",
+              "description": "The value in  the badge",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
         "BuildFormats": {
           "contains": {
             "type": [
@@ -26093,6 +26154,182 @@
             "android"
           ],
           "type": "array"
+        },
+        "BuildFormats:android": {
+          "additionalProperties": false,
+          "properties": {
+            "BundleIdOverride": {
+              "description": "An override of the app bundle Id",
+              "type": "string"
+            },
+            "Firebase": {
+              "additionalProperties": false,
+              "description": "Configuration for uploading the app to Firebase",
+              "properties": {
+                "AppId": {
+                  "description": "The Id of the app in Firebase to use for uploading the signed app",
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": false,
+                  "description": "Enable Firebase upload",
+                  "type": "boolean"
+                },
+                "JSONKeyFileName": {
+                  "default": "firebase_json_key.json",
+                  "description": "The filename of the JSON Key stored in asFile settings used to authenticate with Firebase",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "GoogleServices": {
+              "additionalProperties": false,
+              "description": "Service configuration for access to google push services",
+              "properties": {
+                "JSONKeyFileName": {
+                  "default": "google-services.json",
+                  "description": "The filename of the JSON Key stored in asFile settings used to authenticate with Firebase",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "KeyStore": {
+              "additionalProperties": false,
+              "description": "Configuration of the keystore used to sign the app",
+              "properties": {
+                "FileName": {
+                  "default": "android_keystore.jks",
+                  "description": "The file name of the keystore stored in the asFile settings",
+                  "type": "string"
+                },
+                "KeyAlias": {
+                  "description": "The alias of the key in the keystore to use for signing the app",
+                  "type": "string"
+                },
+                "KeyPassword": {
+                  "description": "The password required to unlock the key",
+                  "type": "string"
+                },
+                "Password": {
+                  "description": "The password required to unlock the keystore",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "PlayStore": {
+              "additionalProperties": false,
+              "description": "Configuration for uploading the app to the Google Playstore",
+              "properties": {
+                "Enabled": {
+                  "default": false,
+                  "description": "Enable PlayStore upload",
+                  "type": "boolean"
+                },
+                "JSONKeyFileName": {
+                  "default": "playstore_json_key.json",
+                  "description": "The filename of the JSON Key stored in asFile settings used to authenticate with the PlayStore",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "ProjectRootDir": {
+              "default": "android",
+              "description": "Within the src code image the path to the root of the android project",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "BuildFormats:ios": {
+          "additionalProperties": false,
+          "description": "IOS specific distribution configuration",
+          "properties": {
+            "AppleTeamId": {
+              "description": "The id of the apple developer team the app will be signed for",
+              "type": "string"
+            },
+            "BundleIdOverride": {
+              "description": "An override of the app bundle Id",
+              "type": "string"
+            },
+            "CodeSignIdentityPrefix": {
+              "default": "iPhone Distribution",
+              "description": "The prefix of code signing identity from the distribution certificate",
+              "enum": [
+                "iPhone Distribution",
+                "Apple Distribution"
+              ],
+              "type": "string"
+            },
+            "DisplayNameOverride": {
+              "description": "An override value for the display name",
+              "type": "string"
+            },
+            "DistributionCertificateFileName": {
+              "default": "ios_distribution.p12",
+              "description": "The file name of the distribution certificate stored in the asFile settings",
+              "type": "string"
+            },
+            "DistributionCertificatePassword": {
+              "description": "The password used to unlock the distribution certificate file",
+              "type": "string"
+            },
+            "ExportMethod": {
+              "default": "app-store",
+              "description": "The method of distribution for the signed app",
+              "enum": [
+                "app-store",
+                "ad-hoc",
+                "enterprise",
+                "developer"
+              ],
+              "type": "string"
+            },
+            "NonExemptEncryption": {
+              "default": false,
+              "description": "Does the app use non-exempt encryption",
+              "type": "boolean"
+            },
+            "ProjectRootDir": {
+              "default": "ios",
+              "description": "Within the src code image the path to the root of the ios project",
+              "type": "string"
+            },
+            "ProvisioningProfileFileName": {
+              "default": "ios_profile.mobileprovision",
+              "description": "The file name of the provisioning profile stored in the asFile settings",
+              "type": "string"
+            },
+            "TestFlight": {
+              "additionalProperties": false,
+              "description": "The configuration for TestFlight uploads when using AppStore export",
+              "properties": {
+                "AppId": {
+                  "description": "The Id of the app in app store connect",
+                  "type": "string"
+                },
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable upload to TestFilght - requires app-store ExportMethod",
+                  "type": "boolean"
+                },
+                "Password": {
+                  "description": "The password of the testflight user for the upload",
+                  "type": "string"
+                },
+                "Username": {
+                  "description": "The username of the testflight user for the upload",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
         },
         "DeploymentUnits": {
           "contains": {
@@ -26110,10 +26347,16 @@
           "default": true,
           "type": "boolean"
         },
-        "Engine": {
-          "const": "expo",
-          "default": "expo",
-          "type": "string"
+        "EncryptionPrefix": {
+          "default": "base64:",
+          "description": "A prefix appended to any encrypted values in the solution configuration",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
         },
         "Export": {
           "default": false,
@@ -26440,10 +26683,14 @@
           "description": "The components type",
           "type": "string"
         },
-        "UseOTAPrefix": {
-          "default": true,
-          "description": "Include the OTA Prefix in the OTA Url",
-          "type": "boolean"
+        "VersionSource": {
+          "default": "AppFrameworks",
+          "description": "How to determine the version Id of the app",
+          "enum": [
+            "AppFrameworks",
+            "AppReference"
+          ],
+          "type": "string"
         },
         "deployment:Group": {
           "default": "application",
