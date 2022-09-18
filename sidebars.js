@@ -71,7 +71,8 @@ module.exports = {
           type: 'category',
           label: 'Configure',
           items: [
-            'how-to/configure/provider-authentication'
+            'how-to/configure/provider-authentication',
+            'how-to/configure/setup-mobileapp-builder',
           ]
         },
         {
