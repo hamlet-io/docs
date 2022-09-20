@@ -26096,7 +26096,6 @@
           "description": "Expo specific configuration",
           "properties": {
             "IdOverride": {
-              "default": "__setting:ENVIRONMENT__",
               "description": "Override the existing id used in the expo app",
               "type": "string"
             },
