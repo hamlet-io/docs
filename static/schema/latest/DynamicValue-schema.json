@@ -192,6 +192,46 @@
       },
       "type": "object"
     },
+    "ipaddressgroup": {
+      "additionalProperties": false,
+      "description": "Returns the resolved CIDR Addresses from IPAddressGroups defined in the solution",
+      "properties": {
+        "ParameterOrder": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "type",
+            "groupId"
+          ],
+          "description": "The order that the parameters are set in the substitution value",
+          "type": "array"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameters in the dynamic value used for the provider",
+          "properties": {
+            "groupId": {
+              "description": "The Id of the IPAddressGroups",
+              "type": "string"
+            },
+            "type": {
+              "const": "ipaddressgroup",
+              "default": "ipaddressgroup",
+              "description": "The type of the provider",
+              "type": "string"
+            }
+          },
+          "required": [
+            "groupId"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "output": {
       "additionalProperties": false,
       "description": "Returns the value of a runbook step output",
