@@ -28212,6 +28212,25 @@
                       "additionalProperties": false,
                       "description": "s3 specific destination configuration",
                       "properties": {
+                        "IncludeInPrefix": {
+                          "contains": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "default": [
+                            "Prefix",
+                            "FullAbsolutePath",
+                            "Id"
+                          ],
+                          "description": "Context specific details to include in the prefix",
+                          "enum": [
+                            "Prefix",
+                            "FullAbsolutePath",
+                            "Id"
+                          ],
+                          "type": "array"
+                        },
                         "Link": {
                           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
                           "description": "A link to the s3 bucket destination"
