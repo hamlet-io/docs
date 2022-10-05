@@ -11181,6 +11181,835 @@
       ],
       "type": "object"
     },
+    "datacatalog": {
+      "additionalProperties": false,
+      "description": "Defines a catalog of data sources",
+      "properties": {
+        "DeploymentUnits": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "type": "array"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Instances": {
+          "additionalProperties": false,
+          "description": "Instances of a component configuration",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "additionalProperties": false,
+          "description": "Additional namespaces to use during settings lookups",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ],
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Settings": {
+          "additionalProperties": false,
+          "description": "Application settings that can provide configuration for code",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Tables": {
+          "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/datacatalogtable"
+        },
+        "Tags": {
+          "additionalProperties": false,
+          "description": "Key value pairs to apply to resources to identify them",
+          "properties": {
+            "Additional": {
+              "additionalProperties": false,
+              "description": "Extra tags to include",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Include the tag",
+                      "type": "boolean"
+                    },
+                    "Key": {
+                      "description": "The key of the tag ( uses the key of this object by default)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the tag",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Common": {
+              "additionalProperties": false,
+              "description": "Include tags based on properties of the occurrence",
+              "properties": {
+                "Component": {
+                  "default": true,
+                  "description": "Include tags provided by the component",
+                  "type": "boolean"
+                },
+                "CostCentre": {
+                  "default": true,
+                  "description": "Include the cost centre for the account",
+                  "type": "boolean"
+                },
+                "Deployment": {
+                  "default": true,
+                  "description": "Include details of the deployment",
+                  "type": "boolean"
+                },
+                "Layers": {
+                  "default": true,
+                  "description": "Include the names of the active layers",
+                  "type": "boolean"
+                },
+                "Name": {
+                  "default": "FullName",
+                  "description": "The component name attribute to use",
+                  "enum": [
+                    "FullName",
+                    "FullRawName",
+                    "RawName",
+                    "Name",
+                    "ShortName",
+                    "ShortRawName",
+                    "ShortFullName",
+                    "ShortRawFullName"
+                  ],
+                  "type": "string"
+                },
+                "Prefix": {
+                  "default": "cot:",
+                  "description": "A prefix to apply to common tags",
+                  "type": "string"
+                },
+                "Solution": {
+                  "default": true,
+                  "description": "Include details of the solution",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        },
+        "Type": {
+          "description": "The components type",
+          "type": "string"
+        },
+        "deployment:Group": {
+          "default": "solution",
+          "type": "string"
+        },
+        "deployment:Priority": {
+          "default": 100,
+          "type": "number"
+        },
+        "deployment:Unit": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datacatalogtable": {
+      "additionalProperties": false,
+      "description": "A Tabular data store in the catalog",
+      "properties": {
+        "Crawler": {
+          "additionalProperties": false,
+          "description": "Crawl table to find new columns and update partitioning",
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "description": "Enable the use of a Crawler for the table",
+              "type": "boolean"
+            },
+            "RecrawlingPolicy": {
+              "default": "NewOnly",
+              "description": "What to do when recrawling the same data",
+              "enum": [
+                "Everything",
+                "NewOnly"
+              ],
+              "type": "string"
+            },
+            "Schedule": {
+              "description": "The schedule to run the crawler on - Format should in the AWS Rate format",
+              "type": "string"
+            },
+            "SchemaChanges": {
+              "additionalProperties": false,
+              "default": "How to handle changes to data schema when crawling",
+              "properties": {
+                "Delete": {
+                  "default": "Log",
+                  "description": "What to do when coloumns can't be found",
+                  "enum": [
+                    "Log",
+                    "Deprecate",
+                    "Delete"
+                  ],
+                  "type": "string"
+                },
+                "Update": {
+                  "default": "Log",
+                  "description": "What to do when new columns are found",
+                  "enum": [
+                    "Log",
+                    "Update"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "Extensions": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Extensions to invoke as part of component processing",
+          "type": "array"
+        },
+        "Format": {
+          "additionalProperties": false,
+          "description": "Defines the format of the data",
+          "properties": {
+            "Input": {
+              "description": "The input processer used to proceses the data into table format",
+              "type": "string"
+            },
+            "Output": {
+              "description": "The output processor used to standardise the output of the table",
+              "type": "string"
+            },
+            "Serialisation": {
+              "additionalProperties": false,
+              "description": "Sets how the data should be serialised/deserialised",
+              "properties": {
+                "Library": {
+                  "description": "The library to use for the Serialisation process",
+                  "type": "string"
+                },
+                "Parameters": {
+                  "additionalProperties": false,
+                  "description": "Additional key/value parameters to configure the Library - Key of the object is used as key by default",
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "Key": {
+                          "description": "The Key of the parameter",
+                          "type": "string"
+                        },
+                        "Value": {
+                          "description": "The value of the parameter",
+                          "type": [
+                            "array",
+                            "boolean",
+                            "number",
+                            "object",
+                            "string"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Instances": {
+          "additionalProperties": false,
+          "description": "Instances of a component configuration",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Layout": {
+          "additionalProperties": false,
+          "description": "The layout of the data in the table",
+          "properties": {
+            "Columns": {
+              "additionalProperties": false,
+              "description": "The base columns in the data article - name is the key of the object by default",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Description": {
+                      "description": "A descrpition of the column",
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "Should the column be included",
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "description": "The name of the column",
+                      "type": "string"
+                    },
+                    "Type": {
+                      "description": "The data type of the column",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "Partitioning": {
+              "additionalProperties": false,
+              "description": "How data is partitioned within the layout - name is the key of the object by default",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Description": {
+                      "description": "A description of the column",
+                      "type": "string"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "Should the column be included",
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "description": "The name of the column",
+                      "type": "string"
+                    },
+                    "Type": {
+                      "description": "The data type of the column",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "Additional key/value parameters to configure the table - Key of the object is used as key by default",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Key": {
+                  "description": "The Key of the parameter",
+                  "type": "string"
+                },
+                "Value": {
+                  "description": "The value of the parameter",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "additionalProperties": false,
+          "description": "Additional namespaces to use during settings lookups",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ],
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Settings": {
+          "additionalProperties": false,
+          "description": "Application settings that can provide configuration for code",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Source": {
+          "additionalProperties": false,
+          "description": "The source of the data to reference in the catalog",
+          "properties": {
+            "DecompressData": {
+              "default": true,
+              "description": "If data is compressed it should be decompressed before processing",
+              "type": "boolean"
+            },
+            "Link": {
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+              "description": "A link to the data source"
+            },
+            "Prefix": {
+              "description": "If using a path based source a prefix to use as the start of the data source",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "Tags": {
+          "additionalProperties": false,
+          "description": "Key value pairs to apply to resources to identify them",
+          "properties": {
+            "Additional": {
+              "additionalProperties": false,
+              "description": "Extra tags to include",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Include the tag",
+                      "type": "boolean"
+                    },
+                    "Key": {
+                      "description": "The key of the tag ( uses the key of this object by default)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the tag",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Common": {
+              "additionalProperties": false,
+              "description": "Include tags based on properties of the occurrence",
+              "properties": {
+                "Component": {
+                  "default": true,
+                  "description": "Include tags provided by the component",
+                  "type": "boolean"
+                },
+                "CostCentre": {
+                  "default": true,
+                  "description": "Include the cost centre for the account",
+                  "type": "boolean"
+                },
+                "Deployment": {
+                  "default": true,
+                  "description": "Include details of the deployment",
+                  "type": "boolean"
+                },
+                "Layers": {
+                  "default": true,
+                  "description": "Include the names of the active layers",
+                  "type": "boolean"
+                },
+                "Name": {
+                  "default": "FullName",
+                  "description": "The component name attribute to use",
+                  "enum": [
+                    "FullName",
+                    "FullRawName",
+                    "RawName",
+                    "Name",
+                    "ShortName",
+                    "ShortRawName",
+                    "ShortFullName",
+                    "ShortRawFullName"
+                  ],
+                  "type": "string"
+                },
+                "Prefix": {
+                  "default": "cot:",
+                  "description": "A prefix to apply to common tags",
+                  "type": "string"
+                },
+                "Solution": {
+                  "default": true,
+                  "description": "Include details of the solution",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datafeed": {
       "additionalProperties": false,
       "description": "A service which feeds data into the ES index currently based on kineses data firehose",
@@ -13936,7 +14765,7 @@
           "description": "Manage the logging services enabled for the directory",
           "properties": {
             "Enabled": {
-              "default": false,
+              "default": true,
               "type": "boolean"
             }
           },
@@ -16259,7 +17088,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "Logging": {
-          "default": false,
+          "default": true,
           "type": "boolean"
         },
         "MultiAZ": {
@@ -24510,7 +25339,7 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "Logs": {
-          "default": false,
+          "default": true,
           "description": "Enable request logging for requests",
           "type": "boolean"
         },
@@ -38211,6 +39040,15 @@
         "OAuth": {
           "additionalProperties": false,
           "properties": {
+            "CallbackUrls": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of authentication CallBack Url's authorised to use this client",
+              "type": "array"
+            },
             "Enabled": {
               "default": true,
               "type": "boolean"
@@ -38229,6 +39067,15 @@
                 "implicit",
                 "client_credentials"
               ],
+              "type": "array"
+            },
+            "LogoutUrls": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of logout urls which are authorised to use this client when performing logouts",
               "type": "array"
             },
             "Scopes": {
