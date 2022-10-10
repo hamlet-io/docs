@@ -2376,12 +2376,101 @@
       "properties": {
         "Conditions": {
           "additionalProperties": false,
+          "description": "User defined WAF conditions which will be used to either enforce the rule or scope it",
           "properties": {
             "Condition": {
+              "description": "The name of the WAFCondition reference object to use",
               "type": "string"
             },
             "Negated": {
+              "default": false,
+              "description": "Should the result of the rule be negated",
               "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "Engine": {
+          "default": "Conditonal",
+          "description": "The engine of the rule that will be used to evaluate the traffic",
+          "enum": [
+            "Conditonal",
+            "RateLimit",
+            "VendorManaged"
+          ],
+          "type": "string"
+        },
+        "Engine:RateLimit": {
+          "additionalProperties": false,
+          "description": "Measures request rate based on client IP and applies an action when it hits the rate limit",
+          "properties": {
+            "IPAddressSource": {
+              "default": "ClientIP",
+              "description": "The source of the IP address to apply rate limiting to - Client IP: TCP connection address, HTTPHeader: use a header with the IP listed",
+              "enum": [
+                "ClientIP",
+                "HTTPHeader"
+              ],
+              "type": "string"
+            },
+            "IPAddressSource:HTTPHeader": {
+              "additionalProperties": false,
+              "description": "HTTP Header Specific IP Address Source Config",
+              "properties": {
+                "ApplyLimitWhenMissing": {
+                  "default": false,
+                  "description": "When the header is missing apply the rate limit",
+                  "type": "boolean"
+                },
+                "HeaderName": {
+                  "default": "X-Forwarded-For",
+                  "description": "The name of the HTTP header to get the client IP from",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "Limit": {
+              "description": "The limit to activate the rule in, measured in requests / 5 mins",
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "Engine:VendorManaged": {
+          "additionalProperties": false,
+          "description": "Use a Vendor managed rule to apply dynamic controls",
+          "properties": {
+            "DisabledRules": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of rules within the managed rule which should be disabled",
+              "type": "array"
+            },
+            "Parameters": {
+              "description": "Rule specific parameters used to apply additional configuration",
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "RuleName": {
+              "description": "The name of the rule to use",
+              "type": "string"
+            },
+            "RuleVersion": {
+              "description": "The version of the rule to use",
+              "type": "string"
+            },
+            "Vendor": {
+              "description": "The name of the vendor the managed rule belongs to",
+              "type": "string"
             }
           },
           "type": "object"
