@@ -2391,10 +2391,10 @@
           "type": "object"
         },
         "Engine": {
-          "default": "Conditonal",
+          "default": "Conditional",
           "description": "The engine of the rule that will be used to evaluate the traffic",
           "enum": [
-            "Conditonal",
+            "Conditional",
             "RateLimit",
             "VendorManaged"
           ],
