@@ -4,6 +4,9 @@
 /* AttributeSet Imports */
 import AttributeSetSchema from "@site/static/schema/latest/AttributeSet-schema.json"
 import ComponentSchema from "@site/static/schema/latest/Component-schema.json"
+import ComputeTaskSchema from "@site/static/schema/latest/ComputeTask-schema.json"
+import DynamicValueSchema from "@site/static/schema/latest/DynamicValue-schema.json"
+import EntranceSchema from "@site/static/schema/latest/Entrance-schema.json"
 import LayerSchema from "@site/static/schema/latest/Layer-schema.json"
 import ModuleSchema from "@site/static/schema/latest/Module-schema.json"
 import ReferenceSchema from "@site/static/schema/latest/Reference-schema.json"
@@ -14,6 +17,9 @@ const patternPropertiesRegex = "^[A-Za-z_][A-Za-z0-9_-]*$";
 const schema = {
   Layer: LayerSchema,
   Component: ComponentSchema,
+  ComputeTask: ComputeTaskSchema,
+  DynamicValue: DynamicValueSchema,
+  Entrance: EntranceSchema,
   Reference: ReferenceSchema,
   Module: ModuleSchema,
   Task: TaskSchema,

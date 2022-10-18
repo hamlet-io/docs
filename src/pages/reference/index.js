@@ -64,6 +64,17 @@ function HamletRefRouter() {
                   </React.Fragment>
                 ))}
                 <br />
+                <h2>Dynamic Values</h2>
+                {Object.keys(schema.DynamicValue.definitions).sort().map((instance) => (
+                  <React.Fragment key={instance}>
+                    <li>
+                      <Link to={`/reference?type=DynamicValue&instance=${instance}`}>
+                        {instance}
+                      </Link>
+                    </li>
+                  </React.Fragment>
+                ))}
+                <br />
                 <h2>Modules</h2>
                 {Object.keys(schema.Module.definitions).sort().map((instance) => (
                   <React.Fragment key={instance}>
