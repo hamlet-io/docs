@@ -4952,8 +4952,12 @@
           },
           "type": "object"
         },
-        "Link": {
+        "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "OriginLink": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "A link to the origin that requests will route to"
         },
         "Profiles": {
           "additionalProperties": false,
@@ -5333,7 +5337,7 @@
         }
       },
       "required": [
-        "Link"
+        "OriginLink"
       ],
       "type": "object"
     },
@@ -5559,6 +5563,9 @@
             }
           },
           "type": "object"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
         },
         "Profiles": {
           "additionalProperties": false,

@@ -502,8 +502,9 @@
           "description": "How long to wait until a response is received from the origin",
           "type": "number"
         },
-        "Link": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        "OriginLink": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "A link to the origin that requests will route to"
         },
         "RequestForwarding": {
           "additionalProperties": false,
@@ -638,7 +639,7 @@
         }
       },
       "required": [
-        "Link"
+        "OriginLink"
       ],
       "type": "object"
     },
