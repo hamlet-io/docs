@@ -89,43 +89,8 @@
           "type": "array"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the image for the adaptor scripts",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
-              "enum": [
-                "link",
-                "registry",
-                "url",
-                "none"
-              ],
-              "type": "string"
-            },
-            "Source:url": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The Url to a zip file containing the scripts to run",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url_none",
+          "description": "Control the source of the image for the adaptor scripts"
         },
         "Instances": {
           "additionalProperties": false,
@@ -590,43 +555,8 @@
           "type": "array"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the image for the openapi specification",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
-              "enum": [
-                "link",
-                "registry",
-                "url",
-                "none"
-              ],
-              "type": "string"
-            },
-            "Source:url": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The Url to the openapi file",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url_none",
+          "description": "Control the source of the image for the openapi specification"
         },
         "Instances": {
           "additionalProperties": false,
@@ -7235,43 +7165,8 @@
           "type": "array"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the image that is used for the computecluster",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry is the hamlet registry",
-              "enum": [
-                "link",
-                "registry",
-                "url",
-                "none"
-              ],
-              "type": "string"
-            },
-            "Source:url": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The url to a source zip file",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url_none",
+          "description": "Control the source of the image that is used for the computecluster"
         },
         "Instances": {
           "additionalProperties": false,
@@ -10206,42 +10101,8 @@
           "type": "boolean"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the content node zip package",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry: the local hamlet registry - url: an external public url",
-              "enum": [
-                "link",
-                "registry",
-                "url"
-              ],
-              "type": "string"
-            },
-            "Source:url": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The Url to a zip file containing the mobile app source",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url",
+          "description": "Control the source of the content node zip package"
         },
         "Instances": {
           "additionalProperties": false,
@@ -12602,42 +12463,8 @@
           "type": "array"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the image for the mobile ota source zip image",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry: the local hamlet registry - url: an external public url",
-              "enum": [
-                "link",
-                "registry",
-                "url"
-              ],
-              "type": "string"
-            },
-            "Source:url": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The Url to a zip file containing the mobile app source",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url",
+          "description": "Control the source of the image for the mobile ota source zip image"
         },
         "Instances": {
           "additionalProperties": false,
@@ -12993,42 +12820,8 @@
           "type": "boolean"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the image for dataset components",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry: the local hamlet registry - url: an external public url",
-              "enum": [
-                "link",
-                "registry",
-                "url"
-              ],
-              "type": "string"
-            },
-            "Source:url": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The Url to a zip file containing the mobile app source",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url",
+          "description": "Control the source of the image for dataset components"
         },
         "Instances": {
           "additionalProperties": false,
@@ -21741,60 +21534,8 @@
           "type": "string"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the image that is used for the function",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry is the hamlet registry",
-              "enum": [
-                "link",
-                "registry",
-                "url",
-                "extension"
-              ],
-              "type": "string"
-            },
-            "source:Extension": {
-              "additionalProperties": false,
-              "description": "Use an inline extension to set the content of the function",
-              "properties": {
-                "CommentCharacters": {
-                  "default": "//",
-                  "description": "The single line comment sequence for your language",
-                  "type": "string"
-                },
-                "IncludeRunId": {
-                  "default": true,
-                  "description": "Adds the RunId as a comment to ensure that it is unique",
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
-            "source:Url": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The Url to the lambda zip file",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url_extension_archive",
+          "description": "Control the source of the image that is used for the function"
         },
         "Instances": {
           "additionalProperties": false,
@@ -23499,48 +23240,8 @@
               "type": "string"
             },
             "Image": {
-              "additionalProperties": false,
-              "description": "Control the source of the image for the healthcheck script",
-              "properties": {
-                "Link": {
-                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
-                },
-                "ScriptFileName": {
-                  "default": "healthcheck.py",
-                  "description": "The name of the healthcheck script if the image is a zip",
-                  "type": "string"
-                },
-                "Source": {
-                  "default": "registry",
-                  "description": "The source of the image - registry: the local hamlet registry - url: an external public url - none: no source image",
-                  "enum": [
-                    "link",
-                    "registry",
-                    "url",
-                    "none"
-                  ],
-                  "type": "string"
-                },
-                "Source:url": {
-                  "additionalProperties": false,
-                  "description": "Url Source specific Configuration",
-                  "properties": {
-                    "ImageHash": {
-                      "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                      "type": "string"
-                    },
-                    "Url": {
-                      "description": "The Url to the openapi file",
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                }
-              },
-              "required": [
-                "Source"
-              ],
-              "type": "object"
+              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url_none",
+              "description": "Control the source of the image for the healthcheck script"
             },
             "Memory": {
               "default": 1024,
@@ -23554,6 +23255,11 @@
             "Schedule": {
               "default": "rate(5 minutes)",
               "description": "The schedule to run the healthcheck",
+              "type": "string"
+            },
+            "ScriptFileName": {
+              "default": "healthcheck.py",
+              "description": "The name of the healthcheck script if the image is a zip",
               "type": "string"
             },
             "Tracing": {
@@ -24537,6 +24243,7 @@
           "enum": [
             "Local",
             "ContainerRegistry",
+            "containerregistry",
             "URL"
           ],
           "type": "string"
@@ -34886,43 +34593,8 @@
           "type": "array"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the image that is used for the function",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
-              "description": "The link to an image"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry is the hamlet registry",
-              "enum": [
-                "link",
-                "registry",
-                "url"
-              ],
-              "type": "string"
-            },
-            "UrlSource": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The Url to the lambda zip file",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url",
+          "description": "Control the source of the image that is used for the function"
         },
         "Instances": {
           "additionalProperties": false,
@@ -36440,43 +36112,8 @@
           "type": "array"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Control the source of the image that is used for the function",
-          "properties": {
-            "Link": {
-              "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
-              "description": "The link to an image"
-            },
-            "Source": {
-              "default": "registry",
-              "description": "The source of the image - registry is the hamlet registry",
-              "enum": [
-                "link",
-                "registry",
-                "url"
-              ],
-              "type": "string"
-            },
-            "UrlSource": {
-              "additionalProperties": false,
-              "description": "Url Source specific Configuration",
-              "properties": {
-                "ImageHash": {
-                  "description": "The expected sha1 hash of the Url if empty any will be accepted",
-                  "type": "string"
-                },
-                "Url": {
-                  "description": "The Url to the lambda zip file",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_url",
+          "description": "Control the source of the image that is used for the function"
         },
         "Instances": {
           "additionalProperties": false,

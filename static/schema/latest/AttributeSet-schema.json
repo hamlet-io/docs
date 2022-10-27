@@ -826,34 +826,8 @@
           "type": "number"
         },
         "Image": {
-          "additionalProperties": false,
-          "description": "Set the source of the components image",
-          "properties": {
-            "Source": {
-              "default": "Registry",
-              "description": "The source of the image",
-              "enum": [
-                "registry",
-                "containerregistry"
-              ],
-              "type": "string"
-            },
-            "Source:containerregistry": {
-              "additionalProperties": false,
-              "description": "A docker container registry to source the image from",
-              "properties": {
-                "Image": {
-                  "description": "The docker image that you want to use",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "required": [
-            "Source"
-          ],
-          "type": "object"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/image_container",
+          "description": "Set the source of the components image"
         },
         "InitProcess": {
           "default": false,
@@ -2000,6 +1974,243 @@
             },
             "Version": {
               "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "image": {
+      "additionalProperties": false,
+      "description": "Controls where a code image is sourced from for an application component",
+      "properties": {
+        "Link": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Source": {
+          "default": "registry",
+          "description": "The type of source to use for the image",
+          "enum": [
+            "link",
+            "registry"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "image_container": {
+      "additionalProperties": false,
+      "description": "An image source to get a container image",
+      "properties": {
+        "Link": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Source": {
+          "default": "registry",
+          "description": "The type of source to use for the image",
+          "enum": [
+            "link",
+            "registry",
+            "containerregistry",
+            "ContainerRegistry"
+          ],
+          "type": "string"
+        },
+        "Source:ContainerRegistry": {
+          "additionalProperties": false,
+          "description": "A docker container registry to source the image from",
+          "properties": {
+            "Image": {
+              "description": "The docker image that you want to use",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "image_url": {
+      "additionalProperties": false,
+      "description": "An image that supports pulling the image from a URL and supports disabling pulling an image",
+      "properties": {
+        "Link": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Source": {
+          "default": "registry",
+          "description": "The type of source to use for the image",
+          "enum": [
+            "link",
+            "registry",
+            "url"
+          ],
+          "type": "string"
+        },
+        "Source:url": {
+          "additionalProperties": false,
+          "description": "Url Source specific Configuration",
+          "properties": {
+            "ImageHash": {
+              "description": "The expected sha1 hash of the Url if empty any will be accepted",
+              "type": "string"
+            },
+            "Url": {
+              "description": "The Url to the openapi file",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "image_url_extension": {
+      "additionalProperties": false,
+      "description": "An image that supports pulling the image from a URL and from an extension",
+      "properties": {
+        "Link": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Source": {
+          "default": "registry",
+          "description": "The type of source to use for the image",
+          "enum": [
+            "link",
+            "registry",
+            "url",
+            "extension"
+          ],
+          "type": "string"
+        },
+        "Source:url": {
+          "additionalProperties": false,
+          "description": "Url Source specific Configuration",
+          "properties": {
+            "ImageHash": {
+              "description": "The expected sha1 hash of the Url if empty any will be accepted",
+              "type": "string"
+            },
+            "Url": {
+              "description": "The Url to the openapi file",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "source:extension": {
+          "additionalProperties": false,
+          "description": "Use an inline extension to set the content of the function",
+          "properties": {
+            "CommentCharacters": {
+              "default": "//",
+              "description": "The single line comment sequence for your language",
+              "type": "string"
+            },
+            "IncludeRunId": {
+              "default": true,
+              "description": "Adds the RunId as a comment to ensure that it is unique",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "image_url_extension_archive": {
+      "additionalProperties": false,
+      "description": "An image that supports pulling the image from a URL and from an extension and defining the Archive Format",
+      "properties": {
+        "ArchiveFormat": {
+          "default": "zip",
+          "description": "The archive format of the image to use",
+          "enum": [
+            "zip",
+            "jar"
+          ],
+          "type": "string"
+        },
+        "Link": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Source": {
+          "default": "registry",
+          "description": "The type of source to use for the image",
+          "enum": [
+            "link",
+            "registry",
+            "url",
+            "extension"
+          ],
+          "type": "string"
+        },
+        "Source:url": {
+          "additionalProperties": false,
+          "description": "Url Source specific Configuration",
+          "properties": {
+            "ImageHash": {
+              "description": "The expected sha1 hash of the Url if empty any will be accepted",
+              "type": "string"
+            },
+            "Url": {
+              "description": "The Url to the openapi file",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "source:extension": {
+          "additionalProperties": false,
+          "description": "Use an inline extension to set the content of the function",
+          "properties": {
+            "CommentCharacters": {
+              "default": "//",
+              "description": "The single line comment sequence for your language",
+              "type": "string"
+            },
+            "IncludeRunId": {
+              "default": true,
+              "description": "Adds the RunId as a comment to ensure that it is unique",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "image_url_none": {
+      "additionalProperties": false,
+      "description": "An image that supports pulling the image from a URL",
+      "properties": {
+        "Link": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Source": {
+          "default": "registry",
+          "description": "The type of source to use for the image",
+          "enum": [
+            "link",
+            "registry",
+            "url",
+            "none"
+          ],
+          "type": "string"
+        },
+        "Source:url": {
+          "additionalProperties": false,
+          "description": "Url Source specific Configuration",
+          "properties": {
+            "ImageHash": {
+              "description": "The expected sha1 hash of the Url if empty any will be accepted",
+              "type": "string"
+            },
+            "Url": {
+              "description": "The Url to the openapi file",
+              "type": "string"
             }
           },
           "type": "object"
