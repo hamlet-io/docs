@@ -146,6 +146,10 @@ Perform the following tasks to setup your build machine
     EOF
     fi
 
+    # Disable the osxkeychain credential helper for git 
+    # If this isn't disabled Jenkins jobs can fail as keychain will ask you for the password for a credential
+    sudo git config --global --add credential.helper ""
+
     # Update our PATH from the activation of the different *env tools
     source ~/.bash_profile
     ```
