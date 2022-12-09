@@ -14126,6 +14126,9 @@
           },
           "type": "object"
         },
+        "Proxies": {
+          "$ref": "https://docs.hamlet.io/schema/latest/Component-schema.json#/definitions/dbproxy"
+        },
         "SettingNamespaces": {
           "additionalProperties": false,
           "description": "Additional namespaces to use during settings lookups",
@@ -14471,6 +14474,381 @@
         "Engine",
         "EngineVersion"
       ],
+      "type": "object"
+    },
+    "dbproxy": {
+      "additionalProperties": false,
+      "description": "A database connection pooling proxy",
+      "properties": {
+        "AuthorisedUsers": {
+          "additionalProperties": false,
+          "description": "Defines the users who can use the Proxy",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Source": {
+                  "default": "Secret",
+                  "description": "The source of the user credentials - Secret = a secret component, DBRoot = the root credentials used on the parent DB",
+                  "enum": [
+                    "Secret",
+                    "DBRoot"
+                  ],
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "Source:Secret": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Link": {
+                      "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+                      "description": "A link to the secret that holds the credentials for the db - secret should contain username and password as JSON object"
+                    },
+                    "Username": {
+                      "description": "The username if not provided in the secret",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "ConnectionBorrowTimeout": {
+          "description": "How long to wait for a connection to be released when no other connections are available",
+          "type": "number"
+        },
+        "Description": {
+          "description": "A description of the component",
+          "type": "string"
+        },
+        "Enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "Export": {
+          "default": false,
+          "type": "boolean"
+        },
+        "IPAddressGroups": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "_localnet"
+          ],
+          "type": "array"
+        },
+        "InitProxy": {
+          "description": "A SQL query for the proxy to run on the startup of a new connection",
+          "type": "string"
+        },
+        "Instances": {
+          "additionalProperties": false,
+          "description": "Instances of a component configuration",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Versions": {
+                  "description": "Versions of the components instance.",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Links": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "MaxConnectionsPercent": {
+          "description": "The percentage of connections that the proxy can use",
+          "type": "number"
+        },
+        "MaxIdleConnectionsPercent": {
+          "description": "The percentage of idle connections that are kept active",
+          "type": "number"
+        },
+        "Profiles": {
+          "additionalProperties": false,
+          "properties": {
+            "Baseline": {
+              "default": "default",
+              "description": "The profile used to lookup standard services provided by the segment baseline",
+              "type": "string"
+            },
+            "Deployment": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of deployment profiles to apply to this component",
+              "type": "array"
+            },
+            "Network": {
+              "default": "default",
+              "type": "string"
+            },
+            "Placement": {
+              "default": "default",
+              "description": "The resource group assignment placement for resources in the component",
+              "type": "string"
+            },
+            "Policy": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "A list of enforced deployment profiles which override component configuraiton",
+              "type": "array"
+            },
+            "Testing": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "description": "The testing profiles to apply to the component",
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "SettingNamespaces": {
+          "additionalProperties": false,
+          "description": "Additional namespaces to use during settings lookups",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "IncludeInNamespace": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Component": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Instance": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Name": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "SubComponent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Tier": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "Type": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "Version": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Match": {
+                  "default": "exact",
+                  "description": "How to match the namespace with available settings",
+                  "enum": [
+                    "exact",
+                    "partial"
+                  ],
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "Order": {
+                  "contains": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "default": [
+                    "Tier",
+                    "Component",
+                    "Type",
+                    "SubComponent",
+                    "Instance",
+                    "Version",
+                    "Name"
+                  ],
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Settings": {
+          "additionalProperties": false,
+          "description": "Application settings that can provide configuration for code",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Internal": {
+                  "default": false,
+                  "description": "Don't include this setting as part of environment variable generation",
+                  "type": "boolean"
+                },
+                "Sensitive": {
+                  "default": false,
+                  "description": "Hide the value of this setting when using it in output",
+                  "type": "boolean"
+                },
+                "Value": {
+                  "description": "The value of the setting",
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "Value"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Tags": {
+          "additionalProperties": false,
+          "description": "Key value pairs to apply to resources to identify them",
+          "properties": {
+            "Additional": {
+              "additionalProperties": false,
+              "description": "Extra tags to include",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Include the tag",
+                      "type": "boolean"
+                    },
+                    "Key": {
+                      "description": "The key of the tag ( uses the key of this object by default)",
+                      "type": "string"
+                    },
+                    "Value": {
+                      "description": "The value of the tag",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Value"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "Common": {
+              "additionalProperties": false,
+              "description": "Include tags based on properties of the occurrence",
+              "properties": {
+                "Component": {
+                  "default": true,
+                  "description": "Include tags provided by the component",
+                  "type": "boolean"
+                },
+                "CostCentre": {
+                  "default": true,
+                  "description": "Include the cost centre for the account",
+                  "type": "boolean"
+                },
+                "Deployment": {
+                  "default": true,
+                  "description": "Include details of the deployment",
+                  "type": "boolean"
+                },
+                "Layers": {
+                  "default": true,
+                  "description": "Include the names of the active layers",
+                  "type": "boolean"
+                },
+                "Name": {
+                  "default": "FullName",
+                  "description": "The component name attribute to use",
+                  "enum": [
+                    "FullName",
+                    "FullRawName",
+                    "RawName",
+                    "Name",
+                    "ShortName",
+                    "ShortRawName",
+                    "ShortFullName",
+                    "ShortRawFullName"
+                  ],
+                  "type": "string"
+                },
+                "Prefix": {
+                  "default": "cot:",
+                  "description": "A prefix to apply to common tags",
+                  "type": "string"
+                },
+                "Solution": {
+                  "default": true,
+                  "description": "Include details of the solution",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "TargetTypes": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "ReadWrite"
+          ],
+          "description": "The type of the proxy targets to create based on the avaialble db resources",
+          "enum": [
+            "ReadWrite",
+            "ReadOnly"
+          ],
+          "type": "array"
+        },
+        "Title": {
+          "description": "A longer form title of the component",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "directory": {
