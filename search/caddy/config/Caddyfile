@@ -1,0 +1,7 @@
+{$HOSTNAME} localhost {
+	tls internal
+	root * /srv/app/
+	encode gzip
+	try_files {path} {path}.html
+	file_server
+}

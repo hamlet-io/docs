@@ -1,0 +1,65 @@
+version: "3.8"
+
+volumes:
+  static_dir:
+  node_modules:
+  typesense_data:
+
+
+services:
+
+  caddy:
+    image: caddy:2
+    profiles:
+      - crawl
+    ports:
+      - 8443:443
+    volumes:
+      - static_dir:/srv/app/
+      - ./caddy/config/:/etc/caddy/
+    hostname: docs.hamlet.io
+
+  builder:
+    image: node:16-alpine
+    profiles:
+      - builder
+    volumes:
+      - ../:/app
+      - node_modules:/app/node_modules
+      - static_dir:/srv/app/
+    environment:
+      - TYPESENSE_SEARCH_HOST=localhost
+      - TYPESENSE_SEARCH_PORT=8108
+      - TYPESENSE_SEARCH_PROTOCOL=http
+      - TYPESENSE_SEARCH_API_KEY=Hu52dwsas2AdxdE
+      - TYPESENSE_SEARCH_INDEX_NAME="${CRAWLER_INDEX_NAME:-docs-hamlet-io}"
+    working_dir: /app
+    command: sh -c "npm ci && npm run build -- --out-dir /srv/app/"
+
+  crawler:
+    build:
+      dockerfile: search/crawler/Dockerfile
+      context: ../
+    profiles:
+      - crawl
+    environment:
+      - "TYPESENSE_API_KEY=${TYPESENSE_CRAWLER_API_KEY:-Hu52dwsas2AdxdE}"
+      - "TYPESENSE_HOST=${TYPESENSE_CRAWLER_HOST:-typesense.local}"
+      - "TYPESENSE_PORT=${TYPESENSE_CRAWLER_PORT:-8108}"
+      - "TYPESENSE_PROTOCOL=${TYPESENSE_CRAWLER_PROTOCOL:-http}"
+      - "CRAWLER_START_URL=${CRAWLER_START_URL:-https://docs.hamlet.io}"
+      - "CRAWLER_INDEX_NAME=${CRAWLER_INDEX_NAME:-docs-hamlet-io}"
+    depends_on:
+      - caddy
+      - typesense
+
+  typesense:
+    profiles:
+      - crawl
+    ports:
+      - 8108:8108
+    image: typesense/typesense:0.23.1
+    command: --data-dir /data --api-key=Hu52dwsas2AdxdE --enable-cors
+    volumes:
+      - typesense_data:/data
+    hostname: typesense.local
