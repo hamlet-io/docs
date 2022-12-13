@@ -72,4 +72,4 @@ jobs:
           CRAWLER_INDEX_NAME: docs-hamlet-io
         run: |
           docker compose -f search/docker-compose.yml --profile build run builder
-          docker-compose -f search/docker-compose.yml --profile crawl run crawler
+          docker compose -f search/docker-compose.yml --profile crawl run crawler
