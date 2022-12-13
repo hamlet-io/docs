@@ -34,7 +34,7 @@ services:
       - TYPESENSE_SEARCH_API_KEY=Hu52dwsas2AdxdE
       - TYPESENSE_SEARCH_INDEX_NAME="${CRAWLER_INDEX_NAME:-docs-hamlet-io}"
     working_dir: /app
-    command: sh -c "npm ci && npm run build -- --out-dir /srv/app/"
+    command: sh -c "yarn install --immutable && yarn build --out-dir /srv/app/"
 
   crawler:
     build:
