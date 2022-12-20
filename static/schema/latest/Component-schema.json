@@ -37944,6 +37944,11 @@
           "properties": {
             "Certificate": {
               "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate"
+            },
+            "Enabled": {
+              "default": true,
+              "description": "Setup a custom hosted ui endpoint for login and oauth",
+              "type": "boolean"
             }
           },
           "type": "object"
