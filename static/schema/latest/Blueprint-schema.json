@@ -194,6 +194,86 @@
                   "description": "The name of the provider that the account belongs to",
                   "type": "string"
                 },
+                "ProviderAuditing": {
+                  "additionalProperties": false,
+                  "description": "Logging of cloud service provider actions",
+                  "properties": {
+                    "Enabled": {
+                      "default": true,
+                      "description": "Is the logging service enabled",
+                      "type": "boolean"
+                    },
+                    "Encryption": {
+                      "additionalProperties": false,
+                      "description": "Manage at-rest encryption of data storage",
+                      "properties": {
+                        "Enabled": {
+                          "default": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "Scope": {
+                      "default": "Account",
+                      "description": "The Scope of the logging sent to this account - Account = this account, Tenancy = all accounts in tenancy",
+                      "enum": [
+                        "Account",
+                        "Tenancy"
+                      ],
+                      "type": "string"
+                    },
+                    "StorageLocations": {
+                      "additionalProperties": false,
+                      "description": "Where to store the audit logs",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                          "properties": {
+                            "Type": {
+                              "default": "Object",
+                              "description": "The type of storage to use",
+                              "enum": [
+                                "Object",
+                                "Logs"
+                              ],
+                              "type": [
+                                "array",
+                                "boolean",
+                                "number",
+                                "object",
+                                "string"
+                              ]
+                            },
+                            "Type:Object": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "Prefix": {
+                                  "default": "_provider",
+                                  "description": "A prefix to apply to objects store in logs - _provider = use the providers service name",
+                                  "type": [
+                                    "array",
+                                    "boolean",
+                                    "number",
+                                    "object",
+                                    "string"
+                                  ]
+                                }
+                              },
+                              "type": "object"
+                            }
+                          }
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "aws:InsightReporting": {
+                      "default": true,
+                      "description": "Enable proactive insight monitor logging",
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
                 "ProviderId": {
                   "description": "The unique Id of the account from the provider",
                   "type": "string"
