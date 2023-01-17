@@ -24,6 +24,97 @@
                 "number",
                 "string"
               ]
+            },
+            "ReplicationRules": {
+              "additionalProperties": false,
+              "description": "Manage replication of the audit bucket to another location",
+              "patternProperties": {
+                "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                  "properties": {
+                    "Destination": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "Id": {
+                          "description": "The unique Id of the destination that will receive the data",
+                          "type": "string"
+                        },
+                        "ProviderId": {
+                          "default": "__local__",
+                          "description": "The Cloud Provider Id of where the destination is hosted - set to __local__ for own account",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Id"
+                      ],
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": true,
+                      "description": "Is the rule enabled",
+                      "type": "boolean"
+                    },
+                    "Filters": {
+                      "additionalProperties": false,
+                      "description": "The filters to apply on objects that should be replicated",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                          "properties": {
+                            "Enabled": {
+                              "default": true,
+                              "description": "Is the filter enabled",
+                              "type": "boolean"
+                            },
+                            "Type": {
+                              "description": "The type of prefix to use",
+                              "enum": [
+                                "Prefix",
+                                "Tag"
+                              ],
+                              "type": "string"
+                            },
+                            "Type:Prefix": {
+                              "additionalProperties": false,
+                              "description": "Prefix specific controls applied on the filter",
+                              "properties": {
+                                "Prefix": {
+                                  "description": "The prefix to filter objects based on",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "Type:Tag": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "Key": {
+                                  "description": "The key of the Tag",
+                                  "type": "string"
+                                },
+                                "Value": {
+                                  "description": "The vlaue of the Tag",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "Type"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "Priority": {
+                      "default": 100,
+                      "description": "The priority of the rule when handling conflicts",
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "type": "object"
             }
           },
           "type": "object"
