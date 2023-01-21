@@ -3,6 +3,198 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
+    "aws_cfn_changeset_replacements": {
+      "additionalProperties": false,
+      "description": "Return a list of resources that would require replacement for a given changeset",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "ChangeSetArn": {
+          "description": "The ARN of an active change set to evaluate",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The region the CloudFormation stack belongs to",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ChangeSetArn",
+        "Region"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_create_changeset": {
+      "additionalProperties": false,
+      "description": "Submit a cloudformation template stored in S3 as a change set for a stack. Return the ChangeSet Arn",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Capabilities": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "default": [
+            "CAPABILITY_IAM",
+            "CAPABILITY_NAMED_IAM"
+          ],
+          "description": "The Named Capabilities which can be used within the template",
+          "type": "array"
+        },
+        "Parameters": {
+          "additionalProperties": false,
+          "description": "The parameters for the CloudFormation template",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Key": {
+                  "description": "The key for the parameter, uses the id if not provided",
+                  "type": "string"
+                },
+                "Value": {
+                  "description": "The value for the parameter",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Region": {
+          "description": "The region the CloudFormation stack belongs to",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name of the stack to create the change set for",
+          "type": "string"
+        },
+        "TemplateS3Uri": {
+          "description": "The S3 Uri to the cloudformation template",
+          "type": "string"
+        }
+      },
+      "required": [
+        "TemplateS3Uri",
+        "StackName",
+        "Region"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_delete_stack": {
+      "additionalProperties": false,
+      "description": "Delete an AWS CloudFormation Stack",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The region the CloudFormation stack belongs to",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name of the CloudFormation Stack to delete",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackName",
+        "Region"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_execute_changeset": {
+      "additionalProperties": false,
+      "description": "Execute a change set against a stack",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "ChangeSetArn": {
+          "description": "The ARN of an active change set to evaluate",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The region the CloudFormation stack belongs to",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ChangeSetArn",
+        "Region"
+      ],
+      "type": "object"
+    },
+    "aws_cli_bash_script": {
+      "additionalProperties": false,
+      "description": "Setup AWS cli account access, ensure aws cli is on path, run the provided script from the path",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSRegion": {
+          "description": "The default region to use for the cli commands",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "ScriptFilePath": {
+          "description": "The path to the script to run",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ScriptFilePath",
+        "AWSRegion"
+      ],
+      "type": "object"
+    },
     "aws_ec2_select_instance": {
       "additionalProperties": false,
       "description": "Lists the available instances and allows the user to select one - returns the selected instance id",
