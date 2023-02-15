@@ -373,6 +373,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -988,6 +1000,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 50,
           "type": "number"
@@ -1298,6 +1322,18 @@
         "deployment:Group": {
           "default": "application",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -1683,6 +1719,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -2489,13 +2537,25 @@
           "default": "segment",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "const": "baseline",
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "const": 1,
           "default": 1,
           "type": "number"
         },
         "deployment:Unit": {
-          "const": "baseline",
           "default": "baseline",
           "type": "string"
         }
@@ -2521,6 +2581,18 @@
               "default": false,
               "description": "Enable at rest encryption",
               "type": "boolean"
+            },
+            "Transit": {
+              "additionalProperties": false,
+              "description": "Control encryption in Transit processing",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Force the use of encryption in transit ( HTTPS )",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
             }
           },
           "type": "object"
@@ -3652,6 +3724,18 @@
           "default": "segment",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -4038,6 +4122,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -4468,6 +4564,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -6579,6 +6687,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -7058,6 +7178,18 @@
         "deployment:Group": {
           "default": "segment",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -7598,6 +7730,18 @@
         "deployment:Group": {
           "default": "application",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -8231,6 +8375,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -8841,6 +8997,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -9312,6 +9480,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -9741,6 +9921,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -10063,6 +10255,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -10384,6 +10588,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -10697,6 +10913,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 70,
@@ -11352,6 +11580,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -12419,6 +12659,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -12769,6 +13021,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -13102,6 +13366,18 @@
         "deployment:Group": {
           "default": "application",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -13462,6 +13738,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -13809,6 +14097,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -14030,7 +14330,7 @@
                   "type": "number"
                 },
                 "Enabled": {
-                  "default": false,
+                  "default": true,
                   "type": "boolean"
                 }
               },
@@ -14041,7 +14341,7 @@
               "description": "Enable monitoring database query performance",
               "properties": {
                 "Enabled": {
-                  "default": false,
+                  "default": true,
                   "type": "boolean"
                 },
                 "RetentionPeriod": {
@@ -14382,6 +14682,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -15280,6 +15592,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -15614,6 +15938,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -16081,6 +16417,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -16643,6 +16991,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -17158,9 +17518,33 @@
           },
           "type": "array"
         },
+        "aws:Monitoring": {
+          "additionalProperties": false,
+          "description": "Enable monitoring services for the cluster",
+          "properties": {
+            "ContainerInsights": {
+              "default": true,
+              "description": "Enable the ECS Container Insights service",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -17567,6 +17951,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -17915,6 +18311,18 @@
         "deployment:Group": {
           "default": "segment",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -19219,6 +19627,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -19955,6 +20375,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 50,
           "type": "number"
@@ -20633,6 +21065,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -21027,6 +21471,18 @@
         "deployment:Group": {
           "default": "segment",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 60,
@@ -22325,6 +22781,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -22789,6 +23257,18 @@
         "deployment:Group": {
           "default": "segment",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 50,
@@ -23566,6 +24046,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -24052,6 +24544,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -24382,6 +24886,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -24438,6 +24954,82 @@
             "object",
             "string"
           ]
+        },
+        "Format:docker": {
+          "additionalProperties": false,
+          "description": "Format specific configuration for docker images",
+          "properties": {
+            "Encryption": {
+              "additionalProperties": false,
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable encryption at rest for the repository",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "ImmutableTags": {
+              "default": false,
+              "description": "Make tags immutablable",
+              "type": "boolean"
+            },
+            "Lifecycle": {
+              "additionalProperties": false,
+              "description": "Control the lifecycle of images in the container registry",
+              "properties": {
+                "ConfiguratonSource": {
+                  "default": "Solution",
+                  "description": "Defines where the lifecycle policy comes from - Solution = simple configuration as part of solution, Extension = Use policy defined in an extension",
+                  "enum": [
+                    "Solution",
+                    "Extension"
+                  ],
+                  "type": "string"
+                },
+                "Expiry": {
+                  "additionalProperties": false,
+                  "description": "Control when images are removed from the registry",
+                  "properties": {
+                    "TaggedMaxCount": {
+                      "default": 0,
+                      "description": "How many tagged images to retain - set 0 to keep all",
+                      "type": "number"
+                    },
+                    "UntaggedDays": {
+                      "default": "_operations",
+                      "description": "How long (Days) until untagged images are removed - use _operations: to follow the layer configuration, or a number for a fixed value - set to 0 for no expiry",
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "UntaggedMaxCount": {
+                      "default": 0,
+                      "description": "How many untagged images to retain - set 0 for keep all",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "Scanning": {
+              "additionalProperties": false,
+              "description": "Start scanning of images for vulnerabilities on upload",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable scanning on upload",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
         },
         "Instances": {
           "additionalProperties": false,
@@ -24749,6 +25341,18 @@
         "deployment:Group": {
           "default": "application",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -25715,6 +26319,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -26985,6 +27601,18 @@
           "default": "segment",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -27616,6 +28244,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -27948,6 +28588,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -28601,6 +29253,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -29437,6 +30101,18 @@
         "deployment:Group": {
           "default": "segment",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 20,
@@ -30406,6 +31082,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -30771,6 +31459,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -31177,6 +31877,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -31543,6 +32255,18 @@
         "deployment:Group": {
           "default": "segment",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -32633,6 +33357,18 @@
               "default": false,
               "description": "Enable at rest encryption",
               "type": "boolean"
+            },
+            "Transit": {
+              "additionalProperties": false,
+              "description": "Control encryption in Transit processing",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Force the use of encryption in transit ( HTTPS )",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
             }
           },
           "type": "object"
@@ -33148,6 +33884,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -33799,6 +34547,18 @@
           "default": "segment",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -34279,6 +35039,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -34595,6 +35367,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -35284,6 +36068,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -35657,6 +36453,18 @@
           "default": "solution",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -35964,6 +36772,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -36407,6 +37227,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -36797,6 +37629,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -37134,6 +37978,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,
@@ -37885,6 +38741,18 @@
           "default": "application",
           "type": "string"
         },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Priority": {
           "default": 100,
           "type": "number"
@@ -38456,6 +39324,18 @@
         "deployment:Group": {
           "default": "solution",
           "type": "string"
+        },
+        "deployment:Locks": {
+          "additionalProperties": false,
+          "description": "Apply locks on the deployment to control what can be completed",
+          "properties": {
+            "Delete": {
+              "default": false,
+              "description": "Don't allow the deployment to be deleted",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         },
         "deployment:Priority": {
           "default": 100,

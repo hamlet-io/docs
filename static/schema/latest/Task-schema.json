@@ -638,7 +638,7 @@
           "type": "string"
         },
         "StackOutputContent": {
-          "description": "The key value parirs to write to the file as a JSON escaped string",
+          "description": "The key value pairs to write to the file as a JSON escaped string",
           "type": "string"
         },
         "Tenant": {
