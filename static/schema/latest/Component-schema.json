@@ -26316,6 +26316,18 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/waf",
           "description": "Web Application Firewall Integration"
         },
+        "aws:engine:application": {
+          "additionalProperties": false,
+          "description": "When handling HTTP Traffic apply the following configuration",
+          "properties": {
+            "DropInvalidHeaders": {
+              "default": true,
+              "description": "Drop any headers which do not comply with header standards",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Group": {
           "default": "solution",
           "type": "string"

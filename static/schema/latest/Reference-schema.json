@@ -1424,44 +1424,6 @@
       ],
       "type": "object"
     },
-    "ScriptStore": {
-      "additionalProperties": false,
-      "description": "",
-      "properties": {
-        "Destination": {
-          "additionalProperties": false,
-          "properties": {
-            "Prefix": {
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
-        "Engine": {
-          "enum": [
-            "local",
-            "github"
-          ],
-          "type": "string"
-        },
-        "Source": {
-          "additionalProperties": false,
-          "properties": {
-            "Branch": {
-              "type": "string"
-            },
-            "Directory": {
-              "type": "string"
-            },
-            "Repository": {
-              "type": "string"
-            }
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "SecurityProfile": {
       "additionalProperties": false,
       "description": "",

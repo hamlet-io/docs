@@ -505,9 +505,7 @@
                 "aws:ecsAccountSettings": {
                   "default": {
                     "awsvpcTrunking": true,
-                    "containerInstanceLongArnFormat": true,
-                    "serviceLongArnFormat": true,
-                    "taskLongArnFormat": true
+                    "containerInsights": true
                   },
                   "description": "AWS manage account level configuration of the Elastic Container Service",
                   "type": "object"
@@ -2583,54 +2581,6 @@
               "required": [
                 "Locality"
               ]
-            }
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "ScriptStores": {
-      "additionalProperties": false,
-      "description": "A physical location for infrastructure deployment",
-      "properties": {
-        "ScriptStores": {
-          "additionalProperties": false,
-          "patternProperties": {
-            "^[A-Za-z_][A-Za-z0-9_-]*$": {
-              "properties": {
-                "Destination": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Prefix": {
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                },
-                "Engine": {
-                  "enum": [
-                    "local",
-                    "github"
-                  ],
-                  "type": "string"
-                },
-                "Source": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Branch": {
-                      "type": "string"
-                    },
-                    "Directory": {
-                      "type": "string"
-                    },
-                    "Repository": {
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
             }
           },
           "type": "object"
