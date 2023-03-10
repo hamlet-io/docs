@@ -3355,15 +3355,6 @@
             }
           },
           "type": "object"
-        },
-        "Version": {
-          "default": "v1",
-          "description": "Version of WAF to use",
-          "enum": [
-            "v1",
-            "v2"
-          ],
-          "type": "string"
         }
       },
       "type": "object"
