@@ -36146,6 +36146,34 @@
           "default": true,
           "type": "boolean"
         },
+        "Encryption": {
+          "additionalProperties": false,
+          "properties": {
+            "Enabled": {
+              "default": false,
+              "description": "Enable encyrption at rest for queue storage",
+              "type": "boolean"
+            },
+            "KeyReuseTime": {
+              "default": 300,
+              "description": "When encyrption at rest is enabled how often to rotate the key",
+              "type": "number"
+            },
+            "Transit": {
+              "additionalProperties": false,
+              "description": "Control encryption in Transit processing",
+              "properties": {
+                "Enabled": {
+                  "default": true,
+                  "description": "Force the use of encryption in transit ( HTTPS )",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
         "Export": {
           "default": false,
           "type": "boolean"
