@@ -229,6 +229,47 @@
       ],
       "type": "object"
     },
+    "ses_mail_sender": {
+      "additionalProperties": false,
+      "description": "General helper runbooks to manage S3 buckets",
+      "properties": {
+        "bounceAddresses": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "A set of email addresses that should be sent bounce/complaint events",
+          "type": "array"
+        },
+        "componentPrefix": {
+          "default": "mail",
+          "description": "The name of the smtp user component",
+          "type": "string"
+        },
+        "deploymentUnitPrefix": {
+          "default": "mail",
+          "description": "The deployment unit for the private bastion",
+          "type": "string"
+        },
+        "logToOps": {
+          "default": true,
+          "description": "Send all events to S3 in the OpsData Bucket",
+          "type": "boolean"
+        },
+        "senderAddress": {
+          "default": "mailer@__attribute:mta:MAIL_DOMAIN__",
+          "description": "The email address to use when sending emails",
+          "type": "string"
+        },
+        "tier": {
+          "default": "msg",
+          "description": "The tier the user will be part of",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ses_smtp_user": {
       "additionalProperties": false,
       "description": "Fixed user credentials that can be used for SMTP access to SES",
