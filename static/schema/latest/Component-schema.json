@@ -17592,6 +17592,10 @@
           ],
           "type": "string"
         },
+        "Certificate": {
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate",
+          "description": "Configure a custom hostname for the service"
+        },
         "DeploymentUnits": {
           "contains": {
             "type": [

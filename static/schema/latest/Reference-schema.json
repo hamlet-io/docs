@@ -1549,10 +1549,12 @@
           "additionalProperties": false,
           "properties": {
             "CDNHTTPSProfile": {
+              "description": "Defines the TLS encryption profile used for HTTPS connections",
               "type": "string"
             },
             "GatewayHTTPSProfile": {
               "default": "TLS_1_0",
+              "description": "Defines the TLS encryption profile used for HTTPS connections",
               "type": "string"
             },
             "ProtocolPolicy": {
@@ -1571,6 +1573,7 @@
           "additionalProperties": false,
           "properties": {
             "HTTPSProfile": {
+              "description": "Defines the TLS encryption profile used for HTTPS connections",
               "type": "string"
             },
             "WAFProfile": {
@@ -1594,7 +1597,17 @@
         "es": {
           "additionalProperties": false,
           "properties": {
+            "HTTPSProfile": {
+              "description": "Defines the TLS encryption profile used for HTTPS connections",
+              "type": "string"
+            },
+            "NodeTransitEncryption": {
+              "description": "Require the use of node to node transit encryption",
+              "type": "boolean"
+            },
             "ProtocolPolicy": {
+              "default": "https-only",
+              "description": "Define the protocols the ES endpoints are available on",
               "enum": [
                 "https-only",
                 "http-https",
@@ -1621,6 +1634,7 @@
               "additionalProperties": false,
               "properties": {
                 "HTTPSProfile": {
+                  "description": "Defines the TLS encryption profile used for HTTPS connections",
                   "type": "string"
                 },
                 "WAFProfile": {
@@ -1636,6 +1650,7 @@
               "additionalProperties": false,
               "properties": {
                 "HTTPSProfile": {
+                  "description": "Defines the TLS encryption profile used for HTTPS connections",
                   "type": "string"
                 }
               },
@@ -1645,6 +1660,7 @@
               "additionalProperties": false,
               "properties": {
                 "HTTPSProfile": {
+                  "description": "Defines the TLS encryption profile used for HTTPS connections",
                   "type": "string"
                 }
               },
