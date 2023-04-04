@@ -3757,7 +3757,9 @@
           "additionalProperties": false,
           "properties": {
             "RetentionPeriod": {
-              "type": "string"
+              "default": 0,
+              "description": "How many days to keep snapshots for - 0 disabled snapshots",
+              "type": "number"
             }
           },
           "type": "object"
@@ -14303,6 +14305,30 @@
         },
         "Links": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+        },
+        "Logging": {
+          "additionalProperties": false,
+          "description": "Control logging exports from the db instance",
+          "properties": {
+            "Enabled": {
+              "default": true,
+              "description": "Is log exporting enabled",
+              "type": "boolean"
+            },
+            "ExportedLogs": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "default": [
+                "_all"
+              ],
+              "description": "The log files to export - _all will export all logs the engine supports",
+              "type": "array"
+            }
+          },
+          "type": "object"
         },
         "MaintenanceWindow": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/maintenancewindow"
