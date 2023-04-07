@@ -601,6 +601,11 @@
                   ],
                   "type": "array"
                 },
+                "QueryParamExclude": {
+                  "default": false,
+                  "description": "Whether the QueryParams is a whitelist or a blacklist. ie Should the QueryParams be excluded",
+                  "type": "boolean"
+                },
                 "QueryParams": {
                   "contains": {
                     "type": [
