@@ -5937,6 +5937,11 @@
                   "default": true,
                   "type": "boolean"
                 },
+                "IncludeBody": {
+                  "default": false,
+                  "description": "Include the body of a request in the event handler context",
+                  "type": "boolean"
+                },
                 "Instance": {
                   "type": "string"
                 },
