@@ -29344,10 +29344,55 @@
         "Action": {
           "enum": [
             "forward",
+            "receive-bounce",
             "drop",
             "log"
           ],
           "type": "string"
+        },
+        "Action:receive-bounce": {
+          "additionalProperties": false,
+          "description": "Specific configuration for using the receive-bounce action",
+          "properties": {
+            "BounceType": {
+              "default": "no_address_found",
+              "description": "The type of bounce to return to the sender - _custom lets you define it",
+              "enum": [
+                "no_address_found",
+                "unauthorised",
+                "custom"
+              ],
+              "type": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "BounceType:custom": {
+              "additionalProperties": false,
+              "description": "Custom configuration to define the bounce details",
+              "properties": {
+                "Message": {
+                  "description": "The human readable message to return",
+                  "type": "string"
+                },
+                "SmtpReplyCode": {
+                  "default": "550",
+                  "description": "The RFC 5321 code to return",
+                  "type": "string"
+                },
+                "SmtpStatusCode": {
+                  "default": "0.0.0",
+                  "description": "The RFC 3463 enhanced status code to return",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
         },
         "Conditions": {
           "additionalProperties": false,
@@ -29393,7 +29438,7 @@
             "bounce",
             "complaint"
           ],
-          "description": "Expected events to log  (send only)",
+          "description": "Expected events to log (send only)",
           "enum": [
             "click",
             "bounce",
