@@ -26731,6 +26731,17 @@
         "Title": {
           "description": "A longer form title of the component",
           "type": "string"
+        },
+        "aws:TargetType:lambda": {
+          "additionalProperties": false,
+          "properties": {
+            "MultiValueHeaders": {
+              "default": false,
+              "description": "Send lists for header values to support multiple instances of the same header key",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         }
       },
       "required": [
