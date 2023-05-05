@@ -27028,9 +27028,14 @@
           "type": "string"
         },
         "Path": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
           "default": "default",
           "description": "The http path the rule will be matched on",
-          "type": "string"
+          "type": "array"
         },
         "Priority": {
           "default": 100,
