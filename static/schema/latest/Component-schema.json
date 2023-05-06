@@ -9050,6 +9050,11 @@
         "Containers": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
+        "Cpu": {
+          "default": 0,
+          "description": "The Cpu available to all containers in the service - 0 will defer to the container allocations",
+          "type": "number"
+        },
         "DeploymentUnits": {
           "contains": {
             "type": [
@@ -9105,6 +9110,11 @@
         },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "Memory": {
+          "default": 0,
+          "description": "The memory available to all containers in the service - 0 will defer to the container allocations",
+          "type": "number"
         },
         "MultiAZ": {
           "default": false,
@@ -9529,6 +9539,11 @@
         "Containers": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
+        "Cpu": {
+          "default": 0,
+          "description": "The Cpu available to all containers in the task - 0 will defer to the container allocations",
+          "type": "number"
+        },
         "DeploymentUnits": {
           "contains": {
             "type": [
@@ -9585,6 +9600,11 @@
         },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "Memory": {
+          "default": 0,
+          "description": "The memory available to all containers in the task - 0 will defer to the container allocations",
+          "type": "number"
         },
         "MultiAZ": {
           "default": false,
@@ -33622,6 +33642,15 @@
         "Notifications": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/objectstore_notification"
         },
+        "ObjectOwnership": {
+          "description": "Explicitly control the way in which object ownership should be treated",
+          "enum": [
+            "owner",
+            "ownerpreferred",
+            "writer"
+          ],
+          "type": "string"
+        },
         "Profiles": {
           "additionalProperties": false,
           "properties": {
@@ -34705,6 +34734,11 @@
         "Containers": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
+        "Cpu": {
+          "default": 0,
+          "description": "The Cpu available to all containers in the service - 0 will defer to the container allocations",
+          "type": "number"
+        },
         "DeploymentUnits": {
           "contains": {
             "type": [
@@ -34760,6 +34794,11 @@
         },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "Memory": {
+          "default": 0,
+          "description": "The memory available to all containers in the service - 0 will defer to the container allocations",
+          "type": "number"
         },
         "MultiAZ": {
           "default": false,
@@ -36964,6 +37003,11 @@
         "Containers": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
+        "Cpu": {
+          "default": 0,
+          "description": "The Cpu available to all containers in the task - 0 will defer to the container allocations",
+          "type": "number"
+        },
         "DeploymentUnits": {
           "contains": {
             "type": [
@@ -37020,6 +37064,11 @@
         },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "Memory": {
+          "default": 0,
+          "description": "The memory available to all containers in the task - 0 will defer to the container allocations",
+          "type": "number"
         },
         "MultiAZ": {
           "default": false,

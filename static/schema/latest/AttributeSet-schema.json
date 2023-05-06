@@ -796,7 +796,7 @@
     },
     "container": {
       "additionalProperties": false,
-      "description": "Descirbes each container that will be used as part of a service or task",
+      "description": "Describes each container that will be used as part of a service or task",
       "properties": {
         "Alerts": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
@@ -816,6 +816,43 @@
         "Cpu": {
           "description": "The CPU share to assign to the container",
           "type": "number"
+        },
+        "DependsOn": {
+          "additionalProperties": false,
+          "description": "Defines dependencies between containers in the same task - this container won't start unless these dependencies are met",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Condition": {
+                  "default": "START",
+                  "description": "The required state of the container to start this one",
+                  "enum": [
+                    "START",
+                    "COMPLETE",
+                    "SUCCESS",
+                    "HEALTHY"
+                  ],
+                  "type": [
+                    "array",
+                    "boolean",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                },
+                "ContainerName": {
+                  "description": "The name of the container to depend on uses the key of this object if not present",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "Essential": {
+          "default": true,
+          "description": "If the container exits the task/service stops all containers and restarts",
+          "type": "boolean"
         },
         "Extensions": {
           "contains": {
@@ -859,10 +896,11 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
         },
         "MaximumMemory": {
-          "description": "Set to 0 to not set a maximum",
+          "description": "A hard limit of memory available to the container - Set to 0 to not set a maximum",
           "type": "number"
         },
         "MemoryReservation": {
+          "description": "A fixed allocation that is assigned to to this container",
           "type": "number"
         },
         "Ports": {
@@ -898,6 +936,7 @@
         },
         "Privileged": {
           "default": false,
+          "description": "Enable privileged host mode for the container",
           "type": "boolean"
         },
         "Profiles": {
@@ -909,6 +948,10 @@
             }
           },
           "type": "object"
+        },
+        "ReadonlyRootFilesystem": {
+          "default": false,
+          "type": "boolean"
         },
         "RunCapabilities": {
           "contains": {
@@ -1192,6 +1235,11 @@
         "Containers": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
+        "Cpu": {
+          "default": 0,
+          "description": "The Cpu available to all containers in the service - 0 will defer to the container allocations",
+          "type": "number"
+        },
         "DesiredCount": {
           "type": "number"
         },
@@ -1206,6 +1254,11 @@
         },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "Memory": {
+          "default": 0,
+          "description": "The memory available to all containers in the service - 0 will defer to the container allocations",
+          "type": "number"
         },
         "MultiAZ": {
           "default": false,
@@ -1364,6 +1417,11 @@
         "Containers": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/container"
         },
+        "Cpu": {
+          "default": 0,
+          "description": "The Cpu available to all containers in the task - 0 will defer to the container allocations",
+          "type": "number"
+        },
         "Engine": {
           "const": "ec2",
           "default": "ec2",
@@ -1379,6 +1437,11 @@
         },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
+        },
+        "Memory": {
+          "default": 0,
+          "description": "The memory available to all containers in the task - 0 will defer to the container allocations",
+          "type": "number"
         },
         "MultiAZ": {
           "default": false,
