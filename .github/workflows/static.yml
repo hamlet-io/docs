@@ -39,7 +39,7 @@ jobs:
           TYPESENSE_SEARCH_API_KEY: ${{ secrets.TYPESENSE_SEARCH_API_KEY }}
         run: |
           yarn install --immutable
-          yarn run start
+          yarn run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
