@@ -39209,6 +39209,11 @@
                   ],
                   "type": "string"
                 },
+                "Enabled": {
+                  "default": true,
+                  "description": "Include this attribute in the schema",
+                  "type": "boolean"
+                },
                 "Mutable": {
                   "default": true,
                   "type": "boolean"
