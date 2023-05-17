@@ -1760,6 +1760,26 @@
           "patternProperties": {
             "^[A-Za-z_][A-Za-z0-9_-]*$": {
               "properties": {
+                "AllZoneServices": {
+                  "additionalProperties": false,
+                  "patternProperties": {
+                    "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                      "properties": {
+                        "ServiceName": {
+                          "type": "string"
+                        },
+                        "Type": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Type",
+                        "ServiceName"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
                 "Services": {
                   "contains": {
                     "type": [
@@ -1768,10 +1788,7 @@
                   },
                   "type": "array"
                 }
-              },
-              "required": [
-                "Services"
-              ]
+              }
             }
           },
           "type": "object"
