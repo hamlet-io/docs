@@ -30002,6 +30002,11 @@
               "default": "default",
               "type": "string"
             },
+            "Network": {
+              "default": "default",
+              "description": "The network profile rules applied to the default access control groups",
+              "type": "string"
+            },
             "Placement": {
               "default": "default",
               "description": "The resource group assignment placement for resources in the component",
@@ -30378,6 +30383,11 @@
                     }
                   },
                   "type": "object"
+                },
+                "Enabled": {
+                  "default": true,
+                  "description": "Enable the rule",
+                  "type": "boolean"
                 },
                 "Priority": {
                   "type": "number"
