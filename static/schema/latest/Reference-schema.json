@@ -2355,12 +2355,96 @@
           "type": "string"
         },
         "Rules": {
-          "contains": {
-            "type": [
-              "object"
-            ]
+          "additionalProperties": false,
+          "properties": {
+            "Action": {
+              "description": "The action to perform when the rule is matched",
+              "enum": [
+                "BLOCK",
+                "ALLOW"
+              ],
+              "type": "string"
+            },
+            "Action:BLOCK": {
+              "additionalProperties": false,
+              "description": "Additional configuration when using the BLOCK action",
+              "properties": {
+                "CustomResponse": {
+                  "additionalProperties": false,
+                  "description": "Return a custom HTTP response when the rule blocks a request",
+                  "properties": {
+                    "Body": {
+                      "additionalProperties": false,
+                      "description": "The HTTP body to return in the response",
+                      "properties": {
+                        "Content": {
+                          "description": "The content of the Body",
+                          "type": "string"
+                        },
+                        "ContentType": {
+                          "default": "text/html",
+                          "description": "The type of content",
+                          "enum": [
+                            "application/json",
+                            "text/html",
+                            "text/plain"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Content"
+                      ],
+                      "type": "object"
+                    },
+                    "Enabled": {
+                      "default": false,
+                      "description": "Enable custom response",
+                      "type": "boolean"
+                    },
+                    "Headers": {
+                      "additionalProperties": false,
+                      "description": "HTTP headers to include in the response",
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                          "properties": {
+                            "Key": {
+                              "description": "The Key of the header uses the id if not provided",
+                              "type": "string"
+                            },
+                            "Value": {
+                              "description": "The value of the header",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Value"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "StatusCode": {
+                      "default": 403,
+                      "description": "The HTTP Status code to return",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "Rule": {
+              "description": "The name of rule from the WAFRules reference data",
+              "type": "string"
+            },
+            "RuleGroup": {
+              "description": "The name of rule from the WAFRuleGroups reference data",
+              "type": "string"
+            }
           },
-          "type": "array"
+          "type": "object"
         }
       },
       "type": "object"

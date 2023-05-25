@@ -30623,6 +30623,11 @@
         "Title": {
           "description": "A longer form title of the component",
           "type": "string"
+        },
+        "aws:DefaultACL": {
+          "default": false,
+          "description": "Apply the rules for this ACL to the default VPC ACL",
+          "type": "boolean"
         }
       },
       "type": "object"
