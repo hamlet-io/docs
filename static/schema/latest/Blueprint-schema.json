@@ -4011,6 +4011,8 @@
                   "additionalProperties": false,
                   "properties": {
                     "Constraints": {
+                      "default": "EXACTLY",
+                      "description": "How to apply a match on the target",
                       "enum": [
                         "CONTAINS",
                         "CONTAINS_WORD",
@@ -4022,11 +4024,14 @@
                     },
                     "FieldsToMatch": {
                       "additionalProperties": false,
+                      "description": "Fields in an HTTP request to search for the target",
                       "properties": {
                         "Data": {
+                          "description": "Qualifying data on the field - e.g used to specify a specific header",
                           "type": "string"
                         },
                         "Type": {
+                          "description": "The type of field to match for",
                           "enum": [
                             "HEADER",
                             "METHOD",
@@ -4047,6 +4052,7 @@
                           "string"
                         ]
                       },
+                      "description": "Used to define number based operation matching",
                       "enum": [
                         "EQ",
                         "NE",
@@ -4063,6 +4069,7 @@
                           "string"
                         ]
                       },
+                      "description": "Payload sizes to use byte matching",
                       "type": "array"
                     },
                     "Targets": {
@@ -4071,6 +4078,7 @@
                           "string"
                         ]
                       },
+                      "description": "A list of waf value sets that are used to match the condition",
                       "type": "array"
                     },
                     "Transformations": {
@@ -4079,6 +4087,10 @@
                           "string"
                         ]
                       },
+                      "default": [
+                        "NONE"
+                      ],
+                      "description": "Transformations to perform on the target value before evaluating it",
                       "enum": [
                         "NONE",
                         "CMD_LINE",
@@ -4088,11 +4100,37 @@
                         "URL_DECODE"
                       ],
                       "type": "array"
+                    },
+                    "Type:LabelMatch": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "Scope": {
+                          "default": "LABEL",
+                          "description": "The scope of the label to match on either match on a rule namespace or an explicit label",
+                          "enum": [
+                            "NAMESPACE",
+                            "LABEL"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
                     }
                   },
                   "type": "object"
                 },
                 "Type": {
+                  "description": "The type of condition to use for the rule",
+                  "enum": [
+                    "ByteMatch",
+                    "GeoMatch",
+                    "IPMatch",
+                    "RegexMatch",
+                    "SizeConstraint",
+                    "SqlInjectionMatch",
+                    "XssMatch",
+                    "LabelMatch"
+                  ],
                   "type": "string"
                 }
               }
@@ -4155,11 +4193,12 @@
                                     "text/plain"
                                   ],
                                   "type": "string"
+                                },
+                                "ContentWAFValue": {
+                                  "description": "The key for a value in the profile WAF ValueSet",
+                                  "type": "string"
                                 }
                               },
-                              "required": [
-                                "Content"
-                              ],
                               "type": "object"
                             },
                             "Enabled": {
@@ -4320,6 +4359,29 @@
                   "additionalProperties": false,
                   "description": "Use a Vendor managed rule to apply dynamic controls",
                   "properties": {
+                    "ActionOverrides": {
+                      "additionalProperties": false,
+                      "patternProperties": {
+                        "^[A-Za-z_][A-Za-z0-9_-]*$": {
+                          "properties": {
+                            "Action": {
+                              "description": "The action to perform when the rule is matched",
+                              "enum": [
+                                "BLOCK",
+                                "ALLOW",
+                                "COUNT"
+                              ],
+                              "type": "string"
+                            },
+                            "Name": {
+                              "description": "The name of the rule inside the vendor ruleset - uses the child id if not set",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "type": "object"
+                    },
                     "DisabledRules": {
                       "contains": {
                         "type": [
