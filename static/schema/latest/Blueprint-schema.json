@@ -1039,6 +1039,25 @@
                         }
                       },
                       "type": "object"
+                    },
+                    "Providers": {
+                      "contains": {
+                        "type": [
+                          "string"
+                        ]
+                      },
+                      "default": [
+                        "_autoscalegroup",
+                        "aws:fargate",
+                        "aws:fargatespot"
+                      ],
+                      "description": "The providers that are available",
+                      "enum": [
+                        "_autoscalegroup",
+                        "aws:fargate",
+                        "aws:fargatespot"
+                      ],
+                      "type": "array"
                     }
                   },
                   "type": "object"
