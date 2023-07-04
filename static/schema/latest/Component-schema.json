@@ -454,12 +454,17 @@
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/alert"
         },
         "AuthorisationModel": {
-          "default": "IP",
-          "description": "Model to use where IP filtering is part of the desired authorization approach",
+          "default": "SOURCE",
+          "description": "Authorization Model to use in conjunction with resource based policy filtering",
           "enum": [
+            "SOURCE",
             "IP",
+            "AUTHORISER_OR_SOURCE",
+            "AUTHORIZER_OR_SOURCE",
             "AUTHORISER_OR_IP",
             "AUTHORIZER_OR_IP",
+            "AUTHORISER_AND_SOURCE",
+            "AUTHORIZER_AND_SOURCE",
             "AUTHORISER_AND_IP",
             "AUTHORIZER_AND_IP"
           ],
@@ -541,7 +546,8 @@
           "default": "EDGE",
           "enum": [
             "EDGE",
-            "REGIONAL"
+            "REGIONAL",
+            "PRIVATE"
           ],
           "type": "string"
         },
@@ -592,7 +598,8 @@
           "type": "object"
         },
         "Links": {
-          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link"
+          "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/link",
+          "description": "For a private API, provide VPC Endpoints via an inbound link from an external service with a \"VPC_ENDPOINTS\" attribute"
         },
         "LogMetrics": {
           "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/logmetric"
@@ -29674,6 +29681,11 @@
             }
           },
           "type": "object"
+        },
+        "StopAfterMatch": {
+          "default": false,
+          "description": "If this rule is matched don't apply any other rules after this one",
+          "type": "boolean"
         },
         "Tags": {
           "additionalProperties": false,
