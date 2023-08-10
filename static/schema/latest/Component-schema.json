@@ -26980,6 +26980,16 @@
           "additionalProperties": false,
           "description": "When the rule matches forward the request to a registered backend",
           "properties": {
+            "ClientIP": {
+              "default": "lb",
+              "description": "How to provide client IP to the target. By default, the lb address will be presented",
+              "enum": [
+                "preserve",
+                "proxy_protocol",
+                "lb"
+              ],
+              "type": "string"
+            },
             "DeregistrationTimeout": {
               "default": 30,
               "type": "number"
