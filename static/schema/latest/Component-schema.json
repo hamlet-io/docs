@@ -38674,6 +38674,15 @@
           },
           "type": "object"
         },
+        "IPAddressGroups": {
+          "contains": {
+            "type": [
+              "string"
+            ]
+          },
+          "description": "Limit User access based on IP Address",
+          "type": "array"
+        },
         "Instances": {
           "additionalProperties": false,
           "description": "Instances of a component configuration",
