@@ -38988,6 +38988,78 @@
           "description": "The components type",
           "type": "string"
         },
+        "Username": {
+          "additionalProperties": false,
+          "properties": {
+            "Include": {
+              "additionalProperties": false,
+              "description": "The parts of the occurrence context to include in the name",
+              "properties": {
+                "Component": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Environment": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Instance": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Name": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "Product": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Segment": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Tier": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "Version": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "IncludeOrder": {
+              "contains": {
+                "type": [
+                  "string"
+                ]
+              },
+              "default": [
+                "Product",
+                "Environment",
+                "Segment",
+                "Component",
+                "Instance",
+                "Version",
+                "Name"
+              ],
+              "description": "The order the includes are added in",
+              "type": "array"
+            },
+            "Name": {
+              "description": "A custom field used to set a specifc name",
+              "type": "string"
+            },
+            "UseIdValues": {
+              "default": true,
+              "description": "When formatting the name use the Id of the parts instead of the Name",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "deployment:Group": {
           "default": "application",
           "type": "string"
