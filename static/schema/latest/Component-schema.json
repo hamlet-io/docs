@@ -1740,7 +1740,7 @@
           "type": "object"
         },
         "deployment:Priority": {
-          "default": 100,
+          "default": 150,
           "type": "number"
         },
         "deployment:Unit": {

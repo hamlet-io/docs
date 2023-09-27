@@ -2873,6 +2873,20 @@
                     }
                   },
                   "type": "object"
+                },
+                "userpool": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "WAFProfile": {
+                      "default": "default",
+                      "type": "string"
+                    },
+                    "WAFValueSet": {
+                      "default": "default",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
                 }
               }
             }
@@ -4183,7 +4197,9 @@
                       "description": "The action to perform when the rule is matched",
                       "enum": [
                         "BLOCK",
-                        "ALLOW"
+                        "ALLOW",
+                        "CHALLENGE",
+                        "COUNT"
                       ],
                       "type": "string"
                     },
@@ -4254,6 +4270,22 @@
                             }
                           },
                           "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "Action:CHALLENGE": {
+                      "additionalProperties": false,
+                      "description": "What to do when the WAF hits a challenge action",
+                      "properties": {
+                        "Engine": {
+                          "default": "CAPTCHA",
+                          "description": "The type of challenge to issue",
+                          "enum": [
+                            "CAPTCHA",
+                            "Transparent"
+                          ],
+                          "type": "string"
                         }
                       },
                       "type": "object"
