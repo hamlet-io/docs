@@ -37940,6 +37940,36 @@
           "default": true,
           "type": "boolean"
         },
+        "Endpoints": {
+          "additionalProperties": false,
+          "description": "Fixed endpoints to add to the subscription",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Address": {
+                  "description": "The address that receives the notification (URI, email address, phone number)",
+                  "type": "string"
+                },
+                "Protocol": {
+                  "description": "The protocol to use when sending the message",
+                  "enum": [
+                    "http",
+                    "https",
+                    "email",
+                    "email-json",
+                    "sms"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Protocol",
+                "Address"
+              ]
+            }
+          },
+          "type": "object"
+        },
         "Export": {
           "default": false,
           "type": "boolean"
