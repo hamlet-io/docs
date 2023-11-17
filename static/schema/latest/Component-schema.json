@@ -4162,6 +4162,21 @@
       "additionalProperties": false,
       "description": "A content distribution network which provides caching and global distribution of content",
       "properties": {
+        "Aliases": {
+          "additionalProperties": false,
+          "description": "Hostnames included on the CDN",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_-]*$": {
+              "properties": {
+                "Hostname": {
+                  "$ref": "https://docs.hamlet.io/schema/latest/AttributeSet-schema.json#/definitions/certificate",
+                  "description": "The hostname of the alias"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
         "AssumeSNI": {
           "default": true,
           "description": "Use TLS Server Name Identification to route clients requests to the CDN",
