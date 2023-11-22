@@ -14363,6 +14363,34 @@
           "description": "The components type",
           "type": "string"
         },
+        "aws:Storage": {
+          "additionalProperties": false,
+          "description": "Additional storage configuration options",
+          "properties": {
+            "Iops": {
+              "default": -1,
+              "description": "Specify the IOPS you want for types that support it",
+              "type": "number"
+            },
+            "Throughput": {
+              "default": -1,
+              "description": "Specifiy the throughput you want for gp-3 volumes",
+              "type": "number"
+            },
+            "Type": {
+              "default": "gp2",
+              "description": "The type of storage to use for the database",
+              "enum": [
+                "gp2",
+                "gp3",
+                "io1",
+                "standard"
+              ],
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
         "azure:AutoGrow": {
           "default": "Disabled",
           "description": "Allow Database storage to grow automatically as the capacity limit is reached.",
