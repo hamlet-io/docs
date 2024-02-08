@@ -38771,6 +38771,10 @@
           },
           "type": "object"
         },
+        "aws:PermissionsBoundaryPolicyArn": {
+          "description": "The Arn of a Permissions Boundary Policy Arn",
+          "type": "string"
+        },
         "deployment:Group": {
           "default": "application",
           "type": "string"
