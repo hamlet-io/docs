@@ -295,6 +295,7 @@ module.exports = {
                 'reference/software/docs_site/index',
                 'reference/software/docs_site/docs',
                 'reference/software/docs_site/blog',
+                'reference/software/docs_site/react-components',
               ]
             },
           ]
