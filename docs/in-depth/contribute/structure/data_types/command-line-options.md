@@ -3,7 +3,7 @@ sidebar_label: Command Line Options
 title: Command Line Options
 ---
 
-:::caution
+:::warning
 The hamlet.io documentation is currently under significant re-development. Existing content is a placeholder and will be updated very soon.
 :::
 

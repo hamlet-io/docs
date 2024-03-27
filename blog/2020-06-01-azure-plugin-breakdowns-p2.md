@@ -182,7 +182,7 @@ a) Learns the resource id of the Secret resource: `secretXappXstage`.
 b) From that it knows how to create an Id for a Secret Name, which is also another output: `secretXappXstageXname`.
 c) So that resource can evaluate all composite stack outputs to look for that output, and learn that the secret name in KeyVault is `hamletioKeyVault-1a2b3c4d/app-stage-secret-ConnectionKey` where the first part is the vault name, and the secodn is the name of our Secret resource.
 
-:::caution
+:::warning
   You may have noticed that all outputs for a given resource have a common structure. That's because the default output for every resource (the resource id in Azure) will set the name for all other outputs of that resource. For example the "Secret" resource from the template above sets gives us two outputs:
 
   |Ouput Id               |Output Value       |

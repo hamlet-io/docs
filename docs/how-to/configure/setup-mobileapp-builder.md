@@ -13,7 +13,7 @@ Our recommended approach here is to use homebrew along with installation manager
 
 :::
 
-:::caution
+:::warning
 
 For iOS based mobile apps you must use a macOS based machine to perform the builds. Our process only outlines the setup required for an existing macOS machine. While Android builds don't require this its generally easiest to run both on macOS machine.
 
@@ -146,7 +146,7 @@ Perform the following tasks to setup your build machine
     EOF
     fi
 
-    # Disable the osxkeychain credential helper for git 
+    # Disable the osxkeychain credential helper for git
     # If this isn't disabled Jenkins jobs can fail as keychain will ask you for the password for a credential
     sudo git config --global --add credential.helper ""
 

@@ -1,13 +1,11 @@
 import React from "react";
-import Highlight, { defaultProps } from "prism-react-renderer";
+import { Highlight } from "prism-react-renderer";
 
 import "./styles.css";
 
-function HamletExample({ codeblock }) {
-
+export default function HamletExample({ codeblock }) {
   return (
       <Highlight
-        {...defaultProps}
         code={codeblock}
         language="json"
         theme={require("../../theme/hamlet")}
@@ -26,5 +24,3 @@ function HamletExample({ codeblock }) {
       </Highlight>
   );
 }
-
-export default HamletExample;

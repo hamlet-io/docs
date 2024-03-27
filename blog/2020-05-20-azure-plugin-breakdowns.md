@@ -32,7 +32,7 @@ First up - lets take a look at the `template.json` file structure. The template 
 }
 ```
 
-::note
+:::note
   In order to keep examples readable, code snippets will be trimmed of non-essential content.
 :::
 Because hamlet will be undertaking the template generation for us, some of these template properties are handled differently or are less utilised then you may be used to.
@@ -173,7 +173,7 @@ hamlet uses template outputs far more than you may be used to, but in a far more
 1. The results of the output processing is captured and saved into a new file - `stack.json`. The name "stack" is borrowed from AWS conventions, and represents the current deployed state of a resource.
 1. The next time a new template generation occurs (for *any* deployment-unit, not just that same one), part of the generation process is to create a composite of all the output sections across all `stack.json` files. This composite file is then used for every subsequent template generation to extract the necessary values. Effectively its a library of values on the current state of deployed resources. Because it's a direct reflection of the current state, this is also used to determine if a resource is actually deployed or not. Every resource must have at least one output - typically its the unique identifier of the resource (in Azure this is the result of a `[resourceId()]` function) in order for it to be considered deployed.
 
-:::caution
+:::warning
   Steps 2 and 3 of the above process is applicable to every provider. The composite stack files include information about which provider generated that output. Then during template generation each output is transformed into a single common structure that hamlet can read and use. In this way you could have templates from multiple providers in the same repository and pass values between them without any additional effort.
 :::
 

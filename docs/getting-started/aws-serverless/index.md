@@ -6,7 +6,7 @@ slug: /getting-started/aws-serverless/
 
 This guide takes you through the deployment of an application on AWS using hamlet and a range of AWS services.
 
-:::caution
+:::warning
 While we have tried to minimise the cost of the services we selected in this guide, there will still be costs incurred running this guide.
 Please make sure to clean up any resources created during the guide.
 

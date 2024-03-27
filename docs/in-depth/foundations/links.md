@@ -23,84 +23,85 @@ Link definitions assume both source and target have matching "Instance" and "Ver
 
 The example below shows:
 
-*  example-function  linking to  example-db 
+* example-function  linking to  example-db
      example-db  has different  Instance  and  Version  so they are defined on the link.
-*  second-example-function  linking to  example-db 
+* second-example-function  linking to  example-db
      Instance  and  Version  match, so they are not required.
-*  example-db  linking to  example-function 
+* example-db  linking to  example-function
      example-function  has neither  Instance  or  Version , but   example-db  has both - empty strings define the difference.
 
 ## Linking to a Component
 
-   json
-{
-    "Tiers" : {
-        "db" : {
-            "Components" : {
-                "example-db" : {
-                    "db" : {
-                        "Instances" : {
-                            "example-instance" : {
-                                "Versions" : {
-                                    "v1" : {
-                                        "DeploymentUnit" : [ "example-db-v1" ]
+    ```json
+        {
+        "Tiers" : {
+            "db" : {
+                "Components" : {
+                    "example-db" : {
+                        "db" : {
+                            "Instances" : {
+                                "example-instance" : {
+                                    "Versions" : {
+                                        "v1" : {
+                                            "DeploymentUnit" : [ "example-db-v1" ]
+                                        }
                                     }
                                 }
-                            }
-                        },
-                        // db configuration ...
-                        "Links" : {
-                            "lambda-function-link" : {
-                                "Tier" : "app",
-                                "Component" : "example-lambda",
-                                "Function" : "example-function",
-                                "Instance" : "",
-                                "Version" : ""
+                            },
+                            // db configuration ...
+                            "Links" : {
+                                "lambda-function-link" : {
+                                    "Tier" : "app",
+                                    "Component" : "example-lambda",
+                                    "Function" : "example-function",
+                                    "Instance" : "",
+                                    "Version" : ""
+                                }
                             }
                         }
                     }
                 }
-            }
-        },
-        "app" : {
-            "Components" : {
-                "example-lambda" : {
-                    "lambda" : {
-                        // lambda configuration ...
-                        "Functions" : {
-                            "example-function" : {
-                                // function configuration ...
-                                "Links" : {
-                                    "db-link" : {
-                                        "Tier" : "db",
-                                        "Component" : "example-db",
-                                        "Instance" : "example-instance",
-                                        "Version" : "v1"
+            },
+            "app" : {
+                "Components" : {
+                    "example-lambda" : {
+                        "lambda" : {
+                            // lambda configuration ...
+                            "Functions" : {
+                                "example-function" : {
+                                    // function configuration ...
+                                    "Links" : {
+                                        "db-link" : {
+                                            "Tier" : "db",
+                                            "Component" : "example-db",
+                                            "Instance" : "example-instance",
+                                            "Version" : "v1"
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                },
-                "second-lambda-example" : {
-                    "lambda" : {
-                        // lambda configuration
-                        "Instances" : {
-                            "example-instance" : {
-                                "Versions" : {
-                                    "v1" : {
-                                        "DeploymentUnits" : [ "example-lambda-v1" ]
+                    },
+                    "second-lambda-example" : {
+                        "lambda" : {
+                            // lambda configuration
+                            "Instances" : {
+                                "example-instance" : {
+                                    "Versions" : {
+                                        "v1" : {
+                                            "DeploymentUnits" : [ "example-lambda-v1" ]
+                                        }
                                     }
                                 }
-                            }
-                        },
-                        "Functions" : {
-                            "second-example-function" : {
-                                // function configuration
-                                "Links" : {
-                                    "db-link" : {
-                                        "Tier" : "db",
-                                        "Component" : "example-db"
+                            },
+                            "Functions" : {
+                                "second-example-function" : {
+                                    // function configuration
+                                    "Links" : {
+                                        "db-link" : {
+                                            "Tier" : "db",
+                                            "Component" : "example-db"
+                                        }
                                     }
                                 }
                             }
@@ -110,9 +111,7 @@ The example below shows:
             }
         }
     }
-}
-
-   
+    ```
 
 ## Link Roles
 
@@ -132,7 +131,6 @@ The  IncludeInContext  optional attribute on a link is used to restrict which li
 
 Run the following command in the hamlet container to validate your component's link configuration:
 
-```bash
-hamlet component describe-occurrence \
-    --name
-    solution
+    ```bash
+        hamlet component describe-occurrence --name solution
+    ```
