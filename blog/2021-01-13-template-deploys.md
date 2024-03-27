@@ -137,7 +137,7 @@ Lets see what this looks like in hamlet:
     You can skip this step if you already have a hamlet up and running
     :::
 
-    :::caution
+    :::warning
     This hamlet will only be available in the docker container. If you would like to keep it please attach a volume
     :::
 
@@ -255,7 +255,7 @@ Lets see what this looks like in hamlet:
     hamlet deploy run-deployments -u baseline -u glue-db
     ```
 
-    :::caution
+    :::warning
     You will need access to the AWS account you specified in step 1 for this to run. Make sure to cleanup the deployment when you are done
     :::
 
@@ -293,7 +293,7 @@ Lets see what this looks like in hamlet:
 
 7. Now we can clean up this deployment
 
-    :::caution
+    :::warning
     If you receive an error when deleting the baseline S3 buckets. Please empty the bucket and run these commands again
     :::
 

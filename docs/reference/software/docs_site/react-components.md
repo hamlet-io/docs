@@ -12,13 +12,10 @@ title: React Components
 
 ### HamletComponents
 
+* Props: none
 * Using the `HamletJsonSchema` functions below this Component reads in the publicly published JSONSchema for hamlet component structures
 * The Data is then rendered as reference data tables at [hamlet](https://hamlet.io/reference)
 * This allows us to use hamlet to define its own JSONSchema for each Component and ensure the documentation is always current
-
-#### Props
-
-* none
 
 ### HamletExample
 
@@ -32,12 +29,9 @@ Exported utility functions
 
 ### getHamletJsonSchema
 
+* Props: type, version
 * Simple function component that can be used to switch between different schema types
 * Specify the type of schema required and its version (incl. latest) and it will return its structure from source.
-
-#### Props
-
-type, version
 
 #### getAsyncComponents
 
@@ -53,15 +47,14 @@ type, version
 
 #### getComponentStructure
 
-* Props: name, attributes, requires as { props }
+* Props: name, attributes, requires as `{ props }`
 * Uses the above function components to seperate out an individual hamlet components JSONSchema into individual schemas
   * each Attribute of the component that has children is separated into its own schema
   * There is also a “root” schema for the component
 
 #### getComponentExampleCodeblock
 
-Props: schema
-
+* Props: schema
 * Uses the generated and restructured component schemas from all the above functions to construct a JSON representation of the hamlet Component as it would appear in a solution.
 * Presents the JSON with human-readable notation in place of type-data.
 
