@@ -10999,6 +10999,14 @@
       "additionalProperties": false,
       "description": "A channel used to send correspondence",
       "properties": {
+        "AuthMethod": {
+          "description": "The authentication method that you want Amazon Pinpoint to use when authenticating with APNs. Valid options are key or certificate.",
+          "enum": [
+            "certificate",
+            "token"
+          ],
+          "type": "string"
+        },
         "Description": {
           "description": "A description of the component",
           "type": "string"
@@ -11293,12 +11301,28 @@
           "additionalProperties": false,
           "description": "Specific channel configuration for Apple Notification Services",
           "properties": {
+            "BundleId": {
+              "description": "The bundle identifier that's assigned to the iOS app",
+              "type": "string"
+            },
             "Certificate": {
               "description": "The push notification public certificate",
               "type": "string"
             },
             "PrivateKey": {
               "description": "The push notification private key",
+              "type": "string"
+            },
+            "TeamId": {
+              "description": "The identifier that's assigned to the Apple Developer Account team",
+              "type": "string"
+            },
+            "TokenKey": {
+              "description": "The authentication key to use for APNs tokens",
+              "type": "string"
+            },
+            "TokenKeyId": {
+              "description": "The key identifier that's assigned to the APNs signing key",
               "type": "string"
             }
           },
@@ -11308,12 +11332,28 @@
           "additionalProperties": false,
           "description": "Specific channel configuration for Apple Sandbox Notification Services",
           "properties": {
+            "BundleId": {
+              "description": "The bundle identifier that's assigned to the iOS app",
+              "type": "string"
+            },
             "Certificate": {
               "description": "The push notification public certificate",
               "type": "string"
             },
             "PrivateKey": {
               "description": "The push notification private key",
+              "type": "string"
+            },
+            "TeamId": {
+              "description": "The identifier that's assigned to the Apple Developer Account team",
+              "type": "string"
+            },
+            "TokenKey": {
+              "description": "The authentication key to use for APNs tokens",
+              "type": "string"
+            },
+            "TokenKeyId": {
+              "description": "The key identifier that's assigned to the APNs signing key",
               "type": "string"
             }
           },
@@ -11325,6 +11365,10 @@
           "properties": {
             "APIKey": {
               "description": "The setting or link name to use for the API Key - setting:_setting name_ - link: _link name_",
+              "type": "string"
+            },
+            "Token": {
+              "description": "The setting or link name to use for the Token Credentials - setting:_setting name_ - link: _link name_",
               "type": "string"
             }
           },
