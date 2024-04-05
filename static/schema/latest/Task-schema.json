@@ -3,6 +3,282 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
+    "aws_cfn_create_change_set": {
+      "additionalProperties": false,
+      "description": "Create a change set for a cloudformation stack",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Capabilities": {
+          "default": "CAPABILITY_IAM,CAPABILITY_NAMED_IAM",
+          "description": "A comma seperated list of capabilities that can be used in the template",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "ChangeSetName": {
+          "description": "The name of the change set to create",
+          "type": "string"
+        },
+        "Parameters": {
+          "description": "A JSON escaped string containing the paramters for the template",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name to use for the stack",
+          "type": "string"
+        },
+        "TemplateBody": {
+          "description": "A string containing the template to deploy",
+          "type": "string"
+        },
+        "TemplateS3Uri": {
+          "description": "An S3 Url to where the template is stored",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackName",
+        "ChangeSetName"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_delete_stack": {
+      "additionalProperties": false,
+      "description": "Delete a cloudformation stack",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name to use for the stack",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackName"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_execute_change_set": {
+      "additionalProperties": false,
+      "description": "Execute a change set for a cloudformation stack",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "ChangeSetName": {
+          "description": "The name of the change set to create",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name to use for the stack",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackName",
+        "ChangeSetName"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_get_change_set_changes_types": {
+      "additionalProperties": false,
+      "description": "Return a list of resources that are changed in the stack set",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "ChangeSetName": {
+          "description": "The name of the change set to create",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name to use for the stack",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackName",
+        "ChangeSetName"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_get_stack_outputs": {
+      "additionalProperties": false,
+      "description": "Get the outputs of a stack",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name to use for the stack",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackName"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_run_stack": {
+      "additionalProperties": false,
+      "description": "Update or create cfn stack",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Capabilities": {
+          "default": "CAPABILITY_IAM,CAPABILITY_NAMED_IAM",
+          "description": "A comma seperated list of capabilities that can be used in the template",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "Parameters": {
+          "description": "A JSON escaped string containing the paramters for the template",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name to use for the stack",
+          "type": "string"
+        },
+        "TemplateBody": {
+          "description": "A string containing the template to deploy",
+          "type": "string"
+        },
+        "TemplateS3Uri": {
+          "description": "An S3 Url to where the template is stored",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackName"
+      ],
+      "type": "object"
+    },
+    "aws_cfn_write_stack_outputs_to_file": {
+      "additionalProperties": false,
+      "description": "Get the outputs of a stack and write them to file",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "FilePath": {
+          "description": "The path to where the file should be written",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        },
+        "StackName": {
+          "description": "The name to use for the stack",
+          "type": "string"
+        }
+      },
+      "required": [
+        "StackName",
+        "FilePath"
+      ],
+      "type": "object"
+    },
     "aws_ec2_select_instance": {
       "additionalProperties": false,
       "description": "Lists the available instances and allows the user to select one - returns the selected instance id",
@@ -369,6 +645,36 @@
       ],
       "type": "object"
     },
+    "aws_run_bash_script": {
+      "additionalProperties": false,
+      "description": "Run a provided bash script with AWS Credentials set in the environment",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "Environment": {
+          "description": "A json escaped dict with k/v environment variable pairs",
+          "type": "string"
+        },
+        "ScriptPath": {
+          "description": "The path to the script to run",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ScriptPath"
+      ],
+      "type": "object"
+    },
     "aws_s3_download_bucket": {
       "additionalProperties": false,
       "description": "Download the contents of an S3 bucket to a local directory",
@@ -479,6 +785,55 @@
       },
       "required": [
         "BucketName"
+      ],
+      "type": "object"
+    },
+    "aws_s3_presign_url": {
+      "additionalProperties": false,
+      "description": "Return a presigned URL for an S3 object",
+      "properties": {
+        "AWSAccessKeyId": {
+          "description": "The AWS Access Key Id with access to decrypt",
+          "type": "string"
+        },
+        "AWSSecretAccessKey": {
+          "description": "The AWS Secret Access Key with access to decrypt",
+          "type": "string"
+        },
+        "AWSSessionToken": {
+          "description": "The AWS Session Token with access to decrypt",
+          "type": "string"
+        },
+        "BucketName": {
+          "description": "The name of the S3 Bucket",
+          "type": "string"
+        },
+        "ClientMethod": {
+          "const": "get_object",
+          "default": "get_object",
+          "description": "The aws s3 methods that can be performed on the object - comma seperated",
+          "type": "string"
+        },
+        "Expiration": {
+          "default": 300,
+          "description": "The expiration time in seconds for the presigned URL",
+          "type": [
+            "number",
+            "string"
+          ]
+        },
+        "Object": {
+          "description": "The path of the object in the bucket",
+          "type": "string"
+        },
+        "Region": {
+          "description": "The name of the region to use for the aws session",
+          "type": "string"
+        }
+      },
+      "required": [
+        "BucketName",
+        "Object"
       ],
       "type": "object"
     },
@@ -733,6 +1088,33 @@
       "required": [
         "DestinationImage",
         "SourceImage"
+      ],
+      "type": "object"
+    },
+    "file_delete": {
+      "additionalProperties": false,
+      "description": "Deletes a file if it is a file and is present",
+      "properties": {
+        "FilePath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "FilePath"
+      ],
+      "type": "object"
+    },
+    "file_path_details": {
+      "additionalProperties": false,
+      "description": "Return an output with details on a given filepath namely its type and if it exists",
+      "properties": {
+        "FilePath": {
+          "description": "The path to the file",
+          "type": "string"
+        }
+      },
+      "required": [
+        "FilePath"
       ],
       "type": "object"
     },
